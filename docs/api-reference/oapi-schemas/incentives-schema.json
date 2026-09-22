@@ -1,0 +1,368 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "protos/gateway/incentives/v1/incentives.proto",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.polymarket.us",
+      "description": "Production server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "IncentivesService"
+    }
+  ],
+  "paths": {
+    "/v1/incentives": {
+      "get": {
+        "summary": "Get Incentive Programs",
+        "description": "Returns active and historical incentive programs grouped by market.",
+        "operationId": "IncentivesService_ListIncentives",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/gateway.incentives.v1.ListIncentivesResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page_size",
+            "description": "Number of markets to return per page. Use with `page_token` for pagination.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "page_token",
+            "description": "Pagination token from a previous response's `next_page_token` field. Omit for the first request.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "symbols",
+            "description": "Filter by market symbols. Returns only programs for the specified markets.",
+            "in": "query",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "order_by",
+            "description": "Sort field. Defaults to `created_at`.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_direction",
+            "description": "Sort direction: `asc` or `desc`. Defaults to `desc`.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "statuses",
+            "description": "Filter by program status: `active`, `closed`, or `pending`.",
+            "in": "query",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "program_type",
+            "description": "Filter by program type, such as `liquidityProgram` or `volumeProgram`.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "description": "Case-insensitive substring match on market slug.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "instrument_states",
+            "description": "Filter by instrument lifecycle state, including `INSTRUMENT_STATE_CLOSED`.",
+            "in": "query",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "INSTRUMENT_STATE_OPEN",
+                  "INSTRUMENT_STATE_PREOPEN",
+                  "INSTRUMENT_STATE_SUSPENDED",
+                  "INSTRUMENT_STATE_EXPIRED",
+                  "INSTRUMENT_STATE_TERMINATED",
+                  "INSTRUMENT_STATE_HALTED",
+                  "INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION",
+                  "INSTRUMENT_STATE_PENDING"
+                ]
+              }
+            }
+          },
+          {
+            "name": "category",
+            "description": "Filter by exact event category.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "subcategory",
+            "description": "Filter by exact event subcategory.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Incentives"
+        ]
+      }
+    },
+    "/v1/incentives/earnings": {
+      "get": {
+        "summary": "Get Your Incentive Earnings",
+        "description": "Returns rewards earned by the authenticated caller. Each entry sums all payouts for a single (market, date) pair, where date is in Eastern Time.",
+        "operationId": "IncentivesService_GetIncentivesEarned",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/gateway.incentives.v1.GetIncentivesEarnedResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "start_date",
+            "description": "Start date filter (`YYYY-MM-DD`). Defaults to the program launch date.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end_date",
+            "description": "End date filter (`YYYY-MM-DD`). Omit for through-today.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "market_slug",
+            "description": "Filter by market slug.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "program_type",
+            "description": "Filter by program type (e.g. `liquidityProgram`).",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Incentives"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "gateway.incentives.v1.GetIncentivesEarnedResponse": {
+        "type": "object",
+        "properties": {
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/gateway.incentives.v1.UserReward"
+            }
+          }
+        }
+      },
+      "gateway.incentives.v1.IncentiveProgram": {
+        "type": "object",
+        "properties": {
+          "marketSlug": {
+            "type": "string"
+          },
+          "timePeriods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/gateway.incentives.v1.TimePeriod"
+            }
+          },
+          "instrumentState": {
+            "$ref": "#/components/schemas/gateway.incentives.v1.InstrumentState"
+          },
+          "category": {
+            "type": "string"
+          },
+          "subcategory": {
+            "type": "string"
+          },
+          "eventStartTime": {
+            "type": "string"
+          },
+          "instrumentProduct": {
+            "type": "string"
+          }
+        },
+        "description": "IncentiveProgram groups incentive time periods for a single market."
+      },
+      "gateway.incentives.v1.InstrumentState": {
+        "type": "string",
+        "enum": [
+          "INSTRUMENT_STATE_OPEN",
+          "INSTRUMENT_STATE_PREOPEN",
+          "INSTRUMENT_STATE_SUSPENDED",
+          "INSTRUMENT_STATE_EXPIRED",
+          "INSTRUMENT_STATE_TERMINATED",
+          "INSTRUMENT_STATE_HALTED",
+          "INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION",
+          "INSTRUMENT_STATE_PENDING"
+        ],
+        "description": "InstrumentState values mirror polymarket.v1.InstrumentState from the\nexchange API's refdata contract."
+      },
+      "gateway.incentives.v1.ListIncentivesResponse": {
+        "type": "object",
+        "properties": {
+          "programs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/gateway.incentives.v1.IncentiveProgram"
+            }
+          },
+          "nextPageToken": {
+            "type": "string",
+            "description": "Pagination token to pass as `page_token` on the next request, if more results exist."
+          }
+        }
+      },
+      "gateway.incentives.v1.TimePeriod": {
+        "type": "object",
+        "properties": {
+          "programId": {
+            "type": "string"
+          },
+          "programType": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string",
+            "nullable": true
+          },
+          "rewardPool": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string"
+          },
+          "discountFactor": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "targetSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "period": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "minTakerNotional": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "description": "TimePeriod describes a specific incentive program within a time window."
+      },
+      "gateway.incentives.v1.UserReward": {
+        "type": "object",
+        "properties": {
+          "reward": {
+            "type": "number",
+            "format": "double"
+          },
+          "programType": {
+            "type": "string"
+          },
+          "marketSlug": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

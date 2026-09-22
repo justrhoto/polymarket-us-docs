@@ -1,0 +1,14 @@
+{
+  "name": "polymarket-us-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unofficial auto-updating Markdown mirror of the Polymarket US API documentation",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "update": "node update.ts"
+  }
+}
