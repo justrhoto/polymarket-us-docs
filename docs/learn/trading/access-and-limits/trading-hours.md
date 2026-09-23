@@ -6,7 +6,7 @@
 
 > Learn about Polymarket US trading availability, reporting schedule, and maintenance policy
 
-Polymarket US operates nearly 24/7, with a recurring weekly maintenance window every **Thursday from 2:00–4:00 AM ET**. Trading may also be temporarily suspended if technical issues, emergency maintenance, or other operational needs require action to maintain security, integrity, or orderly market operation.
+Polymarket US operates nearly 24/7, with a recurring weekly maintenance window every **Thursday from 6:00–8:00 AM ET**. Trading may also be temporarily suspended if technical issues, emergency maintenance, or other operational needs require action to maintain security, integrity, or orderly market operation.
 
 ## Emergency Maintenance
 

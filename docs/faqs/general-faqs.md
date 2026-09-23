@@ -8,7 +8,7 @@
 
 ### What are the trading hours?
 
-Polymarket US operates nearly 24/7, with a recurring weekly maintenance window every Thursday from 2am–4am ET. Specific markets may have different trading hours based on the underlying event.
+Polymarket US operates nearly 24/7, with a recurring weekly maintenance window every Thursday from 6am–8am ET. Specific markets may have different trading hours based on the underlying event.
 
 ### How do I fund my account?
 
@@ -24,7 +24,7 @@ View live system status, incidents, and scheduled maintenance at [status.polymar
 
 ### When are maintenance windows?
 
-Every Thursday, 2am–4am ET is the recurring weekly maintenance window. Previously, the window was every Thursday, 2am–6am ET.
+Every Thursday, 6am–8am ET is the recurring weekly maintenance window, effective September 24, 2026. Previously, the window was every Thursday, 2am–4am ET.
 
 ### What happens to open orders during maintenance?
 
