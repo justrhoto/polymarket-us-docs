@@ -11,17 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/funding-schema.json get /v1/funding/balance-ledger
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Funding API
-  description: >-
-    Account balance ledger endpoints. Tracks every change to an account's cash
-    balance with both a delta (`before_balance` -> `after_balance`) and a typed
-    `entry_type`.
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: Funding
 paths:
@@ -49,34 +47,50 @@ paths:
           description: >-
             Optional. ISO currency code (e.g., `USD`). Omit to return entries in
             all currencies for the account.
-        - name: start_time
+        - name: startTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: >-
-            Optional. Inclusive lower bound on `update_time` (RFC3339). Clamped
-            upstream to `2026-05-01T00:00:00Z`.
-        - name: end_time
+        - name: endTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: Optional. Inclusive upper bound on `update_time` (RFC3339).
-        - name: entry_types
+        - name: entryTypes
           in: query
           required: false
+          explode: true
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/LedgerEntryType'
-          description: >-
-            Optional. Filter by one or more entry types from the allowlist.
-            Requesting a suppressed type returns `Aborted` (HTTP 409). Multiple
-            values can be provided. Example:
-            `entry_types=DEPOSIT&entry_types=ORDER_EXECUTION`.
+              type: string
+              enum:
+                - LEDGER_ENTRY_TYPE_BALANCE_DEPOSIT
+                - LEDGER_ENTRY_TYPE_BALANCE_WITHDRAWAL
+                - LEDGER_ENTRY_TYPE_BALANCE_ORDER_EXECUTION
+                - LEDGER_ENTRY_TYPE_BALANCE_CORRECTION
+                - LEDGER_ENTRY_TYPE_BALANCE_NETTING
+                - LEDGER_ENTRY_TYPE_BALANCE_RESOLUTION
+                - LEDGER_ENTRY_TYPE_BALANCE_MANUAL_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_BALANCE_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_MARK_TO_MARKET
+                - LEDGER_ENTRY_TYPE_BALANCE_ACCOUNT_PROPERTY_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_COMMISSION
+                - LEDGER_ENTRY_TYPE_BALANCE_CONTRACT_EXPIRATION
+                - LEDGER_ENTRY_TYPE_BALANCE_PENDING_CREDIT_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_BEGINNING_OF_DAY
+                - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_WITHDRAWAL
+                - LEDGER_ENTRY_TYPE_BALANCE_WITHDRAWAL_REJECTION
+                - LEDGER_ENTRY_TYPE_BALANCE_MANUAL_TRANSFER
+                - LEDGER_ENTRY_TYPE_BALANCE_AVERAGE_PRICE_TRANSFER
+                - LEDGER_ENTRY_TYPE_BALANCE_GIVE_UP
+                - LEDGER_ENTRY_TYPE_BALANCE_SYNCHRONIZATION
+                - LEDGER_ENTRY_TYPE_BALANCE_INTEREST
+                - LEDGER_ENTRY_TYPE_BALANCE_PENDING_WITHDRAWAL_CREATION
+                - LEDGER_ENTRY_TYPE_BALANCE_SETTLEMENT_FEE
         - name: symbol
           in: query
           required: false
@@ -90,73 +104,43 @@ paths:
           required: false
           schema:
             type: string
-            maxLength: 200
           description: >-
             Optional. Substring filter on the entry `description`. Maximum 200
             Unicode characters (not bytes); longer values return
             `InvalidArgument`.
-        - name: newest_first
+        - name: newestFirst
           in: query
           required: false
           schema:
             type: boolean
-          description: >-
-            Optional. If `true`, return entries in descending `update_time`
-            order. Default is `false` (oldest first).
-        - name: page_size
+        - name: pageSize
           in: query
           required: false
           schema:
             type: integer
             format: int32
             maximum: 1000
-          description: >-
-            Optional. Maximum entries to return per page (max 1000). Values
-            above 1000 return `InvalidArgument`.
-        - name: page_token
+        - name: pageToken
           in: query
           required: false
           schema:
             type: string
-          description: >-
-            Optional. Pagination token from a previous response's
-            `nextPageToken`. Omit for the first request.
       responses:
         '200':
           description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAccountBalanceLedgerResponse'
+                $ref: '#/components/schemas/v1GetAccountBalanceLedgerResponse'
 components:
   schemas:
-    LedgerEntryType:
-      type: string
-      enum:
-        - DEPOSIT
-        - WITHDRAWAL
-        - ORDER_EXECUTION
-        - CORRECTION
-        - RESOLUTION
-        - MANUAL_ADJUSTMENT
-        - ACCOUNT_PROPERTY_ADJUSTMENT
-        - COMMISSION
-        - WITHDRAWAL_REJECTION
-        - MANUAL_TRANSFER
-        - PENDING_WITHDRAWAL_CREATION
-      description: >-
-        Allowlist of balance-ledger entry types that are exposed to clients.
-        Internal exchange types (`NETTING`, `SECURITY_*`, `CONTRACT_EXPIRATION`,
-        `BEGINNING_OF_DAY`, `INTEREST`, `SETTLEMENT_FEE`, etc.) are suppressed:
-        requesting a suppressed type returns `Aborted` (409), and any suppressed
-        types in upstream responses are silently filtered.
-    GetAccountBalanceLedgerResponse:
+    v1GetAccountBalanceLedgerResponse:
       type: object
       properties:
         entries:
           type: array
           items:
-            $ref: '#/components/schemas/BalanceLedgerEntry'
+            $ref: '#/components/schemas/v1BalanceLedgerEntry'
           description: >-
             Balance ledger entries for the requested account / time window.
             Suppressed entry types are filtered out.
@@ -168,12 +152,8 @@ components:
         eof:
           type: boolean
           description: '`true` when this response contains the final page of results.'
-    BalanceLedgerEntry:
+    v1BalanceLedgerEntry:
       type: object
-      description: >-
-        A single balance ledger entry. Each entry records the cash balance
-        before and after a single change, along with the typed `entry_type` and
-        human-readable `description`.
       properties:
         id:
           type: string
@@ -194,7 +174,6 @@ components:
           description: Account balance immediately after this change (decimal string).
         description:
           type: string
-          description: Human-readable reason for the change.
         updateTime:
           type: string
           format: date-time
@@ -205,12 +184,66 @@ components:
             Security ID associated with the change, if any (e.g., for
             `ORDER_EXECUTION` or `RESOLUTION` entries).
         entryType:
-          $ref: '#/components/schemas/LedgerEntryType'
+          $ref: '#/components/schemas/v1LedgerEntryType'
         symbol:
           type: string
           description: Instrument symbol associated with the change, if any.
         updateBusinessDate:
           type: string
           description: Business date for this change in `YYYY-MM-DD` format.
+      description: >-
+        A single balance ledger entry. Each entry records the cash balance
+        before and after a single change, along with the typed `entry_type` and
+        human-readable `description`.
+    v1LedgerEntryType:
+      type: string
+      enum:
+        - LEDGER_ENTRY_TYPE_BALANCE_DEPOSIT
+        - LEDGER_ENTRY_TYPE_BALANCE_WITHDRAWAL
+        - LEDGER_ENTRY_TYPE_BALANCE_ORDER_EXECUTION
+        - LEDGER_ENTRY_TYPE_BALANCE_CORRECTION
+        - LEDGER_ENTRY_TYPE_BALANCE_NETTING
+        - LEDGER_ENTRY_TYPE_BALANCE_RESOLUTION
+        - LEDGER_ENTRY_TYPE_BALANCE_MANUAL_ADJUSTMENT
+        - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_BALANCE_ADJUSTMENT
+        - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_MARK_TO_MARKET
+        - LEDGER_ENTRY_TYPE_BALANCE_ACCOUNT_PROPERTY_ADJUSTMENT
+        - LEDGER_ENTRY_TYPE_BALANCE_COMMISSION
+        - LEDGER_ENTRY_TYPE_BALANCE_CONTRACT_EXPIRATION
+        - LEDGER_ENTRY_TYPE_BALANCE_PENDING_CREDIT_ADJUSTMENT
+        - LEDGER_ENTRY_TYPE_BALANCE_BEGINNING_OF_DAY
+        - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_WITHDRAWAL
+        - LEDGER_ENTRY_TYPE_BALANCE_WITHDRAWAL_REJECTION
+        - LEDGER_ENTRY_TYPE_BALANCE_MANUAL_TRANSFER
+        - LEDGER_ENTRY_TYPE_BALANCE_AVERAGE_PRICE_TRANSFER
+        - LEDGER_ENTRY_TYPE_BALANCE_GIVE_UP
+        - LEDGER_ENTRY_TYPE_BALANCE_SYNCHRONIZATION
+        - LEDGER_ENTRY_TYPE_BALANCE_INTEREST
+        - LEDGER_ENTRY_TYPE_BALANCE_PENDING_WITHDRAWAL_CREATION
+        - LEDGER_ENTRY_TYPE_BALANCE_SETTLEMENT_FEE
+      description: >-
+        LedgerEntryType enumerates the balance-affecting events Polymarket
+        exposes
+
+        publicly. Values marked [deprecated = true] are internal exchange entry
+        types
+
+        that Polymarket suppresses at the gateway: requests carrying a
+        deprecated
+
+        value are rejected with HTTP 409 (codes.Aborted), and entries with those
+
+        types are filtered out of every response. The names remain so client
+        SDKs
+
+        can surface deprecation warnings and so grpc-gateway accepts the value
+        at
+
+        parse time, letting our handler return a uniform helpful error.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

@@ -1,12 +1,19 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
   "info": {
     "title": "Order Book API",
     "version": "v1.0.0"
   },
   "servers": [
     {
-      "url": "https://api.prod.polymarketexchange.com"
+      "url": "https://api.prod.polymarketexchange.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "tags": [
@@ -17,84 +24,91 @@
   "paths": {
     "/v1/orderbook/{symbol}": {
       "get": {
-        "tags": [
-          "Order Book"
-        ],
         "summary": "Get order book",
         "description": "Returns the current aggregated order book for a symbol",
         "operationId": "OrderBookAPI_GetOrderBook",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetOrderBookResponse"
+                }
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "symbol",
+            "description": "Instrument symbol (e.g., \"BTC-USD\")",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
-            },
-            "description": "Instrument symbol (e.g., \"BTC-USD\")"
+            }
           },
           {
             "name": "depth",
+            "description": "Number of price levels to return (default 3, max 10)",
             "in": "query",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32"
-            },
-            "description": "Number of price levels to return (default 3, max 10)"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOrderBookResponse"
-                }
-              }
             }
           }
-        }
+        ],
+        "tags": [
+          "Order Book"
+        ]
       }
     },
     "/v1/orderbook/{symbol}/bbo": {
       "get": {
-        "tags": [
-          "Order Book"
-        ],
         "summary": "Get best bid/offer",
         "description": "Returns the top of book (best bid and offer) for a symbol",
         "operationId": "OrderBookAPI_GetBBO",
-        "parameters": [
-          {
-            "name": "symbol",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Instrument symbol (e.g., \"BTC-USD\")"
-          }
-        ],
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetBBOResponse"
+                  "$ref": "#/components/schemas/v1GetBBOResponse"
                 }
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "symbol",
+            "description": "Instrument symbol (e.g., \"BTC-USD\")",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "Order Book"
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "BookEntry": {
+      "v1BookEntry": {
         "type": "object",
         "properties": {
           "px": {
@@ -106,10 +120,10 @@
             "format": "int64"
           }
         },
-        "x-deprecated-removed": "symbolSubType field was intentionally removed - do not add it back",
-        "description": "BookEntry lists a price and volume for a market data record."
+        "description": "BookEntry lists a price and volume for a market data record.",
+        "x-deprecated-removed": "symbolSubType field was intentionally removed - do not add it back"
       },
-      "GetBBOResponse": {
+      "v1GetBBOResponse": {
         "type": "object",
         "properties": {
           "symbol": {
@@ -117,12 +131,10 @@
             "title": "Instrument symbol"
           },
           "bestBid": {
-            "$ref": "#/components/schemas/BookEntry",
-            "title": "Best bid (highest buy price)"
+            "$ref": "#/components/schemas/v1BookEntry"
           },
           "bestOffer": {
-            "$ref": "#/components/schemas/BookEntry",
-            "title": "Best offer (lowest sell price)"
+            "$ref": "#/components/schemas/v1BookEntry"
           },
           "spread": {
             "type": "string",
@@ -135,8 +147,7 @@
             "title": "Mid price ((best_bid.px + best_offer.px) / 2)"
           },
           "state": {
-            "$ref": "#/components/schemas/InstrumentState",
-            "title": "Current trading state of the instrument (optional)"
+            "$ref": "#/components/schemas/v1InstrumentState"
           },
           "transactTime": {
             "type": "string",
@@ -146,7 +157,7 @@
         },
         "description": "Response containing the best bid and offer."
       },
-      "GetOrderBookResponse": {
+      "v1GetOrderBookResponse": {
         "type": "object",
         "properties": {
           "symbol": {
@@ -156,26 +167,22 @@
           "bids": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/BookEntry"
+              "$ref": "#/components/schemas/v1BookEntry"
             },
             "title": "Bid side of order book (sorted by price descending)"
           },
           "offers": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/BookEntry"
+              "$ref": "#/components/schemas/v1BookEntry"
             },
             "title": "Offer/ask side of order book (sorted by price ascending)"
           },
           "state": {
-            "$ref": "#/components/schemas/InstrumentState",
-            "title": "Current trading state of the instrument (optional)"
+            "$ref": "#/components/schemas/v1InstrumentState"
           },
           "stats": {
-            "$ref": "#/components/schemas/InstrumentStats",
-            "title": "Market statistics (last trade, open/high/low/close, etc.)"
+            "$ref": "#/components/schemas/v1InstrumentStats"
           },
           "transactTime": {
             "type": "string",
@@ -185,10 +192,9 @@
         },
         "description": "Response containing the order book snapshot."
       },
-      "InstrumentState": {
+      "v1InstrumentState": {
         "type": "string",
         "enum": [
-          "INSTRUMENT_STATE_CLOSED",
           "INSTRUMENT_STATE_OPEN",
           "INSTRUMENT_STATE_PREOPEN",
           "INSTRUMENT_STATE_SUSPENDED",
@@ -200,83 +206,86 @@
         ],
         "description": "InstrumentState represents the state of an instrument."
       },
-      "InstrumentStats": {
+      "v1InstrumentStats": {
         "type": "object",
         "properties": {
           "openPx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "closePx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "lowPx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "highPx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "lastTradePx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true,
+            "nullable": true,
             "description": "Last trade price."
-          },
-          "lastTradeQty": {
-            "type": "string",
-            "format": "int64",
-            "x-nullable": true,
-            "description": "Quantity of the most recent trade. Populated after any trade executes on the instrument."
           },
           "indicativeOpenPx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "settlementPx": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
-          },
-          "settlementSetTime": {
-            "type": "string",
-            "format": "date-time",
-            "x-nullable": true,
-            "description": "Timestamp when the settlement price was set. Only populated when the instrument is in a settled state: CLOSED, TERMINATED, or EXPIRED."
-          },
-          "settlementPreliminary": {
-            "type": "boolean",
-            "x-nullable": true
-          },
-          "settlementPriceCalculationMethod": {
-            "type": "string",
-            "x-nullable": true
-          },
-          "settlementPriceCalculationText": {
-            "type": "string",
-            "x-nullable": true
+            "nullable": true
           },
           "sharesTraded": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "notionalTraded": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
           },
           "openInterest": {
             "type": "string",
             "format": "int64",
-            "x-nullable": true
+            "nullable": true
+          },
+          "settlementPreliminary": {
+            "type": "boolean",
+            "description": "Settlement metadata — only populated when instrument is in a settled state (CLOSED, TERMINATED, EXPIRED).\nIndicates whether this settlement is preliminary (subject to change during trade day sweep) or final.",
+            "nullable": true
+          },
+          "settlementPriceCalculationMethod": {
+            "type": "string",
+            "description": "The method used to calculate the settlement price (e.g., \"SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1\").\nString representation for forward compatibility with new enum values.",
+            "nullable": true
+          },
+          "settlementPriceCalculationText": {
+            "type": "string",
+            "description": "Free-form text describing how the settlement price was determined\n(e.g., the exact outcome of the underlying event used for resolution).",
+            "nullable": true
+          },
+          "lastTradeQty": {
+            "type": "string",
+            "format": "int64",
+            "description": "Quantity of the most recent trade.",
+            "nullable": true
+          },
+          "settlementSetTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time at which the settlement price was set. Only populated for settled states.",
+            "nullable": true
           }
         },
         "description": "InstrumentStats contains statistics about an instrument."

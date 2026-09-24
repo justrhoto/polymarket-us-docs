@@ -1,12 +1,19 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
   "info": {
     "title": "Health API",
     "version": "v1.0.0"
   },
   "servers": [
     {
-      "url": "https://api.prod.polymarketexchange.com"
+      "url": "https://api.prod.polymarketexchange.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "tags": [
@@ -17,30 +24,37 @@
   "paths": {
     "/v1/health": {
       "get": {
-        "tags": [
-          "Health"
-        ],
         "summary": "Health check",
-        "description": "Check service health status. Returns 200 OK when the service is healthy.",
+        "description": "Check service health status",
         "operationId": "HealthAPI_HealthCheck",
         "responses": {
           "200": {
-            "description": "Service is healthy",
+            "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/HealthCheckResponse"
+                  "$ref": "#/components/schemas/v1HealthCheckResponse"
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Health"
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "HealthCheckResponse": {
+      "v1HealthCheckResponse": {
         "type": "object",
         "properties": {
           "status": {

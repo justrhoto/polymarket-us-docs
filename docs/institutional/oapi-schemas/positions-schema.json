@@ -1,12 +1,19 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
   "info": {
     "title": "Positions API",
     "version": "v1.0.0"
   },
   "servers": [
     {
-      "url": "https://api.prod.polymarketexchange.com"
+      "url": "https://api.prod.polymarketexchange.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "tags": [
@@ -17,159 +24,205 @@
   "paths": {
     "/v1/positions": {
       "get": {
-        "tags": [
-          "Positions"
-        ],
         "summary": "List account positions",
         "description": "Lists all positions within an account",
         "operationId": "PositionAPI_ListAccountPositions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListAccountPositionsResponse"
+                }
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "name",
+            "description": "Required. Fully qualified resource name of the account.\nExample: \"firms/ISV-Alice/accounts/alice-trading-account\"",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string"
-            },
-            "description": "Fully qualified resource name of the account."
+            }
           },
           {
             "name": "symbol",
+            "description": "Symbol to filter (optional).",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string"
-            },
-            "description": "Symbol to filter (optional)."
+            }
           },
           {
-            "name": "as_of_time",
+            "name": "asOfTime",
+            "description": "Optional. Query positions as of this timestamp.\nIf set, returns historical positions instead of current.",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
               "format": "date-time"
-            },
-            "description": "Query positions as of this timestamp (RFC3339 format, e.g., 2026-01-02T17:00:00Z). Returns historical positions instead of current. Mutually exclusive with as_of_date."
+            }
           },
           {
-            "name": "as_of_date.year",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Year for end-of-trading-day position query (e.g., 2026). Use with as_of_date.month and as_of_date.day."
-          },
-          {
-            "name": "as_of_date.month",
+            "name": "asOfDate.year",
             "in": "query",
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "asOfDate.month",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
               "minimum": 1,
               "maximum": 12
-            },
-            "description": "Month (1-12) for end-of-trading-day position query."
+            }
           },
           {
-            "name": "as_of_date.day",
+            "name": "asOfDate.day",
             "in": "query",
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "minimum": 1,
               "maximum": 31
-            },
-            "description": "Day (1-31) for end-of-trading-day position query."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListAccountPositionsResponse"
-                }
-              }
+            }
+          },
+          {
+            "name": "pageSize",
+            "description": "The maximum number of positions to return in one page. If 0/unset the\nserver picks a default and may cap the value. Mirrors GetPositionLedgerRequest.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageToken",
+            "description": "Opaque continuation token from a prior\nListAccountPositionsResponse.next_page_token. Empty for the first page.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "activeOnly",
+            "description": "When true, expired positions are omitted. Default false preserves the\ncurrent behavior (expired positions are included).",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "nonZeroOnly",
+            "description": "When true, positions with net_position == 0 are omitted (settled/closed\nmarkets that linger as zero-quantity rows). Default false preserves the\ncurrent behavior (all positions are returned). Unlike active_only this is\nhonored on historical (as_of) queries too, since net_position is always\npopulated.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
-        }
+        ],
+        "tags": [
+          "Positions"
+        ]
       }
     },
     "/v1/positions/balance": {
       "post": {
-        "tags": [
-          "Positions"
-        ],
         "summary": "Get account balance",
         "description": "Gets the balance for a currency in an account",
         "operationId": "PositionAPI_GetAccountBalance",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetAccountBalanceRequest"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAccountBalanceResponse"
+                  "$ref": "#/components/schemas/v1GetAccountBalanceResponse"
                 }
               }
             }
           }
-        }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetAccountBalanceRequest"
+              }
+            }
+          },
+          "description": "Request to get the balance of an account in a currency.",
+          "required": true
+        },
+        "tags": [
+          "Positions"
+        ]
       }
     },
     "/v1/positions/balances": {
       "post": {
-        "tags": [
-          "Positions"
-        ],
         "summary": "List account balances",
         "description": "Lists all currency balances in an account",
         "operationId": "PositionAPI_ListAccountBalances",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ListAccountBalancesRequest"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListAccountBalancesResponse"
+                  "$ref": "#/components/schemas/v1ListAccountBalancesResponse"
                 }
               }
             }
           }
-        }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1ListAccountBalancesRequest"
+              }
+            }
+          },
+          "description": "Request to list all balances in an account.",
+          "required": true
+        },
+        "tags": [
+          "Positions"
+        ]
       }
     },
     "/v1/positions/ledger": {
       "get": {
-        "tags": [
-          "Positions"
-        ],
-        "summary": "Get position ledger",
-        "description": "Returns historical position changes for an account.",
         "operationId": "PositionAPI_GetPositionLedger",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetPositionLedgerResponse"
+                }
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "account",
@@ -190,77 +243,78 @@
             "description": "Optional. Filter by instrument symbol."
           },
           {
-            "name": "start_time",
+            "name": "startTime",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
               "format": "date-time"
-            },
-            "description": "Optional. Inclusive lower bound on `update_time` (RFC3339). Clamped upstream to `2026-05-01T00:00:00Z`."
+            }
           },
           {
-            "name": "end_time",
+            "name": "endTime",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
               "format": "date-time"
-            },
-            "description": "Optional. Inclusive upper bound on `update_time` (RFC3339)."
+            }
           },
           {
-            "name": "page_size",
+            "name": "pageSize",
             "in": "query",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
               "maximum": 1000
-            },
-            "description": "Optional. Maximum entries to return per page (max 1000). Values above 1000 return `InvalidArgument`."
+            }
           },
           {
-            "name": "page_token",
+            "name": "pageToken",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string"
-            },
-            "description": "Optional. Pagination token from a previous response's `nextPageToken` field. Omit for the first request."
+            }
           },
           {
-            "name": "newest_first",
+            "name": "newestFirst",
             "in": "query",
             "required": false,
             "schema": {
               "type": "boolean"
-            },
-            "description": "Optional. If `true`, return entries in descending `update_time` order. Default is `false` (oldest first)."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetPositionLedgerResponse"
-                }
-              }
             }
           }
-        }
+        ],
+        "tags": [
+          "Positions"
+        ],
+        "summary": "Get position ledger",
+        "description": "Returns historical position changes for an account."
       }
     },
     "/v1/positions/ledger/download": {
       "get": {
-        "tags": [
-          "Positions"
-        ],
-        "summary": "Download position ledger as CSV",
-        "description": "Streams position ledger as CSV.",
         "operationId": "PositionAPI_DownloadPositionLedger",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/v1DownloadPositionLedgerResponse"
+                    }
+                  },
+                  "title": "Stream result of v1DownloadPositionLedgerResponse"
+                }
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "account",
@@ -281,74 +335,68 @@
             "description": "Optional. Filter by instrument symbol."
           },
           {
-            "name": "start_time",
+            "name": "startTime",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
               "format": "date-time"
-            },
-            "description": "Optional. Inclusive lower bound on `update_time`. Clamped to `2026-05-01T00:00:00Z`."
+            }
           },
           {
-            "name": "end_time",
+            "name": "endTime",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
               "format": "date-time"
-            },
-            "description": "Optional. Inclusive upper bound on `update_time`."
+            }
           },
           {
-            "name": "page_size",
+            "name": "pageSize",
             "in": "query",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
               "maximum": 1000
-            },
-            "description": "Optional. Maximum entries per page (max 1000). Values above 1000 return `InvalidArgument`."
+            }
           },
           {
-            "name": "page_token",
+            "name": "pageToken",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string"
-            },
-            "description": "Optional. Resume token from a previous download."
+            }
           },
           {
-            "name": "newest_first",
+            "name": "newestFirst",
             "in": "query",
             "required": false,
             "schema": {
               "type": "boolean"
-            },
-            "description": "Optional. If `true`, rows are emitted in descending `update_time` order."
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response (streaming).",
-            "content": {
-              "text/csv": {
-                "schema": {
-                  "type": "string",
-                  "description": "CSV file stream containing position ledger entries."
-                }
-              }
             }
           }
-        }
+        ],
+        "tags": [
+          "Positions"
+        ],
+        "summary": "Download position ledger as CSV",
+        "description": "Streams position ledger as CSV."
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "SecurityEntry": {
+      "polymarketV1SecurityEntry": {
         "type": "object",
         "properties": {
           "balance": {
@@ -370,61 +418,16 @@
         },
         "description": "SecurityEntry describes the valuation of a security."
       },
-      "CreatePositionSubscriptionRequest": {
+      "v1DownloadPositionLedgerResponse": {
         "type": "object",
         "properties": {
-          "accounts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A set of fully qualified resource names of the accounts to filter upon."
+          "data": {
+            "type": "string",
+            "format": "byte"
           }
-        },
-        "description": "Request to start a position subscription."
+        }
       },
-      "CreatePositionSubscriptionResponse": {
-        "type": "object",
-        "properties": {
-          "heartbeat": {
-            "$ref": "#/components/schemas/Heartbeat"
-          },
-          "snapshot": {
-            "$ref": "#/components/schemas/CreatePositionSubscriptionResponseSnapshot"
-          },
-          "update": {
-            "$ref": "#/components/schemas/CreatePositionSubscriptionResponseUpdate"
-          }
-        },
-        "description": "Response for position subscription (streaming)."
-      },
-      "CreatePositionSubscriptionResponseSnapshot": {
-        "type": "object",
-        "properties": {
-          "positions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Position"
-            }
-          }
-        },
-        "description": "Snapshot is the current state of positions."
-      },
-      "CreatePositionSubscriptionResponseUpdate": {
-        "type": "object",
-        "properties": {
-          "positions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Position"
-            }
-          }
-        },
-        "description": "Update contains position updates."
-      },
-      "GetAccountBalanceRequest": {
+      "v1GetAccountBalanceRequest": {
         "type": "object",
         "properties": {
           "name": {
@@ -438,7 +441,7 @@
         },
         "description": "Request to get the balance of an account in a currency."
       },
-      "GetAccountBalanceResponse": {
+      "v1GetAccountBalanceResponse": {
         "type": "object",
         "properties": {
           "balance": {
@@ -456,7 +459,7 @@
           "securities": {
             "type": "object",
             "additionalProperties": {
-              "$ref": "#/components/schemas/SecurityEntry"
+              "$ref": "#/components/schemas/polymarketV1SecurityEntry"
             }
           },
           "totalSecurityNotionalValue": {
@@ -487,11 +490,27 @@
         },
         "description": "Response with account balance details."
       },
-      "Heartbeat": {
+      "v1GetPositionLedgerResponse": {
         "type": "object",
-        "description": "Heartbeat can be sent on a streaming RPC call to keep the line open."
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1PositionLedgerEntry"
+            },
+            "description": "Position ledger entries for the requested account / time window."
+          },
+          "nextPageToken": {
+            "type": "string",
+            "description": "Pagination token to fetch the next page. Empty when there are no more results."
+          },
+          "eof": {
+            "type": "boolean",
+            "description": "`true` when this response contains the final page of results."
+          }
+        }
       },
-      "ListAccountBalancesRequest": {
+      "v1ListAccountBalancesRequest": {
         "type": "object",
         "properties": {
           "name": {
@@ -501,40 +520,25 @@
         },
         "description": "Request to list all balances in an account."
       },
-      "ListAccountBalancesResponse": {
+      "v1ListAccountBalancesResponse": {
         "type": "object",
         "properties": {
           "balances": {
             "type": "object",
             "additionalProperties": {
-              "$ref": "#/components/schemas/GetAccountBalanceResponse"
+              "$ref": "#/components/schemas/v1GetAccountBalanceResponse"
             }
           }
         },
         "description": "Response with all account balances by currency."
       },
-      "ListAccountPositionsRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Fully qualified resource name of the account."
-          },
-          "symbol": {
-            "type": "string",
-            "description": "Symbol to filter (optional)."
-          }
-        },
-        "description": "Request to list positions in an account."
-      },
-      "ListAccountPositionsResponse": {
+      "v1ListAccountPositionsResponse": {
         "type": "object",
         "properties": {
           "positions": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Position"
+              "$ref": "#/components/schemas/v1Position"
             }
           },
           "availablePosition": {
@@ -543,11 +547,19 @@
               "type": "string",
               "format": "int64"
             }
+          },
+          "nextPageToken": {
+            "type": "string",
+            "description": "Continuation token for the next page; empty when this is the last page."
+          },
+          "eof": {
+            "type": "boolean",
+            "description": "True when there are no more pages after this one. Mirrors GetPositionLedgerResponse."
           }
         },
         "description": "Response with account positions."
       },
-      "Position": {
+      "v1Position": {
         "type": "object",
         "properties": {
           "account": {
@@ -589,9 +601,8 @@
           }
         }
       },
-      "PositionLedgerEntry": {
+      "v1PositionLedgerEntry": {
         "type": "object",
-        "description": "A single position ledger entry. Each entry represents a transition between two position snapshots, with the change fields derived from the exchange's before/after snapshots: `quantityChange = after.netPosition - before.netPosition`, `costChange = after.cost - before.cost`, `realizedChange = after.realized - before.realized`. The cumulative fields (`netPosition`, `cost`, `realized`) reflect the state immediately after this change.",
         "properties": {
           "id": {
             "type": "string",
@@ -645,30 +656,10 @@
             "description": "Business date for this change in `YYYY-MM-DD` format."
           },
           "description": {
-            "type": "string",
-            "description": "Human-readable reason for the change (e.g., trade fill, expiry, correction)."
+            "type": "string"
           }
-        }
-      },
-      "GetPositionLedgerResponse": {
-        "type": "object",
-        "properties": {
-          "entries": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PositionLedgerEntry"
-            },
-            "description": "Position ledger entries for the requested account / time window."
-          },
-          "nextPageToken": {
-            "type": "string",
-            "description": "Pagination token to fetch the next page. Empty when there are no more results."
-          },
-          "eof": {
-            "type": "boolean",
-            "description": "`true` when this response contains the final page of results."
-          }
-        }
+        },
+        "description": "A single position ledger entry. Each entry represents a transition between two position snapshots, with the change fields derived from the exchange's before/after snapshots: `quantityChange = after.netPosition - before.netPosition`, `costChange = after.cost - before.cost`, `realizedChange = after.realized - before.realized`. The cumulative fields (`netPosition`, `cost`, `realized`) reflect the state immediately after this change."
       }
     }
   }

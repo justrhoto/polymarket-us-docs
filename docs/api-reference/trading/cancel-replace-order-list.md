@@ -4,20 +4,22 @@
 
 # Cancel replace order list
 
-> Requests modification of multiple working orders. Maximum batch size is 20 orders; requests exceeding this limit will be rejected.
+> Requests modification of multiple working orders
 
 
 
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/trading-schema.json post /v1/trading/orders/replace/list
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Trading API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: OrderEntryAPI
 paths:
@@ -26,15 +28,13 @@ paths:
       tags:
         - Trading
       summary: Cancel replace order list
-      description: >-
-        Requests modification of multiple working orders. Maximum batch size is
-        20 orders; requests exceeding this limit will be rejected.
+      description: Requests modification of multiple working orders
       operationId: OrderEntryAPI_CancelReplaceOrderList
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelReplaceOrderListRequest'
+              $ref: '#/components/schemas/v1CancelReplaceOrderListRequest'
         required: true
       responses:
         '200':
@@ -42,26 +42,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancelReplaceOrderListResponse'
+                $ref: '#/components/schemas/v1CancelReplaceOrderListResponse'
 components:
   schemas:
-    CancelReplaceOrderListRequest:
+    v1CancelReplaceOrderListRequest:
       type: object
       properties:
         requests:
           type: array
           items:
-            $ref: '#/components/schemas/CancelReplaceOrderRequest'
-            type: object
-    CancelReplaceOrderListResponse:
+            $ref: '#/components/schemas/v1CancelReplaceOrderRequest'
+    v1CancelReplaceOrderListResponse:
       type: object
       properties:
         responses:
           type: array
           items:
-            $ref: '#/components/schemas/CancelReplaceOrderResponse'
-            type: object
-    CancelReplaceOrderRequest:
+            $ref: '#/components/schemas/v1CancelReplaceOrderResponse'
+    v1CancelReplaceOrderRequest:
       type: object
       properties:
         orderId:
@@ -77,7 +75,7 @@ components:
           type: string
           format: int64
         timeInForce:
-          $ref: '#/components/schemas/TimeInForce'
+          $ref: '#/components/schemas/v1TimeInForce'
         stopPrice:
           type: string
           format: int64
@@ -98,10 +96,10 @@ components:
         immediatelyExecutableLimit:
           type: boolean
         manualOrderIndicator:
-          $ref: '#/components/schemas/ManualOrderIndicator'
-    CancelReplaceOrderResponse:
+          $ref: '#/components/schemas/v1ManualOrderIndicator'
+    v1CancelReplaceOrderResponse:
       type: object
-    TimeInForce:
+    v1TimeInForce:
       type: string
       enum:
         - TIME_IN_FORCE_DAY
@@ -110,7 +108,7 @@ components:
         - TIME_IN_FORCE_GOOD_TILL_TIME
         - TIME_IN_FORCE_FILL_OR_KILL
       description: TimeInForce specifies how long the order remains in effect.
-    ManualOrderIndicator:
+    v1ManualOrderIndicator:
       type: string
       enum:
         - MANUAL_ORDER_INDICATOR_MANUAL
@@ -118,5 +116,10 @@ components:
       description: >-
         ManualOrderIndicator designates the manual or automated nature of an
         order.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

@@ -4,20 +4,22 @@
 
 # Cancel order list
 
-> Requests cancellation of multiple working orders. Maximum batch size is 20 orders; requests exceeding this limit will be rejected.
+> Requests cancellation of multiple working orders
 
 
 
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/trading-schema.json post /v1/trading/orders/cancel/list
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Trading API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: OrderEntryAPI
 paths:
@@ -26,15 +28,13 @@ paths:
       tags:
         - Trading
       summary: Cancel order list
-      description: >-
-        Requests cancellation of multiple working orders. Maximum batch size is
-        20 orders; requests exceeding this limit will be rejected.
+      description: Requests cancellation of multiple working orders
       operationId: OrderEntryAPI_CancelOrderList
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelOrderListRequest'
+              $ref: '#/components/schemas/v1CancelOrderListRequest'
         required: true
       responses:
         '200':
@@ -42,26 +42,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancelOrderListResponse'
+                $ref: '#/components/schemas/v1CancelOrderListResponse'
 components:
   schemas:
-    CancelOrderListRequest:
+    v1CancelOrderListRequest:
       type: object
       properties:
         requests:
           type: array
           items:
-            $ref: '#/components/schemas/CancelOrderRequest'
-            type: object
-    CancelOrderListResponse:
+            $ref: '#/components/schemas/v1CancelOrderRequest'
+    v1CancelOrderListResponse:
       type: object
       properties:
         responses:
           type: array
           items:
-            $ref: '#/components/schemas/CancelOrderResponse'
-            type: object
-    CancelOrderRequest:
+            $ref: '#/components/schemas/v1CancelOrderResponse'
+    v1CancelOrderRequest:
       type: object
       properties:
         orderId:
@@ -70,7 +68,12 @@ components:
           type: string
         symbol:
           type: string
-    CancelOrderResponse:
+    v1CancelOrderResponse:
       type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

@@ -18,10 +18,10 @@ The Polymarket Exchange API exposes the following gRPC services:
 | `polymarket.v1.OrderEntryAPI`             | Order submission and streaming                   |
 | `polymarket.v1.ComboAPI`                  | Combo instrument creation and exact-symbol reads |
 | `polymarket.v1.RFQAPI`                    | Combo RFQs, quotes, and RFQ event streaming      |
-| `polymarket.v1.OrderAPI`                  | Order search and history                         |
+| `polymarket.v1.ReportAPI`                 | Order search and history                         |
 | `polymarket.v1.PositionAPI`               | Position and balance queries                     |
 | `polymarket.v1.AccountsAPI`               | Account information                              |
-| `polymarket.v1.MarketDataAPI`             | Instrument and symbol data                       |
+| `polymarket.v1.RefDataAPI`                | Instrument and symbol data                       |
 | `polymarket.v1.DropCopyAPI`               | Execution feed                                   |
 | `polymarket.v1.KYCAPI`                    | KYC verification                                 |
 | `polymarket.v1.AeropayAPI`                | ACH payments                                     |
@@ -109,13 +109,17 @@ elif response.HasField('update'):
     print(f"Offers: {len(update.offers)}")
 ```
 
-| Field    | Type              | Description                         |
-| -------- | ----------------- | ----------------------------------- |
-| `symbol` | `str`             | Instrument symbol                   |
-| `bids`   | `list[BookEntry]` | Bid side of order book              |
-| `offers` | `list[BookEntry]` | Offer/ask side of order book        |
-| `state`  | `InstrumentState` | Current instrument state (optional) |
-| `stats`  | `InstrumentStats` | Market statistics                   |
+| Field            | Type              | Description                                                    |
+| ---------------- | ----------------- | -------------------------------------------------------------- |
+| `symbol`         | `str`             | Instrument symbol                                              |
+| `bids`           | `list[BookEntry]` | Bid side of order book                                         |
+| `offers`         | `list[BookEntry]` | Offer/ask side of order book                                   |
+| `state`          | `InstrumentState` | Current instrument state (optional)                            |
+| `stats`          | `InstrumentStats` | Market statistics                                              |
+| `transact_time`  | `Timestamp`       | Server timestamp of update                                     |
+| `book_hidden`    | `bool`            | If `True`, order book is hidden                                |
+| `price_scale`    | `int64`           | Decimal places for price (optional; wildcard subscriptions)    |
+| `quantity_scale` | `int64`           | Decimal places for quantity (optional; wildcard subscriptions) |
 
 <Tip>
   **Instrument State Tracking:** The `state` field is optional. Use `ListInstruments` to get and cache the initial state, then subscribe to the instrument state change subscription for real-time state updates.

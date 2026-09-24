@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/trading-schema.json post /v1/trading/orders/replace
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Trading API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: OrderEntryAPI
 paths:
@@ -32,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelReplaceOrderRequest'
+              $ref: '#/components/schemas/v1CancelReplaceOrderRequest'
         required: true
       responses:
         '200':
@@ -40,10 +42,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancelReplaceOrderResponse'
+                $ref: '#/components/schemas/v1CancelReplaceOrderResponse'
 components:
   schemas:
-    CancelReplaceOrderRequest:
+    v1CancelReplaceOrderRequest:
       type: object
       properties:
         orderId:
@@ -59,7 +61,7 @@ components:
           type: string
           format: int64
         timeInForce:
-          $ref: '#/components/schemas/TimeInForce'
+          $ref: '#/components/schemas/v1TimeInForce'
         stopPrice:
           type: string
           format: int64
@@ -80,10 +82,10 @@ components:
         immediatelyExecutableLimit:
           type: boolean
         manualOrderIndicator:
-          $ref: '#/components/schemas/ManualOrderIndicator'
-    CancelReplaceOrderResponse:
+          $ref: '#/components/schemas/v1ManualOrderIndicator'
+    v1CancelReplaceOrderResponse:
       type: object
-    TimeInForce:
+    v1TimeInForce:
       type: string
       enum:
         - TIME_IN_FORCE_DAY
@@ -92,7 +94,7 @@ components:
         - TIME_IN_FORCE_GOOD_TILL_TIME
         - TIME_IN_FORCE_FILL_OR_KILL
       description: TimeInForce specifies how long the order remains in effect.
-    ManualOrderIndicator:
+    v1ManualOrderIndicator:
       type: string
       enum:
         - MANUAL_ORDER_INDICATOR_MANUAL
@@ -100,5 +102,10 @@ components:
       description: >-
         ManualOrderIndicator designates the manual or automated nature of an
         order.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

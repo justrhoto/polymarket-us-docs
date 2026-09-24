@@ -1,0 +1,13 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Dirty API", "version": "v1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "v1FirmType": {
+        "type": "string",
+        "description": "Matches Connamara firms.v1beta1.FirmType for wire compatibility."
+      }
+    }
+  }
+}

@@ -1,12 +1,19 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
   "info": {
     "title": "Accounts API",
     "version": "v1.0.0"
   },
   "servers": [
     {
-      "url": "https://api.prod.polymarketexchange.com"
+      "url": "https://api.prod.polymarketexchange.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "tags": [
@@ -17,12 +24,21 @@
   "paths": {
     "/v1/accounts": {
       "get": {
-        "tags": [
-          "Accounts"
-        ],
         "summary": "List accounts",
         "description": "Returns the accounts that the user may use to trade",
         "operationId": "AccountsAPI_ListAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListAccountsResponse"
+                }
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "user",
@@ -33,47 +49,35 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListAccountsResponse"
-                }
-              }
-            }
-          }
-        }
+        "tags": [
+          "Accounts"
+        ]
       }
     },
     "/v1/users": {
       "get": {
-        "tags": [
-          "Accounts"
-        ],
         "summary": "List users",
         "description": "Returns the users that the caller may trade on behalf of",
-        "operationId": "AccountsAPI_ListUsers",
+        "operationId": "UsersAPI_ListUsers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListUsersResponse"
+                  "$ref": "#/components/schemas/v1ListUsersResponse"
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Accounts"
+        ]
       }
     },
     "/v1/whoami": {
       "get": {
-        "tags": [
-          "Accounts"
-        ],
         "summary": "Get who am I",
         "description": "Returns the user information of the caller",
         "operationId": "AccountsAPI_GetWhoAmI",
@@ -83,18 +87,28 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetWhoAmIResponse"
+                  "$ref": "#/components/schemas/v1GetWhoAmIResponse"
                 }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Accounts"
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "FirmType": {
+      "v1FirmType": {
         "type": "string",
         "enum": [
           "FIRM_TYPE_PARTICIPANT",
@@ -103,12 +117,9 @@
           "FIRM_TYPE_CLEARING_HOUSE",
           "FIRM_TYPE_AGENT"
         ],
-        "description": "FirmType indicates the type of firm.\nMatches Connamara firms.v1beta1.FirmType for wire compatibility."
+        "description": "FirmType indicates the type of firm."
       },
-      "GetWhoAmIRequest": {
-        "type": "object"
-      },
-      "GetWhoAmIResponse": {
+      "v1GetWhoAmIResponse": {
         "type": "object",
         "properties": {
           "user": {
@@ -127,19 +138,11 @@
             "type": "string"
           },
           "firmType": {
-            "$ref": "#/components/schemas/FirmType"
+            "$ref": "#/components/schemas/v1FirmType"
           }
         }
       },
-      "ListAccountsRequest": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "string"
-          }
-        }
-      },
-      "ListAccountsResponse": {
+      "v1ListAccountsResponse": {
         "type": "object",
         "properties": {
           "accounts": {
@@ -156,10 +159,7 @@
           }
         }
       },
-      "ListUsersRequest": {
-        "type": "object"
-      },
-      "ListUsersResponse": {
+      "v1ListUsersResponse": {
         "type": "object",
         "properties": {
           "users": {
@@ -186,7 +186,8 @@
               "type": "string"
             }
           }
-        }
+        },
+        "title": "ListUsersResponse - List of exchange participant names (migrated from AccountsAPI)"
       }
     }
   }

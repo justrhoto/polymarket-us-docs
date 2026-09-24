@@ -1,5 +1,6 @@
 {
   "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
   "info": {
     "title": "Combos API",
     "version": "v1.0.0"

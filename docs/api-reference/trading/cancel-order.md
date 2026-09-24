@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/trading-schema.json post /v1/trading/orders/cancel
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Trading API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: OrderEntryAPI
 paths:
@@ -32,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CancelOrderRequest'
+              $ref: '#/components/schemas/v1CancelOrderRequest'
         required: true
       responses:
         '200':
@@ -40,10 +42,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CancelOrderResponse'
+                $ref: '#/components/schemas/v1CancelOrderResponse'
 components:
   schemas:
-    CancelOrderRequest:
+    v1CancelOrderRequest:
       type: object
       properties:
         orderId:
@@ -52,7 +54,12 @@ components:
           type: string
         symbol:
           type: string
-    CancelOrderResponse:
+    v1CancelOrderResponse:
       type: object
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

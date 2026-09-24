@@ -1,12 +1,19 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
   "info": {
     "title": "Report API",
     "version": "v1.0.0"
   },
   "servers": [
     {
-      "url": "https://api.prod.polymarketexchange.com"
+      "url": "https://api.prod.polymarketexchange.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "tags": [
@@ -17,22 +24,9 @@
   "paths": {
     "/v1/report/executions/csv": {
       "post": {
-        "tags": [
-          "Report"
-        ],
         "summary": "Download executions CSV",
         "description": "Downloads executions as a CSV file stream",
         "operationId": "ReportAPI_DownloadExecutions",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DownloadExecutionsRequest"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -42,7 +36,7 @@
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/DownloadExecutionsResponse"
+                      "$ref": "#/components/schemas/v1DownloadExecutionsResponse"
                     }
                   },
                   "title": "Stream result of v1DownloadExecutionsResponse"
@@ -50,59 +44,59 @@
               }
             }
           }
-        }
-      }
-    },
-    "/v1/report/executions/search": {
-      "post": {
-        "tags": [
-          "Report"
-        ],
-        "summary": "Search executions",
-        "description": "Searches for exchange executions using the given details to filter",
-        "operationId": "ReportAPI_SearchExecutions",
+        },
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchExecutionsRequest"
+                "$ref": "#/components/schemas/v1DownloadExecutionsRequest"
               }
             }
           },
           "required": true
         },
+        "tags": [
+          "Report"
+        ]
+      }
+    },
+    "/v1/report/executions/search": {
+      "post": {
+        "summary": "Search executions",
+        "description": "Searches for exchange executions using the given details to filter",
+        "operationId": "ReportAPI_SearchExecutions",
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchExecutionsResponse"
+                  "$ref": "#/components/schemas/v1SearchExecutionsResponse"
                 }
               }
             }
           }
-        }
-      }
-    },
-    "/v1/report/orders/csv": {
-      "post": {
-        "tags": [
-          "Report"
-        ],
-        "summary": "Download orders CSV",
-        "description": "Downloads orders as a CSV file stream",
-        "operationId": "ReportAPI_DownloadOrders",
+        },
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DownloadOrdersRequest"
+                "$ref": "#/components/schemas/v1SearchExecutionsRequest"
               }
             }
           },
           "required": true
         },
+        "tags": [
+          "Report"
+        ]
+      }
+    },
+    "/v1/report/orders/csv": {
+      "post": {
+        "summary": "Download orders CSV",
+        "description": "Downloads orders as a CSV file stream",
+        "operationId": "ReportAPI_DownloadOrders",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -112,7 +106,7 @@
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/DownloadOrdersResponse"
+                      "$ref": "#/components/schemas/v1DownloadOrdersResponse"
                     }
                   },
                   "title": "Stream result of v1DownloadOrdersResponse"
@@ -120,59 +114,59 @@
               }
             }
           }
-        }
-      }
-    },
-    "/v1/report/orders/search": {
-      "post": {
-        "tags": [
-          "Report"
-        ],
-        "summary": "Search orders",
-        "description": "Searches for exchange orders using the given details to filter",
-        "operationId": "ReportAPI_SearchOrders",
+        },
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchOrdersRequest"
+                "$ref": "#/components/schemas/v1DownloadOrdersRequest"
               }
             }
           },
           "required": true
         },
+        "tags": [
+          "Report"
+        ]
+      }
+    },
+    "/v1/report/orders/search": {
+      "post": {
+        "summary": "Search orders",
+        "description": "Searches for exchange orders using the given details to filter",
+        "operationId": "ReportAPI_SearchOrders",
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchOrdersResponse"
+                  "$ref": "#/components/schemas/v1SearchOrdersResponse"
                 }
               }
             }
           }
-        }
-      }
-    },
-    "/v1/report/trades/csv": {
-      "post": {
-        "tags": [
-          "Report"
-        ],
-        "summary": "Download trades CSV",
-        "description": "Downloads trades as a CSV file stream",
-        "operationId": "ReportAPI_DownloadTrades",
+        },
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DownloadTradesRequest"
+                "$ref": "#/components/schemas/v1SearchOrdersRequest"
               }
             }
           },
           "required": true
         },
+        "tags": [
+          "Report"
+        ]
+      }
+    },
+    "/v1/report/trades/csv": {
+      "post": {
+        "summary": "Download trades CSV",
+        "description": "Downloads trades as a CSV file stream",
+        "operationId": "ReportAPI_DownloadTrades",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -182,7 +176,7 @@
                   "type": "object",
                   "properties": {
                     "result": {
-                      "$ref": "#/components/schemas/DownloadTradesResponse"
+                      "$ref": "#/components/schemas/v1DownloadTradesResponse"
                     }
                   },
                   "title": "Stream result of v1DownloadTradesResponse"
@@ -190,77 +184,97 @@
               }
             }
           }
-        }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1DownloadTradesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+          "Report"
+        ]
       }
     },
     "/v1/report/trades/search": {
       "post": {
-        "tags": [
-          "Report"
-        ],
         "summary": "Search trades",
         "description": "Searches for exchange trades using the given details to filter",
         "operationId": "ReportAPI_SearchTrades",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SearchTradesRequest"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SearchTradesResponse"
+                  "$ref": "#/components/schemas/v1SearchTradesResponse"
                 }
               }
             }
           }
-        }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1SearchTradesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+          "Report"
+        ]
       }
     },
     "/v1/report/trades/stats": {
       "post": {
-        "tags": [
-          "Report"
-        ],
         "summary": "Get trade stats",
         "description": "Gets aggregated trade data for a given period of time",
         "operationId": "ReportAPI_GetTradeStats",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetTradeStatsRequest"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "A successful response.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetTradeStatsResponse"
+                  "$ref": "#/components/schemas/v1GetTradeStatsResponse"
                 }
               }
             }
           }
-        }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1GetTradeStatsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+          "Report"
+        ]
       }
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
-      "Date": {
+      "v1Date": {
         "type": "object",
         "properties": {
           "year": {
@@ -278,7 +292,7 @@
         },
         "description": "Date represents a calendar date."
       },
-      "DownloadExecutionsRequest": {
+      "v1DownloadExecutionsRequest": {
         "type": "object",
         "properties": {
           "startTime": {
@@ -297,7 +311,7 @@
           }
         }
       },
-      "DownloadExecutionsResponse": {
+      "v1DownloadExecutionsResponse": {
         "type": "object",
         "properties": {
           "filechunk": {
@@ -305,7 +319,7 @@
           }
         }
       },
-      "DownloadOrdersRequest": {
+      "v1DownloadOrdersRequest": {
         "type": "object",
         "properties": {
           "startTime": {
@@ -324,7 +338,7 @@
           }
         }
       },
-      "DownloadOrdersResponse": {
+      "v1DownloadOrdersResponse": {
         "type": "object",
         "properties": {
           "filechunk": {
@@ -332,7 +346,7 @@
           }
         }
       },
-      "DownloadTradesRequest": {
+      "v1DownloadTradesRequest": {
         "type": "object",
         "properties": {
           "startTime": {
@@ -351,7 +365,7 @@
           }
         }
       },
-      "DownloadTradesResponse": {
+      "v1DownloadTradesResponse": {
         "type": "object",
         "properties": {
           "filechunk": {
@@ -359,7 +373,7 @@
           }
         }
       },
-      "Execution": {
+      "v1Execution": {
         "type": "object",
         "properties": {
           "id": {
@@ -367,8 +381,7 @@
             "title": "Exchange assigned ID for this execution"
           },
           "order": {
-            "$ref": "#/components/schemas/Order",
-            "title": "The Order at the time of this execution"
+            "$ref": "#/components/schemas/v1Order"
           },
           "lastShares": {
             "type": "string",
@@ -379,15 +392,14 @@
             "format": "int64"
           },
           "type": {
-            "$ref": "#/components/schemas/ExecutionType"
+            "$ref": "#/components/schemas/v1ExecutionType"
           },
           "text": {
             "type": "string",
             "title": "Free format text"
           },
           "orderRejectReason": {
-            "$ref": "#/components/schemas/OrdRejectReason",
-            "title": "For optional use if exec type is rejected"
+            "$ref": "#/components/schemas/v1OrdRejectReason"
           },
           "transactTime": {
             "type": "string",
@@ -396,8 +408,7 @@
           "legPrices": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/LegPrice"
+              "$ref": "#/components/schemas/v1LegPrice"
             },
             "title": "If a fill on a multi leg instrument, contains the derived leg prices"
           },
@@ -415,8 +426,7 @@
             "title": "The notional value of commissions collected as part of the execution"
           },
           "unsolicitedCancelReason": {
-            "$ref": "#/components/schemas/UnsolicitedCxlReason",
-            "title": "For optional use if exec type is canceled and a reason is provided"
+            "$ref": "#/components/schemas/v1UnsolicitedCxlReason"
           },
           "traceId": {
             "type": "string",
@@ -428,13 +438,16 @@
             "title": "The price at which a commission spread order filled at"
           },
           "transactTradeDate": {
-            "$ref": "#/components/schemas/Date",
-            "title": "The trade date when this transactional event occurred"
+            "$ref": "#/components/schemas/v1Date"
+          },
+          "blockTradeIndicator": {
+            "type": "boolean",
+            "description": "If a fill, true when the execution belongs to a block trade (a large,\nprivately negotiated trade executed away from the order book). Lets\ndrop-copy consumers recognize block fills directly instead of joining\nto the trade via trade_id or misreading them as order-book activity."
           }
         },
         "description": "Execution denotes a state change for an order in the exchange."
       },
-      "ExecutionType": {
+      "v1ExecutionType": {
         "type": "string",
         "enum": [
           "EXECUTION_TYPE_PARTIAL_FILL",
@@ -447,7 +460,7 @@
         ],
         "description": "ExecutionType denotes the execution type."
       },
-      "GetTradeStatsRequest": {
+      "v1GetTradeStatsRequest": {
         "type": "object",
         "properties": {
           "symbol": {
@@ -466,24 +479,23 @@
             "format": "int32"
           },
           "startTradeDate": {
-            "$ref": "#/components/schemas/Date"
+            "$ref": "#/components/schemas/v1Date"
           },
           "endTradeDate": {
-            "$ref": "#/components/schemas/Date"
+            "$ref": "#/components/schemas/v1Date"
           }
         }
       },
-      "GetTradeStatsResponse": {
+      "v1GetTradeStatsResponse": {
         "type": "object",
         "properties": {
           "stats": {
-            "$ref": "#/components/schemas/TradeStats"
+            "$ref": "#/components/schemas/v1TradeStats"
           },
           "bars": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/TradeStats"
+              "$ref": "#/components/schemas/v1TradeStats"
             }
           },
           "barStartTime": {
@@ -502,7 +514,7 @@
           }
         }
       },
-      "LegPrice": {
+      "v1LegPrice": {
         "type": "object",
         "properties": {
           "symbol": {
@@ -535,7 +547,7 @@
         },
         "description": "LegPrice indicates a price for a leg as part of a multi leg instrument."
       },
-      "ManualOrderIndicator": {
+      "v1ManualOrderIndicator": {
         "type": "string",
         "enum": [
           "MANUAL_ORDER_INDICATOR_MANUAL",
@@ -543,7 +555,7 @@
         ],
         "description": "ManualOrderIndicator designates the manual or automated nature of an order."
       },
-      "OrdRejectReason": {
+      "v1OrdRejectReason": {
         "type": "string",
         "enum": [
           "ORD_REJECT_REASON_UNKNOWN_SYMBOL",
@@ -556,7 +568,7 @@
         ],
         "description": "OrdRejectReason is the code to identify reason for order rejection."
       },
-      "Order": {
+      "v1Order": {
         "type": "object",
         "properties": {
           "id": {
@@ -564,10 +576,10 @@
             "title": "Exchange assigned ID for the order"
           },
           "type": {
-            "$ref": "#/components/schemas/OrderType"
+            "$ref": "#/components/schemas/v1OrderType"
           },
           "side": {
-            "$ref": "#/components/schemas/Side"
+            "$ref": "#/components/schemas/v1Side"
           },
           "orderQty": {
             "type": "string",
@@ -581,8 +593,7 @@
             "title": "Client assigned ID for the order"
           },
           "timeInForce": {
-            "$ref": "#/components/schemas/TimeInForce",
-            "title": "Absence of this field is interpreted as DAY"
+            "$ref": "#/components/schemas/v1TimeInForce"
           },
           "account": {
             "type": "string",
@@ -604,7 +615,7 @@
             "title": "Remaining working qty"
           },
           "state": {
-            "$ref": "#/components/schemas/OrderState"
+            "$ref": "#/components/schemas/v1OrderState"
           },
           "participant": {
             "type": "string",
@@ -703,12 +714,10 @@
             "title": "The total notional value of all commissions collected on the order so far"
           },
           "selfMatchPreventionInstruction": {
-            "$ref": "#/components/schemas/SelfMatchPreventionInstruction",
-            "title": "If present, determines the behavior for order self match prevention"
+            "$ref": "#/components/schemas/v1SelfMatchPreventionInstruction"
           },
           "orderCapacity": {
-            "$ref": "#/components/schemas/OrderCapacity",
-            "title": "If present, designates the order capacity"
+            "$ref": "#/components/schemas/v1OrderCapacity"
           },
           "ignorePriceValidityChecks": {
             "type": "boolean",
@@ -719,18 +728,15 @@
             "format": "date-time",
             "title": "The most recent time this order was updated in any capacity"
           },
-          "makerCommissionsBasisPoints": {
+          "priceScale": {
             "type": "string",
-            "title": "The total basis points for maker commissions"
-          },
-          "manualOrderIndicator": {
-            "$ref": "#/components/schemas/ManualOrderIndicator",
-            "title": "If present, designates the manual order indicator"
+            "format": "int64",
+            "description": "The price scale of the order, copied from the instrument at order creation time.\nUse this to convert raw integer prices to decimal (e.g., price / 10^price_scale)."
           },
           "fractionalQuantityScale": {
             "type": "string",
             "format": "int64",
-            "title": "Fractional quantity scale, copied from the instrument at order creation time. Divide raw integer quantities by this value for proper scale."
+            "description": "The fractional quantity scale of the order, copied from the instrument at order creation time.\nUse this to convert raw integer quantities to decimal (e.g., qty / 10^fractional_quantity_scale)."
           },
           "priceToQuantityFilled": {
             "type": "object",
@@ -738,11 +744,18 @@
               "type": "string",
               "format": "int64"
             },
-            "title": "Quantity filled at each price point over the life of the order. Key is the price, value is the quantity filled at that price."
+            "description": "Denotes the quantity filled at each price point over the life of the order.\nKey is the price, value is the quantity filled at that price."
+          },
+          "makerCommissionsBasisPoints": {
+            "type": "string",
+            "title": "The total basis points for maker commissions"
+          },
+          "manualOrderIndicator": {
+            "$ref": "#/components/schemas/v1ManualOrderIndicator"
           }
         }
       },
-      "OrderCapacity": {
+      "v1OrderCapacity": {
         "type": "string",
         "enum": [
           "ORDER_CAPACITY_AGENCY",
@@ -754,7 +767,7 @@
         ],
         "description": "OrderCapacity designates the capacity of the party placing an order."
       },
-      "OrderState": {
+      "v1OrderState": {
         "type": "string",
         "enum": [
           "ORDER_STATE_PARTIALLY_FILLED",
@@ -770,7 +783,7 @@
         ],
         "description": "OrderState denotes the current order state."
       },
-      "OrderStateFilter": {
+      "v1OrderStateFilter": {
         "type": "string",
         "enum": [
           "ORDER_STATE_FILTER_OPEN",
@@ -786,7 +799,7 @@
         ],
         "description": "OrderStateFilter describes a filter for searching orders that are open or closed."
       },
-      "OrderType": {
+      "v1OrderType": {
         "type": "string",
         "enum": [
           "ORDER_TYPE_MARKET_TO_LIMIT",
@@ -796,7 +809,7 @@
         ],
         "description": "OrderType indicates the type of an order."
       },
-      "SearchExecutionsRequest": {
+      "v1SearchExecutionsRequest": {
         "type": "object",
         "properties": {
           "pageSize": {
@@ -826,7 +839,7 @@
           "types": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/ExecutionType"
+              "$ref": "#/components/schemas/v1ExecutionType"
             }
           },
           "newestFirst": {
@@ -854,21 +867,20 @@
             }
           },
           "startTransactTradeDate": {
-            "$ref": "#/components/schemas/Date"
+            "$ref": "#/components/schemas/v1Date"
           },
           "endTransactTradeDate": {
-            "$ref": "#/components/schemas/Date"
+            "$ref": "#/components/schemas/v1Date"
           }
         }
       },
-      "SearchExecutionsResponse": {
+      "v1SearchExecutionsResponse": {
         "type": "object",
         "properties": {
           "executions": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Execution"
+              "$ref": "#/components/schemas/v1Execution"
             }
           },
           "nextPageToken": {
@@ -879,7 +891,7 @@
           }
         }
       },
-      "SearchOrdersRequest": {
+      "v1SearchOrdersRequest": {
         "type": "object",
         "properties": {
           "pageSize": {
@@ -913,13 +925,13 @@
             }
           },
           "side": {
-            "$ref": "#/components/schemas/Side"
+            "$ref": "#/components/schemas/v1Side"
           },
           "type": {
-            "$ref": "#/components/schemas/OrderType"
+            "$ref": "#/components/schemas/v1OrderType"
           },
           "orderStateFilter": {
-            "$ref": "#/components/schemas/OrderStateFilter"
+            "$ref": "#/components/schemas/v1OrderStateFilter"
           },
           "crossId": {
             "type": "string"
@@ -937,24 +949,23 @@
             "type": "string"
           },
           "startTransactTradeDate": {
-            "$ref": "#/components/schemas/Date"
+            "$ref": "#/components/schemas/v1Date"
           },
           "endTransactTradeDate": {
-            "$ref": "#/components/schemas/Date"
+            "$ref": "#/components/schemas/v1Date"
           },
           "withLastExecution": {
             "type": "boolean"
           }
         }
       },
-      "SearchOrdersResponse": {
+      "v1SearchOrdersResponse": {
         "type": "object",
         "properties": {
           "order": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Order"
+              "$ref": "#/components/schemas/v1Order"
             }
           },
           "nextPageToken": {
@@ -963,13 +974,12 @@
           "lastExecutions": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Execution"
+              "$ref": "#/components/schemas/v1Execution"
             }
           }
         }
       },
-      "SearchTradesRequest": {
+      "v1SearchTradesRequest": {
         "type": "object",
         "properties": {
           "pageSize": {
@@ -1008,7 +1018,7 @@
           "states": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/TradeState"
+              "$ref": "#/components/schemas/v1TradeState"
             }
           },
           "tradeLinkId": {
@@ -1016,14 +1026,13 @@
           }
         }
       },
-      "SearchTradesResponse": {
+      "v1SearchTradesResponse": {
         "type": "object",
         "properties": {
           "trade": {
             "type": "array",
             "items": {
-              "type": "object",
-              "$ref": "#/components/schemas/Trade"
+              "$ref": "#/components/schemas/v1Trade"
             }
           },
           "nextPageToken": {
@@ -1031,7 +1040,7 @@
           }
         }
       },
-      "SelfMatchPreventionInstruction": {
+      "v1SelfMatchPreventionInstruction": {
         "type": "string",
         "enum": [
           "SELF_MATCH_PREVENTION_INSTRUCTION_REJECT_AGGRESSOR",
@@ -1040,7 +1049,7 @@
         ],
         "description": "SelfMatchPreventionInstruction is the methodology used to handle self match prevention."
       },
-      "Side": {
+      "v1Side": {
         "type": "string",
         "enum": [
           "SIDE_BUY",
@@ -1048,7 +1057,7 @@
         ],
         "description": "Side indicates the side of an Order."
       },
-      "TimeInForce": {
+      "v1TimeInForce": {
         "type": "string",
         "enum": [
           "TIME_IN_FORCE_DAY",
@@ -1059,7 +1068,7 @@
         ],
         "description": "TimeInForce specifies how long the order remains in effect."
       },
-      "Trade": {
+      "v1Trade": {
         "type": "object",
         "properties": {
           "id": {
@@ -1067,24 +1076,19 @@
             "title": "Exchange assigned ID for this trade"
           },
           "aggressor": {
-            "$ref": "#/components/schemas/Execution",
-            "title": "Execution for the incoming order included in the trade"
+            "$ref": "#/components/schemas/v1Execution"
           },
           "passive": {
-            "$ref": "#/components/schemas/Execution",
-            "title": "Execution for the resting order included in the trade"
+            "$ref": "#/components/schemas/v1Execution"
           },
           "tradeType": {
-            "$ref": "#/components/schemas/TradeType",
-            "title": "Type of trade specified"
+            "$ref": "#/components/schemas/v1TradeType"
           },
           "state": {
-            "$ref": "#/components/schemas/TradeState",
-            "title": "State of trade specified"
+            "$ref": "#/components/schemas/v1TradeState"
           },
           "reportingCounterparty": {
-            "$ref": "#/components/schemas/Side",
-            "title": "Reporting counterparty for this trade"
+            "$ref": "#/components/schemas/v1Side"
           },
           "text": {
             "type": "string",
@@ -1102,9 +1106,9 @@
             "description": "Metadata attached to this trade."
           }
         },
-        "description": "Trade is an execution grouping reflecting a trade between two orders."
+        "description": "Trade is an execution grouping reflecting a trade between two orders.\nWire-compatible with the exchange Trade (from v1beta1/api.proto)."
       },
-      "TradeState": {
+      "v1TradeState": {
         "type": "string",
         "enum": [
           "TRADE_STATE_NEW",
@@ -1119,7 +1123,7 @@
         ],
         "description": "TradeState indicates the state of a trade."
       },
-      "TradeStats": {
+      "v1TradeStats": {
         "type": "object",
         "properties": {
           "first": {
@@ -1175,7 +1179,7 @@
         },
         "description": "TradeStats are a collection of stats on a set of trades."
       },
-      "TradeType": {
+      "v1TradeType": {
         "type": "string",
         "enum": [
           "TRADE_TYPE_REGULAR",
@@ -1185,7 +1189,7 @@
         ],
         "description": "TradeType describes the execution type of the trade."
       },
-      "UnsolicitedCxlReason": {
+      "v1UnsolicitedCxlReason": {
         "type": "string",
         "enum": [
           "UNSOLICITED_CXL_REASON_CONNECTION_LOSS",

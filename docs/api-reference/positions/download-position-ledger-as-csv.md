@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/positions-schema.json get /v1/positions/ledger/download
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Positions API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: PositionAPI
 paths:
@@ -41,53 +43,58 @@ paths:
           schema:
             type: string
           description: Optional. Filter by instrument symbol.
-        - name: start_time
+        - name: startTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: >-
-            Optional. Inclusive lower bound on `update_time`. Clamped to
-            `2026-05-01T00:00:00Z`.
-        - name: end_time
+        - name: endTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: Optional. Inclusive upper bound on `update_time`.
-        - name: page_size
+        - name: pageSize
           in: query
           required: false
           schema:
             type: integer
             format: int32
             maximum: 1000
-          description: >-
-            Optional. Maximum entries per page (max 1000). Values above 1000
-            return `InvalidArgument`.
-        - name: page_token
+        - name: pageToken
           in: query
           required: false
           schema:
             type: string
-          description: Optional. Resume token from a previous download.
-        - name: newest_first
+        - name: newestFirst
           in: query
           required: false
           schema:
             type: boolean
-          description: >-
-            Optional. If `true`, rows are emitted in descending `update_time`
-            order.
       responses:
         '200':
-          description: A successful response (streaming).
+          description: A successful response.(streaming responses)
           content:
-            text/csv:
+            application/json:
               schema:
-                type: string
-                description: CSV file stream containing position ledger entries.
+                type: object
+                properties:
+                  result:
+                    $ref: '#/components/schemas/v1DownloadPositionLedgerResponse'
+                title: Stream result of v1DownloadPositionLedgerResponse
+components:
+  schemas:
+    v1DownloadPositionLedgerResponse:
+      type: object
+      properties:
+        data:
+          type: string
+          format: byte
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

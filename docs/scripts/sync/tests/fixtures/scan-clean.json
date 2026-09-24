@@ -1,0 +1,18 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Clean API", "version": "v1.0.0" },
+  "paths": {},
+  "components": {
+    "schemas": {
+      "v1User": {
+        "type": "object",
+        "properties": {
+          "ep3ParticipantId": {
+            "type": "string",
+            "description": "Exchange participant ID for trading"
+          }
+        }
+      }
+    }
+  }
+}

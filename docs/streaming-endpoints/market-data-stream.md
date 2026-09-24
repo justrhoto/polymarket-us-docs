@@ -111,15 +111,17 @@ if response.HasField('update'):
 
 ### Fields
 
-| Field           | Type              | Description                                           |
-| --------------- | ----------------- | ----------------------------------------------------- |
-| `symbol`        | `str`             | Instrument symbol (e.g., "tec-nfl-sbw-2026-02-08-kc") |
-| `bids`          | `list[BookEntry]` | Bid side of order book (buy orders)                   |
-| `offers`        | `list[BookEntry]` | Offer/ask side of order book (sell orders)            |
-| `state`         | `InstrumentState` | Current trading state of instrument (optional)        |
-| `stats`         | `InstrumentStats` | Market statistics (optional)                          |
-| `transact_time` | `Timestamp`       | Server timestamp of update                            |
-| `book_hidden`   | `bool`            | If `True`, order book is hidden                       |
+| Field            | Type              | Description                                                                           |
+| ---------------- | ----------------- | ------------------------------------------------------------------------------------- |
+| `symbol`         | `str`             | Instrument symbol (e.g., "tec-nfl-sbw-2026-02-08-kc")                                 |
+| `bids`           | `list[BookEntry]` | Bid side of order book (buy orders)                                                   |
+| `offers`         | `list[BookEntry]` | Offer/ask side of order book (sell orders)                                            |
+| `state`          | `InstrumentState` | Current trading state of instrument (optional)                                        |
+| `stats`          | `InstrumentStats` | Market statistics (optional)                                                          |
+| `transact_time`  | `Timestamp`       | Server timestamp of update                                                            |
+| `book_hidden`    | `bool`            | If `True`, order book is hidden                                                       |
+| `price_scale`    | `int64`           | Number of decimal places for price (optional; included for wildcard subscriptions)    |
+| `quantity_scale` | `int64`           | Number of decimal places for quantity (optional; included for wildcard subscriptions) |
 
 <Tip>
   **Instrument State Tracking:**
@@ -533,9 +535,41 @@ message BiDirectionalStreamMarketDataResponse {
 }
 
 message SubscriptionAck {
-    repeated string symbols_added = 1;    // Symbols added in this operation
-    repeated string symbols_removed = 2;  // Symbols removed in this operation
-    repeated string active_symbols = 3;   // All currently active symbols
+    // Symbols successfully added in this operation.
+    // Omitted when the added symbol set is larger than 1000 symbols; use
+    // symbols_added_count and symbols_added_truncated to detect that case.
+    repeated string symbols_added = 1;
+    // Symbols successfully removed in this operation (same 1000-symbol
+    // truncation rule, via symbols_removed_count / symbols_removed_truncated).
+    repeated string symbols_removed = 2;
+    // Current list of all active symbols in this subscription (same
+    // truncation rule, via active_symbol_count / active_symbols_truncated).
+    repeated string active_symbols = 3;
+    // Scale information for added symbols (for wildcard subscriptions).
+    // Omitted when symbols_added is truncated.
+    repeated SymbolScales symbol_scales = 4;
+    // Current count of active symbols in this subscription.
+    int32 active_symbol_count = 5;
+    // True when active_symbols was intentionally omitted because the active
+    // symbol set is larger than 1000 symbols.
+    bool active_symbols_truncated = 6;
+    // Number of symbols successfully added in this operation.
+    int32 symbols_added_count = 7;
+    // True when symbols_added and symbol_scales were intentionally omitted
+    // because the added symbol set is larger than 1000 symbols.
+    bool symbols_added_truncated = 8;
+    // Number of symbols successfully removed in this operation.
+    int32 symbols_removed_count = 9;
+    // True when symbols_removed was intentionally omitted because the removed
+    // symbol set is larger than 1000 symbols.
+    bool symbols_removed_truncated = 10;
+}
+
+// Scale information for a symbol.
+message SymbolScales {
+    string symbol = 1;
+    int64 price_scale = 2;      // Number of decimal places for price
+    int64 quantity_scale = 3;   // Number of decimal places for quantity
 }
 
 message SubscriptionError {

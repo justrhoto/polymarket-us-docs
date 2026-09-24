@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/refdata-schema.json post /v1/refdata/symbols
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Refdata API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: RefDataAPI
 paths:
@@ -32,7 +34,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListSymbolsRequest'
+              $ref: '#/components/schemas/v1ListSymbolsRequest'
+        description: Request for listing symbols.
         required: true
       responses:
         '200':
@@ -40,13 +43,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListSymbolsResponse'
+                $ref: '#/components/schemas/v1ListSymbolsResponse'
 components:
   schemas:
-    ListSymbolsRequest:
+    v1ListSymbolsRequest:
       type: object
       description: Request for listing symbols.
-    ListSymbolsResponse:
+    v1ListSymbolsResponse:
       type: object
       properties:
         symbols:
@@ -54,5 +57,10 @@ components:
           items:
             type: string
       description: Response with list of symbols.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

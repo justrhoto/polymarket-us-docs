@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/positions-schema.json post /v1/positions/balance
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Positions API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: PositionAPI
 paths:
@@ -32,7 +34,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetAccountBalanceRequest'
+              $ref: '#/components/schemas/v1GetAccountBalanceRequest'
+        description: Request to get the balance of an account in a currency.
         required: true
       responses:
         '200':
@@ -40,10 +43,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetAccountBalanceResponse'
+                $ref: '#/components/schemas/v1GetAccountBalanceResponse'
 components:
   schemas:
-    GetAccountBalanceRequest:
+    v1GetAccountBalanceRequest:
       type: object
       properties:
         name:
@@ -53,7 +56,7 @@ components:
           type: string
           description: ISO currency code (e.g., "USD").
       description: Request to get the balance of an account in a currency.
-    GetAccountBalanceResponse:
+    v1GetAccountBalanceResponse:
       type: object
       properties:
         balance:
@@ -67,7 +70,7 @@ components:
         securities:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/SecurityEntry'
+            $ref: '#/components/schemas/polymarketV1SecurityEntry'
         totalSecurityNotionalValue:
           type: string
         totalSecurityAvailableValue:
@@ -86,7 +89,7 @@ components:
           type: string
           format: date-time
       description: Response with account balance details.
-    SecurityEntry:
+    polymarketV1SecurityEntry:
       type: object
       properties:
         balance:
@@ -101,5 +104,10 @@ components:
         availableValue:
           type: string
       description: SecurityEntry describes the valuation of a security.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

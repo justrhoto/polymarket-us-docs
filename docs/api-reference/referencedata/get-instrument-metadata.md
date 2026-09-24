@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/refdata-schema.json post /v1/refdata/metadata
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Refdata API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: RefDataAPI
 paths:
@@ -32,7 +34,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetInstrumentMetadataRequest'
+              $ref: '#/components/schemas/v1GetInstrumentMetadataRequest'
+        description: Request for getting instrument metadata.
         required: true
       responses:
         '200':
@@ -40,13 +43,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetInstrumentMetadataResponse'
+                $ref: '#/components/schemas/v1GetInstrumentMetadataResponse'
 components:
   schemas:
-    GetInstrumentMetadataRequest:
+    v1GetInstrumentMetadataRequest:
       type: object
       description: Request for getting instrument metadata.
-    GetInstrumentMetadataResponse:
+    v1GetInstrumentMetadataResponse:
       type: object
       properties:
         metadata:
@@ -54,5 +57,10 @@ components:
           additionalProperties:
             type: string
       description: Response with instrument metadata.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

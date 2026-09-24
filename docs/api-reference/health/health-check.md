@@ -4,20 +4,22 @@
 
 # Health check
 
-> Check service health status. Returns 200 OK when the service is healthy.
+> Check service health status
 
 
 
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/health-schema.json get /v1/health
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Health API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: HealthAPI
 paths:
@@ -26,22 +28,27 @@ paths:
       tags:
         - Health
       summary: Health check
-      description: Check service health status. Returns 200 OK when the service is healthy.
+      description: Check service health status
       operationId: HealthAPI_HealthCheck
       responses:
         '200':
-          description: Service is healthy
+          description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HealthCheckResponse'
+                $ref: '#/components/schemas/v1HealthCheckResponse'
 components:
   schemas:
-    HealthCheckResponse:
+    v1HealthCheckResponse:
       type: object
       properties:
         status:
           type: string
           description: Health status (e.g., 'ok')
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

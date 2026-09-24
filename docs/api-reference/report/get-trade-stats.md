@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/report-schema.json post /v1/report/trades/stats
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Report API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: ReportAPI
 paths:
@@ -32,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetTradeStatsRequest'
+              $ref: '#/components/schemas/v1GetTradeStatsRequest'
         required: true
       responses:
         '200':
@@ -40,10 +42,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetTradeStatsResponse'
+                $ref: '#/components/schemas/v1GetTradeStatsResponse'
 components:
   schemas:
-    GetTradeStatsRequest:
+    v1GetTradeStatsRequest:
       type: object
       properties:
         symbol:
@@ -58,19 +60,18 @@ components:
           type: integer
           format: int32
         startTradeDate:
-          $ref: '#/components/schemas/Date'
+          $ref: '#/components/schemas/v1Date'
         endTradeDate:
-          $ref: '#/components/schemas/Date'
-    GetTradeStatsResponse:
+          $ref: '#/components/schemas/v1Date'
+    v1GetTradeStatsResponse:
       type: object
       properties:
         stats:
-          $ref: '#/components/schemas/TradeStats'
+          $ref: '#/components/schemas/v1TradeStats'
         bars:
           type: array
           items:
-            $ref: '#/components/schemas/TradeStats'
-            type: object
+            $ref: '#/components/schemas/v1TradeStats'
         barStartTime:
           type: array
           items:
@@ -81,7 +82,7 @@ components:
           items:
             type: string
             format: date-time
-    Date:
+    v1Date:
       type: object
       properties:
         year:
@@ -94,7 +95,7 @@ components:
           type: integer
           format: int32
       description: Date represents a calendar date.
-    TradeStats:
+    v1TradeStats:
       type: object
       properties:
         first:
@@ -138,5 +139,10 @@ components:
           format: int64
           title: Total notional traded in this time that has been cleared
       description: TradeStats are a collection of stats on a set of trades.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

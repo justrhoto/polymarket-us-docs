@@ -4,21 +4,22 @@
 
 # Get Incentive Earnings
 
-> Get incentive earnings for the authenticated user. Returns reward records grouped by market, date (Eastern Time), and payout status. Dates are bucketed by ET midnight boundaries.
+> Returns incentive earnings for the participant identified by request metadata.
 
 
 
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/incentives-schema.json get /v1/incentives/earnings
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Incentives API
-  description: Incentive program and earnings endpoints
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: Incentives
 paths:
@@ -28,61 +29,58 @@ paths:
         - Incentives
       summary: Get Incentive Earnings
       description: >-
-        Get incentive earnings for the authenticated user. Returns reward
-        records grouped by market, date (Eastern Time), and payout status. Dates
-        are bucketed by ET midnight boundaries.
+        Returns incentive earnings for the participant identified by request
+        metadata.
       operationId: IncentivesAPI_GetIncentivesEarned
       parameters:
         - name: startDate
-          in: query
           description: >-
             Start date filter in `YYYY-MM-DD` format. Defaults to `2026-03-21`
             (earliest available data). Example: `2026-03-25`
+          in: query
           required: false
           schema:
             type: string
-            format: date
         - name: endDate
-          in: query
           description: >-
             End date filter in `YYYY-MM-DD` format. Omit to include all dates
             after startDate. Example: `2026-03-31`
+          in: query
           required: false
           schema:
             type: string
-            format: date
         - name: marketSlug
-          in: query
           description: >-
             Filter earnings by a specific market. Example:
             `aec-nba-bos-nyk-2026-04-01`
+          in: query
           required: false
           schema:
             type: string
         - name: programType
+          description: filter by program type (optional, e.g. "liquidityProgram")
           in: query
-          description: 'Filter earnings by program type. Example: `liquidityProgram`'
           required: false
           schema:
             type: string
       responses:
         '200':
-          description: User's incentive earnings
+          description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetIncentivesEarnedResponse'
+                $ref: '#/components/schemas/v1GetIncentivesEarnedResponse'
 components:
   schemas:
-    GetIncentivesEarnedResponse:
+    v1GetIncentivesEarnedResponse:
       type: object
       properties:
         rewards:
           type: array
           items:
-            $ref: '#/components/schemas/UserReward'
+            $ref: '#/components/schemas/v1UserReward'
           description: List of earned rewards
-    UserReward:
+    v1UserReward:
       type: object
       properties:
         reward:
@@ -93,18 +91,20 @@ components:
             this status)
         programType:
           type: string
+          title: e.g. "liquidityProgram"
           description: 'Type of incentive program. Example: `liquidityProgram`'
         marketSlug:
           type: string
           description: Market identifier
         date:
           type: string
-          format: date
+          title: YYYY-MM-DD
           description: >-
             Reward date in Eastern Time (`YYYY-MM-DD`). Dates are bucketed by ET
             midnight boundaries.
         status:
           type: string
+          title: 'payout disposition: "PAID" | "PENDING" | "SKIPPED"'
           enum:
             - PAID
             - PENDING
@@ -112,5 +112,10 @@ components:
           description: >-
             Payout disposition. A single marketSlug + date may appear once per
             status.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

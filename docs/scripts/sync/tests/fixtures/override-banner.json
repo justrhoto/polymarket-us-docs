@@ -1,0 +1,67 @@
+{
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — test banner",
+  "info": {
+    "title": "Test API",
+    "version": "v1.0.0"
+  },
+  "paths": {
+    "/v1/things": {
+      "get": {
+        "summary": "List things",
+        "operationId": "TestAPI_ListThings",
+        "parameters": [
+          {
+            "name": "account",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1Thing"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Things"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "v1Thing": {
+        "type": "object",
+        "description": "A thing.",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "title": "raw state"
+          }
+        }
+      }
+    }
+  }
+}

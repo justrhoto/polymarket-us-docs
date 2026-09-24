@@ -6,6 +6,15 @@
 
 > Trading fee schedule, rebates, and examples
 
+<Warning>
+  **Upcoming fee changes.** Two updates to Polymarket US trading fees take effect over the coming week.
+
+  * **Combos** — the combo taker fee curve becomes `Fee = C × p × [0.0695(1 - p) + 0.04(1 - p)^4]`, effective 11:59 PM ET, Thursday September 24, 2026.
+  * **Table Tennis** — the Table Tennis taker fee coefficient becomes `0.10`, effective 11:59 PM ET, Wednesday September 30, 2026.
+
+  The schedule and examples below describe the fees in effect today. This page will be updated when the changes take effect.
+</Warning>
+
 <Info>Effective exchange-wide from 12 AM ET, Thursday September 17, 2026.</Info>
 
 ## Trading Fees

@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/accounts-schema.json get /v1/users
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Accounts API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: AccountsAPI
 paths:
@@ -27,17 +29,17 @@ paths:
         - Accounts
       summary: List users
       description: Returns the users that the caller may trade on behalf of
-      operationId: AccountsAPI_ListUsers
+      operationId: UsersAPI_ListUsers
       responses:
         '200':
           description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListUsersResponse'
+                $ref: '#/components/schemas/v1ListUsersResponse'
 components:
   schemas:
-    ListUsersResponse:
+    v1ListUsersResponse:
       type: object
       properties:
         users:
@@ -56,5 +58,13 @@ components:
           type: array
           items:
             type: string
+      title: >-
+        ListUsersResponse - List of exchange participant names (migrated from
+        AccountsAPI)
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

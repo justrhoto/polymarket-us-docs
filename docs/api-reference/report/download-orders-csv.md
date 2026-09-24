@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/report-schema.json post /v1/report/orders/csv
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Report API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: ReportAPI
 paths:
@@ -32,7 +34,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DownloadOrdersRequest'
+              $ref: '#/components/schemas/v1DownloadOrdersRequest'
         required: true
       responses:
         '200':
@@ -43,11 +45,11 @@ paths:
                 type: object
                 properties:
                   result:
-                    $ref: '#/components/schemas/DownloadOrdersResponse'
+                    $ref: '#/components/schemas/v1DownloadOrdersResponse'
                 title: Stream result of v1DownloadOrdersResponse
 components:
   schemas:
-    DownloadOrdersRequest:
+    v1DownloadOrdersRequest:
       type: object
       properties:
         startTime:
@@ -60,10 +62,15 @@ components:
           type: array
           items:
             type: string
-    DownloadOrdersResponse:
+    v1DownloadOrdersResponse:
       type: object
       properties:
         filechunk:
           type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

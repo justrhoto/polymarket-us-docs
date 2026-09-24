@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/accounts-schema.json get /v1/whoami
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Accounts API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: AccountsAPI
 paths:
@@ -34,10 +36,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetWhoAmIResponse'
+                $ref: '#/components/schemas/v1GetWhoAmIResponse'
 components:
   schemas:
-    GetWhoAmIResponse:
+    v1GetWhoAmIResponse:
       type: object
       properties:
         user:
@@ -51,8 +53,8 @@ components:
         audience:
           type: string
         firmType:
-          $ref: '#/components/schemas/FirmType'
-    FirmType:
+          $ref: '#/components/schemas/v1FirmType'
+    v1FirmType:
       type: string
       enum:
         - FIRM_TYPE_PARTICIPANT
@@ -60,8 +62,11 @@ components:
         - FIRM_TYPE_CLEARING_MEMBER
         - FIRM_TYPE_CLEARING_HOUSE
         - FIRM_TYPE_AGENT
-      description: |-
-        FirmType indicates the type of firm.
-        Matches Connamara firms.v1beta1.FirmType for wire compatibility.
+      description: FirmType indicates the type of firm.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

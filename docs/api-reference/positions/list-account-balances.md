@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/positions-schema.json post /v1/positions/balances
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Positions API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: PositionAPI
 paths:
@@ -32,7 +34,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListAccountBalancesRequest'
+              $ref: '#/components/schemas/v1ListAccountBalancesRequest'
+        description: Request to list all balances in an account.
         required: true
       responses:
         '200':
@@ -40,25 +43,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListAccountBalancesResponse'
+                $ref: '#/components/schemas/v1ListAccountBalancesResponse'
 components:
   schemas:
-    ListAccountBalancesRequest:
+    v1ListAccountBalancesRequest:
       type: object
       properties:
         name:
           type: string
           description: Fully qualified resource name of the account.
       description: Request to list all balances in an account.
-    ListAccountBalancesResponse:
+    v1ListAccountBalancesResponse:
       type: object
       properties:
         balances:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/GetAccountBalanceResponse'
+            $ref: '#/components/schemas/v1GetAccountBalanceResponse'
       description: Response with all account balances by currency.
-    GetAccountBalanceResponse:
+    v1GetAccountBalanceResponse:
       type: object
       properties:
         balance:
@@ -72,7 +75,7 @@ components:
         securities:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/SecurityEntry'
+            $ref: '#/components/schemas/polymarketV1SecurityEntry'
         totalSecurityNotionalValue:
           type: string
         totalSecurityAvailableValue:
@@ -91,7 +94,7 @@ components:
           type: string
           format: date-time
       description: Response with account balance details.
-    SecurityEntry:
+    polymarketV1SecurityEntry:
       type: object
       properties:
         balance:
@@ -106,5 +109,10 @@ components:
         availableValue:
           type: string
       description: SecurityEntry describes the valuation of a security.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

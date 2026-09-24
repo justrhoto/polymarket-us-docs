@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/refdata-schema.json post /v1/refdata/instruments
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Refdata API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: RefDataAPI
 paths:
@@ -32,7 +34,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListInstrumentsRequest'
+              $ref: '#/components/schemas/v1ListInstrumentsRequest'
+        description: Request for listing instruments.
         required: true
       responses:
         '200':
@@ -40,15 +43,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListInstrumentsResponse'
+                $ref: '#/components/schemas/v1ListInstrumentsResponse'
 components:
   schemas:
-    ListInstrumentsRequest:
+    v1ListInstrumentsRequest:
       type: object
       properties:
         pageSize:
           type: integer
           format: int32
+          title: '=== Pagination ==='
           description: 'Results per page (default: 50, max: 1000)'
         pageToken:
           type: string
@@ -57,55 +61,89 @@ components:
           type: array
           items:
             type: string
+          title: '=== Existing filters (backwards compatible) ==='
           description: Filter by specific instrument symbols
         productId:
           type: string
           description: Filter by product ID
         tradableFilter:
-          $ref: '#/components/schemas/TradableFilter'
+          $ref: '#/components/schemas/v1TradableFilter'
           description: Filter tradable vs non-tradable instruments
         states:
           type: array
           items:
-            $ref: '#/components/schemas/InstrumentState'
+            $ref: '#/components/schemas/v1InstrumentState'
           description: Filter by instrument states (e.g., INSTRUMENT_STATE_OPEN)
+        type:
+          $ref: '#/components/schemas/v1InstrumentType'
         eventSeries:
           type: string
-          description: Filter by event series (e.g., 'nfl', 'nba', 'cbb')
-        eventCategory:
+          description: >-
+            Filter by event series (e.g., "cbb", "nfl", "nba").
+
+            Matches instruments where metadata["event_series"] equals this
+            value.
+        marketCategory:
           type: string
-          description: Filter by event category (e.g., 'SPR', 'POL', 'CRY')
+          description: Filter by market category (e.g., "sports", "politics", "crypto").
+        marketType:
+          type: string
+          description: Filter by market type (e.g., "moneyline", "spread", "over_under").
+        gameId:
+          type: string
+          description: Filter by game ID (provider-specific game identifier).
         clearingSym:
           type: string
-          description: Filter by clearing symbol prefix (e.g., 'AEC-NFL')
+          description: Filter by clearing symbol prefix (e.g., "AEC-NFL", "AEC-NBA").
+        eventCategory:
+          type: string
+          description: >-
+            Filter by event category (e.g., "SPR" for sports, "POL" for
+            politics).
+
+            Matches instruments where metadata["event_category"] equals this
+            value.
         startTimeGte:
           type: string
           description: >-
-            Filter instruments starting on or after this date (format:
-            'YYYY-MM-DD')
+            Filter instruments with start_date >= this value (format:
+            "2025-01-01" or timestamp).
+
+            Returns instruments that start on or after this date.
         startTimeLte:
           type: string
-          description: Filter instruments starting on or before this date
+          description: >-
+            Filter instruments with start_date <= this value (format:
+            "2025-01-01" or timestamp).
+
+            Returns instruments that start on or before this date.
         endTimeGte:
           type: string
-          description: Filter instruments expiring on or after this date
+          description: >-
+            Filter instruments with expiration_date >= this value (format:
+            "2025-01-01" or timestamp).
+
+            Returns instruments that expire on or after this date.
         endTimeLte:
           type: string
-          description: Filter instruments expiring on or before this date
+          description: >-
+            Filter instruments with expiration_date <= this value (format:
+            "2025-01-01" or timestamp).
+
+            Returns instruments that expire on or before this date.
         filter:
-          $ref: '#/components/schemas/InstrumentFilter'
+          $ref: '#/components/schemas/v1InstrumentFilter'
           description: >-
             Advanced filter with whereClause and/or fieldFilters (ANDed together
             if both provided)
-      description: Request for listing instruments with optional filters and pagination.
-    ListInstrumentsResponse:
+      description: Request for listing instruments.
+    v1ListInstrumentsResponse:
       type: object
       properties:
         instruments:
           type: array
           items:
-            $ref: '#/components/schemas/Instrument'
-            type: object
+            $ref: '#/components/schemas/v1Instrument'
           description: List of matching instruments
         nextPageToken:
           type: string
@@ -113,22 +151,16 @@ components:
         eof:
           type: boolean
           description: True when no more results available
-      description: Response with list of instruments and pagination info.
-    TradableFilter:
+      description: Response with list of instruments.
+    v1TradableFilter:
       type: string
       enum:
-        - TRADABLE_FILTER_TRADABLE
         - TRADABLE_FILTER_NON_TRADABLE
-        - TRADABLE_FILTER_ALL
-      description: >-
-        TradableFilter for filtering instruments by tradability. TRADABLE
-        returns instruments where nonTradable=false. NON_TRADABLE returns
-        instruments where nonTradable=true. ALL returns all instruments
-        regardless of tradability.
-    InstrumentState:
+        - TRADABLE_FILTER_TRADABLE
+      description: TradableFilter for filtering instruments by tradability.
+    v1InstrumentState:
       type: string
       enum:
-        - INSTRUMENT_STATE_CLOSED
         - INSTRUMENT_STATE_OPEN
         - INSTRUMENT_STATE_PREOPEN
         - INSTRUMENT_STATE_SUSPENDED
@@ -166,11 +198,41 @@ components:
 
 
         **TERMINATED**: Order book removed, all orders and positions closed.
-    InstrumentFilter:
+    v1InstrumentType:
+      type: string
+      enum:
+        - INSTRUMENT_TYPE_DEFAULT
+        - INSTRUMENT_TYPE_FUTURE
+        - INSTRUMENT_TYPE_OPTION
+        - INSTRUMENT_TYPE_MULTILEG
+        - INSTRUMENT_TYPE_IRS
+        - INSTRUMENT_TYPE_FRA
+        - INSTRUMENT_TYPE_FSIRS
+        - INSTRUMENT_TYPE_BASIS
+        - INSTRUMENT_TYPE_EVENT
+        - INSTRUMENT_TYPE_OIS
+        - INSTRUMENT_TYPE_SPS
+        - INSTRUMENT_TYPE_NDF
+        - INSTRUMENT_TYPE_FOREX
+        - INSTRUMENT_TYPE_ZCIS
+        - INSTRUMENT_TYPE_XCCY
+      description: InstrumentType represents the type of instrument.
+    v1InstrumentFilter:
       type: object
       properties:
         whereClause:
           type: string
+          title: >-
+            SQL WHERE clause fragment (without the WHERE keyword).
+
+            Allowed operators: =, !=, <, <=, >, >=, LIKE, IN, AND, OR, NOT
+
+            Allowed columns: symbol, state, product_id, event_series,
+            event_category, market_category,
+             market_type, game_id, clearing_sym, start_date, expiration_date,
+             event_id, event_question, event_outcome, non_tradable, tick_size
+            Example: "symbol LIKE 'aec-nfl-%' AND state =
+            'INSTRUMENT_STATE_OPEN'"
           description: >-
             SQL-like string expression. Supported operators: =, LIKE (with %
             wildcard), AND. Supported columns: state, symbol, event_series,
@@ -180,14 +242,12 @@ components:
         fieldFilters:
           type: array
           items:
-            $ref: '#/components/schemas/FieldFilter'
+            $ref: '#/components/schemas/v1FieldFilter'
           description: >-
-            Structured type-safe filters. ANDed with whereClause if both
-            provided.
-      description: >-
-        InstrumentFilter for advanced instrument queries. Both whereClause and
-        fieldFilters can be used independently or combined (ANDed together).
-    Instrument:
+            Structured type-safe filters (ANDed with where_clause if both
+            provided).
+      description: InstrumentFilter for advanced queries.
+    v1Instrument:
       type: object
       properties:
         symbol:
@@ -204,16 +264,15 @@ components:
           type: string
           format: int64
         startDate:
-          $ref: '#/components/schemas/Date'
+          $ref: '#/components/schemas/v1Date'
         expirationDate:
-          $ref: '#/components/schemas/Date'
+          $ref: '#/components/schemas/v1Date'
         terminationDate:
-          $ref: '#/components/schemas/Date'
+          $ref: '#/components/schemas/v1Date'
         tradingSchedule:
           type: array
           items:
-            $ref: '#/components/schemas/TradingHours'
-            type: object
+            $ref: '#/components/schemas/v1TradingHours'
         description:
           type: string
         clearingHouse:
@@ -229,16 +288,16 @@ components:
         productId:
           type: string
         priceLimit:
-          $ref: '#/components/schemas/PriceLimit'
+          $ref: '#/components/schemas/v1PriceLimit'
         orderSizeLimit:
-          $ref: '#/components/schemas/OrderSizeLimit'
+          $ref: '#/components/schemas/v1OrderSizeLimit'
         expirationTime:
-          $ref: '#/components/schemas/TimeOfDay'
+          $ref: '#/components/schemas/v1TimeOfDay'
         tradeSettlementPeriod:
           type: string
           format: int64
         state:
-          $ref: '#/components/schemas/InstrumentState'
+          $ref: '#/components/schemas/v1InstrumentState'
         priceScale:
           type: string
           format: int64
@@ -255,40 +314,44 @@ components:
           additionalProperties:
             type: string
           description: >-
-            Additional instrument metadata including sports league, market
-            category, and game identifiers
+            Per-instrument metadata from the exchange Attributes.Metadata map.
+
+            Contains sports metadata like game_id, team abbreviations, league,
+            etc.
         eventAttributes:
-          $ref: '#/components/schemas/EventAttributes'
+          $ref: '#/components/schemas/v1EventAttributes'
         createTime:
           type: string
           format: date-time
-          description: Instrument creation timestamp (RFC 3339)
+          description: Creation timestamp of the instrument.
         updateTime:
           type: string
           format: date-time
-          description: Last update timestamp (RFC 3339)
+          description: Last update timestamp of the instrument.
       description: Instrument represents a tradable instrument.
-    FieldFilter:
+    v1FieldFilter:
       type: object
       properties:
         field:
           type: string
-          description: >-
-            Column name to filter on. Supported: state, symbol, event_series,
-            event_category, clearing_sym, clearing_house, product_id.
+          description: Column name to filter on.
         operator:
-          $ref: '#/components/schemas/FilterOperator'
+          $ref: '#/components/schemas/v1FilterOperator'
           description: Comparison operator
         stringValue:
           type: string
           description: String value to compare against (for EQ, LIKE)
+        intValue:
+          type: string
+          format: int64
+        doubleValue:
+          type: number
+          format: double
         stringList:
-          $ref: '#/components/schemas/StringList'
+          $ref: '#/components/schemas/v1StringList'
           description: List of string values (for IN operator)
-      description: >-
-        FieldFilter for structured filtering. Provide exactly one of stringValue
-        or stringList depending on the operator.
-    Date:
+      description: FieldFilter for structured filtering.
+    v1Date:
       type: object
       properties:
         year:
@@ -301,7 +364,7 @@ components:
           type: integer
           format: int32
       description: Date represents a calendar date.
-    TradingHours:
+    v1TradingHours:
       type: object
       properties:
         daysOfWeek:
@@ -310,17 +373,17 @@ components:
             type: integer
             format: int32
         timeOfDay:
-          $ref: '#/components/schemas/TimeOfDay'
+          $ref: '#/components/schemas/v1TimeOfDay'
         duration:
           type: string
         state:
-          $ref: '#/components/schemas/InstrumentState'
+          $ref: '#/components/schemas/v1InstrumentState'
         hideMarketData:
           type: boolean
         expireAllOrders:
           type: boolean
       description: TradingHours describes an instrument trading schedule segment.
-    PriceLimit:
+    v1PriceLimit:
       type: object
       properties:
         low:
@@ -344,7 +407,7 @@ components:
         relativeHighSet:
           type: boolean
       description: PriceLimit describes optional price limits on an instrument.
-    OrderSizeLimit:
+    v1OrderSizeLimit:
       type: object
       properties:
         low:
@@ -368,7 +431,7 @@ components:
         totalNotionalHighSet:
           type: boolean
       description: OrderSizeLimit describes optional order size limits on an instrument.
-    TimeOfDay:
+    v1TimeOfDay:
       type: object
       properties:
         hours:
@@ -381,58 +444,81 @@ components:
           type: integer
           format: int32
       description: TimeOfDay represents a time of day.
-    EventAttributes:
+    v1EventAttributes:
       type: object
       properties:
         question:
           type: string
-          description: Event resolution question
+          description: The question or description of the event outcome.
         payoutValue:
           type: string
-          format: int64
-          description: Payout value on resolution
-        eventDisplayName:
-          type: string
-          description: Display name for the event
-        eventId:
-          type: string
-          description: Event identifier
-        strikeValue:
-          type: string
-          description: Strike value
+          description: The payout value when the event resolves (e.g., "1000").
         evaluationType:
           type: string
-          description: Evaluation comparison operator
+          description: The evaluation type for resolution (e.g., ">", "<", "=").
+        eventId:
+          type: string
+          description: Unique event identifier.
+        eventDisplayName:
+          type: string
+          description: Human-readable display name for the event.
+        strikeValue:
+          type: string
+          description: Strike value for evaluation.
         strikeUnit:
           type: string
-          description: Unit of the strike value
+          description: Unit for strike value (e.g., "decimal", "percentage").
         calculationMethod:
           type: string
-          description: Calculation method for resolution
-        timeSpecifier:
-          type: string
-          description: Time specifier for the event
+          description: Calculation method for settlement.
         positionAccountabilityValue:
           type: string
-          format: int64
-          description: Position accountability limit value
-      description: >-
-        EventAttributes contains event-specific resolution and settlement
-        details.
-    FilterOperator:
+          description: Position accountability limit value.
+        timeSpecifier:
+          $ref: '#/components/schemas/v1Date'
+          description: Time specifier for the event
+        eventOutcome:
+          type: string
+          description: >-
+            The relationship of instrument outcomes within the event:
+
+            "EVENT_OUTCOME_MUTUALLY_EXCLUSIVE" (exactly one instrument in the
+            event resolves YES),
+
+            "EVENT_OUTCOME_DIRECTIONAL" (instruments are strike-ranked; YES at
+            one strike implies
+
+            YES for in-the-money strikes), or "EVENT_OUTCOME_INDEPENDENT" (each
+            instrument resolves
+
+            on its own; also the default when the exchange has not set an
+            outcome type).
+      description: EventAttributes contains event-specific instrument attributes.
+    v1FilterOperator:
       type: string
       enum:
-        - FILTER_OPERATOR_UNSPECIFIED
         - FILTER_OPERATOR_EQ
+        - FILTER_OPERATOR_NE
+        - FILTER_OPERATOR_LT
+        - FILTER_OPERATOR_LE
+        - FILTER_OPERATOR_GT
+        - FILTER_OPERATOR_GE
         - FILTER_OPERATOR_LIKE
         - FILTER_OPERATOR_IN
+        - FILTER_OPERATOR_NOT_IN
       description: |-
         FilterOperator defines comparison operators for FieldFilter.
 
-        **EQ**: Exact match (=)
-        **LIKE**: SQL LIKE pattern (% wildcard)
-        **IN**: Match any value in list
-    StringList:
+         - FILTER_OPERATOR_EQ: =
+         - FILTER_OPERATOR_NE: !=
+         - FILTER_OPERATOR_LT: <
+         - FILTER_OPERATOR_LE: <=
+         - FILTER_OPERATOR_GT: >
+         - FILTER_OPERATOR_GE: >=
+         - FILTER_OPERATOR_LIKE: LIKE (SQL pattern with % and _ wildcards)
+         - FILTER_OPERATOR_IN: IN (list)
+         - FILTER_OPERATOR_NOT_IN: NOT IN (list)
+    v1StringList:
       type: object
       properties:
         values:
@@ -440,6 +526,11 @@ components:
           items:
             type: string
           description: List of string values
-      description: StringList for IN operator.
+      description: StringList for IN/NOT IN operators.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

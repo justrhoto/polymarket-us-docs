@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Test API", "version": "v1.0.0" },
+  "paths": {
+    "/v1/things": {
+      "get": {
+        "operationId": "TestAPI_ListThings",
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/v1Reachable" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "v1Reachable": {
+        "type": "object",
+        "properties": {
+          "child": { "$ref": "#/components/schemas/v1Transitive" }
+        }
+      },
+      "v1Transitive": { "type": "object" },
+      "v1Orphan": {
+        "type": "object",
+        "properties": {
+          "child": { "$ref": "#/components/schemas/v1OrphanChild" }
+        }
+      },
+      "v1OrphanChild": { "type": "object" }
+    }
+  }
+}

@@ -11,13 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/positions-schema.json get /v1/positions/ledger
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Positions API
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: PositionAPI
 paths:
@@ -43,64 +45,51 @@ paths:
           schema:
             type: string
           description: Optional. Filter by instrument symbol.
-        - name: start_time
+        - name: startTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: >-
-            Optional. Inclusive lower bound on `update_time` (RFC3339). Clamped
-            upstream to `2026-05-01T00:00:00Z`.
-        - name: end_time
+        - name: endTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: Optional. Inclusive upper bound on `update_time` (RFC3339).
-        - name: page_size
+        - name: pageSize
           in: query
           required: false
           schema:
             type: integer
             format: int32
             maximum: 1000
-          description: >-
-            Optional. Maximum entries to return per page (max 1000). Values
-            above 1000 return `InvalidArgument`.
-        - name: page_token
+        - name: pageToken
           in: query
           required: false
           schema:
             type: string
-          description: >-
-            Optional. Pagination token from a previous response's
-            `nextPageToken` field. Omit for the first request.
-        - name: newest_first
+        - name: newestFirst
           in: query
           required: false
           schema:
             type: boolean
-          description: >-
-            Optional. If `true`, return entries in descending `update_time`
-            order. Default is `false` (oldest first).
       responses:
         '200':
           description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetPositionLedgerResponse'
+                $ref: '#/components/schemas/v1GetPositionLedgerResponse'
 components:
   schemas:
-    GetPositionLedgerResponse:
+    v1GetPositionLedgerResponse:
       type: object
       properties:
         entries:
           type: array
           items:
-            $ref: '#/components/schemas/PositionLedgerEntry'
+            $ref: '#/components/schemas/v1PositionLedgerEntry'
           description: Position ledger entries for the requested account / time window.
         nextPageToken:
           type: string
@@ -110,16 +99,8 @@ components:
         eof:
           type: boolean
           description: '`true` when this response contains the final page of results.'
-    PositionLedgerEntry:
+    v1PositionLedgerEntry:
       type: object
-      description: >-
-        A single position ledger entry. Each entry represents a transition
-        between two position snapshots, with the change fields derived from the
-        exchange's before/after snapshots: `quantityChange = after.netPosition -
-        before.netPosition`, `costChange = after.cost - before.cost`,
-        `realizedChange = after.realized - before.realized`. The cumulative
-        fields (`netPosition`, `cost`, `realized`) reflect the state immediately
-        after this change.
       properties:
         id:
           type: string
@@ -163,8 +144,18 @@ components:
           description: Business date for this change in `YYYY-MM-DD` format.
         description:
           type: string
-          description: >-
-            Human-readable reason for the change (e.g., trade fill, expiry,
-            correction).
+      description: >-
+        A single position ledger entry. Each entry represents a transition
+        between two position snapshots, with the change fields derived from the
+        exchange's before/after snapshots: `quantityChange = after.netPosition -
+        before.netPosition`, `costChange = after.cost - before.cost`,
+        `realizedChange = after.realized - before.realized`. The cumulative
+        fields (`netPosition`, `cost`, `realized`) reflect the state immediately
+        after this change.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

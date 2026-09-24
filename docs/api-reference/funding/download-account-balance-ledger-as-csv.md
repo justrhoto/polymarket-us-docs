@@ -11,17 +11,15 @@
 ## OpenAPI
 
 ````yaml /institutional/oapi-schemas/funding-schema.json get /v1/funding/balance-ledger/download
-openapi: 3.0.1
+openapi: 3.0.3
 info:
   title: Funding API
-  description: >-
-    Account balance ledger endpoints. Tracks every change to an account's cash
-    balance with both a delta (`before_balance` -> `after_balance`) and a typed
-    `entry_type`.
   version: v1.0.0
 servers:
   - url: https://api.prod.polymarketexchange.com
-security: []
+    description: Production server
+security:
+  - bearerAuth: []
 tags:
   - name: Funding
 paths:
@@ -45,33 +43,50 @@ paths:
           schema:
             type: string
           description: Optional. ISO currency code.
-        - name: start_time
+        - name: startTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: >-
-            Optional. Inclusive lower bound on `update_time`. Clamped to
-            `2026-05-01T00:00:00Z`.
-        - name: end_time
+        - name: endTime
           in: query
           required: false
           schema:
             type: string
             format: date-time
-          description: Optional. Inclusive upper bound on `update_time`.
-        - name: entry_types
+        - name: entryTypes
           in: query
           required: false
+          explode: true
           schema:
             type: array
             items:
-              $ref: '#/components/schemas/LedgerEntryType'
-          description: >-
-            Optional. Filter by one or more entry types from the allowlist. When
-            omitted, the gateway substitutes the full allowlist before
-            forwarding upstream.
+              type: string
+              enum:
+                - LEDGER_ENTRY_TYPE_BALANCE_DEPOSIT
+                - LEDGER_ENTRY_TYPE_BALANCE_WITHDRAWAL
+                - LEDGER_ENTRY_TYPE_BALANCE_ORDER_EXECUTION
+                - LEDGER_ENTRY_TYPE_BALANCE_CORRECTION
+                - LEDGER_ENTRY_TYPE_BALANCE_NETTING
+                - LEDGER_ENTRY_TYPE_BALANCE_RESOLUTION
+                - LEDGER_ENTRY_TYPE_BALANCE_MANUAL_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_BALANCE_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_MARK_TO_MARKET
+                - LEDGER_ENTRY_TYPE_BALANCE_ACCOUNT_PROPERTY_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_COMMISSION
+                - LEDGER_ENTRY_TYPE_BALANCE_CONTRACT_EXPIRATION
+                - LEDGER_ENTRY_TYPE_BALANCE_PENDING_CREDIT_ADJUSTMENT
+                - LEDGER_ENTRY_TYPE_BALANCE_BEGINNING_OF_DAY
+                - LEDGER_ENTRY_TYPE_BALANCE_SECURITY_WITHDRAWAL
+                - LEDGER_ENTRY_TYPE_BALANCE_WITHDRAWAL_REJECTION
+                - LEDGER_ENTRY_TYPE_BALANCE_MANUAL_TRANSFER
+                - LEDGER_ENTRY_TYPE_BALANCE_AVERAGE_PRICE_TRANSFER
+                - LEDGER_ENTRY_TYPE_BALANCE_GIVE_UP
+                - LEDGER_ENTRY_TYPE_BALANCE_SYNCHRONIZATION
+                - LEDGER_ENTRY_TYPE_BALANCE_INTEREST
+                - LEDGER_ENTRY_TYPE_BALANCE_PENDING_WITHDRAWAL_CREATION
+                - LEDGER_ENTRY_TYPE_BALANCE_SETTLEMENT_FEE
         - name: symbol
           in: query
           required: false
@@ -83,63 +98,49 @@ paths:
           required: false
           schema:
             type: string
-            maxLength: 200
           description: >-
             Optional. Substring filter on the entry `description`. Maximum 200
             Unicode characters.
-        - name: newest_first
+        - name: newestFirst
           in: query
           required: false
           schema:
             type: boolean
-          description: >-
-            Optional. If `true`, rows are emitted in descending `update_time`
-            order.
-        - name: page_size
+        - name: pageSize
           in: query
           required: false
           schema:
             type: integer
             format: int32
             maximum: 1000
-          description: >-
-            Optional. Maximum entries per page (max 1000). Values above 1000
-            return `InvalidArgument`.
-        - name: page_token
+        - name: pageToken
           in: query
           required: false
           schema:
             type: string
-          description: Optional. Resume token from a previous download.
       responses:
         '200':
-          description: A successful response (streaming).
+          description: A successful response.(streaming responses)
           content:
-            text/csv:
+            application/json:
               schema:
-                type: string
-                description: CSV file stream containing balance ledger entries.
+                type: object
+                properties:
+                  result:
+                    $ref: '#/components/schemas/v1DownloadBalanceLedgerResponse'
+                title: Stream result of v1DownloadBalanceLedgerResponse
 components:
   schemas:
-    LedgerEntryType:
-      type: string
-      enum:
-        - DEPOSIT
-        - WITHDRAWAL
-        - ORDER_EXECUTION
-        - CORRECTION
-        - RESOLUTION
-        - MANUAL_ADJUSTMENT
-        - ACCOUNT_PROPERTY_ADJUSTMENT
-        - COMMISSION
-        - WITHDRAWAL_REJECTION
-        - MANUAL_TRANSFER
-        - PENDING_WITHDRAWAL_CREATION
-      description: >-
-        Allowlist of balance-ledger entry types that are exposed to clients.
-        Internal exchange types (`NETTING`, `SECURITY_*`, `CONTRACT_EXPIRATION`,
-        `BEGINNING_OF_DAY`, `INTEREST`, `SETTLEMENT_FEE`, etc.) are suppressed:
-        requesting a suppressed type returns `Aborted` (409), and any suppressed
-        types in upstream responses are silently filtered.
+    v1DownloadBalanceLedgerResponse:
+      type: object
+      properties:
+        data:
+          type: string
+          format: byte
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````
