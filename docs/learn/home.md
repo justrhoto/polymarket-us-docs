@@ -27,4 +27,4 @@ Event contracts are yes/no trades on whether something will happen. Each contrac
 
 ## Trade on everything
 
-Trade on professional football, professional basketball, professional hockey, and college football, with more markets coming soon.
+Polymarket US offers markets on sports (NFL, NBA, NHL, MLB, MLS, college sports, tennis, golf, and more), politics, crypto, economics, weather, tech, and culture.

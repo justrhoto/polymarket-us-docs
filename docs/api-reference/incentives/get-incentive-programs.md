@@ -226,6 +226,19 @@ components:
           description: >-
             Minimum aggregate resting order size on a side of the book for that
             side to qualify
+        maxSpread:
+          type: number
+          format: double
+          nullable: true
+          description: >-
+            Liquidity programs only: optional half-width in price dollars (0.035
+            = 3.5¢ from mid). Each side's size-adjusted price is the price level
+            at which that side of the book, walked from the best price outward,
+            reaches targetSize. Where set, a second pays only when both sides
+            reach targetSize and each size-adjusted price sits no more than
+            maxSpread from the midpoint between the two (so they are at most 2 ×
+            maxSpread apart); otherwise nobody is paid for that second. Omitted
+            when the program has no Max Spread; a 0 is never sent.
         period:
           type: string
           title: e.g. "live", "day_of", "early"

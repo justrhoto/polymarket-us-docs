@@ -8,7 +8,7 @@
 
 # Incentives API
 
-The Incentives API exposes the active incentive programs and the rewards you have earned. For background on how programs work and their reward formulas, see the [Incentive Programs overview](/incentives/overview).
+The Incentives API exposes the active incentive programs and the rewards you have earned. For background on how programs work and their reward formulas, see the [Incentive Programs overview](/incentives/overview); for how liquidity programs score — Target Size, Discount Factor, and Max Spread — see the [Liquidity Incentive Program](/incentives/liquidity) page.
 
 ## Base URL
 
@@ -80,7 +80,8 @@ GET /v1/incentives?page_size=10&symbols=aec-nba-bos-nyk-2026-04-01
           "discountFactor": 0.40,
           "targetSize": 20000,
           "period": "early",
-          "createdAt": "2026-03-28T01:00:00Z"
+          "createdAt": "2026-03-28T01:00:00Z",
+          "maxSpread": 0.035
         },
         {
           "programId": "nba_t1_ml_day_of",
@@ -117,19 +118,33 @@ GET /v1/incentives?page_size=10&symbols=aec-nba-bos-nyk-2026-04-01
 
 ### TimePeriod Fields
 
-| Field              | Type    | Description                                                     |
-| ------------------ | ------- | --------------------------------------------------------------- |
-| `programId`        | string  | Unique program period identifier                                |
-| `programType`      | string  | Program type (e.g. `liquidityProgram`)                          |
-| `start`            | string  | ISO 8601 start timestamp                                        |
-| `end`              | string  | ISO 8601 end timestamp (optional; omitted for ongoing programs) |
-| `rewardPool`       | number  | Total reward pool for this period in USD                        |
-| `status`           | string  | `active`, `closed`, or `pending`                                |
-| `discountFactor`   | number  | Discount factor for scoring (optional; omitted if unset)        |
-| `targetSize`       | integer | Minimum book size to qualify (optional; omitted if unset)       |
-| `period`           | string  | Reward period type: `early`, `day_of`, `live`, etc.             |
-| `createdAt`        | string  | ISO 8601 timestamp when the program was created                 |
-| `minTakerNotional` | integer | Minimum taker notional for volume programs (optional)           |
+| Field              | Type    | Description                                                                                                                                                                                                                                                                                                                       |
+| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `programId`        | string  | Unique program period identifier                                                                                                                                                                                                                                                                                                  |
+| `programType`      | string  | Program type (e.g. `liquidityProgram`)                                                                                                                                                                                                                                                                                            |
+| `start`            | string  | ISO 8601 start timestamp                                                                                                                                                                                                                                                                                                          |
+| `end`              | string  | ISO 8601 end timestamp (optional; omitted for ongoing programs)                                                                                                                                                                                                                                                                   |
+| `rewardPool`       | number  | Total reward pool for this period in USD                                                                                                                                                                                                                                                                                          |
+| `status`           | string  | `active`, `closed`, or `pending`                                                                                                                                                                                                                                                                                                  |
+| `discountFactor`   | number  | Discount factor for scoring (optional; omitted if unset)                                                                                                                                                                                                                                                                          |
+| `targetSize`       | integer | Liquidity programs: minimum aggregate resting size, in contracts, on a side of the book for that side to qualify (optional; omitted if unset)                                                                                                                                                                                     |
+| `maxSpread`        | number  | Liquidity programs only. Optional **half-width** in price dollars (`0.035` = 3.5¢ from mid, so a 7¢ gap). Where set, a second pays only if both sides of the book reach `targetSize` with each size-adjusted price within `maxSpread` of the midpoint. Omitted (never `0`) when the program has no Max Spread. See the note below |
+| `period`           | string  | Reward period type: `early`, `day_of`, `live`, etc.                                                                                                                                                                                                                                                                               |
+| `createdAt`        | string  | ISO 8601 timestamp when the program was created                                                                                                                                                                                                                                                                                   |
+| `minTakerNotional` | integer | Minimum taker notional for volume programs (optional)                                                                                                                                                                                                                                                                             |
+
+<Note>
+  **Reading `maxSpread`.** A liquidity program may carry a maximum spread from the midpoint. Where it does:
+
+  * **Units.** `maxSpread` is in price dollars of a \$1 contract (`0.035` = 3.5¢). The docs pages and polymarket.us/rewards quote the same value in cents; the API always returns dollars. It is a **half-width**: the two sides may be up to 2 × `maxSpread` apart (3.5¢ from the midpoint = a 7¢ gap).
+  * **What is compared.** Once per sampled second, each side of the book is walked from its best price outward, one whole price level at a time, until the resting size on that side (all participants combined) reaches `targetSize`. The price level that gets there is that side's *size-adjusted price*. The midpoint is halfway between the two size-adjusted prices — not the best-bid/best-offer midpoint. A small order at the best price counts toward that side's depth like any other order; it moves the size-adjusted price only when it is what carries the side to `targetSize`.
+  * **Pass / fail.** This is a test of the book, not of each trader: you do not have to quote both sides yourself. The second is scored as usual (every order from the best price through the size-adjusted price qualifies, weighted by its distance from that side's best price and by its size) when both sides reach `targetSize` and each size-adjusted price is no more than `maxSpread` from the midpoint — a gap of exactly 2 × `maxSpread` passes. If either side never reaches `targetSize`, or the gap is wider than 2 × `maxSpread`, **nobody is paid for that second**, including makers quoting tightly and including a side that did reach `targetSize`. Once a second qualifies, a one-sided quote still earns on the side it rests on. A failed second still counts toward the period's total, so its share of `rewardPool` is forfeited, not shifted to other seconds or other makers.
+  * **Tick size.** The check is in dollars, so a given `maxSpread` means the same thing on 1¢-tick and 0.1¢-tick markets.
+  * **Omission.** The key is absent (never `0`) when a program has no Max Spread; it is a `liquidityProgram` field. Programs without a Max Spread score each side independently, as before.
+  * **Scope.** The value applies to every scored second of that `timePeriods[]` entry. Parameters can differ between time periods of the same market, so read `maxSpread` per entry rather than per market.
+
+  Full explanation and worked example: [What is Max Spread?](/incentives/liquidity#what-is-max-spread).
+</Note>
 
 ## Get Incentive Earnings
 

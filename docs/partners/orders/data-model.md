@@ -107,7 +107,9 @@ The relevant fields:
 | `commission_notional_total_collected`      | embedded order | Cumulative fee across all fills of the order, in notional units.                                                                                                                                                                           |
 | `fractional_quantity_scale`, `price_scale` | embedded order | The scales to decode with. Also published per instrument as `fractionalQtyScale` / `priceScale` by the [Reference Data API](/institutional/refdata/overview); treat an instrument that does not publish `fractionalQtyScale` as scale `1`. |
 
-The dollar amount always reconciles with the [fee schedule](/fees) formula `Fee = Θ × C × p × (1 − p)` — where `C` is **contracts** (not raw `order_qty` units) and `p` is the **decimal** price — rounded to \$0.01.
+For standard trades, the dollar amount reconciles with the [fee schedule](/fees) formula `Fee = Θ × C × p × (1 − p)` — where `C` is **contracts** (not raw `order_qty` units) and `p` is the **decimal** price — rounded to \$0.01.
+
+Combo taker fees instead use `Fee = C × p × [0.0695 × (1 − p) + 0.04 × (1 − p)^4]`, with the same definitions of `C` and `p`. Apply the combo curve to the combo execution as a whole, not separately to its component legs.
 
 <Warning>
   The most common reconciliation mistake is using raw `order_qty` units as `C`. On an instrument with `fractional_quantity_scale = 100`, that overstates the fee 100×. Instruments with scale `1` make the naive math accidentally correct, so the error often surfaces only on the first fill in a scale-`100` market.

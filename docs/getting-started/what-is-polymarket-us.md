@@ -53,17 +53,7 @@ You can also sell your position at any time before the outcome is known. If the 
 
 ## What can you trade?
 
-Polymarket US currently offers markets on:
-
-* NFL
-* NBA
-* NHL
-* MLB
-* MLS
-* CBB
-* Tennis, golf, and more
-
-Politics, culture, finance, and economics coming soon.
+Polymarket US offers markets on sports (NFL, NBA, NHL, MLB, MLS, college sports, tennis, golf, and more), politics, crypto, economics, weather, tech, and culture.
 
 ***
 

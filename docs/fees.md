@@ -7,19 +7,18 @@
 > Trading fee schedule, rebates, and examples
 
 <Warning>
-  **Upcoming fee changes.** Two updates to Polymarket US trading fees take effect over the coming week.
+  **Upcoming Table Tennis fee change.** The Table Tennis taker fee coefficient becomes `0.10`, effective 11:59 PM ET, Wednesday September 30, 2026.
 
-  * **Combos** — the combo taker fee curve becomes `Fee = C × p × [0.0695(1 - p) + 0.04(1 - p)^4]`, effective 11:59 PM ET, Thursday September 24, 2026.
-  * **Table Tennis** — the Table Tennis taker fee coefficient becomes `0.10`, effective 11:59 PM ET, Wednesday September 30, 2026.
-
-  The schedule and examples below describe the fees in effect today. This page will be updated when the changes take effect.
+  The schedule and examples below describe the fees in effect today. This page will be updated when the change takes effect.
 </Warning>
 
-<Info>Effective exchange-wide from 12 AM ET, Thursday September 17, 2026.</Info>
+<Info>Effective exchange-wide from 12 AM ET, Friday September 25, 2026.</Info>
 
-## Trading Fees
+## Standard Trading Fees
 
-Fees are computed using a symmetric formula that scales with price uncertainty:
+For the combo taker fee schedule, see [Combo Taker Fees](#combo-taker-fees).
+
+Standard taker fees and maker rebates are computed using a symmetric formula that scales with price uncertainty:
 
 ```
 Fee = Θ × C × p × (1 - p)
@@ -51,7 +50,7 @@ Where:
   API integrators: `C` is the number of **contracts** and `p` the **decimal** price. Execution reports carry these as fixed-point integers, and the collected fee in scaled notional units — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for how to decode `commission_notional_collected` with `price_scale` and `fractional_quantity_scale`.
 </Note>
 
-### Fee Schedule by Price
+### Standard Fee Schedule by Price
 
 | Price  | Trade Value (100-lot) | Taker Pays (100-lot) | Maker Receives (100-lot) |
 | ------ | --------------------- | -------------------- | ------------------------ |
@@ -155,13 +154,13 @@ Where:
 | \$0.98 | \$98                  | \$0.14               | \$0.02                   |
 | \$0.99 | \$99                  | \$0.07               | \$0.01                   |
 
-### Fee Rules
+### Standard Fee Rules
 
-* Fees are symmetric around p = 0.50 and lowest near the extremes (0 and 1).
+* Standard taker fees and maker rebates are symmetric around p = 0.50 and lowest near the extremes (0 and 1).
 * All fees and rebates are rounded to the nearest \$0.01 using banker's rounding (round half to even).
 * When an aggressive order fills against multiple resting orders, each fill is charged its banker's-rounded fee, adjusted so that the total commission collected across the order's fills never exceeds the banker's rounding of the cumulative exact fee. The adjustment can only reduce a fill's charge, never increase it. Maker rebates are computed per fill, independently.
 
-## Examples
+### Standard Fee Examples
 
 #### Example 1: Buy 1,000 contracts at \$0.10 — cheap contract
 
@@ -204,6 +203,140 @@ When the price is close to \$1.00, p × (1 − p) is small and fees are minimal.
 A 50/50 market. This is where the fee is highest per contract because p × (1 − p) = 0.25.
 
 * **Buyer (taker):** 0.0695 × 1,000 × 0.50 × 0.50 = **−\$17.38**
+* **Seller (maker):** 0.0125 × 1,000 × 0.50 × 0.50 = **+\$3.12**
+
+## Combo Taker Fees
+
+The taker side of a combo trade uses a separate fee curve:
+
+```
+Fee = C × p × [0.0695 × (1 - p) + 0.04 × (1 - p)^4]
+```
+
+`C` is the number of contracts and `p` is the combo execution price in decimal dollars. The curve applies to the combo execution as a whole, not separately to its component legs.
+
+Maker rebates on combo fills continue to use the `-0.0125 × C × p × (1 - p)` formula above. A participant's taker rebate percentage is applied to the actual combo taker fee collected. Taker rebate tiers and payout cadence are unchanged.
+
+### Combo Fee Schedule by Price
+
+| Price  | Trade Value (100-lot) | Combo Taker Pays (100-lot) |
+| ------ | --------------------- | -------------------------- |
+| \$0.01 | \$1                   | \$0.11                     |
+| \$0.02 | \$2                   | \$0.21                     |
+| \$0.03 | \$3                   | \$0.31                     |
+| \$0.04 | \$4                   | \$0.40                     |
+| \$0.05 | \$5                   | \$0.49                     |
+| \$0.06 | \$6                   | \$0.58                     |
+| \$0.07 | \$7                   | \$0.66                     |
+| \$0.08 | \$8                   | \$0.74                     |
+| \$0.09 | \$9                   | \$0.82                     |
+| \$0.10 | \$10                  | \$0.89                     |
+| \$0.11 | \$11                  | \$0.96                     |
+| \$0.12 | \$12                  | \$1.02                     |
+| \$0.13 | \$13                  | \$1.08                     |
+| \$0.14 | \$14                  | \$1.14                     |
+| \$0.15 | \$15                  | \$1.20                     |
+| \$0.16 | \$16                  | \$1.25                     |
+| \$0.17 | \$17                  | \$1.30                     |
+| \$0.18 | \$18                  | \$1.35                     |
+| \$0.19 | \$19                  | \$1.40                     |
+| \$0.20 | \$20                  | \$1.44                     |
+| \$0.21 | \$21                  | \$1.48                     |
+| \$0.22 | \$22                  | \$1.52                     |
+| \$0.23 | \$23                  | \$1.55                     |
+| \$0.24 | \$24                  | \$1.59                     |
+| \$0.25 | \$25                  | \$1.62                     |
+| \$0.26 | \$26                  | \$1.65                     |
+| \$0.27 | \$27                  | \$1.68                     |
+| \$0.28 | \$28                  | \$1.70                     |
+| \$0.29 | \$29                  | \$1.73                     |
+| \$0.30 | \$30                  | \$1.75                     |
+| \$0.31 | \$31                  | \$1.77                     |
+| \$0.32 | \$32                  | \$1.79                     |
+| \$0.33 | \$33                  | \$1.80                     |
+| \$0.34 | \$34                  | \$1.82                     |
+| \$0.35 | \$35                  | \$1.83                     |
+| \$0.36 | \$36                  | \$1.84                     |
+| \$0.37 | \$37                  | \$1.85                     |
+| \$0.38 | \$38                  | \$1.86                     |
+| \$0.39 | \$39                  | \$1.87                     |
+| \$0.40 | \$40                  | \$1.88                     |
+| \$0.41 | \$41                  | \$1.88                     |
+| \$0.42 | \$42                  | \$1.88                     |
+| \$0.43 | \$43                  | \$1.89                     |
+| \$0.44 | \$44                  | \$1.89                     |
+| \$0.45 | \$45                  | \$1.88                     |
+| \$0.46 | \$46                  | \$1.88                     |
+| \$0.47 | \$47                  | \$1.88                     |
+| \$0.48 | \$48                  | \$1.88                     |
+| \$0.49 | \$49                  | \$1.87                     |
+| \$0.50 | \$50                  | \$1.86                     |
+| \$0.51 | \$51                  | \$1.85                     |
+| \$0.52 | \$52                  | \$1.85                     |
+| \$0.53 | \$53                  | \$1.83                     |
+| \$0.54 | \$54                  | \$1.82                     |
+| \$0.55 | \$55                  | \$1.81                     |
+| \$0.56 | \$56                  | \$1.80                     |
+| \$0.57 | \$57                  | \$1.78                     |
+| \$0.58 | \$58                  | \$1.77                     |
+| \$0.59 | \$59                  | \$1.75                     |
+| \$0.60 | \$60                  | \$1.73                     |
+| \$0.61 | \$61                  | \$1.71                     |
+| \$0.62 | \$62                  | \$1.69                     |
+| \$0.63 | \$63                  | \$1.67                     |
+| \$0.64 | \$64                  | \$1.64                     |
+| \$0.65 | \$65                  | \$1.62                     |
+| \$0.66 | \$66                  | \$1.59                     |
+| \$0.67 | \$67                  | \$1.57                     |
+| \$0.68 | \$68                  | \$1.54                     |
+| \$0.69 | \$69                  | \$1.51                     |
+| \$0.70 | \$70                  | \$1.48                     |
+| \$0.71 | \$71                  | \$1.45                     |
+| \$0.72 | \$72                  | \$1.42                     |
+| \$0.73 | \$73                  | \$1.39                     |
+| \$0.74 | \$74                  | \$1.35                     |
+| \$0.75 | \$75                  | \$1.31                     |
+| \$0.76 | \$76                  | \$1.28                     |
+| \$0.77 | \$77                  | \$1.24                     |
+| \$0.78 | \$78                  | \$1.20                     |
+| \$0.79 | \$79                  | \$1.16                     |
+| \$0.80 | \$80                  | \$1.12                     |
+| \$0.81 | \$81                  | \$1.07                     |
+| \$0.82 | \$82                  | \$1.03                     |
+| \$0.83 | \$83                  | \$0.98                     |
+| \$0.84 | \$84                  | \$0.94                     |
+| \$0.85 | \$85                  | \$0.89                     |
+| \$0.86 | \$86                  | \$0.84                     |
+| \$0.87 | \$87                  | \$0.79                     |
+| \$0.88 | \$88                  | \$0.73                     |
+| \$0.89 | \$89                  | \$0.68                     |
+| \$0.90 | \$90                  | \$0.63                     |
+| \$0.91 | \$91                  | \$0.57                     |
+| \$0.92 | \$92                  | \$0.51                     |
+| \$0.93 | \$93                  | \$0.45                     |
+| \$0.94 | \$94                  | \$0.39                     |
+| \$0.95 | \$95                  | \$0.33                     |
+| \$0.96 | \$96                  | \$0.27                     |
+| \$0.97 | \$97                  | \$0.20                     |
+| \$0.98 | \$98                  | \$0.14                     |
+| \$0.99 | \$99                  | \$0.07                     |
+
+### Combo Fee Examples
+
+#### Example 1: Buy 1,000 combo contracts at \$0.10 — low-priced combo
+
+For a single fill, the combo fee is calculated from the combo execution price and quantity as a whole.
+
+* **Buyer (taker):** 1,000 × 0.10 × \[0.0695 × 0.90 + 0.04 × 0.90^4] = \$8.8794 → **−\$8.88**
+* **Seller (maker):** 0.0125 × 1,000 × 0.10 × 0.90 = **+\$1.12**
+
+***
+
+#### Example 2: Buy 1,000 combo contracts at \$0.50 — midpoint combo
+
+At the midpoint, the exact combo taker fee is \$18.625. It rounds down because fees use banker's rounding (round half to even).
+
+* **Buyer (taker):** 1,000 × 0.50 × \[0.0695 × 0.50 + 0.04 × 0.50^4] = \$18.625 → **−\$18.62**
 * **Seller (maker):** 0.0125 × 1,000 × 0.50 × 0.50 = **+\$3.12**
 
 ## FAQ

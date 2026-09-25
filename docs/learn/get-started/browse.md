@@ -6,7 +6,7 @@
 
 > Learn how to browse active market categories on Polymarket
 
-Polymarket US currently offers professional football, professional basketball, professional hockey, and college football markets. Additional categories will open as they complete testing and regulatory review.
+Polymarket US offers markets on sports (NFL, NBA, NHL, MLB, MLS, college sports, tennis, golf, and more), politics, crypto, economics, weather, tech, and culture.
 
 ## How to Browse
 

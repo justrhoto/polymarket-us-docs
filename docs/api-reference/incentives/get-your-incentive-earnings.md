@@ -16,7 +16,7 @@ info:
   title: protos/gateway/incentives/v1/incentives.proto
   version: 1.0.0
 servers:
-  - url: https://gateway.polymarket.us
+  - url: https://api.polymarket.us
     description: Production server
 security: []
 tags:

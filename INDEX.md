@@ -299,7 +299,7 @@
 | Page | Method | Path | Server |
 | --- | --- | --- | --- |
 | [Incentives API Overview](docs/api-reference/incentives/overview.md) |  |  |  |
-| [Get Your Incentive Earnings](docs/api-reference/incentives/get-your-incentive-earnings.md) | GET | `/v1/incentives/earnings` | `https://gateway.polymarket.us` |
+| [Get Your Incentive Earnings](docs/api-reference/incentives/get-your-incentive-earnings.md) | GET | `/v1/incentives/earnings` | `https://api.polymarket.us` |
 
 ### WebSocket
 
@@ -642,7 +642,7 @@ Machine-readable OpenAPI and AsyncAPI documents behind the endpoint pages above.
 | [api-reference/oapi-schemas/asset-prices-schema.json](docs/api-reference/oapi-schemas/asset-prices-schema.json) | protos/gateway/asset-prices/v1/asset_prices.proto | `https://gateway.polymarket.us` |
 | [api-reference/oapi-schemas/combos-schema.json](docs/api-reference/oapi-schemas/combos-schema.json) | Combos API | `https://api.polymarket.us` |
 | [api-reference/oapi-schemas/events-schema.json](docs/api-reference/oapi-schemas/events-schema.json) | protos/gateway/events/v1/events.proto | `https://gateway.polymarket.us` |
-| [api-reference/oapi-schemas/incentives-schema.json](docs/api-reference/oapi-schemas/incentives-schema.json) | protos/gateway/incentives/v1/incentives.proto | `https://gateway.polymarket.us` |
+| [api-reference/oapi-schemas/incentives-schema.json](docs/api-reference/oapi-schemas/incentives-schema.json) | protos/gateway/incentives/v1/incentives.proto | `https://api.polymarket.us` |
 | [api-reference/oapi-schemas/market-schema.json](docs/api-reference/oapi-schemas/market-schema.json) | protos/gateway/market/v1/market.proto | `https://gateway.polymarket.us` |
 | [api-reference/oapi-schemas/markets-schema.json](docs/api-reference/oapi-schemas/markets-schema.json) | protos/gateway/market/v1/market.proto | `https://gateway.polymarket.us` |
 | [api-reference/oapi-schemas/orders-schema.json](docs/api-reference/oapi-schemas/orders-schema.json) | Orders API | `https://api.polymarket.us` |
