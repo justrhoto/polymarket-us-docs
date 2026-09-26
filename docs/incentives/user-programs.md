@@ -47,7 +47,7 @@ To participate, a Participant shares their unique referral code (their username)
 
 | Campaign   | Qualifying Deposit    | Incentive Credit |
 | ---------- | --------------------- | ---------------- |
-| Campaign A | Deposit at least \$10 | Receive \$50     |
+| Campaign A | Deposit at least \$10 | Receive \$25     |
 
 Each Participant is limited to 50 friend referrals.
 
