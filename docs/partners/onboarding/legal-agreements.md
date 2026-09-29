@@ -18,12 +18,12 @@ Identity verification (KYC), funding, and account provisioning are covered in th
 
 Four documents make up the **complete** legal set. No additional terms and conditions apply beyond these four.
 
-| Document                      | Issuing entity                                  | Location                                                                                                                                           |
-| ----------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Participant Agreement**     | QCX LLC and QC Clearing LLC (jointly, "PMUS")   | [polymarketexchange.com/files/legal/latest/participant-agreement](https://polymarketexchange.com/files/legal/latest/participant-agreement)         |
-| **Exchange Rulebook**         | QCX LLC d/b/a Polymarket US (DCM)               | [polymarketexchange.com/regulatory.html](https://polymarketexchange.com/regulatory.html)                                                           |
-| **Clearinghouse Rulebook**    | QC Clearing LLC d/b/a Polymarket Clearing (DCO) | [polymarketexchange.com/clearing/](https://polymarketexchange.com/clearing/)                                                                       |
-| **Risk Disclosure Statement** | PMUS                                            | [polymarketexchange.com/files/legal/latest/risk-disclosure-statement](https://polymarketexchange.com/files/legal/latest/risk-disclosure-statement) |
+| Document | Issuing entity | Location |
+| - | - | - |
+| **Participant Agreement** | QCX LLC and QC Clearing LLC (jointly, "PMUS") | [polymarketexchange.com/files/legal/latest/participant-agreement](https://polymarketexchange.com/files/legal/latest/participant-agreement) |
+| **Exchange Rulebook** | QCX LLC d/b/a Polymarket US (DCM) | [polymarketexchange.com/regulatory.html](https://polymarketexchange.com/regulatory.html) |
+| **Clearinghouse Rulebook** | QC Clearing LLC d/b/a Polymarket Clearing (DCO) | [polymarketexchange.com/clearing/](https://polymarketexchange.com/clearing/) |
+| **Risk Disclosure Statement** | PMUS | [polymarketexchange.com/files/legal/latest/risk-disclosure-statement](https://polymarketexchange.com/files/legal/latest/risk-disclosure-statement) |
 
 The Participant Agreement is a **click-through agreement**: its first-page language makes clicking "I Accept" the legal equivalent of a manual signature. Customers accept the unmodified document through an affirmative in-app action; it is not filled out or signed by hand.
 
@@ -35,14 +35,14 @@ Display the following language, exactly as written, immediately above the accept
 
 ### Requirements
 
-| #       | Requirement               | What it means                                                                                                                                                                                                                                                  |
-| ------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **R-1** | Verbatim text             | Display the acceptance language exactly as written — no paraphrasing, abbreviation, translation, or splitting across multiple checkboxes.                                                                                                                      |
-| **R-2** | Single affirmative action | Capture acceptance through one explicit, user-initiated action. Pre-checked boxes, implied consent, or acceptance bundled into an unrelated action do not satisfy this requirement.                                                                            |
-| **R-3** | Live document links       | All four hyperlinks must resolve to the documents in [Required documents](#required-documents) and be accessible at the moment of acceptance. Do not host modified, excerpted, or re-rendered copies.                                                          |
-| **R-4** | Unmodified documents      | The Participant Agreement is accepted as-is. There is no per-user fill-in, countersignature, or partner-specific rider.                                                                                                                                        |
-| **R-5** | Timing                    | Acceptance is captured at time of application — before onboarding completes and before the customer's first trade. A customer who has not completed the acceptance action must not be provisioned for trading.                                                 |
-| **R-6** | Record of acceptance      | Retain a record of each acceptance event: the customer identifier, timestamp, and the document set accepted. The accepted agreement version is also transmitted to Polymarket US on the KYC start request (see [Agreement versioning](#agreement-versioning)). |
+| # | Requirement | What it means |
+| - | - | - |
+| **R-1** | Verbatim text | Display the acceptance language exactly as written — no paraphrasing, abbreviation, translation, or splitting across multiple checkboxes. |
+| **R-2** | Single affirmative action | Capture acceptance through one explicit, user-initiated action. Pre-checked boxes, implied consent, or acceptance bundled into an unrelated action do not satisfy this requirement. |
+| **R-3** | Live document links | All four hyperlinks must resolve to the documents in [Required documents](#required-documents) and be accessible at the moment of acceptance. Do not host modified, excerpted, or re-rendered copies. |
+| **R-4** | Unmodified documents | The Participant Agreement is accepted as-is. There is no per-user fill-in, countersignature, or partner-specific rider. |
+| **R-5** | Timing | Acceptance is captured at time of application — before onboarding completes and before the customer's first trade. A customer who has not completed the acceptance action must not be provisioned for trading. |
+| **R-6** | Record of acceptance | Retain a record of each acceptance event: the customer identifier, timestamp, and the document set accepted. The accepted agreement version is also transmitted to Polymarket US on the KYC start request (see [Agreement versioning](#agreement-versioning)). |
 
 ## Agreement versioning
 

@@ -12,8 +12,8 @@ The Account resource provides access to your account balances and financial info
 
 ## Methods
 
-| Method       | Endpoint                   | Description          |
-| ------------ | -------------------------- | -------------------- |
+| Method | Endpoint | Description |
+| - | - | - |
 | `balances()` | `GET /v1/account/balances` | Get account balances |
 
 ***
@@ -32,17 +32,17 @@ print(f"Open Orders: ${balances['openOrders']}")
 
 ### Response Fields
 
-| Field                | Type  | Description                       |
-| -------------------- | ----- | --------------------------------- |
-| `currentBalance`     | float | Current fiat currency balance     |
-| `currency`           | str   | Currency code (e.g., "USD")       |
-| `buyingPower`        | float | Capital available for trading     |
-| `assetNotional`      | float | Total notional value of positions |
-| `assetAvailable`     | float | Available collateral value        |
-| `openOrders`         | float | Value tied up in open orders      |
-| `unsettledFunds`     | float | Unsettled funds not yet available |
-| `marginRequirement`  | float | Required margin for positions     |
-| `pendingWithdrawals` | list  | Active withdrawal requests        |
+| Field | Type | Description |
+| - | - | - |
+| `currentBalance` | float | Current fiat currency balance |
+| `currency` | str | Currency code (e.g., "USD") |
+| `buyingPower` | float | Capital available for trading |
+| `assetNotional` | float | Total notional value of positions |
+| `assetAvailable` | float | Available collateral value |
+| `openOrders` | float | Value tied up in open orders |
+| `unsettledFunds` | float | Unsettled funds not yet available |
+| `marginRequirement` | float | Required margin for positions |
+| `pendingWithdrawals` | list | Active withdrawal requests |
 
 ### Buying Power
 

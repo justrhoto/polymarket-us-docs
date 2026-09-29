@@ -18,13 +18,13 @@ Settlement is determined by the official NWS Daily Climate Report (CLI) publishe
 
 The settlement source for each currently offered city is:
 
-| City          | Station                                    | CLI Source                                                                                                                              |
-| ------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| New York City | KNYC (Central Park)                        | [CLINYC](https://forecast.weather.gov/product.php?site=NWS\&issuedby=NYC\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
+| City | Station | CLI Source |
+| - | - | - |
+| New York City | KNYC (Central Park) | [CLINYC](https://forecast.weather.gov/product.php?site=NWS\&issuedby=NYC\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
 | San Francisco | KSFO (San Francisco International Airport) | [CLISFO](https://forecast.weather.gov/product.php?site=NWS\&issuedby=SFO\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
-| Miami         | KMIA (Miami International Airport)         | [CLIMIA](https://forecast.weather.gov/product.php?site=NWS\&issuedby=MIA\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
-| Chicago       | KMDW (Chicago Midway Airport)              | [CLIMDW](https://forecast.weather.gov/product.php?site=NWS\&issuedby=MDW\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
-| Los Angeles   | KLAX (Los Angeles International Airport)   | [CLILAX](https://forecast.weather.gov/product.php?site=NWS\&issuedby=LAX\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
+| Miami | KMIA (Miami International Airport) | [CLIMIA](https://forecast.weather.gov/product.php?site=NWS\&issuedby=MIA\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
+| Chicago | KMDW (Chicago Midway Airport) | [CLIMDW](https://forecast.weather.gov/product.php?site=NWS\&issuedby=MDW\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
+| Los Angeles | KLAX (Los Angeles International Airport) | [CLILAX](https://forecast.weather.gov/product.php?site=NWS\&issuedby=LAX\&product=CLI\&format=CI\&version=1\&glossary=1\&highlight=off) |
 
 ### When does settlement occur?
 

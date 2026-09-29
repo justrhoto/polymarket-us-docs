@@ -37,10 +37,10 @@ The correct architecture is **stream-first**: build your local database from [Dr
 
 An account balance is the authoritative cash figure for one account and currency, plus the risk context used to size orders — see [Balance Data](/institutional/positions/overview#balance-data) for the full field reference.
 
-| RPC                   | Use                                                                                                                                                                                                                                  |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `GetAccountBalance`   | Authoritative cash balance for one account and currency. Returns `balance` plus risk context: `buying_power`, `capital_requirement`, `excess_capital`, `unsettled_funds`, `margin_requirement`, `open_orders`, and an `update_time`. |
-| `ListAccountBalances` | All currencies for one account in one call.                                                                                                                                                                                          |
+| RPC | Use |
+| - | - |
+| `GetAccountBalance` | Authoritative cash balance for one account and currency. Returns `balance` plus risk context: `buying_power`, `capital_requirement`, `excess_capital`, `unsettled_funds`, `margin_requirement`, `open_orders`, and an `update_time`. |
+| `ListAccountBalances` | All currencies for one account in one call. |
 
 This balance read is the authoritative confirmation to take before initiating a [`WITHDRAWAL` transfer](/partners/funding/deposits-withdrawals#withdrawals) — confirm the participant's free cash covers the amount (net of accrued vendor fees) before creating the transfer.
 
@@ -58,8 +58,8 @@ This balance read is the authoritative confirmation to take before initiating a 
 
 A position tracks net quantity, cost basis, and realized P\&L for one account and symbol — see [Position Data](/institutional/positions/overview#position-data) for the full field reference.
 
-| RPC                    | Use                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RPC | Use |
+| - | - |
 | `ListAccountPositions` | Positions for one account, optionally filtered by `symbol`. Supports point-in-time queries via `as_of_time` (timestamp) or `as_of_date` (end of trade date) for after-the-fact reconciliation. Each `Position` carries net position, bought/sold quantities, cost, realized value, and `update_time`; the response carries `available_position` per row. |
 
 #### Stream it instead
@@ -75,11 +75,11 @@ A position tracks net quantity, cost basis, and realized P\&L for one account an
 
 An order carries its full lifecycle state — quantity, price, fills, and status — see [Order Message Structure](/streaming-endpoints/order-stream#order-message-structure) for the full field reference (the same fields these reads return).
 
-| RPC                                 | Use                                                                                                                                                                                                                                                                            |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `SearchOrders`                      | Paginated order search with filters for `order_id`, `clord_id`, `accounts`, `symbol`, time range, trade-date range, and order state (`order_state_filter`; use it to list open orders after an outage). Set `with_last_execution` to get each order's latest execution inline. |
-| `GetOrder`                          | Single order by ID.                                                                                                                                                                                                                                                            |
-| `SearchExecutions` / `SearchTrades` | Execution- and trade-level detail when reconciling fills rather than order state.                                                                                                                                                                                              |
+| RPC | Use |
+| - | - |
+| `SearchOrders` | Paginated order search with filters for `order_id`, `clord_id`, `accounts`, `symbol`, time range, trade-date range, and order state (`order_state_filter`; use it to list open orders after an outage). Set `with_last_execution` to get each order's latest execution inline. |
+| `GetOrder` | Single order by ID. |
+| `SearchExecutions` / `SearchTrades` | Execution- and trade-level detail when reconciling fills rather than order state. |
 
 #### Stream it instead
 
@@ -96,10 +96,10 @@ An order carries its full lifecycle state — quantity, price, fills, and status
 
 A ledger entry records a single cash-balance change with its before/after amounts — see [BalanceLedgerEntry Fields](/institutional/funding/overview#balanceledgerentry-fields) for the full field reference.
 
-| RPC                               | Use                                                                                                                                                                                                                                   |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GetAccountBalanceLedger`         | Paginated, typed ledger of every cash balance change (deposits, withdrawals, fills, fees, adjustments) with before/after balances — see the [Funding reference](/institutional/funding/overview) for entry types and query semantics. |
-| `CreateBalanceLedgerSubscription` | The streaming counterpart with replay — see [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream).                                                                                                                      |
+| RPC | Use |
+| - | - |
+| `GetAccountBalanceLedger` | Paginated, typed ledger of every cash balance change (deposits, withdrawals, fills, fees, adjustments) with before/after balances — see the [Funding reference](/institutional/funding/overview) for entry types and query semantics. |
+| `CreateBalanceLedgerSubscription` | The streaming counterpart with replay — see [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream). |
 
 The cash ledger is where every [transfer](/partners/funding/transfers) (deposits, withdrawals, vendor fee collections), fill, exchange fee, and settlement credit lands with before/after balances — it is the platform-side record your funding entity's books reconcile against, per account.
 

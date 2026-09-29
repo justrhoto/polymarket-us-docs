@@ -16,17 +16,17 @@ Every REST endpoint below has an equivalent unary gRPC RPC. REST JSON uses lower
 
 ## Endpoints
 
-| Method   | Endpoint                                    | Scope          | Per-firm limit            | Description                                |
-| -------- | ------------------------------------------- | -------------- | ------------------------- | ------------------------------------------ |
-| `GET`    | `/v1/rfqs/user-id`                          | `read:orders`  | 1 req/sec                 | Get your pseudonymous RFQ user ID          |
-| `GET`    | `/v1/rfqs`                                  | `read:orders`  | 10 req/sec                | Query RFQs                                 |
-| `POST`   | `/v1/rfqs`                                  | `write:orders` | 1 req/sec                 | Create an RFQ                              |
-| `DELETE` | `/v1/rfqs/{rfqId}`                          | `write:orders` | 100 req/sec               | Close an open RFQ                          |
-| `GET`    | `/v1/rfqs/quotes`                           | `read:orders`  | 10 req/sec                | Query visible quotes                       |
-| `POST`   | `/v1/rfqs/quotes`                           | `write:orders` | 400–2,000 req/sec by tier | Create or replace your quote for an RFQ    |
-| `DELETE` | `/v1/rfqs/{rfqId}/quotes/{quoteId}`         | `write:orders` | 400–2,000 req/sec by tier | Delete your quote                          |
-| `PUT`    | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept`  | `write:orders` | 100 req/sec               | Accept one side of a quote                 |
-| `PUT`    | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | `write:orders` | 100 req/sec               | Confirm an accepted quote during last look |
+| Method | Endpoint | Scope | Per-firm limit | Description |
+| - | - | - | - | - |
+| `GET` | `/v1/rfqs/user-id` | `read:orders` | 1 req/sec | Get your pseudonymous RFQ user ID |
+| `GET` | `/v1/rfqs` | `read:orders` | 10 req/sec | Query RFQs |
+| `POST` | `/v1/rfqs` | `write:orders` | 1 req/sec | Create an RFQ |
+| `DELETE` | `/v1/rfqs/{rfqId}` | `write:orders` | 100 req/sec | Close an open RFQ |
+| `GET` | `/v1/rfqs/quotes` | `read:orders` | 10 req/sec | Query visible quotes |
+| `POST` | `/v1/rfqs/quotes` | `write:orders` | 400–2,000 req/sec by tier | Create or replace your quote for an RFQ |
+| `DELETE` | `/v1/rfqs/{rfqId}/quotes/{quoteId}` | `write:orders` | 400–2,000 req/sec by tier | Delete your quote |
+| `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept` | `write:orders` | 100 req/sec | Accept one side of a quote |
+| `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | `write:orders` | 100 req/sec | Confirm an accepted quote during last look |
 
 All calls require bearer-token authentication and an acting participant, supplied through `x-participant-id` or the token's `participant_id` claim.
 
@@ -74,13 +74,13 @@ Successful `AcceptQuote` produces both `rfq_closed` and `quote_accepted`. A clie
 }
 ```
 
-| Field           | Required         | Description                                                                                    |
-| --------------- | ---------------- | ---------------------------------------------------------------------------------------------- |
-| `qtyDecimal`    | One sizing field | Exact contract quantity. Mutually exclusive with `cashOrderQty`.                               |
-| `cashOrderQty`  | One sizing field | Positive cash notional with at most four decimal places. Mutually exclusive with `qtyDecimal`. |
-| `symbol`        | Yes              | Existing open and tradable combo symbol.                                                       |
-| `restRemainder` | Yes              | Whether an unfilled requester remainder may rest after paired order submission.                |
-| `account`       | Yes              | Requester's fully qualified trading account.                                                   |
+| Field | Required | Description |
+| - | - | - |
+| `qtyDecimal` | One sizing field | Exact contract quantity. Mutually exclusive with `cashOrderQty`. |
+| `cashOrderQty` | One sizing field | Positive cash notional with at most four decimal places. Mutually exclusive with `qtyDecimal`. |
+| `symbol` | Yes | Existing open and tradable combo symbol. |
+| `restRemainder` | Yes | Whether an unfilled requester remainder may rest after paired order submission. |
+| `account` | Yes | Requester's fully qualified trading account. |
 
 The response contains the new `rfqId`. A created RFQ starts in `RFQ_STATUS_OPEN`.
 
@@ -88,14 +88,14 @@ The response contains the new `rfqId`. A created RFQ starts in `RFQ_STATUS_OPEN`
 
 `GET /v1/rfqs?limit=10&status=RFQ_STATUS_OPEN`
 
-| Parameter    | Description                                                  |
-| ------------ | ------------------------------------------------------------ |
-| `limit`      | Results per page. Default 100; valid range 1–100.            |
-| `cursor`     | Opaque cursor returned by the preceding page.                |
-| `rfqId`      | Exact RFQ ID. Do not combine an exact-ID read with `cursor`. |
-| `symbol`     | Exact combo symbol.                                          |
-| `status`     | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`.                    |
-| `userFilter` | `USER_FILTER_SELF` returns RFQs created by the caller.       |
+| Parameter | Description |
+| - | - |
+| `limit` | Results per page. Default 100; valid range 1–100. |
+| `cursor` | Opaque cursor returned by the preceding page. |
+| `rfqId` | Exact RFQ ID. Do not combine an exact-ID read with `cursor`. |
+| `symbol` | Exact combo symbol. |
+| `status` | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`. |
+| `userFilter` | `USER_FILTER_SELF` returns RFQs created by the caller. |
 
 The response has `rfqs` and an opaque `cursor`. An exact RFQ ID that is absent or not visible returns an empty `rfqs` array.
 
@@ -126,10 +126,10 @@ Each RFQ includes the combo's ordered leg snapshot and optional price tick:
 
 If `tickSize` is absent, read it from `GET /v1/combos?symbol=<rfq.symbol>`.
 
-| Leg field         | Description                                             |
-| ----------------- | ------------------------------------------------------- |
-| `symbol`          | Component instrument symbol.                            |
-| `side`            | Component side in the combo: `SIDE_BUY` or `SIDE_SELL`. |
+| Leg field | Description |
+| - | - |
+| `symbol` | Component instrument symbol. |
+| `side` | Component side in the combo: `SIDE_BUY` or `SIDE_SELL`. |
 | `settlementPrice` | Optional raw YES/LONG settlement normalized to `[0,1]`. |
 
 `settlementPrice` is a canonical decimal string such as `"0"`, `"0.4"`, or `"1"`. It is not inverted for `SIDE_SELL` legs. An absent field means no valid settlement is currently available; it is distinct from a present `"0"`. Treat absence as unavailable, not proof that the leg is unresolved.
@@ -164,14 +164,14 @@ Set an unavailable side to `"0"`. At least one side must be positive. Nonzero pr
 }
 ```
 
-| Field           | Required | Description                                                                       |
-| --------------- | -------- | --------------------------------------------------------------------------------- |
-| `rfqId`         | Yes      | Open RFQ to quote.                                                                |
-| `buyPrice`      | Yes      | Requester-buy price, or `"0"` if unavailable.                                     |
-| `sellPrice`     | Yes      | Requester-sell price, or `"0"` if unavailable.                                    |
-| `restRemainder` | Yes      | Whether the maker order may rest after paired order submission.                   |
-| `postOnly`      | No       | If true, submit the maker order as participate-don't-initiate. Defaults to false. |
-| `account`       | Yes      | Maker's fully qualified trading account.                                          |
+| Field | Required | Description |
+| - | - | - |
+| `rfqId` | Yes | Open RFQ to quote. |
+| `buyPrice` | Yes | Requester-buy price, or `"0"` if unavailable. |
+| `sellPrice` | Yes | Requester-sell price, or `"0"` if unavailable. |
+| `restRemainder` | Yes | Whether the maker order may rest after paired order submission. |
+| `postOnly` | No | If true, submit the maker order as participate-don't-initiate. Defaults to false. |
+| `account` | Yes | Maker's fully qualified trading account. |
 
 The service derives `buyQtyDecimal` and `sellQtyDecimal` from the RFQ:
 
@@ -184,26 +184,26 @@ Each maker has one deterministic quote ID per RFQ. Calling `CreateQuote` again r
 
 `GET /v1/rfqs/quotes?rfqId=rfq_...`
 
-| Parameter       | Description                                                                           |
-| --------------- | ------------------------------------------------------------------------------------- |
-| `limit`         | Results per page. Default 100; valid range 1–100.                                     |
-| `cursor`        | Opaque cursor returned by the preceding page.                                         |
-| `quoteId`       | Exact quote ID. Requires `rfqId`; do not combine with `cursor`.                       |
-| `rfqId`         | Exact RFQ ID. The requester sees all quotes; another participant sees only its quote. |
-| `status`        | One current `QuoteStatus` value.                                                      |
-| `userFilter`    | `USER_FILTER_SELF` returns quotes created by the caller.                              |
-| `rfqUserFilter` | `USER_FILTER_SELF` returns quotes on RFQs created by the caller.                      |
+| Parameter | Description |
+| - | - |
+| `limit` | Results per page. Default 100; valid range 1–100. |
+| `cursor` | Opaque cursor returned by the preceding page. |
+| `quoteId` | Exact quote ID. Requires `rfqId`; do not combine with `cursor`. |
+| `rfqId` | Exact RFQ ID. The requester sees all quotes; another participant sees only its quote. |
+| `status` | One current `QuoteStatus` value. |
+| `userFilter` | `USER_FILTER_SELF` returns quotes created by the caller. |
+| `rfqUserFilter` | `USER_FILTER_SELF` returns quotes on RFQs created by the caller. |
 
 Without `rfqId`, provide exactly one of `userFilter=USER_FILTER_SELF` or `rfqUserFilter=USER_FILTER_SELF`. The response has `quotes` and an opaque `cursor`.
 
 Each visible `Quote` carries durable execution state once available:
 
-| REST JSON field     | Description                             |
-| ------------------- | --------------------------------------- |
+| REST JSON field | Description |
+| - | - |
 | `executionDeadline` | Scheduled paired-order submission time. |
-| `executedTime`      | Durable execution-state timestamp.      |
-| `rfqCreatorOrderId` | Optional requester exchange order ID.   |
-| `creatorOrderId`    | Optional quoter exchange order ID.      |
+| `executedTime` | Durable execution-state timestamp. |
+| `rfqCreatorOrderId` | Optional requester exchange order ID. |
+| `creatorOrderId` | Optional quoter exchange order ID. |
 
 The requester and quoter can both see both exchange order IDs. A `Quote` does not expose client order IDs. `GetQuotes` is the durable recovery path when a stream event is missed.
 
@@ -237,15 +237,15 @@ The selected maker must confirm before `confirmationDeadline`. Confirmation chan
 
 ## Statuses
 
-| Type  | Status                   | Meaning                                                                               |
-| ----- | ------------------------ | ------------------------------------------------------------------------------------- |
-| RFQ   | `RFQ_STATUS_OPEN`        | Can receive and accept quotes.                                                        |
-| RFQ   | `RFQ_STATUS_CLOSED`      | Closed by the requester or by quote acceptance.                                       |
-| Quote | `QUOTE_STATUS_ACTIVE`    | Can be accepted while its RFQ is open.                                                |
-| Quote | `QUOTE_STATUS_ACCEPTED`  | Selected; maker last look is active.                                                  |
-| Quote | `QUOTE_STATUS_CONFIRMED` | Maker confirmed; paired order submission is scheduled or needs reconciliation.        |
-| Quote | `QUOTE_STATUS_DELETED`   | Maker deleted or declined the quote.                                                  |
-| Quote | `QUOTE_STATUS_EXECUTED`  | Both exchange orders were accepted for submission. Reconcile fills through Drop Copy. |
+| Type | Status | Meaning |
+| - | - | - |
+| RFQ | `RFQ_STATUS_OPEN` | Can receive and accept quotes. |
+| RFQ | `RFQ_STATUS_CLOSED` | Closed by the requester or by quote acceptance. |
+| Quote | `QUOTE_STATUS_ACTIVE` | Can be accepted while its RFQ is open. |
+| Quote | `QUOTE_STATUS_ACCEPTED` | Selected; maker last look is active. |
+| Quote | `QUOTE_STATUS_CONFIRMED` | Maker confirmed; paired order submission is scheduled or needs reconciliation. |
+| Quote | `QUOTE_STATUS_DELETED` | Maker deleted or declined the quote. |
+| Quote | `QUOTE_STATUS_EXECUTED` | Both exchange orders were accepted for submission. Reconcile fills through Drop Copy. |
 
 ## Events and Recovery
 

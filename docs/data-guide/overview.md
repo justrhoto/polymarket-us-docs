@@ -21,23 +21,23 @@ The Data Guide is designed for:
 
 With read-only access, you can consume:
 
-| Data Type             | Description                                   | Access Method            |
-| --------------------- | --------------------------------------------- | ------------------------ |
-| **Market Data**       | Real-time quotes, BBO, L2 order book          | REST API, gRPC Streaming |
-| **Reference Data**    | Instruments, symbols, metadata                | REST API                 |
+| Data Type | Description | Access Method |
+| - | - | - |
+| **Market Data** | Real-time quotes, BBO, L2 order book | REST API, gRPC Streaming |
+| **Reference Data** | Instruments, symbols, metadata | REST API |
 | **Market Statistics** | OHLC, last trade price, volume, open interest | REST API, gRPC Streaming |
 
 ## Available Endpoints
 
 ### REST API
 
-| Endpoint                     | Description                 |
-| ---------------------------- | --------------------------- |
+| Endpoint | Description |
+| - | - |
 | `/v1/orderbook/{symbol}/bbo` | Best bid/offer for a symbol |
-| `/v1/orderbook/{symbol}`     | L2 order book depth         |
-| `/v1/refdata/instruments`    | List all instruments        |
-| `/v1/refdata/symbols`        | List all symbols            |
-| `/v1/refdata/metadata`       | Instrument metadata         |
+| `/v1/orderbook/{symbol}` | L2 order book depth |
+| `/v1/refdata/instruments` | List all instruments |
+| `/v1/refdata/symbols` | List all symbols |
+| `/v1/refdata/metadata` | Instrument metadata |
 
 ### gRPC Streaming
 

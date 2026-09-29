@@ -44,16 +44,16 @@ graph TD
 
 ## If you're asking…
 
-| Question                              | Go to                                                    |
-| ------------------------------------- | -------------------------------------------------------- |
-| "What does a partner actually do?"    | [Your Role](/partners/your-role)                         |
-| "How is Polymarket US structured?"    | [Platform Model](/partners/platform-model)               |
-| "What's the end-to-end build order?"  | [Integration Journey](/partners/integration-journey)     |
-| "How is funding handled?"             | [Partner Funding](/partners/funding/overview) *(Beta)*   |
-| "How do I authenticate?"              | [Authentication](/partners/get-connected/authentication) |
-| "How do I onboard and verify a user?" | [KYC Verification](/partners/onboarding/kyc/overview)    |
-| "How do I place my first order?"      | [Quickstart](/partners/get-connected/quickstart)         |
-| "What does a term mean?"              | [Partner Glossary](/partners/glossary)                   |
+| Question | Go to |
+| - | - |
+| "What does a partner actually do?" | [Your Role](/partners/your-role) |
+| "How is Polymarket US structured?" | [Platform Model](/partners/platform-model) |
+| "What's the end-to-end build order?" | [Integration Journey](/partners/integration-journey) |
+| "How is funding handled?" | [Partner Funding](/partners/funding/overview) *(Beta)* |
+| "How do I authenticate?" | [Authentication](/partners/get-connected/authentication) |
+| "How do I onboard and verify a user?" | [KYC Verification](/partners/onboarding/kyc/overview) |
+| "How do I place my first order?" | [Quickstart](/partners/get-connected/quickstart) |
+| "What does a term mean?" | [Partner Glossary](/partners/glossary) |
 
 ## Get started
 

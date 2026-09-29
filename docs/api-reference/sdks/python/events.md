@@ -10,11 +10,11 @@ The Events resource provides access to event data. Events contain one or more ma
 
 ## Methods
 
-| Method                   | Endpoint                     | Description                |
-| ------------------------ | ---------------------------- | -------------------------- |
-| `list(params?)`          | `GET /v1/events`             | List events with filtering |
-| `retrieve(id)`           | `GET /v1/events/{id}`        | Get event by ID            |
-| `retrieve_by_slug(slug)` | `GET /v1/events/slug/{slug}` | Get event by URL slug      |
+| Method | Endpoint | Description |
+| - | - | - |
+| `list(params?)` | `GET /v1/events` | List events with filtering |
+| `retrieve(id)` | `GET /v1/events/{id}` | Get event by ID |
+| `retrieve_by_slug(slug)` | `GET /v1/events/slug/{slug}` | Get event by URL slug |
 
 ***
 
@@ -36,31 +36,31 @@ for event in events["events"]:
 
 ### Parameters
 
-| Parameter    | Type       | Description                              |
-| ------------ | ---------- | ---------------------------------------- |
-| `limit`      | int        | Maximum results to return (default: 100) |
-| `offset`     | int        | Number of results to skip for pagination |
-| `active`     | bool       | Filter by active events                  |
-| `closed`     | bool       | Filter by closed events                  |
-| `archived`   | bool       | Filter by archived events                |
-| `featured`   | bool       | Filter featured events only              |
-| `categories` | list\[str] | Filter by category slugs                 |
-| `seriesId`   | list\[int] | Filter by series IDs                     |
-| `live`       | bool       | Filter live sports events                |
-| `ended`      | bool       | Filter ended sports events               |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | int | Maximum results to return (default: 100) |
+| `offset` | int | Number of results to skip for pagination |
+| `active` | bool | Filter by active events |
+| `closed` | bool | Filter by closed events |
+| `archived` | bool | Filter by archived events |
+| `featured` | bool | Filter featured events only |
+| `categories` | list\[str] | Filter by category slugs |
+| `seriesId` | list\[int] | Filter by series IDs |
+| `live` | bool | Filter live sports events |
+| `ended` | bool | Filter ended sports events |
 
 ### Response Fields
 
-| Field         | Type | Description                         |
-| ------------- | ---- | ----------------------------------- |
-| `id`          | int  | Unique event identifier             |
-| `slug`        | str  | URL-friendly identifier             |
-| `title`       | str  | Event title                         |
-| `description` | str  | Event description                   |
-| `category`    | str  | Primary category                    |
-| `active`      | bool | Whether event is active for trading |
-| `closed`      | bool | Whether event is closed             |
-| `markets`     | list | Associated markets                  |
+| Field | Type | Description |
+| - | - | - |
+| `id` | int | Unique event identifier |
+| `slug` | str | URL-friendly identifier |
+| `title` | str | Event title |
+| `description` | str | Event description |
+| `category` | str | Primary category |
+| `active` | bool | Whether event is active for trading |
+| `closed` | bool | Whether event is closed |
+| `markets` | list | Associated markets |
 
 ***
 
@@ -79,8 +79,8 @@ print(f"Markets: {len(event.get('markets', []))}")
 ### Parameters
 
 | Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `id`      | int  | Event ID    |
+| - | - | - |
+| `id` | int | Event ID |
 
 ***
 
@@ -98,9 +98,9 @@ for market in event.get("markets", []):
 
 ### Parameters
 
-| Parameter | Type | Description    |
-| --------- | ---- | -------------- |
-| `slug`    | str  | Event URL slug |
+| Parameter | Type | Description |
+| - | - | - |
+| `slug` | str | Event URL slug |
 
 ***
 
@@ -108,14 +108,14 @@ for market in event.get("markets", []):
 
 Sports events include additional real-time data:
 
-| Field          | Type   | Description                 |
-| -------------- | ------ | --------------------------- |
-| `gameId`       | str    | Sports provider game ID     |
-| `live`         | bool   | Whether game is in progress |
-| `ended`        | bool   | Whether game has ended      |
-| `score`        | object | Current score               |
-| `period`       | str    | Current period/quarter/half |
-| `participants` | list   | Teams or players            |
+| Field | Type | Description |
+| - | - | - |
+| `gameId` | str | Sports provider game ID |
+| `live` | bool | Whether game is in progress |
+| `ended` | bool | Whether game has ended |
+| `score` | object | Current score |
+| `period` | str | Current period/quarter/half |
+| `participants` | list | Teams or players |
 
 ```python theme={null}
 events = client.events.list({"live": True, "categories": ["sports"]})

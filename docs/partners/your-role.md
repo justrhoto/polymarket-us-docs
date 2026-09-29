@@ -14,16 +14,16 @@ As an Introducing Broker (IB) or Independent Software Vendor (ISV), you integrat
 
 ## What you do vs. what Polymarket US does
 
-| Responsibility                                                    | You (Partner)                                           | Polymarket US                      |
-| ----------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------- |
-| Onboard Retail Participants (collect details, present agreements) | ✅                                                       | —                                  |
-| Collect KYC information and submit it                             | ✅                                                       | —                                  |
-| Verify identity and decide (KYC)                                  | —                                                       | ✅ Performs verification & decision |
-| Provision trading identities and accounts                         | —                                                       | ✅ Automatic on KYC approval        |
-| Present markets, prices, and a trading UI                         | ✅                                                       | —                                  |
-| Match orders and maintain the order book                          | —                                                       | ✅ (DCM)                            |
-| Hold collateral, clear, and settle                                | —                                                       | ✅ (DCO)                            |
-| Monitor orders, positions, balances                               | ✅ Consume [streams](/streaming-endpoints/grpc-overview) | ✅ Emit streams                     |
+| Responsibility | You (Partner) | Polymarket US |
+| - | - | - |
+| Onboard Retail Participants (collect details, present agreements) | ✅ | — |
+| Collect KYC information and submit it | ✅ | — |
+| Verify identity and decide (KYC) | — | ✅ Performs verification & decision |
+| Provision trading identities and accounts | — | ✅ Automatic on KYC approval |
+| Present markets, prices, and a trading UI | ✅ | — |
+| Match orders and maintain the order book | — | ✅ (DCM) |
+| Hold collateral, clear, and settle | — | ✅ (DCO) |
+| Monitor orders, positions, balances | ✅ Consume [streams](/streaming-endpoints/grpc-overview) | ✅ Emit streams |
 
 ## You are a facilitator, not a counterparty
 

@@ -68,9 +68,9 @@ No. A leg at LFMP reduces the payout rather than voiding the combo, and it never
 
 Take a \$10 combo with 3 legs that would pay \$80:
 
-| Outcome                                                 | Calculation                         | Payout  |
-| ------------------------------------------------------- | ----------------------------------- | ------- |
-| All three legs win                                      | \$80 × 1.00 × 1.00 × 1.00           | \$80.00 |
-| Two legs win, third goes to LFMP at \$0.60              | \$80 × 1.00 × 1.00 × 0.60           | \$48.00 |
-| One leg wins, other two go to LFMP at \$0.60 and \$0.25 | \$80 × 1.00 × 0.60 × 0.25           | \$12.00 |
-| Any leg resolves against you                            | Whatever happened to the other legs | \$0.00  |
+| Outcome | Calculation | Payout |
+| - | - | - |
+| All three legs win | \$80 × 1.00 × 1.00 × 1.00 | \$80.00 |
+| Two legs win, third goes to LFMP at \$0.60 | \$80 × 1.00 × 1.00 × 0.60 | \$48.00 |
+| One leg wins, other two go to LFMP at \$0.60 and \$0.25 | \$80 × 1.00 × 0.60 × 0.25 | \$12.00 |
+| Any leg resolves against you | Whatever happened to the other legs | \$0.00 |

@@ -20,11 +20,11 @@ The Payments API provides multiple funding options for deposits and withdrawals.
 
 ## Payment Methods
 
-| Method              | Provider     | Type                 | Speed             |
-| ------------------- | ------------ | -------------------- | ----------------- |
-| Bank Transfer (ACH) | Aeropay      | Bank account linking | 1-3 business days |
-| Debit/Credit Card   | Checkout.com | Card payments        | Instant           |
-| Apple Pay           | Checkout.com | Mobile wallet        | Instant           |
+| Method | Provider | Type | Speed |
+| - | - | - | - |
+| Bank Transfer (ACH) | Aeropay | Bank account linking | 1-3 business days |
+| Debit/Credit Card | Checkout.com | Card payments | Instant |
+| Apple Pay | Checkout.com | Mobile wallet | Instant |
 
 ## APIs
 
@@ -34,13 +34,13 @@ Bank account linking and ACH transfers.
 
 **Orchestrated Endpoints (Recommended):**
 
-| Method | Endpoint                   | Description                                                      |
-| ------ | -------------------------- | ---------------------------------------------------------------- |
-| `POST` | `/v1/aeropay/initialize`   | Start bank linking - handles user creation and MFA automatically |
-| `POST` | `/v1/aeropay/validate-mfa` | Submit MFA code if required                                      |
-| `GET`  | `/v1/aeropay/methods`      | List payment methods with limits                                 |
-| `POST` | `/v1/aeropay/deposits`     | Create ACH deposit                                               |
-| `POST` | `/v1/aeropay/withdrawals`  | Create ACH withdrawal                                            |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/aeropay/initialize` | Start bank linking - handles user creation and MFA automatically |
+| `POST` | `/v1/aeropay/validate-mfa` | Submit MFA code if required |
+| `GET` | `/v1/aeropay/methods` | List payment methods with limits |
+| `POST` | `/v1/aeropay/deposits` | Create ACH deposit |
+| `POST` | `/v1/aeropay/withdrawals` | Create ACH withdrawal |
 
 [Aeropay Integration Guide](/api-reference/payments/aeropay-guide)
 
@@ -48,12 +48,12 @@ Bank account linking and ACH transfers.
 
 Card payment processing:
 
-| Method | Endpoint                        | Description                                   |
-| ------ | ------------------------------- | --------------------------------------------- |
+| Method | Endpoint | Description |
+| - | - | - |
 | `POST` | `/v1/checkout/payment-sessions` | Request payment session for card tokenization |
-| `POST` | `/v1/checkout/instruments`      | Save tokenized card as instrument             |
-| `POST` | `/v1/checkout/deposits`         | Process card or Apple Pay deposit             |
-| `POST` | `/v1/checkout/withdrawals`      | Process card or Apple Pay withdrawal          |
+| `POST` | `/v1/checkout/instruments` | Save tokenized card as instrument |
+| `POST` | `/v1/checkout/deposits` | Process card or Apple Pay deposit |
+| `POST` | `/v1/checkout/withdrawals` | Process card or Apple Pay withdrawal |
 
 [Checkout Integration Guide](/api-reference/payments/checkout-guide)
 
@@ -61,13 +61,13 @@ Card payment processing:
 
 Manage funding sources and transactions:
 
-| Method  | Endpoint                               | Description                   |
-| ------- | -------------------------------------- | ----------------------------- |
-| `GET`   | `/v1/funding/sources`                  | List funding sources          |
-| `GET`   | `/v1/funding/accounts`                 | List funding accounts         |
-| `PATCH` | `/v1/funding/accounts/{id}`            | Update funding account        |
-| `GET`   | `/v1/funding/transactions`             | View transaction history      |
-| `GET`   | `/v1/funding/transaction-requirements` | Check withdrawal requirements |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/funding/sources` | List funding sources |
+| `GET` | `/v1/funding/accounts` | List funding accounts |
+| `PATCH` | `/v1/funding/accounts/{id}` | Update funding account |
+| `GET` | `/v1/funding/transactions` | View transaction history |
+| `GET` | `/v1/funding/transaction-requirements` | Check withdrawal requirements |
 
 [Funding Management](/api-reference/payments/funding-management)
 
@@ -116,34 +116,34 @@ graph TD
 
 The `FundingSourceType` enum identifies the payment method:
 
-| Type                                       | Description                 |
-| ------------------------------------------ | --------------------------- |
-| `FUNDING_SOURCE_TYPE_BANK_ACCOUNT`         | Traditional bank account    |
+| Type | Description |
+| - | - |
+| `FUNDING_SOURCE_TYPE_BANK_ACCOUNT` | Traditional bank account |
 | `FUNDING_SOURCE_TYPE_AEROPAY_BANK_ACCOUNT` | Aeropay-linked bank account |
-| `FUNDING_SOURCE_TYPE_CHECKOUT_CARD`        | Tokenized payment card      |
-| `FUNDING_SOURCE_TYPE_APPLE_PAY`            | Apple Pay                   |
+| `FUNDING_SOURCE_TYPE_CHECKOUT_CARD` | Tokenized payment card |
+| `FUNDING_SOURCE_TYPE_APPLE_PAY` | Apple Pay |
 
 ## Transaction States
 
-| State                                  | Description            |
-| -------------------------------------- | ---------------------- |
-| `TRANSACTION_STATE_ACKNOWLEDGED`       | Transaction received   |
-| `TRANSACTION_STATE_PROCESSING`         | Being processed        |
-| `TRANSACTION_STATE_COMPLETED`          | Successfully completed |
-| `TRANSACTION_STATE_CANCELLED`          | Cancelled              |
-| `TRANSACTION_STATE_ALLOCATED`          | Funds allocated        |
-| `TRANSACTION_STATE_REFUNDED`           | Fully refunded         |
-| `TRANSACTION_STATE_PARTIALLY_REFUNDED` | Partially refunded     |
+| State | Description |
+| - | - |
+| `TRANSACTION_STATE_ACKNOWLEDGED` | Transaction received |
+| `TRANSACTION_STATE_PROCESSING` | Being processed |
+| `TRANSACTION_STATE_COMPLETED` | Successfully completed |
+| `TRANSACTION_STATE_CANCELLED` | Cancelled |
+| `TRANSACTION_STATE_ALLOCATED` | Funds allocated |
+| `TRANSACTION_STATE_REFUNDED` | Fully refunded |
+| `TRANSACTION_STATE_PARTIALLY_REFUNDED` | Partially refunded |
 
 ## Transaction Types
 
-| Type                              | Description       |
-| --------------------------------- | ----------------- |
-| `TRANSACTION_TYPE_DEPOSIT`        | Funds deposited   |
-| `TRANSACTION_TYPE_WITHDRAWAL`     | Funds withdrawn   |
-| `TRANSACTION_TYPE_TRANSFER`       | Internal transfer |
-| `TRANSACTION_TYPE_EXECUTION_FEE`  | Trading fee       |
-| `TRANSACTION_TYPE_SETTLEMENT_FEE` | Settlement fee    |
+| Type | Description |
+| - | - |
+| `TRANSACTION_TYPE_DEPOSIT` | Funds deposited |
+| `TRANSACTION_TYPE_WITHDRAWAL` | Funds withdrawn |
+| `TRANSACTION_TYPE_TRANSFER` | Internal transfer |
+| `TRANSACTION_TYPE_EXECUTION_FEE` | Trading fee |
+| `TRANSACTION_TYPE_SETTLEMENT_FEE` | Settlement fee |
 
 ## Best Practices
 

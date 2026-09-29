@@ -22,9 +22,9 @@ Connecting to Polymarket Exchange FIX services from your AWS VPC involves adding
 
 ### Supported AWS Availability Zone IDs
 
-| Environment        | Zone IDs                     |
-| ------------------ | ---------------------------- |
-| **Production**     | use1-az1, use1-az2, use1-az6 |
+| Environment | Zone IDs |
+| - | - |
+| **Production** | use1-az1, use1-az2, use1-az6 |
 | **Pre-Production** | use1-az1, use1-az2, use1-az4 |
 
 <Tip>
@@ -125,11 +125,11 @@ The account identifier assigned based on the account we create at Polymarket (e.
 
 Polymarket Exchange provides three types of FIX sessions:
 
-| Session Type         | Purpose                        | Port                           |
-| -------------------- | ------------------------------ | ------------------------------ |
-| **Order Entry (OE)** | Submit and manage orders       | Provided in connection details |
+| Session Type | Purpose | Port |
+| - | - | - |
+| **Order Entry (OE)** | Submit and manage orders | Provided in connection details |
 | **Market Data (MD)** | Subscribe to market data feeds | Provided in connection details |
-| **Drop Copy (DC)**   | Receive execution reports      | Provided in connection details |
+| **Drop Copy (DC)** | Receive execution reports | Provided in connection details |
 
 ### Sequence Number Reset
 

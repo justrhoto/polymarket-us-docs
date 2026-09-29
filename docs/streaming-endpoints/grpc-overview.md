@@ -149,12 +149,12 @@ graph LR
 
 The limits below apply to streaming connections. Unary gRPC order-entry calls are limited separately — see [Institutional Order Entry](/trader-guide/rate-limits#institutional-order-entry) for the per-method, per-tier rates.
 
-| Setting                                             | Value       |
-| --------------------------------------------------- | ----------- |
-| Max concurrent streams per firm                     | 20          |
+| Setting | Value |
+| - | - |
+| Max concurrent streams per firm | 20 |
 | Ingress message rate (per firm, across all streams) | 100 msg/sec |
-| `StreamRFQEvents` new stream opens per firm         | 1/sec       |
-| Egress (server to client)                           | Unlimited   |
+| `StreamRFQEvents` new stream opens per firm | 1/sec |
+| Egress (server to client) | Unlimited |
 
 <Warning>
   **Ingress Rate Limit**

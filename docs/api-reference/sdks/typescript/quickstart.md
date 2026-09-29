@@ -124,11 +124,11 @@ try {
 
 ### Error Types
 
-| Exception             | Description                    |
-| --------------------- | ------------------------------ |
+| Exception | Description |
+| - | - |
 | `AuthenticationError` | Invalid or missing credentials |
-| `BadRequestError`     | Invalid request parameters     |
-| `NotFoundError`       | Resource not found             |
-| `RateLimitError`      | Rate limit exceeded            |
-| `APITimeoutError`     | Request timed out              |
-| `APIConnectionError`  | Network connection error       |
+| `BadRequestError` | Invalid request parameters |
+| `NotFoundError` | Resource not found |
+| `RateLimitError` | Rate limit exceeded |
+| `APITimeoutError` | Request timed out |
+| `APIConnectionError` | Network connection error |

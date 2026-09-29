@@ -14,13 +14,13 @@
 
 This program rewards traders for placing resting limit orders. The closer your orders are to the best price and the larger they are, the more you earn. Every second, the Exchange scores each trader's resting orders based on price and size, and rewards are split proportionally.
 
-| Term                   | Definition                                                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Time Period**        | A window during the event lifecycle (e.g., pre-event, event day, mid-event) with its own reward pool                                                                                                                                                                                                                                                                                            |
-| **Discount Factor**    | How much orders further from the best price are penalized; closer orders score higher                                                                                                                                                                                                                                                                                                           |
-| **Target Size**        | The minimum number of contracts that must exist on each side of the book for that side to qualify for rewards                                                                                                                                                                                                                                                                                   |
-| **Max Spread**         | Optional. How far each side's size-adjusted price (where the walk to Target Size lands) may sit from the midpoint for a second to pay. A 3.5¢ Max Spread is 3.5¢ from mid, so a 7¢ gap between the two sides. polymarket.us/rewards shows cents; a dash means the program has none. The API field `maxSpread` is the same value in dollars (`0.035`) and is omitted when there is no Max Spread |
-| **Time Period Reward** | The total reward pool for each time period                                                                                                                                                                                                                                                                                                                                                      |
+| Term | Definition |
+| - | - |
+| **Time Period** | A window during the event lifecycle (e.g., pre-event, event day, mid-event) with its own reward pool |
+| **Discount Factor** | How much orders further from the best price are penalized; closer orders score higher |
+| **Target Size** | The minimum number of contracts that must exist on each side of the book for that side to qualify for rewards |
+| **Max Spread** | Optional. How far each side's size-adjusted price (where the walk to Target Size lands) may sit from the midpoint for a second to pay. A 3.5¢ Max Spread is 3.5¢ from mid, so a 7¢ gap between the two sides. polymarket.us/rewards shows cents; a dash means the program has none. The API field `maxSpread` is the same value in dollars (`0.035`) and is omitted when there is no Max Spread |
+| **Time Period Reward** | The total reward pool for each time period |
 
 ## FAQ
 

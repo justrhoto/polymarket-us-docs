@@ -24,13 +24,13 @@ wss://api.polymarket.us/v1/ws/private
 
 ## Subscription Types
 
-| Value                               | Description                                             |
-| ----------------------------------- | ------------------------------------------------------- |
-| `SUBSCRIPTION_TYPE_ORDER`           | Order updates (new, filled, canceled)                   |
-| `SUBSCRIPTION_TYPE_ORDER_SNAPSHOT`  | Initial snapshot of open orders                         |
-| `SUBSCRIPTION_TYPE_POSITION`        | Position changes                                        |
-| `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Account balance changes                                 |
-| `SUBSCRIPTION_TYPE_RFQ`             | Combo RFQ and quote lifecycle events (allowlisted beta) |
+| Value | Description |
+| - | - |
+| `SUBSCRIPTION_TYPE_ORDER` | Order updates (new, filled, canceled) |
+| `SUBSCRIPTION_TYPE_ORDER_SNAPSHOT` | Initial snapshot of open orders |
+| `SUBSCRIPTION_TYPE_POSITION` | Position changes |
+| `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Account balance changes |
+| `SUBSCRIPTION_TYPE_RFQ` | Combo RFQ and quote lifecycle events (allowlisted beta) |
 
 ## Order Subscriptions
 
@@ -226,67 +226,67 @@ No separate success acknowledgment is sent. Events use the `rfqEvent` envelope, 
 
 The RFQ in `rfqCreated` and `rfqClosed` includes optional `tickSize`, the price increment in dollars. See [RFQ price ticks](/api-reference/rfqs/overview#rfq-price-tick) for pricing rules.
 
-| Event            | Meaning                                                                                                                                                                |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rfqCreated`     | An RFQ became available to quote.                                                                                                                                      |
-| `rfqClosed`      | An RFQ closed or a quote was selected.                                                                                                                                 |
-| `quoteCreated`   | A visible quote was created or replaced.                                                                                                                               |
-| `quoteDeleted`   | A visible quote was deleted or declined.                                                                                                                               |
-| `quoteAccepted`  | The requester selected a quote and maker last look began.                                                                                                              |
-| `quoteConfirmed` | The selected maker confirmed and paired execution was scheduled.                                                                                                       |
-| `quoteExecuted`  | Paired order submission completed and generated order IDs became available. This does not guarantee a fill; track the generated orders with `SUBSCRIPTION_TYPE_ORDER`. |
+| Event | Meaning |
+| - | - |
+| `rfqCreated` | An RFQ became available to quote. |
+| `rfqClosed` | An RFQ closed or a quote was selected. |
+| `quoteCreated` | A visible quote was created or replaced. |
+| `quoteDeleted` | A visible quote was deleted or declined. |
+| `quoteAccepted` | The requester selected a quote and maker last look began. |
+| `quoteConfirmed` | The selected maker confirmed and paired execution was scheduled. |
+| `quoteExecuted` | Paired order submission completed and generated order IDs became available. This does not guarantee a fill; track the generated orders with `SUBSCRIPTION_TYPE_ORDER`. |
 
 The stream is live and best effort: it has no replay or durable cursor. Unsubscribing, disconnecting, or an upstream failure ends the corresponding stream. Reconnect and reconcile with `GET /v1/rfqs` and `GET /v1/rfqs/quotes`; do not treat WebSocket delivery as the source of truth.
 
 ## Execution Types
 
-| Value                         | Description                    |
-| ----------------------------- | ------------------------------ |
-| `EXECUTION_TYPE_PARTIAL_FILL` | Order partially filled         |
-| `EXECUTION_TYPE_FILL`         | Order fully filled             |
-| `EXECUTION_TYPE_CANCELED`     | Order canceled                 |
-| `EXECUTION_TYPE_REPLACE`      | Order replaced/modified        |
-| `EXECUTION_TYPE_REJECTED`     | Order rejected                 |
-| `EXECUTION_TYPE_EXPIRED`      | Order expired                  |
+| Value | Description |
+| - | - |
+| `EXECUTION_TYPE_PARTIAL_FILL` | Order partially filled |
+| `EXECUTION_TYPE_FILL` | Order fully filled |
+| `EXECUTION_TYPE_CANCELED` | Order canceled |
+| `EXECUTION_TYPE_REPLACE` | Order replaced/modified |
+| `EXECUTION_TYPE_REJECTED` | Order rejected |
+| `EXECUTION_TYPE_EXPIRED` | Order expired |
 | `EXECUTION_TYPE_DONE_FOR_DAY` | Order done for the trading day |
 
 ## Ledger Entry Types
 
-| Value                                   | Description               |
-| --------------------------------------- | ------------------------- |
-| `LEDGER_ENTRY_TYPE_ORDER_EXECUTION`     | Trade execution           |
-| `LEDGER_ENTRY_TYPE_DEPOSIT`             | Account deposit           |
-| `LEDGER_ENTRY_TYPE_WITHDRAWAL`          | Account withdrawal        |
-| `LEDGER_ENTRY_TYPE_RESOLUTION`          | Market resolution         |
-| `LEDGER_ENTRY_TYPE_COMMISSION`          | Commission charge         |
-| `LEDGER_ENTRY_TYPE_CORRECTION`          | Balance correction        |
-| `LEDGER_ENTRY_TYPE_NETTING`             | Netting adjustment        |
-| `LEDGER_ENTRY_TYPE_MANUAL_ADJUSTMENT`   | Manual balance adjustment |
-| `LEDGER_ENTRY_TYPE_CONTRACT_EXPIRATION` | Contract expiration       |
+| Value | Description |
+| - | - |
+| `LEDGER_ENTRY_TYPE_ORDER_EXECUTION` | Trade execution |
+| `LEDGER_ENTRY_TYPE_DEPOSIT` | Account deposit |
+| `LEDGER_ENTRY_TYPE_WITHDRAWAL` | Account withdrawal |
+| `LEDGER_ENTRY_TYPE_RESOLUTION` | Market resolution |
+| `LEDGER_ENTRY_TYPE_COMMISSION` | Commission charge |
+| `LEDGER_ENTRY_TYPE_CORRECTION` | Balance correction |
+| `LEDGER_ENTRY_TYPE_NETTING` | Netting adjustment |
+| `LEDGER_ENTRY_TYPE_MANUAL_ADJUSTMENT` | Manual balance adjustment |
+| `LEDGER_ENTRY_TYPE_CONTRACT_EXPIRATION` | Contract expiration |
 
 ## Order States
 
-| Value                          | Description                                |
-| ------------------------------ | ------------------------------------------ |
-| `ORDER_STATE_PENDING_NEW`      | Order received, not yet processed          |
-| `ORDER_STATE_PENDING_REPLACE`  | Modify request received, not yet processed |
-| `ORDER_STATE_PENDING_CANCEL`   | Cancel request received, not yet processed |
-| `ORDER_STATE_PENDING_RISK`     | Order pending risk approval                |
-| `ORDER_STATE_PARTIALLY_FILLED` | Order partially executed                   |
-| `ORDER_STATE_FILLED`           | Order fully executed                       |
-| `ORDER_STATE_CANCELED`         | Order canceled                             |
-| `ORDER_STATE_REPLACED`         | Order replaced                             |
-| `ORDER_STATE_REJECTED`         | Order rejected                             |
-| `ORDER_STATE_EXPIRED`          | Order expired                              |
+| Value | Description |
+| - | - |
+| `ORDER_STATE_PENDING_NEW` | Order received, not yet processed |
+| `ORDER_STATE_PENDING_REPLACE` | Modify request received, not yet processed |
+| `ORDER_STATE_PENDING_CANCEL` | Cancel request received, not yet processed |
+| `ORDER_STATE_PENDING_RISK` | Order pending risk approval |
+| `ORDER_STATE_PARTIALLY_FILLED` | Order partially executed |
+| `ORDER_STATE_FILLED` | Order fully executed |
+| `ORDER_STATE_CANCELED` | Order canceled |
+| `ORDER_STATE_REPLACED` | Order replaced |
+| `ORDER_STATE_REJECTED` | Order rejected |
+| `ORDER_STATE_EXPIRED` | Order expired |
 
 ## Order Intent
 
-| Value                     | Description        |
-| ------------------------- | ------------------ |
-| `ORDER_INTENT_BUY_LONG`   | Buy YES contracts  |
-| `ORDER_INTENT_SELL_LONG`  | Sell YES contracts |
-| `ORDER_INTENT_BUY_SHORT`  | Buy NO contracts   |
-| `ORDER_INTENT_SELL_SHORT` | Sell NO contracts  |
+| Value | Description |
+| - | - |
+| `ORDER_INTENT_BUY_LONG` | Buy YES contracts |
+| `ORDER_INTENT_SELL_LONG` | Sell YES contracts |
+| `ORDER_INTENT_BUY_SHORT` | Buy NO contracts |
+| `ORDER_INTENT_SELL_SHORT` | Sell NO contracts |
 
 <Tip>
   **Subscription Limits**

@@ -27,10 +27,10 @@ When collateral return is enabled on your account and you hold a lower-ranked lo
 
 Consider a spread ladder on one NFL game with three instruments, each paying out if the Chiefs win by more than the stated margin. The `neg-` symbols are the Chiefs laying points: `neg-3pt5` is the Chiefs at -3.5, so the larger the number, the harder the question and the higher the rank.
 
-| Instrument                            | Question                                      |
-| ------------------------------------- | --------------------------------------------- |
-| `asc-nfl-kc-phi-2026-02-09-neg-3pt5`  | Will the Chiefs win by more than 3.5 points?  |
-| `asc-nfl-kc-phi-2026-02-09-neg-6pt5`  | Will the Chiefs win by more than 6.5 points?  |
+| Instrument | Question |
+| - | - |
+| `asc-nfl-kc-phi-2026-02-09-neg-3pt5` | Will the Chiefs win by more than 3.5 points? |
+| `asc-nfl-kc-phi-2026-02-09-neg-6pt5` | Will the Chiefs win by more than 6.5 points? |
 | `asc-nfl-kc-phi-2026-02-09-neg-10pt5` | Will the Chiefs win by more than 10.5 points? |
 
 If the Chiefs win by more than 10.5, they also won by more than 6.5 and 3.5. This directional relationship is what enables collateral return.

@@ -19,10 +19,10 @@ Private trade data (requires account access):
 
 ## Required Scopes
 
-| Scope               | Data Access                |
-| ------------------- | -------------------------- |
-| `read:marketdata`   | BBO, streaming market data |
-| `read:l2marketdata` | Full L2 order book depth   |
+| Scope | Data Access |
+| - | - |
+| `read:marketdata` | BBO, streaming market data |
+| `read:l2marketdata` | Full L2 order book depth |
 
 ## REST API Endpoints
 

@@ -35,12 +35,12 @@ service DropCopyAPI {
 
 ## Available Streams
 
-| Stream                      | Description                        | Use Case                             |
-| --------------------------- | ---------------------------------- | ------------------------------------ |
-| **DropCopy**                | Execution reports (fills, cancels) | Real-time order execution monitoring |
-| **Trade Capture Report**    | Completed trades                   | Trade reconciliation, compliance     |
-| **Instrument State Change** | Market state updates               | Trading halts, market open/close     |
-| **Position Change**         | Position updates                   | Real-time P\&L, risk monitoring      |
+| Stream | Description | Use Case |
+| - | - | - |
+| **DropCopy** | Execution reports (fills, cancels) | Real-time order execution monitoring |
+| **Trade Capture Report** | Completed trades | Trade reconciliation, compliance |
+| **Instrument State Change** | Market state updates | Trading halts, market open/close |
+| **Position Change** | Position updates | Real-time P\&L, risk monitoring |
 
 ***
 
@@ -50,19 +50,21 @@ Stream execution reports as they occur for your firm.
 
 ### Request Parameters
 
-| Field          | Type        | Required | Description                                 |
-| -------------- | ----------- | -------- | ------------------------------------------- |
-| `resume_token` | `bytes`     | No       | Resume from previous position               |
-| `resume_time`  | `Timestamp` | No       | Resume from specific time                   |
-| `symbols`      | `list[str]` | No       | Filter by symbols. Empty = all symbols      |
-| `firms`        | `list[str]` | No       | Filter by firms. Empty = authenticated firm |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `resume_token` | `bytes` | No | Replay every execution after this position, then continue live. Use either `resume_token` or `resume_time`, not both. |
+| `resume_time` | `Timestamp` | No | Replay every execution from this time, then continue live. |
+| `symbols` | `list[str]` | No | Filter by symbols. Empty = all symbols |
+| `firms` | `list[str]` | No | Filter by firms. Empty = authenticated firm |
+
+Omit both `resume_token` and `resume_time` to receive only executions that occur after the stream opens. See [Resume semantics](#resume-semantics).
 
 ### Response Fields
 
-| Field          | Type              | Description                     |
-| -------------- | ----------------- | ------------------------------- |
-| `resume_token` | `bytes`           | Store for reconnection          |
-| `executions`   | `list[Execution]` | Execution reports in this batch |
+| Field | Type | Description |
+| - | - | - |
+| `resume_token` | `bytes` | Store for reconnection |
+| `executions` | `list[Execution]` | Execution reports in this batch |
 
 <Note>
   Commission fields on executions (`commission_notional_collected`, `commission_notional_total_collected`) are fixed-point notional units scaled by `price_scale` × `fractional_quantity_scale` — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for decoding rules and worked examples.
@@ -181,19 +183,19 @@ Stream completed trades for reconciliation and compliance.
 
 ### Request Parameters
 
-| Field          | Type        | Required | Description                   |
-| -------------- | ----------- | -------- | ----------------------------- |
-| `resume_token` | `bytes`     | No       | Resume from previous position |
-| `resume_time`  | `Timestamp` | No       | Resume from specific time     |
-| `symbols`      | `list[str]` | No       | Filter by symbols             |
-| `firms`        | `list[str]` | No       | Filter by firms               |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `resume_token` | `bytes` | No | Resume from previous position |
+| `resume_time` | `Timestamp` | No | Resume from specific time |
+| `symbols` | `list[str]` | No | Filter by symbols |
+| `firms` | `list[str]` | No | Filter by firms |
 
 ### Response Fields
 
-| Field                   | Type          | Description            |
-| ----------------------- | ------------- | ---------------------- |
-| `resume_token`          | `bytes`       | Store for reconnection |
-| `trade_capture_reports` | `list[Trade]` | Trade records          |
+| Field | Type | Description |
+| - | - | - |
+| `resume_token` | `bytes` | Store for reconnection |
+| `trade_capture_reports` | `list[Trade]` | Trade records |
 
 ### Example
 
@@ -222,29 +224,29 @@ def stream_trade_captures(self, symbols: list = None):
 
 Each trade contains two executions:
 
-| Field        | Description                                    |
-| ------------ | ---------------------------------------------- |
-| `id`         | Unique trade ID                                |
-| `aggressor`  | Execution for the incoming (taker) order       |
-| `passive`    | Execution for the resting (maker) order        |
-| `trade_type` | Type of trade (REGULAR, CROSS, etc.)           |
-| `state`      | Trade state; see [Trade States](#trade-states) |
+| Field | Description |
+| - | - |
+| `id` | Unique trade ID |
+| `aggressor` | Execution for the incoming (taker) order |
+| `passive` | Execution for the resting (maker) order |
+| `trade_type` | Type of trade (REGULAR, CROSS, etc.) |
+| `state` | Trade state; see [Trade States](#trade-states) |
 
 ### Trade States
 
 Each `Trade` carries a `state` field with one of the following values:
 
-| State                               | Value | Description                                                                                                                                                            |
-| ----------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TRADE_STATE_NEW`                   | 1     | Trade created.                                                                                                                                                         |
-| `TRADE_STATE_CLEARED`               | 2     | Trade successfully cleared by the clearing house.                                                                                                                      |
-| `TRADE_STATE_BUSTED`                | 3     | The trade was voided post-execution by the exchange (an error trade) and the resulting position was rolled back. This is a terminal reversal, **not** a pending state. |
-| `TRADE_STATE_INFLIGHT`              | 4     | Trade information sent to the clearinghouse.                                                                                                                           |
-| `TRADE_STATE_PENDING_RISK`          | 5     | Clearinghouse is pending at least one DCM claim for the trade.                                                                                                         |
-| `TRADE_STATE_PENDING_CLEARED`       | 6     | Clearinghouse is pending the counterparty DCM claim.                                                                                                                   |
-| `TRADE_STATE_REJECTED`              | 7     | Clearinghouse rejected the trade.                                                                                                                                      |
-| `TRADE_STATE_CLEARING_ACKNOWLEDGED` | 8     | Clearing request acknowledged by the clearing house.                                                                                                                   |
-| `TRADE_STATE_RETRY_REQUEST`         | 9     | Retry requested; pending resubmission to the clearing house.                                                                                                           |
+| State | Value | Description |
+| - | - | - |
+| `TRADE_STATE_NEW` | 1 | Trade created. |
+| `TRADE_STATE_CLEARED` | 2 | Trade successfully cleared by the clearing house. |
+| `TRADE_STATE_BUSTED` | 3 | The trade was voided post-execution by the exchange (an error trade) and the resulting position was rolled back. This is a terminal reversal, **not** a pending state. |
+| `TRADE_STATE_INFLIGHT` | 4 | Trade information sent to the clearinghouse. |
+| `TRADE_STATE_PENDING_RISK` | 5 | Clearinghouse is pending at least one DCM claim for the trade. |
+| `TRADE_STATE_PENDING_CLEARED` | 6 | Clearinghouse is pending the counterparty DCM claim. |
+| `TRADE_STATE_REJECTED` | 7 | Clearinghouse rejected the trade. |
+| `TRADE_STATE_CLEARING_ACKNOWLEDGED` | 8 | Clearing request acknowledged by the clearing house. |
+| `TRADE_STATE_RETRY_REQUEST` | 9 | Retry requested; pending resubmission to the clearing house. |
 
 <Warning>
   **Handling `TRADE_STATE_BUSTED`**
@@ -286,44 +288,44 @@ Stream market state changes (halts, opens, closes).
 
 ### Request Parameters
 
-| Field          | Type        | Required | Description                   |
-| -------------- | ----------- | -------- | ----------------------------- |
-| `resume_token` | `bytes`     | No       | Resume from previous position |
-| `resume_time`  | `Timestamp` | No       | Resume from specific time     |
-| `symbols`      | `list[str]` | No       | Filter by symbols             |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `resume_token` | `bytes` | No | Resume from previous position |
+| `resume_time` | `Timestamp` | No | Resume from specific time |
+| `symbols` | `list[str]` | No | Filter by symbols |
 
 ### Response Fields
 
-| Field          | Type               | Description               |
-| -------------- | ------------------ | ------------------------- |
-| `resume_token` | `bytes`            | Store for reconnection    |
-| `instruments`  | `list[Instrument]` | Updated instrument states |
+| Field | Type | Description |
+| - | - | - |
+| `resume_token` | `bytes` | Store for reconnection |
+| `instruments` | `list[Instrument]` | Updated instrument states |
 
 ### Instrument States
 
 #### Primary State Flow
 
-| State                                               | Description                                                                                                                                                                                                      |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_PENDING`                          | Initial state for a newly created instrument which has not yet begun trading.                                                                                                                                    |
-| `INSTRUMENT_STATE_OPEN`                             | In this state, the instrument is open for continuous order entry and matching.                                                                                                                                   |
-| `INSTRUMENT_STATE_CLOSED`                           | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired.                                                                                |
-| `INSTRUMENT_STATE_EXPIRED`                          | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered.                                                      |
-| `INSTRUMENT_STATE_TERMINATED`                       | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
+| State                                               | Description |
+| - | - |
+| `INSTRUMENT_STATE_PENDING` | Initial state for a newly created instrument which has not yet begun trading. |
+| `INSTRUMENT_STATE_OPEN` | In this state, the instrument is open for continuous order entry and matching. |
+| `INSTRUMENT_STATE_CLOSED` | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired. |
+| `INSTRUMENT_STATE_EXPIRED` | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered. |
+| `INSTRUMENT_STATE_TERMINATED` | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
 
 #### Exception States
 
-| State                                               | Description                                                                                   |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_SUSPENDED`                        | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
-| `INSTRUMENT_STATE_HALTED`                           | This state is similar to SUSPENDED, with the exception that orders cannot be canceled.        |
+| State                                               | Description |
+| - | - |
+| `INSTRUMENT_STATE_SUSPENDED` | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
+| `INSTRUMENT_STATE_HALTED` | This state is similar to SUSPENDED, with the exception that orders cannot be canceled. |
 
 #### Other Possible States
 
-| State                                               | Description                                                                                                                                                                                                                                                                                       |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_PREOPEN`                          | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
-| `INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION`          | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after.                               |
+| State                                               | Description |
+| - | - |
+| `INSTRUMENT_STATE_PREOPEN` | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
+| `INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION` | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after. |
 
 ### Example
 
@@ -355,26 +357,26 @@ Stream real-time position updates.
 
 ### Request Parameters
 
-| Field          | Type        | Required | Description                   |
-| -------------- | ----------- | -------- | ----------------------------- |
-| `resume_token` | `bytes`     | No       | Resume from previous position |
-| `resume_time`  | `Timestamp` | No       | Resume from specific time     |
-| `symbols`      | `list[str]` | No       | Filter by symbols             |
-| `firms`        | `list[str]` | No       | Filter by firms               |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `resume_token` | `bytes` | No | Resume from previous position |
+| `resume_time` | `Timestamp` | No | Resume from specific time |
+| `symbols` | `list[str]` | No | Filter by symbols |
+| `firms` | `list[str]` | No | Filter by firms |
 
 ### Response Fields
 
-| Field              | Type                   | Description            |
-| ------------------ | ---------------------- | ---------------------- |
-| `resume_token`     | `bytes`                | Store for reconnection |
-| `position_changes` | `list[PositionChange]` | Position updates       |
+| Field | Type | Description |
+| - | - | - |
+| `resume_token` | `bytes` | Store for reconnection |
+| `position_changes` | `list[PositionChange]` | Position updates |
 
 ### PositionChange Structure
 
-| Field         | Type        | Description            |
-| ------------- | ----------- | ---------------------- |
-| `position`    | `Position`  | Current position state |
-| `change_time` | `Timestamp` | When change occurred   |
+| Field | Type | Description |
+| - | - | - |
+| `position` | `Position` | Current position state |
+| `change_time` | `Timestamp` | When change occurred |
 
 ### Example
 
@@ -425,14 +427,28 @@ request = dropcopy_pb2.CreateDropCopySubscriptionRequest(
   Resume tokens may expire after extended disconnection periods. If resumption fails, start a fresh subscription and reconcile with the Report API for any missed data.
 </Warning>
 
+### Resume semantics
+
+| Request | What the stream delivers |
+| - | - |
+| No `resume_token` and no `resume_time` | Live executions only, starting when the stream opens. Nothing earlier is replayed. |
+| `resume_token` | Every execution after that token, then live executions. |
+| `resume_time` | Every execution from that time, then live executions. |
+
+The two resume fields are mutually exclusive. Send one or neither.
+
+Replay always runs to the present before live executions arrive. An old token or an early `resume_time` means a long replay, and a fill for an order you just placed is delivered only after that replay reaches it. If you do not need past executions, do not send a resume field.
+
+Persist the most recent `resume_token` you have fully applied, not the first token you received. Responses with no executions still carry a current `resume_token`; persist those too. To tell when a replay has caught up, see [Knowing you are caught up](/streaming-endpoints/streaming-best-practices#knowing-you-are-caught-up).
+
 ## Comparing DropCopy vs Order Stream
 
-| Feature            | DropCopy                | Order Stream                 |
-| ------------------ | ----------------------- | ---------------------------- |
-| **Scope**          | Firm-wide executions    | User's orders only           |
-| **Use Case**       | Back-office, compliance | Trading UI, order management |
-| **Data**           | Executions, trades      | Orders, executions           |
-| **Authentication** | Firm-level token        | User token                   |
+| Feature | DropCopy | Order Stream |
+| - | - | - |
+| **Scope** | Firm-wide executions | User's orders only |
+| **Use Case** | Back-office, compliance | Trading UI, order management |
+| **Data** | Executions, trades | Orders, executions |
+| **Authentication** | Firm-level token | User token |
 
 <Tip>
   **When to Use DropCopy**

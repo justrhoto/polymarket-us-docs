@@ -12,9 +12,9 @@ The Tags API provides access to tags used to categorize and organize events and 
 
 ## Endpoints
 
-| Method | Endpoint               | Description       |
-| ------ | ---------------------- | ----------------- |
-| `GET`  | `/v2/tags`             | Get all tags      |
-| `GET`  | `/v2/tags/{id}`        | Get tag by ID     |
-| `GET`  | `/v2/tags/slug/{slug}` | Get tag by slug   |
-| `GET`  | `/v2/tags/featured`    | Get featured tags |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v2/tags` | Get all tags |
+| `GET` | `/v2/tags/{id}` | Get tag by ID |
+| `GET` | `/v2/tags/slug/{slug}` | Get tag by slug |
+| `GET` | `/v2/tags/featured` | Get featured tags |

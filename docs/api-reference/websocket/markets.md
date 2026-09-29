@@ -24,11 +24,11 @@ wss://api.polymarket.us/v1/ws/markets
 
 ## Subscription Types
 
-| Value                                | Description                      |
-| ------------------------------------ | -------------------------------- |
-| `SUBSCRIPTION_TYPE_MARKET_DATA`      | Full order book and market stats |
-| `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` | Lightweight price data only      |
-| `SUBSCRIPTION_TYPE_TRADE`            | Real-time trade notifications    |
+| Value | Description |
+| - | - |
+| `SUBSCRIPTION_TYPE_MARKET_DATA` | Full order book and market stats |
+| `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` | Lightweight price data only |
+| `SUBSCRIPTION_TYPE_TRADE` | Real-time trade notifications |
 
 ## Market Data Subscription
 
@@ -150,31 +150,31 @@ For reduced bandwidth, use the lite subscription:
 
 ## Market States
 
-| Value                                  | Description                   |
-| -------------------------------------- | ----------------------------- |
-| `MARKET_STATE_OPEN`                    | Market open for trading       |
-| `MARKET_STATE_PREOPEN`                 | Market in pre-open phase      |
-| `MARKET_STATE_SUSPENDED`               | Trading temporarily suspended |
-| `MARKET_STATE_HALTED`                  | Trading halted                |
-| `MARKET_STATE_EXPIRED`                 | Market has expired            |
-| `MARKET_STATE_TERMINATED`              | Market terminated             |
-| `MARKET_STATE_MATCH_AND_CLOSE_AUCTION` | Market in closing auction     |
+| Value | Description |
+| - | - |
+| `MARKET_STATE_OPEN` | Market open for trading |
+| `MARKET_STATE_PREOPEN` | Market in pre-open phase |
+| `MARKET_STATE_SUSPENDED` | Trading temporarily suspended |
+| `MARKET_STATE_HALTED` | Trading halted |
+| `MARKET_STATE_EXPIRED` | Market has expired |
+| `MARKET_STATE_TERMINATED` | Market terminated |
+| `MARKET_STATE_MATCH_AND_CLOSE_AUCTION` | Market in closing auction |
 
 ## Order Side
 
-| Value             | Description |
-| ----------------- | ----------- |
-| `ORDER_SIDE_BUY`  | Buy order   |
-| `ORDER_SIDE_SELL` | Sell order  |
+| Value | Description |
+| - | - |
+| `ORDER_SIDE_BUY` | Buy order |
+| `ORDER_SIDE_SELL` | Sell order |
 
 ## Order Intent
 
-| Value                     | Description        |
-| ------------------------- | ------------------ |
-| `ORDER_INTENT_BUY_LONG`   | Buy YES contracts  |
-| `ORDER_INTENT_SELL_LONG`  | Sell YES contracts |
-| `ORDER_INTENT_BUY_SHORT`  | Buy NO contracts   |
-| `ORDER_INTENT_SELL_SHORT` | Sell NO contracts  |
+| Value | Description |
+| - | - |
+| `ORDER_INTENT_BUY_LONG` | Buy YES contracts |
+| `ORDER_INTENT_SELL_LONG` | Sell YES contracts |
+| `ORDER_INTENT_BUY_SHORT` | Buy NO contracts |
+| `ORDER_INTENT_SELL_SHORT` | Sell NO contracts |
 
 ## Debouncing
 
@@ -203,9 +203,9 @@ When debouncing is enabled, updates are batched and sent at regular intervals ra
 
 The full market data subscription includes the top levels of the order book. Each level shows:
 
-| Field | Description                                                                      |
-| ----- | -------------------------------------------------------------------------------- |
-| `px`  | Price level                                                                      |
+| Field | Description |
+| - | - |
+| `px` | Price level |
 | `qty` | Total quantity at this price. May contain decimals for partial-contract markets. |
 
 Order book levels are sorted best-to-worst (highest bid first, lowest ask first).

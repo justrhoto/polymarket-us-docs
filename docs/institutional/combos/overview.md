@@ -12,10 +12,10 @@ The public `polymarket.v1.ComboAPI` gRPC service creates and reads combo instrum
 
 ## Endpoints
 
-| Method | Endpoint                     | Scope          | Per-firm limit | Description                                  |
-| ------ | ---------------------------- | -------------- | -------------- | -------------------------------------------- |
-| `GET`  | `/v1/combos?symbol={symbol}` | `read:orders`  | 100 req/sec    | Get a combo by exact symbol                  |
-| `POST` | `/v1/combos`                 | `write:orders` | 1 req/sec      | Create or retrieve a combo for a set of legs |
+| Method | Endpoint | Scope | Per-firm limit | Description |
+| - | - | - | - | - |
+| `GET` | `/v1/combos?symbol={symbol}` | `read:orders` | 100 req/sec | Get a combo by exact symbol |
+| `POST` | `/v1/combos` | `write:orders` | 1 req/sec | Create or retrieve a combo for a set of legs |
 
 All calls require bearer-token authentication and an acting participant, supplied through `x-participant-id` or the token's `participant_id` claim.
 

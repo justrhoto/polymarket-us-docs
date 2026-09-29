@@ -16,11 +16,11 @@ The Accounts API is the public identity and account **query** surface. Market ma
 
 ## Endpoints
 
-| Method | Endpoint       | Description                                  |
-| ------ | -------------- | -------------------------------------------- |
-| `GET`  | `/v1/whoami`   | Get current user and firm info               |
-| `GET`  | `/v1/accounts` | List accounts the caller may use to trade    |
-| `GET`  | `/v1/users`    | List users the caller may trade on behalf of |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/whoami` | Get current user and firm info |
+| `GET` | `/v1/accounts` | List accounts the caller may use to trade |
+| `GET` | `/v1/users` | List users the caller may trade on behalf of |
 
 ## Account Hierarchy
 
@@ -37,9 +37,9 @@ Firm
 
 ## User vs Account
 
-| Entity      | Description                                   |
-| ----------- | --------------------------------------------- |
-| **User**    | A person with identity (KYC verified)         |
+| Entity | Description |
+| - | - |
+| **User** | A person with identity (KYC verified) |
 | **Account** | A trading account with balances and positions |
 
 A user can have multiple accounts (e.g., for different strategies or purposes).

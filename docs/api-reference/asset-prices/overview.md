@@ -12,20 +12,20 @@ The Asset Prices API returns the reference index prices that crypto price market
 
 ## Endpoints
 
-| Method | Endpoint                   | Description                                             |
-| ------ | -------------------------- | ------------------------------------------------------- |
-| `GET`  | `/v1/asset-prices/history` | Bucketed OHLC index price series for one or more assets |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/asset-prices/history` | Bucketed OHLC index price series for one or more assets |
 
 No authentication is required.
 
 ## Query Parameters
 
-| Parameter | Type                   | Description                                                                                                                                                                                                                  |
-| --------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `assets`  | string\[]              | Assets in canonical `<class>:<symbol>` form, e.g. `crypto:btc`. Repeat the parameter for several assets (`?assets=crypto:btc&assets=crypto:eth`), at most 10. This is the same value as `assetPriceTerms.asset` on a market. |
-| `from`    | integer (unix seconds) | Required. Start of the window. Aligned down to the bucket, and raised when the window would hold more than 3600 candles.                                                                                                     |
-| `to`      | integer (unix seconds) | End of the window. `0` or a future value means now; the in-progress bucket is included.                                                                                                                                      |
-| `bucket`  | enum                   | Required candle width: `ASSET_PRICE_BUCKET_1S`, `_5S`, `_15S`, `_1M`, `_5M`, `_15M`, `_1H`, `_1D`.                                                                                                                           |
+| Parameter | Type | Description |
+| - | - | - |
+| `assets` | string\[] | Assets in canonical `<class>:<symbol>` form, e.g. `crypto:btc`. Repeat the parameter for several assets (`?assets=crypto:btc&assets=crypto:eth`), at most 10. This is the same value as `assetPriceTerms.asset` on a market. |
+| `from` | integer (unix seconds) | Required. Start of the window. Aligned down to the bucket, and raised when the window would hold more than 3600 candles. |
+| `to` | integer (unix seconds) | End of the window. `0` or a future value means now; the in-progress bucket is included. |
+| `bucket` | enum | Required candle width: `ASSET_PRICE_BUCKET_1S`, `_5S`, `_15S`, `_1M`, `_5M`, `_15M`, `_1H`, `_1D`. |
 
 The 3600-candle cap is the only size limit, so the widest window scales with the bucket: an hour at `1S`, 60 hours at `1M`, 150 days at `1H`. The effective `from` and `to` after alignment are echoed on each series.
 
@@ -55,15 +55,15 @@ GET /v1/asset-prices/history?assets=crypto:btc&from=1789949700&to=1789950600&buc
 
 ## Response Fields
 
-| Field                                                | Type             | Description                                                                                                                                                           |
-| ---------------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `series[].asset`                                     | object           | The asset this series belongs to. Match series to your request by this field, never by position: REST returns series sorted by symbol.                                |
-| `series[].currency`                                  | string           | ISO 4217 currency every candle price is quoted in                                                                                                                     |
-| `series[].bucket`                                    | enum             | Candle width of the series                                                                                                                                            |
-| `series[].from` / `series[].to`                      | integer          | Effective window bounds (unix seconds) after alignment and clamping                                                                                                   |
-| `series[].candles[].timestamp`                       | integer          | Bucket start (unix seconds)                                                                                                                                           |
-| `series[].candles[].open` / `high` / `low` / `close` | string (decimal) | Index prices in the bucket, as decimal strings                                                                                                                        |
-| `series[].candles[].tickCount`                       | integer          | Number of index publications in the bucket. `0` marks a gap-filled bucket: `close` is carried forward from the previous bucket and `open`, `high` and `low` equal it. |
+| Field | Type | Description |
+| - | - | - |
+| `series[].asset` | object | The asset this series belongs to. Match series to your request by this field, never by position: REST returns series sorted by symbol. |
+| `series[].currency` | string | ISO 4217 currency every candle price is quoted in |
+| `series[].bucket` | enum | Candle width of the series |
+| `series[].from` / `series[].to` | integer | Effective window bounds (unix seconds) after alignment and clamping |
+| `series[].candles[].timestamp` | integer | Bucket start (unix seconds) |
+| `series[].candles[].open` / `high` / `low` / `close` | string (decimal) | Index prices in the bucket, as decimal strings |
+| `series[].candles[].tickCount` | integer | Number of index publications in the bucket. `0` marks a gap-filled bucket: `close` is carried forward from the previous bucket and `open`, `high` and `low` equal it. |
 
 Candles are dense and ascending, one per bucket in the effective window. An unknown symbol in a known class returns an empty series rather than an error.
 

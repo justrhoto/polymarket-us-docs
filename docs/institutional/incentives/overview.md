@@ -12,10 +12,10 @@ The Incentives API provides access to active incentive programs and your earned 
 
 ## Endpoints
 
-| Method | Endpoint                  | Auth     | Description                 |
-| ------ | ------------------------- | -------- | --------------------------- |
-| `GET`  | `/v1/incentives`          | None     | Get incentive programs      |
-| `GET`  | `/v1/incentives/earnings` | Required | Get your incentive earnings |
+| Method | Endpoint | Auth | Description |
+| - | - | - | - |
+| `GET` | `/v1/incentives` | None | Get incentive programs |
+| `GET` | `/v1/incentives/earnings` | Required | Get your incentive earnings |
 
 <Warning>
   **Authentication Required for Earnings**
@@ -35,14 +35,14 @@ GET /v1/incentives?pageSize=10&symbols=aec-nba-bos-nyk-2026-04-01
 
 Parameter names accept both camelCase (`pageSize`) and snake\_case (`page_size`) forms.
 
-| Parameter        | Type      | Required | Description                                                 |
-| ---------------- | --------- | -------- | ----------------------------------------------------------- |
-| `pageSize`       | integer   | No       | Number of markets per page                                  |
-| `pageToken`      | string    | No       | Pagination token from a previous response's `nextPageToken` |
-| `symbols`        | string\[] | No       | Filter by market symbols                                    |
-| `orderBy`        | string    | No       | Sort field: `created_at` (default)                          |
-| `orderDirection` | string    | No       | Sort direction: `desc` (default) or `asc`                   |
-| `statuses`       | string\[] | No       | Filter by status: `active`, `closed`, `pending`             |
+| Parameter | Type | Required | Description |
+| - | - | - | - |
+| `pageSize` | integer | No | Number of markets per page |
+| `pageToken` | string | No | Pagination token from a previous response's `nextPageToken` |
+| `symbols` | string\[] | No | Filter by market symbols |
+| `orderBy` | string | No | Sort field: `created_at` (default) |
+| `orderDirection` | string | No | Sort direction: `desc` (default) or `asc` |
+| `statuses` | string\[] | No | Filter by status: `active`, `closed`, `pending` |
 
 ### Response
 
@@ -89,26 +89,26 @@ Parameter names accept both camelCase (`pageSize`) and snake\_case (`page_size`)
 
 ### IncentiveProgram Fields
 
-| Field         | Type          | Description                       |
-| ------------- | ------------- | --------------------------------- |
-| `marketSlug`  | string        | Market identifier                 |
+| Field | Type | Description |
+| - | - | - |
+| `marketSlug` | string | Market identifier |
 | `timePeriods` | TimePeriod\[] | Incentive periods for this market |
 
 ### TimePeriod Fields
 
-| Field            | Type    | Description                                                                                                                                                                                                                                                                                                                       |
-| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `programId`      | string  | Unique program period identifier                                                                                                                                                                                                                                                                                                  |
-| `programType`    | string  | Program type (e.g., `liquidityProgram`)                                                                                                                                                                                                                                                                                           |
-| `start`          | string  | ISO 8601 start timestamp                                                                                                                                                                                                                                                                                                          |
-| `end`            | string  | ISO 8601 end timestamp. Omitted when the end time is not known yet                                                                                                                                                                                                                                                                |
-| `rewardPool`     | number  | Total reward pool for this period in USD                                                                                                                                                                                                                                                                                          |
-| `status`         | string  | `active`, `closed`, or `pending`                                                                                                                                                                                                                                                                                                  |
-| `discountFactor` | number  | Discount factor for scoring (optional)                                                                                                                                                                                                                                                                                            |
-| `targetSize`     | integer | Liquidity programs: minimum aggregate resting size, in contracts, on a side of the book for that side to qualify (optional)                                                                                                                                                                                                       |
-| `maxSpread`      | number  | Liquidity programs only. Optional **half-width** in price dollars (`0.035` = 3.5¢ from mid, so a 7¢ gap). Where set, a second pays only if both sides of the book reach `targetSize` with each size-adjusted price within `maxSpread` of the midpoint. Omitted (never `0`) when the program has no Max Spread. See the note below |
-| `period`         | string  | Reward period type: `early`, `day_of`, `live`, etc.                                                                                                                                                                                                                                                                               |
-| `createdAt`      | string  | ISO 8601 timestamp when the program was created                                                                                                                                                                                                                                                                                   |
+| Field | Type | Description |
+| - | - | - |
+| `programId` | string | Unique program period identifier |
+| `programType` | string | Program type (e.g., `liquidityProgram`) |
+| `start` | string | ISO 8601 start timestamp |
+| `end` | string | ISO 8601 end timestamp. Omitted when the end time is not known yet |
+| `rewardPool` | number | Total reward pool for this period in USD |
+| `status` | string | `active`, `closed`, or `pending` |
+| `discountFactor` | number | Discount factor for scoring (optional) |
+| `targetSize` | integer | Liquidity programs: minimum aggregate resting size, in contracts, on a side of the book for that side to qualify (optional) |
+| `maxSpread` | number | Liquidity programs only. Optional **half-width** in price dollars (`0.035` = 3.5¢ from mid, so a 7¢ gap). Where set, a second pays only if both sides of the book reach `targetSize` with each size-adjusted price within `maxSpread` of the midpoint. Omitted (never `0`) when the program has no Max Spread. See the note below |
+| `period` | string | Reward period type: `early`, `day_of`, `live`, etc. |
+| `createdAt` | string | ISO 8601 timestamp when the program was created |
 
 <Note>
   **Reading `maxSpread`.** A liquidity program may carry a maximum spread from the midpoint. Where it does:
@@ -135,12 +135,12 @@ GET /v1/incentives/earnings?startDate=2026-03-21&marketSlug=aec-nba-bos-nyk-2026
 
 Parameter names accept both camelCase (`startDate`) and snake\_case (`start_date`) forms.
 
-| Parameter     | Type   | Required | Description                                                |
-| ------------- | ------ | -------- | ---------------------------------------------------------- |
-| `startDate`   | string | No       | Start date filter (`YYYY-MM-DD`). Defaults to `2026-03-21` |
-| `endDate`     | string | No       | End date filter (`YYYY-MM-DD`)                             |
-| `marketSlug`  | string | No       | Filter by market                                           |
-| `programType` | string | No       | Filter by program type (e.g., `liquidityProgram`)          |
+| Parameter | Type | Required | Description |
+| - | - | - | - |
+| `startDate` | string | No | Start date filter (`YYYY-MM-DD`). Defaults to `2026-03-21` |
+| `endDate` | string | No | End date filter (`YYYY-MM-DD`) |
+| `marketSlug` | string | No | Filter by market |
+| `programType` | string | No | Filter by program type (e.g., `liquidityProgram`) |
 
 ### Response
 
@@ -178,17 +178,17 @@ Parameter names accept both camelCase (`startDate`) and snake\_case (`start_date
 
 ### UserReward Fields
 
-| Field         | Type   | Description                                                                                                     |
-| ------------- | ------ | --------------------------------------------------------------------------------------------------------------- |
-| `reward`      | number | Reward amount in USD (sum of payouts for this market and date with this status)                                 |
-| `programType` | string | Program type (e.g., `liquidityProgram`)                                                                         |
-| `marketSlug`  | string | Market identifier                                                                                               |
-| `date`        | string | Reward date in Eastern Time (`YYYY-MM-DD`)                                                                      |
-| `status`      | string | Payout disposition: `PAID`, `PENDING`, or `SKIPPED`. A single `marketSlug` + `date` may appear once per status. |
+| Field | Type | Description |
+| - | - | - |
+| `reward` | number | Reward amount in USD (sum of payouts for this market and date with this status) |
+| `programType` | string | Program type (e.g., `liquidityProgram`) |
+| `marketSlug` | string | Market identifier |
+| `date` | string | Reward date in Eastern Time (`YYYY-MM-DD`) |
+| `status` | string | Payout disposition: `PAID`, `PENDING`, or `SKIPPED`. A single `marketSlug` + `date` may appear once per status. |
 
 ## Rate Limits
 
-| Endpoint                      | Rate Limit            |
-| ----------------------------- | --------------------- |
-| `GET /v1/incentives`          | 5 requests per second |
+| Endpoint | Rate Limit |
+| - | - |
+| `GET /v1/incentives` | 5 requests per second |
 | `GET /v1/incentives/earnings` | 5 requests per second |

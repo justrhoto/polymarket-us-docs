@@ -1,0 +1,110 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.polymarket.us/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Get instrument settlement
+
+> Read the final settlement price for an exact instrument symbol, including terminated instruments. Requires a bearer token with read:marketdata scope; no x-participant-id header is needed. Returns 200 with stats absent when the newest record is not a final EVENT_TIER_1 settlement, and 404 for an unknown symbol. Later reads can reflect corrections.
+
+
+
+## OpenAPI
+
+````yaml /institutional/oapi-schemas/settlement-schema.json get /v1/instruments/{symbol}/settlement
+openapi: 3.0.3
+info:
+  title: Settlement API
+  version: v1.0.0
+servers:
+  - url: https://api.prod.polymarketexchange.com
+    description: Production server
+security:
+  - bearerAuth: []
+tags:
+  - name: SettlementService
+paths:
+  /v1/instruments/{symbol}/settlement:
+    get:
+      tags:
+        - Settlement
+      summary: Get instrument settlement
+      description: >-
+        Read the final settlement price for an exact instrument symbol,
+        including terminated instruments. Requires a bearer token with
+        read:marketdata scope; no x-participant-id header is needed. Returns 200
+        with stats absent when the newest record is not a final EVENT_TIER_1
+        settlement, and 404 for an unknown symbol. Later reads can reflect
+        corrections.
+      operationId: SettlementService_GetInstrumentSettlement
+      parameters:
+        - name: symbol
+          description: Exact instrument symbol; case-sensitive. Required.
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/v1GetInstrumentSettlementResponse'
+components:
+  schemas:
+    v1GetInstrumentSettlementResponse:
+      type: object
+      properties:
+        symbol:
+          type: string
+        stats:
+          $ref: '#/components/schemas/v1InstrumentStats'
+        priceScale:
+          type: string
+          format: int64
+          description: >-
+            Divide stats.settlementPx by this value to obtain the price. Encoded
+            as a JSON string.
+    v1InstrumentStats:
+      type: object
+      properties:
+        settlementPx:
+          type: string
+          format: int64
+          nullable: true
+          description: >-
+            Raw settlement price, encoded as a JSON string. A present zero is
+            valid.
+        settlementPreliminary:
+          type: boolean
+          description: Present and false when stats is returned.
+          nullable: true
+        settlementPriceCalculationMethod:
+          type: string
+          description: >-
+            SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1 when stats is
+            returned.
+          nullable: true
+        settlementPriceCalculationText:
+          type: string
+          description: >-
+            Free-form text describing how the settlement price was determined
+
+            (e.g., the exact outcome of the underlying event used for
+            resolution).
+          nullable: true
+        settlementSetTime:
+          type: string
+          format: date-time
+          description: Time the settlement price was set, when available.
+          nullable: true
+      description: >-
+        Final settlement fields. The entire stats object is absent when the
+        newest record has no non-preliminary EVENT_TIER_1 settlement.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+````

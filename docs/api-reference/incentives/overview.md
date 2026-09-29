@@ -22,10 +22,10 @@ https://api.polymarket.us
 
 ## Endpoints
 
-| Method | Endpoint                  | Auth     | Description                 |
-| ------ | ------------------------- | -------- | --------------------------- |
-| `GET`  | `/v1/incentives`          | Required | Get incentive programs      |
-| `GET`  | `/v1/incentives/earnings` | Required | Get your incentive earnings |
+| Method | Endpoint | Auth | Description |
+| - | - | - | - |
+| `GET` | `/v1/incentives` | Required | Get incentive programs |
+| `GET` | `/v1/incentives/earnings` | Required | Get your incentive earnings |
 
 <Warning>
   **Authentication**
@@ -43,19 +43,19 @@ GET /v1/incentives?page_size=10&symbols=aec-nba-bos-nyk-2026-04-01
 
 ### Query Parameters
 
-| Parameter           | Type      | Required | Description                                                            |
-| ------------------- | --------- | -------- | ---------------------------------------------------------------------- |
-| `page_size`         | integer   | No       | Number of markets per page. Use with `page_token` for pagination.      |
-| `page_token`        | string    | No       | Pagination token from a previous response's `nextPageToken`.           |
-| `symbols`           | string\[] | No       | Filter by market symbols.                                              |
-| `order_by`          | string    | No       | Sort field. Defaults to `created_at`.                                  |
-| `order_direction`   | string    | No       | Sort direction: `asc` or `desc`. Defaults to `desc`.                   |
-| `statuses`          | string\[] | No       | Filter by status: `active`, `closed`, or `pending`.                    |
-| `program_type`      | string    | No       | Filter by program type, such as `liquidityProgram` or `volumeProgram`. |
-| `query`             | string    | No       | Case-insensitive substring match on market slug.                       |
-| `instrument_states` | string\[] | No       | Filter by instrument lifecycle state.                                  |
-| `category`          | string    | No       | Filter by exact event category.                                        |
-| `subcategory`       | string    | No       | Filter by exact event subcategory.                                     |
+| Parameter | Type | Required | Description |
+| - | - | - | - |
+| `page_size` | integer | No | Number of markets per page. Use with `page_token` for pagination. |
+| `page_token` | string | No | Pagination token from a previous response's `nextPageToken`. |
+| `symbols` | string\[] | No | Filter by market symbols. |
+| `order_by` | string | No | Sort field. Defaults to `created_at`. |
+| `order_direction` | string | No | Sort direction: `asc` or `desc`. Defaults to `desc`. |
+| `statuses` | string\[] | No | Filter by status: `active`, `closed`, or `pending`. |
+| `program_type` | string | No | Filter by program type, such as `liquidityProgram` or `volumeProgram`. |
+| `query` | string | No | Case-insensitive substring match on market slug. |
+| `instrument_states` | string\[] | No | Filter by instrument lifecycle state. |
+| `category` | string | No | Filter by exact event category. |
+| `subcategory` | string | No | Filter by exact event subcategory. |
 
 ### Response
 
@@ -106,32 +106,32 @@ GET /v1/incentives?page_size=10&symbols=aec-nba-bos-nyk-2026-04-01
 
 ### IncentiveProgram Fields
 
-| Field               | Type          | Description                                |
-| ------------------- | ------------- | ------------------------------------------ |
-| `marketSlug`        | string        | Market identifier                          |
-| `timePeriods`       | TimePeriod\[] | Incentive periods for this market          |
-| `instrumentState`   | string        | Exchange lifecycle state of the instrument |
-| `category`          | string        | Event category from instrument metadata    |
-| `subcategory`       | string        | Event subcategory from instrument metadata |
-| `eventStartTime`    | string        | Event start time from instrument metadata  |
-| `instrumentProduct` | string        | Product from instrument metadata           |
+| Field | Type | Description |
+| - | - | - |
+| `marketSlug` | string | Market identifier |
+| `timePeriods` | TimePeriod\[] | Incentive periods for this market |
+| `instrumentState` | string | Exchange lifecycle state of the instrument |
+| `category` | string | Event category from instrument metadata |
+| `subcategory` | string | Event subcategory from instrument metadata |
+| `eventStartTime` | string | Event start time from instrument metadata |
+| `instrumentProduct` | string | Product from instrument metadata |
 
 ### TimePeriod Fields
 
-| Field              | Type    | Description                                                                                                                                                                                                                                                                                                                       |
-| ------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `programId`        | string  | Unique program period identifier                                                                                                                                                                                                                                                                                                  |
-| `programType`      | string  | Program type (e.g. `liquidityProgram`)                                                                                                                                                                                                                                                                                            |
-| `start`            | string  | ISO 8601 start timestamp                                                                                                                                                                                                                                                                                                          |
-| `end`              | string  | ISO 8601 end timestamp (optional; omitted for ongoing programs)                                                                                                                                                                                                                                                                   |
-| `rewardPool`       | number  | Total reward pool for this period in USD                                                                                                                                                                                                                                                                                          |
-| `status`           | string  | `active`, `closed`, or `pending`                                                                                                                                                                                                                                                                                                  |
-| `discountFactor`   | number  | Discount factor for scoring (optional; omitted if unset)                                                                                                                                                                                                                                                                          |
-| `targetSize`       | integer | Liquidity programs: minimum aggregate resting size, in contracts, on a side of the book for that side to qualify (optional; omitted if unset)                                                                                                                                                                                     |
-| `maxSpread`        | number  | Liquidity programs only. Optional **half-width** in price dollars (`0.035` = 3.5¢ from mid, so a 7¢ gap). Where set, a second pays only if both sides of the book reach `targetSize` with each size-adjusted price within `maxSpread` of the midpoint. Omitted (never `0`) when the program has no Max Spread. See the note below |
-| `period`           | string  | Reward period type: `early`, `day_of`, `live`, etc.                                                                                                                                                                                                                                                                               |
-| `createdAt`        | string  | ISO 8601 timestamp when the program was created                                                                                                                                                                                                                                                                                   |
-| `minTakerNotional` | integer | Minimum taker notional for volume programs (optional)                                                                                                                                                                                                                                                                             |
+| Field | Type | Description |
+| - | - | - |
+| `programId` | string | Unique program period identifier |
+| `programType` | string | Program type (e.g. `liquidityProgram`) |
+| `start` | string | ISO 8601 start timestamp |
+| `end` | string | ISO 8601 end timestamp (optional; omitted for ongoing programs) |
+| `rewardPool` | number | Total reward pool for this period in USD |
+| `status` | string | `active`, `closed`, or `pending` |
+| `discountFactor` | number | Discount factor for scoring (optional; omitted if unset) |
+| `targetSize` | integer | Liquidity programs: minimum aggregate resting size, in contracts, on a side of the book for that side to qualify (optional; omitted if unset) |
+| `maxSpread` | number | Liquidity programs only. Optional **half-width** in price dollars (`0.035` = 3.5¢ from mid, so a 7¢ gap). Where set, a second pays only if both sides of the book reach `targetSize` with each size-adjusted price within `maxSpread` of the midpoint. Omitted (never `0`) when the program has no Max Spread. See the note below |
+| `period` | string | Reward period type: `early`, `day_of`, `live`, etc. |
+| `createdAt` | string | ISO 8601 timestamp when the program was created |
+| `minTakerNotional` | integer | Minimum taker notional for volume programs (optional) |
 
 <Note>
   **Reading `maxSpread`.** A liquidity program may carry a maximum spread from the midpoint. Where it does:
@@ -156,12 +156,12 @@ GET /v1/incentives/earnings?start_date=2026-03-21&market_slug=aec-nba-bos-nyk-20
 
 ### Query Parameters
 
-| Parameter      | Type   | Required | Description                                                   |
-| -------------- | ------ | -------- | ------------------------------------------------------------- |
-| `start_date`   | string | No       | Start date filter (`YYYY-MM-DD`). Defaults to program launch. |
-| `end_date`     | string | No       | End date filter (`YYYY-MM-DD`). Omit for through-today.       |
-| `market_slug`  | string | No       | Filter by market slug.                                        |
-| `program_type` | string | No       | Filter by program type (e.g. `liquidityProgram`).             |
+| Parameter | Type | Required | Description |
+| - | - | - | - |
+| `start_date` | string | No | Start date filter (`YYYY-MM-DD`). Defaults to program launch. |
+| `end_date` | string | No | End date filter (`YYYY-MM-DD`). Omit for through-today. |
+| `market_slug` | string | No | Filter by market slug. |
+| `program_type` | string | No | Filter by program type (e.g. `liquidityProgram`). |
 
 ### Response
 
@@ -192,17 +192,17 @@ GET /v1/incentives/earnings?start_date=2026-03-21&market_slug=aec-nba-bos-nyk-20
 
 ### UserReward Fields
 
-| Field         | Type   | Description                                                            |
-| ------------- | ------ | ---------------------------------------------------------------------- |
-| `reward`      | number | Reward amount in USD (sum of all payouts for this market on this date) |
-| `programType` | string | Program type (e.g. `liquidityProgram`)                                 |
-| `marketSlug`  | string | Market identifier                                                      |
-| `date`        | string | Reward date in Eastern Time (`YYYY-MM-DD`)                             |
-| `status`      | string | Payout disposition: `PAID`, `PENDING`, or `SKIPPED`                    |
+| Field | Type | Description |
+| - | - | - |
+| `reward` | number | Reward amount in USD (sum of all payouts for this market on this date) |
+| `programType` | string | Program type (e.g. `liquidityProgram`) |
+| `marketSlug` | string | Market identifier |
+| `date` | string | Reward date in Eastern Time (`YYYY-MM-DD`) |
+| `status` | string | Payout disposition: `PAID`, `PENDING`, or `SKIPPED` |
 
 ## Rate Limits
 
-| Endpoint                      | Rate Limit          |
-| ----------------------------- | ------------------- |
-| `GET /v1/incentives`          | 5 requests / second |
+| Endpoint | Rate Limit |
+| - | - |
+| `GET /v1/incentives` | 5 requests / second |
 | `GET /v1/incentives/earnings` | 5 requests / second |

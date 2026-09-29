@@ -44,15 +44,15 @@ Each firm can open one new `StreamRFQEvents` connection per second, with one ope
 
 Each response contains exactly one event payload.
 
-| Event             | Payload               | Visibility                           | Description                                                   |
-| ----------------- | --------------------- | ------------------------------------ | ------------------------------------------------------------- |
-| `rfq_created`     | `RFQCreatedEvent`     | Public                               | A new RFQ is open.                                            |
-| `rfq_closed`      | `RFQClosedEvent`      | Public                               | An RFQ closed because it was deleted or a quote was accepted. |
-| `quote_created`   | `QuoteCreatedEvent`   | Requester and quote creator          | A quote was created or replaced.                              |
-| `quote_deleted`   | `QuoteDeletedEvent`   | Requester and quote creator          | A quote was deleted or declined.                              |
-| `quote_accepted`  | `QuoteAcceptedEvent`  | Requester and selected quote creator | The requester accepted one side and last look started.        |
-| `quote_confirmed` | `QuoteConfirmedEvent` | Requester and selected quote creator | The maker confirmed and paired submission was scheduled.      |
-| `quote_executed`  | `QuoteExecutedEvent`  | Requester and selected quote creator | Both exchange orders were accepted for submission.            |
+| Event | Payload | Visibility | Description |
+| - | - | - | - |
+| `rfq_created` | `RFQCreatedEvent` | Public | A new RFQ is open. |
+| `rfq_closed` | `RFQClosedEvent` | Public | An RFQ closed because it was deleted or a quote was accepted. |
+| `quote_created` | `QuoteCreatedEvent` | Requester and quote creator | A quote was created or replaced. |
+| `quote_deleted` | `QuoteDeletedEvent` | Requester and quote creator | A quote was deleted or declined. |
+| `quote_accepted` | `QuoteAcceptedEvent` | Requester and selected quote creator | The requester accepted one side and last look started. |
+| `quote_confirmed` | `QuoteConfirmedEvent` | Requester and selected quote creator | The maker confirmed and paired submission was scheduled. |
+| `quote_executed` | `QuoteExecutedEvent` | Requester and selected quote creator | Both exchange orders were accepted for submission. |
 
 Successful quote acceptance produces both events: public `rfq_closed` and participant-private `quote_accepted`. A client may receive `rfq_closed` first. Treat it as "stop quoting this RFQ," not "no quote was accepted." Keep existing quote state until the private quote event arrives, or reconcile it with `GetQuotes`.
 
@@ -62,19 +62,19 @@ The current public stream does not emit expiration, done-away, pending-risk, pen
 
 ### RFQ
 
-| Field              | Type                   | Description                                                      |
-| ------------------ | ---------------------- | ---------------------------------------------------------------- |
-| `id`               | string                 | RFQ ID.                                                          |
-| `qtyDecimal`       | optional string        | Fixed contract quantity. Mutually exclusive with `cashOrderQty`. |
-| `cashOrderQty`     | optional string        | Cash notional. Mutually exclusive with `qtyDecimal`.             |
-| `symbol`           | string                 | Combo symbol.                                                    |
-| `rfqCreatorUserId` | string                 | Pseudonymous requester identity.                                 |
-| `createdTime`      | `Timestamp`            | Creation time.                                                   |
-| `restRemainder`    | bool                   | Whether an unfilled requester remainder may rest.                |
-| `status`           | `RFQStatus`            | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`.                        |
-| `updatedTime`      | `Timestamp`            | Last durable state change.                                       |
-| `comboLegs`        | repeated `RFQComboLeg` | Ordered combo legs captured when the RFQ was created.            |
-| `tickSize`         | optional double        | Minimum price increment in dollars. Protobuf: `tick_size`.       |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | RFQ ID. |
+| `qtyDecimal` | optional string | Fixed contract quantity. Mutually exclusive with `cashOrderQty`. |
+| `cashOrderQty` | optional string | Cash notional. Mutually exclusive with `qtyDecimal`. |
+| `symbol` | string | Combo symbol. |
+| `rfqCreatorUserId` | string | Pseudonymous requester identity. |
+| `createdTime` | `Timestamp` | Creation time. |
+| `restRemainder` | bool | Whether an unfilled requester remainder may rest. |
+| `status` | `RFQStatus` | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`. |
+| `updatedTime` | `Timestamp` | Last durable state change. |
+| `comboLegs` | repeated `RFQComboLeg` | Ordered combo legs captured when the RFQ was created. |
+| `tickSize` | optional double | Minimum price increment in dollars. Protobuf: `tick_size`. |
 
 Each `RFQComboLeg` contains `symbol`, `side`, and an optional `settlementPrice`. The settlement is the raw YES/LONG price normalized to `[0,1]`; it is never inverted for a `SIDE_SELL` leg. Presence matters: `"0"` is a valid settled price, while an absent field means no valid settlement was available when the event was published.
 
@@ -84,41 +84,41 @@ Quote prices must be multiples of `tickSize` and within the instrument's price l
 
 ### Quote
 
-| Field                  | Type            | Description                                             |
-| ---------------------- | --------------- | ------------------------------------------------------- |
-| `id`                   | string          | Quote ID.                                               |
-| `rfqId`                | string          | Parent RFQ ID.                                          |
-| `creatorRfqUserId`     | string          | Pseudonymous quote creator identity.                    |
-| `symbol`               | string          | Combo symbol.                                           |
-| `status`               | `QuoteStatus`   | Current quote state.                                    |
-| `createdTime`          | `Timestamp`     | Original quote creation time.                           |
-| `buyPrice`             | string          | Requester-buy price; maker sells.                       |
-| `sellPrice`            | string          | Requester-sell price; maker buys.                       |
-| `restRemainder`        | bool            | Whether the maker order may rest.                       |
-| `postOnly`             | bool            | Whether the maker order is participate-don't-initiate.  |
-| `rfqCreatorUserId`     | string          | Pseudonymous requester identity.                        |
-| `rfqCashOrderQty`      | optional string | Parent RFQ cash notional, when cash-sized.              |
-| `buyQtyDecimal`        | string          | Server-derived requester-buy quantity.                  |
-| `sellQtyDecimal`       | string          | Server-derived requester-sell quantity.                 |
-| `updatedTime`          | `Timestamp`     | Last durable state change.                              |
-| `acceptedSide`         | `Side`          | Requester's accepted side, when selected.               |
-| `acceptedTime`         | `Timestamp`     | Acceptance time, when selected.                         |
-| `confirmedTime`        | `Timestamp`     | Confirmation time, when confirmed.                      |
-| `confirmationDeadline` | `Timestamp`     | Maker's last-look deadline, when accepted.              |
-| `executionDeadline`    | `Timestamp`     | Scheduled paired-order submission time, when confirmed. |
-| `executedTime`         | `Timestamp`     | Durable execution-state timestamp, when executed.       |
-| `rfqCreatorOrderId`    | optional string | Requester's exchange order ID, when available.          |
-| `creatorOrderId`       | optional string | Quoter's exchange order ID, when available.             |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | Quote ID. |
+| `rfqId` | string | Parent RFQ ID. |
+| `creatorRfqUserId` | string | Pseudonymous quote creator identity. |
+| `symbol` | string | Combo symbol. |
+| `status` | `QuoteStatus` | Current quote state. |
+| `createdTime` | `Timestamp` | Original quote creation time. |
+| `buyPrice` | string | Requester-buy price; maker sells. |
+| `sellPrice` | string | Requester-sell price; maker buys. |
+| `restRemainder` | bool | Whether the maker order may rest. |
+| `postOnly` | bool | Whether the maker order is participate-don't-initiate. |
+| `rfqCreatorUserId` | string | Pseudonymous requester identity. |
+| `rfqCashOrderQty` | optional string | Parent RFQ cash notional, when cash-sized. |
+| `buyQtyDecimal` | string | Server-derived requester-buy quantity. |
+| `sellQtyDecimal` | string | Server-derived requester-sell quantity. |
+| `updatedTime` | `Timestamp` | Last durable state change. |
+| `acceptedSide` | `Side` | Requester's accepted side, when selected. |
+| `acceptedTime` | `Timestamp` | Acceptance time, when selected. |
+| `confirmedTime` | `Timestamp` | Confirmation time, when confirmed. |
+| `confirmationDeadline` | `Timestamp` | Maker's last-look deadline, when accepted. |
+| `executionDeadline` | `Timestamp` | Scheduled paired-order submission time, when confirmed. |
+| `executedTime` | `Timestamp` | Durable execution-state timestamp, when executed. |
+| `rfqCreatorOrderId` | optional string | Requester's exchange order ID, when available. |
+| `creatorOrderId` | optional string | Quoter's exchange order ID, when available. |
 
 The requester and quoter can both see both exchange order IDs on the embedded `Quote`. Client order IDs are not part of durable `Quote` state.
 
 ## Lifecycle-Specific Fields
 
-| Event             | Additional fields                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------------------------- |
-| `quote_accepted`  | `confirmationDeadline`: authoritative deadline for `ConfirmQuote` or `DeleteQuote`.                  |
-| `quote_confirmed` | `executionDeadline`: scheduled paired-order submission time.                                         |
-| `quote_executed`  | `orderId`, `clientOrderId`, and `executedTime`. Order IDs are specific to the receiving participant. |
+| Event | Additional fields |
+| - | - |
+| `quote_accepted` | `confirmationDeadline`: authoritative deadline for `ConfirmQuote` or `DeleteQuote`. |
+| `quote_confirmed` | `executionDeadline`: scheduled paired-order submission time. |
+| `quote_executed` | `orderId`, `clientOrderId`, and `executedTime`. Order IDs are specific to the receiving participant. |
 
 These existing recipient-specific wrapper fields remain for compatibility. The embedded `Quote` contains the durable execution timestamps and both participants' exchange order IDs.
 
@@ -191,14 +191,14 @@ def stream_rfq_events(access_token: str, participant_id: str) -> None:
 
 ## Delivery and Recovery
 
-| Behavior   | Contract                                                                                             |
-| ---------- | ---------------------------------------------------------------------------------------------------- |
-| Delivery   | Live, best-effort push after committed state changes.                                                |
-| Filtering  | No request filters. Public RFQ events and participant-visible private quote events share the stream. |
-| Replay     | None. A new stream starts with new events only.                                                      |
-| Handoff    | No gap-free handoff between a read and stream subscription.                                          |
-| Ordering   | No ordering guarantee across publishers or reconnects.                                               |
-| Duplicates | Clients must tolerate duplicates.                                                                    |
+| Behavior | Contract |
+| - | - |
+| Delivery | Live, best-effort push after committed state changes. |
+| Filtering | No request filters. Public RFQ events and participant-visible private quote events share the stream. |
+| Replay | None. A new stream starts with new events only. |
+| Handoff | No gap-free handoff between a read and stream subscription. |
+| Ordering | No ordering guarantee across publishers or reconnects. |
+| Duplicates | Clients must tolerate duplicates. |
 
 On startup:
 
@@ -211,15 +211,15 @@ After a disconnect, reopen the stream and repeat both durable reads. If any stre
 
 ## Errors
 
-| gRPC code             | Typical cause                                                                    |
-| --------------------- | -------------------------------------------------------------------------------- |
-| `INVALID_ARGUMENT`    | Invalid request shape.                                                           |
-| `UNAUTHENTICATED`     | Missing, expired, or invalid bearer token or participant authorization metadata. |
-| `PERMISSION_DENIED`   | Token lacks `read:orders` or participant access.                                 |
-| `FAILED_PRECONDITION` | RFQs are blocked for the participant or participant token setup is not ready.    |
-| `RESOURCE_EXHAUSTED`  | The firm exceeded the one-new-stream-per-second limit.                           |
-| `UNAVAILABLE`         | Gateway or upstream RFQ service is unavailable.                                  |
-| `DEADLINE_EXCEEDED`   | Client or upstream deadline elapsed.                                             |
+| gRPC code | Typical cause |
+| - | - |
+| `INVALID_ARGUMENT` | Invalid request shape. |
+| `UNAUTHENTICATED` | Missing, expired, or invalid bearer token or participant authorization metadata. |
+| `PERMISSION_DENIED` | Token lacks `read:orders` or participant access. |
+| `FAILED_PRECONDITION` | RFQs are blocked for the participant or participant token setup is not ready. |
+| `RESOURCE_EXHAUSTED` | The firm exceeded the one-new-stream-per-second limit. |
+| `UNAVAILABLE` | Gateway or upstream RFQ service is unavailable. |
+| `DEADLINE_EXCEEDED` | Client or upstream deadline elapsed. |
 
 ## See Also
 

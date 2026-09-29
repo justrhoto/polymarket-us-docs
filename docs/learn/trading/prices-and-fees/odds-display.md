@@ -26,9 +26,9 @@
 
 In a live Washington vs. Kansas City market:
 
-| Display Type   | Example          |
-| -------------- | ---------------- |
-| Price          | WAS 17¢ / KC 86¢ |
+| Display Type | Example |
+| - | - |
+| Price | WAS 17¢ / KC 86¢ |
 | Percent chance | WAS 17% / KC 86% |
 
 <Note>

@@ -12,10 +12,10 @@ The WebSocket API provides real-time streaming data for market information and p
 
 ## Endpoints
 
-| Endpoint         | Description                                | Authentication |
-| ---------------- | ------------------------------------------ | -------------- |
-| `/v1/ws/private` | Orders, positions, account balance updates | API Key        |
-| `/v1/ws/markets` | Market data, order book, trades            | API Key        |
+| Endpoint | Description | Authentication |
+| - | - | - |
+| `/v1/ws/private` | Orders, positions, account balance updates | API Key |
+| `/v1/ws/markets` | Market data, order book, trades | API Key |
 
 ## Connection
 
@@ -62,19 +62,19 @@ All WebSocket messages are JSON formatted with snake\_case field names.
 
 **Private WebSocket (`/v1/ws/private`):**
 
-| Value | Type             | Description      |
-| ----- | ---------------- | ---------------- |
-| 1     | ORDER            | Order updates    |
-| 3     | POSITION         | Position changes |
-| 4     | ACCOUNT\_BALANCE | Balance updates  |
+| Value | Type | Description |
+| - | - | - |
+| 1 | ORDER | Order updates |
+| 3 | POSITION | Position changes |
+| 4 | ACCOUNT\_BALANCE | Balance updates |
 
 **Markets WebSocket (`/v1/ws/markets`):**
 
-| Value | Type               | Description                      |
-| ----- | ------------------ | -------------------------------- |
-| 1     | MARKET\_DATA       | Full order book and market stats |
-| 2     | MARKET\_DATA\_LITE | Lightweight price data           |
-| 3     | TRADE              | Real-time trade notifications    |
+| Value | Type | Description |
+| - | - | - |
+| 1 | MARKET\_DATA | Full order book and market stats |
+| 2 | MARKET\_DATA\_LITE | Lightweight price data |
+| 3 | TRADE | Real-time trade notifications |
 
 ### Response Format
 

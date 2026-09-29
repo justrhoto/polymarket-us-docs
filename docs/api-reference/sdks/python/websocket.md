@@ -12,10 +12,10 @@ The WebSocket resource provides real-time streaming data for market information 
 
 ## Methods
 
-| Method      | Endpoint                                | Description                        |
-| ----------- | --------------------------------------- | ---------------------------------- |
+| Method | Endpoint | Description |
+| - | - | - |
 | `private()` | `wss://api.polymarket.us/v1/ws/private` | Orders, positions, balance updates |
-| `markets()` | `wss://api.polymarket.us/v1/ws/markets` | Market data and trades             |
+| `markets()` | `wss://api.polymarket.us/v1/ws/markets` | Market data and trades |
 
 ***
 
@@ -62,22 +62,22 @@ asyncio.run(main())
 
 ### Private Subscription Types
 
-| Type                                | Description                 |
-| ----------------------------------- | --------------------------- |
-| `SUBSCRIPTION_TYPE_ORDER`           | Order updates and snapshots |
-| `SUBSCRIPTION_TYPE_POSITION`        | Position changes            |
-| `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Balance updates             |
+| Type | Description |
+| - | - |
+| `SUBSCRIPTION_TYPE_ORDER` | Order updates and snapshots |
+| `SUBSCRIPTION_TYPE_POSITION` | Position changes |
+| `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Balance updates |
 
 ### Private Events
 
-| Event                      | Description                       |
-| -------------------------- | --------------------------------- |
-| `order_snapshot`           | Initial snapshot of all orders    |
-| `order_update`             | Order state change                |
-| `position_snapshot`        | Initial snapshot of all positions |
-| `position_update`          | Position change                   |
-| `account_balance_snapshot` | Initial balance snapshot          |
-| `account_balance_update`   | Balance change                    |
+| Event | Description |
+| - | - |
+| `order_snapshot` | Initial snapshot of all orders |
+| `order_update` | Order state change |
+| `position_snapshot` | Initial snapshot of all positions |
+| `position_update` | Position change |
+| `account_balance_snapshot` | Initial balance snapshot |
+| `account_balance_update` | Balance change |
 
 ***
 
@@ -121,19 +121,19 @@ asyncio.run(main())
 
 ### Market Subscription Types
 
-| Type                                 | Description                   |
-| ------------------------------------ | ----------------------------- |
-| `SUBSCRIPTION_TYPE_MARKET_DATA`      | Full order book and stats     |
-| `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` | Lightweight price data (BBO)  |
-| `SUBSCRIPTION_TYPE_TRADE`            | Real-time trade notifications |
+| Type | Description |
+| - | - |
+| `SUBSCRIPTION_TYPE_MARKET_DATA` | Full order book and stats |
+| `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` | Lightweight price data (BBO) |
+| `SUBSCRIPTION_TYPE_TRADE` | Real-time trade notifications |
 
 ### Market Events
 
-| Event              | Description            |
-| ------------------ | ---------------------- |
-| `market_data`      | Full order book update |
-| `market_data_lite` | BBO and price update   |
-| `trade`            | Trade execution        |
+| Event | Description |
+| - | - |
+| `market_data` | Full order book update |
+| `market_data_lite` | BBO and price update |
+| `trade` | Trade execution |
 
 ***
 

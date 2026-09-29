@@ -26,12 +26,12 @@ A market is the actual thing you trade. It's a single yes/no question about an e
 
 One event can have multiple markets. For example, a single NFL game might have:
 
-| Market type   | Question                                  | Example                |
-| ------------- | ----------------------------------------- | ---------------------- |
-| **Moneyline** | Who wins?                                 | Will the Chiefs win?   |
-| **Spread**    | Will they win by more than X points?      | Chiefs -3.5            |
-| **Total**     | Will the combined score be over/under X?  | Total points over 47.5 |
-| **Prop**      | Will a specific thing happen in the game? | Mahomes over 2.5 TDs   |
+| Market type | Question | Example |
+| - | - | - |
+| **Moneyline** | Who wins? | Will the Chiefs win? |
+| **Spread** | Will they win by more than X points? | Chiefs -3.5 |
+| **Total** | Will the combined score be over/under X? | Total points over 47.5 |
+| **Prop** | Will a specific thing happen in the game? | Mahomes over 2.5 TDs |
 
 ```
 Series: NFL 2025-26 Season

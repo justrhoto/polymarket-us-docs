@@ -10,14 +10,14 @@ The Markets resource provides access to market information, pricing, and order b
 
 ## Methods
 
-| Method                   | Endpoint                            | Description                 |
-| ------------------------ | ----------------------------------- | --------------------------- |
-| `list(params?)`          | `GET /v1/markets`                   | List markets with filtering |
-| `retrieve(id)`           | `GET /v1/market/id/{id}`            | Get market by ID            |
-| `retrieve_by_slug(slug)` | `GET /v1/market/slug/{slug}`        | Get market by slug          |
-| `book(slug)`             | `GET /v1/markets/{slug}/book`       | Get full order book         |
-| `bbo(slug)`              | `GET /v1/markets/{slug}/bbo`        | Get best bid/offer          |
-| `settlement(slug)`       | `GET /v1/markets/{slug}/settlement` | Get settlement price        |
+| Method | Endpoint | Description |
+| - | - | - |
+| `list(params?)` | `GET /v1/markets` | List markets with filtering |
+| `retrieve(id)` | `GET /v1/market/id/{id}` | Get market by ID |
+| `retrieve_by_slug(slug)` | `GET /v1/market/slug/{slug}` | Get market by slug |
+| `book(slug)` | `GET /v1/markets/{slug}/book` | Get full order book |
+| `bbo(slug)` | `GET /v1/markets/{slug}/bbo` | Get best bid/offer |
+| `settlement(slug)` | `GET /v1/markets/{slug}/settlement` | Get settlement price |
 
 ***
 
@@ -38,32 +38,32 @@ for market in markets["markets"]:
 
 ### Parameters
 
-| Parameter           | Type       | Description                                                   |
-| ------------------- | ---------- | ------------------------------------------------------------- |
-| `limit`             | int        | Maximum results to return                                     |
-| `offset`            | int        | Pagination offset                                             |
-| `active`            | bool       | Filter by active trading status                               |
-| `closed`            | bool       | Filter by closed status                                       |
-| `archived`          | bool       | Filter by archived status                                     |
-| `categories`        | list\[str] | Filter by category slugs                                      |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | int | Maximum results to return |
+| `offset` | int | Pagination offset |
+| `active` | bool | Filter by active trading status |
+| `closed` | bool | Filter by closed status |
+| `archived` | bool | Filter by archived status |
+| `categories` | list\[str] | Filter by category slugs |
 | `sportsMarketTypes` | list\[str] | Filter by sports market type (MONEYLINE, SPREAD, TOTAL, PROP) |
-| `volumeNumMin`      | float      | Minimum trading volume                                        |
-| `liquidityNumMin`   | float      | Minimum liquidity                                             |
+| `volumeNumMin` | float | Minimum trading volume |
+| `liquidityNumMin` | float | Minimum liquidity |
 
 ### Response Fields
 
-| Field            | Type  | Description                   |
-| ---------------- | ----- | ----------------------------- |
-| `id`             | int   | Unique market identifier      |
-| `slug`           | str   | URL-friendly identifier       |
-| `question`       | str   | Market question               |
-| `description`    | str   | Detailed description          |
-| `active`         | bool  | Whether market accepts orders |
-| `lastTradePrice` | float | Most recent trade price       |
-| `bestBid`        | float | Best bid price                |
-| `bestAsk`        | float | Best ask price                |
-| `volume`         | str   | Total trading volume          |
-| `liquidity`      | str   | Current liquidity             |
+| Field | Type | Description |
+| - | - | - |
+| `id` | int | Unique market identifier |
+| `slug` | str | URL-friendly identifier |
+| `question` | str | Market question |
+| `description` | str | Detailed description |
+| `active` | bool | Whether market accepts orders |
+| `lastTradePrice` | float | Most recent trade price |
+| `bestBid` | float | Best bid price |
+| `bestAsk` | float | Best ask price |
+| `volume` | str | Total trading volume |
+| `liquidity` | str | Current liquidity |
 
 ***
 
@@ -98,13 +98,13 @@ for bid in book["marketData"]["bids"][:5]:
 
 ### Response Fields
 
-| Field        | Type   | Description                          |
-| ------------ | ------ | ------------------------------------ |
-| `marketSlug` | str    | Market identifier                    |
-| `bids`       | list   | Buy orders (highest price first)     |
-| `offers`     | list   | Sell orders (lowest price first)     |
-| `state`      | str    | Market state (OPEN, SUSPENDED, etc.) |
-| `stats`      | object | Market statistics                    |
+| Field | Type | Description |
+| - | - | - |
+| `marketSlug` | str | Market identifier |
+| `bids` | list | Buy orders (highest price first) |
+| `offers` | list | Sell orders (lowest price first) |
+| `state` | str | Market state (OPEN, SUSPENDED, etc.) |
+| `stats` | object | Market statistics |
 
 ***
 
@@ -123,14 +123,14 @@ print(f"Last Trade: ${data['lastTradePx']['value']}")
 
 ### Response Fields
 
-| Field          | Type   | Description              |
-| -------------- | ------ | ------------------------ |
-| `bestBid`      | Amount | Best (highest) bid price |
-| `bestAsk`      | Amount | Best (lowest) ask price  |
-| `lastTradePx`  | Amount | Last trade price         |
-| `bidDepth`     | int    | Number of bid levels     |
-| `askDepth`     | int    | Number of ask levels     |
-| `openInterest` | str    | Current open interest    |
+| Field | Type | Description |
+| - | - | - |
+| `bestBid` | Amount | Best (highest) bid price |
+| `bestAsk` | Amount | Best (lowest) ask price |
+| `lastTradePx` | Amount | Last trade price |
+| `bidDepth` | int | Number of bid levels |
+| `askDepth` | int | Number of ask levels |
+| `openInterest` | str | Current open interest |
 
 ***
 

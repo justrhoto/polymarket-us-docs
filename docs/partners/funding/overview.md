@@ -32,11 +32,11 @@ Your **vendor fee** is *declared* on each order placement and recorded by Polyma
 
 ## The three parties
 
-| Party                   | Role                                                                                                               | Holds funds at Polymarket US?         |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| **Retail Participant**  | The trader. Owns a trading account that holds their cash, order collateral, and positions.                         | Yes — their allocated trading balance |
-| **Your firm (IB/ISV)**  | Message facilitator. Submits orders and transfer instructions on behalf of the participant and the funding entity. | **No — never**                        |
-| **Your funding entity** | Separate legal entity that custodies participant cash off-platform and holds the **partner funding account**.      | Yes — the unallocated pool            |
+| Party | Role | Holds funds at Polymarket US? |
+| - | - | - |
+| **Retail Participant** | The trader. Owns a trading account that holds their cash, order collateral, and positions. | Yes — their allocated trading balance |
+| **Your firm (IB/ISV)** | Message facilitator. Submits orders and transfer instructions on behalf of the participant and the funding entity. | **No — never** |
+| **Your funding entity** | Separate legal entity that custodies participant cash off-platform and holds the **partner funding account**. | Yes — the unallocated pool |
 
 The participant, your firm, and your funding entity coordinate through your product's UX and the legal agreements between the three parties. From the participant's point of view they allocate funds in their wallet and trade — your backend turns that into a deposit transfer and order placements.
 
@@ -76,13 +76,13 @@ sequenceDiagram
     FE->>PM: Withdrawal transfer — participant account → funding account
 ```
 
-| Flow                      | Direction                             | When                                    | Moved by                                                                                                                                     |
-| ------------------------- | ------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Deposit**               | Funding account → participant account | Participant allocates funds to trade    | Your funding entity, via [transfer](/partners/funding/transfers)                                                                             |
-| **Trading**               | Within the participant account        | Continuously                            | Polymarket US — collateral locks, exchange fees, fills, settlement credits, realized P\&L all post to the account                            |
-| **Vendor fee accrual**    | *No movement*                         | Each order placement                    | Recorded only — Polymarket US stores your declared fee against the order                                                                     |
-| **Vendor fee collection** | Participant account → funding account | Periodic, at most once per day          | Your funding entity, via [transfer](/partners/funding/transfers), reconciled against the [Vendor Fees report](/partners/funding/vendor-fees) |
-| **Withdrawal**            | Participant account → funding account | Participant withdraws from their wallet | Your funding entity, via [transfer](/partners/funding/transfers)                                                                             |
+| Flow | Direction | When | Moved by |
+| - | - | - | - |
+| **Deposit** | Funding account → participant account | Participant allocates funds to trade | Your funding entity, via [transfer](/partners/funding/transfers) |
+| **Trading** | Within the participant account | Continuously | Polymarket US — collateral locks, exchange fees, fills, settlement credits, realized P\&L all post to the account |
+| **Vendor fee accrual** | *No movement* | Each order placement | Recorded only — Polymarket US stores your declared fee against the order |
+| **Vendor fee collection** | Participant account → funding account | Periodic, at most once per day | Your funding entity, via [transfer](/partners/funding/transfers), reconciled against the [Vendor Fees report](/partners/funding/vendor-fees) |
+| **Withdrawal** | Participant account → funding account | Participant withdraws from their wallet | Your funding entity, via [transfer](/partners/funding/transfers) |
 
 **Trading proceeds stay put.** Settlement credits, realized profit, and released collateral remain in the participant's account — they *are* the participant's buying power for the next trade. Nothing needs to be swept after fills or settlements; cash only leaves an account for a withdrawal or a vendor fee collection.
 
@@ -90,10 +90,10 @@ sequenceDiagram
 
 Two numbers matter for every order, and they are owned by different systems:
 
-| Check              | Owner                     | Formula                                                                                                              |
-| ------------------ | ------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **Platform check** | Polymarket US             | An order is rejected unless the participant account's available cash covers **worst-case collateral + exchange fee** |
-| **Your gate**      | You & your funding entity | Spendable balance = account cash − **accrued, uncollected vendor fees**                                              |
+| Check | Owner | Formula |
+| - | - | - |
+| **Platform check** | Polymarket US | An order is rejected unless the participant account's available cash covers **worst-case collateral + exchange fee** |
+| **Your gate** | You & your funding entity | Spendable balance = account cash − **accrued, uncollected vendor fees** |
 
 Polymarket US knows nothing about your fee basis and does not reserve for vendor fees — it only records the amounts you declare. Between collections, accrued fees are cash sitting in the participant's account that the participant could otherwise trade with. **Your platform must gate order submission off-platform** so a participant cannot spend the cash that is earmarked for your accrued fees. See [Vendor Fees](/partners/funding/vendor-fees) for the accrual model and the credit-risk consequences of not gating.
 
@@ -134,12 +134,12 @@ A participant's fiat deposits and withdrawals are movements between the particip
 
 The platform enforces the money-flow rules at the API level. Your partner funding account is **always one side** of every transfer, and a participant account under your Firm is always the other:
 
-| Money movement                                                                 | Reason        | Allowed?   |
-| ------------------------------------------------------------------------------ | ------------- | ---------- |
-| Funding account → participant account                                          | `DEPOSIT`     | ✅          |
-| Participant account → funding account                                          | `WITHDRAWAL`  | ✅          |
-| Participant account → funding account                                          | `VENDOR_FEES` | ✅          |
-| Participant account → your firm, another participant, or any other destination | —             | ❌ Rejected |
+| Money movement | Reason | Allowed? |
+| - | - | - |
+| Funding account → participant account | `DEPOSIT` | ✅ |
+| Participant account → funding account | `WITHDRAWAL` | ✅ |
+| Participant account → funding account | `VENDOR_FEES` | ✅ |
+| Participant account → your firm, another participant, or any other destination | — | ❌ Rejected |
 
 This is what lets your firm operate without ever holding participant funds: you can only route money between the participant and the funding entity that custodies their wallet.
 
@@ -147,11 +147,11 @@ This is what lets your firm operate without ever holding participant funds: you 
 
 The partner funding APIs are **gRPC-only**. Connection and authentication follow the standard conventions — TLS and a Bearer access token in the `authorization` metadata header; see the [gRPC API Overview](/grpc-api/overview) and [Authentication](/streaming-endpoints/authentication).
 
-| Concern                                      | Service                                                               | Pages                                                                                     |
-| -------------------------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Order placement with vendor fee declaration  | `polymarket.us.orderfunding.v1.OrderFundingService/CreateVendorOrder` | [Create Order](/partners/orders/create-order) · [Data Model](/partners/orders/data-model) |
-| Deposits, withdrawals, vendor fee collection | `polymarket.us.cashmovement.v1.CashMovementService`                   | [Transfers](/partners/funding/transfers)                                                  |
-| Fee accrual reporting                        | Daily Vendor Fees report                                              | [Vendor Fees](/partners/funding/vendor-fees)                                              |
+| Concern | Service | Pages |
+| - | - | - |
+| Order placement with vendor fee declaration | `polymarket.us.orderfunding.v1.OrderFundingService/CreateVendorOrder` | [Create Order](/partners/orders/create-order) · [Data Model](/partners/orders/data-model) |
+| Deposits, withdrawals, vendor fee collection | `polymarket.us.cashmovement.v1.CashMovementService` | [Transfers](/partners/funding/transfers) |
+| Fee accrual reporting | Daily Vendor Fees report | [Vendor Fees](/partners/funding/vendor-fees) |
 
 <Warning>
   **Orders that carry a vendor fee must go through `OrderFundingService`.** It records your declared fee against the order and passes the order through to the exchange. Orders placed via generic order entry or FIX carry no vendor fee and accrue nothing.

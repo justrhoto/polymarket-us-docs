@@ -8,26 +8,26 @@
 
 ## Debit Card
 
-| Issue               | Likely Cause                                  | Fix                                           |
-| ------------------- | --------------------------------------------- | --------------------------------------------- |
-| Deposit not showing | Card transaction still pending                | Wait a few minutes, then refresh your balance |
-| Deposit declined    | Incorrect card details or insufficient funds  | Verify card information and available balance |
-| Deposit delayed     | Payment processor still completing settlement | Wait a few minutes and check again            |
+| Issue | Likely Cause | Fix |
+| - | - | - |
+| Deposit not showing | Card transaction still pending | Wait a few minutes, then refresh your balance |
+| Deposit declined | Incorrect card details or insufficient funds | Verify card information and available balance |
+| Deposit delayed | Payment processor still completing settlement | Wait a few minutes and check again |
 
 ## Bank Transfer (ACH)
 
-| Issue             | Likely Cause                         | Fix                                                    |
-| ----------------- | ------------------------------------ | ------------------------------------------------------ |
-| Deposit pending   | Transfer is still clearing           | Allow 3–4 business days for the deposit to fully clear |
-| Transfer failed   | Incorrect bank account details       | Re-link your bank account and retry                    |
-| Duplicate deposit | Bank submitted multiple ACH requests | Contact support with your transfer receipt             |
+| Issue | Likely Cause | Fix |
+| - | - | - |
+| Deposit pending | Transfer is still clearing | Allow 3–4 business days for the deposit to fully clear |
+| Transfer failed | Incorrect bank account details | Re-link your bank account and retry |
+| Duplicate deposit | Bank submitted multiple ACH requests | Contact support with your transfer receipt |
 
 ## Wire Transfer
 
-| Issue              | Likely Cause                        | Fix                                         |
-| ------------------ | ----------------------------------- | ------------------------------------------- |
-| Wire rejected      | Incorrect routing or account number | Double-check wire details before resending  |
-| Funds not received | Missing memo or reference code      | Contact support with your wire confirmation |
+| Issue | Likely Cause | Fix |
+| - | - | - |
+| Wire rejected | Incorrect routing or account number | Double-check wire details before resending |
+| Funds not received | Missing memo or reference code | Contact support with your wire confirmation |
 
 <Note>
   Always include your **full name and phone number** in the memo or message field. Missing details can cause delays.

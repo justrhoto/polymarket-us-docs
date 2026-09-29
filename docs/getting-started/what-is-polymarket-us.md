@@ -42,10 +42,10 @@ Each market on Polymarket US is a yes/no question about something that will happ
 
 **Example**: *Will the Kansas City Chiefs win Super Bowl LX?*
 
-| Scenario    | You buy YES at | Outcome | Contract settles at | Your profit       |
-| ----------- | -------------- | ------- | ------------------- | ----------------- |
-| Chiefs win  | 55¢            | YES     | \$1.00              | +45¢ per contract |
-| Chiefs lose | 55¢            | NO      | \$0.00              | -55¢ per contract |
+| Scenario | You buy YES at | Outcome | Contract settles at | Your profit |
+| - | - | - | - | - |
+| Chiefs win | 55¢ | YES | \$1.00 | +45¢ per contract |
+| Chiefs lose | 55¢ | NO | \$0.00 | -55¢ per contract |
 
 You can also sell your position at any time before the outcome is known. If the odds move in your favor, you can lock in a profit early without waiting for settlement.
 

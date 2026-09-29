@@ -105,10 +105,10 @@ print(decoded)
 * Separate Auth0 domains
 * Separate API audiences
 
-| Environment        | Auth Domain                | API Audience                                 |
-| ------------------ | -------------------------- | -------------------------------------------- |
+| Environment | Auth Domain | API Audience |
+| - | - | - |
 | **Pre-production** | `pmx-preprod.us.auth0.com` | `https://api.preprod.polymarketexchange.com` |
-| **Production**     | `pmx-prod.us.auth0.com`    | `https://api.prod.polymarketexchange.com`    |
+| **Production** | `pmx-prod.us.auth0.com` | `https://api.prod.polymarketexchange.com` |
 
 ### Cannot Reuse Keys Across Environments
 

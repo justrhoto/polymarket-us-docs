@@ -46,12 +46,12 @@ service MarketDataSubscriptionAPI {
 
 ### CreateMarketDataSubscriptionRequest
 
-| Field           | Type        | Required | Description                                                                                                   |
-| --------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------- |
-| `symbols`       | `list[str]` | No       | List of symbols to subscribe to. Empty list subscribes to all instruments.                                    |
-| `unaggregated`  | `bool`      | No       | If `True`, receive raw order book. If `False` (default), receive aggregated book by price level.              |
-| `depth`         | `int`       | No       | Number of price levels to include in order book. Default: `10`                                                |
-| `snapshot_only` | `bool`      | No       | If `True`, receive only initial snapshot then close stream. If `False` (default), receive continuous updates. |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `symbols` | `list[str]` | No | List of symbols to subscribe to. Empty list subscribes to all instruments. |
+| `unaggregated` | `bool` | No | If `True`, receive raw order book. If `False` (default), receive aggregated book by price level. |
+| `depth` | `int` | No | Number of price levels to include in order book. Default: `10` |
+| `snapshot_only` | `bool` | No | If `True`, receive only initial snapshot then close stream. If `False` (default), receive continuous updates. |
 
 <Warning>
   **Symbol Limit**: Each gRPC stream is limited to **1000 symbols maximum**. If you need more than 1000 symbols, prefer `symbols=[]` (full universe) or one [bidirectional](#bidirectional-streaming) stream — extra `CreateMarketDataSubscription` streams count against the **20** concurrent-stream budget. Do not burst-open tens of streams. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
@@ -111,17 +111,17 @@ if response.HasField('update'):
 
 ### Fields
 
-| Field            | Type              | Description                                                                           |
-| ---------------- | ----------------- | ------------------------------------------------------------------------------------- |
-| `symbol`         | `str`             | Instrument symbol (e.g., "tec-nfl-sbw-2026-02-08-kc")                                 |
-| `bids`           | `list[BookEntry]` | Bid side of order book (buy orders)                                                   |
-| `offers`         | `list[BookEntry]` | Offer/ask side of order book (sell orders)                                            |
-| `state`          | `InstrumentState` | Current trading state of instrument (optional)                                        |
-| `stats`          | `InstrumentStats` | Market statistics (optional)                                                          |
-| `transact_time`  | `Timestamp`       | Server timestamp of update                                                            |
-| `book_hidden`    | `bool`            | If `True`, order book is hidden                                                       |
-| `price_scale`    | `int64`           | Number of decimal places for price (optional; included for wildcard subscriptions)    |
-| `quantity_scale` | `int64`           | Number of decimal places for quantity (optional; included for wildcard subscriptions) |
+| Field | Type | Description |
+| - | - | - |
+| `symbol` | `str` | Instrument symbol (e.g., "tec-nfl-sbw-2026-02-08-kc") |
+| `bids` | `list[BookEntry]` | Bid side of order book (buy orders) |
+| `offers` | `list[BookEntry]` | Offer/ask side of order book (sell orders) |
+| `state` | `InstrumentState` | Current trading state of instrument (optional) |
+| `stats` | `InstrumentStats` | Market statistics (optional) |
+| `transact_time` | `Timestamp` | Server timestamp of update |
+| `book_hidden` | `bool` | If `True`, order book is hidden |
+| `price_scale` | `int64` | Number of decimal places for price (optional; included for wildcard subscriptions) |
+| `quantity_scale` | `int64` | Number of decimal places for quantity (optional; included for wildcard subscriptions) |
 
 <Tip>
   **Instrument State Tracking:**
@@ -132,10 +132,10 @@ if response.HasField('update'):
 
 Each price level in the order book contains:
 
-| Field | Type    | Description                                   |
-| ----- | ------- | --------------------------------------------- |
-| `px`  | `int64` | **Price as integer** (divide by price\_scale) |
-| `qty` | `int64` | Aggregate quantity at this price level        |
+| Field | Type | Description |
+| - | - | - |
+| `px` | `int64` | **Price as integer** (divide by price\_scale) |
+| `qty` | `int64` | Aggregate quantity at this price level |
 
 <Warning>
   **Price Representation:**
@@ -153,22 +153,22 @@ Each price level in the order book contains:
 
 Market statistics include:
 
-| Field                                 | Type        | Description                                                                                                                                           |
-| ------------------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `last_trade_px`                       | `int64`     | Last trade price (÷ price\_scale)                                                                                                                     |
-| `last_trade_qty`                      | `int64`     | Quantity of the most recent trade. Populated after any trade executes on the instrument.                                                              |
-| `open_px`                             | `int64`     | Opening price (÷ price\_scale)                                                                                                                        |
-| `high_px`                             | `int64`     | High price of session (÷ price\_scale)                                                                                                                |
-| `low_px`                              | `int64`     | Low price of session (÷ price\_scale)                                                                                                                 |
-| `close_px`                            | `int64`     | Closing price (÷ price\_scale)                                                                                                                        |
-| `shares_traded`                       | `int64`     | Total volume traded                                                                                                                                   |
-| `open_interest`                       | `int64`     | Current open interest                                                                                                                                 |
-| `notional_traded`                     | `int64`     | Total notional value traded                                                                                                                           |
-| `settlement_px`                       | `int64`     | Settlement/resolution price (÷ price\_scale). Only populated when instrument state is `CLOSED`, `TERMINATED`, or `EXPIRED`.                           |
-| `settlement_set_time`                 | `Timestamp` | Timestamp when the settlement price was set. Only populated when instrument is in a settled state (`CLOSED`, `TERMINATED`, or `EXPIRED`).             |
-| `settlement_preliminary`              | `bool`      | If `true`, settlement price may still change (awaiting final approval). If `false`, settlement is final and positions will be resolved at this price. |
-| `settlement_price_calculation_method` | `string`    | Method used to calculate the settlement price. See below for values.                                                                                  |
-| `settlement_price_calculation_text`   | `string`    | Free-form text describing the outcome that determined the settlement (e.g., "Buffalo Bills win", "Kansas City Chiefs win").                           |
+| Field | Type | Description |
+| - | - | - |
+| `last_trade_px` | `int64` | Last trade price (÷ price\_scale) |
+| `last_trade_qty` | `int64` | Quantity of the most recent trade. Populated after any trade executes on the instrument. |
+| `open_px` | `int64` | Opening price (÷ price\_scale) |
+| `high_px` | `int64` | High price of session (÷ price\_scale) |
+| `low_px` | `int64` | Low price of session (÷ price\_scale) |
+| `close_px` | `int64` | Closing price (÷ price\_scale) |
+| `shares_traded` | `int64` | Total volume traded |
+| `open_interest` | `int64` | Current open interest |
+| `notional_traded` | `int64` | Total notional value traded |
+| `settlement_px` | `int64` | Settlement/resolution price (÷ price\_scale). Only populated when instrument state is `CLOSED`, `TERMINATED`, or `EXPIRED`. |
+| `settlement_set_time` | `Timestamp` | Timestamp when the settlement price was set. Only populated when instrument is in a settled state (`CLOSED`, `TERMINATED`, or `EXPIRED`). |
+| `settlement_preliminary` | `bool` | If `true`, settlement price may still change (awaiting final approval). If `false`, settlement is final and positions will be resolved at this price. |
+| `settlement_price_calculation_method` | `string` | Method used to calculate the settlement price. See below for values. |
+| `settlement_price_calculation_text` | `string` | Free-form text describing the outcome that determined the settlement (e.g., "Buffalo Bills win", "Kansas City Chiefs win"). |
 
 <Note>
   Stats fields use protobuf `oneof`, so they may not always be present. Always check with `HasField()` before accessing.
@@ -183,10 +183,10 @@ Market statistics include:
 
 **Settlement Price Calculation Methods:**
 
-| Value                                              | Description                                                                                               |
-| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1` | Settlement via event resolution. This is the primary method for Polymarket event markets.                 |
-| Other methods                                      | Used for daily settlement of futures-style products (VWAP-based). These can be ignored for event markets. |
+| Value | Description |
+| - | - |
+| `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1` | Settlement via event resolution. This is the primary method for Polymarket event markets. |
+| Other methods | Used for daily settlement of futures-style products (VWAP-based). These can be ignored for event markets. |
 
 <Tip>
   For Polymarket event markets, `settlement_price_calculation_method` will be `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1`. If you see a different method, you can treat it as a daily mark rather than final resolution.
@@ -235,27 +235,27 @@ In this example, `settlement_px = 0` equals \$0.00 (NO won, Kansas City won so B
 
 ### Primary State Flow
 
-| State                                               | Value | Description                                                                                                                                                                                                      |
-| --------------------------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_PENDING`                          | 8     | Initial state for a newly created instrument which has not yet begun trading.                                                                                                                                    |
-| `INSTRUMENT_STATE_OPEN`                             | 1     | In this state, the instrument is open for continuous order entry and matching.                                                                                                                                   |
-| `INSTRUMENT_STATE_CLOSED`                           | 0     | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired.                                                                                |
-| `INSTRUMENT_STATE_EXPIRED`                          | 4     | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered.                                                      |
-| `INSTRUMENT_STATE_TERMINATED`                       | 5     | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
+| State                                               | Value | Description |
+| - | - | - |
+| `INSTRUMENT_STATE_PENDING` | 8 | Initial state for a newly created instrument which has not yet begun trading. |
+| `INSTRUMENT_STATE_OPEN` | 1 | In this state, the instrument is open for continuous order entry and matching. |
+| `INSTRUMENT_STATE_CLOSED` | 0 | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired. |
+| `INSTRUMENT_STATE_EXPIRED` | 4 | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered. |
+| `INSTRUMENT_STATE_TERMINATED` | 5 | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
 
 ### Exception States
 
-| State                                               | Value | Description                                                                                   |
-| --------------------------------------------------- | ----- | --------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_SUSPENDED`                        | 3     | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
-| `INSTRUMENT_STATE_HALTED`                           | 6     | This state is similar to SUSPENDED, with the exception that orders cannot be canceled.        |
+| State                                               | Value | Description |
+| - | - | - |
+| `INSTRUMENT_STATE_SUSPENDED` | 3 | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
+| `INSTRUMENT_STATE_HALTED` | 6 | This state is similar to SUSPENDED, with the exception that orders cannot be canceled. |
 
 ### Other Possible States
 
-| State                                               | Value | Description                                                                                                                                                                                                                                                                                       |
-| --------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_PREOPEN`                          | 2     | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
-| `INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION`          | 7     | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after.                               |
+| State                                               | Value | Description |
+| - | - | - |
+| `INSTRUMENT_STATE_PREOPEN` | 2 | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
+| `INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION` | 7 | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after. |
 
 ```python theme={null}
 from polymarket.v1 import refdata_pb2
@@ -497,11 +497,11 @@ message KeepAliveCommand {}
 
 ### Commands
 
-| Command       | Field | Description                                                                                                                                         |
-| ------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `subscribe`   | 1     | Add the listed symbols to the active subscription.                                                                                                  |
-| `unsubscribe` | 2     | Remove the listed symbols from the active subscription.                                                                                             |
-| `keepalive`   | 7     | Application-level keepalive. Server handles it as a no-op (no response, no state change). Safe to send any time after the first `SubscribeCommand`. |
+| Command | Field | Description |
+| - | - | - |
+| `subscribe` | 1 | Add the listed symbols to the active subscription. |
+| `unsubscribe` | 2 | Remove the listed symbols from the active subscription. |
+| `keepalive` | 7 | Application-level keepalive. Server handles it as a no-op (no response, no state change). Safe to send any time after the first `SubscribeCommand`. |
 
 <Warning>
   **ALB Idle Timeout & Keepalives**
@@ -517,12 +517,12 @@ message KeepAliveCommand {}
 
 The stream returns `BiDirectionalStreamMarketDataResponse` messages with four possible event types:
 
-| Event Type           | Description                                   |
-| -------------------- | --------------------------------------------- |
-| `heartbeat`          | Keep-alive message                            |
-| `update`             | Market data update (same as server-streaming) |
-| `subscription_ack`   | Acknowledgment of subscribe/unsubscribe       |
-| `subscription_error` | Error for subscription operations             |
+| Event Type | Description |
+| - | - |
+| `heartbeat` | Keep-alive message |
+| `update` | Market data update (same as server-streaming) |
+| `subscription_ack` | Acknowledgment of subscribe/unsubscribe |
+| `subscription_error` | Error for subscription operations |
 
 ```protobuf theme={null}
 message BiDirectionalStreamMarketDataResponse {
@@ -581,11 +581,11 @@ message SubscriptionError {
 
 ### Error Codes
 
-| Code                 | Description                                                 |
-| -------------------- | ----------------------------------------------------------- |
-| `INVALID_SYMBOL`     | Symbol does not exist or is not valid                       |
-| `ALREADY_SUBSCRIBED` | Already subscribed to the symbol                            |
-| `NOT_SUBSCRIBED`     | Trying to unsubscribe from a symbol not in the subscription |
+| Code | Description |
+| - | - |
+| `INVALID_SYMBOL` | Symbol does not exist or is not valid |
+| `ALREADY_SUBSCRIBED` | Already subscribed to the symbol |
+| `NOT_SUBSCRIBED` | Trying to unsubscribe from a symbol not in the subscription |
 
 ### Python Example
 

@@ -37,10 +37,10 @@ POST /v1/kyc/webhook
 
 ### Request fields
 
-| Field            | Type   | Required | Notes                                                                                                                                                                                                                          |
-| ---------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `webhook_url`    | string | Yes      | HTTPS URL where notifications are delivered                                                                                                                                                                                    |
-| `signing_secret` | string | No       | Your Standard Webhooks signing secret in `whsec_<base64-key>` format, where the decoded key is at least 24 bytes (e.g. `whsec_` followed by 32 random bytes in standard padded base64). Omit to receive **unsigned** webhooks. |
+| Field | Type | Required | Notes |
+| - | - | - | - |
+| `webhook_url` | string | Yes | HTTPS URL where notifications are delivered |
+| `signing_secret` | string | No | Your Standard Webhooks signing secret in `whsec_<base64-key>` format, where the decoded key is at least 24 bytes (e.g. `whsec_` followed by 32 random bytes in standard padded base64). Omit to receive **unsigned** webhooks. |
 
 <Warning>
   **You bring your own signing secret.** Polymarket US never generates or returns a secret — you supply and keep it. Use the Standard Webhooks `whsec_<base64-key>` format (e.g. `whsec_` followed by the output of `openssl rand -base64 32`). Registration is **last-writer-wins**: re-registering without a `signing_secret` **clears** any previously stored one (switching you to unsigned).
@@ -55,10 +55,10 @@ POST /v1/kyc/webhook
 }
 ```
 
-| Field       | Type   | Notes                                         |
-| ----------- | ------ | --------------------------------------------- |
-| `validated` | bool   | `true` if the test POST to your URL succeeded |
-| `message`   | string | Status / failure detail                       |
+| Field | Type | Notes |
+| - | - | - |
+| `validated` | bool | `true` if the test POST to your URL succeeded |
+| `message` | string | Status / failure detail |
 
 ### Test-POST contract
 
@@ -72,12 +72,12 @@ Polymarket US sends an HTTP `POST` with a JSON body to your registered URL.
 
 Signed deliveries follow the [Standard Webhooks](https://www.standardwebhooks.com/) convention. The three signing headers are present **only when a signing secret is configured**.
 
-| Header              | Notes                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------- |
-| `webhook-id`        | Stable, retry-invariant event ID — use it to deduplicate                                          |
-| `webhook-timestamp` | Unix seconds at send time                                                                         |
+| Header | Notes |
+| - | - |
+| `webhook-id` | Stable, retry-invariant event ID — use it to deduplicate |
+| `webhook-timestamp` | Unix seconds at send time |
 | `webhook-signature` | Space-delimited list of versioned signatures; currently a single `v1,<base64(HMAC-SHA256)>` entry |
-| `Content-Type`      | `application/json`                                                                                |
+| `Content-Type` | `application/json` |
 
 ### Body
 
@@ -105,38 +105,38 @@ Signed deliveries follow the [Standard Webhooks](https://www.standardwebhooks.co
 
 ### Event types
 
-| `event_type`   | Meaning                                                                  |
-| -------------- | ------------------------------------------------------------------------ |
-| `kyc.approved` | Participant approved and backend entities provisioned                    |
-| `kyc.rejected` | Participant rejected                                                     |
+| `event_type` | Meaning |
+| - | - |
+| `kyc.approved` | Participant approved and backend entities provisioned |
+| `kyc.rejected` | Participant rejected |
 | `webhook.test` | Registration-time test event only (see above); never delivered afterward |
 
 ### `data` fields
 
 Empty fields are omitted from the JSON.
 
-| Field                     | Present on     | Notes                                                                                                                                                                                                                              |
-| ------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `external_id`             | both           | The identifier you supplied at start. Your correlation key; matches `status.externalId` and the `GET /v1/kyc/status` lookup                                                                                                        |
-| `user_id`                 | both           | Same value as `external_id` (legacy field name)                                                                                                                                                                                    |
-| `kyc_eval_id`             | both           | Verification-provider evaluation id, carried under its own field. Optional — present only when the provider id is exposed. Never use it as your correlation key                                                                    |
-| `firm_id`                 | both           | Your firm ID                                                                                                                                                                                                                       |
-| `status`                  | both           | `KYC_STATUS_APPROVED` or `KYC_STATUS_REJECTED`                                                                                                                                                                                     |
-| `status_set_at`           | both           | RFC 3339 timestamp of the decision                                                                                                                                                                                                 |
-| `provisioned_participant` | `kyc.approved` | Engine-neutral participant identifier — opaque string. Use it to act on behalf of the participant                                                                                                                                  |
-| `provisioned_account`     | `kyc.approved` | Fully qualified DCM account name provisioned on approval. It exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream); store it to route ledger entries to the user |
-| `date_of_birth`           | `kyc.approved` | The participant's date of birth may be included. Treat as sensitive PII                                                                                                                                                            |
-| `referral_code_owned`     | `kyc.approved` | Present when an owned referral code is assigned                                                                                                                                                                                    |
-| `rejection_reason`        | `kyc.rejected` | Finer-grained rejection detail (provider sub-status)                                                                                                                                                                               |
+| Field | Present on | Notes |
+| - | - | - |
+| `external_id` | both | The identifier you supplied at start. Your correlation key; matches `status.externalId` and the `GET /v1/kyc/status` lookup |
+| `user_id` | both | Same value as `external_id` (legacy field name) |
+| `kyc_eval_id` | both | Verification-provider evaluation id, carried under its own field. Optional — present only when the provider id is exposed. Never use it as your correlation key |
+| `firm_id` | both | Your firm ID |
+| `status` | both | `KYC_STATUS_APPROVED` or `KYC_STATUS_REJECTED` |
+| `status_set_at` | both | RFC 3339 timestamp of the decision |
+| `provisioned_participant` | `kyc.approved` | Engine-neutral participant identifier — opaque string. Use it to act on behalf of the participant |
+| `provisioned_account` | `kyc.approved` | Fully qualified DCM account name provisioned on approval. It exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream); store it to route ledger entries to the user |
+| `date_of_birth` | `kyc.approved` | The participant's date of birth may be included. Treat as sensitive PII |
+| `referral_code_owned` | `kyc.approved` | Present when an owned referral code is assigned |
+| `rejection_reason` | `kyc.rejected` | Finer-grained rejection detail (provider sub-status) |
 
 ## Using these identifiers to trade
 
 When you place an order on behalf of a participant, **`provisioned_participant` is the "who"** — pass it as the [`x-participant-id`](/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header on participant-scoped requests (trading, positions, reports). It is the only provisioning identifier you need.
 
-| KYC field (webhook)       | Same value in [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#approval) | Format                                       | What to do with it                                                                                                                               |
-| ------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `provisioned_participant` | `participantId`                                                                           | `firms/ISV-Participant-YourFirmID/users/...` | Send as the **`x-participant-id` header** — this is *who* the order is for                                                                       |
-| `external_id` / `user_id` | `status.externalId`                                                                       | your own string                              | **Your** correlation key only — store it to map back to your user. **Never** sent to Polymarket US to identify the participant on a trading call |
+| KYC field (webhook) | Same value in [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#approval) | Format | What to do with it |
+| - | - | - | - |
+| `provisioned_participant` | `participantId` | `firms/ISV-Participant-YourFirmID/users/...` | Send as the **`x-participant-id` header** — this is *who* the order is for |
+| `external_id` / `user_id` | `status.externalId` | your own string | **Your** correlation key only — store it to map back to your user. **Never** sent to Polymarket US to identify the participant on a trading call |
 
 <Warning>
   **Use `provisioned_participant`, not `external_id` / `user_id`, to identify the participant on a trading call.** The `external_id` (and its legacy duplicate `user_id`) is the identifier *you* supplied — it is meaningful only inside your own systems. The exchange identifies the participant by the `provisioned_participant` value carried in the `x-participant-id` header.

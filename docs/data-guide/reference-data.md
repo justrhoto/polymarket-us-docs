@@ -18,8 +18,8 @@ The Reference Data API provides three endpoints:
 
 ## Required Scope
 
-| Scope              | Data Access                  |
-| ------------------ | ---------------------------- |
+| Scope | Data Access |
+| - | - |
 | `read:instruments` | All reference data endpoints |
 
 <Info>
@@ -189,27 +189,27 @@ State values are prefixed with `INSTRUMENT_STATE_` in the API (e.g., `INSTRUMENT
 
 ### Primary State Flow
 
-| State                                               | Description                                                                                                                                                                                                      |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PENDING`                                           | Initial state for a newly created instrument which has not yet begun trading.                                                                                                                                    |
-| `OPEN`                                              | In this state, the instrument is open for continuous order entry and matching.                                                                                                                                   |
-| `CLOSED`                                            | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired.                                                                                |
-| `EXPIRED`                                           | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered.                                                      |
-| `TERMINATED`                                        | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
+| State                                               | Description |
+| - | - |
+| `PENDING` | Initial state for a newly created instrument which has not yet begun trading. |
+| `OPEN` | In this state, the instrument is open for continuous order entry and matching. |
+| `CLOSED` | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired. |
+| `EXPIRED` | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered. |
+| `TERMINATED` | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
 
 ### Exception States
 
-| State                                               | Description                                                                                   |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `SUSPENDED`                                         | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
-| `HALTED`                                            | This state is similar to SUSPENDED, with the exception that orders cannot be canceled.        |
+| State                                               | Description |
+| - | - |
+| `SUSPENDED` | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
+| `HALTED` | This state is similar to SUSPENDED, with the exception that orders cannot be canceled. |
 
 ### Other Possible States
 
-| State                                               | Description                                                                                                                                                                                                                                                                                       |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PREOPEN`                                           | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
-| `MATCH_AND_CLOSE_AUCTION`                           | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after.                               |
+| State                                               | Description |
+| - | - |
+| `PREOPEN` | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
+| `MATCH_AND_CLOSE_AUCTION` | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after. |
 
 ## Best Practices
 

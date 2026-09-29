@@ -52,45 +52,45 @@ POST /v1/kyc/start
 
 ### Request fields
 
-| Field                 | Type    | Required | Description                                                                                                               |
-| --------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `external_id`         | string  | Yes      | Your internal identifier for this participant. Max 49 chars, unique per firm. Echoed back in all responses and webhooks.  |
-| `ssn`                 | string  | Yes      | Social Security Number, digits only (no dashes)                                                                           |
-| `first_name`          | string  | Yes      | Legal first name (max 50)                                                                                                 |
-| `middle_name`         | string  | No       | Legal middle name                                                                                                         |
-| `last_name`           | string  | Yes      | Legal last name (max 50)                                                                                                  |
-| `date_of_birth`       | string  | Yes      | `YYYY-MM-DD`                                                                                                              |
-| `email`               | string  | Yes      | Email address                                                                                                             |
-| `phone_number`        | string  | Yes      | E.164 format (e.g. `+12125551234`)                                                                                        |
-| `address`             | object  | Yes      | Residential address (see below)                                                                                           |
-| `agreement.version`   | string  | Yes      | Version of the participant agreement accepted. Confirm the current value with the onboarding team — do not hardcode.      |
-| `agreement.signed_at` | string  | Yes      | UTC ISO-8601 timestamp of acceptance                                                                                      |
-| `session_token`       | string  | No       | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) token — **strongly recommended**             |
-| `docv_eligible`       | boolean | No       | Whether this evaluation may use [document verification (DocV)](#document-verification-docv). Omitted = not DocV-eligible. |
-| `ip_address`          | string  | Yes      | Participant's IP address                                                                                                  |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `external_id` | string | Yes | Your internal identifier for this participant. Max 49 chars, unique per firm. Echoed back in all responses and webhooks. |
+| `ssn` | string | Yes | Social Security Number, digits only (no dashes) |
+| `first_name` | string | Yes | Legal first name (max 50) |
+| `middle_name` | string | No | Legal middle name |
+| `last_name` | string | Yes | Legal last name (max 50) |
+| `date_of_birth` | string | Yes | `YYYY-MM-DD` |
+| `email` | string | Yes | Email address |
+| `phone_number` | string | Yes | E.164 format (e.g. `+12125551234`) |
+| `address` | object | Yes | Residential address (see below) |
+| `agreement.version` | string | Yes | Version of the participant agreement accepted. Confirm the current value with the onboarding team — do not hardcode. |
+| `agreement.signed_at` | string | Yes | UTC ISO-8601 timestamp of acceptance |
+| `session_token` | string | No | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) token — **strongly recommended** |
+| `docv_eligible` | boolean | No | Whether this evaluation may use [document verification (DocV)](#document-verification-docv). Omitted = not DocV-eligible. |
+| `ip_address` | string | Yes | Participant's IP address |
 
 ### Address object
 
-| Field            | Required | Description                                                                                           |
-| ---------------- | -------- | ----------------------------------------------------------------------------------------------------- |
-| `address_line_1` | Yes      | Street address                                                                                        |
-| `address_line_2` | No       | Apartment, suite, unit                                                                                |
-| `city`           | Yes      | City                                                                                                  |
-| `state`          | Yes      | Two-letter US state code                                                                              |
-| `postal_code`    | Yes      | Five-digit US ZIP code (for example `10001`)                                                          |
-| `country`        | No       | Two-letter country code; use `US`. Not validated platform-side — passed to the verification provider. |
+| Field | Required | Description |
+| - | - | - |
+| `address_line_1` | Yes | Street address |
+| `address_line_2` | No | Apartment, suite, unit |
+| `city` | Yes | City |
+| `state` | Yes | Two-letter US state code |
+| `postal_code` | Yes | Five-digit US ZIP code (for example `10001`) |
+| `country` | No | Two-letter country code; use `US`. Not validated platform-side — passed to the verification provider. |
 
 ## Decision matrix
 
 The response's `status` object carries `decision`, `status`, `subStatus`, and `externalId`. Together with the presence of a `docv` object, the synchronous response indicates the path:
 
-| `decision`            | `docv` present | Meaning                                                                     |
-| --------------------- | -------------- | --------------------------------------------------------------------------- |
-| `ACCEPT` / `APPROVED` | No             | **Approved** — provisioning runs (often asynchronously; see below)          |
-| `REVIEW`              | Yes            | **Document verification** — direct the participant to `docv.url` or the SDK |
-| `REVIEW`              | No             | **Manual compliance review** — inform the participant to wait               |
-| `RESUBMIT`            | No             | Participant must resubmit documents                                         |
-| `REJECT`              | No             | **Rejection** — no account created                                          |
+| `decision` | `docv` present | Meaning |
+| - | - | - |
+| `ACCEPT` / `APPROVED` | No | **Approved** — provisioning runs (often asynchronously; see below) |
+| `REVIEW` | Yes | **Document verification** — direct the participant to `docv.url` or the SDK |
+| `REVIEW` | No | **Manual compliance review** — inform the participant to wait |
+| `RESUBMIT` | No | Participant must resubmit documents |
+| `REJECT` | No | **Rejection** — no account created |
 
 <Warning>
   **Treat `decision` / `status` / `subStatus` as informational, not control flow.** These values are passed through from the verification provider and the provider may emit values beyond the set above. Key your logic off the **`docv` presence** on the start and [status](#resuming-an-interrupted-docv-session) responses, and off the **[webhook](/partners/onboarding/kyc/webhooks) `event_type` / `status`** (`kyc.approved` / `kyc.rejected`) for the terminal outcome.
@@ -189,13 +189,13 @@ When Socure can't verify from the submitted data alone and the evaluation is Doc
 }
 ```
 
-| Field                  | Use                                                                                                                                                                                                                                               |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `url`                  | Redirect or embed for browser-based document upload                                                                                                                                                                                               |
-| `qrCode`               | Base64 PNG — display on desktop for mobile handoff                                                                                                                                                                                                |
-| `docvTransactionToken` | Launch token for the Socure mobile SDK                                                                                                                                                                                                            |
-| `sdkKey`               | **Always empty — ignore it.** Initialise the Socure SDK with the SDK key issued by the Polymarket US onboarding team; a [single key initialises both Digital Intelligence and DocV](/partners/onboarding/kyc/digital-intelligence#implementation) |
-| `eventId`              | Socure event identifier                                                                                                                                                                                                                           |
+| Field | Use |
+| - | - |
+| `url` | Redirect or embed for browser-based document upload |
+| `qrCode` | Base64 PNG — display on desktop for mobile handoff |
+| `docvTransactionToken` | Launch token for the Socure mobile SDK |
+| `sdkKey` | **Always empty — ignore it.** Initialise the Socure SDK with the SDK key issued by the Polymarket US onboarding team; a [single key initialises both Digital Intelligence and DocV](/partners/onboarding/kyc/digital-intelligence#implementation) |
+| `eventId` | Socure event identifier |
 
 You can direct the participant three ways — a **web URL**, a **QR code** for desktop→mobile handoff, or the **native Socure SDK**. Document capture is fully handled by Socure's UI; you don't build capture logic yourself.
 
@@ -247,12 +247,12 @@ GET /v1/kyc/status?external_id=your-internal-user-id-123
 
 Partner-relevant `status.status` values:
 
-| `status.status`        | Meaning                                                                                                                 |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `OPEN`                 | In progress (for example, manual review)                                                                                |
-| `REVIEW` / `IN REVIEW` | Under review                                                                                                            |
-| `ON_HOLD`              | Non-terminal provider status (for example, an instant approval while provisioning completes, or a document-upload step) |
-| `CLOSED`               | Terminal — check `decision`                                                                                             |
+| `status.status` | Meaning |
+| - | - |
+| `OPEN` | In progress (for example, manual review) |
+| `REVIEW` / `IN REVIEW` | Under review |
+| `ON_HOLD` | Non-terminal provider status (for example, an instant approval while provisioning completes, or a document-upload step) |
+| `CLOSED` | Terminal — check `decision` |
 
 <Note>
   Values are passed through from the verification provider and may extend beyond this set. Use populated provisioning identifiers (and the [webhook](/partners/onboarding/kyc/webhooks)) as your signal that the participant is ready to trade — not a specific `status` string.
@@ -292,15 +292,15 @@ The fields are identical to the start response — including `sdkKey`, which is 
 
 ## Error handling & polling
 
-| HTTP | gRPC               | Meaning                                       | Action                                   |
-| ---- | ------------------ | --------------------------------------------- | ---------------------------------------- |
-| 200  | OK                 | Success                                       | Process the response                     |
-| 400  | INVALID\_ARGUMENT  | Missing or invalid field                      | Fix the request                          |
-| 401  | UNAUTHENTICATED    | Invalid/expired token                         | Refresh the token                        |
-| 403  | PERMISSION\_DENIED | Firm lacks KYC API access                     | Contact the onboarding team              |
-| 409  | ALREADY\_EXISTS    | Participant already has approved KYC          | Fetch via `GET /v1/kyc/status`           |
-| 429  | —                  | Throttled at the edge before reaching the API | Retry with backoff (honor `Retry-After`) |
-| 500  | INTERNAL           | Gateway error                                 | Retry with exponential backoff           |
+| HTTP | gRPC | Meaning | Action |
+| - | - | - | - |
+| 200 | OK | Success | Process the response |
+| 400 | INVALID\_ARGUMENT | Missing or invalid field | Fix the request |
+| 401 | UNAUTHENTICATED | Invalid/expired token | Refresh the token |
+| 403 | PERMISSION\_DENIED | Firm lacks KYC API access | Contact the onboarding team |
+| 409 | ALREADY\_EXISTS | Participant already has approved KYC | Fetch via `GET /v1/kyc/status` |
+| 429 | — | Throttled at the edge before reaching the API | Retry with backoff (honor `Retry-After`) |
+| 500 | INTERNAL | Gateway error | Retry with exponential backoff |
 
 <Info>
   **`external_id` is idempotent.** Re-submitting `POST /v1/kyc/start` for a participant who already passed KYC returns `409 ALREADY_EXISTS`. Handle it by fetching the existing status rather than treating it as an error.
@@ -370,28 +370,28 @@ flowchart TD
 
 In sandbox, with **DocV disabled** (`docv_eligible` false or omitted), Socure decides the outcome from the **name and email** you submit:
 
-| Outcome   | How to trigger                                                                                             |
-| --------- | ---------------------------------------------------------------------------------------------------------- |
-| Rejection | Set `email` to `reject@example.com`                                                                        |
-| Review    | Set `first_name` to `Paulina` and `last_name` to `Gizela` (with any email other than `reject@example.com`) |
-| Approval  | Use any other name / email combination                                                                     |
+| Outcome | How to trigger |
+| - | - |
+| Rejection | Set `email` to `reject@example.com` |
+| Review | Set `first_name` to `Paulina` and `last_name` to `Gizela` (with any email other than `reject@example.com`) |
+| Approval | Use any other name / email combination |
 
 With **DocV enabled** (`docv_eligible: true`), sandbox outcomes are driven by the **date of birth** instead:
 
-| Outcome                                              | `date_of_birth` |
-| ---------------------------------------------------- | --------------- |
-| Immediate approval                                   | `1985-10-02`    |
-| Immediate rejection                                  | `1985-09-04`    |
-| DocV — approved after upload                         | `1985-09-02`    |
-| DocV — rejected after upload                         | `1985-09-05`    |
-| DocV — review after upload (pending manual decision) | `1985-09-25`    |
+| Outcome | `date_of_birth` |
+| - | - |
+| Immediate approval | `1985-10-02` |
+| Immediate rejection | `1985-09-04` |
+| DocV — approved after upload | `1985-09-02` |
+| DocV — rejected after upload | `1985-09-05` |
+| DocV — review after upload (pending manual decision) | `1985-09-25` |
 
 Use these placeholder agreement values in sandbox (the onboarding team provides production values):
 
-| Field                 | Sandbox value          |
-| --------------------- | ---------------------- |
-| `agreement.version`   | `PMX.ISV.SANDBOX.v1.0` |
-| `agreement.signed_at` | Current UTC timestamp  |
+| Field | Sandbox value |
+| - | - |
+| `agreement.version` | `PMX.ISV.SANDBOX.v1.0` |
+| `agreement.signed_at` | Current UTC timestamp |
 
 ## Next steps
 

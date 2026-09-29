@@ -26,21 +26,21 @@ https://api.polymarket.us
 
 ### Positions
 
-| Method | Endpoint                  | Description                  |
-| ------ | ------------------------- | ---------------------------- |
-| `GET`  | `/v1/portfolio/positions` | Get user's trading positions |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/portfolio/positions` | Get user's trading positions |
 
 ### Activities
 
-| Method | Endpoint                   | Description                  |
-| ------ | -------------------------- | ---------------------------- |
-| `GET`  | `/v1/portfolio/activities` | Get trading activity history |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/portfolio/activities` | Get trading activity history |
 
 ### Account
 
-| Method | Endpoint               | Description          |
-| ------ | ---------------------- | -------------------- |
-| `GET`  | `/v1/account/balances` | Get account balances |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/account/balances` | Get account balances |
 
 ## Positions Response
 
@@ -70,24 +70,24 @@ The positions response returns a **map of market slug to position**, not an arra
 
 ### Position Fields
 
-| Field                 | Type               | Description                                                            |
-| --------------------- | ------------------ | ---------------------------------------------------------------------- |
-| `netPositionDecimal`  | string (decimal)   | Net position quantity in contracts (positive = long, negative = short) |
-| `qtyBoughtDecimal`    | string (decimal)   | Total quantity bought in contracts                                     |
-| `qtySoldDecimal`      | string (decimal)   | Total quantity sold in contracts                                       |
-| `qtyAvailableDecimal` | string (decimal)   | Quantity available to trade in contracts                               |
-| `bodPositionDecimal`  | string (decimal)   | Beginning of day position in contracts                                 |
-| `netPosition`         | string (int64)     | Deprecated rounded quantity; use `netPositionDecimal`                  |
-| `qtyBought`           | string (int64)     | Deprecated rounded quantity; use `qtyBoughtDecimal`                    |
-| `qtySold`             | string (int64)     | Deprecated rounded quantity; use `qtySoldDecimal`                      |
-| `cost`                | Amount             | Total cost basis                                                       |
-| `realized`            | Amount             | Realized profit/loss                                                   |
-| `cashValue`           | Amount             | Current unrealized value                                               |
-| `qtyAvailable`        | string (int64)     | Deprecated rounded quantity; use `qtyAvailableDecimal`                 |
-| `bodPosition`         | string (int64)     | Deprecated rounded quantity; use `bodPositionDecimal`                  |
-| `expired`             | boolean            | Whether the position has expired                                       |
-| `updateTime`          | string (date-time) | Last update timestamp                                                  |
-| `marketMetadata`      | object             | Market information (slug, title, outcome)                              |
+| Field | Type | Description |
+| - | - | - |
+| `netPositionDecimal` | string (decimal) | Net position quantity in contracts (positive = long, negative = short) |
+| `qtyBoughtDecimal` | string (decimal) | Total quantity bought in contracts |
+| `qtySoldDecimal` | string (decimal) | Total quantity sold in contracts |
+| `qtyAvailableDecimal` | string (decimal) | Quantity available to trade in contracts |
+| `bodPositionDecimal` | string (decimal) | Beginning of day position in contracts |
+| `netPosition` | string (int64) | Deprecated rounded quantity; use `netPositionDecimal` |
+| `qtyBought` | string (int64) | Deprecated rounded quantity; use `qtyBoughtDecimal` |
+| `qtySold` | string (int64) | Deprecated rounded quantity; use `qtySoldDecimal` |
+| `cost` | Amount | Total cost basis |
+| `realized` | Amount | Realized profit/loss |
+| `cashValue` | Amount | Current unrealized value |
+| `qtyAvailable` | string (int64) | Deprecated rounded quantity; use `qtyAvailableDecimal` |
+| `bodPosition` | string (int64) | Deprecated rounded quantity; use `bodPositionDecimal` |
+| `expired` | boolean | Whether the position has expired |
+| `updateTime` | string (date-time) | Last update timestamp |
+| `marketMetadata` | object | Market information (slug, title, outcome) |
 
 Use the `*Decimal` quantity fields for display and calculations. The older integer fields remain for backward compatibility and should not be used for partial-contract markets.
 
@@ -112,49 +112,49 @@ Activities are returned as an array with pagination:
 
 Each activity has a `type` field and a corresponding nested object:
 
-| Type                                     | Nested Field           | Description                              |
-| ---------------------------------------- | ---------------------- | ---------------------------------------- |
-| `ACTIVITY_TYPE_TRADE`                    | `trade`                | Trade execution details                  |
-| `ACTIVITY_TYPE_POSITION_RESOLUTION`      | `positionResolution`   | Market settlement details                |
-| `ACTIVITY_TYPE_ACCOUNT_DEPOSIT`          | `accountBalanceChange` | Deposit details                          |
+| Type | Nested Field | Description |
+| - | - | - |
+| `ACTIVITY_TYPE_TRADE` | `trade` | Trade execution details |
+| `ACTIVITY_TYPE_POSITION_RESOLUTION` | `positionResolution` | Market settlement details |
+| `ACTIVITY_TYPE_ACCOUNT_DEPOSIT` | `accountBalanceChange` | Deposit details |
 | `ACTIVITY_TYPE_ACCOUNT_ADVANCED_DEPOSIT` | `accountBalanceChange` | Advance issued against a pending deposit |
-| `ACTIVITY_TYPE_ACCOUNT_WITHDRAWAL`       | `accountBalanceChange` | Withdrawal details                       |
-| `ACTIVITY_TYPE_TRANSFER`                 | `accountBalanceChange` | Transfer details                         |
-| `ACTIVITY_TYPE_REFERRAL_BONUS`           | `accountBalanceChange` | Referral incentive credit                |
-| `ACTIVITY_TYPE_TAKER_FEE_REBATE`         | `accountBalanceChange` | Taker fee rebate credit                  |
-| `ACTIVITY_TYPE_LIQUIDITY_PROGRAM`        | `accountBalanceChange` | Liquidity program payout                 |
+| `ACTIVITY_TYPE_ACCOUNT_WITHDRAWAL` | `accountBalanceChange` | Withdrawal details |
+| `ACTIVITY_TYPE_TRANSFER` | `accountBalanceChange` | Transfer details |
+| `ACTIVITY_TYPE_REFERRAL_BONUS` | `accountBalanceChange` | Referral incentive credit |
+| `ACTIVITY_TYPE_TAKER_FEE_REBATE` | `accountBalanceChange` | Taker fee rebate credit |
+| `ACTIVITY_TYPE_LIQUIDITY_PROGRAM` | `accountBalanceChange` | Liquidity program payout |
 
 ### Trade Object
 
-| Field         | Type               | Description                                    |
-| ------------- | ------------------ | ---------------------------------------------- |
-| `id`          | string             | Exchange-assigned trade ID                     |
-| `marketSlug`  | string             | Market slug                                    |
-| `state`       | string             | Trade state; see [Trade States](#trade-states) |
-| `price`       | Amount             | Trade price                                    |
-| `qtyDecimal`  | string (decimal)   | Trade quantity in contracts                    |
-| `qty`         | string             | Deprecated rounded quantity; use `qtyDecimal`  |
-| `isAggressor` | boolean            | True if user's order was the taker             |
-| `costBasis`   | Amount             | Cost basis for the trade                       |
-| `realizedPnl` | Amount             | Realized profit/loss                           |
-| `createTime`  | string (date-time) | Creation timestamp                             |
-| `updateTime`  | string (date-time) | Last update timestamp                          |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | Exchange-assigned trade ID |
+| `marketSlug` | string | Market slug |
+| `state` | string | Trade state; see [Trade States](#trade-states) |
+| `price` | Amount | Trade price |
+| `qtyDecimal` | string (decimal) | Trade quantity in contracts |
+| `qty` | string | Deprecated rounded quantity; use `qtyDecimal` |
+| `isAggressor` | boolean | True if user's order was the taker |
+| `costBasis` | Amount | Cost basis for the trade |
+| `realizedPnl` | Amount | Realized profit/loss |
+| `createTime` | string (date-time) | Creation timestamp |
+| `updateTime` | string (date-time) | Last update timestamp |
 
 ### Trade States
 
 The `state` field on a trade progresses through the following values:
 
-| State                               | Value | Description                                                                                                                                                            |
-| ----------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TRADE_STATE_NEW`                   | 1     | Trade created.                                                                                                                                                         |
-| `TRADE_STATE_CLEARED`               | 2     | Trade successfully cleared by the clearing house.                                                                                                                      |
-| `TRADE_STATE_BUSTED`                | 3     | The trade was voided post-execution by the exchange (an error trade) and the resulting position was rolled back. This is a terminal reversal, **not** a pending state. |
-| `TRADE_STATE_INFLIGHT`              | 4     | Trade information sent to the clearinghouse.                                                                                                                           |
-| `TRADE_STATE_PENDING_RISK`          | 5     | Clearinghouse is pending at least one DCM claim for the trade.                                                                                                         |
-| `TRADE_STATE_PENDING_CLEARED`       | 6     | Clearinghouse is pending the counterparty DCM claim.                                                                                                                   |
-| `TRADE_STATE_REJECTED`              | 7     | Clearinghouse rejected the trade.                                                                                                                                      |
-| `TRADE_STATE_CLEARING_ACKNOWLEDGED` | 8     | Clearing request acknowledged by the clearing house.                                                                                                                   |
-| `TRADE_STATE_RETRY_REQUEST`         | 9     | Retry requested; pending resubmission to the clearing house.                                                                                                           |
+| State | Value | Description |
+| - | - | - |
+| `TRADE_STATE_NEW` | 1 | Trade created. |
+| `TRADE_STATE_CLEARED` | 2 | Trade successfully cleared by the clearing house. |
+| `TRADE_STATE_BUSTED` | 3 | The trade was voided post-execution by the exchange (an error trade) and the resulting position was rolled back. This is a terminal reversal, **not** a pending state. |
+| `TRADE_STATE_INFLIGHT` | 4 | Trade information sent to the clearinghouse. |
+| `TRADE_STATE_PENDING_RISK` | 5 | Clearinghouse is pending at least one DCM claim for the trade. |
+| `TRADE_STATE_PENDING_CLEARED` | 6 | Clearinghouse is pending the counterparty DCM claim. |
+| `TRADE_STATE_REJECTED` | 7 | Clearinghouse rejected the trade. |
+| `TRADE_STATE_CLEARING_ACKNOWLEDGED` | 8 | Clearing request acknowledged by the clearing house. |
+| `TRADE_STATE_RETRY_REQUEST` | 9 | Retry requested; pending resubmission to the clearing house. |
 
 <Warning>
   **Handling `TRADE_STATE_BUSTED`**
@@ -174,24 +174,24 @@ The `state` field on a trade progresses through the following values:
 
 ### Position Resolution Object
 
-| Field            | Type               | Description                            |
-| ---------------- | ------------------ | -------------------------------------- |
-| `marketSlug`     | string             | Market slug                            |
-| `beforePosition` | UserPosition       | Position before resolution             |
-| `afterPosition`  | UserPosition       | Position after resolution              |
-| `side`           | string             | Resolution side (LONG, SHORT, NEUTRAL) |
-| `tradeId`        | string             | Associated trade ID                    |
-| `updateTime`     | string (date-time) | Resolution timestamp                   |
+| Field | Type | Description |
+| - | - | - |
+| `marketSlug` | string | Market slug |
+| `beforePosition` | UserPosition | Position before resolution |
+| `afterPosition` | UserPosition | Position after resolution |
+| `side` | string | Resolution side (LONG, SHORT, NEUTRAL) |
+| `tradeId` | string | Associated trade ID |
+| `updateTime` | string (date-time) | Resolution timestamp |
 
 ### Account Balance Change Object
 
-| Field           | Type               | Description                           |
-| --------------- | ------------------ | ------------------------------------- |
-| `transactionId` | string             | Transaction ID                        |
-| `status`        | string             | Status (PENDING, COMPLETED, REJECTED) |
-| `amount`        | Amount             | Amount of the balance change          |
-| `createTime`    | string (date-time) | Creation timestamp                    |
-| `updateTime`    | string (date-time) | Last update timestamp                 |
+| Field | Type | Description |
+| - | - | - |
+| `transactionId` | string | Transaction ID |
+| `status` | string | Status (PENDING, COMPLETED, REJECTED) |
+| `amount` | Amount | Amount of the balance change |
+| `createTime` | string (date-time) | Creation timestamp |
+| `updateTime` | string (date-time) | Last update timestamp |
 
 ## Pagination
 
@@ -215,10 +215,10 @@ GET /v1/portfolio/activities?types=ACTIVITY_TYPE_TRADE&marketSlug=will-x-happen
 
 Activities can be sorted ascending or descending by time:
 
-| Sort Order              | Description            |
-| ----------------------- | ---------------------- |
+| Sort Order | Description |
+| - | - |
 | `SORT_ORDER_DESCENDING` | Newest first (default) |
-| `SORT_ORDER_ASCENDING`  | Oldest first           |
+| `SORT_ORDER_ASCENDING` | Oldest first |
 
 ## Account Balances
 
@@ -244,17 +244,17 @@ The account balances endpoint returns current balance information:
 
 ### Balance Fields
 
-| Field               | Description                        |
-| ------------------- | ---------------------------------- |
-| `currentBalance`    | Current fiat currency balance      |
-| `currency`          | Currency code (e.g., USD)          |
-| `buyingPower`       | Capital available for trading      |
-| `assetNotional`     | Total notional value of securities |
-| `assetAvailable`    | Available collateral value         |
-| `pendingCredit`     | Pending credit amounts             |
-| `openOrders`        | Value tied up in open orders       |
-| `unsettledFunds`    | Unsettled funds not yet available  |
-| `marginRequirement` | Required margin for positions      |
+| Field | Description |
+| - | - |
+| `currentBalance` | Current fiat currency balance |
+| `currency` | Currency code (e.g., USD) |
+| `buyingPower` | Capital available for trading |
+| `assetNotional` | Total notional value of securities |
+| `assetAvailable` | Available collateral value |
+| `pendingCredit` | Pending credit amounts |
+| `openOrders` | Value tied up in open orders |
+| `unsettledFunds` | Unsettled funds not yet available |
+| `marginRequirement` | Required margin for positions |
 
 ### Buying Power
 

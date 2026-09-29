@@ -20,65 +20,65 @@ The following fields appear on every automated crypto instrument. Together they 
 
 ### Field Reference
 
-| Field                                       | Location   | Type                  | Description                                                                                                                                                                                                                              |
-| ------------------------------------------- | ---------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `event_category`                            | `metadata` | String                | Always `CRY`.                                                                                                                                                                                                                            |
-| `event_subcategory`                         | `metadata` | String                | The asset symbol, e.g. `BTC`.                                                                                                                                                                                                            |
-| `instrument_product`                        | `metadata` | String                | Always `cpc`.                                                                                                                                                                                                                            |
-| `instrument_product_series`                 | `metadata` | String                | Always `cpc-crypto`. Use `event_series` for the cadence.                                                                                                                                                                                 |
-| `clearing_sym`                              | `metadata` | String                | `CPC-<SYMBOL>`, e.g. `CPC-BTC`.                                                                                                                                                                                                          |
-| `event_series`                              | `metadata` | String                | Series slug encoding asset, family and cadence. See the series table below.                                                                                                                                                              |
-| `event_id`                                  | `metadata` | String                | Slug of the event that groups every leg of one ladder or one up/down window. No contract prefix.                                                                                                                                         |
-| `product_id` / `event_product_id`           | `metadata` | String                | `cpc-<event_id>`. Groups the legs of one ladder.                                                                                                                                                                                         |
-| `event_start_time`                          | `metadata` | Timestamp (UTC)       | Up/down: the window open. One-touch: the start of the measurement window. Above/below and price range: the listing time.                                                                                                                 |
-| `crypto_asset_slug`                         | `metadata` | String                | Asset slug used by the Retail asset-price endpoints, e.g. `btc`.                                                                                                                                                                         |
-| `crypto_index_symbol`                       | `metadata` | String                | Reference index the market settles on, e.g. `BRTI`.                                                                                                                                                                                      |
-| `crypto_market_type`                        | `metadata` | Enum                  | The market family. **Map on this field.** See the enum below.                                                                                                                                                                            |
-| `crypto_horizon`                            | `metadata` | Enum                  | The cadence or window length. See the enum below.                                                                                                                                                                                        |
-| `outcome_strike`                            | `metadata` | String (numeric)      | Above/below: the strike. One-touch: the target. Price range: the bucket's defining floor. Up/down: `"0.0"`.                                                                                                                              |
-| `interval_start`                            | `metadata` | String (unix seconds) | Start of the measurement window. Present on up/down and one-touch only.                                                                                                                                                                  |
-| `interval_end`                              | `metadata` | String (unix seconds) | End of the measurement window, i.e. the settlement instant. Present on every family.                                                                                                                                                     |
-| `price_to_beat`                             | `metadata` | String (decimal)      | Up/down only. The open reference price. Absent until stamped a few seconds after the window opens.                                                                                                                                       |
-| `crypto_range_kind`                         | `metadata` | Enum                  | Price range only: `interior`, `below` (bottom tail) or `above` (top tail).                                                                                                                                                               |
-| `crypto_range_lower` / `crypto_range_upper` | `metadata` | String (decimal)      | Price range only. Inclusive bounds with two decimals. A tail omits its open side.                                                                                                                                                        |
-| `crypto_hit_direction`                      | `metadata` | Enum                  | One-touch only: `high` (touch from below) or `low` (touch from above).                                                                                                                                                                   |
-| `crypto_hit_method`                         | `metadata` | String                | One-touch only: `trimmed_mean_60s_20`, the settlement statistic.                                                                                                                                                                         |
-| `crypto_settlement_price`                   | `metadata` | String (decimal)      | The reference price the market settled on. Absent until resolution, and stays absent on a One-Touch market that resolves No: no price was touched, so there is none to record. Read the instrument state for completion, not this field. |
+| Field | Location | Type | Description |
+| - | - | - | - |
+| `event_category` | `metadata` | String | Always `CRY`. |
+| `event_subcategory` | `metadata` | String | The asset symbol, e.g. `BTC`. |
+| `instrument_product` | `metadata` | String | Always `cpc`. |
+| `instrument_product_series` | `metadata` | String | Always `cpc-crypto`. Use `event_series` for the cadence. |
+| `clearing_sym` | `metadata` | String | `CPC-<SYMBOL>`, e.g. `CPC-BTC`. |
+| `event_series` | `metadata` | String | Series slug encoding asset, family and cadence. See the series table below. |
+| `event_id` | `metadata` | String | Slug of the event that groups every leg of one ladder or one up/down window. No contract prefix. |
+| `product_id` / `event_product_id` | `metadata` | String | `cpc-<event_id>`. Groups the legs of one ladder. |
+| `event_start_time` | `metadata` | Timestamp (UTC) | Up/down: the window open. One-touch: the start of the measurement window. Above/below and price range: the listing time. |
+| `crypto_asset_slug` | `metadata` | String | Asset slug used by the Retail asset-price endpoints, e.g. `btc`. |
+| `crypto_index_symbol` | `metadata` | String | Reference index the market settles on, e.g. `BRTI`. |
+| `crypto_market_type` | `metadata` | Enum | The market family. **Map on this field.** See the enum below. |
+| `crypto_horizon` | `metadata` | Enum | The cadence or window length. See the enum below. |
+| `outcome_strike` | `metadata` | String (numeric) | Above/below: the strike. One-touch: the target. Price range: the bucket's defining floor. Up/down: `"0.0"`. |
+| `interval_start` | `metadata` | String (unix seconds) | Start of the measurement window. Present on up/down and one-touch only. |
+| `interval_end` | `metadata` | String (unix seconds) | End of the measurement window, i.e. the settlement instant. Present on every family. |
+| `price_to_beat` | `metadata` | String (decimal) | Up/down only. The open reference price. Absent until stamped a few seconds after the window opens. |
+| `crypto_range_kind` | `metadata` | Enum | Price range only: `interior`, `below` (bottom tail) or `above` (top tail). |
+| `crypto_range_lower` / `crypto_range_upper` | `metadata` | String (decimal) | Price range only. Inclusive bounds with two decimals. A tail omits its open side. |
+| `crypto_hit_direction` | `metadata` | Enum | One-touch only: `high` (touch from below) or `low` (touch from above). |
+| `crypto_hit_method` | `metadata` | String | One-touch only: `trimmed_mean_60s_20`, the settlement statistic. |
+| `crypto_settlement_price` | `metadata` | String (decimal) | The reference price the market settled on. Absent until resolution, and stays absent on a One-Touch market that resolves No: no price was touched, so there is none to record. Read the instrument state for completion, not this field. |
 
 The instrument also carries display fields you can ignore for mapping: `market_title`, `market_subtitle`, `event_sort_type`, `market_sort_order`, `market_color`, `market_dark_color`, `event_image`, `event_image_display_type`, `event_tags`, and the CFTC reporting fields `cftc_instrument_id`, `cftc_product_desc`, `cftc_binary_option_strike_price_alias`. Operational fields (`requires_manual_settlement`, `manual_settlement_*`, `expected_settlement_side`, `settlement_*`) can appear while the exchange is settling an instrument and must be ignored.
 
 ### `crypto_market_type` Enum
 
-| Value    | Retail `assetPriceTerms.marketType`   | Structure                                                                                                                     |
-| -------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `updown` | `ASSET_PRICE_MARKET_TYPE_UP_DOWN`     | One binary instrument per window. Long side pays when the close is at or above the open.                                      |
+| Value | Retail `assetPriceTerms.marketType` | Structure |
+| - | - | - |
+| `updown` | `ASSET_PRICE_MARKET_TYPE_UP_DOWN` | One binary instrument per window. Long side pays when the close is at or above the open. |
 | `strike` | `ASSET_PRICE_MARKET_TYPE_ABOVE_BELOW` | Ladder of independent binary instruments, one per strike. Long side pays when the settlement value is at or above the strike. |
-| `range`  | `ASSET_PRICE_MARKET_TYPE_RANGE`       | Ladder of mutually exclusive buckets that tile the price line. Exactly one leg pays.                                          |
-| `hit`    | `ASSET_PRICE_MARKET_TYPE_ONE_TOUCH`   | Ladder of independent binary instruments, one per target. Long side pays if the target is touched at any point in the window. |
+| `range` | `ASSET_PRICE_MARKET_TYPE_RANGE` | Ladder of mutually exclusive buckets that tile the price line. Exactly one leg pays. |
+| `hit` | `ASSET_PRICE_MARKET_TYPE_ONE_TOUCH` | Ladder of independent binary instruments, one per target. Long side pays if the target is touched at any point in the window. |
 
 Treat an unknown value as a newer family: render the fields that are present and watch the changelog.
 
 ### `crypto_horizon` Enum
 
-| Value                   | Family            | Meaning                                                                                                                     |
-| ----------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `5m`, `15m`, `1h`, `4h` | `updown`          | Window length. `15m` and `1h` are listed; `5m` and `4h` follow the same pattern and can appear in preprod ahead of listing. |
-| `hourly`                | `strike`, `range` | Expires at the top of an hour.                                                                                              |
-| `daily`                 | `strike`, `range` | Expires at 5:00 PM ET.                                                                                                      |
-| `weekly`                | `strike`, `range` | Expires Friday 5:00 PM ET.                                                                                                  |
-| `monthly`               | `hit`             | Window runs from the first of the month to midnight ET at month end.                                                        |
+| Value | Family | Meaning |
+| - | - | - |
+| `5m`, `15m`, `1h`, `4h` | `updown` | Window length. `15m` and `1h` are listed; `5m` and `4h` follow the same pattern and can appear in preprod ahead of listing. |
+| `hourly` | `strike`, `range` | Expires at the top of an hour. |
+| `daily` | `strike`, `range` | Expires at 5:00 PM ET. |
+| `weekly` | `strike`, `range` | Expires Friday 5:00 PM ET. |
+| `monthly` | `hit` | Window runs from the first of the month to midnight ET at month end. |
 
 ### Series
 
 `event_series` combines asset, family and cadence. Current values:
 
-| Series                                                       | Family                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------------- |
-| `btc-updown-15m`, `btc-updown-1h`                            | Up/down. Further cadences follow the pattern `btc-updown-<horizon>` |
-| `btc-strike-hourly`, `btc-strike-daily`, `btc-strike-weekly` | Above/below                                                         |
-| `btc-range-hourly`, `btc-range-daily`, `btc-range-weekly`    | Price range                                                         |
-| `btc-hit-monthly`                                            | One-touch                                                           |
-| `btc`                                                        | Hand-listed markets (Section 4)                                     |
+| Series | Family |
+| - | - |
+| `btc-updown-15m`, `btc-updown-1h` | Up/down. Further cadences follow the pattern `btc-updown-<horizon>` |
+| `btc-strike-hourly`, `btc-strike-daily`, `btc-strike-weekly` | Above/below |
+| `btc-range-hourly`, `btc-range-daily`, `btc-range-weekly` | Price range |
+| `btc-hit-monthly` | One-touch |
+| `btc` | Hand-listed markets (Section 4) |
 
 ### Event Attributes
 
@@ -96,49 +96,49 @@ All families share the same contract attributes: tick size `0.01`, valid prices 
 
 *Will the price close the window at or above its open?*
 
-| Aspect                | Detail                                                                                                                                                                                                              |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Open and close values | For each of the two instants `T`, the 60 per-second BRTI prices published from `T − 59 s` up to and including `T` (the inclusive interval `[T − 59 s, T]`) are collected and averaged, rounded to two decimals.     |
-| Settlement            | Long side (Yes) pays when the close value is greater than or equal to the open value. A flat print settles Up. Otherwise the short side (No) pays.                                                                  |
-| Cadence               | `15m` windows are listed about 12 hours ahead (roughly 48 open per asset). `1h` windows are listed about 24 hours ahead on the UTC hour grid. Windows that overlap a scheduled exchange maintenance are not listed. |
-| Lifecycle             | Created `PENDING`, opened for trading about 90 seconds before the window starts, last trade at the window close. `price_to_beat` is stamped a few seconds after the open; `crypto_settlement_price` at resolution.  |
-| Structure             | One instrument per event. `outcome_strike` is `"0.0"`; both `interval_start` and `interval_end` are set.                                                                                                            |
+| Aspect | Detail |
+| - | - |
+| Open and close values | For each of the two instants `T`, the 60 per-second BRTI prices published from `T − 59 s` up to and including `T` (the inclusive interval `[T − 59 s, T]`) are collected and averaged, rounded to two decimals. |
+| Settlement | Long side (Yes) pays when the close value is greater than or equal to the open value. A flat print settles Up. Otherwise the short side (No) pays. |
+| Cadence | `15m` windows are listed about 12 hours ahead (roughly 48 open per asset). `1h` windows are listed about 24 hours ahead on the UTC hour grid. Windows that overlap a scheduled exchange maintenance are not listed. |
+| Lifecycle | Created `PENDING`, opened for trading about 90 seconds before the window starts, last trade at the window close. `price_to_beat` is stamped a few seconds after the open; `crypto_settlement_price` at resolution. |
+| Structure | One instrument per event. `outcome_strike` is `"0.0"`; both `interval_start` and `interval_end` are set. |
 
 ### Above/Below
 
 *Will the price be at or above \$X at expiry?*
 
-| Aspect           | Detail                                                                                                                                                                                                                                                                                                                                  |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Settlement value | The 60 per-second BRTI prices published from 59 seconds before expiry up to and including the expiry instant (`[T − 59 s, T]`), averaged and rounded to two decimals.                                                                                                                                                                   |
-| Settlement       | Long side pays when the settlement value is greater than or equal to the strike. A value exactly equal to the strike settles Yes.                                                                                                                                                                                                       |
-| Cadence          | `hourly` ladders (\$100 steps) are listed about four hours ahead; no hourly ladder expires at 5:00 PM ET. `daily` ladders (\$500 steps) expire at 5:00 PM ET and are listed about 25 hours ahead; there is no daily ladder on Fridays. `weekly` ladders (\$500 steps) expire Friday 5:00 PM ET and are listed on Monday at midnight ET. |
-| Lifecycle        | Tradeable from listing. Last trade at expiry.                                                                                                                                                                                                                                                                                           |
-| Structure        | One event per expiry with one instrument per strike; ladder depth scales with implied volatility (typically 30 to 100 legs). `outcome_strike` is the strike; only `interval_end` is set.                                                                                                                                                |
+| Aspect | Detail |
+| - | - |
+| Settlement value | The 60 per-second BRTI prices published from 59 seconds before expiry up to and including the expiry instant (`[T − 59 s, T]`), averaged and rounded to two decimals. |
+| Settlement | Long side pays when the settlement value is greater than or equal to the strike. A value exactly equal to the strike settles Yes. |
+| Cadence | `hourly` ladders (\$100 steps) are listed about four hours ahead; no hourly ladder expires at 5:00 PM ET. `daily` ladders (\$500 steps) expire at 5:00 PM ET and are listed about 25 hours ahead; there is no daily ladder on Fridays. `weekly` ladders (\$500 steps) expire Friday 5:00 PM ET and are listed on Monday at midnight ET. |
+| Lifecycle | Tradeable from listing. Last trade at expiry. |
+| Structure | One event per expiry with one instrument per strike; ladder depth scales with implied volatility (typically 30 to 100 legs). `outcome_strike` is the strike; only `interval_end` is set. |
 
 ### Price Range
 
 *Will the price be between \$A and \$B at expiry?*
 
-| Aspect           | Detail                                                                                                                                                                                                                           |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Settlement value | Same as above/below: the last-minute average before expiry, rounded to two decimals.                                                                                                                                             |
-| Settlement       | Buckets are inclusive on both bounds and tile the price line: each interior bucket spans `[floor, next floor − $0.01]`, the bottom tail is "or below", the top tail is "or above". Exactly one bucket settles Yes.               |
-| Cadence          | Same expiries and listing times as the above/below ladder of the same horizon; the bucket width is that ladder's strike spacing.                                                                                                 |
-| Lifecycle        | Tradeable from listing. Last trade at expiry.                                                                                                                                                                                    |
-| Structure        | One mutually exclusive event per expiry. `crypto_range_kind` says which side is open-ended; `crypto_range_lower` and `crypto_range_upper` carry the bounds. `outcome_strike` holds the bucket's defining floor for sorting only. |
+| Aspect | Detail |
+| - | - |
+| Settlement value | Same as above/below: the last-minute average before expiry, rounded to two decimals. |
+| Settlement | Buckets are inclusive on both bounds and tile the price line: each interior bucket spans `[floor, next floor − $0.01]`, the bottom tail is "or below", the top tail is "or above". Exactly one bucket settles Yes. |
+| Cadence | Same expiries and listing times as the above/below ladder of the same horizon; the bucket width is that ladder's strike spacing. |
+| Lifecycle | Tradeable from listing. Last trade at expiry. |
+| Structure | One mutually exclusive event per expiry. `crypto_range_kind` says which side is open-ended; `crypto_range_lower` and `crypto_range_upper` carry the bounds. `outcome_strike` holds the bucket's defining floor for sorting only. |
 
 ### One-Touch
 
 *Will the price reach (or dip to) \$X before the end of the month?*
 
-| Aspect               | Detail                                                                                                                                                                                                                                                                                             |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Settlement statistic | A rolling 60-second 20% trimmed mean of BRTI: at each evaluation instant the 60 prices published in the sixty seconds ending at and including it are collected, the highest 20% and lowest 20% are removed, and the rest are averaged, rounded to two decimals. Evaluated continuously.            |
-| Settlement           | Long side pays if the trimmed mean is at or above the target (`crypto_hit_direction: "high"`) or at or below it (`"low"`) at any point in the window. The market may settle early at that moment. Otherwise it settles No after the window closes, once the index data for the window is complete. |
-| Cadence              | `monthly`. The window opens when the ladder is listed at the start of the month and closes at midnight ET on the last day. "Reaches" and "Dips to" targets are separate events.                                                                                                                    |
-| Lifecycle            | Tradeable from listing. Last trade at the window close unless the market settles early.                                                                                                                                                                                                            |
-| Structure            | One event per direction per month, one instrument per target (\$2,500 steps, up to 16 targets). `outcome_strike` is the target; `interval_start` and `interval_end` are set.                                                                                                                       |
+| Aspect | Detail |
+| - | - |
+| Settlement statistic | A rolling 60-second 20% trimmed mean of BRTI: at each evaluation instant the 60 prices published in the sixty seconds ending at and including it are collected, the highest 20% and lowest 20% are removed, and the rest are averaged, rounded to two decimals. Evaluated continuously. |
+| Settlement | Long side pays if the trimmed mean is at or above the target (`crypto_hit_direction: "high"`) or at or below it (`"low"`) at any point in the window. The market may settle early at that moment. Otherwise it settles No after the window closes, once the index data for the window is complete. |
+| Cadence | `monthly`. The window opens when the ladder is listed at the start of the month and closes at midnight ET on the last day. "Reaches" and "Dips to" targets are separate events. |
+| Lifecycle | Tradeable from listing. Last trade at the window close unless the market settles early. |
+| Structure | One event per direction per month, one instrument per target (\$2,500 steps, up to 16 targets). `outcome_strike` is the target; `interval_start` and `interval_end` are set. |
 
 ***
 
@@ -146,18 +146,18 @@ All families share the same contract attributes: tick size `0.01`, valid prices 
 
 Use this table to identify a market from instrument metadata. **Match on `crypto_market_type`**, then read the window from `interval_start` / `interval_end` and the threshold from `outcome_strike` or the range bounds.
 
-| To identify...                          | Fields                                                                                                          |
-| --------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| **Any crypto price market**             | `event_category = "CRY"` and `instrument_product = "cpc"`                                                       |
-| **Automated market with typed terms**   | `crypto_market_type` present                                                                                    |
-| **15-minute up/down window**            | `crypto_market_type = "updown"`, `crypto_horizon = "15m"`; window = `interval_start` to `interval_end`          |
-| **Hourly up/down window**               | `crypto_market_type = "updown"`, `crypto_horizon = "1h"`                                                        |
-| **Daily above/below strike**            | `crypto_market_type = "strike"`, `crypto_horizon = "daily"`; strike = `outcome_strike`; expiry = `interval_end` |
-| **All legs of one ladder**              | Same `event_id` (or `product_id`)                                                                               |
-| **Price range bucket bounds**           | `crypto_market_type = "range"`; `crypto_range_kind` plus `crypto_range_lower` / `crypto_range_upper`            |
-| **One-touch target and direction**      | `crypto_market_type = "hit"`; `outcome_strike` and `crypto_hit_direction`                                       |
-| **The open price of an up/down window** | `price_to_beat` (absent until stamped shortly after `interval_start`)                                           |
-| **The value a market settled on**       | `crypto_settlement_price` (absent until resolution, and permanently absent on a One-Touch that resolved No)     |
+| To identify... | Fields |
+| - | - |
+| **Any crypto price market** | `event_category = "CRY"` and `instrument_product = "cpc"` |
+| **Automated market with typed terms** | `crypto_market_type` present |
+| **15-minute up/down window** | `crypto_market_type = "updown"`, `crypto_horizon = "15m"`; window = `interval_start` to `interval_end` |
+| **Hourly up/down window** | `crypto_market_type = "updown"`, `crypto_horizon = "1h"` |
+| **Daily above/below strike** | `crypto_market_type = "strike"`, `crypto_horizon = "daily"`; strike = `outcome_strike`; expiry = `interval_end` |
+| **All legs of one ladder** | Same `event_id` (or `product_id`) |
+| **Price range bucket bounds** | `crypto_market_type = "range"`; `crypto_range_kind` plus `crypto_range_lower` / `crypto_range_upper` |
+| **One-touch target and direction** | `crypto_market_type = "hit"`; `outcome_strike` and `crypto_hit_direction` |
+| **The open price of an up/down window** | `price_to_beat` (absent until stamped shortly after `interval_start`) |
+| **The value a market settled on** | `crypto_settlement_price` (absent until resolution, and permanently absent on a One-Touch that resolved No) |
 
 ### Worked Example: 15-Minute Up/Down
 

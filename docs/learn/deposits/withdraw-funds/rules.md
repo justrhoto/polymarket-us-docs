@@ -12,11 +12,11 @@ Deposits may appear in your balance before they fully clear. These are called **
 
 Here's how long each funding method typically takes to fully clear:
 
-| Funding Method      | Processing Time   | Notes                                    |
-| ------------------- | ----------------- | ---------------------------------------- |
-| Debit Card          | 3–4 business days | Funds must fully clear before withdrawal |
+| Funding Method | Processing Time | Notes |
+| - | - | - |
+| Debit Card | 3–4 business days | Funds must fully clear before withdrawal |
 | Bank Transfer (ACH) | 3–4 business days | Funds must fully clear before withdrawal |
-| Wire Transfer       | 1 business day    | Withdrawals available after confirmation |
+| Wire Transfer | 1 business day | Withdrawals available after confirmation |
 
 ## Original Funding Source
 

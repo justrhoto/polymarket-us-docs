@@ -10,14 +10,14 @@ The Markets resource provides access to market information, pricing, and order b
 
 ## Methods
 
-| Method                 | Endpoint                            | Description                 |
-| ---------------------- | ----------------------------------- | --------------------------- |
-| `list(params?)`        | `GET /v1/markets`                   | List markets with filtering |
-| `retrieve(id)`         | `GET /v1/market/id/{id}`            | Get market by ID            |
-| `retrieveBySlug(slug)` | `GET /v1/market/slug/{slug}`        | Get market by slug          |
-| `book(slug)`           | `GET /v1/markets/{slug}/book`       | Get full order book         |
-| `bbo(slug)`            | `GET /v1/markets/{slug}/bbo`        | Get best bid/offer          |
-| `settlement(slug)`     | `GET /v1/markets/{slug}/settlement` | Get settlement price        |
+| Method | Endpoint | Description |
+| - | - | - |
+| `list(params?)` | `GET /v1/markets` | List markets with filtering |
+| `retrieve(id)` | `GET /v1/market/id/{id}` | Get market by ID |
+| `retrieveBySlug(slug)` | `GET /v1/market/slug/{slug}` | Get market by slug |
+| `book(slug)` | `GET /v1/markets/{slug}/book` | Get full order book |
+| `bbo(slug)` | `GET /v1/markets/{slug}/bbo` | Get best bid/offer |
+| `settlement(slug)` | `GET /v1/markets/{slug}/settlement` | Get settlement price |
 
 ***
 
@@ -39,32 +39,32 @@ for (const market of markets.markets) {
 
 ### Parameters
 
-| Parameter           | Type      | Description                                                   |
-| ------------------- | --------- | ------------------------------------------------------------- |
-| `limit`             | number    | Maximum results to return                                     |
-| `offset`            | number    | Pagination offset                                             |
-| `active`            | boolean   | Filter by active trading status                               |
-| `closed`            | boolean   | Filter by closed status                                       |
-| `archived`          | boolean   | Filter by archived status                                     |
-| `categories`        | string\[] | Filter by category slugs                                      |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | number | Maximum results to return |
+| `offset` | number | Pagination offset |
+| `active` | boolean | Filter by active trading status |
+| `closed` | boolean | Filter by closed status |
+| `archived` | boolean | Filter by archived status |
+| `categories` | string\[] | Filter by category slugs |
 | `sportsMarketTypes` | string\[] | Filter by sports market type (MONEYLINE, SPREAD, TOTAL, PROP) |
-| `volumeNumMin`      | number    | Minimum trading volume                                        |
-| `liquidityNumMin`   | number    | Minimum liquidity                                             |
+| `volumeNumMin` | number | Minimum trading volume |
+| `liquidityNumMin` | number | Minimum liquidity |
 
 ### Response Fields
 
-| Field            | Type    | Description                   |
-| ---------------- | ------- | ----------------------------- |
-| `id`             | number  | Unique market identifier      |
-| `slug`           | string  | URL-friendly identifier       |
-| `question`       | string  | Market question               |
-| `description`    | string  | Detailed description          |
-| `active`         | boolean | Whether market accepts orders |
-| `lastTradePrice` | number  | Most recent trade price       |
-| `bestBid`        | number  | Best bid price                |
-| `bestAsk`        | number  | Best ask price                |
-| `volume`         | string  | Total trading volume          |
-| `liquidity`      | string  | Current liquidity             |
+| Field | Type | Description |
+| - | - | - |
+| `id` | number | Unique market identifier |
+| `slug` | string | URL-friendly identifier |
+| `question` | string | Market question |
+| `description` | string | Detailed description |
+| `active` | boolean | Whether market accepts orders |
+| `lastTradePrice` | number | Most recent trade price |
+| `bestBid` | number | Best bid price |
+| `bestAsk` | number | Best ask price |
+| `volume` | string | Total trading volume |
+| `liquidity` | string | Current liquidity |
 
 ***
 
@@ -100,13 +100,13 @@ for (const bid of book.marketData.bids.slice(0, 5)) {
 
 ### Response Fields
 
-| Field        | Type   | Description                          |
-| ------------ | ------ | ------------------------------------ |
-| `marketSlug` | string | Market identifier                    |
-| `bids`       | array  | Buy orders (highest price first)     |
-| `offers`     | array  | Sell orders (lowest price first)     |
-| `state`      | string | Market state (OPEN, SUSPENDED, etc.) |
-| `stats`      | object | Market statistics                    |
+| Field | Type | Description |
+| - | - | - |
+| `marketSlug` | string | Market identifier |
+| `bids` | array | Buy orders (highest price first) |
+| `offers` | array | Sell orders (lowest price first) |
+| `state` | string | Market state (OPEN, SUSPENDED, etc.) |
+| `stats` | object | Market statistics |
 
 ***
 
@@ -125,14 +125,14 @@ console.log(`Last Trade: $${data.lastTradePx.value}`);
 
 ### Response Fields
 
-| Field          | Type   | Description              |
-| -------------- | ------ | ------------------------ |
-| `bestBid`      | Amount | Best (highest) bid price |
-| `bestAsk`      | Amount | Best (lowest) ask price  |
-| `lastTradePx`  | Amount | Last trade price         |
-| `bidDepth`     | number | Number of bid levels     |
-| `askDepth`     | number | Number of ask levels     |
-| `openInterest` | string | Current open interest    |
+| Field | Type | Description |
+| - | - | - |
+| `bestBid` | Amount | Best (highest) bid price |
+| `bestAsk` | Amount | Best (lowest) ask price |
+| `lastTradePx` | Amount | Last trade price |
+| `bidDepth` | number | Number of bid levels |
+| `askDepth` | number | Number of ask levels |
+| `openInterest` | string | Current open interest |
 
 ***
 

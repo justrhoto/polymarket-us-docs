@@ -10,12 +10,12 @@ Polymarket US may offer incentive programs designed to increase market participa
 
 Current incentive programs may include:
 
-| Program                                                                                                                                                                              | Applies to                                          | Requirement                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| **[Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.08.17\).pdf)**                   | Deposit-based credits                               | Make the applicable qualifying deposit                                                      |
-| **[Refer-A-Friend Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Refer-A-Friend%20Incentive%20Program%20\(2026.08.26\).pdf)**     | Fixed referral credits                              | Referred friend onboards and makes a qualifying deposit; both Participants receive a credit |
-| **[Daily Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Daily%20Trading%20Incentive%20Program%20\(2026.07.29\).pdf)**     | Daily activity credits                              | Deposit and satisfy daily trading requirements                                              |
-| **[Deposit and Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Deposit%20and%20Trading%20Incentive%20Program%20\(2026.08.24\).pdf)** | Credits for qualifying deposit and trading activity | Make a qualifying deposit and/or satisfy trading activity requirements                      |
+| Program | Applies to | Requirement |
+| - | - | - |
+| **[Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.08.17\).pdf)** | Deposit-based credits | Make the applicable qualifying deposit |
+| **[Refer-A-Friend Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Refer-A-Friend%20Incentive%20Program%20\(2026.08.26\).pdf)** | Fixed referral credits | Referred friend onboards and makes a qualifying deposit; both Participants receive a credit |
+| **[Daily Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Daily%20Trading%20Incentive%20Program%20\(2026.07.29\).pdf)** | Daily activity credits | Deposit and satisfy daily trading requirements |
+| **[Deposit and Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Deposit%20and%20Trading%20Incentive%20Program%20\(2026.08.24\).pdf)** | Credits for qualifying deposit and trading activity | Make a qualifying deposit and/or satisfy trading activity requirements |
 
 Polymarket US may withhold, cancel, or reverse incentives in cases of suspected fraud, abuse, manipulation, self-dealing, self-referral, coordinated activity, or other activity inconsistent with the applicable program terms or Polymarket US rules.
 
@@ -33,9 +33,9 @@ Eligible Participants may receive an incentive credit after making a qualifying 
 
 A Participant qualifies only for the campaign presented to them, via an onboarding code or link, before the qualifying deposit. Each Participant may only receive one (1) incentive credit under the Deposit Incentive Program.
 
-| Campaign   | Qualifying Deposit    | Incentive Credit |
-| ---------- | --------------------- | ---------------- |
-| Campaign A | Deposit at least \$10 | Receive \$50     |
+| Campaign | Qualifying Deposit | Incentive Credit |
+| - | - | - |
+| Campaign A | Deposit at least \$10 | Receive \$50 |
 
 Incentive credits are applied once Polymarket US confirms the Participant's deposit satisfies the applicable campaign requirements. Participants receive only the incentives they qualify for under the applicable campaign terms.
 
@@ -45,9 +45,9 @@ Participants may earn incentive credits for referring new users to Polymarket US
 
 To participate, a Participant shares their unique referral code (their username) with an individual who does not have an existing Polymarket US account. Upon that individual creating an account using the code and making the qualifying deposit, the referring Participant and the referred Participant each receive the incentive credit under the applicable campaign in their respective Polymarket US accounts.
 
-| Campaign   | Qualifying Deposit    | Incentive Credit |
-| ---------- | --------------------- | ---------------- |
-| Campaign A | Deposit at least \$10 | Receive \$25     |
+| Campaign | Qualifying Deposit | Incentive Credit |
+| - | - | - |
+| Campaign A | Deposit at least \$10 | Receive \$25 |
 
 Each Participant is limited to 50 friend referrals.
 
@@ -71,15 +71,15 @@ Each campaign is offered to a cohort of Participants defined by objective criter
 
 Active campaigns:
 
-| Campaign   | Qualifying Deposit     | Incentive Credit |
-| ---------- | ---------------------- | ---------------- |
-| Campaign A | Deposit at least \$10  | Receive \$10     |
-| Campaign B | Deposit at least \$10  | Receive \$25     |
-| Campaign C | Deposit at least \$25  | Receive \$10     |
-| Campaign D | Deposit at least \$25  | Receive \$25     |
-| Campaign E | Deposit at least \$50  | Receive \$100    |
-| Campaign F | Deposit at least \$100 | Receive \$100    |
-| Campaign G | Deposit at least \$100 | Receive \$250    |
-| Campaign H | Deposit at least \$250 | Receive \$500    |
+| Campaign | Qualifying Deposit | Incentive Credit |
+| - | - | - |
+| Campaign A | Deposit at least \$10 | Receive \$10 |
+| Campaign B | Deposit at least \$10 | Receive \$25 |
+| Campaign C | Deposit at least \$25 | Receive \$10 |
+| Campaign D | Deposit at least \$25 | Receive \$25 |
+| Campaign E | Deposit at least \$50 | Receive \$100 |
+| Campaign F | Deposit at least \$100 | Receive \$100 |
+| Campaign G | Deposit at least \$100 | Receive \$250 |
+| Campaign H | Deposit at least \$250 | Receive \$500 |
 
 Incentive credits under the campaigns above are paid as a single lump-sum credit. Incentive credits will be credited within seven (7) days of all applicable campaign requirements being satisfied. Participants receive only the incentives they qualify for under the applicable campaign terms.

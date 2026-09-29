@@ -37,11 +37,11 @@ message CreateVendorOrderRequest {
 
 ### CreateVendorOrderRequest
 
-| Field             | Type                               | Required | Description                                                                                                                                                                                           |
-| ----------------- | ---------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `order`           | `polymarket.v1.InsertOrderRequest` | Yes      | The public order-entry shape. Set only the [supported fields](/partners/orders/data-model#supported-fields).                                                                                          |
-| `vendor_fee`      | `MoneyAmount`                      | Yes      | Your fixed USD vendor fee for this order. It is recorded against the exchange order ID and collected later with a [`VENDOR_FEES` transfer](/partners/funding/vendor-fees), never moved at order time. |
-| `idempotency_key` | `string`                           | Yes      | Your unique key for this placement request. Persist it before calling the service.                                                                                                                    |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `order` | `polymarket.v1.InsertOrderRequest` | Yes | The public order-entry shape. Set only the [supported fields](/partners/orders/data-model#supported-fields). |
+| `vendor_fee` | `MoneyAmount` | Yes | Your fixed USD vendor fee for this order. It is recorded against the exchange order ID and collected later with a [`VENDOR_FEES` transfer](/partners/funding/vendor-fees), never moved at order time. |
+| `idempotency_key` | `string` | Yes | Your unique key for this placement request. Persist it before calling the service. |
 
 The participant is identified **only by `order.account`**. Use the DCM trading account returned by the KYC approval webhook—the same account identifier used to match the participant's Drop Copy activity. There is no separate customer-account field in this request. Do not set `order.user` or `order.session_id`; both are rejected.
 
@@ -53,32 +53,34 @@ The participant is identified **only by `order.account`**. Use the DCM trading a
 
 ### CreateVendorOrderResponse
 
-| Field                | Type                 | Description                                                                                                                                                                                                                            |
-| -------------------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `funding_request_id` | `string`             | Service-assigned durable identifier for this placement workflow. Persist it even if `id` is empty, and include it in support requests.                                                                                                 |
-| `id`                 | `string`             | Exchange order identifier, when the exchange assigned one. The vendor fee for an accepted order is recorded under this ID, which is also `order_id` on the [Vendor Fees report](/partners/funding/vendor-fees#the-vendor-fees-report). |
-| `status`             | `VendorOrderStatus`  | Durable or current placement outcome. See below.                                                                                                                                                                                       |
-| `correlation`        | `FundingCorrelation` | Partner and service identifiers for recovery, audit, and support. Log these.                                                                                                                                                           |
+| Field | Type | Description |
+| - | - | - |
+| `funding_request_id` | `string` | Service-assigned durable identifier for this placement workflow. Persist it even if `id` is empty, and include it in support requests. |
+| `id` | `string` | Exchange order identifier, when the exchange assigned one. The vendor fee for an accepted order is recorded under this ID, which is also `order_id` on the [Vendor Fees report](/partners/funding/vendor-fees#the-vendor-fees-report). |
+| `status` | `VendorOrderStatus` | Durable or current placement outcome. See below. |
+| `correlation` | `FundingCorrelation` | Partner and service identifiers for recovery, audit, and support. Log these. |
 
 ### FundingCorrelation
 
-| Field                | Type     | Description                                                                                              |
-| -------------------- | -------- | -------------------------------------------------------------------------------------------------------- |
-| `idempotency_key`    | `string` | Your idempotency key from the request.                                                                   |
+| Field | Type | Description |
+| - | - | - |
+| `idempotency_key` | `string` | Your idempotency key from the request. |
 | `funding_request_id` | `string` | The same durable placement-workflow identifier as the top-level field. It remains stable across retries. |
-| `request_id`         | `string` | Per-attempt service request identifier for support and audit. It changes on each retry.                  |
-| `clord_id`           | `string` | Your `order.clord_id`, echoed for recovery and Drop Copy correlation.                                    |
+| `request_id` | `string` | Per-attempt service request identifier for support and audit. It changes on each retry. |
+| `clord_id` | `string` | Your `order.clord_id`, echoed for recovery and Drop Copy correlation. |
 
 ### VendorOrderStatus
 
-| Status                         | Meaning                                                                                                                                                                                                                                                                                  |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Meaning |
+| - | - |
 | `VENDOR_ORDER_STATUS_ACCEPTED` | The exchange durably accepted the order — including an order that matched immediately or was cancelled under fill-or-kill. Acceptance does not mean the order is resting or filled; learn execution outcomes from Drop Copy. The vendor fee is recorded against the order. **Terminal.** |
-| `VENDOR_ORDER_STATUS_REJECTED` | The order was rejected. Nothing was recorded and no fee accrues. **Terminal.**                                                                                                                                                                                                           |
-| `VENDOR_ORDER_STATUS_PENDING`  | The service could not establish the durable exchange outcome before its deadline. No collectible vendor fee exists yet. **Durable, but not terminal.**                                                                                                                                   |
+| `VENDOR_ORDER_STATUS_REJECTED` | The order was rejected. Nothing was recorded and no fee accrues. **Terminal.** |
+| `VENDOR_ORDER_STATUS_PENDING` | The service could not establish the durable exchange outcome before its deadline. No collectible vendor fee exists yet. **Durable, but not terminal.** |
 
 <Info>
   **`ACCEPTED` means durable acceptance, not an execution state.** The service does not report acceptance based on submission alone, but an accepted order may have rested, matched immediately, or been cancelled under FOK. Track fills and other execution outcomes on [Drop Copy](/streaming-endpoints/dropcopy-stream). An order the exchange rejects asynchronously after submission is returned as `REJECTED`, not as a phantom accepted order.
+
+  If you reconnect Drop Copy with an old `resume_token`, the stream replays older executions before it delivers this order's reports. See [Knowing you are caught up](/streaming-endpoints/streaming-best-practices#knowing-you-are-caught-up).
 </Info>
 
 ## Funding request lifecycle
@@ -242,14 +244,14 @@ An order placed through this service is a standard exchange order. Cancel it thr
 
 ## Errors
 
-| gRPC status           | Meaning                                                                                                                                                    | Retry guidance                                                                                |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `INVALID_ARGUMENT`    | A required field is missing; an order or vendor fee is malformed; or an unsupported embedded field is set. The error names an offending unsupported field. | Fix the request. Do not retry as-is.                                                          |
-| `UNAUTHENTICATED`     | Missing or invalid access token.                                                                                                                           | Refresh the token and retry.                                                                  |
-| `PERMISSION_DENIED`   | Your firm is disabled or the vendor-fee policy denies the request.                                                                                         | Do not retry unchanged until authorization or policy is corrected.                            |
-| `NOT_FOUND`           | No customer relationship exists for your firm and `order.account`. The same generic error is returned if the account belongs to another firm.              | Correct `order.account`.                                                                      |
-| `FAILED_PRECONDITION` | The customer relationship is inactive, ambiguous, stale, or draining.                                                                                      | Correct the relationship state, then retry according to whether the placement intent changed. |
-| `ALREADY_EXISTS`      | The `idempotency_key` is already bound to a different caller-controlled request.                                                                           | Replay the original request, or use a fresh key only for a genuinely new placement intent.    |
-| `UNAVAILABLE`         | Transient relationship, policy, persistence, token-minting, or exchange unavailability before a known submission outcome.                                  | Retry the identical request with the **same** `idempotency_key`.                              |
+| gRPC status | Meaning | Retry guidance |
+| - | - | - |
+| `INVALID_ARGUMENT` | A required field is missing; an order or vendor fee is malformed; or an unsupported embedded field is set. The error names an offending unsupported field. | Fix the request. Do not retry as-is. |
+| `UNAUTHENTICATED` | Missing or invalid access token. | Refresh the token and retry. |
+| `PERMISSION_DENIED` | Your firm is disabled or the vendor-fee policy denies the request. | Do not retry unchanged until authorization or policy is corrected. |
+| `NOT_FOUND` | No customer relationship exists for your firm and `order.account`. The same generic error is returned if the account belongs to another firm. | Correct `order.account`. |
+| `FAILED_PRECONDITION` | The customer relationship is inactive, ambiguous, stale, or draining. | Correct the relationship state, then retry according to whether the placement intent changed. |
+| `ALREADY_EXISTS` | The `idempotency_key` is already bound to a different caller-controlled request. | Replay the original request, or use a fresh key only for a genuinely new placement intent. |
+| `UNAVAILABLE` | Transient relationship, policy, persistence, token-minting, or exchange unavailability before a known submission outcome. | Retry the identical request with the **same** `idempotency_key`. |
 
 An order-level rejection from the exchange, such as **insufficient buying power** or a price outside market limits, is not a gRPC error. The call returns `OK` with `status = VENDOR_ORDER_STATUS_REJECTED`; `FAILED_PRECONDITION` is reserved for relationship-state problems. Quote the `correlation` identifiers when requesting the underlying rejection detail from support.

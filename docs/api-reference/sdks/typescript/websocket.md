@@ -10,10 +10,10 @@ The WebSocket resource provides real-time streaming data for market information 
 
 ## Methods
 
-| Method      | Endpoint                                | Description                        |
-| ----------- | --------------------------------------- | ---------------------------------- |
+| Method | Endpoint | Description |
+| - | - | - |
 | `private()` | `wss://api.polymarket.us/v1/ws/private` | Orders, positions, balance updates |
-| `markets()` | `wss://api.polymarket.us/v1/ws/markets` | Market data and trades             |
+| `markets()` | `wss://api.polymarket.us/v1/ws/markets` | Market data and trades |
 
 ***
 
@@ -49,22 +49,22 @@ ws.subscribeAccountBalance('my-balance');
 
 ### Private Subscription Types
 
-| Type                                | Description                 |
-| ----------------------------------- | --------------------------- |
-| `SUBSCRIPTION_TYPE_ORDER`           | Order updates and snapshots |
-| `SUBSCRIPTION_TYPE_POSITION`        | Position changes            |
-| `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Balance updates             |
+| Type | Description |
+| - | - |
+| `SUBSCRIPTION_TYPE_ORDER` | Order updates and snapshots |
+| `SUBSCRIPTION_TYPE_POSITION` | Position changes |
+| `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Balance updates |
 
 ### Private Events
 
-| Event                    | Description                       |
-| ------------------------ | --------------------------------- |
-| `orderSnapshot`          | Initial snapshot of all orders    |
-| `orderUpdate`            | Order state change                |
-| `positionSnapshot`       | Initial snapshot of all positions |
-| `positionUpdate`         | Position change                   |
-| `accountBalanceSnapshot` | Initial balance snapshot          |
-| `accountBalanceUpdate`   | Balance change                    |
+| Event | Description |
+| - | - |
+| `orderSnapshot` | Initial snapshot of all orders |
+| `orderUpdate` | Order state change |
+| `positionSnapshot` | Initial snapshot of all positions |
+| `positionUpdate` | Position change |
+| `accountBalanceSnapshot` | Initial balance snapshot |
+| `accountBalanceUpdate` | Balance change |
 
 ***
 
@@ -90,19 +90,19 @@ ws.subscribeTrades('trades', ['btc-100k-2025']);
 
 ### Market Subscription Types
 
-| Type                                 | Description                   |
-| ------------------------------------ | ----------------------------- |
-| `SUBSCRIPTION_TYPE_MARKET_DATA`      | Full order book and stats     |
-| `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` | Lightweight price data (BBO)  |
-| `SUBSCRIPTION_TYPE_TRADE`            | Real-time trade notifications |
+| Type | Description |
+| - | - |
+| `SUBSCRIPTION_TYPE_MARKET_DATA` | Full order book and stats |
+| `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` | Lightweight price data (BBO) |
+| `SUBSCRIPTION_TYPE_TRADE` | Real-time trade notifications |
 
 ### Market Events
 
-| Event            | Description            |
-| ---------------- | ---------------------- |
-| `marketData`     | Full order book update |
-| `marketDataLite` | BBO and price update   |
-| `trade`          | Trade execution        |
+| Event | Description |
+| - | - |
+| `marketData` | Full order book update |
+| `marketDataLite` | BBO and price update |
+| `trade` | Trade execution |
 
 ***
 

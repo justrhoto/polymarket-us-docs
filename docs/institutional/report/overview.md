@@ -14,15 +14,15 @@
 
 ## Endpoints
 
-| Method | Endpoint                       | Description                     |
-| ------ | ------------------------------ | ------------------------------- |
-| `POST` | `/v1/report/orders/search`     | Search orders with filters      |
-| `POST` | `/v1/report/trades/search`     | Search trades with filters      |
-| `POST` | `/v1/report/executions/search` | Search executions with filters  |
-| `POST` | `/v1/report/orders/csv`        | Export orders to CSV            |
-| `POST` | `/v1/report/trades/csv`        | Export trades to CSV            |
-| `POST` | `/v1/report/executions/csv`    | Export executions to CSV        |
-| `POST` | `/v1/report/trades/stats`      | Get aggregated trade statistics |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/report/orders/search` | Search orders with filters |
+| `POST` | `/v1/report/trades/search` | Search trades with filters |
+| `POST` | `/v1/report/executions/search` | Search executions with filters |
+| `POST` | `/v1/report/orders/csv` | Export orders to CSV |
+| `POST` | `/v1/report/trades/csv` | Export trades to CSV |
+| `POST` | `/v1/report/executions/csv` | Export executions to CSV |
+| `POST` | `/v1/report/trades/stats` | Get aggregated trade statistics |
 
 <Info>
   **No Participant ID Required for Trade Stats**
@@ -34,13 +34,13 @@
 
 ## When to Use
 
-| Use Case                       | Recommended API                                        |
-| ------------------------------ | ------------------------------------------------------ |
+| Use Case | Recommended API |
+| - | - |
 | Real-time order status updates | [gRPC Order Stream](/streaming-endpoints/order-stream) |
-| Real-time fill notifications   | [gRPC Order Stream](/streaming-endpoints/order-stream) |
-| Historical order lookup        | REST Orders Search (this API)                          |
-| End-of-day reconciliation      | REST Reports Export                                    |
-| Audit and compliance reports   | REST Reports Export                                    |
+| Real-time fill notifications | [gRPC Order Stream](/streaming-endpoints/order-stream) |
+| Historical order lookup | REST Orders Search (this API) |
+| End-of-day reconciliation | REST Reports Export |
+| Audit and compliance reports | REST Reports Export |
 
 <Tip>
   **Streaming First Architecture**
@@ -59,12 +59,12 @@
 
 ## Common Filters
 
-| Filter                  | Description                                |
-| ----------------------- | ------------------------------------------ |
-| `symbols`               | Filter by trading symbols                  |
-| `accounts`              | Filter by trading accounts                 |
-| `startTime` / `endTime` | Date range filter                          |
-| `states`                | Order states (NEW, FILLED, CANCELED, etc.) |
-| `sides`                 | BUY or SELL                                |
+| Filter | Description |
+| - | - |
+| `symbols` | Filter by trading symbols |
+| `accounts` | Filter by trading accounts |
+| `startTime` / `endTime` | Date range filter |
+| `states` | Order states (NEW, FILLED, CANCELED, etc.) |
+| `sides` | BUY or SELL |
 
 See the individual endpoint documentation for complete filter options.

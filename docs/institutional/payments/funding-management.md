@@ -28,13 +28,13 @@ See [Authentication Setup](/trader-guide/authentication) for instructions on obt
 
 ## Endpoints
 
-| Method  | Endpoint                               | Description                  |
-| ------- | -------------------------------------- | ---------------------------- |
-| `GET`   | `/v1/funding/sources`                  | List funding sources         |
-| `GET`   | `/v1/funding/accounts`                 | List funding accounts        |
-| `PATCH` | `/v1/funding/accounts/{id}`            | Update funding account       |
-| `GET`   | `/v1/funding/transactions`             | List transactions            |
-| `GET`   | `/v1/funding/transaction-requirements` | Get transaction requirements |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/funding/sources` | List funding sources |
+| `GET` | `/v1/funding/accounts` | List funding accounts |
+| `PATCH` | `/v1/funding/accounts/{id}` | Update funding account |
+| `GET` | `/v1/funding/transactions` | List transactions |
+| `GET` | `/v1/funding/transaction-requirements` | Get transaction requirements |
 
 ## List Funding Sources
 
@@ -48,21 +48,21 @@ GET /v1/funding/sources?fundingSourceType=FUNDING_SOURCE_TYPE_AEROPAY_BANK_ACCOU
 
 ### Query Parameters
 
-| Parameter           | Type    | Description          |
-| ------------------- | ------- | -------------------- |
-| `pageSize`          | integer | Results per page     |
-| `pageToken`         | string  | Pagination token     |
-| `fundingSourceIds`  | array   | Filter by source IDs |
-| `fundingSourceType` | enum    | Filter by type       |
+| Parameter | Type | Description |
+| - | - | - |
+| `pageSize` | integer | Results per page |
+| `pageToken` | string | Pagination token |
+| `fundingSourceIds` | array | Filter by source IDs |
+| `fundingSourceType` | enum | Filter by type |
 
 ### Funding Source Types
 
-| Type                                       | Description              |
-| ------------------------------------------ | ------------------------ |
-| `FUNDING_SOURCE_TYPE_BANK_ACCOUNT`         | Traditional bank account |
-| `FUNDING_SOURCE_TYPE_AEROPAY_BANK_ACCOUNT` | Aeropay-linked bank      |
-| `FUNDING_SOURCE_TYPE_CHECKOUT_CARD`        | Payment card             |
-| `FUNDING_SOURCE_TYPE_APPLE_PAY`            | Apple Pay                |
+| Type | Description |
+| - | - |
+| `FUNDING_SOURCE_TYPE_BANK_ACCOUNT` | Traditional bank account |
+| `FUNDING_SOURCE_TYPE_AEROPAY_BANK_ACCOUNT` | Aeropay-linked bank |
+| `FUNDING_SOURCE_TYPE_CHECKOUT_CARD` | Payment card |
+| `FUNDING_SOURCE_TYPE_APPLE_PAY` | Apple Pay |
 
 ### Response
 
@@ -110,22 +110,22 @@ GET /v1/funding/accounts?accountType=ACCOUNT_TYPE_CLEARING
 
 ### Query Parameters
 
-| Parameter          | Type    | Description                  |
-| ------------------ | ------- | ---------------------------- |
-| `pageSize`         | integer | Results per page             |
-| `pageToken`        | string  | Pagination token             |
-| `accountIds`       | array   | Filter by account IDs        |
-| `fundingSourceIds` | array   | Filter by funding source IDs |
-| `accountType`      | enum    | Filter by account type       |
+| Parameter | Type | Description |
+| - | - | - |
+| `pageSize` | integer | Results per page |
+| `pageToken` | string | Pagination token |
+| `accountIds` | array | Filter by account IDs |
+| `fundingSourceIds` | array | Filter by funding source IDs |
+| `accountType` | enum | Filter by account type |
 
 ### Account Types
 
-| Type                    | Description          |
-| ----------------------- | -------------------- |
+| Type | Description |
+| - | - |
 | `ACCOUNT_TYPE_CLEARING` | Main trading account |
-| `ACCOUNT_TYPE_REVENUE`  | Revenue account      |
-| `ACCOUNT_TYPE_HOLDING`  | Holding account      |
-| `ACCOUNT_TYPE_ADVANCE`  | Advance account      |
+| `ACCOUNT_TYPE_REVENUE` | Revenue account |
+| `ACCOUNT_TYPE_HOLDING` | Holding account |
+| `ACCOUNT_TYPE_ADVANCE` | Advance account |
 
 ### Response
 
@@ -158,38 +158,38 @@ GET /v1/funding/transactions?accountId=fa_123&transactionTypes=TRANSACTION_TYPE_
 
 ### Query Parameters
 
-| Parameter           | Type     | Description                |
-| ------------------- | -------- | -------------------------- |
-| `pageSize`          | integer  | Results per page           |
-| `pageToken`         | string   | Pagination token           |
-| `accountId`         | string   | Filter by account          |
-| `currency`          | string   | Filter by currency         |
-| `transactionTypes`  | array    | Filter by transaction type |
-| `transactionStates` | array    | Filter by state            |
-| `startTime`         | datetime | Start of date range        |
-| `endTime`           | datetime | End of date range          |
-| `newestFirst`       | boolean  | Sort order                 |
+| Parameter | Type | Description |
+| - | - | - |
+| `pageSize` | integer | Results per page |
+| `pageToken` | string | Pagination token |
+| `accountId` | string | Filter by account |
+| `currency` | string | Filter by currency |
+| `transactionTypes` | array | Filter by transaction type |
+| `transactionStates` | array | Filter by state |
+| `startTime` | datetime | Start of date range |
+| `endTime` | datetime | End of date range |
+| `newestFirst` | boolean | Sort order |
 
 ### Transaction Types
 
-| Type                                 | Description            |
-| ------------------------------------ | ---------------------- |
-| `TRANSACTION_TYPE_DEPOSIT`           | Deposit transaction    |
-| `TRANSACTION_TYPE_WITHDRAWAL`        | Withdrawal transaction |
-| `TRANSACTION_TYPE_TRANSFER`          | Internal transfer      |
-| `TRANSACTION_TYPE_EXECUTION_FEE`     | Trading fee            |
-| `TRANSACTION_TYPE_SETTLEMENT_FEE`    | Settlement fee         |
-| `TRANSACTION_TYPE_MANUAL_ADJUSTMENT` | Manual adjustment      |
+| Type | Description |
+| - | - |
+| `TRANSACTION_TYPE_DEPOSIT` | Deposit transaction |
+| `TRANSACTION_TYPE_WITHDRAWAL` | Withdrawal transaction |
+| `TRANSACTION_TYPE_TRANSFER` | Internal transfer |
+| `TRANSACTION_TYPE_EXECUTION_FEE` | Trading fee |
+| `TRANSACTION_TYPE_SETTLEMENT_FEE` | Settlement fee |
+| `TRANSACTION_TYPE_MANUAL_ADJUSTMENT` | Manual adjustment |
 
 ### Transaction States
 
-| State                            | Description |
-| -------------------------------- | ----------- |
-| `TRANSACTION_STATE_ACKNOWLEDGED` | Received    |
-| `TRANSACTION_STATE_PROCESSING`   | In progress |
-| `TRANSACTION_STATE_COMPLETED`    | Completed   |
-| `TRANSACTION_STATE_CANCELLED`    | Cancelled   |
-| `TRANSACTION_STATE_REFUNDED`     | Refunded    |
+| State | Description |
+| - | - |
+| `TRANSACTION_STATE_ACKNOWLEDGED` | Received |
+| `TRANSACTION_STATE_PROCESSING` | In progress |
+| `TRANSACTION_STATE_COMPLETED` | Completed |
+| `TRANSACTION_STATE_CANCELLED` | Cancelled |
+| `TRANSACTION_STATE_REFUNDED` | Refunded |
 
 ### Response
 
@@ -230,11 +230,11 @@ GET /v1/funding/transaction-requirements?accountIds=fa_123
 
 ### Query Parameters
 
-| Parameter    | Type    | Description           |
-| ------------ | ------- | --------------------- |
-| `pageSize`   | integer | Results per page      |
-| `pageToken`  | string  | Pagination token      |
-| `accountIds` | array   | Filter by account IDs |
+| Parameter | Type | Description |
+| - | - | - |
+| `pageSize` | integer | Results per page |
+| `pageToken` | string | Pagination token |
+| `accountIds` | array | Filter by account IDs |
 
 ### Response
 

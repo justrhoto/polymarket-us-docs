@@ -10,9 +10,9 @@ The Sports resource provides access to sports configuration and team information
 
 ## Methods
 
-| Method           | Endpoint                        | Description           |
-| ---------------- | ------------------------------- | --------------------- |
-| `list()`         | `GET /v1/sports`                | List all sports       |
+| Method | Endpoint | Description |
+| - | - | - |
+| `list()` | `GET /v1/sports` | List all sports |
 | `teams(params?)` | `GET /v1/sports/teams/provider` | Get teams by provider |
 
 ***
@@ -31,13 +31,13 @@ for (const sport of sports.sports) {
 
 ### Response Fields
 
-| Field                 | Type    | Description                             |
-| --------------------- | ------- | --------------------------------------- |
-| `sport`               | string  | Sport name                              |
-| `image`               | string  | Sport image URL                         |
-| `isOperational`       | boolean | Whether sport is operational            |
+| Field | Type | Description |
+| - | - | - |
+| `sport` | string | Sport name |
+| `image` | string | Sport image URL |
+| `isOperational` | boolean | Whether sport is operational |
 | `automaticResolution` | boolean | Whether automatic resolution is enabled |
-| `ordering`            | string  | Display ordering                        |
+| `ordering` | string | Display ordering |
 
 ***
 
@@ -60,29 +60,29 @@ for (const team of teams.teams) {
 
 ### Parameters
 
-| Parameter  | Type      | Description                       |
-| ---------- | --------- | --------------------------------- |
-| `provider` | string    | Data provider (see below)         |
-| `league`   | string    | League name (NFL, NBA, MLB, etc.) |
-| `teamIds`  | number\[] | Filter by specific team IDs       |
+| Parameter | Type | Description |
+| - | - | - |
+| `provider` | string | Data provider (see below) |
+| `league` | string | League name (NFL, NBA, MLB, etc.) |
+| `teamIds` | number\[] | Filter by specific team IDs |
 
 ### Data Providers
 
-| Provider                | Description   |
-| ----------------------- | ------------- |
-| `PROVIDER_SPORTRADAR`   | Sportradar    |
+| Provider | Description |
+| - | - |
+| `PROVIDER_SPORTRADAR` | Sportradar |
 | `PROVIDER_SPORTSDATAIO` | SportsData.io |
 
 ### Team Fields
 
-| Field          | Type   | Description        |
-| -------------- | ------ | ------------------ |
-| `id`           | number | Team identifier    |
-| `name`         | string | Team name          |
-| `abbreviation` | string | Team abbreviation  |
-| `league`       | string | League name        |
-| `conference`   | string | Conference name    |
-| `record`       | string | Team record        |
-| `ranking`      | number | Team ranking       |
-| `logo`         | string | Logo URL           |
+| Field | Type | Description |
+| - | - | - |
+| `id` | number | Team identifier |
+| `name` | string | Team name |
+| `abbreviation` | string | Team abbreviation |
+| `league` | string | League name |
+| `conference` | string | Conference name |
+| `record` | string | Team record |
+| `ranking` | number | Team ranking |
+| `logo` | string | Logo URL |
 | `colorPrimary` | string | Primary team color |

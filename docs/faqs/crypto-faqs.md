@@ -12,12 +12,12 @@
 
 Polymarket US offers Event Contracts that settle on the published value of a cryptocurrency reference index. Four automated market families are listed on a recurring schedule:
 
-| Family      | Question                                                                  | Cadence                                                           |
-| ----------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Up/Down     | Will the Bitcoin price close the window at or above its open?             | 15-minute and 60-minute windows, around the clock                 |
-| Above/Below | Will the Bitcoin price be at or above \$X at expiry?                      | Hourly, daily (5:00 PM ET) and weekly (Friday 5:00 PM ET) ladders |
-| Price Range | Will the Bitcoin price be between \$A and \$B at expiry?                  | Same expiries as Above/Below                                      |
-| One-Touch   | Will the Bitcoin price reach (or dip to) \$X before the end of the month? | Monthly                                                           |
+| Family | Question | Cadence |
+| - | - | - |
+| Up/Down | Will the Bitcoin price close the window at or above its open? | 15-minute and 60-minute windows, around the clock |
+| Above/Below | Will the Bitcoin price be at or above \$X at expiry? | Hourly, daily (5:00 PM ET) and weekly (Friday 5:00 PM ET) ladders |
+| Price Range | Will the Bitcoin price be between \$A and \$B at expiry? | Same expiries as Above/Below |
+| One-Touch | Will the Bitcoin price reach (or dip to) \$X before the end of the month? | Monthly |
 
 The exchange also lists longer-dated Bitcoin markets by hand, such as the year-end price range and "How high will Bitcoin get this year?" ladders.
 

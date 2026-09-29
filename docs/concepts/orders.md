@@ -12,21 +12,21 @@ Every market on Polymarket US has two sides: **YES** and **NO**. They always add
 
 You don't trade YES and NO as separate things. There's only one instrument per market — the YES side. To trade against an outcome, you **sell** YES (which is the same as buying NO).
 
-| What you want to do                    | How you do it                      |
-| -------------------------------------- | ---------------------------------- |
-| Trade on the outcome **happening**     | Buy YES                            |
+| What you want to do | How you do it |
+| - | - |
+| Trade on the outcome **happening** | Buy YES |
 | Trade on the outcome **not happening** | Sell YES (equivalent to buying NO) |
-| Close a winning YES position           | Sell YES                           |
-| Close a losing NO position             | Buy YES back                       |
+| Close a winning YES position | Sell YES |
+| Close a losing NO position | Buy YES back |
 
 This matters because when you place an order, the price always refers to the YES side. If you want to buy NO at \$0.40, you're really selling YES at \$0.60 — the system handles this, but you need to understand it to set the right price.
 
 ## Order types
 
-| Type             | How it works                                                                                   |
-| ---------------- | ---------------------------------------------------------------------------------------------- |
-| **Limit order**  | You set a price. The order sits on the book until someone trades against it, or you cancel it. |
-| **Market order** | Fills immediately at the best available price. You get instant execution but pay the spread.   |
+| Type | How it works |
+| - | - |
+| **Limit order** | You set a price. The order sits on the book until someone trades against it, or you cancel it. |
+| **Market order** | Fills immediately at the best available price. You get instant execution but pay the spread. |
 
 Most traders use limit orders. Market orders are useful when you need to get in or out quickly and don't mind paying a slightly worse price.
 
@@ -34,12 +34,12 @@ Most traders use limit orders. Market orders are useful when you need to get in 
 
 When you place a limit order, you choose how long it stays active:
 
-| Option                        | What it means                                                |
-| ----------------------------- | ------------------------------------------------------------ |
-| **Good till cancel (GTC)**    | Stays open until it fills or you cancel it                   |
-| **Good till date (GTD)**      | Stays open until a specific time, then cancels automatically |
-| **Immediate or cancel (IOC)** | Fills whatever is available right now, cancels the rest      |
-| **Fill or kill (FOK)**        | Must fill completely or not at all — no partial fills        |
+| Option | What it means |
+| - | - |
+| **Good till cancel (GTC)** | Stays open until it fills or you cancel it |
+| **Good till date (GTD)** | Stays open until a specific time, then cancels automatically |
+| **Immediate or cancel (IOC)** | Fills whatever is available right now, cancels the rest |
+| **Fill or kill (FOK)** | Must fill completely or not at all — no partial fills |
 
 ## What happens after you place an order
 

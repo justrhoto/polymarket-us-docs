@@ -34,17 +34,17 @@
 
 ## Wire Transfer Details
 
-| Field                 | Information                                                                                                  |
-| --------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Recipient Name**    | QC Clearing LLC                                                                                              |
-| **Recipient Address** | 7251 W Palmetto Park Rd Ste 102, Boca Raton, FL 33433                                                        |
-| **Bank Name**         | Merchants Bank of Indiana                                                                                    |
-| **Bank Address**      | 3737 East 96th Street, Indianapolis, IN 46240                                                                |
-| **Routing Number**    | 074909153                                                                                                    |
-| **Account Number**    | 4946110                                                                                                      |
-| **Bank Country**      | United States                                                                                                |
-| **Minimum Amount**    | \$1,000 USD                                                                                                  |
-| **Memo / FFC / FBO**  | Include your full name and phone number linked to your Polymarket US account. Example: John Doe - 9175551234 |
+| Field | Information |
+| - | - |
+| **Recipient Name** | QC Clearing LLC |
+| **Recipient Address** | 7251 W Palmetto Park Rd Ste 102, Boca Raton, FL 33433 |
+| **Bank Name** | Merchants Bank of Indiana |
+| **Bank Address** | 3737 East 96th Street, Indianapolis, IN 46240 |
+| **Routing Number** | 074909153 |
+| **Account Number** | 4946110 |
+| **Bank Country** | United States |
+| **Minimum Amount** | \$1,000 USD |
+| **Memo / FFC / FBO** | Include your full name and phone number linked to your Polymarket US account. Example: John Doe - 9175551234 |
 
 <Note>
   You must include your **full name and phone number** linked to your Polymarket US account in your bank's **Message to Recipient**, **Memo**, **FFC**, or **FBO field**. Missing or incorrect details will delay processing.

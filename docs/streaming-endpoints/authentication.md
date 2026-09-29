@@ -35,10 +35,10 @@ sequenceDiagram
 
 ### Auth Domains
 
-| Environment        | Auth Domain                |
-| ------------------ | -------------------------- |
+| Environment | Auth Domain |
+| - | - |
 | **Pre-production** | `pmx-preprod.us.auth0.com` |
-| **Production**     | `pmx-prod.us.auth0.com`    |
+| **Production** | `pmx-prod.us.auth0.com` |
 
 During onboarding, you'll provide your **public key** and receive your `client_id` and `audience` values.
 
@@ -203,28 +203,28 @@ pip install PyJWT cryptography requests
 
 ### Common Authentication Errors
 
-| Error Code                 | Description                           | Solution                                                                                                                                          |
-| -------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `invalid_client`           | JWT signature verification failed     | Verify private key matches registered public key                                                                                                  |
-| `invalid_client_assertion` | Malformed JWT or wrong claims         | Check JWT claims (iss, sub, aud, exp, jti)                                                                                                        |
-| `UNAUTHENTICATED`          | Access token invalid or expired       | Refresh token and retry                                                                                                                           |
-| `PERMISSION_DENIED`        | Token valid but lacks required scopes | Add the missing scope to your Auth0 application and request a fresh token. The error body is `permission denied: missing required scope <scope>`. |
-| `UNAVAILABLE`              | Cannot reach authentication service   | Check network connectivity, retry with backoff                                                                                                    |
+| Error Code | Description | Solution |
+| - | - | - |
+| `invalid_client` | JWT signature verification failed | Verify private key matches registered public key |
+| `invalid_client_assertion` | Malformed JWT or wrong claims | Check JWT claims (iss, sub, aud, exp, jti) |
+| `UNAUTHENTICATED` | Access token invalid or expired | Refresh token and retry |
+| `PERMISSION_DENIED` | Token valid but lacks required scopes | Add the missing scope to your Auth0 application and request a fresh token. The error body is `permission denied: missing required scope <scope>`. |
+| `UNAVAILABLE` | Cannot reach authentication service | Check network connectivity, retry with backoff |
 
 ### Streaming Scopes
 
 Scopes are enforced on streaming RPCs the same way they are on REST endpoints. The most common gRPC streams and their required scopes:
 
-| RPC                               | Required Scope    |
-| --------------------------------- | ----------------- |
-| `CreateMarketDataSubscription`    | `read:marketdata` |
-| `BiDirectionalStreamMarketData`   | `read:marketdata` |
-| `CreateOrderSubscription`         | `read:orders`     |
-| `StreamRFQEvents`                 | `read:orders`     |
-| `CreatePositionSubscription`      | `read:positions`  |
-| `CreateBalanceLedgerSubscription` | `read:positions`  |
-| `CreateDropCopySubscription`      | `read:dropcopy`   |
-| `CreateFundingSubscription`       | `read:funding`    |
+| RPC | Required Scope |
+| - | - |
+| `CreateMarketDataSubscription` | `read:marketdata` |
+| `BiDirectionalStreamMarketData` | `read:marketdata` |
+| `CreateOrderSubscription` | `read:orders` |
+| `StreamRFQEvents` | `read:orders` |
+| `CreatePositionSubscription` | `read:positions` |
+| `CreateBalanceLedgerSubscription` | `read:positions` |
+| `CreateDropCopySubscription` | `read:dropcopy` |
+| `CreateFundingSubscription` | `read:funding` |
 
 See the full scope reference in the [trader guide authentication page](/trader-guide/authentication#api-scopes).
 

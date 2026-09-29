@@ -125,13 +125,13 @@ GET https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=mls
 
 **Mapping to instrument metadata:**
 
-| Teams endpoint              | Instrument metadata                                                           | Example                                 |
-| --------------------------- | ----------------------------------------------------------------------------- | --------------------------------------- |
-| `abbreviation`              | `long_participant_id` / `short_participant_id` (as `{league}-{abbreviation}`) | `chi` → `mls-chi`                       |
-| `name`                      | `long_participant_name` / `short_participant_name`                            | `Chicago Fire FC`                       |
-| `league`                    | `instrument_product_series` (series component)                                | `mls` (from `aec-mls`, `atc-mls`, etc.) |
-| `providerIds[SPORTSDATAIO]` | `event_external_id_sportsdataio`                                              | `694`                                   |
-| `providerIds[SPORTRADAR]`   | `event_external_id_sportradar`                                                | `sr:competitor:2505`                    |
+| Teams endpoint | Instrument metadata | Example |
+| - | - | - |
+| `abbreviation` | `long_participant_id` / `short_participant_id` (as `{league}-{abbreviation}`) | `chi` → `mls-chi` |
+| `name` | `long_participant_name` / `short_participant_name` | `Chicago Fire FC` |
+| `league` | `instrument_product_series` (series component) | `mls` (from `aec-mls`, `atc-mls`, etc.) |
+| `providerIds[SPORTSDATAIO]` | `event_external_id_sportsdataio` | `694` |
+| `providerIds[SPORTRADAR]` | `event_external_id_sportradar` | `sr:competitor:2505` |
 
 The endpoint also provides display data not present in instrument metadata: `logo`, `colorPrimary`, `alias`, `displayAbbreviation`, and `record`.
 
@@ -139,14 +139,14 @@ The endpoint also provides display data not present in instrument metadata: `log
 
 Each level of the hierarchy has specific uniqueness scoping:
 
-| Level           | Uniqueness Scope                                          | Example                                      |
-| --------------- | --------------------------------------------------------- | -------------------------------------------- |
-| **Category**    | Globally unique                                           | SPR, POL, CRY                                |
-| **Subcategory** | Unique within Category                                    | SOCCER within SPR, BTC within CRY            |
-| **Series**      | Unique within Subcategory                                 | MLS within SOCCER, btc-updown-15m within BTC |
-| **Event**       | Unique within Series (globally unique with series prefix) | `mls-atl-clt-2026-03-22`                     |
-| **Product**     | Globally unique by Code                                   | ATC, AEC, ASC                                |
-| **Instrument**  | Globally unique                                           | `atc-mls-atl-clt-2026-03-22-draw`            |
+| Level | Uniqueness Scope | Example |
+| - | - | - |
+| **Category** | Globally unique | SPR, POL, CRY |
+| **Subcategory** | Unique within Category | SOCCER within SPR, BTC within CRY |
+| **Series** | Unique within Subcategory | MLS within SOCCER, btc-updown-15m within BTC |
+| **Event** | Unique within Series (globally unique with series prefix) | `mls-atl-clt-2026-03-22` |
+| **Product** | Globally unique by Code | ATC, AEC, ASC |
+| **Instrument** | Globally unique | `atc-mls-atl-clt-2026-03-22-draw` |
 
 **Key Points:**
 
@@ -215,27 +215,27 @@ The same event supports both 3-way markets (ATC) and binary markets (AEC), plus 
 
 All metadata fields available on instruments:
 
-| Field                            | Level       | Required | Type      | Example                       | Description                                                                       |
-| -------------------------------- | ----------- | -------- | --------- | ----------------------------- | --------------------------------------------------------------------------------- |
-| `cftc_instrument_id`             | Instrument  | Yes      | String    | `"aec-nfl-ne-den-2026-01-25"` | CFTC registered instrument ID                                                     |
-| `clearing_sym`                   | Instrument  | Yes      | String    | `"AEC-NFL"`                   | Clearing symbol prefix                                                            |
-| `event_category`                 | Category    | Yes      | String    | `"SPR"`                       | Category code (SPR, POL, CRY, etc.)                                               |
-| `event_series`                   | Series      | Yes      | String    | `"nfl"`                       | Series code within category                                                       |
-| `instrument_product`             | Product     | Yes      | String    | `"aec"`                       | Product type code                                                                 |
-| `instrument_product_series`      | Product     | Yes      | String    | `"aec-nfl"`                   | Combined product and series                                                       |
-| `product_id`                     | Product     | Yes      | String    | `"aec-nfl-ne-den-2026-01-25"` | Product identifier                                                                |
-| `event_id`                       | Event       | Yes      | String    | `"nfl-ne-den-2026-01-25"`     | Unique event identifier                                                           |
-| `event_start_time`               | Event       | Yes      | Timestamp | `"2026-01-25 20:00:00+00"`    | Event start time (UTC)                                                            |
-| `event_external_id_sportsdataio` | Event       | No       | String    | `"19449"`                     | SportsDataIO ID                                                                   |
-| `event_external_id_sportradar`   | Event       | No       | String    | `"5848514c-..."`              | Sportradar ID                                                                     |
-| `instrument_rules`               | Instrument  | Yes      | String    | `"Who will win..."`           | Instrument-specific rules                                                         |
-| `participant_type`               | Participant | Yes      | String    | `"team"`                      | Type: team, player, nominee, etc.                                                 |
-| `long_participant_id`            | Participant | Yes      | String    | `"nfl-ne"`                    | Long side participant ID                                                          |
-| `long_participant_name`          | Participant | Yes      | String    | `"New England"`               | Long side display name                                                            |
-| `short_participant_id`           | Participant | Yes      | String    | `"nfl-den"`                   | Short side participant ID                                                         |
-| `short_participant_name`         | Participant | Yes      | String    | `"Denver"`                    | Short side display name                                                           |
-| `outcome_type`                   | Outcome     | Yes      | String    | `"moneyline"`                 | Outcome type                                                                      |
-| `outcome_strike`                 | Outcome     | Yes      | String    | `"ne"`                        | Strike value (participant abbreviation for moneyline, numeric for spreads/totals) |
+| Field | Level | Required | Type | Example | Description |
+| - | - | - | - | - | - |
+| `cftc_instrument_id` | Instrument | Yes | String | `"aec-nfl-ne-den-2026-01-25"` | CFTC registered instrument ID |
+| `clearing_sym` | Instrument | Yes | String | `"AEC-NFL"` | Clearing symbol prefix |
+| `event_category` | Category | Yes | String | `"SPR"` | Category code (SPR, POL, CRY, etc.) |
+| `event_series` | Series | Yes | String | `"nfl"` | Series code within category |
+| `instrument_product` | Product | Yes | String | `"aec"` | Product type code |
+| `instrument_product_series` | Product | Yes | String | `"aec-nfl"` | Combined product and series |
+| `product_id` | Product | Yes | String | `"aec-nfl-ne-den-2026-01-25"` | Product identifier |
+| `event_id` | Event | Yes | String | `"nfl-ne-den-2026-01-25"` | Unique event identifier |
+| `event_start_time` | Event | Yes | Timestamp | `"2026-01-25 20:00:00+00"` | Event start time (UTC) |
+| `event_external_id_sportsdataio` | Event | No | String | `"19449"` | SportsDataIO ID |
+| `event_external_id_sportradar` | Event | No | String | `"5848514c-..."` | Sportradar ID |
+| `instrument_rules` | Instrument | Yes | String | `"Who will win..."` | Instrument-specific rules |
+| `participant_type` | Participant | Yes | String | `"team"` | Type: team, player, nominee, etc. |
+| `long_participant_id` | Participant | Yes | String | `"nfl-ne"` | Long side participant ID |
+| `long_participant_name` | Participant | Yes | String | `"New England"` | Long side display name |
+| `short_participant_id` | Participant | Yes | String | `"nfl-den"` | Short side participant ID |
+| `short_participant_name` | Participant | Yes | String | `"Denver"` | Short side display name |
+| `outcome_type` | Outcome | Yes | String | `"moneyline"` | Outcome type |
+| `outcome_strike` | Outcome | Yes | String | `"ne"` | Strike value (participant abbreviation for moneyline, numeric for spreads/totals) |
 
 Crypto price instruments carry no participant fields. They add `crypto_market_type`, `crypto_horizon`, `interval_start`, `interval_end`, `price_to_beat`, `crypto_range_lower` / `crypto_range_upper`, `crypto_hit_direction` and `crypto_settlement_price`; see [Crypto Schema](/trader-guide/crypto-schema).
 

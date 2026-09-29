@@ -14,14 +14,14 @@ REST and unary gRPC order-entry requests use tiered rate limits. Institutional o
 
 Each method has its own per-firm rate-limit bucket. Methods displaying the same limit do not share that allowance.
 
-| Method                   |     Tier 1 |      Tier 2 |      Tier 3 |        Tier 4 | Maximum operations per request |
-| ------------------------ | ---------: | ----------: | ----------: | ------------: | -----------------------------: |
-| `InsertOrder`            | 30 req/sec | 100 req/sec | 200 req/sec |   400 req/sec |                        1 order |
-| `CancelReplaceOrder`     | 30 req/sec | 100 req/sec | 200 req/sec |   400 req/sec |                  1 replacement |
-| `CancelOrder`            | 90 req/sec | 300 req/sec | 600 req/sec | 1,200 req/sec |                       1 cancel |
-| `InsertOrderList`        | 50 req/sec |  50 req/sec |  50 req/sec |    50 req/sec |                      20 orders |
-| `CancelOrderList`        | 50 req/sec |  50 req/sec |  50 req/sec |    50 req/sec |                     20 cancels |
-| `CancelReplaceOrderList` | 50 req/sec |  50 req/sec |  50 req/sec |    50 req/sec |                20 replacements |
+| Method | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Maximum operations per request |
+| - | -: | -: | -: | -: | -: |
+| `InsertOrder` | 30 req/sec | 100 req/sec | 200 req/sec | 400 req/sec | 1 order |
+| `CancelReplaceOrder` | 30 req/sec | 100 req/sec | 200 req/sec | 400 req/sec | 1 replacement |
+| `CancelOrder` | 90 req/sec | 300 req/sec | 600 req/sec | 1,200 req/sec | 1 cancel |
+| `InsertOrderList` | 50 req/sec | 50 req/sec | 50 req/sec | 50 req/sec | 20 orders |
+| `CancelOrderList` | 50 req/sec | 50 req/sec | 50 req/sec | 50 req/sec | 20 cancels |
+| `CancelReplaceOrderList` | 50 req/sec | 50 req/sec | 50 req/sec | 50 req/sec | 20 replacements |
 
 REST and unary gRPC tiers are determined by your [contract volume share on Polymarket US](#volume-share-and-tier-requirements). Batch order method limits remain flat across all tiers.
 
@@ -33,9 +33,9 @@ Each batch order request counts once toward that method's rate limit, regardless
 
 FIX rate limiting is enforced at the FIX gateway level. Rate limits are determined by tier.
 
-| Tier   | Rate limit              |
-| ------ | ----------------------- |
-| Tier 1 | 35 msg/sec per session  |
+| Tier | Rate limit |
+| - | - |
+| Tier 1 | 35 msg/sec per session |
 | Tier 2 | 150 msg/sec per session |
 | Tier 3 | 300 msg/sec per session |
 | Tier 4 | 500 msg/sec per session |
@@ -52,12 +52,12 @@ You must keep at least the Maintain volume share to stay eligible for your curre
 
 Each tier has its own Earn and Maintain volume share requirement, seen below.
 
-| Tier   | Earn   | Maintain |
-| ------ | ------ | -------- |
-| Tier 1 | N/A    | N/A      |
-| Tier 2 | 0.125% | 0.10%    |
-| Tier 3 | 0.50%  | 0.225%   |
-| Tier 4 | 1.50%  | 1.20%    |
+| Tier | Earn | Maintain |
+| - | - | - |
+| Tier 1 | N/A | N/A |
+| Tier 2 | 0.125% | 0.10% |
+| Tier 3 | 0.50% | 0.225% |
+| Tier 4 | 1.50% | 1.20% |
 
 **Accelerated Tier Placement:** A Participant may provide verifiable proof of their trailing-30-day contract trading volume on another prediction market venue and be assigned to the tier corresponding to that volume.
 
@@ -67,42 +67,43 @@ Each tier has its own Earn and Maintain volume share requirement, seen below.
 
 These read-heavy endpoints have separate per-firm limits. Cache responses where noted.
 
-| Endpoint           | Limit      | Notes                               |
-| ------------------ | ---------- | ----------------------------------- |
-| `GetTradeStats`    | 60 req/min | Heavy aggregation query             |
-| `ListInstruments`  | 6 req/min  | Static data - cache client-side     |
-| `ListSymbols`      | 6 req/min  | Static data - cache client-side     |
-| `GetOrderBook`     | 12 req/min | Prefer streaming for real-time data |
-| `GetBBO`           | 12 req/min | Prefer streaming for real-time data |
-| `SearchOrders`     | 12 req/min | Use filters to narrow results       |
-| `SearchExecutions` | 12 req/min | Use filters to narrow results       |
-| `SearchTrades`     | 12 req/min | Use filters to narrow results       |
+| Endpoint | Limit | Notes |
+| - | - | - |
+| `GetTradeStats` | 60 req/min | Heavy aggregation query |
+| `ListInstruments` | 6 req/min | Static data - cache client-side |
+| `ListSymbols` | 6 req/min | Static data - cache client-side |
+| `GetOrderBook` | 12 req/min | Prefer streaming for real-time data |
+| `GetBBO` | 12 req/min | Prefer streaming for real-time data |
+| `SearchOrders` | 12 req/min | Use filters to narrow results |
+| `SearchExecutions` | 12 req/min | Use filters to narrow results |
+| `SearchTrades` | 12 req/min | Use filters to narrow results |
+| `GetInstrumentSettlement` | 10 req/sec | Final settlement lookup; poll after termination, not continuously |
 
 ### Combos Endpoints
 
 Combos endpoints have these per-firm limits:
 
-| Endpoint      | Limit       | Notes                                |
-| ------------- | ----------- | ------------------------------------ |
-| `GetCombos`   | 100 req/sec | Exact combo lookup                   |
-| `CreateCombo` | 1 req/sec   | Create or retrieve a canonical combo |
+| Endpoint | Limit | Notes |
+| - | - | - |
+| `GetCombos` | 100 req/sec | Exact combo lookup |
+| `CreateCombo` | 1 req/sec | Create or retrieve a canonical combo |
 
 ### Public (Unauthenticated) Endpoints
 
-| Limit                   | Value     |
-| ----------------------- | --------- |
+| Limit | Value |
+| - | - |
 | Max requests per second | 20 per IP |
 
 ## gRPC Streaming
 
 Unary gRPC order-entry calls use the [Institutional Order Entry](#institutional-order-entry) limits above. The limits in this section apply to streaming connections.
 
-| Setting                                             | Value       |
-| --------------------------------------------------- | ----------- |
-| Max concurrent streams per firm                     | 20          |
+| Setting | Value |
+| - | - |
+| Max concurrent streams per firm | 20 |
 | Ingress message rate (per firm, across all streams) | 100 msg/sec |
-| `StreamRFQEvents` new stream opens per firm         | 1/sec       |
-| Egress (server to client)                           | Unlimited   |
+| `StreamRFQEvents` new stream opens per firm | 1/sec |
+| Egress (server to client) | Unlimited |
 
 Ingress rate is averaged over a 1-minute window, allowing short bursts. Exceeding the average limit will result in throttled or rejected messages. This limit applies to all participants.
 
@@ -112,17 +113,17 @@ The `StreamRFQEvents` limit is checked only when opening a stream. It does not l
 
 The institutional `polymarket.v1.RFQAPI` endpoints have these per-firm limits, shared across REST and unary gRPC requests:
 
-| Endpoint       | Limit             | Notes                                           |
-| -------------- | ----------------- | ----------------------------------------------- |
-| `GetRFQUserID` | 1 req/sec         | RFQ user ID lookup                              |
-| `GetRFQs`      | 10 req/sec        | Prefer `StreamRFQEvents` for live RFQ changes   |
-| `GetQuotes`    | 10 req/sec        | Prefer `StreamRFQEvents` for live quote changes |
-| `CreateRFQ`    | 1 req/sec         | RFQ creation                                    |
-| `DeleteRFQ`    | 100 req/sec       | Close an open RFQ                               |
-| `CreateQuote`  | 400–2,000 req/sec | Quote creation; determined by RFQ tier          |
-| `DeleteQuote`  | 400–2,000 req/sec | Quote deletion; determined by RFQ tier          |
-| `AcceptQuote`  | 100 req/sec       | Quote acceptance                                |
-| `ConfirmQuote` | 100 req/sec       | Last-look quote confirmation                    |
+| Endpoint | Limit | Notes |
+| - | - | - |
+| `GetRFQUserID` | 1 req/sec | RFQ user ID lookup |
+| `GetRFQs` | 10 req/sec | Prefer `StreamRFQEvents` for live RFQ changes |
+| `GetQuotes` | 10 req/sec | Prefer `StreamRFQEvents` for live quote changes |
+| `CreateRFQ` | 1 req/sec | RFQ creation |
+| `DeleteRFQ` | 100 req/sec | Close an open RFQ |
+| `CreateQuote` | 400–2,000 req/sec | Quote creation; determined by RFQ tier |
+| `DeleteQuote` | 400–2,000 req/sec | Quote deletion; determined by RFQ tier |
+| `AcceptQuote` | 100 req/sec | Quote acceptance |
+| `ConfirmQuote` | 100 req/sec | Last-look quote confirmation |
 
 Each row above has a separate per-firm endpoint bucket with one second of burst capacity. Traffic to one method does not consume another method's endpoint-specific allowance. Exchange-wide limits also apply.
 
@@ -130,11 +131,11 @@ Each row above has a separate per-firm endpoint bucket with one second of burst 
 
 Your RFQ tier determines your `CreateQuote` and `DeleteQuote` limits. Each method has its own allowance:
 
-| Tier   | `CreateQuote` | `DeleteQuote` |
-| ------ | ------------- | ------------- |
-| Tier 1 | 400 req/sec   | 400 req/sec   |
-| Tier 2 | 600 req/sec   | 600 req/sec   |
-| Tier 3 | 800 req/sec   | 800 req/sec   |
+| Tier | `CreateQuote` | `DeleteQuote` |
+| - | - | - |
+| Tier 1 | 400 req/sec | 400 req/sec |
+| Tier 2 | 600 req/sec | 600 req/sec |
+| Tier 3 | 800 req/sec | 800 req/sec |
 | Tier 4 | 2,000 req/sec | 2,000 req/sec |
 
 ### RFQ Volume Share and Tier Requirements
@@ -145,30 +146,30 @@ Once you meet the Earn volume share for a given tier, you are eligible for that 
 
 You must keep at least the Maintain volume share to stay eligible for your current tier. Maintain is 80% of Earn. If you drop below the Maintain volume share, your rate limit will not drop immediately. You will have 30 days to get back to at least the Maintain volume share before being moved to a lower tier.
 
-| Tier   | Earn | Maintain |
-| ------ | ---- | -------- |
-| Tier 1 | N/A  | N/A      |
-| Tier 2 | 0.5% | 0.4%     |
-| Tier 3 | 1%   | 0.8%     |
-| Tier 4 | 5%   | 4%       |
+| Tier | Earn | Maintain |
+| - | - | - |
+| Tier 1 | N/A | N/A |
+| Tier 2 | 0.5% | 0.4% |
+| Tier 3 | 1% | 0.8% |
+| Tier 4 | 5% | 4% |
 
 RFQ tiers use a separate volume measure and eligibility thresholds from the institutional order-entry (REST and unary gRPC) and FIX tiers above.
 
 ## Summary
 
-| Protocol                                                         | Scope                  | Limit                                       |
-| ---------------------------------------------------------------- | ---------------------- | ------------------------------------------- |
-| Institutional API - orders (`InsertOrder`, `CancelReplaceOrder`) | Per firm, per method   | 30–400 req/sec by tier                      |
-| Institutional API - cancels (`CancelOrder`)                      | Per firm, per method   | 90–1,200 req/sec by tier                    |
-| Institutional API - batch order methods                          | Per firm, per method   | 50 req/sec; up to 20 operations per request |
-| REST - query endpoints                                           | Per firm, per endpoint | 0.5–60 req/min (see table above)            |
-| REST - combos endpoints                                          | Per firm, per endpoint | 1–100 req/sec (see table above)             |
-| REST - public/unauth                                             | Per IP                 | 20 req/sec                                  |
-| gRPC - `StreamRFQEvents` opens                                   | Per firm               | 1 new stream/sec                            |
-| gRPC streaming (ingress)                                         | Per firm (all streams) | 100 msg/sec (1-min avg)                     |
-| gRPC streaming (egress)                                          | Per firm               | Unlimited                                   |
-| RFQ - REST and unary gRPC endpoints                              | Per firm, per endpoint | 1–2,000 req/sec (see tables above)          |
-| FIX                                                              | Per session            | 35–500 msg/sec by tier (see table above)    |
+| Protocol | Scope | Limit |
+| - | - | - |
+| Institutional API - orders (`InsertOrder`, `CancelReplaceOrder`) | Per firm, per method | 30–400 req/sec by tier |
+| Institutional API - cancels (`CancelOrder`) | Per firm, per method | 90–1,200 req/sec by tier |
+| Institutional API - batch order methods | Per firm, per method | 50 req/sec; up to 20 operations per request |
+| REST - query endpoints | Per firm, per endpoint | 0.5–60 req/min (see table above) |
+| REST - combos endpoints | Per firm, per endpoint | 1–100 req/sec (see table above) |
+| REST - public/unauth | Per IP | 20 req/sec |
+| gRPC - `StreamRFQEvents` opens | Per firm | 1 new stream/sec |
+| gRPC streaming (ingress) | Per firm (all streams) | 100 msg/sec (1-min avg) |
+| gRPC streaming (egress) | Per firm | Unlimited |
+| RFQ - REST and unary gRPC endpoints | Per firm, per endpoint | 1–2,000 req/sec (see tables above) |
+| FIX | Per session | 35–500 msg/sec by tier (see table above) |
 
 ## Rate Limit Response
 
@@ -233,12 +234,12 @@ You can always cancel an order before you have received an acknowledgement, and 
 
 The API is designed as a **streaming-first** system. Instead of repeatedly polling for updates, subscribe to real-time streams:
 
-| Don't Poll                                        | Use Streaming Instead                      |
-| ------------------------------------------------- | ------------------------------------------ |
-| Repeated calls to `/v1/report/orders/search`      | `CreateOrderSubscription` gRPC stream      |
-| Repeated calls to `/v1/rfqs` or `/v1/rfqs/quotes` | `StreamRFQEvents` gRPC stream              |
-| Repeated calls to `/v1/positions`                 | `CreatePositionSubscription` gRPC stream   |
-| Repeated calls to `/v1/orderbook`                 | `CreateMarketDataSubscription` gRPC stream |
+| Don't Poll | Use Streaming Instead |
+| - | - |
+| Repeated calls to `/v1/report/orders/search` | `CreateOrderSubscription` gRPC stream |
+| Repeated calls to `/v1/rfqs` or `/v1/rfqs/quotes` | `StreamRFQEvents` gRPC stream |
+| Repeated calls to `/v1/positions` | `CreatePositionSubscription` gRPC stream |
+| Repeated calls to `/v1/orderbook` | `CreateMarketDataSubscription` gRPC stream |
 
 <Info>
   Streaming connections don't count against the REST rate limit. One streaming connection can replace hundreds of polling requests. New `StreamRFQEvents` connections are limited to one open attempt per second per firm, so reconnect with backoff.

@@ -12,11 +12,11 @@
 
 A **transfer** moves cash between your **partner funding account** and a **participant account** under your Firm. It is the only way money enters or leaves a participant account outside of trading itself, and it exists for exactly three reasons:
 
-| Reason        | Direction                             | Business event                                                                                                         |
-| ------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `DEPOSIT`     | Funding account → participant account | The participant allocated wallet funds to trade — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals) |
-| `WITHDRAWAL`  | Participant account → funding account | The participant withdrew funds from trading — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals)     |
-| `VENDOR_FEES` | Participant account → funding account | Periodic collection of accrued vendor fees — see [Vendor Fees](/partners/funding/vendor-fees)                          |
+| Reason | Direction | Business event |
+| - | - | - |
+| `DEPOSIT` | Funding account → participant account | The participant allocated wallet funds to trade — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals) |
+| `WITHDRAWAL` | Participant account → funding account | The participant withdrew funds from trading — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals) |
+| `VENDOR_FEES` | Participant account → funding account | Periodic collection of accrued vendor fees — see [Vendor Fees](/partners/funding/vendor-fees) |
 
 **Direction is fixed by the reason.** You name only the participant account; the platform resolves your funding account from your firm's configured funding relationship and derives the source and destination from the reason. There is no way to express any other movement — transfers to your firm, between participants, or to an external destination are structurally impossible.
 
@@ -24,10 +24,10 @@ A **transfer** moves cash between your **partner funding account** and a **parti
 
 **Service:** `polymarket.us.cashmovement.v1.CashMovementService`
 
-| RPC                        | Purpose                                                                 |
-| -------------------------- | ----------------------------------------------------------------------- |
-| `CreateCashMovement`       | Create an idempotent deposit, withdrawal, or vendor fee transfer.       |
-| `GetCashMovement`          | Read a transfer workflow by `workflow_id`.                              |
+| RPC | Purpose |
+| - | - |
+| `CreateCashMovement` | Create an idempotent deposit, withdrawal, or vendor fee transfer. |
+| `GetCashMovement` | Read a transfer workflow by `workflow_id`. |
 | `GetFundingAccountBalance` | Read the authoritative current balance of your partner funding account. |
 
 All methods require the `write:cash-movements` scope.
@@ -61,14 +61,14 @@ enum TransferReason {
 message CreateCashMovementResponse { CashMovement cash_movement; }
 ```
 
-| Field                    | Required?    | Notes                                                                                                                                                                                                                              |
-| ------------------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `reason`                 | **Required** | Determines the direction — see the table above.                                                                                                                                                                                    |
-| `participant_account_id` | **Required** | The participant trading account, in the same format returned by the account onboarding/list APIs. Must belong to your Firm.                                                                                                        |
-| `amount`                 | **Required** | The exact decimal amount to move.                                                                                                                                                                                                  |
-| `currency`               | **Required** | ISO 4217 code matching the account. `USD`.                                                                                                                                                                                         |
-| `external_reference`     | **Required** | Your journal/ledger entry ID, or the instruction reference from your funding entity — it joins Polymarket US records to your books and to the three-party instruction chain. Quote it alongside `workflow_id` in support requests. |
-| `memo`                   | Optional     | Human-readable note for support/audit — not parsed.                                                                                                                                                                                |
+| Field | Required? | Notes |
+| - | - | - |
+| `reason` | **Required** | Determines the direction — see the table above. |
+| `participant_account_id` | **Required** | The participant trading account, in the same format returned by the account onboarding/list APIs. Must belong to your Firm. |
+| `amount` | **Required** | The exact decimal amount to move. |
+| `currency` | **Required** | ISO 4217 code matching the account. `USD`. |
+| `external_reference` | **Required** | Your journal/ledger entry ID, or the instruction reference from your funding entity — it joins Polymarket US records to your books and to the three-party instruction chain. Quote it alongside `workflow_id` in support requests. |
+| `memo` | Optional | Human-readable note for support/audit — not parsed. |
 
 ### GetCashMovement
 
@@ -116,18 +116,18 @@ message GetFundingAccountBalanceResponse {
 
 #### Request fields
 
-| Field      | Type     | Required | Description                                                                                 |
-| ---------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
-| `currency` | `string` | Yes      | Currency configured for your funding relationship. Use `USD`; matching is case-insensitive. |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `currency` | `string` | Yes | Currency configured for your funding relationship. Use `USD`; matching is case-insensitive. |
 
 #### Response fields
 
-| Field                | Type                        | Description                                                                                                                              |
-| -------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `funding_account_id` | `string`                    | Your partner funding account. This is the same identifier returned as `source_account_id` or `destination_account_id` on transfer reads. |
-| `balance`            | `string`                    | Authoritative account balance as an exact decimal string.                                                                                |
-| `currency`           | `string`                    | Currency of the returned balance.                                                                                                        |
-| `as_of`              | `google.protobuf.Timestamp` | The exchange ledger's balance update time.                                                                                               |
+| Field | Type | Description |
+| - | - | - |
+| `funding_account_id` | `string` | Your partner funding account. This is the same identifier returned as `source_account_id` or `destination_account_id` on transfer reads. |
+| `balance` | `string` | Authoritative account balance as an exact decimal string. |
+| `currency` | `string` | Currency of the returned balance. |
+| `as_of` | `google.protobuf.Timestamp` | The exchange ledger's balance update time. |
 
 #### Example
 
@@ -152,22 +152,22 @@ Response (Connect JSON representation):
 
 #### Errors
 
-| gRPC status         | Meaning                                                                          | Retry guidance                                                             |
-| ------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `INVALID_ARGUMENT`  | `currency` does not match the currency configured for your funding relationship. | Send the configured currency (`USD`). Do not retry the unchanged request.  |
-| `UNAUTHENTICATED`   | Missing or invalid access token.                                                 | Refresh the token and retry.                                               |
-| `PERMISSION_DENIED` | Your firm is not configured for transfers.                                       | Contact [institutional@polymarket.us](mailto:institutional@polymarket.us). |
-| `UNAVAILABLE`       | The upstream balance read failed.                                                | Retry with backoff.                                                        |
+| gRPC status | Meaning | Retry guidance |
+| - | - | - |
+| `INVALID_ARGUMENT` | `currency` does not match the currency configured for your funding relationship. | Send the configured currency (`USD`). Do not retry the unchanged request. |
+| `UNAUTHENTICATED` | Missing or invalid access token. | Refresh the token and retry. |
+| `PERMISSION_DENIED` | Your firm is not configured for transfers. | Contact [institutional@polymarket.us](mailto:institutional@polymarket.us). |
+| `UNAVAILABLE` | The upstream balance read failed. | Retry with backoff. |
 
 ## Insufficient funds
 
 A transfer is rejected if the **source account** cannot cover the amount:
 
-| Reason        | Source              | Insufficient-funds case                                                                                    |
-| ------------- | ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `DEPOSIT`     | Funding account     | The pool is short — top it up from your funding entity's treasury and retry.                               |
-| `WITHDRAWAL`  | Participant account | The participant's *free* cash (net of collateral locked by open orders and positions) is below the amount. |
-| `VENDOR_FEES` | Participant account | The participant's free cash is below the accrued amount — e.g. trading losses since accrual.               |
+| Reason | Source | Insufficient-funds case |
+| - | - | - |
+| `DEPOSIT` | Funding account | The pool is short — top it up from your funding entity's treasury and retry. |
+| `WITHDRAWAL` | Participant account | The participant's *free* cash (net of collateral locked by open orders and positions) is below the amount. |
+| `VENDOR_FEES` | Participant account | The participant's free cash is below the accrued amount — e.g. trading losses since accrual. |
 
 This is enforced across the system regardless of reason — no transfer can drive an account negative. **Managing the risk is on you and your funding entity**: gate spendable balance so accrued fees stay covered ([Vendor Fees](/partners/funding/vendor-fees#accrued-fees-are-credit-exposure)), and check free cash before initiating withdrawals ([Deposits & Withdrawals](/partners/funding/deposits-withdrawals#withdrawals)).
 
@@ -228,16 +228,16 @@ def dispatch_loop(stub, metadata):
 
 The following statuses apply to `CreateCashMovement` and `GetCashMovement`.
 
-| gRPC status           | Meaning                                                                                  | Retry guidance                                                                                                            |
-| --------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `INVALID_ARGUMENT`    | Malformed amount/currency, unknown reason, or missing required field.                    | Fix the request. Do not retry as-is.                                                                                      |
-| `UNAUTHENTICATED`     | Missing or invalid access token.                                                         | Refresh the token and retry.                                                                                              |
-| `PERMISSION_DENIED`   | Your firm is not configured for transfers, or the requested transfer reason is disabled. | Contact [institutional@polymarket.us](mailto:institutional@polymarket.us).                                                |
-| `NOT_FOUND`           | No customer relationship exists for your firm and `participant_account_id`.              | Fix the request.                                                                                                          |
-| `FAILED_PRECONDITION` | The customer relationship or resolved transfer-account configuration is unavailable.     | Correct the relationship or account state before retrying.                                                                |
-| `ALREADY_EXISTS`      | The `idempotency_key` was already used with a different request.                         | Replay the original request, or use a fresh key only for a genuinely new transfer.                                        |
-| `RESOURCE_EXHAUSTED`  | Transfer rate limit exceeded; the transfer was not created.                              | Re-enqueue with backoff and the **same** `idempotency_key` — see [Rate limits and smoothing](#rate-limits-and-smoothing). |
-| `UNAVAILABLE`         | Transient service unavailability.                                                        | Retry with the **same** `idempotency_key`.                                                                                |
+| gRPC status | Meaning | Retry guidance |
+| - | - | - |
+| `INVALID_ARGUMENT` | Malformed amount/currency, unknown reason, or missing required field. | Fix the request. Do not retry as-is. |
+| `UNAUTHENTICATED` | Missing or invalid access token. | Refresh the token and retry. |
+| `PERMISSION_DENIED` | Your firm is not configured for transfers, or the requested transfer reason is disabled. | Contact [institutional@polymarket.us](mailto:institutional@polymarket.us). |
+| `NOT_FOUND` | No customer relationship exists for your firm and `participant_account_id`. | Fix the request. |
+| `FAILED_PRECONDITION` | The customer relationship or resolved transfer-account configuration is unavailable. | Correct the relationship or account state before retrying. |
+| `ALREADY_EXISTS` | The `idempotency_key` was already used with a different request. | Replay the original request, or use a fresh key only for a genuinely new transfer. |
+| `RESOURCE_EXHAUSTED` | Transfer rate limit exceeded; the transfer was not created. | Re-enqueue with backoff and the **same** `idempotency_key` — see [Rate limits and smoothing](#rate-limits-and-smoothing). |
+| `UNAVAILABLE` | Transient service unavailability. | Retry with the **same** `idempotency_key`. |
 
 An insufficient-funds outcome is not a gRPC error at create time: the workflow resolves to `status = REJECTED` with a `rejection_reason` — see [Insufficient funds](#insufficient-funds).
 

@@ -12,11 +12,11 @@ The Sports API provides access to sporting events organized by league or sport, 
 
 ## Endpoints
 
-| Method | Endpoint                    | Description                                                          |
-| ------ | --------------------------- | -------------------------------------------------------------------- |
-| `GET`  | `/v2/leagues/{slug}/events` | Get events by league slug                                            |
-| `GET`  | `/v2/sports/{slug}/events`  | Get events by sport slug                                             |
-| `GET`  | `/v1/sports/players`        | List players or look up players by internal ID, team, or provider ID |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v2/leagues/{slug}/events` | Get events by league slug |
+| `GET` | `/v2/sports/{slug}/events` | Get events by sport slug |
+| `GET` | `/v1/sports/players` | List players or look up players by internal ID, team, or provider ID |
 
 ## Players
 
@@ -32,19 +32,19 @@ GET /v2/leagues/nfl/events
 
 ### Path Parameters
 
-| Parameter | Type   | Description                             |
-| --------- | ------ | --------------------------------------- |
-| `slug`    | string | League slug (e.g., `nfl`, `nba`, `mlb`) |
+| Parameter | Type | Description |
+| - | - | - |
+| `slug` | string | League slug (e.g., `nfl`, `nba`, `mlb`) |
 
 ### Query Parameters
 
-| Parameter        | Type    | Description                                |
-| ---------------- | ------- | ------------------------------------------ |
-| `limit`          | integer | Pagination limit                           |
-| `offset`         | integer | Pagination offset                          |
-| `excludeEventId` | array   | Event IDs to exclude                       |
-| `type`           | string  | Type: `sport` (default) or `futures`       |
-| `section`        | string  | Section: `general` (default) or `trending` |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | integer | Pagination limit |
+| `offset` | integer | Pagination offset |
+| `excludeEventId` | array | Event IDs to exclude |
+| `type` | string | Type: `sport` (default) or `futures` |
+| `section` | string | Section: `general` (default) or `trending` |
 
 ## Get Sport Events
 
@@ -56,19 +56,19 @@ GET /v2/sports/football/events
 
 ### Path Parameters
 
-| Parameter | Type   | Description                                 |
-| --------- | ------ | ------------------------------------------- |
-| `slug`    | string | Sport slug (e.g., `football`, `basketball`) |
+| Parameter | Type | Description |
+| - | - | - |
+| `slug` | string | Sport slug (e.g., `football`, `basketball`) |
 
 ### Query Parameters
 
-| Parameter        | Type    | Description                                |
-| ---------------- | ------- | ------------------------------------------ |
-| `limit`          | integer | Pagination limit                           |
-| `offset`         | integer | Pagination offset                          |
-| `excludeEventId` | array   | Event IDs to exclude                       |
-| `type`           | string  | Type: `sport` (default) or `futures`       |
-| `section`        | string  | Section: `general` (default) or `trending` |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | integer | Pagination limit |
+| `offset` | integer | Pagination offset |
+| `excludeEventId` | array | Event IDs to exclude |
+| `type` | string | Type: `sport` (default) or `futures` |
+| `section` | string | Section: `general` (default) or `trending` |
 
 ## Teams
 

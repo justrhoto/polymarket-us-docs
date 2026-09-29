@@ -66,10 +66,10 @@ This generates:
 
 ### Auth Domains
 
-| Environment    | Auth Domain                |
-| -------------- | -------------------------- |
-| **Production** | `pmx-prod.us.auth0.com`    |
-| **Preprod**    | `pmx-preprod.us.auth0.com` |
+| Environment | Auth Domain |
+| - | - |
+| **Production** | `pmx-prod.us.auth0.com` |
+| **Preprod** | `pmx-preprod.us.auth0.com` |
 
 Obtain a JWT token using Private Key JWT authentication:
 

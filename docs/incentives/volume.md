@@ -8,12 +8,12 @@
 
 This program rewards traders based on their share of trading volume on eligible contracts. The more you trade, the more you earn. Reward amounts for each contract will be published here.
 
-| Term                  | Definition                                                                           |
-| --------------------- | ------------------------------------------------------------------------------------ |
-| **Eligible Term**     | How long the reward runs — usually the full lifetime of the contract                 |
-| **Eligible Volume**   | Taker-side notional only. Only trades executed between 3c and 97c (inclusive) count. |
-| **Volume Reward**     | The total reward amount for each contract                                            |
-| **Volume Multiplier** | A bonus applied during certain time windows to encourage trading                     |
+| Term | Definition |
+| - | - |
+| **Eligible Term** | How long the reward runs — usually the full lifetime of the contract |
+| **Eligible Volume** | Taker-side notional only. Only trades executed between 3c and 97c (inclusive) count. |
+| **Volume Reward** | The total reward amount for each contract |
+| **Volume Multiplier** | A bonus applied during certain time windows to encourage trading |
 
 ### Example
 

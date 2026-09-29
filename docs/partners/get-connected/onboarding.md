@@ -28,12 +28,12 @@ graph TD
 
 ## What you provide vs. what you receive
 
-| You provide                                                                    | You receive                                          |
-| ------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| Signed partner agreement (ISV or IB) and participant agreements for your users | A **Client ID** for each environment                 |
-| RSA **public** keys (one per environment)                                      | Access to **pre-production** and **production**      |
-| AWS Account ID (only if using FIX connectivity)                                | FIX connection details (if requested)                |
-| Primary technical and business contacts                                        | A shared Google Drive folder for credential delivery |
+| You provide | You receive |
+| - | - |
+| Signed partner agreement (ISV or IB) and participant agreements for your users | A **Client ID** for each environment |
+| RSA **public** keys (one per environment) | Access to **pre-production** and **production** |
+| AWS Account ID (only if using FIX connectivity) | FIX connection details (if requested) |
+| Primary technical and business contacts | A shared Google Drive folder for credential delivery |
 
 ## Step 1 — Sign the agreements
 

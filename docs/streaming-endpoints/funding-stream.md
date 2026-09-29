@@ -31,11 +31,11 @@ service FundingAPI {
 
 ### CreateFundingTransactionSubscriptionRequest
 
-| Field               | Type                           | Required | Description                                                     |
-| ------------------- | ------------------------------ | -------- | --------------------------------------------------------------- |
-| `account_ids`       | `list[str]`                    | No       | Filter by funding account IDs. Empty = all authorized accounts. |
-| `transaction_types` | `list[FundingTransactionType]` | No       | Filter by transaction type. Empty = all types.                  |
-| `resume_time`       | `Timestamp`                    | No       | Resume from a previous position for reconnection.               |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `account_ids` | `list[str]` | No | Filter by funding account IDs. Empty = all authorized accounts. |
+| `transaction_types` | `list[FundingTransactionType]` | No | Filter by transaction type. Empty = all types. |
+| `resume_time` | `Timestamp` | No | Resume from a previous position for reconnection. |
 
 ### Example Request
 
@@ -67,33 +67,33 @@ The stream returns `CreateFundingTransactionSubscriptionResponse` messages when 
 
 ### Response Fields
 
-| Field         | Type                             | Description                                                |
-| ------------- | -------------------------------- | ---------------------------------------------------------- |
-| `changes`     | `list[FundingTransactionChange]` | Transaction state changes in this batch                    |
-| `server_time` | `Timestamp`                      | Server timestamp (store for `resume_time` on reconnection) |
+| Field | Type | Description |
+| - | - | - |
+| `changes` | `list[FundingTransactionChange]` | Transaction state changes in this batch |
+| `server_time` | `Timestamp` | Server timestamp (store for `resume_time` on reconnection) |
 
 ### FundingTransactionChange
 
-| Field            | Type                      | Description                                |
-| ---------------- | ------------------------- | ------------------------------------------ |
-| `transaction`    | `FundingTransaction`      | The updated transaction with current state |
-| `previous_state` | `FundingTransactionState` | The state before this change               |
-| `change_time`    | `Timestamp`               | When this change was detected              |
+| Field | Type | Description |
+| - | - | - |
+| `transaction` | `FundingTransaction` | The updated transaction with current state |
+| `previous_state` | `FundingTransactionState` | The state before this change |
+| `change_time` | `Timestamp` | When this change was detected |
 
 ## Transaction States
 
-| State                                  | Value | Description                                  |
-| -------------------------------------- | ----- | -------------------------------------------- |
-| `TRANSACTION_STATE_PENDING`            | 0     | Transaction initiated, awaiting processing   |
-| `TRANSACTION_STATE_PROCESSING`         | 9     | Transaction being processed                  |
-| `TRANSACTION_STATE_ACKNOWLEDGED`       | 1     | Transaction acknowledged by payment provider |
-| `TRANSACTION_STATE_COMPLETED`          | 2     | **Transaction successfully completed**       |
-| `TRANSACTION_STATE_CANCELLED`          | 3     | Transaction cancelled                        |
-| `TRANSACTION_STATE_ALLOCATED`          | 4     | Funds allocated                              |
-| `TRANSACTION_STATE_REFUNDED`           | 6     | Transaction fully refunded                   |
-| `TRANSACTION_STATE_PARTIALLY_REFUNDED` | 5     | Transaction partially refunded               |
-| `TRANSACTION_STATE_RELEASED`           | 8     | Funds released                               |
-| `TRANSACTION_STATE_PARTIALLY_RELEASED` | 7     | Funds partially released                     |
+| State | Value | Description |
+| - | - | - |
+| `TRANSACTION_STATE_PENDING` | 0 | Transaction initiated, awaiting processing |
+| `TRANSACTION_STATE_PROCESSING` | 9 | Transaction being processed |
+| `TRANSACTION_STATE_ACKNOWLEDGED` | 1 | Transaction acknowledged by payment provider |
+| `TRANSACTION_STATE_COMPLETED` | 2 | **Transaction successfully completed** |
+| `TRANSACTION_STATE_CANCELLED` | 3 | Transaction cancelled |
+| `TRANSACTION_STATE_ALLOCATED` | 4 | Funds allocated |
+| `TRANSACTION_STATE_REFUNDED` | 6 | Transaction fully refunded |
+| `TRANSACTION_STATE_PARTIALLY_REFUNDED` | 5 | Transaction partially refunded |
+| `TRANSACTION_STATE_RELEASED` | 8 | Funds released |
+| `TRANSACTION_STATE_PARTIALLY_RELEASED` | 7 | Funds partially released |
 
 ### Common State Transitions
 
@@ -113,14 +113,14 @@ COMPLETED → PARTIALLY_REFUNDED → REFUNDED
 
 ## Transaction Types
 
-| Type                                 | Value | Description             |
-| ------------------------------------ | ----- | ----------------------- |
-| `TRANSACTION_TYPE_DEPOSIT`           | 1     | Deposit into account    |
-| `TRANSACTION_TYPE_WITHDRAWAL`        | 2     | Withdrawal from account |
-| `TRANSACTION_TYPE_TRANSFER`          | 3     | Internal transfer       |
-| `TRANSACTION_TYPE_MANUAL_ADJUSTMENT` | 4     | Manual adjustment       |
-| `TRANSACTION_TYPE_SETTLEMENT_FEE`    | 5     | Settlement fee          |
-| `TRANSACTION_TYPE_EXECUTION_FEE`     | 7     | Trading execution fee   |
+| Type | Value | Description |
+| - | - | - |
+| `TRANSACTION_TYPE_DEPOSIT` | 1 | Deposit into account |
+| `TRANSACTION_TYPE_WITHDRAWAL` | 2 | Withdrawal from account |
+| `TRANSACTION_TYPE_TRANSFER` | 3 | Internal transfer |
+| `TRANSACTION_TYPE_MANUAL_ADJUSTMENT` | 4 | Manual adjustment |
+| `TRANSACTION_TYPE_SETTLEMENT_FEE` | 5 | Settlement fee |
+| `TRANSACTION_TYPE_EXECUTION_FEE` | 7 | Trading execution fee |
 
 ## Complete Example
 
@@ -267,12 +267,12 @@ if streamer.last_server_time:
 
 ## Comparing REST vs Streaming
 
-| Aspect            | REST (`/v1/funding/transactions`) | gRPC Streaming                   |
-| ----------------- | --------------------------------- | -------------------------------- |
-| **Rate Limiting** | Yes - subject to rate limits      | No - single connection           |
-| **Latency**       | Poll-based, higher latency        | Real-time push (\~15s detection) |
-| **Efficiency**    | Multiple requests needed          | Single persistent connection     |
-| **Use Case**      | One-time queries, historical data | Real-time monitoring             |
+| Aspect | REST (`/v1/funding/transactions`) | gRPC Streaming |
+| - | - | - |
+| **Rate Limiting** | Yes - subject to rate limits | No - single connection |
+| **Latency** | Poll-based, higher latency | Real-time push (\~15s detection) |
+| **Efficiency** | Multiple requests needed | Single persistent connection |
+| **Use Case** | One-time queries, historical data | Real-time monitoring |
 
 <Warning>
   **Recommendation:** Use the gRPC streaming endpoint for monitoring deposit/withdrawal status. Reserve the REST endpoint for one-time queries or fetching historical transaction data.

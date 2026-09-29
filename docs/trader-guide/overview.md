@@ -19,13 +19,13 @@ The Trader Guide is designed for:
 
 With trading access, you can:
 
-| Action                   | Description                              | Access Method            |
-| ------------------------ | ---------------------------------------- | ------------------------ |
-| **Place Orders**         | Submit limit orders, market orders       | REST API, gRPC           |
-| **Cancel Orders**        | Cancel individual or bulk orders         | REST API, gRPC           |
-| **Monitor Positions**    | Track your positions and balances        | REST API, gRPC Streaming |
-| **Access Market Data**   | Real-time quotes, order book, statistics | REST API, gRPC Streaming |
-| **Query Reference Data** | Instruments, symbols, metadata           | REST API                 |
+| Action | Description | Access Method |
+| - | - | - |
+| **Place Orders** | Submit limit orders, market orders | REST API, gRPC |
+| **Cancel Orders** | Cancel individual or bulk orders | REST API, gRPC |
+| **Monitor Positions** | Track your positions and balances | REST API, gRPC Streaming |
+| **Access Market Data** | Real-time quotes, order book, statistics | REST API, gRPC Streaming |
+| **Query Reference Data** | Instruments, symbols, metadata | REST API |
 
 ## Key Concepts
 

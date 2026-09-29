@@ -35,11 +35,11 @@ There is no separate "create user" or "create account" call. See the [KYC Verifi
 
 You discover the identities available to your Firm with three endpoints from the Accounts API. Each links to its full API reference below; the partner-specific usage is summarized here.
 
-| Endpoint           | Use it to                                                   | API reference                                                 |
-| ------------------ | ----------------------------------------------------------- | ------------------------------------------------------------- |
-| `GET /v1/whoami`   | Confirm your Firm identity and entitlements                 | [Get who am I ↗](/institutional/accounts/overview#endpoints)  |
-| `GET /v1/users`    | List the Retail Participants your Firm may act on behalf of | [List users ↗](/institutional/accounts/overview#endpoints)    |
-| `GET /v1/accounts` | List the trading accounts you can access                    | [List accounts ↗](/institutional/accounts/overview#endpoints) |
+| Endpoint | Use it to | API reference |
+| - | - | - |
+| `GET /v1/whoami` | Confirm your Firm identity and entitlements | [Get who am I ↗](/institutional/accounts/overview#endpoints) |
+| `GET /v1/users` | List the Retail Participants your Firm may act on behalf of | [List users ↗](/institutional/accounts/overview#endpoints) |
+| `GET /v1/accounts` | List the trading accounts you can access | [List accounts ↗](/institutional/accounts/overview#endpoints) |
 
 For the account and identity **hierarchy** and entitlements model, see [Accounts & Identity](/trader-guide/accounts-identity).
 
@@ -57,10 +57,10 @@ In partner usage, IDs of the form `firms/your-firm/users/participant-123` are th
 
 ## Participant vs Account
 
-| Entity          | Description                                                              |
-| --------------- | ------------------------------------------------------------------------ |
-| **Participant** | A person with a verified identity (KYC). Has a trading identity ID.      |
-| **Account**     | A trading account with balances and positions. Belongs to a Participant. |
+| Entity | Description |
+| - | - |
+| **Participant** | A person with a verified identity (KYC). Has a trading identity ID. |
+| **Account** | A trading account with balances and positions. Belongs to a Participant. |
 
 A Participant can have multiple accounts for different purposes (e.g., separate trading strategies).
 

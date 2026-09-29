@@ -4,30 +4,31 @@
 
 # Protocol Buffer Reference
 
-> Complete reference for gRPC message definitions and Python code generation
+> Reference for gRPC message definitions and Python code generation
 
-Complete reference documentation for all Protocol Buffer messages, fields, and enumerations used in the gRPC streaming API.
+Reference for Protocol Buffer messages, fields, and enumerations used in the gRPC API.
 
 ## Available Services
 
 The Polymarket Exchange API exposes the following gRPC services:
 
-| Service                                   | Description                                      |
-| ----------------------------------------- | ------------------------------------------------ |
-| `polymarket.v1.MarketDataSubscriptionAPI` | Real-time market data streaming                  |
-| `polymarket.v1.OrderEntryAPI`             | Order submission and streaming                   |
-| `polymarket.v1.ComboAPI`                  | Combo instrument creation and exact-symbol reads |
-| `polymarket.v1.RFQAPI`                    | Combo RFQs, quotes, and RFQ event streaming      |
-| `polymarket.v1.ReportAPI`                 | Order search and history                         |
-| `polymarket.v1.PositionAPI`               | Position and balance queries                     |
-| `polymarket.v1.AccountsAPI`               | Account information                              |
-| `polymarket.v1.RefDataAPI`                | Instrument and symbol data                       |
-| `polymarket.v1.DropCopyAPI`               | Execution feed                                   |
-| `polymarket.v1.KYCAPI`                    | KYC verification                                 |
-| `polymarket.v1.AeropayAPI`                | ACH payments                                     |
-| `polymarket.v1.CheckoutAPI`               | Card payments                                    |
-| `polymarket.v1.FundingAPI`                | Funding management                               |
-| `polymarket.v1.HealthAPI`                 | Health check                                     |
+| Service | Description |
+| - | - |
+| `polymarket.v1.MarketDataSubscriptionAPI` | Real-time market data streaming |
+| `polymarket.v1.OrderEntryAPI` | Order submission and streaming |
+| `polymarket.v1.ComboAPI` | Combo instrument creation and exact-symbol reads |
+| `polymarket.v1.RFQAPI` | Combo RFQs, quotes, and RFQ event streaming |
+| `polymarket.v1.ReportAPI` | Order search and history |
+| `polymarket.v1.PositionAPI` | Position and balance queries |
+| `polymarket.v1.AccountsAPI` | Account information |
+| `polymarket.v1.RefDataAPI` | Instrument and symbol data |
+| `polymarket.us.settlement.v1.SettlementService` | [Final instrument settlement prices](#instrument-settlement), including terminated instruments |
+| `polymarket.v1.DropCopyAPI` | Execution feed |
+| `polymarket.v1.KYCAPI` | KYC verification |
+| `polymarket.v1.AeropayAPI` | ACH payments |
+| `polymarket.v1.CheckoutAPI` | Card payments |
+| `polymarket.v1.FundingAPI` | Funding management |
+| `polymarket.v1.HealthAPI` | Health check |
 
 ***
 
@@ -49,7 +50,7 @@ After downloading the proto files, generate Python code:
 
 ```bash theme={null}
 unzip polymarket-protos.zip -d protos
-python -m grpc_tools.protoc --python_out=. --grpc_python_out=. --proto_path=protos/api protos/api/polymarket/v1/*.proto protos/api/google/api/*.proto protos/api/protoc-gen-openapiv2/options/*.proto
+python -m grpc_tools.protoc --python_out=. --grpc_python_out=. --proto_path=protos/api protos/api/polymarket/v1/*.proto protos/api/polymarket/us/settlement/v1/*.proto protos/api/google/api/*.proto protos/api/protoc-gen-openapiv2/options/*.proto
 ```
 
 This generates:
@@ -89,12 +90,12 @@ response_stream = stub.CreateMarketDataSubscription(request, metadata=metadata)
 
 ### Request Fields
 
-| Field           | Type        | Description                                             |
-| --------------- | ----------- | ------------------------------------------------------- |
-| `symbols`       | `list[str]` | Symbols to subscribe to. Empty = all symbols.           |
-| `unaggregated`  | `bool`      | If true, receive raw orders. If false, aggregated book. |
-| `depth`         | `int`       | Number of price levels. Default: 10                     |
-| `snapshot_only` | `bool`      | If true, receive snapshot then close.                   |
+| Field | Type | Description |
+| - | - | - |
+| `symbols` | `list[str]` | Symbols to subscribe to. Empty = all symbols. |
+| `unaggregated` | `bool` | If true, receive raw orders. If false, aggregated book. |
+| `depth` | `int` | Number of price levels. Default: 10 |
+| `snapshot_only` | `bool` | If true, receive snapshot then close. |
 
 ### Response Fields
 
@@ -109,21 +110,87 @@ elif response.HasField('update'):
     print(f"Offers: {len(update.offers)}")
 ```
 
-| Field            | Type              | Description                                                    |
-| ---------------- | ----------------- | -------------------------------------------------------------- |
-| `symbol`         | `str`             | Instrument symbol                                              |
-| `bids`           | `list[BookEntry]` | Bid side of order book                                         |
-| `offers`         | `list[BookEntry]` | Offer/ask side of order book                                   |
-| `state`          | `InstrumentState` | Current instrument state (optional)                            |
-| `stats`          | `InstrumentStats` | Market statistics                                              |
-| `transact_time`  | `Timestamp`       | Server timestamp of update                                     |
-| `book_hidden`    | `bool`            | If `True`, order book is hidden                                |
-| `price_scale`    | `int64`           | Decimal places for price (optional; wildcard subscriptions)    |
-| `quantity_scale` | `int64`           | Decimal places for quantity (optional; wildcard subscriptions) |
+| Field | Type | Description |
+| - | - | - |
+| `symbol` | `str` | Instrument symbol |
+| `bids` | `list[BookEntry]` | Bid side of order book |
+| `offers` | `list[BookEntry]` | Offer/ask side of order book |
+| `state` | `InstrumentState` | Current instrument state (optional) |
+| `stats` | `InstrumentStats` | Market statistics |
+| `transact_time` | `Timestamp` | Server timestamp of update |
+| `book_hidden` | `bool` | If `True`, order book is hidden |
+| `price_scale` | `int64` | Decimal places for price (optional; wildcard subscriptions) |
+| `quantity_scale` | `int64` | Decimal places for quantity (optional; wildcard subscriptions) |
 
 <Tip>
   **Instrument State Tracking:** The `state` field is optional. Use `ListInstruments` to get and cache the initial state, then subscribe to the instrument state change subscription for real-time state updates.
 </Tip>
+
+***
+
+## Instrument Settlement
+
+Read an instrument's final settlement price, including after termination. Requires the `read:marketdata` scope and the existing [gRPC authentication](/streaming-endpoints/authentication).
+
+### SettlementService
+
+Package: `polymarket.us.settlement.v1`.
+
+```protobuf theme={null}
+service SettlementService {
+    rpc GetInstrumentSettlement(GetInstrumentSettlementRequest)
+        returns (GetInstrumentSettlementResponse);
+}
+```
+
+### Request Fields
+
+| Field | Type | Description |
+| - | - | - |
+| `symbol` | `string` | Required, exact, case-sensitive instrument symbol. |
+
+An empty symbol or one beginning with `/` or `!` returns `InvalidArgument`. An unknown or unpublished symbol returns `NotFound`.
+
+### Response Fields
+
+| Field | Type | Description |
+| - | - | - |
+| `symbol` | `string` | Instrument symbol |
+| `price_scale` | `int64` | Divide `settlement_px` by this value to obtain the price |
+| `stats` | `polymarket.v1.InstrumentStats` | Settlement fields; absent when no final settlement is available |
+| `stats.settlement_px` | optional `int64` | Raw settlement price; zero is valid |
+| `stats.settlement_preliminary` | optional `bool` | Present and `false` when `stats` is returned |
+| `stats.settlement_price_calculation_method` | optional `string` | `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1` when `stats` is returned |
+| `stats.settlement_price_calculation_text` | optional `string` | Settlement explanation, when available |
+| `stats.settlement_set_time` | `Timestamp` | Time the settlement price was set, when available |
+
+The latest record controls the result, so later reads can reflect corrections. A known instrument without a final settlement returns success with `stats` absent; absence is distinct from a present zero price. Service failures return an error.
+
+### Python Usage
+
+Use the authenticated `channel` and `metadata` from the [gRPC overview](/grpc-api/overview#authentication), and set `symbol` to the instrument to read.
+
+```python theme={null}
+from decimal import Decimal
+from polymarket.us.settlement.v1 import (
+    get_instrument_settlement_request_pb2,
+    settlement_service_pb2_grpc,
+)
+
+stub = settlement_service_pb2_grpc.SettlementServiceStub(channel)
+request = get_instrument_settlement_request_pb2.GetInstrumentSettlementRequest(
+    symbol=symbol
+)
+response = stub.GetInstrumentSettlement(request, metadata=metadata)
+
+if response.HasField("stats"):
+    price = Decimal(response.stats.settlement_px) / Decimal(response.price_scale)
+    print(response.symbol, price)
+else:
+    print(response.symbol, "no final settlement available")
+```
+
+REST equivalent: [`GET /v1/instruments/{symbol}/settlement`](/institutional/settlement/overview), using the same token and scope.
 
 ***
 
@@ -161,11 +228,11 @@ response_stream = stub.CreateOrderSubscription(request, metadata=metadata)
 
 ### Subscription Request Fields
 
-| Field           | Type        | Description                                      |
-| --------------- | ----------- | ------------------------------------------------ |
-| `symbols`       | `list[str]` | Filter by symbols. Empty = all.                  |
-| `accounts`      | `list[str]` | Filter by accounts. Empty = all user's accounts. |
-| `snapshot_only` | `bool`      | If true, snapshot only.                          |
+| Field | Type | Description |
+| - | - | - |
+| `symbols` | `list[str]` | Filter by symbols. Empty = all. |
+| `accounts` | `list[str]` | Filter by accounts. Empty = all user's accounts. |
+| `snapshot_only` | `bool` | If true, snapshot only. |
 
 ### Response Processing
 
@@ -233,15 +300,15 @@ message RFQComboLeg {
 
 Each `StreamRFQEventsResponse` has one `event` payload:
 
-| Event             | Description                                                                                                                                |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `rfq_created`     | A new combo RFQ was created.                                                                                                               |
-| `rfq_closed`      | An RFQ closed because it was deleted or a quote was accepted. On acceptance, this public event may arrive before private `quote_accepted`. |
-| `quote_created`   | A quote was created.                                                                                                                       |
-| `quote_deleted`   | A quote was deleted.                                                                                                                       |
-| `quote_accepted`  | One quote side was accepted and last look started.                                                                                         |
-| `quote_confirmed` | The maker confirmed and paired order submission was scheduled.                                                                             |
-| `quote_executed`  | Both exchange orders were accepted for submission.                                                                                         |
+| Event | Description |
+| - | - |
+| `rfq_created` | A new combo RFQ was created. |
+| `rfq_closed` | An RFQ closed because it was deleted or a quote was accepted. On acceptance, this public event may arrive before private `quote_accepted`. |
+| `quote_created` | A quote was created. |
+| `quote_deleted` | A quote was deleted. |
+| `quote_accepted` | One quote side was accepted and last look started. |
+| `quote_confirmed` | The maker confirmed and paired order submission was scheduled. |
+| `quote_executed` | Both exchange orders were accepted for submission. |
 
 For request/response field detail and a Python example, see [RFQ Events Streaming](/streaming-endpoints/rfq-events-stream).
 
@@ -261,19 +328,19 @@ service FundingAPI {
 }
 ```
 
-| RPC                                    | Description                                                | Required Scope   |
-| -------------------------------------- | ---------------------------------------------------------- | ---------------- |
-| `CreateFundingTransactionSubscription` | Real-time deposit / withdrawal state changes               | `read:funding`   |
-| `CreateBalanceLedgerSubscription`      | Real-time balance ledger entries with `resume_time` replay | `read:positions` |
+| RPC | Description | Required Scope |
+| - | - | - |
+| `CreateFundingTransactionSubscription` | Real-time deposit / withdrawal state changes | `read:funding` |
+| `CreateBalanceLedgerSubscription` | Real-time balance ledger entries with `resume_time` replay | `read:positions` |
 
 ### CreateBalanceLedgerSubscriptionRequest
 
-| Field         | Type                    | Description                                                                                    |
-| ------------- | ----------------------- | ---------------------------------------------------------------------------------------------- |
-| `account`     | `str`                   | Required. Fully qualified account name.                                                        |
-| `currency`    | `str`                   | Optional. ISO currency code (e.g., `USD`).                                                     |
-| `entry_types` | `list[LedgerEntryType]` | Optional. Filter by allowlisted entry types.                                                   |
-| `resume_time` | `Timestamp`             | Optional. Replay entries with `update_time >= resume_time`. Clamped to `2026-05-01T00:00:00Z`. |
+| Field | Type | Description |
+| - | - | - |
+| `account` | `str` | Required. Fully qualified account name. |
+| `currency` | `str` | Optional. ISO currency code (e.g., `USD`). |
+| `entry_types` | `list[LedgerEntryType]` | Optional. Filter by allowlisted entry types. |
+| `resume_time` | `Timestamp` | Optional. Replay entries with `update_time >= resume_time`. Clamped to `2026-05-01T00:00:00Z`. |
 
 For full request/response field detail and a Python example, see [Balance Ledger Streaming](/streaming-endpoints/balance-ledger-stream).
 
@@ -283,29 +350,29 @@ For full request/response field detail and a Python example, see [Balance Ledger
 
 ### Side
 
-| Name        | Value |
-| ----------- | ----- |
-| `SIDE_BUY`  | 1     |
-| `SIDE_SELL` | 2     |
+| Name | Value |
+| - | - |
+| `SIDE_BUY` | 1 |
+| `SIDE_SELL` | 2 |
 
 ### OrderType
 
-| Name                         | Value |
-| ---------------------------- | ----- |
-| `ORDER_TYPE_MARKET_TO_LIMIT` | 1     |
-| `ORDER_TYPE_LIMIT`           | 2     |
-| `ORDER_TYPE_STOP`            | 3     |
-| `ORDER_TYPE_STOP_LIMIT`      | 4     |
+| Name | Value |
+| - | - |
+| `ORDER_TYPE_MARKET_TO_LIMIT` | 1 |
+| `ORDER_TYPE_LIMIT` | 2 |
+| `ORDER_TYPE_STOP` | 3 |
+| `ORDER_TYPE_STOP_LIMIT` | 4 |
 
 ### TimeInForce
 
-| Name                                                 | Value | Description                                |
-| ---------------------------------------------------- | ----- | ------------------------------------------ |
-| `TIME_IN_FORCE_DAY`                                  | 1     | Expires end of day                         |
-| `TIME_IN_FORCE_GOOD_TILL_CANCEL`                     | 2     | Good-till-canceled                         |
-| `TIME_IN_FORCE_IMMEDIATE_OR_CANCEL`                  | 3     | Immediate-or-cancel                        |
-| `TIME_IN_FORCE_GOOD_TILL_TIME`                       | 4     | Good-till-time; set the good-til timestamp |
-| `TIME_IN_FORCE_FILL_OR_KILL`                         | 5     | Fill-or-kill                               |
+| Name                                                 | Value | Description |
+| - | - | - |
+| `TIME_IN_FORCE_DAY` | 1 | Expires end of day |
+| `TIME_IN_FORCE_GOOD_TILL_CANCEL` | 2 | Good-till-canceled |
+| `TIME_IN_FORCE_IMMEDIATE_OR_CANCEL` | 3 | Immediate-or-cancel |
+| `TIME_IN_FORCE_GOOD_TILL_TIME` | 4 | Good-till-time; set the good-til timestamp |
+| `TIME_IN_FORCE_FILL_OR_KILL` | 5 | Fill-or-kill |
 
 <Warning>
   **DAY orders do not automatically cancel at 5pm during trade day rolls.**
@@ -315,58 +382,58 @@ For full request/response field detail and a Python example, see [Balance Ledger
 
 ### OrderState
 
-| Name                                                 | Value | Description                                                             |
-| ---------------------------------------------------- | ----- | ----------------------------------------------------------------------- |
-| `ORDER_STATE_NEW`                                    | 0     | Accepted and resting                                                    |
-| `ORDER_STATE_PARTIALLY_FILLED`                       | 1     | Partially executed, remainder still working                             |
-| `ORDER_STATE_FILLED`                                 | 2     | Completely filled                                                       |
-| `ORDER_STATE_CANCELED`                               | 3     | Canceled                                                                |
-| `ORDER_STATE_REPLACED`                               | 4     | Replaced by a cancel/replace                                            |
-| `ORDER_STATE_REJECTED`                               | 5     | Rejected                                                                |
-| `ORDER_STATE_EXPIRED`                                | 6     | Expired                                                                 |
-| `ORDER_STATE_PENDING_NEW`                            | 7     | Received at the exchange edge, not yet processed by the matching engine |
-| `ORDER_STATE_PENDING_REPLACE`                        | 8     | Replace received at the exchange edge, not yet processed                |
-| `ORDER_STATE_PENDING_CANCEL`                         | 9     | Cancel received at the exchange edge, not yet processed                 |
-| `ORDER_STATE_PENDING_RISK`                           | 10    | Pending risk approval; non-terminal                                     |
+| Name                                                 | Value | Description |
+| - | - | - |
+| `ORDER_STATE_NEW` | 0 | Accepted and resting |
+| `ORDER_STATE_PARTIALLY_FILLED` | 1 | Partially executed, remainder still working |
+| `ORDER_STATE_FILLED` | 2 | Completely filled |
+| `ORDER_STATE_CANCELED` | 3 | Canceled |
+| `ORDER_STATE_REPLACED` | 4 | Replaced by a cancel/replace |
+| `ORDER_STATE_REJECTED` | 5 | Rejected |
+| `ORDER_STATE_EXPIRED` | 6 | Expired |
+| `ORDER_STATE_PENDING_NEW` | 7 | Received at the exchange edge, not yet processed by the matching engine |
+| `ORDER_STATE_PENDING_REPLACE` | 8 | Replace received at the exchange edge, not yet processed |
+| `ORDER_STATE_PENDING_CANCEL` | 9 | Cancel received at the exchange edge, not yet processed |
+| `ORDER_STATE_PENDING_RISK` | 10 | Pending risk approval; non-terminal |
 
 ### ExecutionType
 
-| Name                                                 | Value | Description        |
-| ---------------------------------------------------- | ----- | ------------------ |
-| `EXECUTION_TYPE_NEW`                                 | 0     | Order confirmation |
-| `EXECUTION_TYPE_PARTIAL_FILL`                        | 1     | Partial fill       |
-| `EXECUTION_TYPE_FILL`                                | 2     | Complete fill      |
-| `EXECUTION_TYPE_CANCELED`                            | 3     | Cancellation       |
-| `EXECUTION_TYPE_REPLACE`                             | 4     | Replace            |
-| `EXECUTION_TYPE_REJECTED`                            | 5     | Rejection          |
-| `EXECUTION_TYPE_EXPIRED`                             | 6     | Expiration         |
-| `EXECUTION_TYPE_DONE_FOR_DAY`                        | 7     | Done for day       |
+| Name                                                 | Value | Description |
+| - | - | - |
+| `EXECUTION_TYPE_NEW` | 0 | Order confirmation |
+| `EXECUTION_TYPE_PARTIAL_FILL` | 1 | Partial fill |
+| `EXECUTION_TYPE_FILL` | 2 | Complete fill |
+| `EXECUTION_TYPE_CANCELED` | 3 | Cancellation |
+| `EXECUTION_TYPE_REPLACE` | 4 | Replace |
+| `EXECUTION_TYPE_REJECTED` | 5 | Rejection |
+| `EXECUTION_TYPE_EXPIRED` | 6 | Expiration |
+| `EXECUTION_TYPE_DONE_FOR_DAY` | 7 | Done for day |
 
 ### InstrumentState
 
 #### Primary State Flow
 
-| Name                                                 | Value | Description                                                                                                                                                                                                      |
-| ---------------------------------------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_PENDING`                           | 8     | Initial state for a newly created instrument which has not yet begun trading.                                                                                                                                    |
-| `INSTRUMENT_STATE_OPEN`                              | 1     | In this state, the instrument is open for continuous order entry and matching.                                                                                                                                   |
-| `INSTRUMENT_STATE_CLOSED`                            | 0     | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired.                                                                                |
-| `INSTRUMENT_STATE_EXPIRED`                           | 4     | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered.                                                      |
-| `INSTRUMENT_STATE_TERMINATED`                        | 5     | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
+| Name                                                 | Value | Description |
+| - | - | - |
+| `INSTRUMENT_STATE_PENDING` | 8 | Initial state for a newly created instrument which has not yet begun trading. |
+| `INSTRUMENT_STATE_OPEN` | 1 | In this state, the instrument is open for continuous order entry and matching. |
+| `INSTRUMENT_STATE_CLOSED` | 0 | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired. |
+| `INSTRUMENT_STATE_EXPIRED` | 4 | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered. |
+| `INSTRUMENT_STATE_TERMINATED` | 5 | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
 
 #### Exception States
 
-| Name                                                 | Value | Description                                                                                   |
-| ---------------------------------------------------- | ----- | --------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_SUSPENDED`                         | 3     | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
-| `INSTRUMENT_STATE_HALTED`                            | 6     | This state is similar to SUSPENDED, with the exception that orders cannot be canceled.        |
+| Name                                                 | Value | Description |
+| - | - | - |
+| `INSTRUMENT_STATE_SUSPENDED` | 3 | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
+| `INSTRUMENT_STATE_HALTED` | 6 | This state is similar to SUSPENDED, with the exception that orders cannot be canceled. |
 
 #### Other Possible States
 
-| Name                                                 | Value | Description                                                                                                                                                                                                                                                                                       |
-| ---------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `INSTRUMENT_STATE_PREOPEN`                           | 2     | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
-| `INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION`           | 7     | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after.                               |
+| Name                                                 | Value | Description |
+| - | - | - |
+| `INSTRUMENT_STATE_PREOPEN` | 2 | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
+| `INSTRUMENT_STATE_MATCH_AND_CLOSE_AUCTION` | 7 | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after. |
 
 ### LedgerEntryType
 
@@ -374,36 +441,36 @@ Used by `CreateBalanceLedgerSubscription` and the [Balance Ledger REST endpoints
 
 #### Allowed
 
-| Name                          | Value | Description                           |
-| ----------------------------- | ----- | ------------------------------------- |
-| `DEPOSIT`                     | 1     | Funds deposited                       |
-| `WITHDRAWAL`                  | 2     | Funds withdrawn                       |
-| `ORDER_EXECUTION`             | 3     | Cash impact of a trade execution      |
-| `CORRECTION`                  | 4     | Manual correction                     |
-| `RESOLUTION`                  | 6     | Market resolution / settlement payout |
-| `MANUAL_ADJUSTMENT`           | 7     | Admin adjustment                      |
-| `ACCOUNT_PROPERTY_ADJUSTMENT` | 10    | Account property change               |
-| `COMMISSION`                  | 11    | Trading fee                           |
-| `WITHDRAWAL_REJECTION`        | 16    | Failed withdrawal returned to balance |
-| `MANUAL_TRANSFER`             | 17    | Internal transfer                     |
-| `PENDING_WITHDRAWAL_CREATION` | 22    | Withdrawal initiated (funds reserved) |
+| Name | Value | Description |
+| - | - | - |
+| `DEPOSIT` | 1 | Funds deposited |
+| `WITHDRAWAL` | 2 | Funds withdrawn |
+| `ORDER_EXECUTION` | 3 | Cash impact of a trade execution |
+| `CORRECTION` | 4 | Manual correction |
+| `RESOLUTION` | 6 | Market resolution / settlement payout |
+| `MANUAL_ADJUSTMENT` | 7 | Admin adjustment |
+| `ACCOUNT_PROPERTY_ADJUSTMENT` | 10 | Account property change |
+| `COMMISSION` | 11 | Trading fee |
+| `WITHDRAWAL_REJECTION` | 16 | Failed withdrawal returned to balance |
+| `MANUAL_TRANSFER` | 17 | Internal transfer |
+| `PENDING_WITHDRAWAL_CREATION` | 22 | Withdrawal initiated (funds reserved) |
 
 #### Suppressed (internal — never returned to clients)
 
-| Name                          | Value |
-| ----------------------------- | ----- |
-| `NETTING`                     | 5     |
-| `SECURITY_BALANCE_ADJUSTMENT` | 8     |
-| `SECURITY_MARK_TO_MARKET`     | 9     |
-| `CONTRACT_EXPIRATION`         | 12    |
-| `PENDING_CREDIT_ADJUSTMENT`   | 13    |
-| `BEGINNING_OF_DAY`            | 14    |
-| `SECURITY_WITHDRAWAL`         | 15    |
-| `AVERAGE_PRICE_TRANSFER`      | 18    |
-| `GIVE_UP`                     | 19    |
-| `SYNCHRONIZATION`             | 20    |
-| `INTEREST`                    | 21    |
-| `SETTLEMENT_FEE`              | 23    |
+| Name | Value |
+| - | - |
+| `NETTING` | 5 |
+| `SECURITY_BALANCE_ADJUSTMENT` | 8 |
+| `SECURITY_MARK_TO_MARKET` | 9 |
+| `CONTRACT_EXPIRATION` | 12 |
+| `PENDING_CREDIT_ADJUSTMENT` | 13 |
+| `BEGINNING_OF_DAY` | 14 |
+| `SECURITY_WITHDRAWAL` | 15 |
+| `AVERAGE_PRICE_TRANSFER` | 18 |
+| `GIVE_UP` | 19 |
+| `SYNCHRONIZATION` | 20 |
+| `INTEREST` | 21 |
+| `SETTLEMENT_FEE` | 23 |
 
 Requesting a suppressed value in `entry_types` returns `Aborted` (HTTP `409`).
 

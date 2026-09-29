@@ -18,12 +18,12 @@ Each price level shows how many shares are available to buy or sell. The more li
 
 At 30¢ there are **120 shares** available, at 31¢ there are **300 shares**, and at 32¢ there are **600 shares**. Those amounts show how much can trade at each price before orders begin filling at the next level.
 
-| Price           | Shares |
-| --------------- | ------ |
-| 30¢             | 120    |
-| 31¢             | 300    |
-| 32¢             | 600    |
-| Total up to 32¢ | 1,020  |
+| Price | Shares |
+| - | - |
+| 30¢ | 120 |
+| 31¢ | 300 |
+| 32¢ | 600 |
+| Total up to 32¢ | 1,020 |
 
 ## Order Interaction With Liquidity
 
@@ -38,10 +38,10 @@ You place a buy for **500 shares**.
 * 80 shares fill at 32¢
 
 | Price | Shares available | Total up to |
-| ----- | ---------------- | ----------- |
-| 30¢   | 120              | 120         |
-| 31¢   | 300              | 420         |
-| 32¢   | 600              | 1,020       |
+| - | - | - |
+| 30¢ | 120 | 120 |
+| 31¢ | 300 | 420 |
+| 32¢ | 600 | 1,020 |
 
 As a result, your average fill price ends up higher than **30¢** because there wasn't enough liquidity available at the best price.
 
@@ -62,12 +62,12 @@ In these moments, orders can be added or removed quickly, and prices can move sh
 
 At 75¢, there are only **40 shares** available. If you place a buy for 120 shares, part of your order will fill at 76¢ or higher.
 
-| Price           | Shares |
-| --------------- | ------ |
-| 75¢             | 40     |
-| 76¢             | 60     |
-| 77¢             | 80     |
-| Total up to 77¢ | 180    |
+| Price | Shares |
+| - | - |
+| 75¢ | 40 |
+| 76¢ | 60 |
+| 77¢ | 80 |
+| Total up to 77¢ | 180 |
 
 ## Reducing Liquidity Risk
 
@@ -86,12 +86,12 @@ Orders execute against available liquidity at the best available price. You cann
 
 You want to buy **\$100** worth of shares at 50¢ (**200 shares**).
 
-| Price           | Shares |
-| --------------- | ------ |
-| 50¢             | 50     |
-| 51¢             | 80     |
-| 52¢             | 70     |
-| Total up to 52¢ | 200    |
+| Price | Shares |
+| - | - |
+| 50¢ | 50 |
+| 51¢ | 80 |
+| 52¢ | 70 |
+| Total up to 52¢ | 200 |
 
 If liquidity is thin, submitting a buy for **200 shares** at once may result in part of your order filling at **51¢**, **52¢**, **or higher**, instead of 50¢.
 
@@ -105,12 +105,12 @@ Before placing a larger order—especially in live sports—compare the size you
 
 You want to buy around **75¢**. Available shares near that price:
 
-| Price           | Shares |
-| --------------- | ------ |
-| 75¢             | 10     |
-| 76¢             | 40     |
-| 77¢             | 60     |
-| Total up to 77¢ | 110    |
+| Price | Shares |
+| - | - |
+| 75¢ | 10 |
+| 76¢ | 40 |
+| 77¢ | 60 |
+| Total up to 77¢ | 110 |
 
 A buy for **150 shares** would result in at least **40 shares** filling at **78¢ or higher**, raising your average purchase price.
 

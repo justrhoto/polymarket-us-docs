@@ -27,21 +27,21 @@ The Polymarket US REST API provides programmatic access to trading, account mana
   REST APIs are subject to rate limits and are best suited for one-time queries, historical data, and administrative operations.
 </Warning>
 
-| Use Case                      | Recommended API                                                    |
-| ----------------------------- | ------------------------------------------------------------------ |
-| Real-time market data         | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream) |
-| Real-time order/trade updates | [gRPC Order Stream](/streaming-endpoints/order-stream)             |
-| Order entry/cancellation      | REST Trading API                                                   |
-| Historical data queries       | REST Report API                                                    |
-| Account management            | REST Accounts API                                                  |
-| KYC and payments              | REST Partner APIs                                                  |
+| Use Case | Recommended API |
+| - | - |
+| Real-time market data | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream) |
+| Real-time order/trade updates | [gRPC Order Stream](/streaming-endpoints/order-stream) |
+| Order entry/cancellation | REST Trading API |
+| Historical data queries | REST Report API |
+| Account management | REST Accounts API |
+| KYC and payments | REST Partner APIs |
 
 ## Base URLs
 
-| Environment    | Base URL                                     |
-| -------------- | -------------------------------------------- |
+| Environment | Base URL |
+| - | - |
 | Pre-production | `https://api.preprod.polymarketexchange.com` |
-| Production     | `https://api.prod.polymarketexchange.com`    |
+| Production | `https://api.prod.polymarketexchange.com` |
 
 All endpoints use the `/v1/` path prefix.
 
@@ -68,16 +68,16 @@ See the [Authentication Setup Guide](/trader-guide/authentication) for complete 
 
 For direct trading operations. Used by all partners.
 
-| Endpoint Group     | Description                                   | Streaming Alternative                                         |
-| ------------------ | --------------------------------------------- | ------------------------------------------------------------- |
-| **Trading**        | Insert, cancel, and replace orders            | -                                                             |
-| **Combos**         | Create and retrieve combo instruments         | -                                                             |
-| **RFQs**           | Create, quote, accept, and confirm combo RFQs | [RFQ Events Stream](/streaming-endpoints/rfq-events-stream)   |
-| **Report**         | Search orders and trades, download history    | [Order Stream](/streaming-endpoints/order-stream)             |
-| **Positions**      | Query account balances and positions          | -                                                             |
-| **Reference Data** | List instruments, symbols, and metadata       | -                                                             |
-| **Order Book**     | Get order book depth and best bid/offer       | [Market Data Stream](/streaming-endpoints/market-data-stream) |
-| **Drop Copy**      | Execution feed and trade capture              | [Order Stream](/streaming-endpoints/order-stream)             |
+| Endpoint Group | Description | Streaming Alternative |
+| - | - | - |
+| **Trading** | Insert, cancel, and replace orders | - |
+| **Combos** | Create and retrieve combo instruments | - |
+| **RFQs** | Create, quote, accept, and confirm combo RFQs | [RFQ Events Stream](/streaming-endpoints/rfq-events-stream) |
+| **Report** | Search orders and trades, download history | [Order Stream](/streaming-endpoints/order-stream) |
+| **Positions** | Query account balances and positions | - |
+| **Reference Data** | List instruments, symbols, and metadata | - |
+| **Order Book** | Get order book depth and best bid/offer | [Market Data Stream](/streaming-endpoints/market-data-stream) |
+| **Drop Copy** | Execution feed and trade capture | [Order Stream](/streaming-endpoints/order-stream) |
 
 ### Combos and RFQ APIs
 
@@ -102,10 +102,10 @@ For partners building retail trading platforms with end-user onboarding, KYC, an
 
 ### Headers
 
-| Header             | Required    | Description                                                                 |
-| ------------------ | ----------- | --------------------------------------------------------------------------- |
-| `Authorization`    | Yes         | `Bearer {access_token}`                                                     |
-| `Content-Type`     | Yes         | `application/json`                                                          |
+| Header | Required | Description |
+| - | - | - |
+| `Authorization` | Yes | `Bearer {access_token}` |
+| `Content-Type` | Yes | `application/json` |
 | `x-participant-id` | Conditional | Your participant ID (required for trading, positions, and report endpoints) |
 
 <Note>
@@ -159,15 +159,15 @@ POST requests accept JSON bodies:
 }
 ```
 
-| HTTP Status | Meaning                                 |
-| ----------- | --------------------------------------- |
-| `200`       | Success                                 |
-| `400`       | Bad Request - Invalid parameters        |
-| `401`       | Unauthorized - Invalid or expired token |
-| `403`       | Forbidden - Insufficient permissions    |
-| `404`       | Not Found - Resource doesn't exist      |
-| `429`       | Too Many Requests - Rate limited        |
-| `500`       | Internal Server Error                   |
+| HTTP Status | Meaning |
+| - | - |
+| `200` | Success |
+| `400` | Bad Request - Invalid parameters |
+| `401` | Unauthorized - Invalid or expired token |
+| `403` | Forbidden - Insufficient permissions |
+| `404` | Not Found - Resource doesn't exist |
+| `429` | Too Many Requests - Rate limited |
+| `500` | Internal Server Error |
 
 ## Price Representation
 

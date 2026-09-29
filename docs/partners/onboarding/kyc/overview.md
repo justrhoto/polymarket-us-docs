@@ -28,12 +28,12 @@ Before any Retail Participant can trade, they must pass a **KYC (Know Your Custo
 
 Every `POST /v1/kyc/start` resolves to one of four outcomes:
 
-| Outcome                          | What it means                          | Your next step                                                                                                                                                                                                            |
-| -------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Instant approval**             | The identity was verified immediately  | Await the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) for the provisioned `participantId` (provisioning is async — see below)                                                                             |
-| **Document verification (DocV)** | The provider needs a photo ID          | Direct the participant to `docv.url` or the Socure SDK. Requires opting in with [`docv_eligible: true`](/partners/onboarding/kyc/verification-flow#document-verification-docv); otherwise these cases go to manual review |
-| **Manual compliance review**     | Automated checks were inconclusive     | Tell the participant to wait; await the webhook                                                                                                                                                                           |
-| **Rejection**                    | Verification or risk assessment failed | Notify the participant — they cannot trade                                                                                                                                                                                |
+| Outcome | What it means | Your next step |
+| - | - | - |
+| **Instant approval** | The identity was verified immediately | Await the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) for the provisioned `participantId` (provisioning is async — see below) |
+| **Document verification (DocV)** | The provider needs a photo ID | Direct the participant to `docv.url` or the Socure SDK. Requires opting in with [`docv_eligible: true`](/partners/onboarding/kyc/verification-flow#document-verification-docv); otherwise these cases go to manual review |
+| **Manual compliance review** | Automated checks were inconclusive | Tell the participant to wait; await the webhook |
+| **Rejection** | Verification or risk assessment failed | Notify the participant — they cannot trade |
 
 See [Verification Flow](/partners/onboarding/kyc/verification-flow) for the request/response of each outcome and the decision matrix.
 
@@ -76,13 +76,13 @@ sequenceDiagram
 
 Every KYC action is available over **both REST and gRPC**. They are the same underlying service — identical fields, semantics, outcomes, and scopes — so choose whichever transport fits your stack and mix freely:
 
-| Action                                | REST                       | gRPC (`polymarket.us.kyc.v1.KYCAPI`) |
-| ------------------------------------- | -------------------------- | ------------------------------------ |
-| Submit a participant for verification | `POST /v1/kyc/start`       | `StartKYCVerification`               |
-| Check current status                  | `GET /v1/kyc/status`       | `GetKYCStatus`                       |
-| Register your webhook URL             | `POST /v1/kyc/webhook`     | `SetWebhookURL`                      |
-| Start identity prefill *(optional)*   | `POST /v1/kyc/prefill`     | `StartKYCPrefill`                    |
-| Submit prefill OTP *(optional)*       | `POST /v1/kyc/prefill/otp` | `SubmitKYCPrefillOTP`                |
+| Action | REST | gRPC (`polymarket.us.kyc.v1.KYCAPI`) |
+| - | - | - |
+| Submit a participant for verification | `POST /v1/kyc/start` | `StartKYCVerification` |
+| Check current status | `GET /v1/kyc/status` | `GetKYCStatus` |
+| Register your webhook URL | `POST /v1/kyc/webhook` | `SetWebhookURL` |
+| Start identity prefill *(optional)* | `POST /v1/kyc/prefill` | `StartKYCPrefill` |
+| Submit prefill OTP *(optional)* | `POST /v1/kyc/prefill/otp` | `SubmitKYCPrefillOTP` |
 
 Both transports authenticate with the same firm [access token](/partners/get-connected/authentication) — REST in the `Authorization` header, gRPC as `authorization: Bearer <token>` metadata on each RPC. These pages use REST for the worked examples; the gRPC message shapes are in [Verification Flow → Using gRPC](/partners/onboarding/kyc/verification-flow#using-grpc).
 
@@ -101,13 +101,13 @@ We may align casing across the API in a future version; any change will be annou
 
 Before going live, make sure you have:
 
-| Item                                                                        | Provided by                             |
-| --------------------------------------------------------------------------- | --------------------------------------- |
-| API credentials (Client ID + private key)                                   | Polymarket US onboarding team           |
-| Socure **SDK key** — one key initialises both Digital Intelligence and DocV | Polymarket US onboarding team           |
-| Participant agreement version string                                        | Polymarket US onboarding team           |
-| An HTTPS **webhook URL**, registered via `POST /v1/kyc/webhook`             | You                                     |
-| Socure mobile SDK *(only if you have a native app)*                         | [Socure](https://github.com/socure-inc) |
+| Item | Provided by |
+| - | - |
+| API credentials (Client ID + private key) | Polymarket US onboarding team |
+| Socure **SDK key** — one key initialises both Digital Intelligence and DocV | Polymarket US onboarding team |
+| Participant agreement version string | Polymarket US onboarding team |
+| An HTTPS **webhook URL**, registered via `POST /v1/kyc/webhook` | You |
+| Socure mobile SDK *(only if you have a native app)* | [Socure](https://github.com/socure-inc) |
 
 ## Next steps
 

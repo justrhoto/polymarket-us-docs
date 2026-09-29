@@ -20,10 +20,10 @@ https://api.polymarket.us
 
 ## Endpoints
 
-| Method | Endpoint                     | Description                                              |
-| ------ | ---------------------------- | -------------------------------------------------------- |
-| `POST` | `/v1/combos`                 | Create or retrieve the canonical combo for a set of legs |
-| `GET`  | `/v1/combos?symbol={symbol}` | Get a combo by exact symbol                              |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/combos` | Create or retrieve the canonical combo for a set of legs |
+| `GET` | `/v1/combos?symbol={symbol}` | Get a combo by exact symbol |
 
 On the Retail API, Combo and RFQ creation share an additional [edge rate limit](/api-reference/rate-limits) of 10 requests per 10 seconds, enforced per API key and per IP.
 

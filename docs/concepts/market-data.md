@@ -10,11 +10,11 @@
 
 Every contract on Polymarket US is priced between \$0 and \$1. The price represents the market's collective belief about how likely an outcome is.
 
-| Price  | What it means                                  |
-| ------ | ---------------------------------------------- |
+| Price | What it means |
+| - | - |
 | \$0.25 | The market thinks there's roughly a 25% chance |
-| \$0.50 | Coin flip — the market is undecided            |
-| \$0.75 | The market thinks it's likely (75% chance)     |
+| \$0.50 | Coin flip — the market is undecided |
+| \$0.75 | The market thinks it's likely (75% chance) |
 
 If you buy a YES contract at \$0.55 and the outcome happens, the contract settles at \$1.00 — you profit \$0.45 per contract. If it doesn't happen, it settles at \$0.00 and you lose your \$0.55.
 
@@ -24,9 +24,9 @@ Polymarket US runs a **central limit order book**. Prices aren't set by Polymark
 
 The order book has two sides:
 
-| Side              | What it means                                          |
-| ----------------- | ------------------------------------------------------ |
-| **Bids**          | Buy orders — the prices traders are willing to pay     |
+| Side | What it means |
+| - | - |
+| **Bids** | Buy orders — the prices traders are willing to pay |
 | **Asks (offers)** | Sell orders — the prices traders are willing to accept |
 
 The **spread** is the gap between the best bid and the best ask. A tight spread means the market is liquid. A wide spread means fewer people are trading.
@@ -49,10 +49,10 @@ When a market resolves, every contract settles at either \$1.00 (YES won) or \$0
 
 A market goes through different states during its lifecycle:
 
-| State         | What it means                                       |
-| ------------- | --------------------------------------------------- |
-| **Open**      | The market is accepting orders and actively trading |
-| **Pre-open**  | The market exists but trading hasn't started yet    |
-| **Suspended** | Trading is temporarily paused                       |
-| **Halted**    | Trading has been stopped                            |
-| **Expired**   | The market has ended and settled                    |
+| State | What it means |
+| - | - |
+| **Open** | The market is accepting orders and actively trading |
+| **Pre-open** | The market exists but trading hasn't started yet |
+| **Suspended** | Trading is temporarily paused |
+| **Halted** | Trading has been stopped |
+| **Expired** | The market has ended and settled |

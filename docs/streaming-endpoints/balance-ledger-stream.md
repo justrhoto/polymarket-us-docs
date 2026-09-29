@@ -32,12 +32,12 @@ service FundingAPI {
 
 ### CreateBalanceLedgerSubscriptionRequest
 
-| Field         | Type                    | Required | Description                                                                                                                         |
-| ------------- | ----------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `account`     | `str`                   | Yes      | Fully qualified account name. Example: `firms/ISV-Alice/accounts/alice-trading`.                                                    |
-| `currency`    | `str`                   | No       | ISO currency code (e.g., `USD`). Empty = all currencies for the account.                                                            |
-| `entry_types` | `list[LedgerEntryType]` | No       | Filter by one or more allowlisted entry types. Empty = all allowlisted types. Suppressed types are filtered server-side regardless. |
-| `resume_time` | `Timestamp`             | No       | Replay entries with `update_time >= resume_time` before switching to live push. Clamped upstream to `2026-05-01T00:00:00Z`.         |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `account` | `str` | Yes | Fully qualified account name. Example: `firms/ISV-Alice/accounts/alice-trading`. |
+| `currency` | `str` | No | ISO currency code (e.g., `USD`). Empty = all currencies for the account. |
+| `entry_types` | `list[LedgerEntryType]` | No | Filter by one or more allowlisted entry types. Empty = all allowlisted types. Suppressed types are filtered server-side regardless. |
+| `resume_time` | `Timestamp` | No | Replay entries with `update_time >= resume_time` before switching to live push. Clamped upstream to `2026-05-01T00:00:00Z`. |
 
 <Warning>
   **Cross-firm access is rejected.** The `account` must belong to the firm in the JWT `firm_id` claim. Cross-firm subscriptions return `PERMISSION_DENIED` immediately.
@@ -49,25 +49,25 @@ The stream returns `CreateBalanceLedgerSubscriptionResponse` messages.
 
 ### CreateBalanceLedgerSubscriptionResponse
 
-| Field     | Type                       | Description                                                                       |
-| --------- | -------------------------- | --------------------------------------------------------------------------------- |
+| Field | Type | Description |
+| - | - | - |
 | `entries` | `list[BalanceLedgerEntry]` | Zero or more ledger entries in this batch. Empty messages function as heartbeats. |
 
 ### BalanceLedgerEntry
 
-| Field                  | Type              | Description                                                                                                                                                                                                                                                                                                                                                    |
-| ---------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                   | `str`             | Unique entry identifier.                                                                                                                                                                                                                                                                                                                                       |
-| `account`              | `str`             | Account this entry belongs to. For IB/ISV-managed end users, this exactly matches `provisioned_account` from the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks#data-fields) and `provisionedAccount` from [KYC status](/partners/onboarding/kyc/verification-flow#check-status). Route entries to users by exact string match on `entry.account`. |
-| `currency`             | `str`             | ISO currency code.                                                                                                                                                                                                                                                                                                                                             |
-| `before_balance`       | `str`             | Balance immediately before this change (decimal).                                                                                                                                                                                                                                                                                                              |
-| `after_balance`        | `str`             | Balance immediately after this change (decimal).                                                                                                                                                                                                                                                                                                               |
-| `description`          | `str`             | Human-readable reason for the change.                                                                                                                                                                                                                                                                                                                          |
-| `update_time`          | `Timestamp`       | Timestamp of the balance change. Persist for use as the next `resume_time`.                                                                                                                                                                                                                                                                                    |
-| `modified_security_id` | `str`             | Security ID associated with the change, if any.                                                                                                                                                                                                                                                                                                                |
-| `entry_type`           | `LedgerEntryType` | One of the allowlisted entry types (see below).                                                                                                                                                                                                                                                                                                                |
-| `symbol`               | `str`             | Instrument symbol associated with the change, if any.                                                                                                                                                                                                                                                                                                          |
-| `update_business_date` | `str`             | Business date in `YYYY-MM-DD`.                                                                                                                                                                                                                                                                                                                                 |
+| Field | Type | Description |
+| - | - | - |
+| `id` | `str` | Unique entry identifier. |
+| `account` | `str` | Account this entry belongs to. For IB/ISV-managed end users, this exactly matches `provisioned_account` from the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks#data-fields) and `provisionedAccount` from [KYC status](/partners/onboarding/kyc/verification-flow#check-status). Route entries to users by exact string match on `entry.account`. |
+| `currency` | `str` | ISO currency code. |
+| `before_balance` | `str` | Balance immediately before this change (decimal). |
+| `after_balance` | `str` | Balance immediately after this change (decimal). |
+| `description` | `str` | Human-readable reason for the change. |
+| `update_time` | `Timestamp` | Timestamp of the balance change. Persist for use as the next `resume_time`. |
+| `modified_security_id` | `str` | Security ID associated with the change, if any. |
+| `entry_type` | `LedgerEntryType` | One of the allowlisted entry types (see below). |
+| `symbol` | `str` | Instrument symbol associated with the change, if any. |
+| `update_business_date` | `str` | Business date in `YYYY-MM-DD`. |
 
 <Note>
   Firm-level omnibus and reserve account identifiers are static configuration provided during onboarding; they are not discovered through the KYC API.
@@ -82,28 +82,28 @@ The stream returns `CreateBalanceLedgerSubscriptionResponse` messages.
 
 ## LedgerEntryType Allowlist
 
-| Wire Value | Name                          |
-| ---------- | ----------------------------- |
-| `1`        | `DEPOSIT`                     |
-| `2`        | `WITHDRAWAL`                  |
-| `3`        | `ORDER_EXECUTION`             |
-| `4`        | `CORRECTION`                  |
-| `6`        | `RESOLUTION`                  |
-| `7`        | `MANUAL_ADJUSTMENT`           |
-| `10`       | `ACCOUNT_PROPERTY_ADJUSTMENT` |
-| `11`       | `COMMISSION`                  |
-| `16`       | `WITHDRAWAL_REJECTION`        |
-| `17`       | `MANUAL_TRANSFER`             |
-| `22`       | `PENDING_WITHDRAWAL_CREATION` |
+| Wire Value | Name |
+| - | - |
+| `1` | `DEPOSIT` |
+| `2` | `WITHDRAWAL` |
+| `3` | `ORDER_EXECUTION` |
+| `4` | `CORRECTION` |
+| `6` | `RESOLUTION` |
+| `7` | `MANUAL_ADJUSTMENT` |
+| `10` | `ACCOUNT_PROPERTY_ADJUSTMENT` |
+| `11` | `COMMISSION` |
+| `16` | `WITHDRAWAL_REJECTION` |
+| `17` | `MANUAL_TRANSFER` |
+| `22` | `PENDING_WITHDRAWAL_CREATION` |
 
 The full allowlist plus suppressed (internal) types are documented on the [Balance Ledger REST overview](/institutional/funding/overview#ledgerentrytype).
 
 ## Stream Limits
 
-| Limit                                                       | Value                                     |
-| ----------------------------------------------------------- | ----------------------------------------- |
-| Concurrent streams per firm (across all gRPC subscriptions) | **20**                                    |
-| Historical floor on `resume_time`                           | `2026-05-01T00:00:00Z` (clamped upstream) |
+| Limit | Value |
+| - | - |
+| Concurrent streams per firm (across all gRPC subscriptions) | **20** |
+| Historical floor on `resume_time` | `2026-05-01T00:00:00Z` (clamped upstream) |
 
 Exceeding the per-firm concurrent stream cap returns `ResourceExhausted`.
 
@@ -111,9 +111,9 @@ Exceeding the per-firm concurrent stream cap returns `ResourceExhausted`.
 
 The gateway exposes Prometheus metrics for balance ledger subscriptions:
 
-| Metric                               | Type    | Labels                  | Description                                     |
-| ------------------------------------ | ------- | ----------------------- | ----------------------------------------------- |
-| `balance_ledger_stream_active`       | gauge   | `firm_id`               | Number of active subscriptions per firm         |
+| Metric | Type | Labels | Description |
+| - | - | - | - |
+| `balance_ledger_stream_active` | gauge | `firm_id` | Number of active subscriptions per firm |
 | `balance_ledger_stream_events_total` | counter | `firm_id`, `entry_type` | Total entries delivered per firm and entry type |
 
 ## Complete Python Example
@@ -226,22 +226,22 @@ if streamer.last_update_time is not None:
 
 ## REST vs Streaming
 
-| Aspect         | REST `/v1/funding/balance-ledger`             | gRPC `CreateBalanceLedgerSubscription`         |
-| -------------- | --------------------------------------------- | ---------------------------------------------- |
-| Delivery model | Polled, paginated query                       | Push-based stream                              |
-| Replay         | Via `start_time` / `end_time` + paging        | Via `resume_time` (clamped to floor)           |
-| CSV export     | Yes (`/download` endpoint)                    | No                                             |
-| Best for       | Reconciliation, audit reports, ad-hoc queries | Real-time balance dashboards, automated alerts |
+| Aspect | REST `/v1/funding/balance-ledger` | gRPC `CreateBalanceLedgerSubscription` |
+| - | - | - |
+| Delivery model | Polled, paginated query | Push-based stream |
+| Replay | Via `start_time` / `end_time` + paging | Via `resume_time` (clamped to floor) |
+| CSV export | Yes (`/download` endpoint) | No |
+| Best for | Reconciliation, audit reports, ad-hoc queries | Real-time balance dashboards, automated alerts |
 
 ## Error Codes
 
-| gRPC Code             | Cause                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------ |
-| `PERMISSION_DENIED`   | Account belongs to a different firm, or token is missing the `read:positions` scope. |
-| `UNAUTHENTICATED`     | Missing or invalid JWT.                                                              |
-| `FAILED_PRECONDITION` | ISV credentials not configured.                                                      |
-| `UNAVAILABLE`         | Upstream exchange service not connected.                                             |
-| `RESOURCE_EXHAUSTED`  | Per-firm 20 concurrent stream cap exceeded.                                          |
+| gRPC Code | Cause |
+| - | - |
+| `PERMISSION_DENIED` | Account belongs to a different firm, or token is missing the `read:positions` scope. |
+| `UNAUTHENTICATED` | Missing or invalid JWT. |
+| `FAILED_PRECONDITION` | ISV credentials not configured. |
+| `UNAVAILABLE` | Upstream exchange service not connected. |
+| `RESOURCE_EXHAUSTED` | Per-firm 20 concurrent stream cap exceeded. |
 
 ## Next Steps
 

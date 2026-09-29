@@ -12,10 +12,10 @@ For real-time push of these same entries, see the [Balance Ledger Stream](/strea
 
 ## Endpoints
 
-| Method | Endpoint                              | Required Scope   | Description                                     |
-| ------ | ------------------------------------- | ---------------- | ----------------------------------------------- |
-| `GET`  | `/v1/funding/balance-ledger`          | `read:positions` | Paginated query of balance ledger entries       |
-| `GET`  | `/v1/funding/balance-ledger/download` | `read:positions` | Streamed CSV download of balance ledger entries |
+| Method | Endpoint | Required Scope | Description |
+| - | - | - | - |
+| `GET` | `/v1/funding/balance-ledger` | `read:positions` | Paginated query of balance ledger entries |
+| `GET` | `/v1/funding/balance-ledger/download` | `read:positions` | Streamed CSV download of balance ledger entries |
 
 <Note>
   Balance ledger endpoints are scoped under `read:positions` (not `read:funding`) to stay consistent with the existing balance-query endpoints (`GetAccountBalance`, `ListAccountBalances`). Calls without `read:positions` fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
@@ -23,8 +23,8 @@ For real-time push of these same entries, see the [Balance Ledger Stream](/strea
 
 ## Historical Floor
 
-| Setting                 | Value                  |
-| ----------------------- | ---------------------- |
+| Setting | Value |
+| - | - |
 | Earliest queryable date | `2026-05-01T00:00:00Z` |
 
 The ledger has a hard historical floor of **May 1, 2026 (UTC)**. Enforcement is defense-in-depth:
@@ -38,12 +38,12 @@ Pre-floor entries are not retrievable through this endpoint.
 
 The account in `account=firms/{firm}/accounts/{id}` must belong to the caller's firm (extracted from the JWT `firm_id` claim).
 
-| Condition                                 | Error Code           |
-| ----------------------------------------- | -------------------- |
-| Account belongs to a different firm       | `PermissionDenied`   |
-| JWT missing or `firm_id` absent           | `Unauthenticated`    |
+| Condition | Error Code |
+| - | - |
+| Account belongs to a different firm | `PermissionDenied` |
+| JWT missing or `firm_id` absent | `Unauthenticated` |
 | ISV credentials not configured at gateway | `FailedPrecondition` |
-| Upstream exchange service unavailable     | `Unavailable`        |
+| Upstream exchange service unavailable | `Unavailable` |
 
 ## LedgerEntryType
 
@@ -51,45 +51,45 @@ The balance ledger uses a strict **allowlist** of entry types. Internal exchange
 
 ### Allowed Types
 
-| Wire Value | Name                          | Description                           |
-| ---------- | ----------------------------- | ------------------------------------- |
-| `1`        | `DEPOSIT`                     | Funds deposited into the account      |
-| `2`        | `WITHDRAWAL`                  | Funds withdrawn from the account      |
-| `3`        | `ORDER_EXECUTION`             | Cash impact of a trade execution      |
-| `4`        | `CORRECTION`                  | Manual correction                     |
-| `6`        | `RESOLUTION`                  | Market resolution / settlement payout |
-| `7`        | `MANUAL_ADJUSTMENT`           | Admin adjustment                      |
-| `10`       | `ACCOUNT_PROPERTY_ADJUSTMENT` | Account property change               |
-| `11`       | `COMMISSION`                  | Trading fee                           |
-| `16`       | `WITHDRAWAL_REJECTION`        | Failed withdrawal returned to balance |
-| `17`       | `MANUAL_TRANSFER`             | Internal transfer between accounts    |
-| `22`       | `PENDING_WITHDRAWAL_CREATION` | Withdrawal initiated (funds reserved) |
+| Wire Value | Name | Description |
+| - | - | - |
+| `1` | `DEPOSIT` | Funds deposited into the account |
+| `2` | `WITHDRAWAL` | Funds withdrawn from the account |
+| `3` | `ORDER_EXECUTION` | Cash impact of a trade execution |
+| `4` | `CORRECTION` | Manual correction |
+| `6` | `RESOLUTION` | Market resolution / settlement payout |
+| `7` | `MANUAL_ADJUSTMENT` | Admin adjustment |
+| `10` | `ACCOUNT_PROPERTY_ADJUSTMENT` | Account property change |
+| `11` | `COMMISSION` | Trading fee |
+| `16` | `WITHDRAWAL_REJECTION` | Failed withdrawal returned to balance |
+| `17` | `MANUAL_TRANSFER` | Internal transfer between accounts |
+| `22` | `PENDING_WITHDRAWAL_CREATION` | Withdrawal initiated (funds reserved) |
 
 ### Suppressed Types
 
 These Internal types are blocked at the gateway and are never returned to clients.
 
-| Wire Value | Name                          | Reason   |
-| ---------- | ----------------------------- | -------- |
-| `5`        | `NETTING`                     | Internal |
-| `8`        | `SECURITY_BALANCE_ADJUSTMENT` | Internal |
-| `9`        | `SECURITY_MARK_TO_MARKET`     | Internal |
-| `12`       | `CONTRACT_EXPIRATION`         | Internal |
-| `13`       | `PENDING_CREDIT_ADJUSTMENT`   | Internal |
-| `14`       | `BEGINNING_OF_DAY`            | Internal |
-| `15`       | `SECURITY_WITHDRAWAL`         | Internal |
-| `18`       | `AVERAGE_PRICE_TRANSFER`      | Internal |
-| `19`       | `GIVE_UP`                     | Internal |
-| `20`       | `SYNCHRONIZATION`             | Internal |
-| `21`       | `INTEREST`                    | Internal |
-| `23`       | `SETTLEMENT_FEE`              | Internal |
+| Wire Value | Name | Reason |
+| - | - | - |
+| `5` | `NETTING` | Internal |
+| `8` | `SECURITY_BALANCE_ADJUSTMENT` | Internal |
+| `9` | `SECURITY_MARK_TO_MARKET` | Internal |
+| `12` | `CONTRACT_EXPIRATION` | Internal |
+| `13` | `PENDING_CREDIT_ADJUSTMENT` | Internal |
+| `14` | `BEGINNING_OF_DAY` | Internal |
+| `15` | `SECURITY_WITHDRAWAL` | Internal |
+| `18` | `AVERAGE_PRICE_TRANSFER` | Internal |
+| `19` | `GIVE_UP` | Internal |
+| `20` | `SYNCHRONIZATION` | Internal |
+| `21` | `INTEREST` | Internal |
+| `23` | `SETTLEMENT_FEE` | Internal |
 
 ### Enforcement
 
-| Surface                                                       | Behavior                                                                                                                                                    |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Request validation** (any endpoint)                         | Requesting a suppressed type in `entry_types` returns `Aborted` (HTTP `409`).                                                                               |
-| **JSON responses** (`GET /v1/funding/balance-ledger`)         | Suppressed types in upstream responses are silently dropped.                                                                                                |
+| Surface | Behavior |
+| - | - |
+| **Request validation** (any endpoint) | Requesting a suppressed type in `entry_types` returns `Aborted` (HTTP `409`). |
+| **JSON responses** (`GET /v1/funding/balance-ledger`) | Suppressed types in upstream responses are silently dropped. |
 | **CSV downloads** (`GET /v1/funding/balance-ledger/download`) | When `entry_types` is empty, the gateway substitutes the **full allowlist** before forwarding upstream so suppressed types do not leak in opaque CSV bytes. |
 
 ## Get Balance Ledger
@@ -100,18 +100,18 @@ GET /v1/funding/balance-ledger?account=firms/ISV-Alice/accounts/alice-trading&cu
 
 ### Query Parameters
 
-| Parameter      | Type      | Required | Description                                                                                                                          |
-| -------------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `account`      | string    | Yes      | Fully qualified account name.                                                                                                        |
-| `currency`     | string    | No       | ISO currency code (e.g., `USD`). Omit for all currencies on the account.                                                             |
-| `start_time`   | RFC3339   | No       | Inclusive lower bound on `update_time`. Clamped to `2026-05-01T00:00:00Z`.                                                           |
-| `end_time`     | RFC3339   | No       | Inclusive upper bound on `update_time`.                                                                                              |
-| `entry_types`  | string\[] | No       | Filter by one or more allowlist types. Suppressed types return `Aborted` (409).                                                      |
-| `symbol`       | string    | No       | Filter by instrument symbol.                                                                                                         |
-| `description`  | string    | No       | Substring filter on the entry `description`. **Maximum 200 Unicode characters (not bytes)**; longer values return `InvalidArgument`. |
-| `newest_first` | boolean   | No       | If `true`, descending `update_time` order. Default `false`.                                                                          |
-| `page_size`    | integer   | No       | Maximum entries per page. **Max 1000**; values above 1000 return `InvalidArgument`.                                                  |
-| `page_token`   | string    | No       | Pagination token from a previous response's `nextPageToken`.                                                                         |
+| Parameter | Type | Required | Description |
+| - | - | - | - |
+| `account` | string | Yes | Fully qualified account name. |
+| `currency` | string | No | ISO currency code (e.g., `USD`). Omit for all currencies on the account. |
+| `start_time` | RFC3339 | No | Inclusive lower bound on `update_time`. Clamped to `2026-05-01T00:00:00Z`. |
+| `end_time` | RFC3339 | No | Inclusive upper bound on `update_time`. |
+| `entry_types` | string\[] | No | Filter by one or more allowlist types. Suppressed types return `Aborted` (409). |
+| `symbol` | string | No | Filter by instrument symbol. |
+| `description` | string | No | Substring filter on the entry `description`. **Maximum 200 Unicode characters (not bytes)**; longer values return `InvalidArgument`. |
+| `newest_first` | boolean | No | If `true`, descending `update_time` order. Default `false`. |
+| `page_size` | integer | No | Maximum entries per page. **Max 1000**; values above 1000 return `InvalidArgument`. |
+| `page_token` | string | No | Pagination token from a previous response's `nextPageToken`. |
 
 ### Sample Response
 
@@ -151,19 +151,19 @@ GET /v1/funding/balance-ledger?account=firms/ISV-Alice/accounts/alice-trading&cu
 
 ### BalanceLedgerEntry Fields
 
-| Field                | Type              | Description                                           |
-| -------------------- | ----------------- | ----------------------------------------------------- |
-| `id`                 | string            | Unique entry identifier.                              |
-| `account`            | string            | Account this entry belongs to.                        |
-| `currency`           | string            | ISO currency code.                                    |
-| `beforeBalance`      | string            | Balance immediately before this change (decimal).     |
-| `afterBalance`       | string            | Balance immediately after this change (decimal).      |
-| `description`        | string            | Human-readable reason for the change.                 |
-| `updateTime`         | RFC3339           | Timestamp of the change.                              |
-| `modifiedSecurityId` | string            | Security ID associated with the change, if any.       |
-| `entryType`          | `LedgerEntryType` | One of the allowlisted entry types.                   |
-| `symbol`             | string            | Instrument symbol associated with the change, if any. |
-| `updateBusinessDate` | string            | Business date in `YYYY-MM-DD`.                        |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | Unique entry identifier. |
+| `account` | string | Account this entry belongs to. |
+| `currency` | string | ISO currency code. |
+| `beforeBalance` | string | Balance immediately before this change (decimal). |
+| `afterBalance` | string | Balance immediately after this change (decimal). |
+| `description` | string | Human-readable reason for the change. |
+| `updateTime` | RFC3339 | Timestamp of the change. |
+| `modifiedSecurityId` | string | Security ID associated with the change, if any. |
+| `entryType` | `LedgerEntryType` | One of the allowlisted entry types. |
+| `symbol` | string | Instrument symbol associated with the change, if any. |
+| `updateBusinessDate` | string | Business date in `YYYY-MM-DD`. |
 
 ## Download Balance Ledger
 
@@ -181,24 +181,24 @@ Empty result sets return a single empty chunk followed by EOF (HTTP 200 with an 
 
 ## Rate Limits (per firm)
 
-| Endpoint                                  | Rate           | Burst | Effective    |
-| ----------------------------------------- | -------------- | ----- | ------------ |
-| `GET /v1/funding/balance-ledger`          | 0.5 req/sec    | 5     | \~30 req/min |
-| `GET /v1/funding/balance-ledger/download` | 0.0833 req/sec | 1     | \~5 req/min  |
+| Endpoint | Rate | Burst | Effective |
+| - | - | - | - |
+| `GET /v1/funding/balance-ledger` | 0.5 req/sec | 5 | \~30 req/min |
+| `GET /v1/funding/balance-ledger/download` | 0.0833 req/sec | 1 | \~5 req/min |
 
 Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
 
 ## Error Codes
 
-| Error                | Cause                                                                   |
-| -------------------- | ----------------------------------------------------------------------- |
-| `InvalidArgument`    | Missing `account`, or `description` longer than 200 Unicode characters. |
-| `Aborted` (409)      | Requested a suppressed `entry_types` value.                             |
-| `PermissionDenied`   | Account belongs to a different firm.                                    |
-| `Unauthenticated`    | Missing JWT or `firm_id` claim.                                         |
-| `FailedPrecondition` | ISV credentials not configured.                                         |
-| `Unavailable`        | Upstream exchange service not connected.                                |
-| `ResourceExhausted`  | Per-firm rate limit exceeded.                                           |
+| Error | Cause |
+| - | - |
+| `InvalidArgument` | Missing `account`, or `description` longer than 200 Unicode characters. |
+| `Aborted` (409) | Requested a suppressed `entry_types` value. |
+| `PermissionDenied` | Account belongs to a different firm. |
+| `Unauthenticated` | Missing JWT or `firm_id` claim. |
+| `FailedPrecondition` | ISV credentials not configured. |
+| `Unavailable` | Upstream exchange service not connected. |
+| `ResourceExhausted` | Per-firm rate limit exceeded. |
 
 ## See Also
 

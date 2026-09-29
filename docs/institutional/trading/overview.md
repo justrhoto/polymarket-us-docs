@@ -10,40 +10,40 @@
 
 ### Order Entry
 
-| Method | Endpoint                     | Description                     |
-| ------ | ---------------------------- | ------------------------------- |
-| `POST` | `/v1/trading/orders`         | Insert a single order           |
-| `POST` | `/v1/trading/orders/list`    | Insert multiple orders (batch)  |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/trading/orders` | Insert a single order |
+| `POST` | `/v1/trading/orders/list` | Insert multiple orders (batch) |
 | `POST` | `/v1/trading/orders/preview` | Preview order before submission |
 
 ### Order Modification
 
-| Method | Endpoint                          | Description                            |
-| ------ | --------------------------------- | -------------------------------------- |
-| `POST` | `/v1/trading/orders/replace`      | Replace/modify a single order          |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/trading/orders/replace` | Replace/modify a single order |
 | `POST` | `/v1/trading/orders/replace/list` | Replace/modify multiple orders (batch) |
 
 ### Order Cancellation
 
-| Method | Endpoint                         | Description                    |
-| ------ | -------------------------------- | ------------------------------ |
-| `POST` | `/v1/trading/orders/cancel`      | Cancel a single order          |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/trading/orders/cancel` | Cancel a single order |
 | `POST` | `/v1/trading/orders/cancel/list` | Cancel multiple orders (batch) |
 
 ### Order Query
 
-| Method | Endpoint                  | Description     |
-| ------ | ------------------------- | --------------- |
-| `GET`  | `/v1/trading/orders/open` | Get open orders |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/trading/orders/open` | Get open orders |
 
 ## Order Types
 
-| Type              | Description                         |
-| ----------------- | ----------------------------------- |
-| `LIMIT`           | Limit order at specified price      |
+| Type | Description |
+| - | - |
+| `LIMIT` | Limit order at specified price |
 | `MARKET_TO_LIMIT` | Market order that converts to limit |
-| `STOP`            | Stop order                          |
-| `STOP_LIMIT`      | Stop-limit order                    |
+| `STOP` | Stop order |
+| `STOP_LIMIT` | Stop-limit order |
 
 ## Order Lifecycle
 
@@ -63,12 +63,12 @@ NEW → PARTIALLY_FILLED → FILLED
 
 ## Time in Force
 
-| TIF   | Description              |
-| ----- | ------------------------ |
+| TIF | Description |
+| - | - |
 | `DAY` | Good for the trading day |
-| `GTC` | Good till canceled       |
-| `IOC` | Immediate or cancel      |
-| `FOK` | Fill or kill             |
+| `GTC` | Good till canceled |
+| `IOC` | Immediate or cancel |
+| `FOK` | Fill or kill |
 
 <Warning>
   **DAY orders do not automatically cancel at 5pm during trade day rolls.**

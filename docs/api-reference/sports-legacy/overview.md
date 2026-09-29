@@ -12,13 +12,13 @@ The v1 Sports API provides access to sports configuration, player and team infor
 
 ## Endpoints
 
-| Method | Endpoint                       | Description                                                          |
-| ------ | ------------------------------ | -------------------------------------------------------------------- |
-| `GET`  | `/v1/sports`                   | Get all sports                                                       |
-| `GET`  | `/v1/sports/{seriesId}/events` | Get events for a series                                              |
-| `GET`  | `/v1/sports/teams`             | Get sports teams                                                     |
-| `GET`  | `/v1/sports/teams/provider`    | Get teams by provider                                                |
-| `GET`  | `/v1/sports/players`           | List players or look up players by internal ID, team, or provider ID |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/sports` | Get all sports |
+| `GET` | `/v1/sports/{seriesId}/events` | Get events for a series |
+| `GET` | `/v1/sports/teams` | Get sports teams |
+| `GET` | `/v1/sports/teams/provider` | Get teams by provider |
+| `GET` | `/v1/sports/players` | List players or look up players by internal ID, team, or provider ID |
 
 ## Get Sports Players
 
@@ -34,15 +34,15 @@ GET /v1/sports
 
 ### Sport Fields
 
-| Field                 | Type    | Description                             |
-| --------------------- | ------- | --------------------------------------- |
-| `sport`               | string  | Sport name                              |
-| `image`               | string  | Sport image URL                         |
-| `resolution`          | string  | Resolution configuration                |
-| `ordering`            | string  | Display ordering                        |
-| `tags`                | string  | Associated tags                         |
-| `series`              | string  | Associated series                       |
-| `isOperational`       | boolean | Whether sport is operational            |
+| Field | Type | Description |
+| - | - | - |
+| `sport` | string | Sport name |
+| `image` | string | Sport image URL |
+| `resolution` | string | Resolution configuration |
+| `ordering` | string | Display ordering |
+| `tags` | string | Associated tags |
+| `series` | string | Associated series |
+| `isOperational` | boolean | Whether sport is operational |
 | `automaticResolution` | boolean | Whether automatic resolution is enabled |
 
 ## Get Sports Events
@@ -55,9 +55,9 @@ GET /v1/sports/{seriesId}/events
 
 ### Path Parameters
 
-| Parameter  | Type    | Description |
-| ---------- | ------- | ----------- |
-| `seriesId` | integer | Series ID   |
+| Parameter | Type | Description |
+| - | - | - |
+| `seriesId` | integer | Series ID |
 
 ## Get Sports Teams
 
@@ -69,8 +69,8 @@ GET /v1/sports/teams
 
 ### Parameters
 
-| Parameter | Type  | Description        |
-| --------- | ----- | ------------------ |
+| Parameter | Type | Description |
+| - | - | - |
 | `teamIds` | array | Filter by team IDs |
 
 ## Get Teams by Provider
@@ -83,35 +83,35 @@ GET /v1/sports/teams/provider?provider=PROVIDER_SPORTRADAR&league=NFL
 
 ### Parameters
 
-| Parameter  | Type   | Description                                                      |
-| ---------- | ------ | ---------------------------------------------------------------- |
-| `teamIds`  | array  | Filter by team IDs                                               |
+| Parameter | Type | Description |
+| - | - | - |
+| `teamIds` | array | Filter by team IDs |
 | `provider` | string | Data provider (`PROVIDER_SPORTSDATAIO` or `PROVIDER_SPORTRADAR`) |
-| `league`   | string | League name (e.g., NFL, NBA, MLB)                                |
+| `league` | string | League name (e.g., NFL, NBA, MLB) |
 
 ### Team Fields
 
-| Field                 | Type    | Description          |
-| --------------------- | ------- | -------------------- |
-| `id`                  | integer | Team identifier      |
-| `name`                | string  | Team name            |
-| `abbreviation`        | string  | Team abbreviation    |
-| `displayAbbreviation` | string  | Display abbreviation |
-| `league`              | string  | League name          |
-| `record`              | string  | Team record          |
-| `logo`                | string  | Logo URL             |
-| `alias`               | string  | Team alias           |
-| `safeName`            | string  | Safe name for URLs   |
-| `homeIcon`            | string  | Home icon URL        |
-| `awayIcon`            | string  | Away icon URL        |
-| `colorPrimary`        | string  | Primary team color   |
-| `ranking`             | integer | Team ranking         |
-| `conference`          | string  | Conference name      |
-| `providerIds`         | array   | Provider ID mappings |
+| Field | Type | Description |
+| - | - | - |
+| `id` | integer | Team identifier |
+| `name` | string | Team name |
+| `abbreviation` | string | Team abbreviation |
+| `displayAbbreviation` | string | Display abbreviation |
+| `league` | string | League name |
+| `record` | string | Team record |
+| `logo` | string | Logo URL |
+| `alias` | string | Team alias |
+| `safeName` | string | Safe name for URLs |
+| `homeIcon` | string | Home icon URL |
+| `awayIcon` | string | Away icon URL |
+| `colorPrimary` | string | Primary team color |
+| `ranking` | integer | Team ranking |
+| `conference` | string | Conference name |
+| `providerIds` | array | Provider ID mappings |
 
 ## Data Providers
 
-| Provider                | Description   |
-| ----------------------- | ------------- |
+| Provider | Description |
+| - | - |
 | `PROVIDER_SPORTSDATAIO` | SportsData.io |
-| `PROVIDER_SPORTRADAR`   | Sportradar    |
+| `PROVIDER_SPORTRADAR` | Sportradar |

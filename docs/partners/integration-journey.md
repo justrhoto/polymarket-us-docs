@@ -26,14 +26,14 @@ graph TD
 
 A complete partner integration has a handful of components. You can build them incrementally in the order below.
 
-| Component            | Purpose                                                           | Primary interface                                           |
-| -------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Auth client**      | Authenticate as your Firm and refresh access tokens               | [Private Key JWT](/partners/get-connected/authentication)   |
-| **KYC flow**         | Onboard and verify Retail Participants                            | [KYC](/partners/onboarding/kyc/overview)                    |
-| **Order entry**      | Submit orders with declared vendor fees on behalf of participants | [Submitting Orders](/partners/orders/create-order) *(Beta)* |
-| **Funding**          | Fund participant trading accounts and collect vendor fees         | [Partner Funding](/partners/funding/overview) *(Beta)*      |
-| **Stream consumers** | Maintain a live mirror of orders, positions, and balances         | [gRPC streaming](/streaming-endpoints/grpc-overview)        |
-| **Webhook receiver** | Receive KYC and account lifecycle notifications                   | Account notifications *(coming soon)*                       |
+| Component | Purpose | Primary interface |
+| - | - | - |
+| **Auth client** | Authenticate as your Firm and refresh access tokens | [Private Key JWT](/partners/get-connected/authentication) |
+| **KYC flow** | Onboard and verify Retail Participants | [KYC](/partners/onboarding/kyc/overview) |
+| **Order entry** | Submit orders with declared vendor fees on behalf of participants | [Submitting Orders](/partners/orders/create-order) *(Beta)* |
+| **Funding** | Fund participant trading accounts and collect vendor fees | [Partner Funding](/partners/funding/overview) *(Beta)* |
+| **Stream consumers** | Maintain a live mirror of orders, positions, and balances | [gRPC streaming](/streaming-endpoints/grpc-overview) |
+| **Webhook receiver** | Receive KYC and account lifecycle notifications | Account notifications *(coming soon)* |
 
 <Info>
   Polymarket US is a **streaming-first** platform. REST endpoints are intended for one-off queries and are rate-limited; continuous data should come from streams. Keep this in mind as you design every component above.

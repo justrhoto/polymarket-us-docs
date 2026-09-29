@@ -12,9 +12,9 @@ The Search API allows you to search for events and markets by query string.
 
 ## Endpoints
 
-| Method | Endpoint     | Description                   |
-| ------ | ------------ | ----------------------------- |
-| `GET`  | `/v1/search` | Search for events and markets |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/search` | Search for events and markets |
 
 ## Search
 
@@ -26,18 +26,18 @@ GET /v1/search?query=super+bowl&limit=10
 
 ### Query Parameters
 
-| Parameter       | Type    | Description                         |
-| --------------- | ------- | ----------------------------------- |
-| `query`         | string  | Search query                        |
-| `limit`         | integer | Maximum number of results to return |
-| `page`          | integer | Page number for pagination          |
-| `seriesIds`     | array   | Filter by series IDs                |
-| `marketType`    | array   | Filter by market types              |
-| `status`        | string  | Filter by status                    |
-| `startTimeMin`  | string  | Minimum start time filter           |
-| `startTimeMax`  | string  | Maximum start time filter           |
-| `closedTimeMin` | string  | Minimum closed time filter          |
-| `closedTimeMax` | string  | Maximum closed time filter          |
+| Parameter | Type | Description |
+| - | - | - |
+| `query` | string | Search query |
+| `limit` | integer | Maximum number of results to return |
+| `page` | integer | Page number for pagination |
+| `seriesIds` | array | Filter by series IDs |
+| `marketType` | array | Filter by market types |
+| `status` | string | Filter by status |
+| `startTimeMin` | string | Minimum start time filter |
+| `startTimeMax` | string | Maximum start time filter |
+| `closedTimeMin` | string | Minimum closed time filter |
+| `closedTimeMax` | string | Maximum closed time filter |
 
 ### Response
 

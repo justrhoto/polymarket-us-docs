@@ -180,16 +180,16 @@ Products are templates that define types of tradable outcomes. The same product 
 
 ### Example Products
 
-| Product         | Code | Type                                                | Example                               | Description                                                                                                             |
-| --------------- | ---- | --------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| Athletic Event  | AEC  | Single (Binary)                                     | `aec-nfl-buf-nyj-2025-01-15`          | Moneyline: Will team A win?                                                                                             |
-| Athletic Tie    | ATC  | Group (Exclusive)                                   | `atc-mls-atl-clt-2026-03-22-draw`     | 3-way: Team A, Draw, or Team B wins                                                                                     |
-| Athletic Spread | ASC  | Group (Directional)                                 | `asc-nfl-hou-mia-2025-12-16-pos-4pt5` | Will team A win by more than X points?                                                                                  |
-| Total Score     | TSC  | Group (Directional)                                 | `tsc-nfl-ne-den-2026-01-25-47-5`      | Will combined score be over X?                                                                                          |
-| Title Event     | TEC  | Group (Exclusive)                                   | `tec-ggb-bmpd-2026-01-11`             | Will participant win title?                                                                                             |
-| Title Award     | TAC  | Group (Exclusive)                                   | `tac-ggb-bmpd-2026-01-11-sinners`     | Which nominee will win award?                                                                                           |
-| Election Winner | EWC  | Group (Exclusive)                                   | `ewc-usp-pres-2028-11-07`             | Which candidate will win election?                                                                                      |
-| Crypto Price    | CPC  | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000`  | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](/trader-guide/crypto-schema) |
+| Product | Code | Type | Example | Description |
+| - | - | - | - | - |
+| Athletic Event | AEC | Single (Binary) | `aec-nfl-buf-nyj-2025-01-15` | Moneyline: Will team A win? |
+| Athletic Tie | ATC | Group (Exclusive) | `atc-mls-atl-clt-2026-03-22-draw` | 3-way: Team A, Draw, or Team B wins |
+| Athletic Spread | ASC | Group (Directional) | `asc-nfl-hou-mia-2025-12-16-pos-4pt5` | Will team A win by more than X points? |
+| Total Score | TSC | Group (Directional) | `tsc-nfl-ne-den-2026-01-25-47-5` | Will combined score be over X? |
+| Title Event | TEC | Group (Exclusive) | `tec-ggb-bmpd-2026-01-11` | Will participant win title? |
+| Title Award | TAC | Group (Exclusive) | `tac-ggb-bmpd-2026-01-11-sinners` | Which nominee will win award? |
+| Election Winner | EWC | Group (Exclusive) | `ewc-usp-pres-2028-11-07` | Which candidate will win election? |
+| Crypto Price | CPC | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000` | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](/trader-guide/crypto-schema) |
 
 ### Product Reusability
 

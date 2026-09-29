@@ -73,11 +73,11 @@ If you're using the Python or TypeScript SDK, just pass your keys when creating 
 
 If you're not using an SDK, each request needs three headers:
 
-| Header            | Value                                      |
-| ----------------- | ------------------------------------------ |
-| `X-PM-Access-Key` | Your Key ID                                |
-| `X-PM-Timestamp`  | Current time in milliseconds               |
-| `X-PM-Signature`  | A signature generated from your secret key |
+| Header | Value |
+| - | - |
+| `X-PM-Access-Key` | Your Key ID |
+| `X-PM-Timestamp` | Current time in milliseconds |
+| `X-PM-Signature` | A signature generated from your secret key |
 
 The signature is built by combining the timestamp, HTTP method, and path, then signing it with your secret key. Timestamps must be within **30 seconds** of server time.
 

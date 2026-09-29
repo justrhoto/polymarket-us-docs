@@ -20,13 +20,13 @@ To enable fills only mode, request this configuration when setting up your drop 
 
 Polymarket Exchange offers drop copy feeds via both FIX and gRPC protocols:
 
-| Feature                | FIX Drop Copy                | gRPC DropCopy           |
-| ---------------------- | ---------------------------- | ----------------------- |
-| **Protocol**           | FIX 5.0 SP2                  | gRPC streaming          |
-| **Message Format**     | FIX tag-value                | Protobuf                |
-| **Session Management** | FIX logon/logout             | gRPC connection         |
-| **Reconnection**       | FIX resend                   | Resume tokens           |
-| **Use Case**           | Traditional FIX integrations | Modern API integrations |
+| Feature | FIX Drop Copy | gRPC DropCopy |
+| - | - | - |
+| **Protocol** | FIX 5.0 SP2 | gRPC streaming |
+| **Message Format** | FIX tag-value | Protobuf |
+| **Session Management** | FIX logon/logout | gRPC connection |
+| **Reconnection** | FIX resend | Resume tokens |
+| **Use Case** | Traditional FIX integrations | Modern API integrations |
 
 Choose FIX Drop Copy if you have existing FIX infrastructure. Choose gRPC if you prefer modern streaming APIs with protobuf messages.
 

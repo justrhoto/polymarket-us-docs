@@ -14,9 +14,9 @@ The Accounts API provides trading account information for partners. Accounts are
 
 ## Endpoints
 
-| Method | Endpoint       | Description           | API reference                                                 |
-| ------ | -------------- | --------------------- | ------------------------------------------------------------- |
-| `GET`  | `/v1/accounts` | List trading accounts | [List accounts ↗](/institutional/accounts/overview#endpoints) |
+| Method | Endpoint | Description | API reference |
+| - | - | - | - |
+| `GET` | `/v1/accounts` | List trading accounts | [List accounts ↗](/institutional/accounts/overview#endpoints) |
 
 <Note>
   For participant **identity**, see [Participants](/partners/onboarding/users). The underlying identity endpoints are documented in the API reference: [Get who am I ↗](/institutional/accounts/overview#endpoints) (`GET /v1/whoami`) and [List users ↗](/institutional/accounts/overview#endpoints) (`GET /v1/users`).
@@ -66,17 +66,17 @@ Optional query parameter:
 
 ### Response Fields
 
-| Field          | Type  | Description                                   |
-| -------------- | ----- | --------------------------------------------- |
-| `accounts`     | array | Account identifiers                           |
+| Field | Type | Description |
+| - | - | - |
+| `accounts` | array | Account identifiers |
 | `displayNames` | array | Human-readable account names (parallel array) |
 
 ## Participant vs Account
 
-| Entity          | Description                                                                           |
-| --------------- | ------------------------------------------------------------------------------------- |
-| **Participant** | A person with a verified identity (KYC). Created automatically on KYC approval.       |
-| **Account**     | A trading account with balances and positions. Auto-provisioned with the participant. |
+| Entity | Description |
+| - | - |
+| **Participant** | A person with a verified identity (KYC). Created automatically on KYC approval. |
+| **Account** | A trading account with balances and positions. Auto-provisioned with the participant. |
 
 A Retail Participant can have multiple accounts for different purposes (e.g., separate trading strategies).
 

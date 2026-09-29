@@ -65,10 +65,10 @@ account-scoped request. It has the form `firms/<PARTICIPANT_FIRM>/users/<USER>`.
 **You are always given this value — you never discover or construct it.** Where it comes
 from depends on who the participant is:
 
-| Participant                                                             | Where the ID comes from                                                                                                                                                                                                       |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Your own trading and drop copy users (institutional/DMA, market makers) | Provided during onboarding, when the users are provisioned for your firm                                                                                                                                                      |
-| An end user you onboard through KYC (brokers/partners)                  | Returned as `participantId` once the user's KYC reaches `ACCEPT` — on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) |
+| Participant | Where the ID comes from |
+| - | - |
+| Your own trading and drop copy users (institutional/DMA, market makers) | Provided during onboarding, when the users are provisioned for your firm |
+| An end user you onboard through KYC (brokers/partners) | Returned as `participantId` once the user's KYC reaches `ACCEPT` — on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) |
 
 <Warning>
   **Do not assemble a participant ID by hand.** In particular, do not build one from the firm

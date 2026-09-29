@@ -26,35 +26,35 @@ https://api.polymarket.us
 
 ### Order Entry
 
-| Method | Endpoint                   | Description                     |
-| ------ | -------------------------- | ------------------------------- |
-| `POST` | `/v1/orders`               | Create a new order              |
-| `POST` | `/v1/order/preview`        | Preview order before submission |
-| `POST` | `/v1/order/close-position` | Close an existing position      |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/orders` | Create a new order |
+| `POST` | `/v1/order/preview` | Preview order before submission |
+| `POST` | `/v1/order/close-position` | Close an existing position |
 
 ### Order Query
 
-| Method | Endpoint              | Description                |
-| ------ | --------------------- | -------------------------- |
-| `GET`  | `/v1/orders/open`     | Get all open orders        |
-| `GET`  | `/v1/order/{orderId}` | Get a specific order by ID |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/orders/open` | Get all open orders |
+| `GET` | `/v1/order/{orderId}` | Get a specific order by ID |
 
 ### Order Management
 
-| Method | Endpoint                     | Description              |
-| ------ | ---------------------------- | ------------------------ |
+| Method | Endpoint | Description |
+| - | - | - |
 | `POST` | `/v1/order/{orderId}/modify` | Modify an existing order |
-| `POST` | `/v1/order/{orderId}/cancel` | Cancel a specific order  |
-| `POST` | `/v1/orders/open/cancel`     | Cancel all open orders   |
+| `POST` | `/v1/order/{orderId}/cancel` | Cancel a specific order |
+| `POST` | `/v1/orders/open/cancel` | Cancel all open orders |
 
 ### Batched Operations
 
 Up to 20 orders per call.
 
-| Method | Endpoint                    | Description                                                                          |
-| ------ | --------------------------- | ------------------------------------------------------------------------------------ |
-| `POST` | `/v1/orders/batched`        | Create up to 20 orders in a single request                                           |
-| `POST` | `/v1/orders/batched/cancel` | Cancel up to 20 specific orders by ID                                                |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/orders/batched` | Create up to 20 orders in a single request |
+| `POST` | `/v1/orders/batched/cancel` | Cancel up to 20 specific orders by ID |
 | `POST` | `/v1/orders/batched/modify` | Modify up to 20 existing orders (each forwarded to the exchange as a cancel-replace) |
 
 Note: `/v1/orders/open/cancel` cancels **all** of your open orders (optionally filtered by market). Use `/v1/orders/batched/cancel` when you want to cancel a specific list of order IDs.
@@ -72,9 +72,9 @@ Note: `/v1/orders/open/cancel` cancels **all** of your open orders (optionally f
 
 All enum values are passed as **strings** in the request body:
 
-| Value               | Description                                   |
-| ------------------- | --------------------------------------------- |
-| `ORDER_TYPE_LIMIT`  | Limit order at specified price                |
+| Value | Description |
+| - | - |
+| `ORDER_TYPE_LIMIT` | Limit order at specified price |
 | `ORDER_TYPE_MARKET` | Market order executed at best available price |
 
 **Example:**
@@ -89,12 +89,12 @@ All enum values are passed as **strings** in the request body:
 
 Orders require an intent indicating position direction. Pass these as **string** values:
 
-| Value                     | Description                                  |
-| ------------------------- | -------------------------------------------- |
-| `ORDER_INTENT_BUY_LONG`   | Buy YES contracts (go long on Yes outcome)   |
-| `ORDER_INTENT_SELL_LONG`  | Sell YES contracts (close long Yes position) |
-| `ORDER_INTENT_BUY_SHORT`  | Buy NO contracts (go long on No outcome)     |
-| `ORDER_INTENT_SELL_SHORT` | Sell NO contracts (close long No position)   |
+| Value | Description |
+| - | - |
+| `ORDER_INTENT_BUY_LONG` | Buy YES contracts (go long on Yes outcome) |
+| `ORDER_INTENT_SELL_LONG` | Sell YES contracts (close long Yes position) |
+| `ORDER_INTENT_BUY_SHORT` | Buy NO contracts (go long on No outcome) |
+| `ORDER_INTENT_SELL_SHORT` | Sell NO contracts (close long No position) |
 
 **Example - Buy NO contracts:**
 
@@ -113,12 +113,12 @@ Orders require an intent indicating position direction. Pass these as **string**
 
 Instead of `intent`, you can specify the equivalent `outcomeSide` + `action` pair. Both forms are accepted on `CreateOrder` and the batched variants. If both are sent, `outcomeSide`+`action` wins.
 
-| `outcomeSide`      | `action`            | Equivalent `intent`       |
-| ------------------ | ------------------- | ------------------------- |
-| `OUTCOME_SIDE_YES` | `ORDER_ACTION_BUY`  | `ORDER_INTENT_BUY_LONG`   |
-| `OUTCOME_SIDE_YES` | `ORDER_ACTION_SELL` | `ORDER_INTENT_SELL_LONG`  |
-| `OUTCOME_SIDE_NO`  | `ORDER_ACTION_BUY`  | `ORDER_INTENT_BUY_SHORT`  |
-| `OUTCOME_SIDE_NO`  | `ORDER_ACTION_SELL` | `ORDER_INTENT_SELL_SHORT` |
+| `outcomeSide` | `action` | Equivalent `intent` |
+| - | - | - |
+| `OUTCOME_SIDE_YES` | `ORDER_ACTION_BUY` | `ORDER_INTENT_BUY_LONG` |
+| `OUTCOME_SIDE_YES` | `ORDER_ACTION_SELL` | `ORDER_INTENT_SELL_LONG` |
+| `OUTCOME_SIDE_NO` | `ORDER_ACTION_BUY` | `ORDER_INTENT_BUY_SHORT` |
+| `OUTCOME_SIDE_NO` | `ORDER_ACTION_SELL` | `ORDER_INTENT_SELL_SHORT` |
 
 **Example: same "buy NO contracts" order, expressed with outcomeSide + action:**
 
@@ -148,12 +148,12 @@ Only the long side (YES) is directly tradable. The short side (NO) is synthetic 
 
 **How This Affects Your Orders:**
 
-| You Want To       | Order Intent               | price.value |
-| ----------------- | -------------------------- | ----------- |
-| Buy USC at 0.83   | ORDER\_INTENT\_BUY\_LONG   | 0.83        |
-| Sell USC at 0.83  | ORDER\_INTENT\_SELL\_LONG  | 0.83        |
-| Buy Iowa at 0.83  | ORDER\_INTENT\_BUY\_SHORT  | 0.17        |
-| Sell Iowa at 0.83 | ORDER\_INTENT\_SELL\_SHORT | 0.17        |
+| You Want To | Order Intent | price.value |
+| - | - | - |
+| Buy USC at 0.83 | ORDER\_INTENT\_BUY\_LONG | 0.83 |
+| Sell USC at 0.83 | ORDER\_INTENT\_SELL\_LONG | 0.83 |
+| Buy Iowa at 0.83 | ORDER\_INTENT\_BUY\_SHORT | 0.17 |
+| Sell Iowa at 0.83 | ORDER\_INTENT\_SELL\_SHORT | 0.17 |
 
 In binary markets, YES and NO are inverses: buying NO at 0.83 is equivalent to buying YES at 0.17 (1.00 - 0.83). Since `price.value` always represents the YES side, you must set it to 0.17 when trading Iowa (NO) at 0.83. To trade the NO side at any price X, set `price.value = 1.00 - X`.
 
@@ -177,10 +177,10 @@ Always validate price bounds client-side before submission to avoid unnecessary 
 
 Markets can differ in both minimum order quantity and minimum price increment. Read these fields from the market response before submitting or modifying an order:
 
-| Market field            | Use                                                                                          |
-| ----------------------- | -------------------------------------------------------------------------------------------- |
-| `minimumTradeQty`       | Smallest valid `quantity`, expressed in contracts. A value of `0.01` means 1% of a contract. |
-| `orderPriceMinTickSize` | Smallest valid `price.value` increment. A value of `0.005` means half-cent ticks.            |
+| Market field | Use |
+| - | - |
+| `minimumTradeQty` | Smallest valid `quantity`, expressed in contracts. A value of `0.01` means 1% of a contract. |
+| `orderPriceMinTickSize` | Smallest valid `price.value` increment. A value of `0.005` means half-cent ticks. |
 
 The `quantity` field on order requests and order responses is a number and can contain decimals for partial-contract markets. Submit `quantity` and `price.value` already aligned to the market's `minimumTradeQty` and `orderPriceMinTickSize`. Extra precision is not part of the public contract and can be normalized to the market precision; for example, on a market with `minimumTradeQty: 0.01` and `orderPriceMinTickSize: 0.01`, `quantity: 0.015` can be accepted and returned as `0.01`, and `price.value: "0.515"` can be returned as `"0.51"`.
 
@@ -188,10 +188,10 @@ The `quantity` field on order requests and order responses is a number and can c
 
 The order side indicates buy or sell direction:
 
-| Value             | Description |
-| ----------------- | ----------- |
-| `ORDER_SIDE_BUY`  | Buy order   |
-| `ORDER_SIDE_SELL` | Sell order  |
+| Value | Description |
+| - | - |
+| `ORDER_SIDE_BUY` | Buy order |
+| `ORDER_SIDE_SELL` | Sell order |
 
 ## Order States
 
@@ -203,29 +203,29 @@ PENDING_NEW → PARTIALLY_FILLED → FILLED
                 CANCELED / REJECTED / EXPIRED
 ```
 
-| State                          | Value | Description                                               |
-| ------------------------------ | ----- | --------------------------------------------------------- |
-| `ORDER_STATE_PENDING_NEW`      | 7     | Order received, not yet processed by matching engine      |
-| `ORDER_STATE_NEW`              | 0     | Order accepted by matching engine and resting on the book |
-| `ORDER_STATE_PENDING_REPLACE`  | 8     | Modify request received, not yet processed                |
-| `ORDER_STATE_PENDING_CANCEL`   | 9     | Cancel request received, not yet processed                |
-| `ORDER_STATE_PENDING_RISK`     | 10    | Order pending risk approval                               |
-| `ORDER_STATE_PARTIALLY_FILLED` | 1     | Order partially executed                                  |
-| `ORDER_STATE_FILLED`           | 2     | Order fully executed                                      |
-| `ORDER_STATE_CANCELED`         | 3     | Order canceled                                            |
-| `ORDER_STATE_REPLACED`         | 4     | Order replaced via modify (cancel-replace)                |
-| `ORDER_STATE_REJECTED`         | 5     | Order rejected by exchange                                |
-| `ORDER_STATE_EXPIRED`          | 6     | Order expired (GTD orders)                                |
+| State | Value | Description |
+| - | - | - |
+| `ORDER_STATE_PENDING_NEW` | 7 | Order received, not yet processed by matching engine |
+| `ORDER_STATE_NEW` | 0 | Order accepted by matching engine and resting on the book |
+| `ORDER_STATE_PENDING_REPLACE` | 8 | Modify request received, not yet processed |
+| `ORDER_STATE_PENDING_CANCEL` | 9 | Cancel request received, not yet processed |
+| `ORDER_STATE_PENDING_RISK` | 10 | Order pending risk approval |
+| `ORDER_STATE_PARTIALLY_FILLED` | 1 | Order partially executed |
+| `ORDER_STATE_FILLED` | 2 | Order fully executed |
+| `ORDER_STATE_CANCELED` | 3 | Order canceled |
+| `ORDER_STATE_REPLACED` | 4 | Order replaced via modify (cancel-replace) |
+| `ORDER_STATE_REJECTED` | 5 | Order rejected by exchange |
+| `ORDER_STATE_EXPIRED` | 6 | Order expired (GTD orders) |
 
 ## Time in Force
 
-| Value                               | Description                                              |
-| ----------------------------------- | -------------------------------------------------------- |
-| `TIME_IN_FORCE_DAY`                 | DAY - Expires at the end of the trading day              |
-| `TIME_IN_FORCE_GOOD_TILL_CANCEL`    | GTC - Remains active until filled or canceled            |
-| `TIME_IN_FORCE_GOOD_TILL_DATE`      | GTD - Expires at specified `goodTillTime`                |
+| Value | Description |
+| - | - |
+| `TIME_IN_FORCE_DAY` | DAY - Expires at the end of the trading day |
+| `TIME_IN_FORCE_GOOD_TILL_CANCEL` | GTC - Remains active until filled or canceled |
+| `TIME_IN_FORCE_GOOD_TILL_DATE` | GTD - Expires at specified `goodTillTime` |
 | `TIME_IN_FORCE_IMMEDIATE_OR_CANCEL` | IOC - Fills immediately available quantity, cancels rest |
-| `TIME_IN_FORCE_FILL_OR_KILL`        | FOK - Must fill entirely or cancel completely            |
+| `TIME_IN_FORCE_FILL_OR_KILL` | FOK - Must fill entirely or cancel completely |
 
 <Warning>
   **DAY orders do not automatically cancel at 5pm during trade day rolls.**
@@ -237,40 +237,40 @@ PENDING_NEW → PARTIALLY_FILLED → FILLED
 
 Required to indicate whether the order is placed by a human or automated system:
 
-| Value                              | Description                                 |
-| ---------------------------------- | ------------------------------------------- |
-| `MANUAL_ORDER_INDICATOR_MANUAL`    | Order placed manually by a user             |
+| Value | Description |
+| - | - |
+| `MANUAL_ORDER_INDICATOR_MANUAL` | Order placed manually by a user |
 | `MANUAL_ORDER_INDICATOR_AUTOMATIC` | Order placed by an automated trading system |
 
 ## Execution Types
 
 Execution events returned in synchronous order responses:
 
-| Value                         | Description                                     |
-| ----------------------------- | ----------------------------------------------- |
-| `EXECUTION_TYPE_NEW`          | Order accepted (new working order confirmation) |
-| `EXECUTION_TYPE_PARTIAL_FILL` | Order partially filled                          |
-| `EXECUTION_TYPE_FILL`         | Order fully filled                              |
-| `EXECUTION_TYPE_CANCELED`     | Order canceled                                  |
-| `EXECUTION_TYPE_REPLACE`      | Order replaced/modified                         |
-| `EXECUTION_TYPE_REJECTED`     | Order rejected                                  |
-| `EXECUTION_TYPE_EXPIRED`      | Order expired                                   |
-| `EXECUTION_TYPE_DONE_FOR_DAY` | Order done for the trading day                  |
+| Value | Description |
+| - | - |
+| `EXECUTION_TYPE_NEW` | Order accepted (new working order confirmation) |
+| `EXECUTION_TYPE_PARTIAL_FILL` | Order partially filled |
+| `EXECUTION_TYPE_FILL` | Order fully filled |
+| `EXECUTION_TYPE_CANCELED` | Order canceled |
+| `EXECUTION_TYPE_REPLACE` | Order replaced/modified |
+| `EXECUTION_TYPE_REJECTED` | Order rejected |
+| `EXECUTION_TYPE_EXPIRED` | Order expired |
+| `EXECUTION_TYPE_DONE_FOR_DAY` | Order done for the trading day |
 
 ## Order Reject Reasons
 
 If an order is rejected, the reason will be one of:
 
-| Value                                       | Description                                                               |
-| ------------------------------------------- | ------------------------------------------------------------------------- |
-| `ORD_REJECT_REASON_EXCHANGE_OPTION`         | Generic exchange-defined reason (used when no more specific code applies) |
-| `ORD_REJECT_REASON_UNKNOWN_MARKET`          | Unknown or invalid market                                                 |
-| `ORD_REJECT_REASON_EXCHANGE_CLOSED`         | Exchange/market is closed                                                 |
-| `ORD_REJECT_REASON_INCORRECT_QUANTITY`      | Invalid quantity                                                          |
-| `ORD_REJECT_REASON_INVALID_PRICE_INCREMENT` | Price not on valid increment                                              |
-| `ORD_REJECT_REASON_INCORRECT_ORDER_TYPE`    | Invalid order type for market                                             |
-| `ORD_REJECT_REASON_PRICE_OUT_OF_BOUNDS`     | Price outside valid range                                                 |
-| `ORD_REJECT_REASON_NO_LIQUIDITY`            | No liquidity for market order                                             |
+| Value | Description |
+| - | - |
+| `ORD_REJECT_REASON_EXCHANGE_OPTION` | Generic exchange-defined reason (used when no more specific code applies) |
+| `ORD_REJECT_REASON_UNKNOWN_MARKET` | Unknown or invalid market |
+| `ORD_REJECT_REASON_EXCHANGE_CLOSED` | Exchange/market is closed |
+| `ORD_REJECT_REASON_INCORRECT_QUANTITY` | Invalid quantity |
+| `ORD_REJECT_REASON_INVALID_PRICE_INCREMENT` | Price not on valid increment |
+| `ORD_REJECT_REASON_INCORRECT_ORDER_TYPE` | Invalid order type for market |
+| `ORD_REJECT_REASON_PRICE_OUT_OF_BOUNDS` | Price outside valid range |
+| `ORD_REJECT_REASON_NO_LIQUIDITY` | No liquidity for market order |
 
 ## Slippage Tolerance
 
@@ -285,11 +285,11 @@ For market orders or close position orders, you can specify slippage tolerance:
 }
 ```
 
-| Field          | Type    | Description                                                  |
-| -------------- | ------- | ------------------------------------------------------------ |
-| `currentPrice` | Amount  | Reference price for slippage calculation                     |
-| `bips`         | integer | Slippage tolerance in basis points (1 bip = 0.01%)           |
-| `ticks`        | integer | Slippage tolerance in price ticks (takes priority over bips) |
+| Field | Type | Description |
+| - | - | - |
+| `currentPrice` | Amount | Reference price for slippage calculation |
+| `bips` | integer | Slippage tolerance in basis points (1 bip = 0.01%) |
+| `ticks` | integer | Slippage tolerance in price ticks (takes priority over bips) |
 
 ### Default Values
 

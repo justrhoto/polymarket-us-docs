@@ -46,9 +46,9 @@ Download reports as CSV files: trade reports, execution reports, position report
 
 Two streaming CSV endpoints expose the full position and cash audit trail:
 
-| Endpoint                                  | Description                                                                                                                                 |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GET /v1/positions/ledger/download`       | Every position change (deltas + cumulative state). See [Position Ledger](/institutional/positions/overview#position-ledger).                |
+| Endpoint | Description |
+| - | - |
+| `GET /v1/positions/ledger/download` | Every position change (deltas + cumulative state). See [Position Ledger](/institutional/positions/overview#position-ledger). |
 | `GET /v1/funding/balance-ledger/download` | Every cash balance change (`before_balance` / `after_balance` + typed `entry_type`). See [Balance Ledger](/institutional/funding/overview). |
 
 Both require the `read:positions` scope and are subject to a per-firm rate limit of \~5 downloads per minute. The historical floor is `2026-05-01`; pre-floor data is not retrievable.

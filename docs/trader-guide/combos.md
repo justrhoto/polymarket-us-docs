@@ -94,16 +94,16 @@ An RFQ supplies either a contract quantity or a cash notional:
 }
 ```
 
-| Field              | Meaning                                                    |
-| ------------------ | ---------------------------------------------------------- |
-| `qtyDecimal`       | Exact contract quantity. Present only for a quantity RFQ.  |
-| `cashOrderQty`     | Cash notional. Present only for a cash RFQ.                |
-| `symbol`           | Combo symbol to quote and trade.                           |
-| `rfqCreatorUserId` | Pseudonymous requester identity.                           |
-| `restRemainder`    | Whether the requester's unfilled order remainder may rest. |
-| `status`           | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`.                  |
-| `comboLegs`        | Ordered component legs captured when the RFQ was created.  |
-| `tickSize`         | Optional minimum price increment in dollars.               |
+| Field | Meaning |
+| - | - |
+| `qtyDecimal` | Exact contract quantity. Present only for a quantity RFQ. |
+| `cashOrderQty` | Cash notional. Present only for a cash RFQ. |
+| `symbol` | Combo symbol to quote and trade. |
+| `rfqCreatorUserId` | Pseudonymous requester identity. |
+| `restRemainder` | Whether the requester's unfilled order remainder may rest. |
+| `status` | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`. |
+| `comboLegs` | Ordered component legs captured when the RFQ was created. |
+| `tickSize` | Optional minimum price increment in dollars. |
 
 Each combo leg contains its `symbol`, combo `side`, and optional `settlementPrice`. Settlement is the raw YES/LONG result normalized to `[0,1]`; do not invert it for `SIDE_SELL`. A present `"0"` is a valid settlement and differs from an absent field. Exact and list reads hydrate the latest available settlements, while `rfq_created` contains those available when the event was published.
 
@@ -126,14 +126,14 @@ Read `tickSize` (protobuf `tick_size`) before pricing the RFQ. If it is absent, 
 }
 ```
 
-| Field           | Maker behavior                                                                                         |
-| --------------- | ------------------------------------------------------------------------------------------------------ |
-| `buyPrice`      | Price offered for a requester `SIDE_BUY`; the maker sells.                                             |
-| `sellPrice`     | Price offered for a requester `SIDE_SELL`; the maker buys.                                             |
-| `"0"` price     | Marks that side unavailable. At least one side must be positive.                                       |
+| Field | Maker behavior |
+| - | - |
+| `buyPrice` | Price offered for a requester `SIDE_BUY`; the maker sells. |
+| `sellPrice` | Price offered for a requester `SIDE_SELL`; the maker buys. |
+| `"0"` price | Marks that side unavailable. At least one side must be positive. |
 | `restRemainder` | Required. If true, the maker order can remain GTC; otherwise it expires after the paired-order window. |
-| `postOnly`      | If true, the maker order is participate-don't-initiate.                                                |
-| `account`       | Required fully qualified maker account.                                                                |
+| `postOnly` | If true, the maker order is participate-don't-initiate. |
+| `account` | Required fully qualified maker account. |
 
 Do not send a side, symbol, quantity, expiration, or client request ID. The API obtains the symbol and sizing from the RFQ.
 
@@ -176,43 +176,43 @@ When a requester accepts one side:
 
 The requester's canonical side determines the selected economics:
 
-| `acceptedSide` | Selected price and quantity   | Maker order |
-| -------------- | ----------------------------- | ----------- |
-| `SIDE_BUY`     | `buyPrice`, `buyQtyDecimal`   | Sell        |
-| `SIDE_SELL`    | `sellPrice`, `sellQtyDecimal` | Buy         |
+| `acceptedSide` | Selected price and quantity | Maker order |
+| - | - | - |
+| `SIDE_BUY` | `buyPrice`, `buyQtyDecimal` | Sell |
+| `SIDE_SELL` | `sellPrice`, `sellQtyDecimal` | Buy |
 
 The durable `Quote` returned by `GetQuotes` and embedded in stream events records:
 
-| REST JSON field     | Meaning                                 |
-| ------------------- | --------------------------------------- |
+| REST JSON field | Meaning |
+| - | - |
 | `executionDeadline` | Scheduled paired-order submission time. |
-| `executedTime`      | Durable execution-state timestamp.      |
-| `rfqCreatorOrderId` | Optional requester exchange order ID.   |
-| `creatorOrderId`    | Optional quoter exchange order ID.      |
+| `executedTime` | Durable execution-state timestamp. |
+| `rfqCreatorOrderId` | Optional requester exchange order ID. |
+| `creatorOrderId` | Optional quoter exchange order ID. |
 
 Both the requester and quoter can see both exchange order IDs. Client order IDs are not stored on the public `Quote`. Existing recipient-specific stream wrapper fields remain available for compatibility.
 
 Current timing is:
 
-| Interval                                        | Duration  | Source of truth                        |
-| ----------------------------------------------- | --------- | -------------------------------------- |
-| Quote submission window for RFQ Engine requests | 200 ms    | Quote immediately after `rfq_created`. |
-| Maker last look                                 | 3 seconds | `quote_accepted.confirmationDeadline`  |
-| Delay before paired order submission            | 1 second  | `quote_confirmed.executionDeadline`    |
+| Interval | Duration | Source of truth |
+| - | - | - |
+| Quote submission window for RFQ Engine requests | 200 ms | Quote immediately after `rfq_created`. |
+| Maker last look | 3 seconds | `quote_accepted.confirmationDeadline` |
+| Delay before paired order submission | 1 second | `quote_confirmed.executionDeadline` |
 
 These durations are configuration, not client-side timers. Use the deadlines on durable Quote state; existing event wrapper deadlines remain available for compatibility.
 
 ## Stream Visibility
 
-| Event             | Visibility                           | Maker action                                                                                          |
-| ----------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `rfq_created`     | Public                               | Inspect the combo and quote or ignore.                                                                |
-| `rfq_closed`      | Public                               | Stop creating or replacing quotes, but retain quote state; acceptance also closes the RFQ.            |
-| `quote_created`   | Requester and quote creator          | Store the returned quote state and ID.                                                                |
-| `quote_deleted`   | Requester and quote creator          | Stop treating the quote as live.                                                                      |
-| `quote_accepted`  | Requester and selected quote creator | Confirm or delete before `confirmationDeadline`.                                                      |
-| `quote_confirmed` | Requester and selected quote creator | Expect paired submission at `executionDeadline`.                                                      |
-| `quote_executed`  | Requester and selected quote creator | Read both durable exchange order IDs from the embedded Quote and correlate your order with Drop Copy. |
+| Event | Visibility | Maker action |
+| - | - | - |
+| `rfq_created` | Public | Inspect the combo and quote or ignore. |
+| `rfq_closed` | Public | Stop creating or replacing quotes, but retain quote state; acceptance also closes the RFQ. |
+| `quote_created` | Requester and quote creator | Store the returned quote state and ID. |
+| `quote_deleted` | Requester and quote creator | Stop treating the quote as live. |
+| `quote_accepted` | Requester and selected quote creator | Confirm or delete before `confirmationDeadline`. |
+| `quote_confirmed` | Requester and selected quote creator | Expect paired submission at `executionDeadline`. |
+| `quote_executed` | Requester and selected quote creator | Read both durable exchange order IDs from the embedded Quote and correlate your order with Drop Copy. |
 
 There are no expiration, done-away, pending-risk, pending-end-trade, action-rejected, or status-rejected events in the current public stream.
 
@@ -220,13 +220,13 @@ There are no expiration, done-away, pending-risk, pending-end-trade, action-reje
 
 Use `GetQuotes` according to the visibility you need:
 
-| Request                                 | Result                                       |
-| --------------------------------------- | -------------------------------------------- |
-| `{ user_filter: USER_FILTER_SELF }`     | Quotes created by your participant.          |
-| `{ rfq_user_filter: USER_FILTER_SELF }` | Quotes on RFQs created by your participant.  |
-| `{ rfq_id: "..." }` as requester        | All visible quotes for that RFQ.             |
-| `{ rfq_id: "..." }` as maker            | Your deterministic quote for that RFQ.       |
-| `{ rfq_id: "...", quote_id: "..." }`    | Exact visible quote, or an empty collection. |
+| Request | Result |
+| - | - |
+| `{ user_filter: USER_FILTER_SELF }` | Quotes created by your participant. |
+| `{ rfq_user_filter: USER_FILTER_SELF }` | Quotes on RFQs created by your participant. |
+| `{ rfq_id: "..." }` as requester | All visible quotes for that RFQ. |
+| `{ rfq_id: "..." }` as maker | Your deterministic quote for that RFQ. |
+| `{ rfq_id: "...", quote_id: "..." }` | Exact visible quote, or an empty collection. |
 
 Use opaque cursors only with the same participant, query path, and filters. If a write returns an unknown result because the connection fails, read the exact RFQ or quote before deciding whether to act again.
 

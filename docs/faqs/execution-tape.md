@@ -18,12 +18,12 @@ The Time & Sales Report is a minimal execution tape containing exactly 4 columns
 
 ## Fields
 
-| Field                | Description                                        |
-| -------------------- | -------------------------------------------------- |
-| **Transaction Time** | Timestamp of the executed trade                    |
-| **Symbol**           | Contract identifier                                |
-| **Last Price**       | Execution price of the trade (implied probability) |
-| **Last Quantity**    | Size of the trade (number of contracts)            |
+| Field | Description |
+| - | - |
+| **Transaction Time** | Timestamp of the executed trade |
+| **Symbol** | Contract identifier |
+| **Last Price** | Execution price of the trade (implied probability) |
+| **Last Quantity** | Size of the trade (number of contracts) |
 
 ## Key Characteristics
 

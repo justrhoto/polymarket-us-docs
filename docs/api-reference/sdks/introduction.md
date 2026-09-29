@@ -53,17 +53,17 @@ Python and TypeScript SDKs for integrating with the Polymarket US API. Both libr
 
 ## API Coverage
 
-| Resource  | Methods                                                                                   |
-| --------- | ----------------------------------------------------------------------------------------- |
-| Events    | `list`, `retrieve`, `retrieveBySlug`                                                      |
-| Markets   | `list`, `retrieve`, `retrieveBySlug`, `book`, `bbo`, `settlement`                         |
-| Orders    | `create`, `list`, `retrieve`, `cancel`, `modify`, `cancelAll`, `preview`, `closePosition` |
-| Portfolio | `positions`, `activities`                                                                 |
-| Account   | `balances`                                                                                |
-| Series    | `list`, `retrieve`                                                                        |
-| Sports    | `list`, `teams`                                                                           |
-| Search    | `query`                                                                                   |
-| WebSocket | `private`, `markets`                                                                      |
+| Resource | Methods |
+| - | - |
+| Events | `list`, `retrieve`, `retrieveBySlug` |
+| Markets | `list`, `retrieve`, `retrieveBySlug`, `book`, `bbo`, `settlement` |
+| Orders | `create`, `list`, `retrieve`, `cancel`, `modify`, `cancelAll`, `preview`, `closePosition` |
+| Portfolio | `positions`, `activities` |
+| Account | `balances` |
+| Series | `list`, `retrieve` |
+| Sports | `list`, `teams` |
+| Search | `query` |
+| WebSocket | `private`, `markets` |
 
 ## Quick Example
 

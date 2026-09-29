@@ -36,13 +36,13 @@ POST /v1/kyc/prefill
 }
 ```
 
-| Field           | Type   | Required | Description                                                                                               |
-| --------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------- |
-| `phone_number`  | string | Yes      | E.164 format (e.g. `+15551234567`)                                                                        |
-| `date_of_birth` | string | Yes      | `YYYY-MM-DD`                                                                                              |
-| `user_id`       | string | Yes      | Your stable internal identifier for this participant                                                      |
-| `session_token` | string | No       | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) token — strongly recommended |
-| `ip_address`    | string | No       | Participant's IP address                                                                                  |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `phone_number` | string | Yes | E.164 format (e.g. `+15551234567`) |
+| `date_of_birth` | string | Yes | `YYYY-MM-DD` |
+| `user_id` | string | Yes | Your stable internal identifier for this participant |
+| `session_token` | string | No | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) token — strongly recommended |
+| `ip_address` | string | No | Participant's IP address |
 
 Response:
 
@@ -73,10 +73,10 @@ POST /v1/kyc/prefill/otp
 }
 ```
 
-| Field         | Type   | Required | Description                                |
-| ------------- | ------ | -------- | ------------------------------------------ |
-| `otp`         | string | Yes      | The 6-digit code the participant received  |
-| `external_id` | string | Yes      | The `externalId` from the prefill response |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `otp` | string | Yes | The 6-digit code the participant received |
+| `external_id` | string | Yes | The `externalId` from the prefill response |
 
 On success, the response includes the prefilled identity data:
 
@@ -106,14 +106,14 @@ On success, the response includes the prefilled identity data:
 }
 ```
 
-| Field                                   | Description            |
-| --------------------------------------- | ---------------------- |
-| `firstName` / `middleName` / `lastName` | Legal name             |
-| `dateOfBirth`                           | Date of birth          |
-| `phoneNumber`                           | Verified phone number  |
-| `email`                                 | Email (if available)   |
-| `ssn`                                   | **Last 4 digits only** |
-| `address`                               | Residential address    |
+| Field | Description |
+| - | - |
+| `firstName` / `middleName` / `lastName` | Legal name |
+| `dateOfBirth` | Date of birth |
+| `phoneNumber` | Verified phone number |
+| `email` | Email (if available) |
+| `ssn` | **Last 4 digits only** |
+| `address` | Residential address |
 
 <Note>
   All identity fields are optional and may be absent if the prefill provider has no data for this phone/DOB. Always let the participant review and edit prefilled values before submission.
@@ -187,26 +187,26 @@ message SubmitKYCPrefillOTPResponse {
 
 ## Error handling
 
-| Error                 | Cause                      | Resolution                    |
-| --------------------- | -------------------------- | ----------------------------- |
-| Invalid phone number  | Wrong format               | Use E.164 (`+1XXXXXXXXXX`)    |
-| OTP expired           | Usually after 10 minutes   | Restart the prefill flow      |
-| OTP invalid           | Wrong code                 | Re-enter or request a new OTP |
-| Prefill not available | No data for this phone/DOB | Proceed with manual entry     |
+| Error | Cause | Resolution |
+| - | - | - |
+| Invalid phone number | Wrong format | Use E.164 (`+1XXXXXXXXXX`) |
+| OTP expired | Usually after 10 minutes | Restart the prefill flow |
+| OTP invalid | Wrong code | Re-enter or request a new OTP |
+| Prefill not available | No data for this phone/DOB | Proceed with manual entry |
 
 Allow up to 3 OTP attempts before requiring a new code, and rate-limit OTP requests to prevent abuse. Prefill failures should never block onboarding — fall back to the manual form.
 
 ## Sandbox testing
 
-| Scenario         | `date_of_birth` | `phone_number` |
-| ---------------- | --------------- | -------------- |
-| Prefill match    | `1985-03-30`    | `14155551212`  |
-| No prefill match | `1985-03-30`    | `12067890036`  |
+| Scenario | `date_of_birth` | `phone_number` |
+| - | - | - |
+| Prefill match | `1985-03-30` | `14155551212` |
+| No prefill match | `1985-03-30` | `12067890036` |
 
-| OTP code | Result                                 |
-| -------- | -------------------------------------- |
-| `123456` | Success — returns prefilled data       |
-| `00000`  | Reject — OTP verification fails        |
+| OTP code | Result |
+| - | - |
+| `123456` | Success — returns prefilled data |
+| `00000` | Reject — OTP verification fails |
 | `000000` | Pending — verification remains pending |
 
 ## Next steps

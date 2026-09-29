@@ -31,20 +31,20 @@ REST/gRPC relies on cryptographic identity (RSA signatures and JWTs). FIX relies
 
 This table shows how the same concepts are represented in REST/gRPC vs FIX:
 
-| Concept            | REST/gRPC            | FIX               |
-| ------------------ | -------------------- | ----------------- |
-| Firm / participant | Implicit via login   | SenderCompID (49) |
-| Exchange           | REST base URL        | TargetCompID (56) |
-| User / trader      | Logged-in user       | SenderSubID (50)  |
-| Trading account    | Implicit             | Account (1)       |
-| Instrument         | Symbol               | Symbol (55)       |
-| Client order ID    | Client-generated ID  | ClOrdID (11)      |
-| Exchange order ID  | Returned in response | OrderID (37)      |
-| Side               | buy / sell           | Side (54)         |
-| Order type         | JSON field           | OrdType (40)      |
-| Quantity           | JSON field           | OrderQty (38)     |
-| Price              | JSON field           | Price (44)        |
-| Time in force      | JSON field           | TimeInForce (59)  |
+| Concept | REST/gRPC | FIX |
+| - | - | - |
+| Firm / participant | Implicit via login | SenderCompID (49) |
+| Exchange | REST base URL | TargetCompID (56) |
+| User / trader | Logged-in user | SenderSubID (50) |
+| Trading account | Implicit | Account (1) |
+| Instrument | Symbol | Symbol (55) |
+| Client order ID | Client-generated ID | ClOrdID (11) |
+| Exchange order ID | Returned in response | OrderID (37) |
+| Side | buy / sell | Side (54) |
+| Order type | JSON field | OrdType (40) |
+| Quantity | JSON field | OrderQty (38) |
+| Price | JSON field | Price (44) |
+| Time in force | JSON field | TimeInForce (59) |
 
 ***
 
@@ -76,12 +76,12 @@ Authentication is based on:
 
 **REST/gRPC** infers user + account from login. **FIX** requires them to be sent on every order.
 
-| Concept         | REST/gRPC          | FIX               |
-| --------------- | ------------------ | ----------------- |
-| Firm identity   | Implicit via login | SenderCompID (49) |
-| User / trader   | Login user         | SenderSubID (50)  |
-| Trading account | Implicit           | Account (1)       |
-| Auth scope      | Session token      | FIX session       |
+| Concept | REST/gRPC | FIX |
+| - | - | - |
+| Firm identity | Implicit via login | SenderCompID (49) |
+| User / trader | Login user | SenderSubID (50) |
+| Trading account | Implicit | Account (1) |
+| Auth scope | Session token | FIX session |
 
 In FIX, the session itself (SenderCompID / TargetCompID) uniquely identifies the participant firm/clearing member, so symbols, accounts, and trader IDs do not need globally unique, fully qualified names the way REST resources do.
 
@@ -109,12 +109,12 @@ TCP FIXT.1.1. Static IP allowlisting required. Separate sessions for:
 
 ## State & Reliability
 
-| Area       | REST/gRPC        | FIX                     |
-| ---------- | ---------------- | ----------------------- |
-| Transport  | Request/response | Persistent session      |
-| Sequencing | Not required     | Mandatory (MsgSeqNum)   |
-| Recovery   | Client retries   | ResendRequest / GapFill |
-| Heartbeats | Not applicable   | Required                |
+| Area | REST/gRPC | FIX |
+| - | - | - |
+| Transport | Request/response | Persistent session |
+| Sequencing | Not required | Mandatory (MsgSeqNum) |
+| Recovery | Client retries | ResendRequest / GapFill |
+| Heartbeats | Not applicable | Required |
 
 ***
 
@@ -162,9 +162,9 @@ Requires AWS account and VPC setup, coordinated provisioning with exchange, uses
 
 ## Operational Differences
 
-| Area            | REST/gRPC   | FIX                       |
-| --------------- | ----------- | ------------------------- |
-| Who can onboard | Any user    | Exchange + client         |
-| Network setup   | None        | Required                  |
-| Identity setup  | Automatic   | Manual                    |
-| Failure modes   | HTTP errors | Session / sequence errors |
+| Area | REST/gRPC | FIX |
+| - | - | - |
+| Who can onboard | Any user | Exchange + client |
+| Network setup | None | Required |
+| Identity setup | Automatic | Manual |
+| Failure modes | HTTP errors | Session / sequence errors |

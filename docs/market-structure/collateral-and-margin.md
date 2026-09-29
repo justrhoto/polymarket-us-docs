@@ -31,9 +31,9 @@ When a trade executes at a given price:
 **Example: Trade at \$0.40**
 
 | Participant | Cash Flow | Margin Required | Buying Power Change |
-| ----------- | --------- | --------------- | ------------------- |
-| Buyer       | –\$0.40   | \$0             | –\$0.40             |
-| Seller      | +\$0.40   | \$1.00          | –\$0.60             |
+| - | - | - | - |
+| Buyer | –\$0.40 | \$0 | –\$0.40 |
+| Seller | +\$0.40 | \$1.00 | –\$0.60 |
 
 At settlement, **Polymarket Clearing** holds the seller's \$1.00 margin to guarantee payout. The buyer's \$0.40 payment becomes the seller's proceeds.
 
@@ -43,10 +43,10 @@ Once a trade is executed, maximum gain and loss are fixed and do not change rega
 
 **For a contract trading at \$0.40:**
 
-| Position     | Max Loss | Max Gain |
-| ------------ | -------- | -------- |
-| Buy (Long)   | \$0.40   | \$0.60   |
-| Sell (Short) | \$0.60   | \$0.40   |
+| Position | Max Loss | Max Gain |
+| - | - | - |
+| Buy (Long) | \$0.40 | \$0.60 |
+| Sell (Short) | \$0.60 | \$0.40 |
 
 ## Shorting Mechanics
 
@@ -72,11 +72,11 @@ Shorts are created by selling yes contracts and posting \$1.00 margin per contra
 
 ### P/L Summary Table
 
-| Action           | Outcome   | P/L     |
-| ---------------- | --------- | ------- |
-| Buy yes @\$0.60  | yes wins  | +\$0.40 |
-| Buy yes @\$0.60  | yes loses | –\$0.60 |
-| Sell yes @\$0.60 | yes wins  | –\$0.40 |
+| Action | Outcome | P/L |
+| - | - | - |
+| Buy yes @\$0.60 | yes wins | +\$0.40 |
+| Buy yes @\$0.60 | yes loses | –\$0.60 |
+| Sell yes @\$0.60 | yes wins | –\$0.40 |
 | Sell yes @\$0.60 | yes loses | +\$0.60 |
 
 ## Short Position Details
@@ -100,10 +100,10 @@ Open orders consume buying power before they fill, and the risk check is **scope
 
 Worked example, with \$10 of buying power:
 
-| Order                                                             | Result                                                       |
-| ----------------------------------------------------------------- | ------------------------------------------------------------ |
-| One order with \$11 of worst-case loss                            | **Rejected** - exceeds buying power on its own               |
-| Two \$10 orders on the **same** instrument, same side             | **Rejected** - orders in one instrument aggregate            |
+| Order | Result |
+| - | - |
+| One order with \$11 of worst-case loss | **Rejected** - exceeds buying power on its own |
+| Two \$10 orders on the **same** instrument, same side | **Rejected** - orders in one instrument aggregate |
 | One \$10 order on instrument A and one \$10 order on instrument B | **Both accepted** - each instrument is checked independently |
 
 This scoping is deliberate: it lets liquidity providers quote across many markets without fully funding every resting quote simultaneously.

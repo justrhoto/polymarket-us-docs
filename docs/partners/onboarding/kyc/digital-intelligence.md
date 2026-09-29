@@ -30,12 +30,12 @@ Omitting the `session_token` will **not** cause an evaluation to fail — but ex
 
 DI collects **non-PII** device and session signals only. PII (name, SSN, address) is transmitted solely when you call `POST /v1/kyc/start`.
 
-| Signal type         | Examples                                                  |
-| ------------------- | --------------------------------------------------------- |
-| Device fingerprint  | Browser type/version, OS, screen resolution, fonts        |
-| Network signals     | IP address, ASN, proxy/VPN detection                      |
+| Signal type | Examples |
+| - | - |
+| Device fingerprint | Browser type/version, OS, screen resolution, fonts |
+| Network signals | IP address, ASN, proxy/VPN detection |
 | Behavioural signals | Typing cadence, form-interaction timing, pointer patterns |
-| Session metadata    | Session duration, page-interaction sequence               |
+| Session metadata | Session duration, page-interaction sequence |
 
 ## Implementation
 

@@ -64,41 +64,42 @@ See [Authentication](/streaming-endpoints/authentication) for details on obtaini
 
 ### Trading Services
 
-| Service           | Description                                              |
-| ----------------- | -------------------------------------------------------- |
-| **OrderEntryAPI** | Insert, cancel, and preview orders                       |
-| **ComboAPI**      | Create and read combo instruments                        |
-| **RFQAPI**        | Read and manage combo RFQs and quotes; stream RFQ events |
-| **ReportAPI**     | Search orders, trades, and executions                    |
-| **PositionAPI**   | Query account balances and positions                     |
+| Service | Description |
+| - | - |
+| **OrderEntryAPI** | Insert, cancel, and preview orders |
+| **ComboAPI** | Create and read combo instruments |
+| **RFQAPI** | Read and manage combo RFQs and quotes; stream RFQ events |
+| **ReportAPI** | Search orders, trades, and executions |
+| **PositionAPI** | Query account balances and positions |
 
 ### Market Data Services
 
-| Service          | Description                             |
-| ---------------- | --------------------------------------- |
-| **RefDataAPI**   | List instruments, symbols, and metadata |
-| **OrderBookAPI** | Get order book snapshots and BBO        |
+| Service | Description |
+| - | - |
+| **RefDataAPI** | List instruments, symbols, and metadata |
+| **OrderBookAPI** | Get order book snapshots and BBO |
+| **[SettlementService](/streaming-endpoints/proto-reference#instrument-settlement)** | Read final settlement prices, including after instrument termination |
 
 ### Account Services
 
-| Service         | Description                  |
-| --------------- | ---------------------------- |
+| Service | Description |
+| - | - |
 | **AccountsAPI** | Get user info, list accounts |
-| **HealthAPI**   | Health check endpoint        |
+| **HealthAPI** | Health check endpoint |
 
 ### Funding Services
 
-| Service         | Description                                |
-| --------------- | ------------------------------------------ |
-| **KYCAPI**      | KYC verification status and referral codes |
-| **AeropayAPI**  | ACH bank linking via Aeropay               |
-| **CheckoutAPI** | Card payments via Checkout.com             |
-| **FundingAPI**  | Funding accounts and transactions          |
+| Service | Description |
+| - | - |
+| **KYCAPI** | KYC verification status and referral codes |
+| **AeropayAPI** | ACH bank linking via Aeropay |
+| **CheckoutAPI** | Card payments via Checkout.com |
+| **FundingAPI** | Funding accounts and transactions |
 
 ### Execution Feed
 
-| Service         | Description                      |
-| --------------- | -------------------------------- |
+| Service | Description |
+| - | - |
 | **DropCopyAPI** | Trade capture and execution feed |
 
 ***
@@ -182,19 +183,21 @@ for response in stub.CreateDropCopySubscription(request, metadata=metadata):
 <Tip>
   **When to Use Each Stream**
 
-  | Stream                      | Use Case                                         |
-  | --------------------------- | ------------------------------------------------ |
-  | **DropCopy**                | Real-time execution monitoring, trading systems  |
-  | **Trade Capture Report**    | Back-office reconciliation, compliance reporting |
-  | **Instrument State Change** | Trading halts, market open/close notifications   |
-  | **Position Change**         | Real-time P\&L, risk monitoring                  |
+  | Stream | Use Case |
+  | - | - |
+  | **DropCopy** | Real-time execution monitoring, trading systems |
+  | **Trade Capture Report** | Back-office reconciliation, compliance reporting |
+  | **Instrument State Change** | Trading halts, market open/close notifications |
+  | **Position Change** | Real-time P\&L, risk monitoring |
 </Tip>
 
 ***
 
 ## Package Structure
 
-All services are in the `polymarket.v1` package:
+Most services are in the `polymarket.v1` package. [SettlementService](/streaming-endpoints/proto-reference#instrument-settlement) uses `polymarket.us.settlement.v1`.
+
+For example, the order-entry service uses:
 
 ```protobuf theme={null}
 package polymarket.v1;
@@ -262,13 +265,13 @@ print(f"User ID: {response.user_id}")
 
 Both REST and gRPC access the same underlying services. Choose based on your needs:
 
-| Aspect          | REST            | gRPC               |
-| --------------- | --------------- | ------------------ |
-| Protocol        | HTTP/JSON       | HTTP/2 + Protobuf  |
-| Performance     | Good            | Better             |
-| Type Safety     | Schema optional | Built-in           |
-| Browser Support | Native          | Requires proxy     |
-| Tooling         | curl, Postman   | grpcurl, Bloom RPC |
+| Aspect | REST | gRPC |
+| - | - | - |
+| Protocol | HTTP/JSON | HTTP/2 + Protobuf |
+| Performance | Good | Better |
+| Type Safety | Schema optional | Built-in |
+| Browser Support | Native | Requires proxy |
+| Tooling | curl, Postman | grpcurl, Bloom RPC |
 
 <Tip>
   Most integrations use **REST for simplicity** and **gRPC for performance-critical paths** like order entry.

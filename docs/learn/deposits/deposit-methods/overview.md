@@ -14,11 +14,11 @@ You can fund your Polymarket account using:
 
 Here's how each method compares:
 
-| Funding Method      | Daily Limit             | Processing Time   | Best For        |
-| ------------------- | ----------------------- | ----------------- | --------------- |
-| Debit Card          | \$50,000                | 3–4 business days | Small deposits  |
-| Bank Transfer (ACH) | \$50,000                | 3–4 business days | Medium deposits |
-| Wire Transfer       | \$1,000 minimum, no max | 1 business day    | Large deposits  |
+| Funding Method | Daily Limit | Processing Time | Best For |
+| - | - | - | - |
+| Debit Card | \$50,000 | 3–4 business days | Small deposits |
+| Bank Transfer (ACH) | \$50,000 | 3–4 business days | Medium deposits |
+| Wire Transfer | \$1,000 minimum, no max | 1 business day | Large deposits |
 
 <Note>
   Debit card and bank transfer (ACH) deposits may be credited with instant buying power while the deposit is processing. Withdrawals are available once the deposit has fully cleared.

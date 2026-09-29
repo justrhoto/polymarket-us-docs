@@ -16,35 +16,35 @@ The service validates populated fields against a fail-closed allowlist. Any fiel
 
 ## Supported fields
 
-| `InsertOrderRequest` field          | Type                             | Partner support                             | Requirements                                                                                                                                                                                                            |
-| ----------------------------------- | -------------------------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                              | `OrderType`                      | **Required**                                | Must be `ORDER_TYPE_LIMIT`.                                                                                                                                                                                             |
-| `side`                              | `Side`                           | **Required**                                | `SIDE_BUY` or `SIDE_SELL`, expressed in YES terms. Use the [complementary order](#outcomes-and-prices) for NO.                                                                                                          |
-| `order_qty`                         | `int64`                          | **Optional; exactly one quantity required** | Positive contract quantity in the instrument's fixed-point quantity scale. Set exactly one of `order_qty` and `cash_order_qty`.                                                                                         |
-| `symbol`                            | `string`                         | **Required**                                | Exchange symbol for the market.                                                                                                                                                                                         |
-| `price`                             | `int64`                          | **Required**                                | Positive YES limit price in the instrument's fixed-point price scale, including for an order expressing a NO position.                                                                                                  |
-| `time_in_force`                     | `TimeInForce`                    | **Required**                                | Must be `TIME_IN_FORCE_FILL_OR_KILL`. Every other time-in-force value is rejected.                                                                                                                                      |
-| `clord_id`                          | `string`                         | **Required**                                | Your FIX tag-11 client order ID: 1–64 visible ASCII characters, unique across live orders for the participant. Echoed as `clOrdID` on Drop Copy and included in the Vendor Fees report.                                 |
-| `account`                           | `string`                         | **Required**                                | The participant's DCM trading account from the KYC approval webhook. This is the sole customer identifier and the account used to match Drop Copy.                                                                      |
-| `stop_price`                        | `int64`                          | **Rejected if set**                         | Stop and stop-limit orders are unsupported.                                                                                                                                                                             |
-| `min_qty`                           | `int64`                          | **Rejected if set**                         | Minimum-quantity instructions are unsupported.                                                                                                                                                                          |
-| `self_match_prevention_id`          | `string`                         | **Rejected if set**                         | Custom self-match prevention identifiers are unsupported.                                                                                                                                                               |
-| `quote`                             | `string`                         | **Rejected if set**                         | Quote-linked orders are unsupported.                                                                                                                                                                                    |
-| `all_or_none`                       | `bool`                           | **Rejected if set**                         | Use FOK for the supported all-or-cancel execution behavior.                                                                                                                                                             |
-| `session_id`                        | `string`                         | **Rejected if set**                         | The service derives submission context. Do not copy a session from another API call.                                                                                                                                    |
-| `user`                              | `string`                         | **Rejected if set**                         | The service derives the submitting participant from the authenticated firm's relationship to `account`.                                                                                                                 |
-| `client_account_id`                 | `string`                         | **Rejected if set**                         | Use `account` as the account identifier.                                                                                                                                                                                |
-| `client_participant_id`             | `string`                         | **Rejected if set**                         | The service derives the participant associated with `account`.                                                                                                                                                          |
-| `participate_dont_initiate`         | `bool`                           | **Rejected if set**                         | Post-only behavior is unsupported.                                                                                                                                                                                      |
-| `cash_order_qty`                    | `int64`                          | **Optional; exactly one quantity required** | Positive USD principal in the instrument's fixed-point price scale. On BUY, this is YES principal; on SELL, it is complementary NO collateral—not target proceeds. Set exactly one of `cash_order_qty` and `order_qty`. |
-| `strict_limit`                      | `bool`                           | **Rejected if set**                         | Strict-limit behavior is unsupported.                                                                                                                                                                                   |
-| `good_till_time`                    | `Timestamp`                      | **Rejected if set**                         | Non-default `good_till_time` is unsupported and rejected.                                                                                                                                                               |
-| `best_limit`                        | `bool`                           | **Rejected if set**                         | Best-limit pricing is unsupported.                                                                                                                                                                                      |
-| `immediately_executable_limit`      | `bool`                           | **Rejected if set**                         | Immediately-executable-limit behavior is unsupported.                                                                                                                                                                   |
-| `self_match_prevention_instruction` | `SelfMatchPreventionInstruction` | **Rejected if set**                         | Custom self-match prevention instructions are unsupported.                                                                                                                                                              |
-| `order_capacity`                    | `OrderCapacity`                  | **Rejected if set**                         | Custom order-capacity values are unsupported.                                                                                                                                                                           |
-| `ignore_price_validity_checks`      | `bool`                           | **Rejected if set**                         | Price validity checks cannot be bypassed.                                                                                                                                                                               |
-| `manual_order_indicator`            | `ManualOrderIndicator`           | **Required**                                | `MANUAL_ORDER_INDICATOR_MANUAL` for a human-entered order or `MANUAL_ORDER_INDICATOR_AUTOMATED` for a system-generated order.                                                                                           |
+| `InsertOrderRequest` field | Type | Partner support | Requirements |
+| - | - | - | - |
+| `type` | `OrderType` | **Required** | Must be `ORDER_TYPE_LIMIT`. |
+| `side` | `Side` | **Required** | `SIDE_BUY` or `SIDE_SELL`, expressed in YES terms. Use the [complementary order](#outcomes-and-prices) for NO. |
+| `order_qty` | `int64` | **Optional; exactly one quantity required** | Positive contract quantity in the instrument's fixed-point quantity scale. Set exactly one of `order_qty` and `cash_order_qty`. |
+| `symbol` | `string` | **Required** | Exchange symbol for the market. |
+| `price` | `int64` | **Required** | Positive YES limit price in the instrument's fixed-point price scale, including for an order expressing a NO position. |
+| `time_in_force` | `TimeInForce` | **Required** | Must be `TIME_IN_FORCE_FILL_OR_KILL`. Every other time-in-force value is rejected. |
+| `clord_id` | `string` | **Required** | Your FIX tag-11 client order ID: 1–64 visible ASCII characters, unique across live orders for the participant. Echoed as `clOrdID` on Drop Copy and included in the Vendor Fees report. |
+| `account` | `string` | **Required** | The participant's DCM trading account from the KYC approval webhook. This is the sole customer identifier and the account used to match Drop Copy. |
+| `stop_price` | `int64` | **Rejected if set** | Stop and stop-limit orders are unsupported. |
+| `min_qty` | `int64` | **Rejected if set** | Minimum-quantity instructions are unsupported. |
+| `self_match_prevention_id` | `string` | **Rejected if set** | Custom self-match prevention identifiers are unsupported. |
+| `quote` | `string` | **Rejected if set** | Quote-linked orders are unsupported. |
+| `all_or_none` | `bool` | **Rejected if set** | Use FOK for the supported all-or-cancel execution behavior. |
+| `session_id` | `string` | **Rejected if set** | The service derives submission context. Do not copy a session from another API call. |
+| `user` | `string` | **Rejected if set** | The service derives the submitting participant from the authenticated firm's relationship to `account`. |
+| `client_account_id` | `string` | **Rejected if set** | Use `account` as the account identifier. |
+| `client_participant_id` | `string` | **Rejected if set** | The service derives the participant associated with `account`. |
+| `participate_dont_initiate` | `bool` | **Rejected if set** | Post-only behavior is unsupported. |
+| `cash_order_qty` | `int64` | **Optional; exactly one quantity required** | Positive USD principal in the instrument's fixed-point price scale. On BUY, this is YES principal; on SELL, it is complementary NO collateral—not target proceeds. Set exactly one of `cash_order_qty` and `order_qty`. |
+| `strict_limit` | `bool` | **Rejected if set** | Strict-limit behavior is unsupported. |
+| `good_till_time` | `Timestamp` | **Rejected if set** | Non-default `good_till_time` is unsupported and rejected. |
+| `best_limit` | `bool` | **Rejected if set** | Best-limit pricing is unsupported. |
+| `immediately_executable_limit` | `bool` | **Rejected if set** | Immediately-executable-limit behavior is unsupported. |
+| `self_match_prevention_instruction` | `SelfMatchPreventionInstruction` | **Rejected if set** | Custom self-match prevention instructions are unsupported. |
+| `order_capacity` | `OrderCapacity` | **Rejected if set** | Custom order-capacity values are unsupported. |
+| `ignore_price_validity_checks` | `bool` | **Rejected if set** | Price validity checks cannot be bypassed. |
+| `manual_order_indicator` | `ManualOrderIndicator` | **Required** | `MANUAL_ORDER_INDICATOR_MANUAL` for a human-entered order or `MANUAL_ORDER_INDICATOR_AUTOMATED` for a system-generated order. |
 
 <Info>
   In proto3, scalar fields at their default value are not populated on the wire. “Rejected if set” means do not send a non-default value for that field. Construct the supported request directly rather than reusing a broad public-order object.
@@ -101,10 +101,10 @@ One dollar is `price_scale × fractional_quantity_scale` notional units. When bo
 
 The relevant fields:
 
-| Field                                      | Where          | Meaning                                                                                                                                                                                                                                    |
-| ------------------------------------------ | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `commission_notional_collected`            | execution      | Fee collected for this fill, in notional units. Negative values are rebates credited to the account.                                                                                                                                       |
-| `commission_notional_total_collected`      | embedded order | Cumulative fee across all fills of the order, in notional units.                                                                                                                                                                           |
+| Field | Where | Meaning |
+| - | - | - |
+| `commission_notional_collected` | execution | Fee collected for this fill, in notional units. Negative values are rebates credited to the account. |
+| `commission_notional_total_collected` | embedded order | Cumulative fee across all fills of the order, in notional units. |
 | `fractional_quantity_scale`, `price_scale` | embedded order | The scales to decode with. Also published per instrument as `fractionalQtyScale` / `priceScale` by the [Reference Data API](/institutional/refdata/overview); treat an instrument that does not publish `fractionalQtyScale` as scale `1`. |
 
 For standard trades, the dollar amount reconciles with the [fee schedule](/fees) formula `Fee = Θ × C × p × (1 − p)` — where `C` is **contracts** (not raw `order_qty` units) and `p` is the **decimal** price — rounded to \$0.01.
@@ -189,10 +189,10 @@ Do not set `order.user` or `order.session_id`. The service authenticates your fi
 
 ## MoneyAmount
 
-| Field      | Type     | Description                               |
-| ---------- | -------- | ----------------------------------------- |
-| `value`    | `string` | Base-10 decimal string, such as `"0.10"`. |
-| `currency` | `string` | ISO 4217 code. Must be `USD`.             |
+| Field | Type | Description |
+| - | - | - |
+| `value` | `string` | Base-10 decimal string, such as `"0.10"`. |
+| `currency` | `string` | ISO 4217 code. Must be `USD`. |
 
 `MoneyAmount` is used for the top-level `vendor_fee`; it is not used for the fixed-point fields in the embedded public order.
 

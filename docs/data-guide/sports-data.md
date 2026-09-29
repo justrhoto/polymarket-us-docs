@@ -20,17 +20,17 @@ Fetch player reference data directly for player props, combos, and provider ID m
 
 Use dotted, camelCase query parameter names. For array filters, repeat the parameter for each value, for example `filters.id=781&filters.id=15877`.
 
-| Parameter                  | Type      | Description                                                                                                                                                                         |
-| -------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `limit`                    | int32     | Maximum players to return in list mode. Set an explicit positive limit when paging.                                                                                                 |
-| `offset`                   | int32     | Players to skip in list mode. Start at `0` and increase by the requested limit for subsequent pages.                                                                                |
-| `filters.id`               | int64\[]  | Internal player IDs. Use this to look up a specific player.                                                                                                                         |
-| `filters.teamId`           | int64\[]  | Internal team IDs, such as the `id` returned by `/v1/sports/teams`.                                                                                                                 |
-| `filters.name`             | string\[] | Filter by player name.                                                                                                                                                              |
-| `filters.abbreviation`     | string\[] | Filter by player abbreviation.                                                                                                                                                      |
-| `filters.provider`         | string    | Provider enum, such as `PROVIDER_SPORTSDATAIO`, `PROVIDER_SPORTRADAR`, or `PROVIDER_OPTICODDS`. Selects provider lookup mode when set to a value other than `PROVIDER_UNSPECIFIED`. |
-| `filters.providerPlayerId` | string\[] | Player IDs in the selected provider's namespace. Requires `filters.provider`.                                                                                                       |
-| `filters.league`           | string    | Restrict provider lookups to players on teams in this league (for example, `mlb`). Ignored in list mode.                                                                            |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | int32 | Maximum players to return in list mode. Set an explicit positive limit when paging. |
+| `offset` | int32 | Players to skip in list mode. Start at `0` and increase by the requested limit for subsequent pages. |
+| `filters.id` | int64\[] | Internal player IDs. Use this to look up a specific player. |
+| `filters.teamId` | int64\[] | Internal team IDs, such as the `id` returned by `/v1/sports/teams`. |
+| `filters.name` | string\[] | Filter by player name. |
+| `filters.abbreviation` | string\[] | Filter by player abbreviation. |
+| `filters.provider` | string | Provider enum, such as `PROVIDER_SPORTSDATAIO`, `PROVIDER_SPORTRADAR`, or `PROVIDER_OPTICODDS`. Selects provider lookup mode when set to a value other than `PROVIDER_UNSPECIFIED`. |
+| `filters.providerPlayerId` | string\[] | Player IDs in the selected provider's namespace. Requires `filters.provider`. |
+| `filters.league` | string | Restrict provider lookups to players on teams in this league (for example, `mlb`). Ignored in list mode. |
 
 <Note>
   Provider lookup uses only `filters.provider`, `filters.providerPlayerId`, and `filters.league`. It ignores `limit`, `offset`, `filters.id`, `filters.teamId`, `filters.name`, and `filters.abbreviation`, and returns results sorted by internal player ID. For list mode, leave `filters.provider` unset; `filters.providerPlayerId` and `filters.league` then have no effect.
@@ -74,18 +74,18 @@ The response is an object containing a `players` array. No matches return HTTP `
 
 Each player includes the following fields when available. Internal player and team IDs are serialized as JSON strings because they are protobuf `int64` values; provider IDs are strings in the provider's own namespace.
 
-| Field             | Type      | Description                                                       |
-| ----------------- | --------- | ----------------------------------------------------------------- |
-| `id`              | string    | Internal player ID, used with `filters.id`.                       |
-| `name`            | string    | Player name.                                                      |
-| `abbreviation`    | string    | Player abbreviation.                                              |
-| `teamId`          | string    | Internal team ID; may be absent.                                  |
-| `image`           | string    | Player image URL; may be absent or empty.                         |
-| `darkImage`       | string    | Dark-mode player image URL; empty when unavailable.               |
-| `providerIds`     | object\[] | Provider references, each containing `provider` and `providerId`. |
-| `jerseyNumber`    | int32     | Jersey number; may be absent. `0` is a valid jersey number.       |
-| `jerseyImage`     | string    | Jersey image URL; empty when unavailable.                         |
-| `jerseyDarkImage` | string    | Dark-mode jersey image URL; empty when unavailable.               |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | Internal player ID, used with `filters.id`. |
+| `name` | string | Player name. |
+| `abbreviation` | string | Player abbreviation. |
+| `teamId` | string | Internal team ID; may be absent. |
+| `image` | string | Player image URL; may be absent or empty. |
+| `darkImage` | string | Dark-mode player image URL; empty when unavailable. |
+| `providerIds` | object\[] | Provider references, each containing `provider` and `providerId`. |
+| `jerseyNumber` | int32 | Jersey number; may be absent. `0` is a valid jersey number. |
+| `jerseyImage` | string | Jersey image URL; empty when unavailable. |
+| `jerseyDarkImage` | string | Dark-mode jersey image URL; empty when unavailable. |
 
 These are player reference records. A returned player does not imply that player has an active prop market or an eligible combo leg; use event and market data to discover those markets.
 
@@ -99,50 +99,50 @@ Returns team data for a given series. Use the `filters.league` parameter to spec
 
 ### Query Parameters
 
-| Parameter              | Type   | Description                              |
-| ---------------------- | ------ | ---------------------------------------- |
-| `limit`                | int32  | Maximum number of teams to return        |
-| `offset`               | int32  | Number of teams to skip for pagination   |
-| `filters.league`       | string | Series to filter by (see examples below) |
-| `filters.name`         | string | Filter by team name                      |
-| `filters.abbreviation` | string | Filter by team abbreviation              |
-| `filters.id`           | int64  | Filter by team ID                        |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | int32 | Maximum number of teams to return |
+| `offset` | int32 | Number of teams to skip for pagination |
+| `filters.league` | string | Series to filter by (see examples below) |
+| `filters.name` | string | Filter by team name |
+| `filters.abbreviation` | string | Filter by team abbreviation |
+| `filters.id` | int64 | Filter by team ID |
 
 ### Examples by Series
 
 Substitute the series value in `filters.league` to get teams for different leagues:
 
-| Series | URL                                                                          |
-| ------ | ---------------------------------------------------------------------------- |
-| NFL    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=nfl` |
-| NBA    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=nba` |
-| NHL    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=nhl` |
-| MLB    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=mlb` |
-| MLS    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=mls` |
-| CBB    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=cbb` |
-| CFB    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=cfb` |
-| UFC    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=ufc` |
-| UCL    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=ucl` |
-| EPL    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=epl` |
-| ATP    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=atp` |
-| WTA    | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=wta` |
+| Series | URL |
+| - | - |
+| NFL | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=nfl` |
+| NBA | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=nba` |
+| NHL | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=nhl` |
+| MLB | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=mlb` |
+| MLS | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=mls` |
+| CBB | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=cbb` |
+| CFB | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=cfb` |
+| UFC | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=ufc` |
+| UCL | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=ucl` |
+| EPL | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=epl` |
+| ATP | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=atp` |
+| WTA | `https://gateway.polymarket.us/v1/sports/teams?limit=500&filters.league=wta` |
 
 ### Response Fields
 
 Each team object includes:
 
-| Field          | Type   | Description                            |
-| -------------- | ------ | -------------------------------------- |
-| `id`           | string | Internal team ID                       |
-| `name`         | string | Full team name (e.g., "Buffalo Bills") |
-| `abbreviation` | string | Team abbreviation (e.g., `buf`)        |
-| `league`       | string | Series identifier (e.g., `nfl`)        |
-| `record`       | string | Current win-loss record                |
-| `logo`         | string | URL to team logo image                 |
-| `alias`        | string | Team nickname                          |
-| `colorPrimary` | string | Team primary color (hex)               |
-| `conference`   | string | Conference or division                 |
-| `providerRefs` | array  | External data provider ID mappings     |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | Internal team ID |
+| `name` | string | Full team name (e.g., "Buffalo Bills") |
+| `abbreviation` | string | Team abbreviation (e.g., `buf`) |
+| `league` | string | Series identifier (e.g., `nfl`) |
+| `record` | string | Current win-loss record |
+| `logo` | string | URL to team logo image |
+| `alias` | string | Team nickname |
+| `colorPrimary` | string | Team primary color (hex) |
+| `conference` | string | Conference or division |
+| `providerRefs` | array | External data provider ID mappings |
 
 ## Events Endpoint
 
@@ -154,28 +154,28 @@ Returns active events for a given league.
 
 ### Query Parameters
 
-| Parameter | Type    | Description                        |
-| --------- | ------- | ---------------------------------- |
-| `limit`   | integer | Maximum number of events to return |
-| `active`  | boolean | Filter to active events            |
-| `closed`  | boolean | Filter by closed status            |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | integer | Maximum number of events to return |
+| `active` | boolean | Filter to active events |
+| `closed` | boolean | Filter by closed status |
 
 ### Examples by League
 
-| League | URL                                                                                       |
-| ------ | ----------------------------------------------------------------------------------------- |
-| NFL    | `https://gateway.polymarket.us/v2/leagues/nfl/events?limit=1000&active=true&closed=false` |
-| NBA    | `https://gateway.polymarket.us/v2/leagues/nba/events?limit=1000&active=true&closed=false` |
-| NHL    | `https://gateway.polymarket.us/v2/leagues/nhl/events?limit=1000&active=true&closed=false` |
-| MLB    | `https://gateway.polymarket.us/v2/leagues/mlb/events?limit=1000&active=true&closed=false` |
-| MLS    | `https://gateway.polymarket.us/v2/leagues/mls/events?limit=1000&active=true&closed=false` |
-| CBB    | `https://gateway.polymarket.us/v2/leagues/cbb/events?limit=1000&active=true&closed=false` |
-| CFB    | `https://gateway.polymarket.us/v2/leagues/cfb/events?limit=1000&active=true&closed=false` |
-| UFC    | `https://gateway.polymarket.us/v2/leagues/ufc/events?limit=1000&active=true&closed=false` |
-| UCL    | `https://gateway.polymarket.us/v2/leagues/ucl/events?limit=1000&active=true&closed=false` |
-| EPL    | `https://gateway.polymarket.us/v2/leagues/epl/events?limit=1000&active=true&closed=false` |
-| ATP    | `https://gateway.polymarket.us/v2/leagues/atp/events?limit=1000&active=true&closed=false` |
-| WTA    | `https://gateway.polymarket.us/v2/leagues/wta/events?limit=1000&active=true&closed=false` |
+| League | URL |
+| - | - |
+| NFL | `https://gateway.polymarket.us/v2/leagues/nfl/events?limit=1000&active=true&closed=false` |
+| NBA | `https://gateway.polymarket.us/v2/leagues/nba/events?limit=1000&active=true&closed=false` |
+| NHL | `https://gateway.polymarket.us/v2/leagues/nhl/events?limit=1000&active=true&closed=false` |
+| MLB | `https://gateway.polymarket.us/v2/leagues/mlb/events?limit=1000&active=true&closed=false` |
+| MLS | `https://gateway.polymarket.us/v2/leagues/mls/events?limit=1000&active=true&closed=false` |
+| CBB | `https://gateway.polymarket.us/v2/leagues/cbb/events?limit=1000&active=true&closed=false` |
+| CFB | `https://gateway.polymarket.us/v2/leagues/cfb/events?limit=1000&active=true&closed=false` |
+| UFC | `https://gateway.polymarket.us/v2/leagues/ufc/events?limit=1000&active=true&closed=false` |
+| UCL | `https://gateway.polymarket.us/v2/leagues/ucl/events?limit=1000&active=true&closed=false` |
+| EPL | `https://gateway.polymarket.us/v2/leagues/epl/events?limit=1000&active=true&closed=false` |
+| ATP | `https://gateway.polymarket.us/v2/leagues/atp/events?limit=1000&active=true&closed=false` |
+| WTA | `https://gateway.polymarket.us/v2/leagues/wta/events?limit=1000&active=true&closed=false` |
 
 ## When Sports Markets Use Subjects Instead of Teams
 

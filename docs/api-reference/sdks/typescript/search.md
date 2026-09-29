@@ -10,8 +10,8 @@ The Search resource provides full-text search across events and markets.
 
 ## Methods
 
-| Method           | Endpoint         | Description               |
-| ---------------- | ---------------- | ------------------------- |
+| Method | Endpoint | Description |
+| - | - | - |
 | `query(params?)` | `GET /v1/search` | Search events and markets |
 
 ***
@@ -36,14 +36,14 @@ for (const event of results.events) {
 
 ### Parameters
 
-| Parameter    | Type      | Description                |
-| ------------ | --------- | -------------------------- |
-| `query`      | string    | Search query text          |
-| `limit`      | number    | Maximum results to return  |
-| `page`       | number    | Page number for pagination |
-| `seriesIds`  | number\[] | Filter by series IDs       |
-| `marketType` | string\[] | Filter by market types     |
-| `status`     | string    | Filter by status           |
+| Parameter | Type | Description |
+| - | - | - |
+| `query` | string | Search query text |
+| `limit` | number | Maximum results to return |
+| `page` | number | Page number for pagination |
+| `seriesIds` | number\[] | Filter by series IDs |
+| `marketType` | string\[] | Filter by market types |
+| `status` | string | Filter by status |
 
 ### Response
 

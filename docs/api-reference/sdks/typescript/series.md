@@ -10,10 +10,10 @@ The Series resource provides access to series information. Series group related 
 
 ## Methods
 
-| Method          | Endpoint                 | Description      |
-| --------------- | ------------------------ | ---------------- |
-| `list(params?)` | `GET /v1/series`         | List all series  |
-| `retrieve(id)`  | `GET /v1/series/id/{id}` | Get series by ID |
+| Method | Endpoint | Description |
+| - | - | - |
+| `list(params?)` | `GET /v1/series` | List all series |
+| `retrieve(id)` | `GET /v1/series/id/{id}` | Get series by ID |
 
 ***
 
@@ -34,30 +34,30 @@ for (const s of series.series) {
 
 ### Parameters
 
-| Parameter    | Type      | Description                                |
-| ------------ | --------- | ------------------------------------------ |
-| `limit`      | number    | Maximum results                            |
-| `offset`     | number    | Pagination offset                          |
-| `slug`       | string\[] | Filter by slugs                            |
-| `active`     | boolean   | Filter by active status                    |
-| `closed`     | boolean   | Filter by closed status                    |
-| `archived`   | boolean   | Filter by archived status                  |
-| `recurrence` | string    | Filter by recurrence (daily, weekly, etc.) |
+| Parameter | Type | Description |
+| - | - | - |
+| `limit` | number | Maximum results |
+| `offset` | number | Pagination offset |
+| `slug` | string\[] | Filter by slugs |
+| `active` | boolean | Filter by active status |
+| `closed` | boolean | Filter by closed status |
+| `archived` | boolean | Filter by archived status |
+| `recurrence` | string | Filter by recurrence (daily, weekly, etc.) |
 
 ### Response Fields
 
-| Field         | Type    | Description              |
-| ------------- | ------- | ------------------------ |
-| `id`          | number  | Unique series identifier |
-| `slug`        | string  | URL-friendly identifier  |
-| `title`       | string  | Series title             |
-| `subtitle`    | string  | Series subtitle          |
-| `description` | string  | Series description       |
-| `seriesType`  | string  | Type of series           |
-| `recurrence`  | string  | Recurrence pattern       |
-| `active`      | boolean | Whether series is active |
-| `volume`      | string  | Total trading volume     |
-| `liquidity`   | string  | Current liquidity        |
+| Field | Type | Description |
+| - | - | - |
+| `id` | number | Unique series identifier |
+| `slug` | string | URL-friendly identifier |
+| `title` | string | Series title |
+| `subtitle` | string | Series subtitle |
+| `description` | string | Series description |
+| `seriesType` | string | Type of series |
+| `recurrence` | string | Recurrence pattern |
+| `active` | boolean | Whether series is active |
+| `volume` | string | Total trading volume |
+| `liquidity` | string | Current liquidity |
 
 ***
 

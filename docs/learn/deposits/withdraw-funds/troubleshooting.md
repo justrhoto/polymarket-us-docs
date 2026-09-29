@@ -8,11 +8,11 @@
 
 ## Common Errors
 
-| Issue                   | Likely Cause                                             | Fix                                 |
-| ----------------------- | -------------------------------------------------------- | ----------------------------------- |
-| Withdrawal unavailable  | Deposit has not fully cleared                            | Wait for the deposit to fully clear |
+| Issue | Likely Cause | Fix |
+| - | - | - |
+| Withdrawal unavailable | Deposit has not fully cleared | Wait for the deposit to fully clear |
 | Wrong withdrawal method | Withdrawal method does not match original funding source | Use the same method as your deposit |
-| ACH rejected            | Incorrect or outdated bank details                       | Re-link your correct bank account   |
+| ACH rejected | Incorrect or outdated bank details | Re-link your correct bank account |
 
 ## Anti-Money-Laundering (AML) Compliance
 

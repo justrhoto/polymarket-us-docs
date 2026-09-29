@@ -8,9 +8,9 @@
 
 ## Endpoints
 
-| Method | Endpoint     | Description                 |
-| ------ | ------------ | --------------------------- |
-| `GET`  | `/v1/health` | Check service health status |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/health` | Check service health status |
 
 <Info>
   **No Authentication Required**
@@ -20,12 +20,12 @@
 
 ## When to Use
 
-| Use Case                        | Description                                                   |
-| ------------------------------- | ------------------------------------------------------------- |
-| **Service Monitoring**          | Check if the API is online and responding                     |
-| **Pre-flight Checks**           | Verify connectivity before starting trading operations        |
+| Use Case | Description |
+| - | - |
+| **Service Monitoring** | Check if the API is online and responding |
+| **Pre-flight Checks** | Verify connectivity before starting trading operations |
 | **Load Balancer Health Checks** | Configure external load balancers to monitor API availability |
-| **Uptime Monitoring**           | Set up automated alerts for service outages                   |
+| **Uptime Monitoring** | Set up automated alerts for service outages |
 
 ## Response Format
 
@@ -37,8 +37,8 @@ The health check returns a simple JSON response indicating the service status:
 }
 ```
 
-| Field    | Description                        |
-| -------- | ---------------------------------- |
+| Field | Description |
+| - | - |
 | `status` | Service status (`ok` when healthy) |
 
 ## Example Usage

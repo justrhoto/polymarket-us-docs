@@ -112,13 +112,13 @@ POST /v1beta1/report/trades/search
 2. Group trades by your chosen interval (e.g., 5min, 1h, 1d)
 3. For each interval, calculate:
 
-| Metric       | Calculation                              |
-| ------------ | ---------------------------------------- |
-| **Open**     | First trade price in the interval        |
-| **High**     | Maximum trade price in the interval      |
-| **Low**      | Minimum trade price in the interval      |
-| **Close**    | Last trade price in the interval         |
-| **Volume**   | Sum of quantities traded in the interval |
+| Metric | Calculation |
+| - | - |
+| **Open** | First trade price in the interval |
+| **High** | Maximum trade price in the interval |
+| **Low** | Minimum trade price in the interval |
+| **Close** | Last trade price in the interval |
+| **Volume** | Sum of quantities traded in the interval |
 | **Notional** | Sum of (price × quantity) for all trades |
 
 ### Python Example
@@ -293,11 +293,11 @@ for market_update in stream:
 
 ## Choosing the Right Method
 
-| Method                  | Best For                                | Latency   | Complexity |
-| ----------------------- | --------------------------------------- | --------- | ---------- |
-| **Pre-Aggregated**      | Historical analysis, standard intervals | Low       | Low        |
-| **Manual Aggregation**  | Custom intervals, special calculations  | Medium    | Medium     |
-| **Real-Time Streaming** | Live charts, automated trading          | Real-time | High       |
+| Method | Best For | Latency | Complexity |
+| - | - | - | - |
+| **Pre-Aggregated** | Historical analysis, standard intervals | Low | Low |
+| **Manual Aggregation** | Custom intervals, special calculations | Medium | Medium |
+| **Real-Time Streaming** | Live charts, automated trading | Real-time | High |
 
 ## Best Practices
 

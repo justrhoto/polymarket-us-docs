@@ -14,15 +14,15 @@ gRPC uses standard status codes to indicate errors. Understanding these codes is
 
 ### Common Status Codes
 
-| Code | Name                | Description                | Action                                                                        |
-| ---- | ------------------- | -------------------------- | ----------------------------------------------------------------------------- |
-| `0`  | `OK`                | Success                    | Continue processing                                                           |
-| `1`  | `CANCELLED`         | Operation canceled         | Clean up resources                                                            |
-| `3`  | `INVALID_ARGUMENT`  | Invalid request parameters | Fix request and retry. See [Request Parameters](proto-reference) for details. |
-| `4`  | `DEADLINE_EXCEEDED` | Operation timeout          | Retry with backoff                                                            |
-| `7`  | `PERMISSION_DENIED` | Insufficient permissions   | Check account permissions                                                     |
-| `14` | `UNAVAILABLE`       | Service unavailable        | Reconnect with backoff                                                        |
-| `16` | `UNAUTHENTICATED`   | Authentication failed      | Refresh token and retry                                                       |
+| Code | Name | Description | Action |
+| - | - | - | - |
+| `0` | `OK` | Success | Continue processing |
+| `1` | `CANCELLED` | Operation canceled | Clean up resources |
+| `3` | `INVALID_ARGUMENT` | Invalid request parameters | Fix request and retry. See [Request Parameters](proto-reference) for details. |
+| `4` | `DEADLINE_EXCEEDED` | Operation timeout | Retry with backoff |
+| `7` | `PERMISSION_DENIED` | Insufficient permissions | Check account permissions |
+| `14` | `UNAVAILABLE` | Service unavailable | Reconnect with backoff |
+| `16` | `UNAUTHENTICATED` | Authentication failed | Refresh token and retry |
 
 ### Checking Error Codes in Python
 

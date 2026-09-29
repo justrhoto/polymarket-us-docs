@@ -8,44 +8,44 @@
 
 ## Endpoints
 
-| Method | Endpoint                        | Description                                                                 |
-| ------ | ------------------------------- | --------------------------------------------------------------------------- |
-| `GET`  | `/v1/positions`                 | Get current positions                                                       |
-| `POST` | `/v1/positions/balance`         | Get single account balance                                                  |
-| `POST` | `/v1/positions/balances`        | Get multiple account balances                                               |
-| `GET`  | `/v1/positions/ledger`          | Query historical position changes. See [Position Ledger](#position-ledger). |
-| `GET`  | `/v1/positions/ledger/download` | Download position ledger as CSV. See [Position Ledger](#position-ledger).   |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/positions` | Get current positions |
+| `POST` | `/v1/positions/balance` | Get single account balance |
+| `POST` | `/v1/positions/balances` | Get multiple account balances |
+| `GET` | `/v1/positions/ledger` | Query historical position changes. See [Position Ledger](#position-ledger). |
+| `GET` | `/v1/positions/ledger/download` | Download position ledger as CSV. See [Position Ledger](#position-ledger). |
 
 ## Position Data
 
 Each position includes:
 
-| Field         | Description                           |
-| ------------- | ------------------------------------- |
-| `symbol`      | Trading instrument                    |
-| `account`     | Trading account                       |
-| `netPosition` | Current net position quantity         |
-| `qtyBought`   | Total quantity bought                 |
-| `qtySold`     | Total quantity sold                   |
-| `cost`        | Total cost basis (scaled integer)     |
-| `realized`    | Realized profit/loss (scaled integer) |
-| `bodPosition` | Beginning-of-day position             |
-| `updateTime`  | Last update timestamp                 |
+| Field | Description |
+| - | - |
+| `symbol` | Trading instrument |
+| `account` | Trading account |
+| `netPosition` | Current net position quantity |
+| `qtyBought` | Total quantity bought |
+| `qtySold` | Total quantity sold |
+| `cost` | Total cost basis (scaled integer) |
+| `realized` | Realized profit/loss (scaled integer) |
+| `bodPosition` | Beginning-of-day position |
+| `updateTime` | Last update timestamp |
 
 ## Balance Data
 
 Account balances include:
 
-| Field                | Description                                                                                                                                                                                           |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `balance`            | Current cash balance                                                                                                                                                                                  |
-| `buyingPower`        | Available buying power for trading                                                                                                                                                                    |
-| `capitalRequirement` | Required capital to maintain positions                                                                                                                                                                |
-| `excessCapital`      | Capital above requirements                                                                                                                                                                            |
-| `marginRequirement`  | Margin required for open positions                                                                                                                                                                    |
-| `unsettledFunds`     | Funds pending settlement                                                                                                                                                                              |
-| `openOrders`         | Worst-case value of open orders (see [Open Orders and Order Collateralization](/market-structure/collateral-and-margin#open-orders-and-order-collateralization) for how open orders are risk-checked) |
-| `updateTime`         | Last update timestamp                                                                                                                                                                                 |
+| Field | Description |
+| - | - |
+| `balance` | Current cash balance |
+| `buyingPower` | Available buying power for trading |
+| `capitalRequirement` | Required capital to maintain positions |
+| `excessCapital` | Capital above requirements |
+| `marginRequirement` | Margin required for open positions |
+| `unsettledFunds` | Funds pending settlement |
+| `openOrders` | Worst-case value of open orders (see [Open Orders and Order Collateralization](/market-structure/collateral-and-margin#open-orders-and-order-collateralization) for how open orders are risk-checked) |
+| `updateTime` | Last update timestamp |
 
 ## Historical Position Queries
 
@@ -53,10 +53,10 @@ Query positions as they existed at a specific point in time. Useful for regulato
 
 ### Parameters
 
-| Parameter    | Type              | Description                                        |
-| ------------ | ----------------- | -------------------------------------------------- |
+| Parameter | Type | Description |
+| - | - | - |
 | `as_of_time` | RFC3339 timestamp | Exact point-in-time (e.g., `2026-01-02T17:00:00Z`) |
-| `as_of_date` | Date object       | End-of-trading-day snapshot (year, month, day)     |
+| `as_of_date` | Date object | End-of-trading-day snapshot (year, month, day) |
 
 <Warning>
   **Mutually Exclusive**: Use `as_of_time` OR `as_of_date`, not both. The `as_of_time` parameter already contains date information.
@@ -104,10 +104,10 @@ The position ledger records every change to a position as a single entry, with b
 
 ### Ledger Endpoints
 
-| Method | Endpoint                        | gRPC                                 | Required Scope   | Description                                      |
-| ------ | ------------------------------- | ------------------------------------ | ---------------- | ------------------------------------------------ |
-| `GET`  | `/v1/positions/ledger`          | `PositionAPI.GetPositionLedger`      | `read:positions` | Paginated query of position ledger entries       |
-| `GET`  | `/v1/positions/ledger/download` | `PositionAPI.DownloadPositionLedger` | `read:positions` | Streamed CSV download of position ledger entries |
+| Method | Endpoint | gRPC | Required Scope | Description |
+| - | - | - | - | - |
+| `GET` | `/v1/positions/ledger` | `PositionAPI.GetPositionLedger` | `read:positions` | Paginated query of position ledger entries |
+| `GET` | `/v1/positions/ledger/download` | `PositionAPI.DownloadPositionLedger` | `read:positions` | Streamed CSV download of position ledger entries |
 
 <Note>
   Both endpoints are scoped under `read:positions` (the same scope used for `GetAccountBalance`, `ListAccountBalances`, and the position queries on this section). Calls without `read:positions` fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
@@ -115,8 +115,8 @@ The position ledger records every change to a position as a single entry, with b
 
 ### Historical Floor
 
-| Setting                 | Value                  |
-| ----------------------- | ---------------------- |
+| Setting | Value |
+| - | - |
 | Earliest queryable date | `2026-05-01T00:00:00Z` |
 
 The ledger has a hard historical floor of **May 1, 2026 (UTC)**. Enforcement is defense-in-depth:
@@ -142,12 +142,12 @@ The cumulative fields (`netPosition`, `cost`, `realized`) on each entry are the 
 
 The account in `account=firms/{firm}/accounts/{id}` must belong to the caller's firm (extracted from the JWT `firm_id` claim). Cross-firm access is blocked at the gateway:
 
-| Condition                                 | Error Code           |
-| ----------------------------------------- | -------------------- |
-| Account belongs to a different firm       | `PermissionDenied`   |
-| JWT missing or `firm_id` absent           | `Unauthenticated`    |
+| Condition | Error Code |
+| - | - |
+| Account belongs to a different firm | `PermissionDenied` |
+| JWT missing or `firm_id` absent | `Unauthenticated` |
 | ISV credentials not configured at gateway | `FailedPrecondition` |
-| Upstream exchange service unavailable     | `Unavailable`        |
+| Upstream exchange service unavailable | `Unavailable` |
 
 ### Get Position Ledger
 
@@ -157,15 +157,15 @@ GET /v1/positions/ledger?account=firms/ISV-Alice/accounts/alice-trading&start_ti
 
 #### Query Parameters
 
-| Parameter      | Type    | Required | Description                                                                         |
-| -------------- | ------- | -------- | ----------------------------------------------------------------------------------- |
-| `account`      | string  | Yes      | Fully qualified account name. Example: `firms/ISV-Alice/accounts/alice-trading`.    |
-| `symbol`       | string  | No       | Filter by instrument symbol.                                                        |
-| `start_time`   | RFC3339 | No       | Inclusive lower bound on `update_time`. Clamped to `2026-05-01T00:00:00Z`.          |
-| `end_time`     | RFC3339 | No       | Inclusive upper bound on `update_time`.                                             |
-| `page_size`    | integer | No       | Maximum entries per page. **Max 1000**; values above 1000 return `InvalidArgument`. |
-| `page_token`   | string  | No       | Pagination token from a previous response's `nextPageToken`.                        |
-| `newest_first` | boolean | No       | If `true`, descending `update_time` order. Default `false`.                         |
+| Parameter | Type | Required | Description |
+| - | - | - | - |
+| `account` | string | Yes | Fully qualified account name. Example: `firms/ISV-Alice/accounts/alice-trading`. |
+| `symbol` | string | No | Filter by instrument symbol. |
+| `start_time` | RFC3339 | No | Inclusive lower bound on `update_time`. Clamped to `2026-05-01T00:00:00Z`. |
+| `end_time` | RFC3339 | No | Inclusive upper bound on `update_time`. |
+| `page_size` | integer | No | Maximum entries per page. **Max 1000**; values above 1000 return `InvalidArgument`. |
+| `page_token` | string | No | Pagination token from a previous response's `nextPageToken`. |
+| `newest_first` | boolean | No | If `true`, descending `update_time` order. Default `false`. |
 
 #### Sample Response
 
@@ -194,20 +194,20 @@ GET /v1/positions/ledger?account=firms/ISV-Alice/accounts/alice-trading&start_ti
 
 #### PositionLedgerEntry Fields
 
-| Field                | Type    | Description                                                              |
-| -------------------- | ------- | ------------------------------------------------------------------------ |
-| `id`                 | string  | Unique entry identifier.                                                 |
-| `account`            | string  | Account this entry belongs to.                                           |
-| `symbol`             | string  | Instrument symbol.                                                       |
-| `quantityChange`     | int64   | Delta from previous position (`after.netPosition - before.netPosition`). |
-| `costChange`         | int64   | Delta in cost basis.                                                     |
-| `realizedChange`     | int64   | Delta in realized P\&L.                                                  |
-| `netPosition`        | int64   | Net position **after** this change.                                      |
-| `cost`               | int64   | Cost basis **after** this change.                                        |
-| `realized`           | int64   | Cumulative realized P\&L **after** this change.                          |
-| `updateTime`         | RFC3339 | Timestamp of the position change.                                        |
-| `updateBusinessDate` | string  | Business date in `YYYY-MM-DD`.                                           |
-| `description`        | string  | Human-readable reason (e.g., trade fill, expiry, correction).            |
+| Field | Type | Description |
+| - | - | - |
+| `id` | string | Unique entry identifier. |
+| `account` | string | Account this entry belongs to. |
+| `symbol` | string | Instrument symbol. |
+| `quantityChange` | int64 | Delta from previous position (`after.netPosition - before.netPosition`). |
+| `costChange` | int64 | Delta in cost basis. |
+| `realizedChange` | int64 | Delta in realized P\&L. |
+| `netPosition` | int64 | Net position **after** this change. |
+| `cost` | int64 | Cost basis **after** this change. |
+| `realized` | int64 | Cumulative realized P\&L **after** this change. |
+| `updateTime` | RFC3339 | Timestamp of the position change. |
+| `updateBusinessDate` | string | Business date in `YYYY-MM-DD`. |
+| `description` | string | Human-readable reason (e.g., trade fill, expiry, correction). |
 
 <Note>
   **int64 fields are serialized as strings in JSON** (e.g., `"50"` not `50`) per the protobuf JSON mapping spec. Parse them as strings to avoid precision loss in languages with 53-bit integer limits.
@@ -215,11 +215,11 @@ GET /v1/positions/ledger?account=firms/ISV-Alice/accounts/alice-trading&start_ti
 
 #### Response Wrapper Fields
 
-| Field           | Type    | Description                                                                    |
-| --------------- | ------- | ------------------------------------------------------------------------------ |
-| `entries`       | array   | Position ledger entries for the requested account / time window.               |
-| `nextPageToken` | string  | Pagination token to fetch the next page. Empty when there are no more results. |
-| `eof`           | boolean | `true` when this response contains the final page of results.                  |
+| Field | Type | Description |
+| - | - | - |
+| `entries` | array | Position ledger entries for the requested account / time window. |
+| `nextPageToken` | string | Pagination token to fetch the next page. Empty when there are no more results. |
+| `eof` | boolean | `true` when this response contains the final page of results. |
 
 ### Download Position Ledger
 
@@ -239,23 +239,23 @@ Empty result sets return a single empty chunk followed by EOF (HTTP 200 with an 
 
 ### Ledger Rate Limits (per firm)
 
-| Endpoint                            | Rate           | Burst | Effective    |
-| ----------------------------------- | -------------- | ----- | ------------ |
-| `GET /v1/positions/ledger`          | 0.5 req/sec    | 5     | \~30 req/min |
-| `GET /v1/positions/ledger/download` | 0.0833 req/sec | 1     | \~5 req/min  |
+| Endpoint | Rate | Burst | Effective |
+| - | - | - | - |
+| `GET /v1/positions/ledger` | 0.5 req/sec | 5 | \~30 req/min |
+| `GET /v1/positions/ledger/download` | 0.0833 req/sec | 1 | \~5 req/min |
 
 Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
 
 ### Ledger Error Codes
 
-| Error                | Cause                                    |
-| -------------------- | ---------------------------------------- |
-| `InvalidArgument`    | Missing `account`.                       |
-| `PermissionDenied`   | Account belongs to a different firm.     |
-| `Unauthenticated`    | Missing JWT or `firm_id` claim.          |
-| `FailedPrecondition` | ISV credentials not configured.          |
-| `Unavailable`        | Upstream exchange service not connected. |
-| `ResourceExhausted`  | Per-firm rate limit exceeded.            |
+| Error | Cause |
+| - | - |
+| `InvalidArgument` | Missing `account`. |
+| `PermissionDenied` | Account belongs to a different firm. |
+| `Unauthenticated` | Missing JWT or `firm_id` claim. |
+| `FailedPrecondition` | ISV credentials not configured. |
+| `Unavailable` | Upstream exchange service not connected. |
+| `ResourceExhausted` | Per-firm rate limit exceeded. |
 
 ## See Also
 

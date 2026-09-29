@@ -222,10 +222,10 @@ print("Granted scopes:", claims.get("scope", ""))
 
 Ensure you're using the correct API base URL for your environment:
 
-| Environment    | API Base URL                                 |
-| -------------- | -------------------------------------------- |
+| Environment | API Base URL |
+| - | - |
 | Pre-production | `https://api.preprod.polymarketexchange.com` |
-| Production     | `https://api.prod.polymarketexchange.com`    |
+| Production | `https://api.prod.polymarketexchange.com` |
 
 ### Step 3: Verify Network Connectivity
 

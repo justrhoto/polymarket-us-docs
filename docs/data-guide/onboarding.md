@@ -36,11 +36,11 @@ Once you have completed the Market Data Agreement, create a Google Drive folder 
 
 For read-only data access, request these scopes:
 
-| Scope               | Description                                    |
-| ------------------- | ---------------------------------------------- |
-| `read:marketdata`   | BBO (best bid/offer) and streaming market data |
-| `read:l2marketdata` | L2 orderbook depth                             |
-| `read:instruments`  | Instrument listings and metadata               |
+| Scope | Description |
+| - | - |
+| `read:marketdata` | BBO (best bid/offer) and streaming market data |
+| `read:l2marketdata` | L2 orderbook depth |
+| `read:instruments` | Instrument listings and metadata |
 
 ## Step 3: Receive Your Credentials
 

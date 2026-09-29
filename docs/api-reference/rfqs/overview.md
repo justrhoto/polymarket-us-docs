@@ -16,17 +16,17 @@ The Retail API derives the participant and account from the API key; clients do 
 
 ## Endpoints
 
-| Method   | Endpoint                                    | Description                                |
-| -------- | ------------------------------------------- | ------------------------------------------ |
-| `GET`    | `/v1/rfqs/user-id`                          | Get your pseudonymous RFQ user ID          |
-| `GET`    | `/v1/rfqs`                                  | Query visible RFQs                         |
-| `POST`   | `/v1/rfqs`                                  | Create an RFQ                              |
-| `DELETE` | `/v1/rfqs/{rfqId}`                          | Close your open RFQ                        |
-| `GET`    | `/v1/rfqs/quotes`                           | Query visible quotes                       |
-| `POST`   | `/v1/rfqs/quotes`                           | Create or replace your quote               |
-| `DELETE` | `/v1/rfqs/{rfqId}/quotes/{quoteId}`         | Delete your quote                          |
-| `PUT`    | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept`  | Accept one side of a quote                 |
-| `PUT`    | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | Confirm an accepted quote during last look |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/rfqs/user-id` | Get your pseudonymous RFQ user ID |
+| `GET` | `/v1/rfqs` | Query visible RFQs |
+| `POST` | `/v1/rfqs` | Create an RFQ |
+| `DELETE` | `/v1/rfqs/{rfqId}` | Close your open RFQ |
+| `GET` | `/v1/rfqs/quotes` | Query visible quotes |
+| `POST` | `/v1/rfqs/quotes` | Create or replace your quote |
+| `DELETE` | `/v1/rfqs/{rfqId}/quotes/{quoteId}` | Delete your quote |
+| `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept` | Accept one side of a quote |
+| `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | Confirm an accepted quote during last look |
 
 On the Retail API, Combo and RFQ creation share an additional [edge rate limit](/api-reference/rate-limits) of 10 requests per 10 seconds, enforced per API key and per IP. RFQ-specific business limits and participant restrictions are enforced separately by the RFQ service.
 

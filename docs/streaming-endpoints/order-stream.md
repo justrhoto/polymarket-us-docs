@@ -25,11 +25,11 @@ service OrderEntryAPI {
 
 ### CreateOrderSubscriptionRequest
 
-| Field           | Type        | Required | Description                                                                                                        |
-| --------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `symbols`       | `list[str]` | No       | Filter by symbols. Empty list = all symbols.                                                                       |
-| `accounts`      | `list[str]` | No       | Filter by trading accounts. Empty list = all accounts for authenticated user.                                      |
-| `snapshot_only` | `bool`      | No       | If `True`, receive snapshot of current orders then close stream. If `False` (default), receive continuous updates. |
+| Field | Type | Required | Description |
+| - | - | - | - |
+| `symbols` | `list[str]` | No | Filter by symbols. Empty list = all symbols. |
+| `accounts` | `list[str]` | No | Filter by trading accounts. Empty list = all accounts for authenticated user. |
+| `snapshot_only` | `bool` | No | If `True`, receive snapshot of current orders then close stream. If `False` (default), receive continuous updates. |
 
 <Note>
   Unlike the [market data stream](/streaming-endpoints/market-data-stream), `CreateOrderSubscription` does **not** have a 1000-symbol-per-stream cap. An empty `symbols` list is all symbols for the requested accounts. A market-data list over 1000 is rejected with `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`), not `RESOURCE_EXHAUSTED`. How many streams to open: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
@@ -68,11 +68,11 @@ The stream returns `CreateOrderSubscriptionResponse` messages with multiple even
 
 ### Response Fields
 
-| Field                 | Type        | Description                                  |
-| --------------------- | ----------- | -------------------------------------------- |
-| `event`               | `oneof`     | One of: `heartbeat`, `snapshot`, or `update` |
-| `session_id`          | `str`       | Unique session identifier for this stream    |
-| `processed_sent_time` | `Timestamp` | Server timestamp when response was sent      |
+| Field | Type | Description |
+| - | - | - |
+| `event` | `oneof` | One of: `heartbeat`, `snapshot`, or `update` |
+| `session_id` | `str` | Unique session identifier for this stream |
+| `processed_sent_time` | `Timestamp` | Server timestamp when response was sent |
 
 ### 1. Heartbeat Messages
 
@@ -122,24 +122,24 @@ if response.HasField('update'):
 
 ### Core Order Fields
 
-| Field                       | Type            | Description                                                                             |
-| --------------------------- | --------------- | --------------------------------------------------------------------------------------- |
-| `id`                        | `str`           | Exchange-assigned order ID                                                              |
-| `clord_id`                  | `str`           | Client-assigned order ID (from your order request)                                      |
-| `symbol`                    | `str`           | Trading symbol                                                                          |
-| `side`                      | `Side`          | `SIDE_BUY` or `SIDE_SELL`                                                               |
-| `type`                      | `OrderType`     | Order type (LIMIT, MARKET\_TO\_LIMIT, etc.)                                             |
-| `state`                     | `OrderState`    | Current order state                                                                     |
-| `account`                   | `str`           | Trading account                                                                         |
-| `order_qty`                 | `int`           | Original order quantity                                                                 |
-| `price`                     | `int`           | **Order price** (÷ price\_scale for decimal)                                            |
-| `cum_qty`                   | `int`           | Cumulative filled quantity                                                              |
-| `leaves_qty`                | `int`           | Remaining unfilled quantity                                                             |
-| `avg_px`                    | `int`           | **Average fill price** (÷ price\_scale)                                                 |
-| `fractional_quantity_scale` | `int`           | Quantity scale copied from the instrument at order creation (÷ to get decimal quantity) |
-| `price_to_quantity_filled`  | `map<int, int>` | Quantity filled at each price point; key = price, value = filled qty                    |
-| `insert_time`               | `Timestamp`     | When order was accepted                                                                 |
-| `create_time`               | `Timestamp`     | When order was created                                                                  |
+| Field | Type | Description |
+| - | - | - |
+| `id` | `str` | Exchange-assigned order ID |
+| `clord_id` | `str` | Client-assigned order ID (from your order request) |
+| `symbol` | `str` | Trading symbol |
+| `side` | `Side` | `SIDE_BUY` or `SIDE_SELL` |
+| `type` | `OrderType` | Order type (LIMIT, MARKET\_TO\_LIMIT, etc.) |
+| `state` | `OrderState` | Current order state |
+| `account` | `str` | Trading account |
+| `order_qty` | `int` | Original order quantity |
+| `price` | `int` | **Order price** (÷ price\_scale for decimal) |
+| `cum_qty` | `int` | Cumulative filled quantity |
+| `leaves_qty` | `int` | Remaining unfilled quantity |
+| `avg_px` | `int` | **Average fill price** (÷ price\_scale) |
+| `fractional_quantity_scale` | `int` | Quantity scale copied from the instrument at order creation (÷ to get decimal quantity) |
+| `price_to_quantity_filled` | `map<int, int>` | Quantity filled at each price point; key = price, value = filled qty |
+| `insert_time` | `Timestamp` | When order was accepted |
+| `create_time` | `Timestamp` | When order was created |
 
 <Warning>
   **Price Fields:**
@@ -156,19 +156,19 @@ if response.HasField('update'):
 
 ### Order States
 
-| State                          | Value | Description                                   |
-| ------------------------------ | ----- | --------------------------------------------- |
-| `ORDER_STATE_NEW`              | 0     | Order accepted, resting in book               |
-| `ORDER_STATE_PARTIALLY_FILLED` | 1     | Order partially executed                      |
-| `ORDER_STATE_FILLED`           | 2     | **Order completely filled**                   |
-| `ORDER_STATE_CANCELED`         | 3     | Order canceled (leaves\_qty = 0)              |
-| `ORDER_STATE_REPLACED`         | 4     | Order modified/replaced                       |
-| `ORDER_STATE_REJECTED`         | 5     | Order rejected by exchange                    |
-| `ORDER_STATE_EXPIRED`          | 6     | Order expired (e.g., Day order at end of day) |
-| `ORDER_STATE_PENDING_NEW`      | 7     | Order pending acceptance                      |
-| `ORDER_STATE_PENDING_REPLACE`  | 8     | Replace request pending                       |
-| `ORDER_STATE_PENDING_CANCEL`   | 9     | Cancel request pending                        |
-| `ORDER_STATE_PENDING_RISK`     | 10    | Pending risk approval; non-terminal           |
+| State | Value | Description |
+| - | - | - |
+| `ORDER_STATE_NEW` | 0 | Order accepted, resting in book |
+| `ORDER_STATE_PARTIALLY_FILLED` | 1 | Order partially executed |
+| `ORDER_STATE_FILLED` | 2 | **Order completely filled** |
+| `ORDER_STATE_CANCELED` | 3 | Order canceled (leaves\_qty = 0) |
+| `ORDER_STATE_REPLACED` | 4 | Order modified/replaced |
+| `ORDER_STATE_REJECTED` | 5 | Order rejected by exchange |
+| `ORDER_STATE_EXPIRED` | 6 | Order expired (e.g., Day order at end of day) |
+| `ORDER_STATE_PENDING_NEW` | 7 | Order pending acceptance |
+| `ORDER_STATE_PENDING_REPLACE` | 8 | Replace request pending |
+| `ORDER_STATE_PENDING_CANCEL` | 9 | Cancel request pending |
+| `ORDER_STATE_PENDING_RISK` | 10 | Pending risk approval; non-terminal |
 
 ```python theme={null}
 from polymarket.v1 import enums_pb2
@@ -180,10 +180,10 @@ print(f"State: {state_name}")
 
 ### Order Sides
 
-| Side        | Value |
-| ----------- | ----- |
-| `SIDE_BUY`  | 1     |
-| `SIDE_SELL` | 2     |
+| Side | Value |
+| - | - |
+| `SIDE_BUY` | 1 |
+| `SIDE_SELL` | 2 |
 
 ```python theme={null}
 side_name = enums_pb2.Side.Name(order.side)
@@ -192,12 +192,12 @@ print(f"Side: {side_name}")
 
 ### Order Types
 
-| Type                         | Value | Description                         |
-| ---------------------------- | ----- | ----------------------------------- |
-| `ORDER_TYPE_LIMIT`           | 2     | Limit order with specified price    |
-| `ORDER_TYPE_MARKET_TO_LIMIT` | 1     | Market order that converts to limit |
-| `ORDER_TYPE_STOP`            | 3     | Stop order                          |
-| `ORDER_TYPE_STOP_LIMIT`      | 4     | Stop-limit order                    |
+| Type | Value | Description |
+| - | - | - |
+| `ORDER_TYPE_LIMIT` | 2 | Limit order with specified price |
+| `ORDER_TYPE_MARKET_TO_LIMIT` | 1 | Market order that converts to limit |
+| `ORDER_TYPE_STOP` | 3 | Stop order |
+| `ORDER_TYPE_STOP_LIMIT` | 4 | Stop-limit order |
 
 ## Execution Message Structure
 
@@ -205,44 +205,44 @@ Executions represent order lifecycle events (new, fill, cancel, reject).
 
 ### Execution Fields
 
-| Field                 | Type              | Description                                   |
-| --------------------- | ----------------- | --------------------------------------------- |
-| `id`                  | `str`             | Unique execution ID                           |
-| `type`                | `ExecutionType`   | Type of execution event                       |
-| `order`               | `Order`           | Current order state after this execution      |
-| `last_shares`         | `int`             | Quantity filled in this execution (for fills) |
-| `last_px`             | `int`             | **Price of this fill** (÷ price\_scale)       |
-| `trade_id`            | `str`             | Trade ID (for fills)                          |
-| `aggressor`           | `bool`            | True if you were the aggressor in the trade   |
-| `transact_time`       | `Timestamp`       | When execution occurred                       |
-| `text`                | `str`             | Free-form text (e.g., reject reason)          |
-| `order_reject_reason` | `OrdRejectReason` | Rejection reason (if rejected)                |
+| Field | Type | Description |
+| - | - | - |
+| `id` | `str` | Unique execution ID |
+| `type` | `ExecutionType` | Type of execution event |
+| `order` | `Order` | Current order state after this execution |
+| `last_shares` | `int` | Quantity filled in this execution (for fills) |
+| `last_px` | `int` | **Price of this fill** (÷ price\_scale) |
+| `trade_id` | `str` | Trade ID (for fills) |
+| `aggressor` | `bool` | True if you were the aggressor in the trade |
+| `transact_time` | `Timestamp` | When execution occurred |
+| `text` | `str` | Free-form text (e.g., reject reason) |
+| `order_reject_reason` | `OrdRejectReason` | Rejection reason (if rejected) |
 
 ### Execution Types
 
-| Type                          | Value | Description                              |
-| ----------------------------- | ----- | ---------------------------------------- |
-| `EXECUTION_TYPE_NEW`          | 0     | Order accepted (confirmed)               |
-| `EXECUTION_TYPE_PARTIAL_FILL` | 1     | Partial fill occurred                    |
-| `EXECUTION_TYPE_FILL`         | 2     | **Complete fill** (order fully executed) |
-| `EXECUTION_TYPE_CANCELED`     | 3     | Order canceled                           |
-| `EXECUTION_TYPE_REPLACE`      | 4     | Order modified                           |
-| `EXECUTION_TYPE_REJECTED`     | 5     | Order rejected                           |
-| `EXECUTION_TYPE_EXPIRED`      | 6     | Order expired                            |
-| `EXECUTION_TYPE_DONE_FOR_DAY` | 7     | Order done for day                       |
+| Type | Value | Description |
+| - | - | - |
+| `EXECUTION_TYPE_NEW` | 0 | Order accepted (confirmed) |
+| `EXECUTION_TYPE_PARTIAL_FILL` | 1 | Partial fill occurred |
+| `EXECUTION_TYPE_FILL` | 2 | **Complete fill** (order fully executed) |
+| `EXECUTION_TYPE_CANCELED` | 3 | Order canceled |
+| `EXECUTION_TYPE_REPLACE` | 4 | Order modified |
+| `EXECUTION_TYPE_REJECTED` | 5 | Order rejected |
+| `EXECUTION_TYPE_EXPIRED` | 6 | Order expired |
+| `EXECUTION_TYPE_DONE_FOR_DAY` | 7 | Order done for day |
 
 ### Order Reject Reasons
 
-| Reason                                      | Value | Description             |
-| ------------------------------------------- | ----- | ----------------------- |
-| `ORD_REJECT_REASON_EXCHANGE_OPTION`         | 0     | Exchange option         |
-| `ORD_REJECT_REASON_UNKNOWN_SYMBOL`          | 1     | Symbol not found        |
-| `ORD_REJECT_REASON_EXCHANGE_CLOSED`         | 2     | Market is closed        |
-| `ORD_REJECT_REASON_INCORRECT_QUANTITY`      | 3     | Invalid quantity        |
-| `ORD_REJECT_REASON_INVALID_PRICE_INCREMENT` | 4     | Invalid price increment |
-| `ORD_REJECT_REASON_INCORRECT_ORDER_TYPE`    | 5     | Incorrect order type    |
-| `ORD_REJECT_REASON_PRICE_OUT_OF_BOUNDS`     | 6     | Price out of bounds     |
-| `ORD_REJECT_REASON_NO_LIQUIDITY`            | 7     | No liquidity available  |
+| Reason | Value | Description |
+| - | - | - |
+| `ORD_REJECT_REASON_EXCHANGE_OPTION` | 0 | Exchange option |
+| `ORD_REJECT_REASON_UNKNOWN_SYMBOL` | 1 | Symbol not found |
+| `ORD_REJECT_REASON_EXCHANGE_CLOSED` | 2 | Market is closed |
+| `ORD_REJECT_REASON_INCORRECT_QUANTITY` | 3 | Invalid quantity |
+| `ORD_REJECT_REASON_INVALID_PRICE_INCREMENT` | 4 | Invalid price increment |
+| `ORD_REJECT_REASON_INCORRECT_ORDER_TYPE` | 5 | Incorrect order type |
+| `ORD_REJECT_REASON_PRICE_OUT_OF_BOUNDS` | 6 | Price out of bounds |
+| `ORD_REJECT_REASON_NO_LIQUIDITY` | 7 | No liquidity available |
 
 ## Complete Example (from order\_stream.py)
 

@@ -14,11 +14,11 @@ You can withdraw your cash balance using:
 
 Here's how each method compares:
 
-| Withdrawal Method   | Typical Arrival   | Best For           | Notes                                                  |
-| ------------------- | ----------------- | ------------------ | ------------------------------------------------------ |
-| Debit Card          | 3–4 business days | Small withdrawals  | Funds return to the same card used for deposit         |
+| Withdrawal Method | Typical Arrival | Best For | Notes |
+| - | - | - | - |
+| Debit Card | 3–4 business days | Small withdrawals | Funds return to the same card used for deposit |
 | Bank Transfer (ACH) | 3–4 business days | Medium withdrawals | Funds return to the same bank account used for deposit |
-| Wire Transfer       | 1 business day    | Large withdrawals  | Contact support if needed                              |
+| Wire Transfer | 1 business day | Large withdrawals | Contact support if needed |
 
 <Note>
   Withdrawals are only available for deposits that have **fully cleared**, which typically takes 3–4 business days. This includes instant buying power and any proceeds from trading activity tied to that deposit.

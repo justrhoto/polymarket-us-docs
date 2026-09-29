@@ -10,9 +10,9 @@ The Health Check endpoint allows you to verify the API service status before mak
 
 ## Endpoint
 
-| Method | Endpoint     | Description                 |
-| ------ | ------------ | --------------------------- |
-| `GET`  | `/v1/health` | Check service health status |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/health` | Check service health status |
 
 ## Request
 
@@ -32,8 +32,8 @@ No authentication is required for the health check endpoint.
 
 ### Response Fields
 
-| Field    | Type   | Description                        |
-| -------- | ------ | ---------------------------------- |
+| Field | Type | Description |
+| - | - | - |
 | `status` | string | Service status (`ok` when healthy) |
 
 ## Use Cases

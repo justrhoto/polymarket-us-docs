@@ -12,15 +12,15 @@
 
 Polymarket US offers several types of sports Contracts:
 
-| Contract              | What it covers                                                                             | Example                                                    |
-| --------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
-| **Winner (w/o ties)** | Which team or player wins a game                                                           | “Which team will win, Lakers vs Celtics?”                  |
-| **Winner (w/ ties)**  | Which team or player wins a game or match where a draw is a standard outcome (e.g. soccer) | “Will Man City vs Arsenal end in a draw?”                  |
-| **Spread**            | Whether a team wins by a certain margin                                                    | “Will the Chiefs win by more than 7?”                      |
-| **Total**             | Whether the combined score is over or under a threshold                                    | “Will the total score in Patriots vs Chiefs be over 47.5?” |
-| **Future**            | Who will win a championship, award, or tournament                                          | “Will the Lakers win the 2026 NBA Championship?”           |
-| **Qualifier**         | Whether a team or player qualifies for an event                                            | “Will Duke make the NCAA Tournament Final Four?”           |
-| **Player Prop**       | Whether an individual player’s stat reaches a threshold                                    | “Will LeBron score over 25.5 points vs the Celtics?”       |
+| Contract | What it covers | Example |
+| - | - | - |
+| **Winner (w/o ties)** | Which team or player wins a game | “Which team will win, Lakers vs Celtics?” |
+| **Winner (w/ ties)** | Which team or player wins a game or match where a draw is a standard outcome (e.g. soccer) | “Will Man City vs Arsenal end in a draw?” |
+| **Spread** | Whether a team wins by a certain margin | “Will the Chiefs win by more than 7?” |
+| **Total** | Whether the combined score is over or under a threshold | “Will the total score in Patriots vs Chiefs be over 47.5?” |
+| **Future** | Who will win a championship, award, or tournament | “Will the Lakers win the 2026 NBA Championship?” |
+| **Qualifier** | Whether a team or player qualifies for an event | “Will Duke make the NCAA Tournament Final Four?” |
+| **Player Prop** | Whether an individual player’s stat reaches a threshold | “Will LeBron score over 25.5 points vs the Celtics?” |
 
 ### How are markets settled?
 

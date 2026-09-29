@@ -14,10 +14,10 @@ Rate limits are enforced per API key. Exceeding them returns `429 Too Many Reque
 
 The Retail API enforces a global rate limit of **20 requests per second** per API key across all endpoints.
 
-| Limit                                    | Value                              |
-| ---------------------------------------- | ---------------------------------- |
+| Limit | Value |
+| - | - |
 | **Global (all authenticated endpoints)** | 20 requests per second per API key |
-| **Public (unauthenticated)**             | 20 requests per second per IP      |
+| **Public (unauthenticated)** | 20 requests per second per IP |
 
 ***
 
@@ -65,13 +65,13 @@ You can always cancel an order before you have received an acknowledgement, and 
 
 The single most effective way to stay within limits is to stop polling and use WebSocket streams. One persistent connection replaces hundreds of repeated REST calls.
 
-| Don't poll                               | Use instead                                             |
-| ---------------------------------------- | ------------------------------------------------------- |
-| `GET /v1/orders/open` repeatedly         | `/v1/ws/private` - `SUBSCRIPTION_TYPE_ORDER`            |
-| `GET /v1/portfolio/positions` repeatedly | `/v1/ws/private` - `SUBSCRIPTION_TYPE_POSITION`         |
-| `GET /v1/account/balances` repeatedly    | `/v1/ws/private` - `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE`  |
-| `GET /v1/markets/{slug}/bbo` repeatedly  | `/v1/ws/markets` - `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` |
-| `GET /v1/markets/{slug}/book` repeatedly | `/v1/ws/markets` - `SUBSCRIPTION_TYPE_MARKET_DATA`      |
+| Don't poll | Use instead |
+| - | - |
+| `GET /v1/orders/open` repeatedly | `/v1/ws/private` - `SUBSCRIPTION_TYPE_ORDER` |
+| `GET /v1/portfolio/positions` repeatedly | `/v1/ws/private` - `SUBSCRIPTION_TYPE_POSITION` |
+| `GET /v1/account/balances` repeatedly | `/v1/ws/private` - `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` |
+| `GET /v1/markets/{slug}/bbo` repeatedly | `/v1/ws/markets` - `SUBSCRIPTION_TYPE_MARKET_DATA_LITE` |
+| `GET /v1/markets/{slug}/book` repeatedly | `/v1/ws/markets` - `SUBSCRIPTION_TYPE_MARKET_DATA` |
 
 ***
 

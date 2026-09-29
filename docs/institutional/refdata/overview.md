@@ -10,19 +10,19 @@
 
 ### Instruments & Symbols
 
-| Method | Endpoint                  | Description                                  |
-| ------ | ------------------------- | -------------------------------------------- |
-| `POST` | `/v1/refdata/symbols`     | List all symbols                             |
+| Method | Endpoint | Description |
+| - | - | - |
+| `POST` | `/v1/refdata/symbols` | List all symbols |
 | `POST` | `/v1/refdata/instruments` | List instruments (filter by symbols in body) |
-| `POST` | `/v1/refdata/metadata`    | Get instrument metadata                      |
+| `POST` | `/v1/refdata/metadata` | Get instrument metadata |
 
 ### Sports Data
 
-| Method | Endpoint                            | Description                        |
-| ------ | ----------------------------------- | ---------------------------------- |
-| `GET`  | `/v1/refdata/sports`                | List all sports with metadata      |
-| `GET`  | `/v1/refdata/sports/teams`          | List teams with optional filtering |
-| `GET`  | `/v1/refdata/sports/teams/provider` | Get teams by provider-specific IDs |
+| Method | Endpoint | Description |
+| - | - | - |
+| `GET` | `/v1/refdata/sports` | List all sports with metadata |
+| `GET` | `/v1/refdata/sports/teams` | List teams with optional filtering |
+| `GET` | `/v1/refdata/sports/teams/provider` | Get teams by provider-specific IDs |
 
 See [Sports Reference Data](/api-reference/refdata/sports) for detailed documentation.
 
@@ -46,21 +46,21 @@ The `/v1/refdata/instruments` endpoint supports configurable query parameters to
 
 ### Request Parameters
 
-| Parameter        | Type      | Description                                                                          |
-| ---------------- | --------- | ------------------------------------------------------------------------------------ |
-| `pageSize`       | int32     | Results per page (default: 50, max: 1000)                                            |
-| `pageToken`      | string    | Pagination cursor from previous response                                             |
-| `symbols`        | string\[] | Filter by exact instrument symbols                                                   |
-| `productId`      | string    | Filter by exact product ID                                                           |
-| `tradableFilter` | enum      | `TRADABLE_FILTER_TRADABLE`, `TRADABLE_FILTER_NON_TRADABLE`, or `TRADABLE_FILTER_ALL` |
-| `states`         | enum\[]   | Filter by instrument states (multiple values = OR logic)                             |
-| `eventSeries`    | string    | Filter by event series (e.g., `cbb`, `nfl`, `nba`)                                   |
-| `eventCategory`  | string    | Filter by event category (e.g., `SPR`, `POL`, `CUL`)                                 |
-| `clearingSym`    | string    | Filter by clearing symbol (e.g., `AEC-NFL`, `AEC-BASKETBALL`)                        |
-| `startTimeGte`   | string    | Instruments starting on or after date (format: `YYYY-MM-DD`)                         |
-| `startTimeLte`   | string    | Instruments starting on or before date                                               |
-| `endTimeGte`     | string    | Instruments expiring on or after date                                                |
-| `endTimeLte`     | string    | Instruments expiring on or before date                                               |
+| Parameter | Type | Description |
+| - | - | - |
+| `pageSize` | int32 | Results per page (default: 50, max: 1000) |
+| `pageToken` | string | Pagination cursor from previous response |
+| `symbols` | string\[] | Filter by exact instrument symbols |
+| `productId` | string | Filter by exact product ID |
+| `tradableFilter` | enum | `TRADABLE_FILTER_TRADABLE`, `TRADABLE_FILTER_NON_TRADABLE`, or `TRADABLE_FILTER_ALL` |
+| `states` | enum\[] | Filter by instrument states (multiple values = OR logic) |
+| `eventSeries` | string | Filter by event series (e.g., `cbb`, `nfl`, `nba`) |
+| `eventCategory` | string | Filter by event category (e.g., `SPR`, `POL`, `CUL`) |
+| `clearingSym` | string | Filter by clearing symbol (e.g., `AEC-NFL`, `AEC-BASKETBALL`) |
+| `startTimeGte` | string | Instruments starting on or after date (format: `YYYY-MM-DD`) |
+| `startTimeLte` | string | Instruments starting on or before date |
+| `endTimeGte` | string | Instruments expiring on or after date |
+| `endTimeLte` | string | Instruments expiring on or before date |
 
 <Info>
   All parameter names accept both camelCase and snake\_case (e.g., `eventSeries` and `event_series` are equivalent). This is standard protobuf JSON serialization behavior.
@@ -74,11 +74,11 @@ The `/v1/refdata/instruments` endpoint supports configurable query parameters to
 
 ### Response Fields
 
-| Field           | Type    | Description                                    |
-| --------------- | ------- | ---------------------------------------------- |
-| `instruments`   | array   | List of matching instruments                   |
-| `nextPageToken` | string  | Token for next page (empty if no more results) |
-| `eof`           | boolean | True when no more results                      |
+| Field | Type | Description |
+| - | - | - |
+| `instruments` | array | List of matching instruments |
+| `nextPageToken` | string | Token for next page (empty if no more results) |
+| `eof` | boolean | True when no more results |
 
 ### Pagination
 
@@ -258,15 +258,15 @@ Supported operators: `=`, `LIKE` (with `%` wildcard), `AND`
 
 Supported columns:
 
-| Column           | Notes                        |
-| ---------------- | ---------------------------- |
-| `state`          | Instrument state enum values |
-| `symbol`         | Exact match or LIKE pattern  |
-| `event_series`   | e.g., `'cbb'`, `'nfl'`       |
-| `event_category` | e.g., `'SPR'`                |
-| `clearing_sym`   | e.g., `'AEC-BASKETBALL'`     |
-| `clearing_house` | e.g., `'QCC'`                |
-| `product_id`     | Product identifier           |
+| Column | Notes |
+| - | - |
+| `state` | Instrument state enum values |
+| `symbol` | Exact match or LIKE pattern |
+| `event_series` | e.g., `'cbb'`, `'nfl'` |
+| `event_category` | e.g., `'SPR'` |
+| `clearing_sym` | e.g., `'AEC-BASKETBALL'` |
+| `clearing_house` | e.g., `'QCC'` |
+| `product_id` | Product identifier |
 
 <Warning>
   Do **not** use `instrument_product`, `outcome_type`, or `event_subcategory` in `whereClause` - these cause HTTP 500 errors. The column `event_id` is accepted but returns 0 results for known values.
@@ -299,11 +299,11 @@ Each field filter has a `field` name, an `operator`, and a typed value (`stringV
 
 **Available operators:**
 
-| Operator               | Description                     | Value field                        |
-| ---------------------- | ------------------------------- | ---------------------------------- |
-| `FILTER_OPERATOR_EQ`   | Exact match                     | `stringValue`                      |
-| `FILTER_OPERATOR_IN`   | Match any in list               | `stringList` (`{"values": [...]}`) |
-| `FILTER_OPERATOR_LIKE` | SQL LIKE pattern (`%` wildcard) | `stringValue`                      |
+| Operator | Description | Value field |
+| - | - | - |
+| `FILTER_OPERATOR_EQ` | Exact match | `stringValue` |
+| `FILTER_OPERATOR_IN` | Match any in list | `stringList` (`{"values": [...]}`) |
+| `FILTER_OPERATOR_LIKE` | SQL LIKE pattern (`%` wildcard) | `stringValue` |
 
 ***
 
@@ -311,36 +311,36 @@ Each field filter has a `field` name, an `operator`, and a typed value (`stringV
 
 Each instrument includes:
 
-| Field                      | Type                   | Description                                                         |
-| -------------------------- | ---------------------- | ------------------------------------------------------------------- |
-| `symbol`                   | string                 | Unique trading symbol                                               |
-| `tickSize`                 | double                 | Minimum price increment                                             |
-| `baseCurrency`             | string                 | Base currency (e.g., `"USD"`)                                       |
-| `multiplier`               | double                 | Contract multiplier                                                 |
-| `minimumTradeQty`          | string (int64)         | Minimum order quantity                                              |
-| `startDate`                | Date                   | Market start date (`{year, month, day}`)                            |
-| `expirationDate`           | Date                   | Expiration date                                                     |
-| `terminationDate`          | Date or null           | Termination date (null when not set)                                |
-| `tradingSchedule`          | TradingHours\[]        | Trading schedule segments (empty array when none)                   |
-| `description`              | string                 | Human-readable instrument description                               |
-| `clearingHouse`            | string                 | Clearing house code (e.g., `"QCC"`)                                 |
-| `minimumUnaffiliatedFirms` | string (int64)         | Minimum unaffiliated firms requirement                              |
-| `nonTradable`              | boolean                | Whether instrument is non-tradable                                  |
-| `jsonAttributes`           | string                 | Additional JSON attributes (empty when unused)                      |
-| `productId`                | string                 | Product identifier                                                  |
-| `priceLimit`               | PriceLimit             | Price limits (`{low, high, lowSet, highSet, ...}`)                  |
-| `orderSizeLimit`           | OrderSizeLimit or null | Order size limits (null when not set)                               |
-| `expirationTime`           | TimeOfDay              | Expiration time of day (`{hours, minutes, seconds}`)                |
-| `tradeSettlementPeriod`    | string (int64)         | Settlement period                                                   |
-| `state`                    | string (enum)          | Current instrument state (e.g., `"INSTRUMENT_STATE_OPEN"`)          |
-| `priceScale`               | string (int64)         | Price scale divisor for converting integer prices to decimals       |
-| `fractionalQtyScale`       | string (int64)         | Fractional quantity scale                                           |
-| `settlementCurrency`       | string                 | Reserved for future use                                             |
-| `settlementPriceScale`     | string (int64)         | Reserved for future use                                             |
-| `metadata`                 | map\<string,string>    | Key-value metadata (sports league, market category, game IDs, etc.) |
-| `eventAttributes`          | EventAttributes        | Event resolution details (`{question, payoutValue, ...}`)           |
-| `createTime`               | string (Timestamp)     | Instrument creation time (RFC 3339)                                 |
-| `updateTime`               | string (Timestamp)     | Last update time (RFC 3339)                                         |
+| Field | Type | Description |
+| - | - | - |
+| `symbol` | string | Unique trading symbol |
+| `tickSize` | double | Minimum price increment |
+| `baseCurrency` | string | Base currency (e.g., `"USD"`) |
+| `multiplier` | double | Contract multiplier |
+| `minimumTradeQty` | string (int64) | Minimum order quantity |
+| `startDate` | Date | Market start date (`{year, month, day}`) |
+| `expirationDate` | Date | Expiration date |
+| `terminationDate` | Date or null | Termination date (null when not set) |
+| `tradingSchedule` | TradingHours\[] | Trading schedule segments (empty array when none) |
+| `description` | string | Human-readable instrument description |
+| `clearingHouse` | string | Clearing house code (e.g., `"QCC"`) |
+| `minimumUnaffiliatedFirms` | string (int64) | Minimum unaffiliated firms requirement |
+| `nonTradable` | boolean | Whether instrument is non-tradable |
+| `jsonAttributes` | string | Additional JSON attributes (empty when unused) |
+| `productId` | string | Product identifier |
+| `priceLimit` | PriceLimit | Price limits (`{low, high, lowSet, highSet, ...}`) |
+| `orderSizeLimit` | OrderSizeLimit or null | Order size limits (null when not set) |
+| `expirationTime` | TimeOfDay | Expiration time of day (`{hours, minutes, seconds}`) |
+| `tradeSettlementPeriod` | string (int64) | Settlement period |
+| `state` | string (enum) | Current instrument state (e.g., `"INSTRUMENT_STATE_OPEN"`) |
+| `priceScale` | string (int64) | Price scale divisor for converting integer prices to decimals |
+| `fractionalQtyScale` | string (int64) | Fractional quantity scale |
+| `settlementCurrency` | string | Reserved for future use |
+| `settlementPriceScale` | string (int64) | Reserved for future use |
+| `metadata` | map\<string,string> | Key-value metadata (sports league, market category, game IDs, etc.) |
+| `eventAttributes` | EventAttributes | Event resolution details (`{question, payoutValue, ...}`) |
+| `createTime` | string (Timestamp) | Instrument creation time (RFC 3339) |
+| `updateTime` | string (Timestamp) | Last update time (RFC 3339) |
 
 <Warning>
   **Integer Fields Encoded as Strings in JSON**
@@ -354,27 +354,27 @@ Each instrument includes:
 
 ### Primary State Flow
 
-| State                                               | Description                                                                                                                                                                                                      |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PENDING`                                           | Initial state for a newly created instrument which has not yet begun trading.                                                                                                                                    |
-| `OPEN`                                              | In this state, the instrument is open for continuous order entry and matching.                                                                                                                                   |
-| `CLOSED`                                            | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired.                                                                                |
-| `EXPIRED`                                           | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered.                                                      |
-| `TERMINATED`                                        | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
+| State                                               | Description |
+| - | - |
+| `PENDING` | Initial state for a newly created instrument which has not yet begun trading. |
+| `OPEN` | In this state, the instrument is open for continuous order entry and matching. |
+| `CLOSED` | In this state, orders can not be entered, modified, or canceled, and no matching occurs. Any existing Day orders will be expired. |
+| `EXPIRED` | An instrument moves to this state when its Expiration Date/Time is reached. In this state, any resting orders are expired and no new orders can be entered. |
+| `TERMINATED` | When an instrument's Termination Date is reached, the order book is removed from the matching engine, orders are canceled, and positions are closed. Historical data will still remain in Polymarket US ledgers. |
 
 ### Exception States
 
-| State                                               | Description                                                                                   |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `SUSPENDED`                                         | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
-| `HALTED`                                            | This state is similar to SUSPENDED, with the exception that orders cannot be canceled.        |
+| State                                               | Description |
+| - | - |
+| `SUSPENDED` | Orders can be canceled but no matching occurs, and no order entry or modification is allowed. |
+| `HALTED` | This state is similar to SUSPENDED, with the exception that orders cannot be canceled. |
 
 ### Other Possible States
 
-| State                                               | Description                                                                                                                                                                                                                                                                                       |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `PREOPEN`                                           | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
-| `MATCH_AND_CLOSE_AUCTION`                           | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after.                               |
+| State                                               | Description |
+| - | - |
+| `PREOPEN` | Orders can be entered and modified, but no matching occurs. When the instrument transitions to an OPEN state, the orders entered during PREOPEN will match at a single opening price that is automatically determined by an algorithm that is designed to maximize the volume traded at the open. |
+| `MATCH_AND_CLOSE_AUCTION` | This state is similar to PREOPEN, with the exception that matching will occur upon the transition of this state to any other state. This state is useful if you want matching to occur at the end of the state, but you don't want the instrument to be open after. |
 
 ## Price Scale
 

@@ -10,27 +10,27 @@ The Polymarket Exchange API is available in two environments. Use the appropriat
 
 ## Endpoints
 
-| Environment | Purpose                   | REST API                                     | gRPC                                      | Auth Domain                |
-| ----------- | ------------------------- | -------------------------------------------- | ----------------------------------------- | -------------------------- |
+| Environment | Purpose | REST API | gRPC | Auth Domain |
+| - | - | - | - | - |
 | **Preprod** | Pre-production validation | `https://api.preprod.polymarketexchange.com` | `grpc-preprod.polymarketexchange.com:443` | `pmx-preprod.us.auth0.com` |
-| **Prod**    | Production trading        | `https://api.prod.polymarketexchange.com`    | `grpc-prod.polymarketexchange.com:443`    | `pmx-prod.us.auth0.com`    |
+| **Prod** | Production trading | `https://api.prod.polymarketexchange.com` | `grpc-prod.polymarketexchange.com:443` | `pmx-prod.us.auth0.com` |
 
 The Audience value for each environment matches its REST API base URL.
 
 ### API Path Patterns
 
-| API Type       | Path Pattern                | Example                                             |
-| -------------- | --------------------------- | --------------------------------------------------- |
-| REST endpoints | `/v1/{service}/{operation}` | `/v1/trading/orders`                                |
-| Health check   | `/v1/health`                | `GET /v1/health`                                    |
-| Auth token     | `/oauth/token`              | `POST https://pmx-preprod.us.auth0.com/oauth/token` |
+| API Type | Path Pattern | Example |
+| - | - | - |
+| REST endpoints | `/v1/{service}/{operation}` | `/v1/trading/orders` |
+| Health check | `/v1/health` | `GET /v1/health` |
+| Auth token | `/oauth/token` | `POST https://pmx-preprod.us.auth0.com/oauth/token` |
 
 ### Authentication
 
-| Environment | Token URL                                      |
-| ----------- | ---------------------------------------------- |
-| Preprod     | `https://pmx-preprod.us.auth0.com/oauth/token` |
-| Prod        | `https://pmx-prod.us.auth0.com/oauth/token`    |
+| Environment | Token URL |
+| - | - |
+| Preprod | `https://pmx-preprod.us.auth0.com/oauth/token` |
+| Prod | `https://pmx-prod.us.auth0.com/oauth/token` |
 
 <Warning>
   **Tokens must be refreshed every 3 minutes** across all environments.

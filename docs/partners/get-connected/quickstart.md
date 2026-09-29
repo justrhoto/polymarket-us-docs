@@ -218,11 +218,11 @@ The partner launch allowlist is intentionally narrow. Set only the fields shown 
 
 Handle all three durable outcomes:
 
-| Status                         | Meaning                                                                                                                                                                             | What you do                                                                                    |
-| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `VENDOR_ORDER_STATUS_ACCEPTED` | The exchange durably accepted the order — including an order that matched immediately or was cancelled under fill-or-kill. Acceptance does not mean the order is resting or filled. | Learn execution outcomes from Drop Copy and add the declared fee to your accrual.              |
-| `VENDOR_ORDER_STATUS_REJECTED` | The order was rejected. Nothing was recorded and no fee accrues.                                                                                                                    | Surface the rejection; nothing to clean up.                                                    |
-| `VENDOR_ORDER_STATUS_PENDING`  | The durable exchange outcome was not confirmed within the deadline.                                                                                                                 | Retry the identical request with the **same** `idempotency_key` and `clord_id` until terminal. |
+| Status | Meaning | What you do |
+| - | - | - |
+| `VENDOR_ORDER_STATUS_ACCEPTED` | The exchange durably accepted the order — including an order that matched immediately or was cancelled under fill-or-kill. Acceptance does not mean the order is resting or filled. | Learn execution outcomes from Drop Copy and add the declared fee to your accrual. |
+| `VENDOR_ORDER_STATUS_REJECTED` | The order was rejected. Nothing was recorded and no fee accrues. | Surface the rejection; nothing to clean up. |
+| `VENDOR_ORDER_STATUS_PENDING` | The durable exchange outcome was not confirmed within the deadline. | Retry the identical request with the **same** `idempotency_key` and `clord_id` until terminal. |
 
 The service guarantees **at most one order per idempotency key — retrying with the same key can never place a duplicate order or double-charge the declared vendor fee.** On transport errors (`UNAVAILABLE`, timeouts), also retry the identical request with the same key and `clord_id`. Match the participant's Drop Copy activity by `order.account` and `clord_id`. See [idempotency and retries](/partners/orders/create-order#idempotency-and-retries) and the [funding request lifecycle](/partners/orders/create-order#funding-request-lifecycle).
 
