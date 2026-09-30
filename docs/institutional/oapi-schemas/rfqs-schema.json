@@ -263,6 +263,81 @@
         ]
       }
     },
+    "/v1/rfqs/trades": {
+      "get": {
+        "summary": "Get RFQ trades",
+        "description": "Query trades originating from RFQs.",
+        "operationId": "RFQAPI_GetRFQTrades",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetRFQTradesResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "Zero defaults to 100. Otherwise between 1 and 100, inclusive.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "description": "Repeat all filters and limit unchanged when continuing a query.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startTime",
+            "description": "Inclusive execution time. Defaults to the start of available coverage.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endTime",
+            "description": "Exclusive execution time. Defaults to receipt time of the first request.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "symbol",
+            "description": "Exact, case-sensitive symbol; empty selects all symbols.",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "tags": [
+          "RFQs"
+        ]
+      }
+    },
     "/v1/rfqs/user-id": {
       "get": {
         "summary": "Get RFQ user ID",
@@ -592,6 +667,21 @@
           }
         }
       },
+      "v1GetRFQTradesResponse": {
+        "type": "object",
+        "properties": {
+          "trades": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/v1RFQTrade"
+            }
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Empty ends this traversal. Requery time windows for late arrivals."
+          }
+        }
+      },
       "v1GetRFQUserIDResponse": {
         "type": "object",
         "properties": {
@@ -788,6 +878,31 @@
           "RFQ_STATUS_OPEN",
           "RFQ_STATUS_CLOSED"
         ]
+      },
+      "v1RFQTrade": {
+        "type": "object",
+        "properties": {
+          "tradeId": {
+            "type": "string"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "qtyDecimal": {
+            "type": "string"
+          },
+          "aggressorSide": {
+            "$ref": "#/components/schemas/v1Side"
+          },
+          "executedTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "description": "An anonymous original fill. Later trade corrections are not reflected here."
       },
       "v1Side": {
         "type": "string",

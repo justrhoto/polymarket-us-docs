@@ -23,6 +23,7 @@ Every REST endpoint below has an equivalent unary gRPC RPC. REST JSON uses lower
 | `POST` | `/v1/rfqs` | `write:orders` | 1 req/sec | Create an RFQ |
 | `DELETE` | `/v1/rfqs/{rfqId}` | `write:orders` | 100 req/sec | Close an open RFQ |
 | `GET` | `/v1/rfqs/quotes` | `read:orders` | 10 req/sec | Query visible quotes |
+| `GET` | `/v1/rfqs/trades` | `read:orders` | 10 req/sec | [Original RFQ fills](#query-rfq-trades) |
 | `POST` | `/v1/rfqs/quotes` | `write:orders` | 400–2,000 req/sec by tier | Create or replace your quote for an RFQ |
 | `DELETE` | `/v1/rfqs/{rfqId}/quotes/{quoteId}` | `write:orders` | 400–2,000 req/sec by tier | Delete your quote |
 | `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept` | `write:orders` | 100 req/sec | Accept one side of a quote |
@@ -42,7 +43,9 @@ sequenceDiagram
     participant R as Requester
     participant API as RFQAPI
     participant M as Maker
+    participant S as Other RFQ subscribers
 
+    Note over R,S: Events arrive on StreamRFQEvents
     R->>API: CreateRFQ(symbol, sizing, account)
     API-->>M: rfq_created
     M->>API: CreateQuote(buyPrice, sellPrice, account)
@@ -57,7 +60,15 @@ sequenceDiagram
     API-->>M: quote_confirmed + executionDeadline
     API-->>R: quote_executed + durable execution state
     API-->>M: quote_executed + durable execution state
+    Note over R,M: Orders accepted for submission
+    loop Each fill, including later resting-order fills
+        API-->>R: rfq_trade (anonymous fill)
+        API-->>M: rfq_trade (anonymous fill)
+        API-->>S: rfq_trade (anonymous fill)
+    end
 ```
+
+`rfq_trade` is emitted only when an RFQ-originated order fills, and is visible to all authorized stream subscribers. The diagram shows the logical flow; delivery order between `quote_executed` and `rfq_trade` is not guaranteed.
 
 Successful `AcceptQuote` produces both `rfq_closed` and `quote_accepted`. A client may receive the public `rfq_closed` event first. Stop creating or replacing quotes for that RFQ, but keep existing quote state until the private quote event arrives or `GetQuotes` confirms its current status.
 
@@ -234,6 +245,30 @@ Only the requester can accept an active quote. `SIDE_BUY` selects `buyPrice`; `S
 `PUT /v1/rfqs/{rfqId}/quotes/{quoteId}/confirm`
 
 The selected maker must confirm before `confirmationDeadline`. Confirmation changes the quote to `QUOTE_STATUS_CONFIRMED` and schedules paired order submission. The response is `{}`.
+
+## Query RFQ Trades
+
+`GET /v1/rfqs/trades` or `RFQAPI.GetRFQTrades` returns anonymous original fills where either order originated from an RFQ, including later fills on resting orders and fills on single instruments or combos.
+
+All authorized RFQ participants see the same trades. Each fill appears once, even when both orders originated from RFQs. No account, participant, order, RFQ, or quote IDs are included. Later corrections and busts do not amend these prints; use Drop Copy for your own reconciliation.
+
+| Parameter | Description |
+| - | - |
+| `limit` | Page size, 1–100. Omitted or zero defaults to 100. |
+| `cursor` | Opaque continuation from the previous response. Empty starts a new query. |
+| `startTime` | Inclusive execution-time boundary. Defaults to the start of available history. |
+| `endTime` | Exclusive execution-time boundary. Defaults to the time the first request arrived. |
+| `symbol` | Exact, case-sensitive instrument symbol. Omit for all symbols. |
+
+REST timestamps use RFC 3339; gRPC uses `google.protobuf.Timestamp`. The response contains `trades` and `cursor`, ordered by execution time descending, then trade ID descending. An empty cursor ends the traversal. Each trade has the same [RFQTrade fields](/streaming-endpoints/rfq-events-stream#rfqtrade) as the stream event.
+
+Repeat the same participant, filters, and limit on every page; change only `cursor`. Keep omitted timestamps omitted: the cursor preserves the original boundaries. Invalid limits, changed query parameters, or `start_time >= end_time` return `INVALID_ARGUMENT`. A start time before available history returns `FAILED_PRECONDITION`.
+
+<Warning>
+  Use **gRPC for pagination**. Long REST cursors can exceed the current query-string size limit and return HTTP 403.
+</Warning>
+
+History can appear after the live event. Requery overlapping execution-time windows with a fresh cursor and deduplicate by `trade_id` to find late arrivals. See [stream recovery](/streaming-endpoints/rfq-events-stream#delivery-and-recovery).
 
 ## Statuses
 

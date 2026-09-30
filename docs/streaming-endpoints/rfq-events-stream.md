@@ -4,13 +4,15 @@
 
 # RFQ Events Streaming
 
-> Live combo RFQ and quote events through RFQAPI
+> Live RFQ, quote, and trade events through RFQAPI
 
 <Info>
   Read the [Combos guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
 </Info>
 
-`StreamRFQEvents` is a gRPC server-side stream for live combo RFQ and quote changes.
+`StreamRFQEvents` is a gRPC server-side stream for live RFQ, quote, and trade events.
+
+Regenerate your client from the updated [proto bundle](/streaming-endpoints/proto-reference#obtaining-proto-files) to consume `rfq_trade` events.
 
 ## Service Definition
 
@@ -53,6 +55,9 @@ Each response contains exactly one event payload.
 | `quote_accepted` | `QuoteAcceptedEvent` | Requester and selected quote creator | The requester accepted one side and last look started. |
 | `quote_confirmed` | `QuoteConfirmedEvent` | Requester and selected quote creator | The maker confirmed and paired submission was scheduled. |
 | `quote_executed` | `QuoteExecutedEvent` | Requester and selected quote creator | Both exchange orders were accepted for submission. |
+| `rfq_trade` | `RFQTradeEvent` | Public | An original fill on an RFQ-originated order. Read `event.trade`; recover missed fills with `GetRFQTrades`. |
+
+Ignore unrecognized event variants and keep reading. Older protobuf clients may report no recognized `event` when they receive a newly added variant.
 
 Successful quote acceptance produces both events: public `rfq_closed` and participant-private `quote_accepted`. A client may receive `rfq_closed` first. Treat it as "stop quoting this RFQ," not "no quote was accepted." Keep existing quote state until the private quote event arrives, or reconcile it with `GetQuotes`.
 
@@ -111,6 +116,21 @@ Quote prices must be multiples of `tickSize` and within the instrument's price l
 | `creatorOrderId` | optional string | Quoter's exchange order ID, when available. |
 
 The requester and quoter can both see both exchange order IDs on the embedded `Quote`. Client order IDs are not part of durable `Quote` state.
+
+### RFQTrade
+
+The `rfq_trade` event (field 15) wraps an `RFQTrade` in `RFQTradeEvent.trade`. Read it from `response.rfq_trade.trade`. These anonymous fills are visible to all authorized subscribers; see [RFQ trade history](/institutional/rfqs/overview#query-rfq-trades) for which fills are included.
+
+| Field | Type | Description |
+| - | - | - |
+| `tradeId` | string | Exchange trade ID. Deduplicate by this field. |
+| `symbol` | string | Exact traded instrument symbol. |
+| `price` | string | Decimal execution price. |
+| `qtyDecimal` | string | Decimal executed quantity. |
+| `aggressorSide` | `Side` | `SIDE_BUY`, `SIDE_SELL`, or `SIDE_UNDEFINED` when unknown. This is the aggressing order's side, which can differ from the RFQ requester's side. |
+| `executedTime` | `Timestamp` | Exchange execution time. |
+
+Protobuf field names use snake case: `trade_id`, `qty_decimal`, `aggressor_side`, and `executed_time`. One submitted order can produce several fills.
 
 ## Lifecycle-Specific Fields
 
@@ -187,6 +207,16 @@ def stream_rfq_events(access_token: str, participant_id: str) -> None:
                     f"Quote submitted: {event.quote.id}; "
                     f"order={event.order_id}"
                 )
+
+            elif event_type == "rfq_trade":
+                trade = response.rfq_trade.trade
+                print(
+                    f"Fill: {trade.trade_id} {trade.symbol} "
+                    f"{trade.qty_decimal} @ {trade.price}"
+                )
+
+            else:
+                continue
 ```
 
 ## Delivery and Recovery
@@ -208,6 +238,8 @@ On startup:
 4. Apply subsequent events idempotently by RFQ or quote ID and `updatedTime`.
 
 After a disconnect, reopen the stream and repeat both durable reads. If any stream event may have been missed, `GetQuotes` is the durable recovery path for the current Quote execution state. An empty read collection is a valid snapshot.
+
+For trade events, open the stream before querying `GetRFQTrades` and merge both sources by `trade_id`. After a disconnect, reopen the stream and query an overlapping execution-time window. History is eventually visible; a fresh query can find fills absent from an earlier traversal. See [pagination and history constraints](/institutional/rfqs/overview#query-rfq-trades).
 
 ## Errors
 

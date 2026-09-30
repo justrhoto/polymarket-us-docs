@@ -4,27 +4,22 @@
 
 # Create RFQ
 
-> Creates a combo RFQ using the authenticated Retail account.
+> Creates a combo RFQ.
 
 
 
 ## OpenAPI
 
-````yaml /api-reference/oapi-schemas/rfqs-schema.json post /v1/rfqs
+````yaml /institutional/oapi-schemas/rfqs-schema.json post /v1/rfqs
 openapi: 3.0.3
 info:
   title: RFQ API
   version: v1.0.0
-  description: >-
-    Create and manage combo RFQs and quotes through the Retail API. Beta access
-    is required.
 servers:
-  - url: https://api.polymarket.us
+  - url: https://api.prod.polymarketexchange.com
     description: Production server
 security:
-  - X-PM-Access-Key: []
-    X-PM-Timestamp: []
-    X-PM-Signature: []
+  - bearerAuth: []
 tags:
   - name: RFQs
     description: Read and manage combo RFQs and quotes.
@@ -34,7 +29,7 @@ paths:
       tags:
         - RFQs
       summary: Create RFQ
-      description: Creates a combo RFQ using the authenticated Retail account.
+      description: Creates a combo RFQ.
       operationId: RFQAPI_CreateRFQ
       requestBody:
         content:
@@ -62,9 +57,12 @@ components:
           type: string
         restRemainder:
           type: boolean
+        account:
+          type: string
       required:
         - symbol
         - restRemainder
+        - account
       oneOf:
         - required:
             - qtyDecimal
@@ -76,26 +74,9 @@ components:
         rfqId:
           type: string
   securitySchemes:
-    X-PM-Access-Key:
-      type: apiKey
-      in: header
-      name: X-PM-Access-Key
-      description: >-
-        Your API key ID (UUID). Generate at
-        [polymarket.us/developer](https://polymarket.us/developer).
-    X-PM-Timestamp:
-      type: apiKey
-      in: header
-      name: X-PM-Timestamp
-      description: >-
-        Unix timestamp in milliseconds. Must be within 30 seconds of server
-        time.
-    X-PM-Signature:
-      type: apiKey
-      in: header
-      name: X-PM-Signature
-      description: >-
-        Base64-encoded Ed25519 signature of `timestamp + method + path`. See
-        [Authentication](/api-reference/authentication) for details.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 
 ````

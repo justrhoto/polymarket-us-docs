@@ -118,6 +118,7 @@ The institutional `polymarket.v1.RFQAPI` endpoints have these per-firm limits, s
 | `GetRFQUserID` | 1 req/sec | RFQ user ID lookup |
 | `GetRFQs` | 10 req/sec | Prefer `StreamRFQEvents` for live RFQ changes |
 | `GetQuotes` | 10 req/sec | Prefer `StreamRFQEvents` for live quote changes |
+| `GetRFQTrades` | 10 req/sec | [Original RFQ fill history](/institutional/rfqs/overview#query-rfq-trades) |
 | `CreateRFQ` | 1 req/sec | RFQ creation |
 | `DeleteRFQ` | 100 req/sec | Close an open RFQ |
 | `CreateQuote` | 400–2,000 req/sec | Quote creation; determined by RFQ tier |

@@ -37,6 +37,10 @@ A Participant qualifies only for the campaign presented to them, via an onboardi
 | - | - | - |
 | Campaign A | Deposit at least \$10 | Receive \$50 |
 
+<Note>
+  **Upcoming change:** Effective Thursday, October 1, 2026, Campaign A will change to Deposit at least \$10, Receive \$25. Qualifying deposits made before that date receive the current \$50 credit.
+</Note>
+
 Incentive credits are applied once Polymarket US confirms the Participant's deposit satisfies the applicable campaign requirements. Participants receive only the incentives they qualify for under the applicable campaign terms.
 
 ## Refer-A-Friend Incentive Program
@@ -67,19 +71,24 @@ Where a campaign includes a trading incentive, a Participant qualifies when the 
 
 Incentive credits are subject to a maximum of \$1,000 per Participant per campaign and \$2,000 per Participant across the Program. Promotional trading credits issued under this Program expire within the period disclosed for the campaign.
 
-Each campaign is offered to a cohort of Participants defined by objective criteria, such as prior deposit or trading activity on Polymarket US. A Participant qualifies only for the campaign presented to them.
+Each campaign is offered to a cohort of Participants defined by objective criteria based on prior deposit, trading, and account activity on Polymarket US. A Participant qualifies only for the campaign presented to them. Current cohorts:
+
+* **Cohort 1 (Inactive Participants):** Participants who are not currently active, have lifetime trading volume above \$100, and have received less than \$51 in incentive credits.
+* **Cohort 2 (Re-engagement):** Early Participants with no winning positions, active Participants with a \$0 account balance, and recently churned Participants.
 
 Active campaigns:
 
-| Campaign | Qualifying Deposit | Incentive Credit |
-| - | - | - |
-| Campaign A | Deposit at least \$10 | Receive \$10 |
-| Campaign B | Deposit at least \$10 | Receive \$25 |
-| Campaign C | Deposit at least \$25 | Receive \$10 |
-| Campaign D | Deposit at least \$25 | Receive \$25 |
-| Campaign E | Deposit at least \$50 | Receive \$100 |
-| Campaign F | Deposit at least \$100 | Receive \$100 |
-| Campaign G | Deposit at least \$100 | Receive \$250 |
-| Campaign H | Deposit at least \$250 | Receive \$500 |
+| Campaign | Cohort | Qualifying Deposit | Incentive Credit |
+| - | - | - | - |
+| Campaign A | Cohort 2 | Deposit at least \$10 | Receive \$10 |
+| Campaign B | Cohort 1 | Deposit at least \$10 | Receive \$25 |
+| Campaign C | Cohort 2 | Deposit at least \$25 | Receive \$10 |
+| Campaign D | Cohort 2 | Deposit at least \$25 | Receive \$25 |
+| Campaign E | Cohort 2 | Deposit at least \$50 | Receive \$25 |
+| Campaign F | Cohort 1 | Deposit at least \$50 | Receive \$100 |
+| Campaign G | Cohort 2 | Deposit at least \$100 | Receive \$100 |
+| Campaign H | Cohort 1 | Deposit at least \$100 | Receive \$250 |
+| Campaign I | Cohort 2 | Deposit at least \$250 | Receive \$100 |
+| Campaign J | Cohort 1 | Deposit at least \$250 | Receive \$500 |
 
 Incentive credits under the campaigns above are paid as a single lump-sum credit. Incentive credits will be credited within seven (7) days of all applicable campaign requirements being satisfied. Participants receive only the incentives they qualify for under the applicable campaign terms.

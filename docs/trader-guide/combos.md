@@ -38,7 +38,9 @@ sequenceDiagram
     participant API as RFQAPI
     participant M as Maker
     participant DC as Drop Copy
+    participant S as Other RFQ subscribers
 
+    Note over R,S: RFQ events arrive on StreamRFQEvents
     M->>API: StreamRFQEvents({})
     M->>API: GetRFQs(OPEN) + GetQuotes(SELF)
     R->>API: CreateRFQ
@@ -57,6 +59,11 @@ sequenceDiagram
         API-->>M: quote_confirmed + executionDeadline
         API-->>M: quote_executed + durable Quote state
         DC-->>M: Exchange order and fill lifecycle
+        loop Each fill, including later resting-order fills
+            API-->>R: rfq_trade (anonymous fill)
+            API-->>M: rfq_trade (anonymous fill)
+            API-->>S: rfq_trade (anonymous fill)
+        end
     else Maker declines
         M->>API: DeleteQuote
         API-->>M: quote_deleted
@@ -64,6 +71,8 @@ sequenceDiagram
 ```
 
 Successful acceptance produces both `rfq_closed` and `quote_accepted`. A maker may receive public `rfq_closed` first. Stop creating or replacing quotes for that RFQ, but do not discard existing quote state. The selected maker then receives private `quote_accepted`, which starts last look. Confirm or delete the selected quote before its `confirmationDeadline`. `quote_confirmed` means paired order submission is scheduled; `quote_executed` means both exchange orders were accepted for submission. Use Drop Copy as the source of truth for fills.
+
+`rfq_trade` reports each original fill to all authorized RFQ stream subscribers, including participants outside that quote. The diagram shows the logical flow; delivery order across `quote_executed`, `rfq_trade`, and Drop Copy is not guaranteed. See [RFQ trade history](/institutional/rfqs/overview#query-rfq-trades) for recovery with `GetRFQTrades`.
 
 ## Read an RFQ
 
@@ -213,6 +222,7 @@ These durations are configuration, not client-side timers. Use the deadlines on 
 | `quote_accepted` | Requester and selected quote creator | Confirm or delete before `confirmationDeadline`. |
 | `quote_confirmed` | Requester and selected quote creator | Expect paired submission at `executionDeadline`. |
 | `quote_executed` | Requester and selected quote creator | Read both durable exchange order IDs from the embedded Quote and correlate your order with Drop Copy. |
+| `rfq_trade` | All authorized RFQ stream subscribers | Read the anonymous fill from `event.trade`, deduplicate by `trade_id`, and recover missed fills with `GetRFQTrades`. |
 
 There are no expiration, done-away, pending-risk, pending-end-trade, action-rejected, or status-rejected events in the current public stream.
 

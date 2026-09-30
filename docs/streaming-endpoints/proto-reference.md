@@ -249,6 +249,8 @@ elif response.HasField('update'):
 
 ## RFQ Events Streaming
 
+The proto bundle includes `RFQAPI.GetRFQTrades` and `StreamRFQEventsResponse.rfq_trade` (field 15). See [RFQ trade history](/institutional/rfqs/overview#query-rfq-trades) and the [RFQ event stream](/streaming-endpoints/rfq-events-stream#rfqtrade) for usage.
+
 ### ComboAPI and RFQAPI Services
 
 ```protobuf theme={null}
@@ -258,6 +260,7 @@ service ComboAPI {
 }
 
 service RFQAPI {
+    rpc GetRFQTrades(GetRFQTradesRequest) returns (GetRFQTradesResponse);
     rpc GetRFQUserID(GetRFQUserIDRequest) returns (GetRFQUserIDResponse);
     rpc GetRFQs(GetRFQsRequest) returns (GetRFQsResponse);
     rpc CreateRFQ(CreateRFQRequest) returns (CreateRFQResponse);
@@ -309,6 +312,7 @@ Each `StreamRFQEventsResponse` has one `event` payload:
 | `quote_accepted` | One quote side was accepted and last look started. |
 | `quote_confirmed` | The maker confirmed and paired order submission was scheduled. |
 | `quote_executed` | Both exchange orders were accepted for submission. |
+| `rfq_trade` | An anonymous original fill on an RFQ-originated order. |
 
 For request/response field detail and a Python example, see [RFQ Events Streaming](/streaming-endpoints/rfq-events-stream).
 

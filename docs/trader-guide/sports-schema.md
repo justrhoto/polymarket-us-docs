@@ -63,6 +63,15 @@ The fully-qualified market type, including sport, participant scope, and game pe
 | `baseball_team_inning7_winner` | Baseball | Team | 7th inning | Inning winner |
 | `baseball_team_inning8_winner` | Baseball | Team | 8th inning | Inning winner |
 | `baseball_team_inning9_winner` | Baseball | Team | 9th inning | Inning winner |
+| `baseball_team_inning1_total` | Baseball | Game | 1st inning | Combined-runs total |
+| `baseball_team_inning2_total` | Baseball | Game | 2nd inning | Combined-runs total |
+| `baseball_team_inning3_total` | Baseball | Game | 3rd inning | Combined-runs total |
+| `baseball_team_inning4_total` | Baseball | Game | 4th inning | Combined-runs total |
+| `baseball_team_inning5_total` | Baseball | Game | 5th inning | Combined-runs total |
+| `baseball_team_inning6_total` | Baseball | Game | 6th inning | Combined-runs total |
+| `baseball_team_inning7_total` | Baseball | Game | 7th inning | Combined-runs total |
+| `baseball_team_inning8_total` | Baseball | Game | 8th inning | Combined-runs total |
+| `baseball_team_inning9_total` | Baseball | Game | 9th inning | Combined-runs total |
 | `baseball_game_extra_innings` | Baseball | Game | Full game | Extra innings yes/no |
 | `baseball_team_first_five_winner` | Baseball | Team | First 5 innings | Prop |
 | `baseball_team_first_five_spread` | Baseball | Team | First 5 innings | Spread |
@@ -386,6 +395,7 @@ Use this table as a recipe book for identifying a specific market type from inst
 | **MLB first-5-innings total** | `baseball_team_first_five_total` |
 | **MLB first-inning run** | `baseball_team_first_inning_run` |
 | **MLB inning winner (innings 1–9)** | `baseball_team_inning1_winner` through `baseball_team_inning9_winner` — derive the inning number from this enum value, not the instrument ID |
+| **MLB inning total (innings 1–9)** | `baseball_team_inning1_total` through `baseball_team_inning9_total` — derive the inning number from this enum value, not the instrument ID |
 | **MLB player home runs prop** | `baseball_player_home_runs` |
 | **MLB player strikeouts prop** | `baseball_player_strikeouts` |
 | **MLB player RBIs prop** | `baseball_player_rbis` |
