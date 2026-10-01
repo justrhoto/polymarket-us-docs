@@ -7,9 +7,9 @@
 > Trading fee schedule, rebates, and examples
 
 <Warning>
-  **Upcoming Table Tennis fee change.** The Table Tennis taker fee coefficient becomes `0.10`, effective 11:59 PM ET, Wednesday September 30, 2026.
+  **Upcoming combo fee change.** Effective exchange-wide at 10:00 AM ET, Thursday October 1, 2026, the coefficient in the combo taker fee curve increases from `0.04` to `0.06`: `Fee = C × p × [0.0695 × (1 - p) + 0.06 × (1 - p)^4]`.
 
-  The schedule and examples below describe the fees in effect today. This page will be updated when the change takes effect.
+  The combo formula, schedule, and examples below reflect the current `0.04` coefficient. This page will be updated when the new curve takes effect.
 </Warning>
 
 <Info>Effective exchange-wide from 12 AM ET, Friday September 25, 2026.</Info>

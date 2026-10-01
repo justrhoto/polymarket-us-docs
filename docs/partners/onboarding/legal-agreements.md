@@ -4,7 +4,7 @@
 
 # End-User Legal Agreements
 
-> The four documents every end user accepts during onboarding, the exact acceptance language and flow, and how agreement versioning works.
+> The five documents in the Polymarket US legal set, the exact acceptance language and flow, and how agreement versioning works.
 
 Every end user accepts the Polymarket US legal document set during onboarding, inside your app. This page covers the required documents, the acceptance language and flow, and how agreement versioning works. You can build against this now — the structure will not change.
 
@@ -16,7 +16,7 @@ Identity verification (KYC), funding, and account provisioning are covered in th
 
 ## Required documents
 
-Four documents make up the **complete** legal set. No additional terms and conditions apply beyond these four.
+Five documents make up the **complete** legal set. No additional terms and conditions apply beyond these five.
 
 | Document | Issuing entity | Location |
 | - | - | - |
@@ -24,14 +24,15 @@ Four documents make up the **complete** legal set. No additional terms and condi
 | **Exchange Rulebook** | QCX LLC d/b/a Polymarket US (DCM) | [polymarketexchange.com/regulatory.html](https://polymarketexchange.com/regulatory.html) |
 | **Clearinghouse Rulebook** | QC Clearing LLC d/b/a Polymarket Clearing (DCO) | [polymarketexchange.com/clearing/](https://polymarketexchange.com/clearing/) |
 | **Risk Disclosure Statement** | PMUS | [polymarketexchange.com/files/legal/latest/risk-disclosure-statement](https://polymarketexchange.com/files/legal/latest/risk-disclosure-statement) |
+| **Privacy Policy** | PMUS | [polymarketexchange.com/files/legal/latest/privacy-policy](https://polymarketexchange.com/files/legal/latest/privacy-policy) |
 
 The Participant Agreement is a **click-through agreement**: its first-page language makes clicking "I Accept" the legal equivalent of a manual signature. Customers accept the unmodified document through an affirmative in-app action; it is not filled out or signed by hand.
 
 ## Acceptance flow
 
-Display the following language, exactly as written, immediately above the acceptance button. The four document names must render as live hyperlinks to the documents in [Required documents](#required-documents):
+Display the following language, exactly as written, immediately above the acceptance button. The five document names must render as live hyperlinks to the documents in [Required documents](#required-documents):
 
-> "By clicking below, I hereby (i) acknowledge that I have read and understood, and consent to the terms of the [Participant Agreement](https://polymarketexchange.com/files/legal/latest/participant-agreement) and the Rulebooks ([Polymarket Clearing Rulebook](https://polymarketexchange.com/clearing/), [Polymarket US Rulebook](https://polymarketexchange.com/regulatory.html)) and (ii) certify that I will abide by the Rules stated therein, as may be amended from time to time, and any applicable laws or regulations affecting PMUS, my use of PMUS and the transactions executed and/or cleared through PMUS. I also hereby acknowledge that I have read and understood the [Risk Disclosure](https://polymarketexchange.com/files/legal/latest/risk-disclosure-statement)."
+> "By clicking below, I hereby (i) acknowledge that I have read and understood, and consent to the terms of the [Participant Agreement](https://polymarketexchange.com/files/legal/latest/participant-agreement) and the Rulebooks ([Polymarket Clearing Rulebook](https://polymarketexchange.com/clearing/), [Polymarket US Rulebook](https://polymarketexchange.com/regulatory.html)) and (ii) certify that I will abide by the Rules stated therein, as may be amended from time to time, and any applicable laws or regulations affecting PMUS, my use of PMUS and the transactions executed and/or cleared through PMUS. I also hereby acknowledge that I have read and understood the [Risk Disclosure](https://polymarketexchange.com/files/legal/latest/risk-disclosure-statement) and [Privacy Policy](https://polymarketexchange.com/files/legal/latest/privacy-policy)."
 
 ### Requirements
 
@@ -39,7 +40,7 @@ Display the following language, exactly as written, immediately above the accept
 | - | - | - |
 | **R-1** | Verbatim text | Display the acceptance language exactly as written — no paraphrasing, abbreviation, translation, or splitting across multiple checkboxes. |
 | **R-2** | Single affirmative action | Capture acceptance through one explicit, user-initiated action. Pre-checked boxes, implied consent, or acceptance bundled into an unrelated action do not satisfy this requirement. |
-| **R-3** | Live document links | All four hyperlinks must resolve to the documents in [Required documents](#required-documents) and be accessible at the moment of acceptance. Do not host modified, excerpted, or re-rendered copies. |
+| **R-3** | Live document links | All five hyperlinks must resolve to the documents in [Required documents](#required-documents) and be accessible at the moment of acceptance. Do not host modified, excerpted, or re-rendered copies. |
 | **R-4** | Unmodified documents | The Participant Agreement is accepted as-is. There is no per-user fill-in, countersignature, or partner-specific rider. |
 | **R-5** | Timing | Acceptance is captured at time of application — before onboarding completes and before the customer's first trade. A customer who has not completed the acceptance action must not be provisioned for trading. |
 | **R-6** | Record of acceptance | Retain a record of each acceptance event: the customer identifier, timestamp, and the document set accepted. The accepted agreement version is also transmitted to Polymarket US on the KYC start request (see [Agreement versioning](#agreement-versioning)). |

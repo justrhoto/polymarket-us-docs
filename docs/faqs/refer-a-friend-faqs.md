@@ -24,13 +24,13 @@ Credits can only be used towards trades, and may be withdrawn upon position sett
 
 ### What do I earn? What does my friend earn?
 
-You receive a $25 bonus credit for each qualifying referral, and your friend receives a $25 bonus credit.
+You receive a \$25 bonus credit for each qualifying referral, and your friend receives a \$25 bonus credit.
 
 ### What does my friend need to do for us to qualify?
 
 Your friend must:
 
-* Sign up as a new Polymarket US user using your invite link or referral code
+* Sign up as a new Polymarket US user using your referral code
 * Deposit at least \$10
 
 Bonuses are credited after all steps are complete.
@@ -41,7 +41,7 @@ Referral codes must be applied during sign-up. If your friend uses your invite l
 
 ### Is there a limit to how many friends I can refer?
 
-Yes. Each user can earn up to 14 referral bonuses. Each new user can only be referred once, and only one bonus is paid per verified identity.
+Yes. Each user can earn up to 50 referral bonuses. Each new user can only be referred once, and only one bonus is paid per verified identity.
 
 ### When do I get my bonus?
 

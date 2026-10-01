@@ -622,7 +622,7 @@
 | [Onboard Participants](docs/partners/onboarding/onboard-participants.md) | How a retail trader becomes a tradable Participant: KYC is the onboarding process, and a Participant and Account are created automatically on approval. |
 | [Participants](docs/partners/onboarding/users.md) | The lifecycle of a Retail Participant and how to see who your Firm can act on behalf of. |
 | [Accounts](docs/partners/onboarding/accounts.md) | Trading account management for partners |
-| [End-User Legal Agreements](docs/partners/onboarding/legal-agreements.md) | The four documents every end user accepts during onboarding, the exact acceptance language and flow, and how agreement versioning works. |
+| [End-User Legal Agreements](docs/partners/onboarding/legal-agreements.md) | The five documents in the Polymarket US legal set, the exact acceptance language and flow, and how agreement versioning works. |
 
 ### Onboarding / KYC
 
