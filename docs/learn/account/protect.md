@@ -21,3 +21,6 @@ Only sign in through the official Polymarket app. Avoid fake Google or Apple log
 <Note>
   Need help? Contact support through the **in-app chat**.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

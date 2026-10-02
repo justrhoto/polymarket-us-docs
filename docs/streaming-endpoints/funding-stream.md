@@ -301,3 +301,6 @@ if streamer.last_server_time:
     gRPC authentication setup
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

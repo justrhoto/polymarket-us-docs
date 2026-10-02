@@ -30,3 +30,6 @@ Only whole contracts are purchased. No fractional amounts are created.
 * Polymarket US only supports **whole contracts**
 * When buying with a dollar amount, you receive the maximum number of whole contracts available at the current price
 * Any unused amount that cannot buy a full contract returns immediately to your cash balance
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

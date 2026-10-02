@@ -120,3 +120,6 @@ The Socure `sdk_key` is provided by the Polymarket US onboarding team. A **singl
     How the Socure-backed KYC process fits together.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

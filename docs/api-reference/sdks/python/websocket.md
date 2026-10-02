@@ -143,3 +143,6 @@ asyncio.run(main())
 2. **Handle reconnection** - Implement automatic reconnection with exponential backoff
 3. **Process messages in order** - Messages are delivered in sequence
 4. **Limit subscriptions** - Only subscribe to markets you need
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

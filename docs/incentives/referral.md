@@ -9,3 +9,6 @@
 This program rewards approved affiliates for referring new Participants to Polymarket US.
 
 To learn more, contact [affiliate@polymarket.com](mailto:affiliate@polymarket.com).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -22,3 +22,6 @@ You should not trade if:
 ## Compliance Notice
 
 Review your firm's compliance manual and confirm with your compliance department before trading on Polymarket US.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -18,3 +18,6 @@ To withdraw eligible proceeds, you must:
 Once the deposit fully clears, typically within **2–3 business days**, eligible funds become available to withdraw to the same linked payment method.
 
 Your deposited cash remains your money and may be withdrawn when it is available to withdraw, subject to normal withdrawal requirements and any funds committed to open orders or positions. For full program terms, see [User Incentive Programs](/incentives/user-programs).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

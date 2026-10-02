@@ -272,3 +272,6 @@ buyingPower = currentBalance
 
   For real-time balance changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` subscription instead of polling.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

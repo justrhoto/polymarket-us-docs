@@ -349,3 +349,6 @@ The API enforces a global rate limit of **20 requests per second** per API key a
 5. **Use asynchronous execution for limit orders** - For market-making and resting limit orders, avoid `synchronousExecution: true` as it waits up to 10 seconds for final order state. Instead, submit orders asynchronously (the default) and poll with `GET /v1/order/{orderId}` to check status (\~100ms). Only use `synchronousExecution: true` for immediately-fillable orders where you need to wait for fill confirmation.
 6. **Specify manual order indicator** - Required for regulatory compliance
 7. **Respect rate limits** - Implement request throttling to stay within rate limits and avoid 429 errors
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

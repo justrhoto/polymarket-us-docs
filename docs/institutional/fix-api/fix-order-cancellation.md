@@ -87,3 +87,6 @@ Rejected attempts to cancel orders for any reason (for example order is no longe
 ```
 8=FIXT.1.1 | 9=145 | 35=9 | 34=91 | 49=TARGET | 52=20240521-09:26:30.378549737 | 56=SENDER | 57=SENDERSUB | 11=1886428723 | 37=NONE | 39=8 | 41=1886428676 | 58=Unknown order | 102=1 | 434=1 | 10=198 |
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

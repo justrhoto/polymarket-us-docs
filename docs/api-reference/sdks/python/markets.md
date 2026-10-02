@@ -149,3 +149,6 @@ Settlement values are typically `0.00` (No) or `1.00` (Yes).
 <Tip>
   For real-time market data, use the [WebSocket](/api-reference/sdks/python/websocket) markets stream instead of polling.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

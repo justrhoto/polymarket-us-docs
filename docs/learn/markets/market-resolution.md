@@ -57,3 +57,6 @@ When a market resolves:
 ## Finality of Resolution
 
 All resolutions are final in accordance with the [**Polymarket US Exchange Rulebook**](https://polymarketexchange.com/regulatory.html).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

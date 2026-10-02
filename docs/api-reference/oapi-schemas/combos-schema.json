@@ -3,7 +3,7 @@
   "info": {
     "title": "Combos API",
     "version": "v1.0.0",
-    "description": "Create and read combo instruments through the Retail API. Beta access is required."
+    "description": "Create and read combo instruments through the Retail API."
   },
   "servers": [
     {

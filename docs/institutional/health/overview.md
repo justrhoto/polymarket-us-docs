@@ -110,3 +110,6 @@ livenessProbe:
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD curl -f https://api.preprod.polymarketexchange.com/v1/health || exit 1
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

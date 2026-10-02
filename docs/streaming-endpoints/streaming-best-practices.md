@@ -250,3 +250,6 @@ If you consume fills on FIX instead of gRPC, that is **one** Drop Copy session, 
     20 streams, 100 msg/s ingress, RFQ open rate
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -357,3 +357,6 @@ For production use cases requiring higher limits:
     Set up API authentication
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

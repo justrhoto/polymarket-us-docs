@@ -29,3 +29,6 @@ The settlement source for each currently offered city is:
 ### When does settlement occur?
 
 Settlement occurs at 8:00 AM ET on the day following the Contract's specified date. If the CLI reading is inconsistent with the 24-hour METAR observation for the same location, settlement may be delayed until 11:00 AM ET for review. If no data is published within one week of the scheduled release, the Contract settles at last fair market prices.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

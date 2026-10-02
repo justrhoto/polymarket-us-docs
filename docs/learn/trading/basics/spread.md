@@ -32,3 +32,6 @@ The **spread** is the gap between these two prices. A wider gap means you may pa
 * Wider spreads increase your trading cost
 * More liquid markets usually have tighter spreads
 * Your execution price depends on the bid, the ask, and the available size
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

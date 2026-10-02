@@ -31,3 +31,6 @@ Price slippage occurs when the price you expect to sell at is different from the
 <Note>
   If you would like to review a recent trade, contact **Polymarket US Support** — we can walk you through it.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

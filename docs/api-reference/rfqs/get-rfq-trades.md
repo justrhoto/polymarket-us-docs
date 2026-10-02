@@ -4,46 +4,57 @@
 
 # Get RFQ trades
 
-> Query trades originating from RFQs.
+> Returns anonymous original fills where either order originated from an RFQ, newest first. Includes single instruments, combos, and later fills on resting orders. Repeat the same filters and limit with each cursor; an empty cursor ends the traversal. History is eventually visible. Requery overlapping time windows to find late arrivals and deduplicate by tradeId. Later corrections and busts do not amend these prints.
 
 
 
 ## OpenAPI
 
-````yaml /institutional/oapi-schemas/rfqs-schema.json get /v1/rfqs/trades
+````yaml /api-reference/oapi-schemas/rfqs-schema.json get /v1/rfqs/trades
 openapi: 3.0.3
 info:
   title: RFQ API
   version: v1.0.0
+  description: Read RFQ trades and manage combo RFQs and quotes through the Retail API.
 servers:
-  - url: https://api.prod.polymarketexchange.com
+  - url: https://api.polymarket.us
     description: Production server
 security:
-  - bearerAuth: []
+  - X-PM-Access-Key: []
+    X-PM-Timestamp: []
+    X-PM-Signature: []
 tags:
   - name: RFQs
-    description: Read and manage combo RFQs and quotes.
+    description: Read RFQ trades and manage combo RFQs and quotes.
 paths:
   /v1/rfqs/trades:
     get:
       tags:
         - RFQs
       summary: Get RFQ trades
-      description: Query trades originating from RFQs.
+      description: >-
+        Returns anonymous original fills where either order originated from an
+        RFQ, newest first. Includes single instruments, combos, and later fills
+        on resting orders. Repeat the same filters and limit with each cursor;
+        an empty cursor ends the traversal. History is eventually visible.
+        Requery overlapping time windows to find late arrivals and deduplicate
+        by tradeId. Later corrections and busts do not amend these prints.
       operationId: RFQAPI_GetRFQTrades
       parameters:
         - name: limit
-          description: Zero defaults to 100. Otherwise between 1 and 100, inclusive.
+          description: >-
+            Page size. Omitted or zero defaults to 100; otherwise between 1 and
+            100.
           in: query
           required: false
           schema:
             type: integer
             format: int32
-            minimum: 1
+            minimum: 0
             maximum: 100
             default: 100
         - name: cursor
-          description: Repeat all filters and limit unchanged when continuing a query.
+          description: Opaque continuation. Repeat the same participant, filters and limit.
           in: query
           required: false
           schema:
@@ -51,7 +62,7 @@ paths:
         - name: startTime
           description: >-
             Inclusive execution time. Defaults to the start of available
-            coverage.
+            history.
           in: query
           required: false
           schema:
@@ -67,7 +78,7 @@ paths:
             type: string
             format: date-time
         - name: symbol
-          description: Exact, case-sensitive symbol; empty selects all symbols.
+          description: Exact, case-sensitive instrument symbol. Empty selects all symbols.
           in: query
           required: false
           schema:
@@ -88,9 +99,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/v1RFQTrade'
+          description: Ordered by execution time descending, then trade ID descending.
         cursor:
           type: string
-          description: Empty ends this traversal. Requery time windows for late arrivals.
+          description: >-
+            Empty ends this traversal. Continue nonempty cursors even after
+            empty pages.
     v1RFQTrade:
       type: object
       properties:
@@ -117,10 +131,27 @@ components:
         - SIDE_SELL
       description: Side indicates the side of an Order.
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+    X-PM-Access-Key:
+      type: apiKey
+      in: header
+      name: X-PM-Access-Key
+      description: >-
+        Your API key ID (UUID). Generate at
+        [polymarket.us/developer](https://polymarket.us/developer).
+    X-PM-Timestamp:
+      type: apiKey
+      in: header
+      name: X-PM-Timestamp
+      description: >-
+        Unix timestamp in milliseconds. Must be within 30 seconds of server
+        time.
+    X-PM-Signature:
+      type: apiKey
+      in: header
+      name: X-PM-Signature
+      description: >-
+        Base64-encoded Ed25519 signature of `timestamp + method + path`. See
+        [Authentication](/api-reference/authentication) for details.
 
 ````
 

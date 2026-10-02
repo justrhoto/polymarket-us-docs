@@ -120,3 +120,6 @@ FCMs manage daily trading limits and position risk for their customers. The clea
 ## Reporting
 
 FCMs are responsible for Part 17 reporting for their customers in accordance with CFTC requirements.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

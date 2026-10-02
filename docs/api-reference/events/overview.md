@@ -115,3 +115,6 @@ GET /v1/partners/{partnerKey}/events/{externalId}
 | - | - | - |
 | `partnerKey` | string | Partner key identifier |
 | `externalId` | string | Partner's external event ID |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

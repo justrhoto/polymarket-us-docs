@@ -22,3 +22,6 @@ For faster responses, include:
 * Error messages
 * Reference IDs
 * Screenshots or screen recordings
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

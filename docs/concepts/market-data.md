@@ -56,3 +56,6 @@ A market goes through different states during its lifecycle:
 | **Suspended** | Trading is temporarily paused |
 | **Halted** | Trading has been stopped |
 | **Expired** | The market has ended and settled |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

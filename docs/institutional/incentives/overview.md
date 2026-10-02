@@ -192,3 +192,6 @@ Parameter names accept both camelCase (`startDate`) and snake\_case (`start_date
 | - | - |
 | `GET /v1/incentives` | 5 requests per second |
 | `GET /v1/incentives/earnings` | 5 requests per second |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -265,3 +265,6 @@ Contact support with:
 * Response (status code, error message)
 * Your Client ID (never share your Client Secret)
 * Relevant identifiers (accountId, orderId, tradeId, traceId)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -71,3 +71,6 @@ After a clarification is posted:
 * Polymarket US may cancel resting orders when a clarification is posted
 * Clarifications can confirm whether rule conditions have been met
 * Always read the rules and any clarifications before trading
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

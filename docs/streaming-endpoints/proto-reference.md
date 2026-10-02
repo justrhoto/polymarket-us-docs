@@ -508,3 +508,6 @@ Requesting a suppressed value in `entry_types` returns `Aborted` (HTTP `409`).
     Handle errors and reconnections
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

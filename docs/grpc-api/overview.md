@@ -296,3 +296,6 @@ Both REST and gRPC access the same underlying services. Choose based on your nee
     Proto message definitions
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

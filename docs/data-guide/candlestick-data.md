@@ -338,3 +338,6 @@ For historical data:
 * Cache pre-aggregated candles locally
 * Only query new intervals since last update
 * Use `start_time` filters to avoid redundant data
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

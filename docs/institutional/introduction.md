@@ -216,3 +216,6 @@ For REST API questions or issues, contact [onboarding@qcex.com](mailto:onboardin
     API endpoints for dev, preprod, and prod
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

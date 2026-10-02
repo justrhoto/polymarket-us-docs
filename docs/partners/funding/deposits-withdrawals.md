@@ -82,3 +82,6 @@ Your funding entity's wallet ledger and the platform's account ledger should agr
     Ledger projection and authoritative balance reads.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

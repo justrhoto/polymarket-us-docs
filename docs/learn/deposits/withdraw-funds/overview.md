@@ -49,3 +49,6 @@ Here's how each method compares:
 <Note>
   Withdrawals must return to the **original funding source** used for deposit. This ensures accurate fund routing.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

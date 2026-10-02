@@ -66,3 +66,6 @@ GET /v1/series?active=true&recurrence=daily&limit=20
 | `offset` | integer | Page offset |
 | `orderBy` | array | Fields to order by |
 | `orderDirection` | string | Order direction (asc/desc) |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -154,3 +154,6 @@ The `FundingSourceType` enum identifies the payment method:
 5. **Implement webhooks** - Don't rely solely on polling for status updates
 6. **Validate amounts client-side** - Reduce failed API calls
 7. **Store payment method IDs** - Cache linked payment methods for faster checkout
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

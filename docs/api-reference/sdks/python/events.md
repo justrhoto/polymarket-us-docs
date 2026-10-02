@@ -125,3 +125,6 @@ for event in events["events"]:
         score = event.get("score", {})
         print(f"{event['title']}: {score}")
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

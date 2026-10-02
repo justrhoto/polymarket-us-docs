@@ -78,3 +78,6 @@
 | **Open order** | An order waiting on the book to be filled. |
 | **Order status** | Whether an order is open, filled, or partially filled. |
 | **History** | Section showing your past filled orders and closed positions. |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

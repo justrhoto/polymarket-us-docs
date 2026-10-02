@@ -33,3 +33,6 @@ Choose FIX Drop Copy if you have existing FIX infrastructure. Choose gRPC if you
 <Tip>
   For more information on gRPC DropCopy streaming, see the [DropCopy Stream](/streaming-endpoints/dropcopy-stream) documentation.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

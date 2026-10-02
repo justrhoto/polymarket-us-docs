@@ -17,3 +17,6 @@ Each market shows:
 * The **market question**
 * Current **Yes and No prices**
 * The **resolution date**
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

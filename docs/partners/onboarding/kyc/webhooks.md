@@ -206,3 +206,6 @@ return false // reject
     How the KYC process fits together.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

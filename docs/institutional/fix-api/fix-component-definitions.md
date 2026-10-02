@@ -52,3 +52,6 @@ Each FIX message sent to and received from the Polymarket US must start and end 
     <tr><td>10</td><td>Checksum</td><td>Y</td><td>String</td><td>Standard FIX checksum</td></tr>
   </tbody>
 </table>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

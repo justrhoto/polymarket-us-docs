@@ -35,3 +35,6 @@
 <Note>
   Positions update in real time as market prices change. You can **cash out** anytime while the market is open or **hold** until it resolves.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

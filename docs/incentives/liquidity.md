@@ -97,3 +97,6 @@ Yes. Rewards under \$1.00 are not paid out.
 ### What about canceled or postponed games?
 
 No rewards are distributed for canceled or postponed games.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

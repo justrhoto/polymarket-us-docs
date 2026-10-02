@@ -17,3 +17,6 @@ Your **cash balance** is the money not tied to any open positions. You can use i
 ## Regulatory Requirement
 
 Withdrawals must return to the same account or payment method used for the deposit, as required under anti-money-laundering (AML) rules.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

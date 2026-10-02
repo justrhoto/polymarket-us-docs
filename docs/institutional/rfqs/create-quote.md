@@ -4,7 +4,7 @@
 
 # Create quote
 
-> Creates a quote for an RFQ.
+> Creates a quote for an RFQ. Every successful call returns a new quoteId, including replacements. See [quote replacement](/institutional/rfqs/overview#create-or-replace-a-quote).
 
 
 
@@ -29,7 +29,10 @@ paths:
       tags:
         - RFQs
       summary: Create quote
-      description: Creates a quote for an RFQ.
+      description: >-
+        Creates a quote for an RFQ. Every successful call returns a new quoteId,
+        including replacements. See [quote
+        replacement](/institutional/rfqs/overview#create-or-replace-a-quote).
       operationId: RFQAPI_CreateQuote
       requestBody:
         content:
@@ -78,6 +81,9 @@ components:
       properties:
         quoteId:
           type: string
+          description: >-
+            New quote ID. Changes on every successful CreateQuote, including
+            replacements.
   securitySchemes:
     bearerAuth:
       type: http
@@ -85,3 +91,5 @@ components:
       bearerFormat: JWT
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

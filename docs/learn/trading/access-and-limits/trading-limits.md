@@ -9,3 +9,6 @@
 Polymarket US does not set trading size limits. You can place any order size, but it will only fill if there are **matching buy or sell orders** at that price.
 
 Large orders may result in partial fills or fill at different prices if there are not enough matching orders at one level. Before placing a large order, review the order book to see available prices and sizes.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

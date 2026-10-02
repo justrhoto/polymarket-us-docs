@@ -71,3 +71,6 @@ A Participant can have multiple accounts for different purposes (e.g., separate 
 * [KYC Verification](/partners/onboarding/kyc/overview) — Identity verification (provisions participants automatically)
 * [Accounts](/partners/onboarding/accounts) — List trading accounts
 * [Funding](/partners/funding/overview) — How participant trading is funded *(Beta)*
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

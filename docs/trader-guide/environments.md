@@ -70,3 +70,6 @@ We recommend the following integration progression:
 <Info>
   Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) to request access credentials for each environment.
 </Info>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

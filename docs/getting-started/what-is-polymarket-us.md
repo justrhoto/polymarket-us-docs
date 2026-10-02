@@ -76,3 +76,6 @@ Polymarket US offers markets on sports (NFL, NBA, NHL, MLB, MLS, college sports,
     Polymarket US operates under CFTC oversight as a designated contract market. Event contracts are a regulated financial instrument.
   </Accordion>
 </AccordionGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

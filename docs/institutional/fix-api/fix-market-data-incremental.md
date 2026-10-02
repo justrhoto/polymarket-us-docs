@@ -101,3 +101,6 @@ NoMDEntries/0/TradingSessionID | "EXPIRED"    # Market status (336=EXPIRED)
 58=Pistons  # Textual outcome
 336=EXPIRED # Trading session status
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

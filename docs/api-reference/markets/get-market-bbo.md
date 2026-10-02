@@ -153,3 +153,5 @@ components:
         - MARKET_STATE_MATCH_AND_CLOSE_AUCTION
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -196,3 +196,6 @@ See [Reconciliation](/partners/reconciliation) for the stream-first operating pa
     Place an order with a declared vendor fee.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

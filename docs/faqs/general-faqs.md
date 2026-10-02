@@ -50,3 +50,6 @@ Both `fractionalQtyScale` and `priceScale` are returned per instrument in [refer
 <Info>
   **On FIX, prices and quantities are pre-scaled.** FIX messages carry decimal values directly, so you do **not** apply `priceScale` or `fractionalQtyScale` to them. Scaling only applies to the integer values on the REST and gRPC APIs.
 </Info>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

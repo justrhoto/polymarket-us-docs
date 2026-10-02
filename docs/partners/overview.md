@@ -64,3 +64,6 @@ graph TD
 <Note>
   **Ready to onboard?** Contact [institutional@polymarket.us](mailto:institutional@polymarket.us) to begin. See [Partner Onboarding](/partners/get-connected/onboarding) for what we need from you and what you'll receive.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -131,3 +131,6 @@ To unsubscribe from a stream:
 3. **Process messages in order** - Messages are delivered in sequence
 4. **Monitor heartbeats** - Reconnect if heartbeats stop
 5. **Limit subscriptions** - Only subscribe to markets you need
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -75,3 +75,6 @@ Wires sent late in the day or missing required details may take longer. You will
 * Saved your confirmation or receipt
 
 If you experience any delays or need to confirm receipt, contact [support@polymarket.us](mailto:support@polymarket.us) or reach out through the **in-app chat** with your wire confirmation details.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

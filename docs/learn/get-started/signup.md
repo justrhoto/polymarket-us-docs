@@ -41,3 +41,6 @@ KYC verification is required to comply with federal identity and anti-money-laun
 ## Compliance Notice
 
 Polymarket US operates in partnership with a **Commodity Futures Trading Commission (CFTC)-regulated exchange**. All onboarding and identity verification processes follow applicable U.S. federal compliance standards, including identity verification and AML requirements.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

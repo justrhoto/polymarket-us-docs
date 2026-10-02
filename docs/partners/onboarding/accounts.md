@@ -86,3 +86,6 @@ A Retail Participant can have multiple accounts for different purposes (e.g., se
 * [Participants](/partners/onboarding/users) — Resolve who you can act for
 * [KYC Verification](/partners/onboarding/kyc/overview) — The participant onboarding process
 * [Positions API](/institutional/positions/overview) — Check account balances and positions
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

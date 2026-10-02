@@ -42,3 +42,6 @@
 
 * Date in the timezone local to the sender
 * string field representing Date represented in sender's timezone in YYYYMMDD format.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

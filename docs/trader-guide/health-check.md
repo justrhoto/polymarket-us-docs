@@ -73,3 +73,6 @@ Use the health endpoint for:
 2. **Implement retry logic** - Transient failures can occur; retry before alerting
 3. **Cache results** - Don't check health before every API call
 4. **Handle gracefully** - If health check fails, queue operations and retry later
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

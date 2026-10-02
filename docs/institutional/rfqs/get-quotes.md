@@ -104,6 +104,7 @@ components:
       properties:
         id:
           type: string
+          description: Quote ID. Changes on replacement.
         rfqId:
           type: string
         creatorRfqUserId:
@@ -193,3 +194,5 @@ components:
       bearerFormat: JWT
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

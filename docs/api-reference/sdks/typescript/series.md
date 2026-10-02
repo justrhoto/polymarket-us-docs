@@ -72,3 +72,6 @@ console.log(`Title: ${series.title}`);
 console.log(`Description: ${series.description}`);
 console.log(`Recurrence: ${series.recurrence}`);
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

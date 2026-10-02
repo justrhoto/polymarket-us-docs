@@ -86,3 +86,6 @@ A complete partner integration has a handful of components. You can build them i
     Place your first order end to end.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

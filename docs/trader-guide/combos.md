@@ -156,9 +156,7 @@ Do not send a side, symbol, quantity, expiration, or client request ID. The API 
 
 ### Replace a Quote
 
-Each maker has one deterministic quote ID for an RFQ. Calling `CreateQuote` again replaces the existing quote's economics, resets its status to `QUOTE_STATUS_ACTIVE`, preserves its `quoteId`, and emits another `quote_created` event.
-
-Treat replacement as a state update, not a second live quote.
+Call `CreateQuote` with the same `rfqId` and new prices. Every successful call returns a new `quoteId`, including replacements. Use that ID to delete the new quote; use `quote_accepted.quote.id` to confirm or decline an accepted quote. See [replacement events and recovery](/institutional/rfqs/overview#create-or-replace-a-quote).
 
 ### Quote Selection
 
@@ -235,7 +233,7 @@ Use `GetQuotes` according to the visibility you need:
 | `{ user_filter: USER_FILTER_SELF }` | Quotes created by your participant. |
 | `{ rfq_user_filter: USER_FILTER_SELF }` | Quotes on RFQs created by your participant. |
 | `{ rfq_id: "..." }` as requester | All visible quotes for that RFQ. |
-| `{ rfq_id: "..." }` as maker | Your deterministic quote for that RFQ. |
+| `{ rfq_id: "..." }` as maker | Your quotes for that RFQ, including prior replacements. |
 | `{ rfq_id: "...", quote_id: "..." }` | Exact visible quote, or an empty collection. |
 
 Use opaque cursors only with the same participant, query path, and filters. If a write returns an unknown result because the connection fails, read the exact RFQ or quote before deciding whether to act again.
@@ -269,3 +267,6 @@ Use the stream for live state. Reserve `GetRFQs` and `GetQuotes` for startup, re
     Position and balance monitoring
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

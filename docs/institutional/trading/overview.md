@@ -82,3 +82,6 @@ NEW → PARTIALLY_FILLED → FILLED
 2. **Include client order ID** - Use `clOrdId` for your own order tracking
 3. **Preview before submit** - Use the preview endpoint for order validation
 4. **Handle rejects** - Implement proper error handling for rejected orders
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

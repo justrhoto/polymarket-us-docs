@@ -219,3 +219,6 @@ Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
     Required scopes and OAuth flow
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

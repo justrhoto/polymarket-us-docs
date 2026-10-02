@@ -180,3 +180,6 @@ api.post('/v1/trading/orders', order_request)
 Trading accounts can have different statuses: **Active** (normal trading allowed), **Suspended** (temporarily restricted), **Closed** (no longer active).
 
 Always check account status before attempting to trade.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

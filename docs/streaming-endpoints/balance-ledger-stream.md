@@ -262,3 +262,6 @@ if streamer.last_update_time is not None:
     gRPC authentication setup
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

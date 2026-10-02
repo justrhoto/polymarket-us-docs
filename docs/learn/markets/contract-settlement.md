@@ -25,3 +25,6 @@ These terms determine how all positions are processed for that specific market.
 ## Finality of Settlement
 
 All settlements are final in accordance with the [Polymarket US Exchange Rulebook](https://polymarketexchange.com/regulatory.html).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

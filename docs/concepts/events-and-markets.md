@@ -64,3 +64,6 @@ You can find slugs by searching or browsing markets through the API.
 ## Live sports data
 
 For sports events that are in progress, you get real-time metadata like the current score, period, and whether the game has ended. This is useful if you're building applications that react to live game state.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

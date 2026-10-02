@@ -18,3 +18,6 @@ The Tags API provides access to tags used to categorize and organize events and 
 | `GET` | `/v2/tags/{id}` | Get tag by ID |
 | `GET` | `/v2/tags/slug/{slug}` | Get tag by slug |
 | `GET` | `/v2/tags/featured` | Get featured tags |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

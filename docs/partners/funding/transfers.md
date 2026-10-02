@@ -260,3 +260,6 @@ An insufficient-funds outcome is not a gRPC error at create time: the workflow r
     Keeping your books in sync with the ledger.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

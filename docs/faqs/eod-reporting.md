@@ -50,3 +50,6 @@ The Daily Market Report is a comprehensive EOD contract summary containing:
 * Price ranges (bid, offer, trade)
 * Open interest
 * Settlement price
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

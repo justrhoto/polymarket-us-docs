@@ -45,3 +45,6 @@ For read-only data access, request these scopes:
 ## Step 3: Receive Your Credentials
 
 The Polymarket team will review your submission and provide your Client ID credentials via email for both pre-production and production environments.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

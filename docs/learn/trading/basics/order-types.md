@@ -33,3 +33,6 @@ You buy 1,000 Yes contracts when the best ask is \$0.52:
 * **Dynamic markets**: Prices and available size may change while your order is being filled, but it will only be filled at your set price.
 * **Priority**: Orders match using standard time-and-price priority within the CLOB.
 * **Compliance**: All orders are handled in accordance with applicable law and Polymarket US platform rules to ensure fair and orderly trading.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

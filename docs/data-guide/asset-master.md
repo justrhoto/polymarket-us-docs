@@ -239,3 +239,6 @@ Instruments are traded by buying and selling the long participant (the "Yes" out
 There is no direct way to trade the short participant - all positions on the opposing outcome are achieved synthetically by selling the long participant.
 
 When you sell (short) an instrument, the cash flows differ from buying. Selling 10 contracts at \$0.60 means you receive \$6 from the buyer, but a margin requirement equal to the maximum payout (\$10 in this case) is imposed on your account. Therefore, you need \$4 in available funds to enter this short position (\$10 margin requirement minus \$6 received). This margin requirement ensures you can cover the full payout if the outcome occurs.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -152,3 +152,6 @@ Until then, cover the firm-wide need with the surfaces that are already firm-sco
     Per-endpoint limits for the reads on this page.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

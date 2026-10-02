@@ -9,3 +9,6 @@
 ### Where can I read the official Market Integrity policy?
 
 Read the official policy here: [Polymarket US Market Integrity](https://integrity.polymarket.us/).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

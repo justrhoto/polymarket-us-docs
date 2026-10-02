@@ -55,3 +55,6 @@ buyingPower = currentBalance + assetAvailable - openOrders - marginRequirement
 <Tip>
   For real-time balance updates, use the [WebSocket](/api-reference/sdks/python/websocket) with `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` instead of polling.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

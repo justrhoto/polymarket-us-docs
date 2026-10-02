@@ -366,3 +366,6 @@ Find all spread contracts with New England:
 metadata.outcome_type = "spread" AND
 (metadata.long_participant_id = "nfl-ne" OR metadata.short_participant_id = "nfl-ne")
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

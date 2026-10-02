@@ -95,3 +95,6 @@ Filter by category: `GET /v1/markets?categories=crypto&closed=false`. Automated 
 ### How do I find crypto instruments on the Institutional API?
 
 Filter reference data by category or clearing symbol: `POST /v1/refdata/instruments` with `{"eventCategory": "CRY"}` or `{"clearingSym": "CPC-BTC"}`, or by series such as `{"eventSeries": "btc-updown-15m"}`. Identify the market from `crypto_market_type` and the other fields documented in [Crypto Schema](/trader-guide/crypto-schema). Never parse the symbol.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

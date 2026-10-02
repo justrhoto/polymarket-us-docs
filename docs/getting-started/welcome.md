@@ -125,3 +125,6 @@ export const IconCard = ({icon, title, description, href, color}) => {
     </div>
   </div>
 </div>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

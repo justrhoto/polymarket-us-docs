@@ -68,3 +68,6 @@ You can close a position at any time by taking the opposite action:
 * If you're short (sold YES), buy YES to close
 
 You don't have to wait for the market to settle. If the price has moved in your favor, you can lock in a profit early.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

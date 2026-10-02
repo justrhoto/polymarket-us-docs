@@ -123,3 +123,6 @@ Verify:
 **Can't place order due to risk limits**
 
 Check current position size, order size would exceed limits, available buying power, and account status (active, suspended, etc.).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

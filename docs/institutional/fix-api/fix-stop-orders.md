@@ -65,3 +65,6 @@ Note that unlike Stop Orders, Market-to-Limit orders retain the same OrdType (40
 ```
 
 <br />
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

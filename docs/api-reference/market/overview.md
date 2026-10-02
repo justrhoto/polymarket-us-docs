@@ -358,3 +358,6 @@ Response:
 ```
 
 Settlement values are typically `0.00` (No) or `1.00` (Yes).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

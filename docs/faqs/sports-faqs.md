@@ -281,3 +281,6 @@ If a match ends in a tie, draw, no result (NR), abandonment, or cancellation and
 ### Insufficient play
 
 If play begins but insufficient play occurs to determine an official result, all markets settle at \$0.50.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -220,3 +220,6 @@ Allow up to 3 OTP attempts before requiring a new code, and rate-limit OTP reque
     Capture the `session_token` to lower your REVIEW rate.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

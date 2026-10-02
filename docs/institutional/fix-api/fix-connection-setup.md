@@ -153,3 +153,6 @@ For detailed FIX protocol specifications, see:
 * [FIX Session Management](/institutional/fix-api/fix-session-management)
 * [FIX Order Entry](/institutional/fix-api/fix-order-entry-overview)
 * [FIX Market Data](/institutional/fix-api/fix-market-data-subscription)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

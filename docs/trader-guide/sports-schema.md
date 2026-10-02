@@ -483,3 +483,6 @@ To safely interpret this contract:
 * **Treat `outcome_strike` as a string** in client code and convert to your numeric type. The value is unsigned — the spread direction is determined by `long_participant_id`.
 * **Cache and version your enum mappings.** New `market_sport_type` values are announced in the [changelog](/changelog) and rolled out in preprod before production. Subscribe to the RSS feed to be notified before new enums appear in production. An instrument can carry a value that is not yet in this inventory: treat an unknown value as a prop, fall back to `outcome_type` for its structure, and watch the changelog for the new value.
 * **Subscribe to instrument updates** via the streaming APIs to catch new instruments as they are listed.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

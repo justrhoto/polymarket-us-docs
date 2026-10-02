@@ -106,3 +106,6 @@ Python and TypeScript SDKs for integrating with the Polymarket US API. Both libr
   });
   ```
 </CodeGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

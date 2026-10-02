@@ -86,3 +86,6 @@ See [Accounts & Identity](/trader-guide/accounts-identity) for the identity hier
     Authenticate as your Firm with Private Key JWT.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

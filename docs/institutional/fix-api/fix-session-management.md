@@ -350,3 +350,6 @@ BusinessMessageReject \[j] is a more generic message used to reject errors such 
 ```
 8=FIXT.1.1 | 9=116 | 35=j | 34=5 | 49=TARGET | 52=20240516-14:19:40 | 56=SENDER | 45=6 | 58=Supervising firms cannot perform this action | 372=x | 380=6 | 10=082 |
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

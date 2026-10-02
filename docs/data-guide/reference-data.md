@@ -267,3 +267,6 @@ curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments"
 * Subscribe to instrument updates for real-time changes
 * Check instrument status before placing orders
 * Monitor for new instruments being listed
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

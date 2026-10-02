@@ -70,3 +70,6 @@ The two partner types **integrate identically** — the same APIs and the same w
     The end-to-end path from onboarding to live trading.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

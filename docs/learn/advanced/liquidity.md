@@ -117,3 +117,6 @@ A buy for **150 shares** would result in at least **40 shares** filling at **78�
 ### Simple rule of thumb
 
 If your order size is close to or larger than the liquidity available near your expected price—especially late in a game—consider placing **smaller orders** and pay close attention to the price right before you submit to reduce slippage.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

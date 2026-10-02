@@ -113,3 +113,6 @@ for (const act of activities.activities) {
 <Tip>
   For real-time position updates, use the [WebSocket](/api-reference/sdks/typescript/websocket) with `SUBSCRIPTION_TYPE_POSITION` instead of polling.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

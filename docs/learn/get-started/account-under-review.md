@@ -13,3 +13,6 @@ Your account may be under review for the following reasons:
 * Additional identity checks required for **Know Your Customer (KYC)** or **anti-money-laundering (AML)** compliance
 
 Once verification is complete, your account activates automatically. You will be notified **in-app** and by **email**.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

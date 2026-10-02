@@ -359,3 +359,6 @@ Yes. Prices and quantities support decimal values.
 **What timestamp format is used?**
 
 UTC timestamps, which may include sub-second precision.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

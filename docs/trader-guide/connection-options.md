@@ -19,3 +19,6 @@ The exchange provides two supported integration protocols for client application
    * **Benefits:** Simple integration for HTTP-based clients; gRPC enables efficient real-time data delivery.
 
 Both interfaces provide access to trading functionality and market data, allowing clients to select the protocol that best fits their integration requirements.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

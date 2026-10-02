@@ -104,3 +104,6 @@ All orders entering the Platform are first either accepted or rejected using an 
 ```
 8=FIXT.1.1 | 9=275 | 35=8 | 34=43 | 49=TARGET | 52=20240517-19:09:23.494862156 | 56=SENDER | 57=SENDERSUB | 1=ACCT | 6=0.00 | 11=1182560830 | 14=0 | 17=1HPT7DPFMC5MB | 22=8 | 31=0.00 | 32=0 | 37=1HQ4A5T0EDM0A | 38=500 | 39=C | 40=2 | 44=50.01 | 48=GOOG | 54=2 | 55=GOOG | 59=4 | 60=20240517-19:09:23.491276593 | 99=0.00 | 150=C | 151=0 | 581=3 | 582=1 | 10=201 |
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

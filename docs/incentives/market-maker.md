@@ -9,3 +9,6 @@
 This program rewards approved market makers for providing liquidity across a wide range of contracts in given categories.
 
 To learn more or apply, contact [institutional@qcex.com](mailto:institutional@qcex.com).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

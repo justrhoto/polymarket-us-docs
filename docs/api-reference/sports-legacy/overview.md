@@ -115,3 +115,6 @@ GET /v1/sports/teams/provider?provider=PROVIDER_SPORTRADAR&league=NFL
 | - | - |
 | `PROVIDER_SPORTSDATAIO` | SportsData.io |
 | `PROVIDER_SPORTRADAR` | Sportradar |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

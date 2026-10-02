@@ -74,3 +74,6 @@ Take a \$10 combo with 3 legs that would pay \$80:
 | Two legs win, third goes to LFMP at \$0.60 | \$80 × 1.00 × 1.00 × 0.60 | \$48.00 |
 | One leg wins, other two go to LFMP at \$0.60 and \$0.25 | \$80 × 1.00 × 0.60 × 0.25 | \$12.00 |
 | Any leg resolves against you | Whatever happened to the other legs | \$0.00 |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -76,3 +76,6 @@ Candles are dense and ascending, one per bucket in the effective window. An unkn
 <Note>
   Index price history is available in the preprod environment today and becomes available in production together with the automated crypto markets, as announced in the [changelog](/changelog).
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

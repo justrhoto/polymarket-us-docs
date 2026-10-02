@@ -201,3 +201,6 @@ Do not set `order.user` or `order.session_id`. The service authenticates your fi
 <Card title="CreateVendorOrder" icon="bolt" href="/partners/orders/create-order" horizontal>
   See complete YES, NO, cash-BUY, and cash-SELL order examples.
 </Card>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

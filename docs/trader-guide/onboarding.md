@@ -46,3 +46,6 @@ Your pre-production account will be funded with dummy funds for testing purposes
 * [Outbound Wire Form](https://drive.google.com/uc?export=download\&id=1X0fC4kZzEj9-_ZXcbAIEr4YH0QuQUNos) - Use this form to withdraw funds from your Polymarket account
 
 Complete the appropriate form and follow the wire instructions provided. Funds are typically available for trading within 1-2 business days of receipt.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

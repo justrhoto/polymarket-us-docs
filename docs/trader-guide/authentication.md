@@ -456,3 +456,6 @@ For more details on Private Key JWT authentication:
 * [Private Key JWT Client Authentication](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authenticate-with-private-key-jwt)
 * [Machine-to-Machine Applications](https://auth0.com/docs/get-started/applications/application-types#machine-to-machine-applications)
 * [RFC 7523 - JWT Profile for Client Authentication](https://datatracker.ietf.org/doc/html/rfc7523)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -4,7 +4,7 @@
 
 # Create quote
 
-> Creates a quote using the authenticated Retail account.
+> Creates a quote using the authenticated Retail account. Every successful call returns a new quoteId, including replacements. See [quote replacement](/api-reference/rfqs/overview#replace-a-quote).
 
 
 
@@ -15,9 +15,7 @@ openapi: 3.0.3
 info:
   title: RFQ API
   version: v1.0.0
-  description: >-
-    Create and manage combo RFQs and quotes through the Retail API. Beta access
-    is required.
+  description: Read RFQ trades and manage combo RFQs and quotes through the Retail API.
 servers:
   - url: https://api.polymarket.us
     description: Production server
@@ -27,14 +25,17 @@ security:
     X-PM-Signature: []
 tags:
   - name: RFQs
-    description: Read and manage combo RFQs and quotes.
+    description: Read RFQ trades and manage combo RFQs and quotes.
 paths:
   /v1/rfqs/quotes:
     post:
       tags:
         - RFQs
       summary: Create quote
-      description: Creates a quote using the authenticated Retail account.
+      description: >-
+        Creates a quote using the authenticated Retail account. Every successful
+        call returns a new quoteId, including replacements. See [quote
+        replacement](/api-reference/rfqs/overview#replace-a-quote).
       operationId: RFQAPI_CreateQuote
       requestBody:
         content:
@@ -80,6 +81,9 @@ components:
       properties:
         quoteId:
           type: string
+          description: >-
+            New quote ID. Changes on every successful CreateQuote, including
+            replacements.
   securitySchemes:
     X-PM-Access-Key:
       type: apiKey
@@ -104,3 +108,5 @@ components:
         [Authentication](/api-reference/authentication) for details.
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

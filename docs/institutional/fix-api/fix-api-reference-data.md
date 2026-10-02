@@ -82,3 +82,6 @@ Upon receipt, Polymarket US will respond with a SecurityList \[y] message contai
 ### Figure 16: Request form security reference data
 
 ![](https://files.readme.io/e1f144a-security_list.png)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

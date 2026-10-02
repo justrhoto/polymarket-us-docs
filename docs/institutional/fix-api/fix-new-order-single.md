@@ -54,3 +54,6 @@ Participants may place orders into the Polymarket US order book to buy or sell s
 ```
 8=FIXT.1.1 | 9=123 | 35=D | 49=SENDER | 56=TARGET | 34=16 | 50=SENDERSUB | 52=20240517-19:00:28 | 11=1182560819 | 21=1 | 55=GOOG | 54=1 | 40=2 | 44=50 | 38=1000 | 1=ACCT | 10=166 |
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

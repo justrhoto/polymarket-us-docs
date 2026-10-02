@@ -44,3 +44,6 @@ Use the public API to browse what's available on Polymarket US. No API key neede
 | **Series** | List series (e.g., NFL 2025-26 Season) |
 | **Sports** | Leagues, teams, game schedules |
 | **Search** | Full-text search across events and markets |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

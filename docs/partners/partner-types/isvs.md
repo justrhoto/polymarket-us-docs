@@ -49,3 +49,6 @@ ISVs use the same end-to-end workflow as all partners. Rather than repeat it her
 <Note>
   **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](/partners/funding/overview) *(Beta)*.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

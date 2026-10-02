@@ -234,7 +234,7 @@
       },
       "post": {
         "summary": "Create quote",
-        "description": "Creates a quote for an RFQ.",
+        "description": "Creates a quote for an RFQ. Every successful call returns a new quoteId, including replacements. See [quote replacement](/institutional/rfqs/overview#create-or-replace-a-quote).",
         "operationId": "RFQAPI_CreateQuote",
         "responses": {
           "200": {
@@ -598,7 +598,8 @@
         "type": "object",
         "properties": {
           "quoteId": {
-            "type": "string"
+            "type": "string",
+            "description": "New quote ID. Changes on every successful CreateQuote, including replacements."
           }
         }
       },
@@ -708,7 +709,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "description": "Quote ID. Changes on replacement."
           },
           "rfqId": {
             "type": "string"

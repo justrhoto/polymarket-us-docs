@@ -82,3 +82,6 @@ IB customers must:
 * Use clearing services through an FCM or be a Self-Clearing Member
 * Disclose all accounts if trading through multiple IBs
 * Follow all position limits across all accounts
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

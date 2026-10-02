@@ -57,3 +57,6 @@ There are no separate "No" shares to trade. Instead:
 * **Buy** to take the YES side, **short** to take the NO side
 * There are no separate YES and NO tokens
 * Prices reflect the market's implied probability of the outcome
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

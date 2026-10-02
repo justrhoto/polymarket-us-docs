@@ -73,3 +73,6 @@ GET /v2/sports/football/events
 ## Teams
 
 For fetching team information, use the [Sports (Legacy) API](/api-reference/sports-legacy/overview).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

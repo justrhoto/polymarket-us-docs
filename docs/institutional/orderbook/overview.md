@@ -143,3 +143,6 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/orderbook/tec-nfl-sbw
   * Lower latency than polling
   * Reduced API calls and infrastructure load
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

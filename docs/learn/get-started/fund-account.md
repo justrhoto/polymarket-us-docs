@@ -45,3 +45,6 @@ Here's how each method compares:
 <Note>
   All deposits must come from accounts in **your own name** and may be subject to verification checks.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

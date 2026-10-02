@@ -49,3 +49,6 @@ A user can have multiple accounts (e.g., for different strategies or purposes).
 1. **Identity** - Call `GET /v1/whoami` to confirm the authenticated user and firm
 2. **Account lookup** - Call `GET /v1/accounts` to list trading accounts and display names
 3. **Act on behalf of a user** - Call `GET /v1/users` for the participant names you may trade as
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

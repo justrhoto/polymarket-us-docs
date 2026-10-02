@@ -189,7 +189,11 @@ The service derives `buyQtyDecimal` and `sellQtyDecimal` from the RFQ:
 * A quantity RFQ uses its `qtyDecimal` for every offered side.
 * A cash RFQ derives each side independently from `cashOrderQty / price`, rounded down to the instrument's fractional quantity scale.
 
-Each maker has one deterministic quote ID per RFQ. Calling `CreateQuote` again replaces that maker's quote in place, resets it to `QUOTE_STATUS_ACTIVE`, and returns the same `quoteId`.
+Every successful `CreateQuote` returns a new `quoteId`, including replacements. To replace, send the same `rfqId` with new prices; no previous quote ID is needed.
+
+Use the returned ID to delete the new quote. Confirm or decline the accepted quote using `quote_accepted.quote.id`.
+
+`quote_deleted` identifies a canceled old quote; `quote_created` carries the new ID. A new response does not guarantee all older quotes were canceled. Check `GetQuotes` if their state is unclear.
 
 ### Query Quotes
 
@@ -200,7 +204,7 @@ Each maker has one deterministic quote ID per RFQ. Calling `CreateQuote` again r
 | `limit` | Results per page. Default 100; valid range 1–100. |
 | `cursor` | Opaque cursor returned by the preceding page. |
 | `quoteId` | Exact quote ID. Requires `rfqId`; do not combine with `cursor`. |
-| `rfqId` | Exact RFQ ID. The requester sees all quotes; another participant sees only its quote. |
+| `rfqId` | Exact RFQ ID. The requester sees all quotes; another participant sees only its own quotes. |
 | `status` | One current `QuoteStatus` value. |
 | `userFilter` | `USER_FILTER_SELF` returns quotes created by the caller. |
 | `rfqUserFilter` | `USER_FILTER_SELF` returns quotes on RFQs created by the caller. |
@@ -307,3 +311,6 @@ Open the stream for low-latency changes. On startup, reconnect, or after a suspe
     OAuth metadata and required scopes
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

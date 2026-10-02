@@ -255,3 +255,6 @@ An order placed through this service is a standard exchange order. Cancel it thr
 | `UNAVAILABLE` | Transient relationship, policy, persistence, token-minting, or exchange unavailability before a known submission outcome. | Retry the identical request with the **same** `idempotency_key`. |
 
 An order-level rejection from the exchange, such as **insufficient buying power** or a price outside market limits, is not a gRPC error. The call returns `OK` with `status = VENDOR_ORDER_STATUS_REJECTED`; `FAILED_PRECONDITION` is reserved for relationship-state problems. Quote the `correlation` identifiers when requesting the underlying rejection detail from support.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

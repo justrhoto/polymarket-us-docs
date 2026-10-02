@@ -110,3 +110,6 @@ Hypothetical collateral return from new orders is not factored into buying power
 * Freed-up buying power can be used in other markets, not the same event
 * Closing offsetting positions requires returning the freed collateral
 * This is a portfolio margin optimization, not a reduction in actual risk
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

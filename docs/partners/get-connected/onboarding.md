@@ -95,3 +95,6 @@ Polymarket US reviews your submission and provisions your access:
     Place your first order end to end.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

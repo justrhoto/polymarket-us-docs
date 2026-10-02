@@ -54,3 +54,6 @@ Self-referrals, referring accounts you control, creating multiple accounts, and 
 ### Who is eligible?
 
 The program is available to all users who are eligible to trade on Polymarket US through a participating interface, such as the Polymarket App. Standard eligibility and identity verification requirements apply.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

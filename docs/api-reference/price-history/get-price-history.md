@@ -182,3 +182,5 @@ components:
           description: No display price, normally derived from one minus the best bid.
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

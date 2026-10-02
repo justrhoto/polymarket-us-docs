@@ -398,3 +398,6 @@ if __name__ == "__main__":
     Usage limits and best practices
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

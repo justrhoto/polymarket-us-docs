@@ -168,3 +168,6 @@ Requires AWS account and VPC setup, coordinated provisioning with exchange, uses
 | Network setup | None | Required |
 | Identity setup | Automatic | Manual |
 | Failure modes | HTTP errors | Session / sequence errors |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -8,7 +8,7 @@
 
 # Private WebSocket
 
-The Private WebSocket endpoint provides real-time updates for user-specific data including orders, positions, account balances, and RFQs.
+The Private WebSocket endpoint provides real-time updates for user-specific data including orders, positions, account balances, and RFQs. Enabled RFQ subscribers also receive anonymous trade prints shared across participants.
 
 <Warning>
   **Authentication Required**
@@ -30,7 +30,7 @@ wss://api.polymarket.us/v1/ws/private
 | `SUBSCRIPTION_TYPE_ORDER_SNAPSHOT` | Initial snapshot of open orders |
 | `SUBSCRIPTION_TYPE_POSITION` | Position changes |
 | `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` | Account balance changes |
-| `SUBSCRIPTION_TYPE_RFQ` | Combo RFQ and quote lifecycle events (allowlisted beta) |
+| `SUBSCRIPTION_TYPE_RFQ` | RFQ and quote lifecycle events and anonymous RFQ trade prints |
 
 ## Order Subscriptions
 
@@ -190,11 +190,9 @@ Position messages can include `netPositionDecimal`, `qtyBoughtDecimal`, `qtySold
 
 ## RFQ Subscriptions
 
-<Note>
-  **Beta access required.** RFQ subscriptions are available only to Retail API users enabled for the Combo and RFQ beta. The same access gate applies to the [REST RFQ API](/api-reference/rfqs/overview).
-</Note>
+### Subscribe to RFQs
 
-Subscribe without `marketSlugs`; the stream is private to the participant associated with the authenticated API key.
+Subscribe without `marketSlugs`. RFQ and quote visibility follows the participant associated with the authenticated API key. Anonymous `rfqTrade` prints are shared across participants.
 
 ```json theme={null}
 {
@@ -204,6 +202,8 @@ Subscribe without `marketSlugs`; the stream is private to the participant associ
   }
 }
 ```
+
+### RFQ Event Response
 
 No separate success acknowledgment is sent. Events use the `rfqEvent` envelope, and each message contains exactly one event variant:
 
@@ -230,13 +230,43 @@ The RFQ in `rfqCreated` and `rfqClosed` includes optional `tickSize`, the price 
 | - | - |
 | `rfqCreated` | An RFQ became available to quote. |
 | `rfqClosed` | An RFQ closed or a quote was selected. |
-| `quoteCreated` | A visible quote was created or replaced. |
-| `quoteDeleted` | A visible quote was deleted or declined. |
+| `quoteCreated` | A quote was created with a new ID, including on replacement. |
+| `quoteDeleted` | A quote was deleted, replaced, or declined. |
 | `quoteAccepted` | The requester selected a quote and maker last look began. |
 | `quoteConfirmed` | The selected maker confirmed and paired execution was scheduled. |
 | `quoteExecuted` | Paired order submission completed and generated order IDs became available. This does not guarantee a fill; track the generated orders with `SUBSCRIPTION_TYPE_ORDER`. |
+| `rfqTrade` | An anonymous original fill where either order originated from an RFQ, including later fills on resting orders. |
 
-The stream is live and best effort: it has no replay or durable cursor. Unsubscribing, disconnecting, or an upstream failure ends the corresponding stream. Reconnect and reconcile with `GET /v1/rfqs` and `GET /v1/rfqs/quotes`; do not treat WebSocket delivery as the source of truth.
+Confirm or decline using `quoteAccepted.quote.id`. See [quote replacement](/api-reference/rfqs/overview#replace-a-quote).
+
+### RFQ Trade Response
+
+`rfqTrade.trade` uses the same fields as [RFQ trade history](/api-reference/rfqs/overview#rfq-trade-history):
+
+```json theme={null}
+{
+  "requestId": "rfq-sub-1",
+  "subscriptionType": "SUBSCRIPTION_TYPE_RFQ",
+  "rfqEvent": {
+    "rfqTrade": {
+      "trade": {
+        "tradeId": "trade-example",
+        "symbol": "caoc-example",
+        "price": "0.1234",
+        "qtyDecimal": "12.3456",
+        "aggressorSide": "SIDE_BUY",
+        "executedTime": "2026-10-01T12:34:56.123456789Z"
+      }
+    }
+  }
+}
+```
+
+Prices and quantities are decimal strings. Continue using `SUBSCRIPTION_TYPE_ORDER` for your own order activity.
+
+### Recovery
+
+The stream is live and best effort, with no replay or durable cursor. Unsubscribing, disconnecting, or an upstream failure ends it. Recover missed trades through [RFQ trade history](/api-reference/rfqs/overview#pagination-and-recovery), and reconcile RFQ and quote state with `GET /v1/rfqs` and `GET /v1/rfqs/quotes`.
 
 ## Execution Types
 
@@ -293,3 +323,6 @@ The stream is live and best effort: it has no replay or durable cursor. Unsubscr
 
   You can subscribe to a maximum of 100 markets per subscription. Use multiple subscriptions if you need more.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

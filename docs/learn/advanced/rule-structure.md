@@ -47,3 +47,6 @@ Rules list the **official sources** used to confirm the outcome. Unlisted source
 * The resolution source for this market will be information from the **governing league**.
 * The resolution source for this market will be information from an **official data provider**.
 * The resolution source for this market will be confirmed once **all listed news sources** report the same outcome.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

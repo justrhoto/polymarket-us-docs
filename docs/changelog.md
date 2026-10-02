@@ -11,11 +11,20 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+<Update label="October 1, 2026" description="General access to RFQs and combos" tags={["New Feature", "Retail API"]} rss={{ title: "RFQs and combos are generally available on the Retail API", description: "RFQs and combos are available to all Retail API users with existing API keys." }}>
+  - [RFQs](/api-reference/rfqs/overview) and [combos](/api-reference/combos/overview) are now available to all Retail API users with existing API keys.
+</Update>
+
+<Update label="October 1, 2026" description="RFQ quote replacement IDs" tags={["Breaking Change", "Institutional API", "Retail API"]} rss={{ title: "CreateQuote returns a new ID on replacement", description: "CreateQuote no longer preserves quoteId on replacement. Use the returned ID for deletion and the accepted quote's ID for confirmation." }}>
+  * `CreateQuote` now returns a new `quoteId` on every successful call, including replacements.
+  * Use the returned ID to delete the new quote. Confirm or decline using the ID in the acceptance event. See the [Institutional](/institutional/rfqs/overview#create-or-replace-a-quote) and [Retail](/api-reference/rfqs/overview#replace-a-quote) RFQ docs.
+</Update>
+
 <Update label="September 29, 2026" description="v0.0.93" tags={["New Feature", "Institutional API", "Retail API"]} rss={{ title: "v0.0.93 - MLB inning-total markets, listing today for the MLB playoffs", description: "Nine new MLB inning-total sports market types list today with the MLB playoffs: baseball_team_inning1_total through baseball_team_inning9_total. Each inning has an Over/Under on combined runs at 0.5 and 1.5. Derive the inning number from market_sport_type rather than parsing the instrument ID. The outcome_type is totals." }}>
-  - **Nine new MLB inning-total sports market types, listing today with the MLB playoffs:** `baseball_team_inning1_total` through `baseball_team_inning9_total`.
-  - **Two lines per inning:** Over/Under on the combined runs scored by both teams in that inning, at `outcome_strike` `0.5` and `1.5`.
-  - **Inning number:** derive it from the `market_sport_type` value rather than parsing the instrument ID.
-  - **Outcome type:** `totals`.
+  * **Nine new MLB inning-total sports market types, listing today with the MLB playoffs:** `baseball_team_inning1_total` through `baseball_team_inning9_total`.
+  * **Two lines per inning:** Over/Under on the combined runs scored by both teams in that inning, at `outcome_strike` `0.5` and `1.5`.
+  * **Inning number:** derive it from the `market_sport_type` value rather than parsing the instrument ID.
+  * **Outcome type:** `totals`.
 </Update>
 
 <Update label="September 21, 2026" description="v0.0.92" tags={["Preprod", "Upcoming", "New Feature", "Documentation", "Institutional API", "Retail API"]} rss={{ title: "v0.0.92 - Crypto price markets documented: Up/Down, Above/Below, Price Range, One-Touch (preprod)", description: "Four automated Bitcoin market families settle on CF Benchmarks' BRTI index and are listed in preprod ahead of production. New Crypto Schema page documents the identifying instrument fields (crypto_market_type, crypto_horizon, interval_start/interval_end, outcome_strike, price_to_beat, crypto_range_*, crypto_hit_direction, crypto_settlement_price). The Retail API exposes the same terms as assetPriceTerms and index price history at GET /v1/asset-prices/history. Crypto FAQs cover settlement statistics, ties, timing and maintenance. Existing hand-listed year-end Bitcoin markets carry none of these fields." }}>
@@ -792,3 +801,6 @@ description: "Usernames are being removed from the Retail API trade tape respons
 <Update label="August 14, 2025" description="v0.0.10" tags={["Documentation"]} rss={{ title: "v0.0.10 - Initial documentation", description: "First draft of Polymarket Exchange Documentation." }}>
   * First DRAFT of Polymarket Exchange Documentation
 </Update>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

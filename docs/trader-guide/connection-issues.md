@@ -402,3 +402,6 @@ curl https://api.{env}.polymarketexchange.com/v1/health
 **No authentication required** - this endpoint is publicly accessible.
 
 If the health check fails, the API may be experiencing issues. Check the [status page](https://status.polymarketexchange.com) or contact support.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

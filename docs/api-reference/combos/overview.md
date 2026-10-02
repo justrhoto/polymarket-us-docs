@@ -6,10 +6,6 @@
 
 > Create and read combo instruments through the Retail API
 
-<Note>
-  **Beta access required.** The Retail Combos API is available only to explicitly enabled Retail API users.
-</Note>
-
 A combo is a user-defined instrument containing 2–10 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Once open, a combo trades through the normal [Orders API](/api-reference/orders/overview); an RFQ is optional and provides a price-discovery and paired order-submission workflow over the same order book.
 
 All calls use normal [Retail API authentication](/api-reference/authentication) at:
@@ -90,3 +86,6 @@ Leg symbols must be open, tradable, supported instruments. Duplicate symbols and
     Receive RFQ and quote lifecycle events
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

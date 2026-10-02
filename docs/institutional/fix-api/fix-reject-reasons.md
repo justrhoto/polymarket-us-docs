@@ -162,3 +162,6 @@ Below is a list of Business Message Reject (35=j) error strings produced by the 
 **Cause**: MsgSeqNum mismatch after restart, creating continuous resend requests
 
 **Fix**: Restart your session with ResetSeqNumFlag (141=Y) on Logon to reset sequence numbers to 1, or manually resync sequence numbers with your FIX engine.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

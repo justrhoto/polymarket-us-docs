@@ -78,3 +78,6 @@ This differs from position-by-position margining where each position is treated 
 * Freed-up buying power can be used in other markets, not the same event
 * Closing offsetting positions requires returning the freed collateral
 * This is a portfolio margin optimization, not a reduction in actual risk
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

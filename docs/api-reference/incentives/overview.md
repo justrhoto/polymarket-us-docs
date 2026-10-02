@@ -206,3 +206,6 @@ GET /v1/incentives/earnings?start_date=2026-03-21&market_slug=aec-nba-bos-nyk-20
 | - | - |
 | `GET /v1/incentives` | 5 requests / second |
 | `GET /v1/incentives/earnings` | 5 requests / second |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

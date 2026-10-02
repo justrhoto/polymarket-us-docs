@@ -124,3 +124,6 @@ Before going live, make sure you have:
     Receive the async decision instead of polling.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -75,3 +75,6 @@ Strongly-typed instrument fields for safely identifying sports and crypto price 
 <Card title="Crypto Schema" icon="bitcoin-sign" href="/trader-guide/crypto-schema">
   Identify crypto price markets via instrument metadata
 </Card>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

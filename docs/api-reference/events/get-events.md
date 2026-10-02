@@ -1938,3 +1938,5 @@ components:
         - SOCCER_PENALTY_SHOOTOUT_ATTEMPT_STATUS_MISSED
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

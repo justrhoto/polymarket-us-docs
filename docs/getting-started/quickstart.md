@@ -226,3 +226,6 @@ No authentication required for public endpoints.
     Stream live market data.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

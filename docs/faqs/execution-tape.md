@@ -35,3 +35,6 @@ Time & Sales is a pure execution log containing only:
 * Symbol
 
 It does not include side, aggressor flag, or buyer/seller information.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

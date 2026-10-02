@@ -84,3 +84,6 @@ for team in teams["teams"]:
 | `ranking` | int | Team ranking |
 | `logo` | str | Logo URL |
 | `colorPrimary` | str | Primary team color |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -404,3 +404,6 @@ Use these placeholder agreement values in sandbox (the onboarding team provides 
     Lower your REVIEW rate with the `session_token`.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

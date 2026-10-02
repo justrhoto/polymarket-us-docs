@@ -113,3 +113,6 @@ response = requests.get(
 * Store your keys in environment variables, never in code
 * Don't commit keys to version control
 * Revoke compromised keys immediately at [polymarket.us/developer](https://polymarket.us/developer)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

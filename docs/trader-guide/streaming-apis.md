@@ -156,3 +156,6 @@ Some streams send periodic snapshots even if state hasn't changed to help detect
 **Use appropriate connection counts**: Stay within the **20** concurrent-stream limit. See [Rate Limits](/trader-guide/rate-limits#grpc-streaming).
 
 **Handle snapshot + delta pattern**: Apply initial snapshot, then process deltas.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

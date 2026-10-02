@@ -19,3 +19,6 @@ Daily market and operational reporting occurs as of **5:00 PM Eastern Time (ET)*
 ## Compliance Notice
 
 All trading activity is governed by the [**Polymarket US Exchange Rulebook**](https://polymarketexchange.com/regulatory.html), applicable U.S. regulations, and internal operational procedures. Trading availability may be adjusted when necessary to maintain compliance, transparency, and market integrity.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

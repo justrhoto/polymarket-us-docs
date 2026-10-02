@@ -35,11 +35,7 @@ A Participant qualifies only for the campaign presented to them, via an onboardi
 
 | Campaign | Qualifying Deposit | Incentive Credit |
 | - | - | - |
-| Campaign A | Deposit at least \$10 | Receive \$50 |
-
-<Note>
-  **Upcoming change:** Effective Thursday, October 1, 2026, Campaign A will change to Deposit at least \$10, Receive \$25. Qualifying deposits made before that date receive the current \$50 credit.
-</Note>
+| Campaign A | Deposit at least \$10 | Receive \$25 |
 
 Incentive credits are applied once Polymarket US confirms the Participant's deposit satisfies the applicable campaign requirements. Participants receive only the incentives they qualify for under the applicable campaign terms.
 
@@ -92,3 +88,6 @@ Active campaigns:
 | Campaign J | Cohort 1 | Deposit at least \$250 | Receive \$500 |
 
 Incentive credits under the campaigns above are paid as a single lump-sum credit. Incentive credits will be credited within seven (7) days of all applicable campaign requirements being satisfied. Participants receive only the incentives they qualify for under the applicable campaign terms.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

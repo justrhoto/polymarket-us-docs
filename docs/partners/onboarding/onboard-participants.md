@@ -84,3 +84,6 @@ sequenceDiagram
     The four documents each trader accepts, the exact acceptance language, and agreement versioning.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

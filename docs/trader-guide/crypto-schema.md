@@ -320,3 +320,6 @@ For these markets the contract terms are only in `instrument_rules` (Retail `des
 * **Expect `price_to_beat` to appear a few seconds after an up/down window opens.** Re-read the instrument metadata after `interval_start` rather than assuming the value at listing.
 * **Ladders are wide.** An hourly above/below or price range ladder has 30 to 100 legs; subscribe to instrument updates via the [streaming APIs](/trader-guide/streaming-apis) to catch each new ladder as it lists.
 * **Follow each market's own rules text.** Hand-listed markets and automated markets can use different statistics for the same asset.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

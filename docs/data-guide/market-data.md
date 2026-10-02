@@ -136,3 +136,6 @@ for update in stub.Subscribe(request, metadata=[('authorization', f'Bearer {toke
 * Validate timestamps to detect stale data
 * Handle gaps in sequence numbers appropriately
 * Store historical data locally for analysis
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

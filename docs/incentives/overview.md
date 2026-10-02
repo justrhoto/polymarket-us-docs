@@ -83,3 +83,6 @@ Polymarket US offers incentive programs that pay you for trading activity and pr
 **Open** programs are live right now. No signup or application needed.
 
 **Application** programs are formal arrangements with contractual obligations and require approval before you can participate.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

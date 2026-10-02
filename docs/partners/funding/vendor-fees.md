@@ -110,3 +110,6 @@ Rules and mechanics:
     Keeping your books in sync with the ledger.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

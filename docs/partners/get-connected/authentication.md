@@ -107,3 +107,6 @@ Your application is granted **scopes** that control which endpoints you can call
     Resolve common authentication errors.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

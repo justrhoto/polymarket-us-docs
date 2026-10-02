@@ -182,3 +182,6 @@ Returns active events for a given league.
 Teams are used for standard game markets (moneylines, spreads, totals) where two teams are competing in a specific game. In these cases, team data is attached directly to the event as participants.
 
 However, non-championship futures markets for sports — such as MVP awards, season win totals, and other prop futures that aren't tied to a specific game outcome — use **subjects** instead of teams. Subjects represent the individual player, team, or entity that the futures market is about.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

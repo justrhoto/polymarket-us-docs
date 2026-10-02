@@ -39,3 +39,6 @@ Check posted size across the first few price levels and compare it with the size
 Break large orders into smaller clips so each one interacts with fewer price levels and gives new liquidity time to post between trades.
 
 **Example:** If depth is thin around 15–17¢ and you plan to buy \$2,000, splitting the order into several smaller clips can prevent it from filling at 18¢.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

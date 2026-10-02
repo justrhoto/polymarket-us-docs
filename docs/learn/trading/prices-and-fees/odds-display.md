@@ -34,3 +34,6 @@ In a live Washington vs. Kansas City market:
 <Note>
   All display formats show the same market information — only the way it's shown changes.
 </Note>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

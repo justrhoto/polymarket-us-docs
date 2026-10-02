@@ -352,3 +352,6 @@ If authentication issues persist:
    * Client ID
    * Error messages
    * Decoded JWT claims (never share your private key!)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -15,9 +15,7 @@ openapi: 3.0.3
 info:
   title: RFQ API
   version: v1.0.0
-  description: >-
-    Create and manage combo RFQs and quotes through the Retail API. Beta access
-    is required.
+  description: Read RFQ trades and manage combo RFQs and quotes through the Retail API.
 servers:
   - url: https://api.polymarket.us
     description: Production server
@@ -27,7 +25,7 @@ security:
     X-PM-Signature: []
 tags:
   - name: RFQs
-    description: Read and manage combo RFQs and quotes.
+    description: Read RFQ trades and manage combo RFQs and quotes.
 paths:
   /v1/rfqs/quotes:
     get:
@@ -109,6 +107,7 @@ components:
       properties:
         id:
           type: string
+          description: Quote ID. Changes on replacement.
         rfqId:
           type: string
         creatorRfqUserId:
@@ -216,3 +215,5 @@ components:
         [Authentication](/api-reference/authentication) for details.
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -26,3 +26,6 @@ Every NBA Playoffs Moneyline market has a **\$100,000 rewards pool for in-game t
 * Only trades executed between \$0.03 and \$0.97 (inclusive) are eligible
 * Rewards are paid based on your share of total eligible taker notional volume
 * Minimum **\$500 notional** required to be eligible for payouts
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

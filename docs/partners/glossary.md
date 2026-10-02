@@ -68,3 +68,6 @@ This glossary defines the terms used across the Partner Integration docs. For ma
     How these entities relate in practice.
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

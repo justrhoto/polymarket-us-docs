@@ -79,3 +79,6 @@ Please note the following presentation notes which apply to message definitions 
 * Components are blocks of FIX tags which appear frequently in the specification (e.g. header and footers which appear on every FIX message). They are defined centrally for convenience and then referenced throughout the document using \<> notation.
 * Repeating groups of FIX tags appear in various messages. The depth of a repeating group is indicated using the → marker in FIX message definitions.
 * References to individual FIX fields (or “tags”) are presented in italic font, with the tag number following the tag name. For example HeartBtInt (108).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

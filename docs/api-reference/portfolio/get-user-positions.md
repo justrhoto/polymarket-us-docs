@@ -233,3 +233,5 @@ components:
         [Authentication](/api/authentication) for details.
 
 ````
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

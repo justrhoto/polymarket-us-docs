@@ -18,3 +18,6 @@ When selecting new markets, Polymarket prioritizes:
 * **Integrity**: Alignment with U.S. compliance and operational standards
 
 All markets undergo review before launch to ensure they can be resolved using transparent and publicly verifiable information.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

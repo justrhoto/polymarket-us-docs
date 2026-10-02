@@ -484,3 +484,6 @@ Persist the most recent `resume_token` you have fully applied, not the first tok
     Handle errors and reconnections
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

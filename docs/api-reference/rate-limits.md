@@ -112,3 +112,6 @@ If you're running an automated trading system and need higher limits for product
 1. Document your use case and expected request volume
 2. Email [support@polymarket.us](mailto:support@polymarket.us)
 3. Include which endpoints you need higher limits for
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

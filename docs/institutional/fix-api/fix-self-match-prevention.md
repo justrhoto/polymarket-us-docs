@@ -54,3 +54,6 @@ Note that the incoming order is fully canceled in the case it would potentially 
 ```
 
 <br />
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

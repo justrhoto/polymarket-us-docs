@@ -111,3 +111,6 @@ for act in activities["activities"]:
 <Tip>
   For real-time position updates, use the [WebSocket](/api-reference/sdks/python/websocket) with `SUBSCRIPTION_TYPE_POSITION` instead of polling.
 </Tip>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

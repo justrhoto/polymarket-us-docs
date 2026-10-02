@@ -21,3 +21,6 @@ All withdrawals are reviewed under AML regulations. These checks ensure funds re
 ***
 
 **Still need help?** Contact [support@polymarket.us](mailto:support@polymarket.us) or use the **in-app chat** if you encounter any errors. Include your **exact error code**.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

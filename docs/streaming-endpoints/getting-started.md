@@ -249,3 +249,6 @@ If you encounter issues during setup:
 1. Check the [Error Handling Guide](/streaming-endpoints/error-handling)
 2. Review the [Market Data Stream](/streaming-endpoints/market-data-stream) or [Order Stream](/streaming-endpoints/order-stream) pages for complete implementations
 3. Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) for assistance
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -190,3 +190,6 @@ You can reduce or close a short at any time by buying back the yes contracts you
 * **Polymarket Clearing guarantees payout** from the seller's locked margin.
 * There are no margin calls.
 * Shorting lets you express a bearish view on the yes outcome and provides liquidity to the market.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

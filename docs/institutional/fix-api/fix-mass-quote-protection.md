@@ -66,3 +66,6 @@ MQP does not prevent an aggressing order from matching against all eligible rest
 ## Reset Behavior
 
 After MQP triggers and cancels orders in a bucket, the bucket's rolling interval tracking is reset immediately. The account may reuse the same `clord_link_id` and continue trading without automatic cancellation unless and until the threshold is reached again in a new interval.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

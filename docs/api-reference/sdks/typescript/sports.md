@@ -86,3 +86,6 @@ for (const team of teams.teams) {
 | `ranking` | number | Team ranking |
 | `logo` | string | Logo URL |
 | `colorPrimary` | string | Primary team color |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

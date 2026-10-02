@@ -396,3 +396,6 @@ decimal_price = int_price / instrument.price_scale
 * Reference data is static during a trading session
 * Use `/v1/refdata/instruments` to get `priceScale` for price conversions
 * Instrument states change based on market schedule
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

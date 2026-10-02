@@ -71,3 +71,6 @@ print(f"Title: {series['title']}")
 print(f"Description: {series['description']}")
 print(f"Recurrence: {series['recurrence']}")
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

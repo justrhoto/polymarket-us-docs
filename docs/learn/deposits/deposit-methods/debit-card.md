@@ -35,3 +35,6 @@
 ***
 
 Need help? See [Troubleshooting](/learn/deposits/deposit-methods/troubleshooting) for common issues.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

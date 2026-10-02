@@ -50,14 +50,16 @@ Each response contains exactly one event payload.
 | - | - | - | - |
 | `rfq_created` | `RFQCreatedEvent` | Public | A new RFQ is open. |
 | `rfq_closed` | `RFQClosedEvent` | Public | An RFQ closed because it was deleted or a quote was accepted. |
-| `quote_created` | `QuoteCreatedEvent` | Requester and quote creator | A quote was created or replaced. |
-| `quote_deleted` | `QuoteDeletedEvent` | Requester and quote creator | A quote was deleted or declined. |
+| `quote_created` | `QuoteCreatedEvent` | Requester and quote creator | A quote was created with a new ID, including on replacement. |
+| `quote_deleted` | `QuoteDeletedEvent` | Requester and quote creator | A quote was deleted, replaced, or declined. |
 | `quote_accepted` | `QuoteAcceptedEvent` | Requester and selected quote creator | The requester accepted one side and last look started. |
 | `quote_confirmed` | `QuoteConfirmedEvent` | Requester and selected quote creator | The maker confirmed and paired submission was scheduled. |
 | `quote_executed` | `QuoteExecutedEvent` | Requester and selected quote creator | Both exchange orders were accepted for submission. |
 | `rfq_trade` | `RFQTradeEvent` | Public | An original fill on an RFQ-originated order. Read `event.trade`; recover missed fills with `GetRFQTrades`. |
 
 Ignore unrecognized event variants and keep reading. Older protobuf clients may report no recognized `event` when they receive a newly added variant.
+
+Confirm or decline using `quote_accepted.quote.id`. See [quote replacement](/institutional/rfqs/overview#create-or-replace-a-quote).
 
 Successful quote acceptance produces both events: public `rfq_closed` and participant-private `quote_accepted`. A client may receive `rfq_closed` first. Treat it as "stop quoting this RFQ," not "no quote was accepted." Keep existing quote state until the private quote event arrives, or reconcile it with `GetQuotes`.
 
@@ -91,7 +93,7 @@ Quote prices must be multiples of `tickSize` and within the instrument's price l
 
 | Field | Type | Description |
 | - | - | - |
-| `id` | string | Quote ID. |
+| `id` | string | Quote ID. Changes on every replacement. |
 | `rfqId` | string | Parent RFQ ID. |
 | `creatorRfqUserId` | string | Pseudonymous quote creator identity. |
 | `symbol` | string | Combo symbol. |
@@ -272,3 +274,6 @@ For trade events, open the stream before querying `GetRFQTrades` and merge both 
     Exchange order and fill reconciliation
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

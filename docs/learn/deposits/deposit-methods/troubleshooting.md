@@ -38,3 +38,6 @@
 All deposits are subject to **Know Your Customer (KYC)** and **Anti-Money-Laundering (AML)** checks. These reviews can temporarily delay fund availability until verification is complete.
 
 **Still need help?** Contact [support@polymarket.us](mailto:support@polymarket.us) or use the **in-app chat** if you encounter errors.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

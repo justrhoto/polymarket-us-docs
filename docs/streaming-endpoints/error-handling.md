@@ -96,3 +96,6 @@ except grpc.RpcError as e:
     Learn about order streaming
   </Card>
 </CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

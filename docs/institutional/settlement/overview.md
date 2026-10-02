@@ -50,3 +50,6 @@ Example response for a final zero settlement (`int64` values are JSON strings):
 ```
 
 For gRPC, see [Instrument Settlement](/streaming-endpoints/proto-reference#instrument-settlement).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

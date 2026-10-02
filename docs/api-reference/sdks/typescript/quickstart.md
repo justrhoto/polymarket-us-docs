@@ -132,3 +132,6 @@ try {
 | `RateLimitError` | Rate limit exceeded |
 | `APITimeoutError` | Request timed out |
 | `APIConnectionError` | Network connection error |
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

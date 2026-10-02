@@ -98,3 +98,6 @@ Note the response will contain ONLY a snapshot of the current order book; it doe
 ### Figure 14: Successful market data subscription with snapshot and incremental updates
 
 ![](https://files.readme.io/9536423-market_refresh.png)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

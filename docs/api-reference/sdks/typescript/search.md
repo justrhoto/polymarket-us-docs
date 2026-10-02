@@ -67,3 +67,6 @@ Returns events with their associated markets that match the search query:
   ],
 }
 ```
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
