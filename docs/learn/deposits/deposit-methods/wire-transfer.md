@@ -8,11 +8,11 @@
 
 <Steps>
   <Step title="Select Wire Transfer">
-    In Funding Methods, select **Wire Transfer**.
+    On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Wire transfer**. Before your first deposit, tap **Wire Transfer** on your Portfolio page instead.
   </Step>
 
-  <Step title="View Wire Instructions">
-    Tap **View Wire Instructions** to see your unique details.
+  <Step title="View wire details">
+    Your wire details appear on the next screen.
   </Step>
 
   <Step title="Enter wire details">
@@ -43,7 +43,7 @@
 | **Routing Number** | 074909153 |
 | **Account Number** | 4946110 |
 | **Bank Country** | United States |
-| **Minimum Amount** | \$1,000 USD |
+| **Minimum Amount** | \$5,000 USD |
 | **Memo / FFC / FBO** | Include your full name and phone number linked to your Polymarket US account. Example: John Doe - 9175551234 |
 
 <Note>
@@ -68,7 +68,7 @@ Wires sent late in the day or missing required details may take longer. You will
 ## Quick Checklist Before Sending
 
 * Sent from a **U.S. bank in USD**
-* Minimum **\$1,000** amount
+* Minimum **\$5,000** amount
 * Recipient: **QC Clearing LLC**
 * Memo/FBO/FFC field includes **Full Name + Phone Number linked to your Polymarket US account**
 * Bank account name matches your Polymarket US account

@@ -15,8 +15,8 @@ The **spread** is the gap between these two prices. A wider gap means you may pa
 
 ## How It Works
 
-1. When you buy, you pay the **ask** price.
-2. When you sell, you receive the **bid** price.
+1. When you buy with a market order, you pay the **ask** price.
+2. When you sell with a market order, you receive the **bid** price.
 3. The difference between them is the **spread**.
 4. Tighter spreads mean better execution.
 5. Wider spreads mean higher trading cost.
@@ -27,7 +27,7 @@ The **spread** is the gap between these two prices. A wider gap means you may pa
 
 ## Key Points
 
-* You buy at the **ask** and sell at the **bid**
+* Market orders buy at the **ask** and sell at the **bid**; a limit order lets you set your own price
 * The spread is the gap between these two prices
 * Wider spreads increase your trading cost
 * More liquid markets usually have tighter spreads

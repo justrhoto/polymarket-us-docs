@@ -6,19 +6,19 @@
 
 > Learn how Polymarket US determines outcomes for event contracts
 
-Markets stay open until the event is over. Once the outcome becomes publicly known, the Exchange determines the result using publicly verifiable information.
+Markets stay open until the outcome is known. Once the outcome becomes publicly known, the Exchange determines the result using publicly verifiable information.
 
 ## How Market Outcomes Are Determined
 
 Each market asks a clear question about a real-world event. When the outcome becomes publicly known, the Exchange confirms it using the criteria defined in the market's description and rules.
 
-Markets resolve using the **specific sources listed in the rules**. These sources provide the authoritative outcome. Unlisted sources have no effect on market resolution.
+Markets resolve using the **specific sources listed in the rules**. These sources provide the authoritative outcome. Some contracts also have backup sources that can be used if a listed source is unavailable; for sports markets, see the [Sports FAQs](/faqs/sports-faqs).
 
 All determinations follow the event-contract framework used across Polymarket US.
 
 ## Types of Resolution Sources
 
-Resolution sources fall into three main categories. Each category has clear standards for what counts as official.
+Common types of resolution sources are listed below. Each category has clear standards for what counts as official.
 
 ### Government
 

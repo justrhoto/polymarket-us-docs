@@ -7,8 +7,8 @@
 > Deposit using a bank transfer (ACH) via Aeropay
 
 <Steps>
-  <Step title="Select Bank Transfer">
-    In Funding Methods, select **Bank Transfer**.
+  <Step title="Add a bank">
+    On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Add bank**. Before your first deposit, tap **Bank** on your Portfolio page instead.
   </Step>
 
   <Step title="Link your bank account">
@@ -19,8 +19,8 @@
     Enter your deposit amount up to **\$50,000 per day**.
   </Step>
 
-  <Step title="Confirm transaction">
-    Review your transaction details, then tap **Confirm**.
+  <Step title="Confirm deposit">
+    Tap **Deposit now**.
   </Step>
 
   <Step title="Deposit processing">

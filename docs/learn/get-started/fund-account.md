@@ -4,24 +4,28 @@
 
 # Fund Your Account
 
-> Learn how to fund your Polymarket US account with debit card, bank transfer (ACH), or wire transfer
+> Learn how to fund your Polymarket US account with a debit card, bank transfer (ACH), Apple Pay, PayPal, Venmo, USDC, or wire transfer
 
-You can fund your Polymarket account using:
+You can fund your Polymarket account in the app using:
 
 * Debit card
 * Bank transfer (ACH)
+* Apple Pay (iPhone)
+* PayPal
+* Venmo
+* USDC (iPhone, where available)
 * Wire transfer
 
-Here's how each method compares:
+Here's how card, bank, and wire deposits compare:
 
 | Funding Method | Daily Limit | Processing Time | Best For |
 | - | - | - | - |
 | Debit Card | \$50,000 | 3–4 business days | Small deposits |
 | Bank Transfer (ACH) | \$50,000 | 3–4 business days | Medium deposits |
-| Wire Transfer | \$1,000 minimum, no max | 1 business day | Large deposits |
+| Wire Transfer | \$5,000 minimum, no max | 1 business day | Large deposits |
 
 <Note>
-  Debit card and bank transfer (ACH) deposits may be credited with instant buying power while the deposit is processing. Withdrawals are available once the deposit has fully cleared.
+  Deposits other than wire transfers may be credited with instant buying power while the deposit is processing. Withdrawals are available once the deposit has fully cleared.
 </Note>
 
 ***
@@ -29,16 +33,16 @@ Here's how each method compares:
 ## How to Deposit
 
 <Steps>
-  <Step title="Open Profile">
-    From the home screen, tap the **Profile** icon at the bottom center.
+  <Step title="Open Portfolio">
+    From the home screen, tap the **Portfolio** tab at the bottom of the screen.
   </Step>
 
   <Step title="Tap Deposit">
-    Tap **Deposit** on your Profile page.
+    Tap **Deposit** on your Portfolio page. If you haven't made a deposit yet, your Portfolio page lists deposit methods instead; tap one to start.
   </Step>
 
   <Step title="Choose funding method">
-    Tap **Pay With**, then select **debit card**, **bank transfer (ACH)**, or **wire transfer**.
+    Tap **Pay with** (or **Add payment method** if you haven't added one yet), then choose a saved payment method or add a new one, such as **Add Card**, **Add bank**, or **Wire transfer**.
   </Step>
 </Steps>
 

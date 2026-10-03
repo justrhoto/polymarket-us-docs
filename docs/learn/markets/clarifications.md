@@ -21,10 +21,6 @@ Clarifications are added when:
 * It needs to be stated whether a specific event satisfies the rules
 * Resolution sources need to be defined for the market
 
-## Where Clarifications Appear
-
-Clarifications appear **at the top of the rules section** as an **Additional context** message.
-
 ## Effect on Orderbooks
 
 Before a clarification is posted:
@@ -67,7 +63,6 @@ After a clarification is posted:
 
 * Clarifications add context to explain the rules
 * They do not change the market question
-* They appear at the top of the rules section as **Additional context**
 * Polymarket US may cancel resting orders when a clarification is posted
 * Clarifications can confirm whether rule conditions have been met
 * Always read the rules and any clarifications before trading

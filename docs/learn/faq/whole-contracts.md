@@ -4,7 +4,7 @@
 
 # Why does my position look down right after I buy?
 
-When you enter a dollar amount to buy, you might not spend the full amount because Polymarket US only supports whole contracts. Any leftover funds go straight back to your cash balance. Your portfolio then shows only the value of the contracts you received, which can make the position look slightly down at first even though you did not lose anything.
+Your cost for a position includes the trading fee you paid when you bought, and the position's value is based on current market prices, which can sit a little below the price you paid. Right after you buy, this can make the position look slightly down even if the market has not moved. If you bought with a dollar amount, any part of it that was not used stays in your cash balance and is not counted in your cost.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

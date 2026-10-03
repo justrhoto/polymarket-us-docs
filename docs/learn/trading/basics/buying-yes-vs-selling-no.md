@@ -47,14 +47,14 @@ Every binary market has only **one instrument**:
 
 There are no separate "No" shares to trade. Instead:
 
-* To take the NO side of an outcome, you **short** the instrument
+* To take the NO side of an outcome, you buy **No** (or, in a two-team market, the other team) in the app or on the web, and the exchange records it as a **short** position in the instrument
 * Shorting creates a synthetic NO position
 * The profit/loss works exactly as if you owned a NO share
 
 ## Key Points
 
 * Each market has **one instrument** per outcome
-* **Buy** to take the YES side, **short** to take the NO side
+* Buy **Yes** to take the YES side; buy **No** (or, in a two-team market, the other team) to take the NO side, which the exchange records as a **short**
 * There are no separate YES and NO tokens
 * Prices reflect the market's implied probability of the outcome
 

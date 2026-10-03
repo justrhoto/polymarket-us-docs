@@ -230,12 +230,15 @@ Tell the participant their application is under review (typically 1–2 business
     "decision": "REJECT",
     "status": "CLOSED",
     "subStatus": "Reject",
-    "externalId": "your-internal-user-id-123"
+    "externalId": "your-internal-user-id-123",
+    "rejectionDetails": ["..."]
   }
 }
 ```
 
 No account is created. Rejection can also occur **after** DocV or **after** a manual review, in which case you receive a [`kyc.rejected` webhook](/partners/onboarding/kyc/webhooks).
+
+`rejectionDetails` is text explaining the rejection, one entry per distinct reason, present only on rejected outcomes and also returned by `GET /v1/kyc/status`. Treat each entry as display text, not as a stable identifier.
 
 ## Check status
 

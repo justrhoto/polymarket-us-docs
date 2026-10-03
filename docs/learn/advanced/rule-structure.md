@@ -10,13 +10,13 @@ Market rules follow a consistent structure. Each part contributes to how the fin
 
 ## Resolution Criteria
 
-Market rules begin with the **resolution criteria**. The criteria describe the conditions for the market to resolve to **Yes** or **No**. Any **alternative settlement terms** also appear here, including situations where the market settles at 0.50.
+Market rules begin with the **resolution criteria**. The criteria describe the conditions for the market to resolve to **Yes** or **No**. Any **alternative settlement terms** also appear here, including situations where the market settles at \$0.50 or at the last fair market price.
 
 **Examples**
 
 * This market will resolve to Yes if the candidate wins the election.
 * If Team A wins, the market will resolve to "Team A".
-* If the game is canceled entirely with no make-up game, this market will settle 50-50.
+* If the game is canceled and not rescheduled before the market expires, this market will settle at the last fair market price.
 
 ## Qualifying Requirements
 
@@ -40,7 +40,7 @@ Rules specify **when** the outcome is evaluated.
 
 ## Resolution Sources
 
-Rules list the **official sources** used to confirm the outcome. Unlisted sources have **no effect** on resolution.
+Rules list the **official sources** used to confirm the outcome. Some contracts also have backup sources that can be used if a listed source is unavailable (for sports markets, see the [Sports FAQs](/faqs/sports-faqs)).
 
 **Examples**
 

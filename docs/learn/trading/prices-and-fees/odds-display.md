@@ -8,11 +8,11 @@
 
 <Steps>
   <Step title="Open odds settings">
-    From the home screen, tap the **Odds** icon at the top right.
+    Open the **Portfolio** tab, tap the settings icon at the top right, then tap **Odds format**.
   </Step>
 
   <Step title="Choose display format">
-    Select **price** (¢) or **percent chance** (%) from the odds menu.
+    Select **Price** (¢) or **Percent** (%).
   </Step>
 
   <Step title="View updated odds">
@@ -29,7 +29,7 @@ In a live Washington vs. Kansas City market:
 | Display Type | Example |
 | - | - |
 | Price | WAS 17¢ / KC 86¢ |
-| Percent chance | WAS 17% / KC 86% |
+| Percent | WAS 17% / KC 86% |
 
 <Note>
   All display formats show the same market information — only the way it's shown changes.

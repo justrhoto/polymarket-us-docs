@@ -25,7 +25,7 @@ The Retail API derives the participant and account from the API key; clients do 
 | `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept` | Accept one side of a quote |
 | `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | Confirm an accepted quote during last look |
 
-On the Retail API, Combo and RFQ creation share an additional [edge rate limit](/api-reference/rate-limits) of 10 requests per 10 seconds, enforced per API key and per IP. RFQ-specific business limits and participant restrictions are enforced separately by the RFQ service.
+See [rate limits](/api-reference/rate-limits#limits) for endpoint limits. RFQ-specific business limits and participant restrictions are enforced separately by the RFQ service.
 
 For `GET /v1/rfqs/quotes`, provide an `rfqId` or exactly one of `userFilter=USER_FILTER_SELF` and `rfqUserFilter=USER_FILTER_SELF`. Cursors are opaque and must be reused with the same filters and authenticated participant.
 

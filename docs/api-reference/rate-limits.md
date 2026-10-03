@@ -6,18 +6,23 @@
 
 > API rate limits and how to stay within them.
 
-Rate limits are enforced per API key. Exceeding them returns `429 Too Many Requests`.
+Exceeding a rate limit returns `429 Too Many Requests`. Limits are enforced per source IP and Cloudflare location, so requests using different API keys from the same IP share counters at that location.
 
 ***
 
 ## Limits
 
-The Retail API enforces a global rate limit of **20 requests per second** per API key across all endpoints.
+The Retail API has a general limit of **25 requests/s**, shared across endpoints except quote creation and deletion.
 
-| Limit | Value |
-| - | - |
-| **Global (all authenticated endpoints)** | 20 requests per second per API key |
-| **Public (unauthenticated)** | 20 requests per second per IP |
+Exceptions:
+
+* `POST /v1/combos` and `POST /v1/rfqs`: **1 request/s**, shared.
+* `POST /v1/rfqs/quotes`: **100 requests/s**.
+* `DELETE /v1/rfqs/{rfqId}/quotes/{quoteId}`: **100 requests/s**.
+* `GET /v1/rfqs`: **1 request/s**.
+* `GET /v1/rfqs/quotes`: **1 request/s**.
+* `GET /v1/rfqs/trades`: **1 request/s**.
+* `GET /v1/rfqs/user-id`: **1 request/s**.
 
 ***
 

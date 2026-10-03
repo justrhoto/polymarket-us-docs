@@ -18,7 +18,7 @@ When a market resolves:
 
 ## Alternative Settlement
 
-Some markets include predefined settlement terms that differ from the standard \$1/\$0 structure. When alternative settlement applies, Polymarket Clearing follows the instructions in the market's **Settlement Description**.
+Some markets include predefined settlement terms that differ from the standard \$1/\$0 structure. When alternative settlement applies, Polymarket Clearing follows the terms in the market's rules, shown under **Market Rules** on the market page.
 
 These terms determine how all positions are processed for that specific market.
 

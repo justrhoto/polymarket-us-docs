@@ -54,7 +54,7 @@
 | Page | Description |
 | --- | --- |
 | [Create an Account](docs/learn/get-started/signup.md) | Learn how to create your Polymarket US account, verify your identity, and complete Know Your Customer (KYC) securely |
-| [Fund Your Account](docs/learn/get-started/fund-account.md) | Learn how to fund your Polymarket US account with debit card, bank transfer (ACH), or wire transfer |
+| [Fund Your Account](docs/learn/get-started/fund-account.md) | Learn how to fund your Polymarket US account with a debit card, bank transfer (ACH), Apple Pay, PayPal, Venmo, USDC, or wire transfer |
 | [Browse Markets](docs/learn/get-started/browse.md) | Learn how to browse active market categories on Polymarket |
 | [Place a Trade](docs/learn/get-started/place-order.md) | Learn how to place your first trade on Polymarket |
 | [Monitor Your Positions](docs/learn/get-started/portfolio.md) | Learn how to view your portfolio and track open positions |
@@ -65,7 +65,7 @@
 
 | Page | Description |
 | --- | --- |
-| [Overview](docs/learn/deposits/deposit-methods/overview.md) | Deposit with debit card, bank transfer (ACH), or wire transfer |
+| [Overview](docs/learn/deposits/deposit-methods/overview.md) | Deposit with a debit card, bank transfer (ACH), Apple Pay, PayPal, Venmo, USDC, or wire transfer |
 | [Debit Card](docs/learn/deposits/deposit-methods/debit-card.md) | Deposit instantly using a debit card |
 | [Bank Transfer (ACH)](docs/learn/deposits/deposit-methods/bank-transfer.md) | Deposit using a bank transfer (ACH) via Aeropay |
 | [Wire Transfer](docs/learn/deposits/deposit-methods/wire-transfer.md) | Fund your account by wire transfer |
@@ -94,9 +94,9 @@
 | --- | --- |
 | [Market Structure](docs/learn/trading/basics/buying-yes-vs-selling-no.md) | Understand how Polymarket US markets use a single instrument per outcome |
 | [Order Placement](docs/learn/trading/basics/place-order.md) | Learn how to place an order on Polymarket |
-| [Order Types](docs/learn/trading/basics/order-types.md) | Learn how marketable limit orders execute and how fills work |
+| [Order Types](docs/learn/trading/basics/order-types.md) | Learn how market and limit orders execute and how fills work |
 | [Spreads](docs/learn/trading/basics/spread.md) | Learn how the gap between bid and ask affects your execution price |
-| [Fractional Contracts](docs/learn/trading/basics/fractional-shares.md) | Learn why Polymarket US only supports whole contracts and does not offer fractional contracts |
+| [Fractional Contracts](docs/learn/trading/basics/fractional-shares.md) | Learn how fractional contracts work on Polymarket US |
 | [Can I sell early?](docs/learn/trading/basics/sell-early.md) | Cash out your positions at any time |
 
 ### Advanced

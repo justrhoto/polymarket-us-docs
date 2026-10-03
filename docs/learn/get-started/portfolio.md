@@ -16,7 +16,7 @@ Your Polymarket portfolio shows your **cash balance**, **open positions**, and *
 
 You can also see:
 
-* Contracts held in each market
+* What you paid for each position
 * Your average entry price
 * The current market price
 * Potential payout

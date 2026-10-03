@@ -6,7 +6,7 @@
 
 > Understand Polymarket US trading limits
 
-Polymarket US does not set trading size limits. You can place any order size, but it will only fill if there are **matching buy or sell orders** at that price.
+In the app and on the web, a single market buy is limited to \$1,000,000, and combos have their own maximum stake. Orders only fill against **matching buy or sell orders** on the order book.
 
 Large orders may result in partial fills or fill at different prices if there are not enough matching orders at one level. Before placing a large order, review the order book to see available prices and sizes.
 

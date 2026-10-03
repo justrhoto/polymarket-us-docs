@@ -7,8 +7,8 @@
 > Deposit instantly using a debit card
 
 <Steps>
-  <Step title="Select Debit Card">
-    In Funding Methods, select **Debit Card**.
+  <Step title="Add a card">
+    On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Add Card**. Before your first deposit, tap the card option on your Portfolio page instead.
   </Step>
 
   <Step title="Enter card details">
@@ -19,8 +19,8 @@
     Enter your deposit amount up to **\$50,000 per day**.
   </Step>
 
-  <Step title="Confirm transaction">
-    Review your transaction details, then tap **Confirm**.
+  <Step title="Confirm deposit">
+    Tap **Deposit now**.
   </Step>
 
   <Step title="Deposit processing">

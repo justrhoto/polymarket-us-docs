@@ -13,12 +13,12 @@
     Sign up with **Google** or **Apple ID** to create your Polymarket US account.
   </Step>
 
-  <Step title="Choose a username">
-    Choose a **username** that will be visible on your profile and linked to your account activity.
+  <Step title="Your username">
+    We create a **username** for you when you sign up. It's visible on your profile, and you can change it in **Settings** under **Edit profile**.
   </Step>
 
   <Step title="Enter personal details">
-    Provide your **full name**, **date of birth**, and **residential address** for verification.
+    Provide your **date of birth**, **phone number** (we text you a code to confirm it), **legal name**, **residential address**, and **Social Security number** for verification.
   </Step>
 
   <Step title="Verify identity (KYC)">
@@ -31,7 +31,7 @@
 </Steps>
 
 <Note>
-  Most verifications are completed instantly. If manual review is required, processing can take up to 3–5 business days. You will be notified **in-app** and by **email** once verification is complete.
+  Most verifications are completed instantly. If manual review is required, processing can take longer. You'll see the result in the app, and if notifications are on, we'll send you a push notification when you're approved.
 </Note>
 
 ## Why KYC Is Required
@@ -40,7 +40,7 @@ KYC verification is required to comply with federal identity and anti-money-laun
 
 ## Compliance Notice
 
-Polymarket US operates in partnership with a **Commodity Futures Trading Commission (CFTC)-regulated exchange**. All onboarding and identity verification processes follow applicable U.S. federal compliance standards, including identity verification and AML requirements.
+Polymarket US is a **Commodity Futures Trading Commission (CFTC)-regulated exchange**. All onboarding and identity verification processes follow applicable U.S. federal compliance standards, including identity verification and AML requirements.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

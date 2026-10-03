@@ -14,7 +14,7 @@ Trading may be paused without prior notice to protect market participants or ens
 
 ## Reporting Schedule
 
-Daily market and operational reporting occurs as of **5:00 PM Eastern Time (ET)** each business day. This timestamp is used for performance metrics, reconciliations, and regulatory recordkeeping.
+Each trading day ends at **5:00 PM Eastern Time (ET)**, including weekends. Daily market and operational reporting uses this cutoff for performance metrics, reconciliations, and regulatory recordkeeping.
 
 ## Compliance Notice
 

@@ -16,7 +16,7 @@ Do not share Polymarket verification codes with anyone, including support.
 
 ## Avoid fake apps and login screens
 
-Only sign in through the official Polymarket app. Avoid fake Google or Apple login screens.
+Only sign in through the official Polymarket app or at polymarket.us. Avoid fake Google or Apple login screens.
 
 <Note>
   Need help? Contact support through the **in-app chat**.

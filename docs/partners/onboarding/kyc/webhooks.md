@@ -128,6 +128,7 @@ Empty fields are omitted from the JSON.
 | `date_of_birth` | `kyc.approved` | The participant's date of birth may be included. Treat as sensitive PII |
 | `referral_code_owned` | `kyc.approved` | Present when an owned referral code is assigned |
 | `rejection_reason` | `kyc.rejected` | Finer-grained rejection detail (provider sub-status) |
+| `rejection_details` | `kyc.rejected` | Text explaining the rejection, one entry per distinct reason. Display text, not a stable identifier |
 
 ## Using these identifiers to trade
 

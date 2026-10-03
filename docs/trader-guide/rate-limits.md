@@ -44,11 +44,11 @@ Tiers are determined by your [contract volume share on Polymarket US](#volume-sh
 
 ## Volume Share and Tier Requirements
 
-Each day, Polymarket US sums the contracts you traded over the trailing 30 days and divides that by the total contracts traded across the exchange over the same period. This number is your volume share. Each filled contract counts once, regardless of its execution price or the number of combo legs.
+At the start of each calendar month, Polymarket US calculates your volume share using the full preceding calendar month, from its first day through its last day. Your volume share is the contracts you traded during that month divided by the total contracts traded across the exchange during the same month. Each filled contract counts once, regardless of its execution price or the number of combo legs. For example, volume traded from August 1 through August 31 determines your September tier. Tiers are assessed monthly, not daily.
 
-Once you meet the Earn volume share for a given tier, you are automatically eligible for the tier's rate limit.
+If your volume share meets the Earn requirement at the monthly assessment, you are automatically eligible for that tier's rate limit for the new month.
 
-You must keep at least the Maintain volume share to stay eligible for your current tier. If you drop below the Maintain volume share, your rate limit will not drop immediately. You will have 30 days to get back above the Maintain volume share before being moved to a lower tier.
+You must keep at least the Maintain volume share to stay eligible for your current tier. If your share falls below Maintain at a monthly assessment, you keep your current rate limit for that month. If your share is still below Maintain at the next monthly assessment, you move to a lower eligible tier for that month.
 
 Each tier has its own Earn and Maintain volume share requirement, seen below.
 
@@ -141,11 +141,11 @@ Your RFQ tier determines your `CreateQuote` and `DeleteQuote` limits. Each metho
 
 ### RFQ Volume Share and Tier Requirements
 
-Your RFQ volume share is your RFQ-originated maker contracts over the trailing 30 days divided by the total RFQ-originated maker contracts across all firms, including retail participants, over the same period. A fill counts when its passive (maker) order originated from an RFQ. Each filled contract counts once, regardless of its price or the number of combo legs.
+At the start of each calendar month, your RFQ volume share is calculated using the full preceding calendar month, from its first day through its last day. It is your RFQ-originated maker contracts during that month divided by the total RFQ-originated maker contracts across all firms, including retail participants, during the same month. A fill counts when its passive (maker) order originated from an RFQ. Each filled contract counts once, regardless of its price or the number of combo legs. The resulting RFQ tier applies for the new month and is not reassessed daily.
 
-Once you meet the Earn volume share for a given tier, you are eligible for that tier's RFQ rate limits.
+If your volume share meets the Earn requirement at the monthly assessment, you are eligible for that tier's RFQ rate limits for the new month.
 
-You must keep at least the Maintain volume share to stay eligible for your current tier. Maintain is 80% of Earn. If you drop below the Maintain volume share, your rate limit will not drop immediately. You will have 30 days to get back to at least the Maintain volume share before being moved to a lower tier.
+You must keep at least the Maintain volume share to stay eligible for your current tier. Maintain is 80% of Earn. If your share falls below Maintain at a monthly assessment, you keep your current RFQ rate limit for that month. If your share is still below Maintain at the next monthly assessment, you move to a lower eligible RFQ tier for that month.
 
 | Tier | Earn | Maintain |
 | - | - | - |

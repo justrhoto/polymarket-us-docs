@@ -73,7 +73,7 @@ At 75¢, there are only **40 shares** available. If you place a buy for 120 shar
 
 Polymarket US is a **peer-to-peer market**. Prices and available liquidity change as other traders place or cancel orders.
 
-Orders execute against available liquidity at the best available price. You cannot set a custom limit price, so the price you receive depends on what is available at the moment your order is submitted. Any unfilled portion of your order rests on the book at your executed price until it fills or is canceled. Treat the displayed price as dynamic, especially in live sports.
+Orders execute against available liquidity at the best available price. With a market order, the price you receive depends on what is available at the moment your order is submitted, and nothing is left resting on the book. With a limit order, you set your price, and any unfilled portion rests on the book until it fills, is canceled, or expires, unless you choose Immediate or cancel. Treat the displayed price as dynamic, especially in live sports.
 
 ### Practical ways to protect yourself
 
@@ -84,7 +84,7 @@ Orders execute against available liquidity at the best available price. You cann
 
 ### Example
 
-You want to buy **\$100** worth of shares at 50¢ (**200 shares**).
+You want to buy **\$100** worth of shares at 50¢ (**200 shares** before fees).
 
 | Price | Shares |
 | - | - |
@@ -95,7 +95,7 @@ You want to buy **\$100** worth of shares at 50¢ (**200 shares**).
 
 If liquidity is thin, submitting a buy for **200 shares** at once may result in part of your order filling at **51¢**, **52¢**, **or higher**, instead of 50¢.
 
-Instead, try submitting **4 smaller trades of \$25** (**50 shares each**). This can reduce price impact during periods of thin liquidity.
+Instead, try submitting **4 smaller trades of \$25** (about **50 shares each** before fees). This can reduce price impact during periods of thin liquidity.
 
 ## Evaluating Available Liquidity
 
@@ -112,7 +112,7 @@ You want to buy around **75¢**. Available shares near that price:
 | 77¢ | 60 |
 | Total up to 77¢ | 110 |
 
-A buy for **150 shares** would result in at least **40 shares** filling at **78¢ or higher**, raising your average purchase price.
+A buy for **150 shares** needs at least **40 shares** to fill at **78¢ or higher**, raising your average purchase price.
 
 ### Simple rule of thumb
 

@@ -4,32 +4,32 @@
 
 # Fractional Contracts
 
-> Learn why Polymarket US only supports whole contracts and does not offer fractional contracts
+> Learn how fractional contracts work on Polymarket US
 
-Polymarket US does not support fractional contracts. All trades are executed in **whole event contracts**.
+Most markets on Polymarket US support fractional contracts, so you can buy or sell part of a contract. These markets trade in steps of **0.01 contracts** (1% of a contract). A small number of markets, mostly futures, still trade in **whole contracts** only.
 
 ## How It Works
 
-When you buy using a dollar amount, the system purchases as many whole contracts as that amount can buy at the current market price.
+When you buy using a dollar amount, the system purchases as many contracts as that amount can cover at the current market price, rounded down to the market's step size: 0.01 contracts on most markets, or 1 contract on whole-contract markets. The amount you enter also covers the trading fee.
 
-Any remaining amount that is not enough to buy a full contract returns to your cash balance.
+Any amount left over stays in your cash balance.
 
 ## Example
 
-You want to spend 100 dollars to buy Yes contracts priced at **\$0.65**:
+You want to spend 100 dollars to buy Yes contracts priced at **\$0.65**. To keep the math simple, this example leaves out the trading fee:
 
 * Each contract costs **\$0.65**
-* 100 ÷ 0.65 = **153.84 contracts**
-* You receive **153 whole contracts** for \$99.45
-* The remaining **\$0.55** returns instantly to your cash balance
+* 100 ÷ 0.65 = **153.846...** contracts
+* On a market that trades in 0.01-contract steps, that rounds down to **153.84 contracts**
+* On a whole-contract market, it rounds down to **153 contracts**
 
-Only whole contracts are purchased. No fractional amounts are created.
+In practice, part of your \$100 pays the trading fee, so you receive slightly fewer contracts. See the [Fee Schedule](/fees) for how the fee is calculated.
 
 ## Key Points
 
-* Polymarket US only supports **whole contracts**
-* When buying with a dollar amount, you receive the maximum number of whole contracts available at the current price
-* Any unused amount that cannot buy a full contract returns immediately to your cash balance
+* Most markets support fractional contracts in steps of **0.01 contracts**; a small number still trade in **whole contracts** only
+* When buying with a dollar amount, you receive the most contracts that amount can cover at the current price, after the trading fee, in the market's step size
+* Any amount left over stays in your cash balance
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
