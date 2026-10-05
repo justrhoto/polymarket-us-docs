@@ -6,6 +6,15 @@
 
 > Trading fee schedule, rebates, and examples
 
+<Warning>
+  **Update to fees.** Both of the following take effect at **12:00 AM ET on Wednesday, October 7, 2026**.
+
+  * The **maker rebate on combo trades is being removed**. Straight trades are unchanged.
+  * The **Table Tennis taker fee coefficient** becomes `0.10`.
+
+  The schedule and examples below describe the fees in effect today. This page will be updated when the changes take effect.
+</Warning>
+
 <Info>Effective exchange-wide from 10 AM ET, Thursday October 1, 2026.</Info>
 
 ## Standard Trading Fees
