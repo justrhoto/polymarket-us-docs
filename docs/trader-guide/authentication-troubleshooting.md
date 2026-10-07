@@ -275,8 +275,9 @@ These endpoints only require a valid access token with the appropriate scope:
 
 * Market data: `/v1/orderbook/*`, market data streaming
 * Reference data: `/v1/refdata/*`
-* Trade statistics: `/v1/report/trades/stats`
 * Health check: `/v1/health`
+
+`POST /v1/report/trades/stats` (`GetTradeStats`) is **not** in this list. It needs `read:reports` **and** participant context (`x-participant-id`). MD-only clients without a participant get `401`; the endpoint is not supported for MD-only today.
 
 ## Cryptographic Issues
 

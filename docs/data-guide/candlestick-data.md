@@ -10,13 +10,17 @@
 
 Polymarket Exchange provides multiple methods for obtaining candlestick (OHLC - Open, High, Low, Close) data for market analysis and charting applications.
 
-## Method 1: Pre-Aggregated Statistics (Recommended)
+## Method 1: Pre-Aggregated Statistics (Recommended for participants)
 
 Use the REST API's trade statistics endpoint to get pre-calculated OHLC data:
 
 ```bash theme={null}
-POST /v1beta1/report/trades/stats
+POST /v1/report/trades/stats
 ```
+
+<Warning>
+  **Not available for MD-only.** `GetTradeStats` / `POST /v1/report/trades/stats` requires participant context (`x-participant-id`) in addition to `read:reports`. Market-data-only credentials (no participant) get `401`. There is no public/retail substitute. MD-only clients should use [Method 3: Real-Time Streaming](#method-3-real-time-streaming) instead.
+</Warning>
 
 **Request Example:**
 

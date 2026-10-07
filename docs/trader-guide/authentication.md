@@ -376,8 +376,9 @@ Your application is granted specific **scopes** that control which API endpoints
 | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept` | PUT | `write:orders` |
 | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | PUT | `write:orders` |
 | `StreamRFQEvents` (gRPC) | — | `read:orders` |
-| `/v1/report/orders/search` | POST | `read:reports` |
-| `/v1/report/trades/search` | POST | `read:reports` |
+| `/v1/report/orders/search` | POST | `read:reports` (+ `x-participant-id`) |
+| `/v1/report/trades/search` | POST | `read:reports` (+ `x-participant-id`) |
+| `/v1/report/trades/stats` | POST | `read:reports` (+ `x-participant-id`; **not MD-only**) |
 | `/v1/incentives/earnings` | GET | `read:reports`  <sup>*(disabled in preprod)*</sup> |
 | `/v1/positions` | GET | `read:positions` |
 | `/v1/positions/balance` | POST | `read:positions` |

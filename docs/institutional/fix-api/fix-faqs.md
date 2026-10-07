@@ -19,12 +19,12 @@ Polymarket will provide:
 
 **What is the CompID format?**
 
-CompIDs follow the format:
+CompIDs follow this client orientation:
 
-* SenderCompID: `PMX_{FIRMNAME}`
-* TargetCompID: `{FIRMNAME}_PMX`
+* SenderCompID: `PMX_{FIRMNAME}` (for example `PMX_YOURFIRM_OE`, `PMX_YOURFIRM_MD`, `PMX_YOURFIRM_DC`)
+* TargetCompID: `{FIRMNAME}_PMX` (for example `YOURFIRM_PMX_OE`, `YOURFIRM_PMX_MD`, `YOURFIRM_PMX_DC`)
 
-These are PMX-assigned and case-sensitive. Clients must not generate or modify CompIDs.
+These are PMX-assigned and case-sensitive. Clients must not generate or modify CompIDs. A small number of sessions use the reverse pairing. Use the CompIDs on your FIX Connectivity form when they differ from this pattern.
 
 ***
 
@@ -303,7 +303,7 @@ New instruments are added throughout the day as they become available.
 
 **What are the Cancel on Disconnect/Logout settings?**
 
-Cancel on Disconnect = Yes, Cancel on Logout = Yes
+Provisioned order-entry sessions use Cancel on Disconnect = Yes and Cancel on Logout = Yes, unless otherwise agreed.
 
 **What are the session times?**
 
@@ -327,8 +327,10 @@ The most common cause is having SenderCompID and TargetCompID reversed. The serv
 
 Use the SenderCompID and TargetCompID values provided during your onboarding. Example format:
 
-* SenderCompID = PMX\_\[CLIENT]*DC (for Drop Copy) or PMX*\[CLIENT]\_OE (for Order Entry)
-* TargetCompID = \[CLIENT]\_PMX\_DC (for Drop Copy) or \[CLIENT]\_PMX\_OE (for Order Entry)
+* SenderCompID = `PMX_[CLIENT]_OE`, `PMX_[CLIENT]_MD`, or `PMX_[CLIENT]_DC`
+* TargetCompID = `[CLIENT]_PMX_OE`, `[CLIENT]_PMX_MD`, or `[CLIENT]_PMX_DC`
+
+A small number of sessions use the reverse pairing. Use the values on your FIX Connectivity form when they differ from this pattern.
 
 Contact the Polymarket onboarding team if you need clarification on your assigned CompIDs.
 

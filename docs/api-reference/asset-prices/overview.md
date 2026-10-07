@@ -70,7 +70,7 @@ Candles are dense and ascending, one per bucket in the effective window. An unkn
 ## Relationship to Markets
 
 * `assetPriceTerms.asset` on a crypto market is the `assets` value to chart against.
-* An Up/Down market's `priceToBeat` is the simple average of the 60 one-second prices from 59 seconds before `windowStart` up to and including `windowStart` itself, the inclusive interval `[T − 59 s, T]`; its `settlementPrice` is the same statistic at `windowEnd`. The reading exactly at the boundary is part of the average and the reading 60 seconds before it is not. To reproduce it, query `bucket=ASSET_PRICE_BUCKET_1S` with `from = T − 59` and `to = T` and average the 60 `close` values. For `cpc-btc-updown-15m-2026-09-21-0015z`, the candles from 00:14:01 to 00:15:00 inclusive average to the published `priceToBeat` of 81650.14; the minute 00:14:00 to 00:14:59 averages to 81649.14 and does not match.
+* An Up/Down market's `priceToBeat` is the simple average of the 60 one-second prices in the sixty seconds before `windowStart`, from `T − 60 s` up to but not including `windowStart` itself (the interval `[T − 60 s, T)`); its `settlementPrice` is the same statistic at `windowEnd`. The reading 60 seconds before the boundary is part of the average and the reading exactly at the boundary is not. To reproduce it, query `bucket=ASSET_PRICE_BUCKET_1S` with `from = T − 60` and `to = T − 1` and average the 60 `close` values. For `cpc-btc-updown-15m-2026-10-06-1900z`, the candles from 18:59:00 to 18:59:59 inclusive average to the published `priceToBeat` of 85501.45; the minute 18:59:01 to 19:00:00 averages to 85501.37 and does not match.
 * Poll the latest candle for a live price display. Prices are published about once per second.
 
 <Note>

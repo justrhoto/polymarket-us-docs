@@ -10,7 +10,7 @@ The Polymarket US API enforces rate limits to ensure fair usage and system stabi
 
 ## Institutional Order Entry
 
-REST and unary gRPC order-entry requests use tiered rate limits. Institutional order entry and FIX use the same firm tier.
+REST and unary gRPC order-entry requests use tiered rate limits. Institutional order entry and FIX order-entry sessions use the same firm tier.
 
 Each method has its own per-firm rate-limit bucket. Methods displaying the same limit do not share that allowance.
 
@@ -31,7 +31,9 @@ Each batch order request counts once toward that method's rate limit, regardless
 
 ## FIX Protocol
 
-FIX rate limiting is enforced at the FIX gateway level. Rate limits are determined by tier.
+FIX rate limiting is enforced at the FIX gateway on inbound messages from the client to the exchange.
+
+Order-entry sessions use the firm tier:
 
 | Tier | Rate limit |
 | - | - |
@@ -41,6 +43,8 @@ FIX rate limiting is enforced at the FIX gateway level. Rate limits are determin
 | Tier 4 | 500 msg/sec per session |
 
 Tiers are determined by your [contract volume share on Polymarket US](#volume-share-and-tier-requirements).
+
+Market-data and drop-copy sessions are limited to **150 inbound msg/sec**, regardless of the firm's order-entry tier. This limit applies only to messages you send. It does not limit the market data or drop-copy messages the exchange sends you.
 
 ## Volume Share and Tier Requirements
 
@@ -170,7 +174,8 @@ RFQ tiers use a separate volume measure and eligibility thresholds from the inst
 | gRPC streaming (ingress) | Per firm (all streams) | 100 msg/sec (1-min avg) |
 | gRPC streaming (egress) | Per firm | Unlimited |
 | RFQ - REST and unary gRPC endpoints | Per firm, per endpoint | 1–2,000 req/sec (see tables above) |
-| FIX | Per session | 35–500 msg/sec by tier (see table above) |
+| FIX order entry | Per session | 35, 150, 300, or 500 msg/sec by tier (see table above) |
+| FIX market data and drop copy | Per session | 150 msg/sec |
 
 ## Rate Limit Response
 

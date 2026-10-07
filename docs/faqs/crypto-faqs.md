@@ -31,7 +31,7 @@ Every market settles on CF Benchmarks' [Bitcoin Real-Time Index (BRTI)](https://
 
 The statistic depends on the market family:
 
-* **Up/Down, Above/Below and Price Range** use a simple average: the 60 BRTI prices published from 59 seconds before the settlement instant up to and including the instant itself (the inclusive interval `[T − 59 s, T]`) are collected and averaged, rounded to the nearest two decimal places. An Up/Down market computes this value twice, once at the window open and once at the close.
+* **Up/Down, Above/Below and Price Range** use a simple average: the 60 BRTI prices published in the sixty seconds before the settlement instant, from `T − 60 s` up to but not including the instant itself (the interval `[T − 60 s, T)`), are collected and averaged, rounded to the nearest two decimal places. An Up/Down market computes this value twice, once at the window open and once at the close.
 * **One-Touch** uses a rolling 60-second 20% trimmed mean: at each evaluation instant the 60 BRTI prices published in the sixty seconds ending at and including that instant are collected, the highest 20% and lowest 20% are removed, and the remaining values are averaged, rounded to two decimals. The statistic is evaluated continuously through the window.
 * **Hand-listed markets** state their own statistic in the market rules. Always read the rules of the specific market.
 

@@ -101,15 +101,13 @@ At any point either counterparty can force the opposing FIX engine to send a Hea
 
 ## Cancel on Disconnect
 
-Cancel on Disconnect is an optional feature which can act as an automatic risk control for participants in the event that application connectivity is lost for any reason, from network error to graceful logout.
+Cancel on Disconnect cancels open (unexecuted) DAY orders when an order-entry session loses connectivity because of a network error. GTC and GTD orders continue to rest unless otherwise agreed.
 
-In these circumstances, the exchange will automatically cancel all open (unexecuted) DAY orders for the Participant while GTC and GTD orders continue to rest.
+A network-level disconnect triggers Cancel on Disconnect in the FIX gateway. A graceful FIX logout is covered by Cancel on Logout.
 
-Note that a network-level disconnect instantly triggers this Cancel on Disconnect functionality in the FIX gateway.
+After reconnecting, missed messages will be replayed including execution reports for any canceled orders or in-flight fills. It is the FIX client's responsibility to re-enter any orders cancelled by this feature, if they choose to based on market conditions when connectivity is re-established.
 
-After reconnecting, missed messages will be replayed including execution reports for any canceled orders or in-flight fills. It is the FIX client's responsibility to re-enter any orders cancelled by COD feature, if they choose to based on market conditions when connectivity is re-established.
-
-Cancel on Disconnect is disabled by default, and enabled on a session-by-session basis in the FIX configurations. The below example shows two sessions, one with CancelOnDisconnect=Y and one with CancelOnDisconnect=N which puts the participant at more risk of in-flight fills.
+Provisioned order-entry sessions use `CancelOnDisconnect=Y` and `CancelOnLogout=Y` unless otherwise agreed.
 
 ```yaml theme={null}
 fixConf: |-
@@ -129,24 +127,15 @@ fixConf: |-
   Firm=firms/Trading-Firm-A
   TargetCompID=TFA
   CancelOnDisconnect=Y
-  ResetOnLogon=Y
-  [SESSION]
-  ClearingMemberFirm=firms/Clearing-Member-1
-  Firm=firms/Trading-Firm-B
-  TargetCompID=TFB
-  CancelOnDisconnect=N
+  CancelOnLogout=Y
   ResetOnLogon=Y
 ```
 
 ## Cancel on Logout
 
-Cancel on Logout is an optional feature that cancels working DAY orders on a FIX session logout. This functionality is similar to Cancel on Disconnect in that it cancels working DAY orders, but differs in that it triggers due to a logout for any reason.
+Cancel on Logout cancels working DAY orders when an order-entry session logs out. It applies on a network disconnect and on a graceful logout initiated by either side. Cancel on Disconnect applies only when the session drops with no preceding FIX logout.
 
-Note this feature cancels working orders when a session disconnects for any reason, including unsolicited disconnects as well as clean logouts. Cancel on Disconnect will only trigger on a network disconnection (with no preceding FIX logout message) whereas Cancel on Logout will trigger for that case in addition to the graceful FIX logout flow as initiated by either the acceptor or initiator.
-
-If you only want to cancel when an unexpected connection interruption is detected, instead use Cancel on Disconnect.
-
-The example below shows how CancelOnLogout can be enabled while CancelOnDisconnect is disabled. In this example, orders for TargetCompID=TFA will cancel only on a network error (CancelOnDisconnect) whereas TargetCompID=TFB will cancel on any session logout event (CancelOnLogout).
+Provisioned order-entry sessions enable both settings unless otherwise agreed. The example below shows two non-default configurations. Orders for TargetCompID=TFA cancel only on a network error (`CancelOnDisconnect=Y`). Orders for TargetCompID=TFB cancel on any session logout (`CancelOnLogout=Y` with `CancelOnDisconnect=N`).
 
 ```yaml theme={null}
 fixConf: |-
@@ -276,7 +265,7 @@ The expected response to a successful Logout \[5] message is a reciprocal Logout
 
 Participants are recommended to schedule a graceful logout before the start of a scheduled maintenance window. If this is not received, then the Polymarket US will initiate the logout process.
 
-**IMPORTANT: If Cancel on Disconnect is enabled, any open (unexecuted) DAY orders in the Polymarket US are automatically canceled when a FIX session terminates for any reason, including a graceful logout. GTC and GTD orders will continue to rest.**
+**IMPORTANT: Unless otherwise agreed, provisioned order-entry sessions use Cancel on Disconnect and Cancel on Logout. Open (unexecuted) DAY orders are canceled when an order-entry session disconnects or logs out. GTC and GTD orders continue to rest.**
 
 ## General Error Handling
 

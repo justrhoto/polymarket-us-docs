@@ -98,7 +98,7 @@ All families share the same contract attributes: tick size `0.01`, valid prices 
 
 | Aspect | Detail |
 | - | - |
-| Open and close values | For each of the two instants `T`, the 60 per-second BRTI prices published from `T − 59 s` up to and including `T` (the inclusive interval `[T − 59 s, T]`) are collected and averaged, rounded to two decimals. |
+| Open and close values | For each of the two instants `T`, the 60 per-second BRTI prices published in the sixty seconds before `T`, from `T − 60 s` up to but not including `T` (the interval `[T − 60 s, T)`), are collected and averaged, rounded to two decimals. |
 | Settlement | Long side (Yes) pays when the close value is greater than or equal to the open value. A flat print settles Up. Otherwise the short side (No) pays. |
 | Cadence | `15m` windows are listed about 12 hours ahead (roughly 48 open per asset). `1h` windows are listed about 24 hours ahead on the UTC hour grid. Windows that overlap a scheduled exchange maintenance are not listed. |
 | Lifecycle | Created `PENDING`, opened for trading about 90 seconds before the window starts, last trade at the window close. `price_to_beat` is stamped a few seconds after the open; `crypto_settlement_price` at resolution. |
@@ -110,7 +110,7 @@ All families share the same contract attributes: tick size `0.01`, valid prices 
 
 | Aspect | Detail |
 | - | - |
-| Settlement value | The 60 per-second BRTI prices published from 59 seconds before expiry up to and including the expiry instant (`[T − 59 s, T]`), averaged and rounded to two decimals. |
+| Settlement value | The 60 per-second BRTI prices published in the sixty seconds before expiry, from `T − 60 s` up to but not including the expiry instant (`[T − 60 s, T)`), averaged and rounded to two decimals. |
 | Settlement | Long side pays when the settlement value is greater than or equal to the strike. A value exactly equal to the strike settles Yes. |
 | Cadence | `hourly` ladders (\$100 steps) are listed about four hours ahead; no hourly ladder expires at 5:00 PM ET. `daily` ladders (\$500 steps) expire at 5:00 PM ET and are listed about 25 hours ahead; there is no daily ladder on Fridays. `weekly` ladders (\$500 steps) expire Friday 5:00 PM ET and are listed on Monday at midnight ET. |
 | Lifecycle | Tradeable from listing. Last trade at expiry. |

@@ -24,13 +24,13 @@
 | `POST` | `/v1/report/executions/csv` | Export executions to CSV |
 | `POST` | `/v1/report/trades/stats` | Get aggregated trade statistics |
 
-<Info>
-  **No Participant ID Required for Trade Stats**
+<Warning>
+  **Participant context required for Trade Stats**
 
-  The `/v1/report/trades/stats` endpoint only requires Auth0 JWT authentication with `read:reports` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access aggregated trade statistics.
+  `POST /v1/report/trades/stats` (`GetTradeStats`) accepts Auth0 JWT with `read:reports` at the gateway, but still requires participant context downstream (`x-participant-id` / DCM participant context). Market-data-only clients without a participant receive `401`. This route is **not supported for MD-only** access today, and there is no public/retail substitute.
 
-  Note: Other report endpoints (orders search, trades search, etc.) still require participant\_id.
-</Info>
+  `read:reports` alone is not enough. Other report endpoints (orders search, trades search, etc.) also require participant context.
+</Warning>
 
 ## When to Use
 

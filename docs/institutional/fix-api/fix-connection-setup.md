@@ -110,10 +110,12 @@ Replace `[VPC_SERVICE_NAME]` with the VPC Service name that was provided to you 
 Your FIX engine will initiate the TCP connection sessions to Polymarket Exchange using FIXT.1.1 transport with FIX 5.0 SP2 application messages. Identifiers can include ASCII printable characters excluding SOH (Start of Header) characters only.
 
 **SenderCompID (Tag 49):**
-The firm ID assigned by Polymarket to your firm's FIX session (e.g., `YOURFIRM_PMX_OE`, `YOURFIRM_PMX_MD`, `YOURFIRM_PMX_DC`)
+The CompID your session sends as itself (e.g., `PMX_YOURFIRM_OE`, `PMX_YOURFIRM_MD`, `PMX_YOURFIRM_DC`)
 
 **TargetCompID (Tag 56):**
-The exchange ID assigned by Polymarket to your firm's FIX session (e.g., `PMX_YOURFIRM_OE`, `PMX_YOURFIRM_MD`, `PMX_YOURFIRM_DC`)
+The exchange-side CompID for that session (e.g., `YOURFIRM_PMX_OE`, `YOURFIRM_PMX_MD`, `YOURFIRM_PMX_DC`)
+
+A small number of sessions use the reverse pairing. Use the SenderCompID and TargetCompID on your FIX Connectivity form when they differ from these examples.
 
 **SenderSubID (Tag 50):**
 The trader identifier assigned based on the user we create at Polymarket (e.g., `20251118-yourfirm-api-user-1`), sent on order and order-management messages

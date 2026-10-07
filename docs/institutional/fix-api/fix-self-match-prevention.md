@@ -4,18 +4,18 @@
 
 # Self-Match Prevention
 
-The Polymarket US offers self-match prevention logic which can be enabled either at the FIX session level (automatically applied to all orders entered through a session), or on a per-order basis using the SelfMatchPreventionID (7928) and SelfMatchPreventionInstruction (8000) tags.
+Set self-match prevention on each order with SelfMatchPreventionID (7928) and SelfMatchPreventionInstruction (8000). Session-level self-match prevention, which applies to every order on a session, is not enabled by default.
 
 This instruction will automatically cancel one or both orders (without execution) which would potentially be involved in a self-match. The options are:
 
 1. The aggressor (new) order will be canceled.
 2. The passive (existing) order is canceled.
 
-Contact the exchange operator to enable the setting at the FIX session level.
+Use tags 7928 and 8000 on the order. Contact the exchange operator if you need session-level self-match prevention enabled for a session.
 
 ## How Self-Match Prevention Works
 
-Orders may have self-match prevention enabled at either the FIX session level, or at an order-level basis using tags SelfMatchPreventionID (7928) and SelfMatchPreventionInstruction (8000).
+Set self-match prevention on the order with SelfMatchPreventionID (7928) and SelfMatchPreventionInstruction (8000). Session-level self-match prevention is not enabled by default.
 
 Where specified, two otherwise-executable orders from the same participant and which carry the same SelfMatchPreventionID (7928) will be prevented from matching by expiring one of the orders. Whether the resting or aggressive order is canceled is governed by SelfMatchPreventionInstruction (8000) of the incoming order.
 
