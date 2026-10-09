@@ -6,7 +6,7 @@
 
 > Create and read combo instruments through the Retail API
 
-A combo is a user-defined instrument containing 2–10 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Once open, a combo trades through the normal [Orders API](/api-reference/orders/overview); an RFQ is optional and provides a price-discovery and paired order-submission workflow over the same order book.
+A combo is a user-defined instrument containing 2–50 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Once open, a combo trades through the normal [Orders API](/api-reference/orders/overview); an RFQ is optional and provides a price-discovery and paired order-submission workflow over the same order book.
 
 All calls use normal [Retail API authentication](/api-reference/authentication) at:
 
@@ -27,7 +27,7 @@ Separately, combo creation has a participant-wide service quota of 1,000 new ins
 
 ## Create a Combo
 
-`POST /v1/combos` accepts 2–10 unique legs:
+`POST /v1/combos` accepts 2–50 unique legs:
 
 ```json theme={null}
 {

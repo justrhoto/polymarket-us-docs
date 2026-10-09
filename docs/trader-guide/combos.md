@@ -8,7 +8,7 @@
 
 > REST and gRPC unary calls are supported. RFQ events are gRPC-only. FIX support is coming later.
 
-A combo is an instrument with 2–10 component legs. Each leg contains an existing market symbol and a buy or sell side. Combo instruments trade through normal order entry, but most combo price discovery starts with a request for quote (RFQ).
+A combo is an instrument with 2–50 component legs. Each leg contains an existing market symbol and a buy or sell side. Combo instruments trade through normal order entry, but most combo price discovery starts with a request for quote (RFQ).
 
 Combo takers use a separate fee curve based on the combo execution price and quantity. Makers continue to receive the standard maker rebate. See the [Fee Schedule](/fees#combo-taker-fees) for the formula, rounding rules, and examples.
 

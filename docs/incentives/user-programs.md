@@ -12,7 +12,7 @@ Current incentive programs may include:
 
 | Program | Applies to | Requirement |
 | - | - | - |
-| **[Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.08.17\).pdf)** | Deposit-based credits | Make the applicable qualifying deposit |
+| **[Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.09.18\).pdf)** | Deposit-based credits | Make the applicable qualifying deposit |
 | **[Refer-A-Friend Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Refer-A-Friend%20Incentive%20Program%20\(2026.08.26\).pdf)** | Fixed referral credits | Referred friend onboards and makes a qualifying deposit; both Participants receive a credit |
 | **[Daily Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Daily%20Trading%20Incentive%20Program%20\(2026.07.29\).pdf)** | Daily activity credits | Deposit and satisfy daily trading requirements |
 | **[Deposit and Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Deposit%20and%20Trading%20Incentive%20Program%20\(2026.08.24\).pdf)** | Credits for qualifying deposit and trading activity | Make a qualifying deposit and/or satisfy trading activity requirements |
@@ -71,12 +71,15 @@ A Participant qualifies only for the campaign presented to them.
 
 Active campaigns:
 
-| Campaign | Qualifying Deposit | Daily Incentive | Days | Max Incentive Credit |
-| - | - | - | - | - |
-| Campaign A | Deposit at least \$500 | \$50 | 5 | \$250 |
-| Campaign B | Deposit at least \$250 | \$20 | 5 | \$100 |
-| Campaign C | Deposit at least \$100 | \$10 | 5 | \$50 |
-| Campaign D | Deposit at least \$50 | \$5 | 5 | \$25 |
+| Campaign | Qualifying Deposit | Incentive Credit |
+| - | - | - |
+| Campaign A | Deposit at least \$500 | Receive \$250 |
+| Campaign B | Deposit at least \$250 | Receive \$100 |
+| Campaign C | Deposit at least \$100 | Receive \$50 |
+| Campaign D | Deposit at least \$50 | Receive \$25 |
+| Campaign E | Deposit at least \$25 | Receive \$5 |
+
+Participants are eligible for a campaign based on their prior deposit and trading activity.
 
 Incentive credits will be credited within seven (7) days of all applicable campaign requirements being satisfied. Participants receive only the incentives they qualify for under the applicable campaign terms.
 

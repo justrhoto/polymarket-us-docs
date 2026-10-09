@@ -59,7 +59,7 @@ components:
           items:
             $ref: '#/components/schemas/v1ComboLeg'
           minItems: 2
-          maxItems: 10
+          maxItems: 50
       required:
         - legs
     v1CreateComboResponse:

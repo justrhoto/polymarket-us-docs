@@ -6,7 +6,7 @@
 
 > Create and read combo instruments
 
-A combo is a user-defined instrument with 2–10 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Combo instruments can trade through normal order entry and can be used as the symbol of an [RFQ](/institutional/rfqs/overview).
+A combo is a user-defined instrument with 2–50 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Combo instruments can trade through normal order entry and can be used as the symbol of an [RFQ](/institutional/rfqs/overview).
 
 The public `polymarket.v1.ComboAPI` gRPC service creates and reads combo instruments. Each RPC also has a REST endpoint. REST JSON uses lower camel case; protobuf fields use snake case.
 
@@ -25,7 +25,7 @@ Separately, combo creation has a participant-wide service quota of 1,000 new ins
 
 ## Create a Combo
 
-`POST /v1/combos` accepts a list of 2–10 unique legs:
+`POST /v1/combos` accepts a list of 2–50 unique legs:
 
 ```json theme={null}
 {
