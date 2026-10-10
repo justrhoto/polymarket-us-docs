@@ -42,7 +42,7 @@ Separately, combo creation has a participant-wide service quota of 1,000 new ins
 }
 ```
 
-The component symbols must be open, tradable, supported instruments. The service rejects duplicate symbols and invalid combinations. A canonical set of legs always maps to the same `caoc-...` combo symbol; if that combo already exists, `CreateCombo` returns it.
+The component symbols must be open, tradable, supported instruments. The service rejects duplicate symbols and invalid combinations. Treat the combo symbol as opaque: existing combos use `caoc-...` and new combos use `crossd-...`. Within one product, a canonical set of legs always maps to the same symbol; if that combo already exists, `CreateCombo` returns it.
 
 ```json theme={null}
 {

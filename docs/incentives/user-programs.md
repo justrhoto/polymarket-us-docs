@@ -4,7 +4,7 @@
 
 # User Incentive Programs
 
-> Deposit, Refer-A-Friend, Daily Trading, and Deposit and Trading Incentive Programs for Polymarket US Participants.
+> Deposit, Refer-A-Friend, Sequential, and Deposit and Trading Incentive Programs for Polymarket US Participants.
 
 Polymarket US may offer incentive programs designed to increase market participation, liquidity, and engagement on Polymarket US. Each program has its own eligibility requirements, payment conditions, limits, and controls.
 
@@ -14,7 +14,7 @@ Current incentive programs may include:
 | - | - | - |
 | **[Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.09.18\).pdf)** | Deposit-based credits | Make the applicable qualifying deposit |
 | **[Refer-A-Friend Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Refer-A-Friend%20Incentive%20Program%20\(2026.08.26\).pdf)** | Fixed referral credits | Referred friend onboards and makes a qualifying deposit; both Participants receive a credit |
-| **[Daily Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Daily%20Trading%20Incentive%20Program%20\(2026.07.29\).pdf)** | Daily activity credits | Deposit and satisfy daily trading requirements |
+| **[Sequential Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Sequential%20Incentive%20Program%20\(2026.10.08\).pdf)** | Daily credits | Deposit and satisfy daily engagement requirements |
 | **[Deposit and Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Deposit%20and%20Trading%20Incentive%20Program%20\(2026.08.24\).pdf)** | Credits for qualifying deposit and trading activity | Make a qualifying deposit and/or satisfy trading activity requirements |
 
 Polymarket US may withhold, cancel, or reverse incentives in cases of suspected fraud, abuse, manipulation, self-dealing, self-referral, coordinated activity, or other activity inconsistent with the applicable program terms or Polymarket US rules.
@@ -53,9 +53,9 @@ Each Participant is limited to 50 friend referrals.
 
 Incentive credits will be credited within seven (7) days of all applicable campaign requirements being satisfied. Participants receive only the incentives they qualify for under the applicable campaign terms.
 
-## Daily Trading Incentive Program
+## Sequential Incentive Program
 
-Details for the Daily Trading Incentive Program will be published here once the program is live.
+Details for the Sequential Incentive Program will be published here once the program is live.
 
 ## Deposit and Trading Incentive Program
 

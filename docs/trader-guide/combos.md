@@ -10,7 +10,7 @@
 
 A combo is an instrument with 2–50 component legs. Each leg contains an existing market symbol and a buy or sell side. Combo instruments trade through normal order entry, but most combo price discovery starts with a request for quote (RFQ).
 
-Combo takers use a separate fee curve based on the combo execution price and quantity. Makers continue to receive the standard maker rebate. See the [Fee Schedule](/fees#combo-taker-fees) for the formula, rounding rules, and examples.
+Combo takers use a separate fee curve based on the combo execution price and quantity. Combo makers do not receive a maker rebate. See the [Fee Schedule](/fees#combo-taker-fees) for the formula, rounding rules, and examples.
 
 This guide covers the market-maker workflow. The public contract is split between:
 

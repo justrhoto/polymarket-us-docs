@@ -570,7 +570,7 @@
 | Page | Description |
 | --- | --- |
 | [Overview](docs/incentives/overview.md) | Polymarket operates a variety of incentive programs for all traders. |
-| [User Incentive Programs](docs/incentives/user-programs.md) | Deposit, Refer-A-Friend, Daily Trading, and Deposit and Trading Incentive Programs for Polymarket US Participants. |
+| [User Incentive Programs](docs/incentives/user-programs.md) | Deposit, Refer-A-Friend, Sequential, and Deposit and Trading Incentive Programs for Polymarket US Participants. |
 | [Volume Incentive Program](docs/incentives/volume.md) | Earn rewards based on your share of trading volume on eligible contracts. |
 | [Liquidity Incentive Program](docs/incentives/liquidity.md) | Earn rewards for placing resting orders close to the best price. |
 | [Market Maker Program](docs/incentives/market-maker.md) | Apply to provide stable liquidity across a wide range of contracts. |

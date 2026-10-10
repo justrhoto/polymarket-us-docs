@@ -6,16 +6,7 @@
 
 > Trading fee schedule, rebates, and examples
 
-<Warning>
-  **Update to fees.** Both of the following take effect at **12:00 AM ET on Wednesday, October 7, 2026**.
-
-  * The **maker rebate on combo trades is being removed**. Straight trades are unchanged.
-  * The **Table Tennis taker fee coefficient** becomes `0.10`.
-
-  The schedule and examples below describe the fees in effect today. This page will be updated when the changes take effect.
-</Warning>
-
-<Info>Effective exchange-wide from 10 AM ET, Thursday October 1, 2026.</Info>
+<Info>Effective exchange-wide from 10 AM ET, Wednesday October 7, 2026.</Info>
 
 ## Standard Trading Fees
 
@@ -33,12 +24,15 @@ Where:
 * **p** is the trade price (\$0.01 to \$0.99)
 * **Θ** (theta) is the fee coefficient
 
-| | Theta | Max (p = \$0.50) |
+| | Theta | Max (100-lot at p = \$0.50) |
 | - | - | - |
 | **Taker Fee** | 0.0695 | \$1.74 |
+| **Taker Fee (Table Tennis)** | 0.10 | \$2.50 |
 | **Maker Rebate** | -0.0125 | -\$0.31 |
 
-* **Maker rebate** is applied at the point of trade.
+Table Tennis markets use a higher taker fee coefficient (Θ = 0.10). The maker rebate is the same for all markets. The schedule by price below uses the standard 0.0695 coefficient — see Example 6 under [Standard Fee Examples](#standard-fee-examples) for a Table Tennis fee.
+
+* **Maker rebate** is applied at the point of trade. Combo fills carry no maker rebate — see [Combo Taker Fees](#combo-taker-fees).
 * **Taker rebate**: Participants who trade over \$250,000 in taker volume during the prior calendar month receive rebates according to the following schedule. A Participant's tier for a given month is determined by their taker volume in the immediately preceding calendar month. Rebates are paid out weekly.
 
 | Prior calendar-month taker volume | % Taker fee rebate |
@@ -223,6 +217,15 @@ A 50/50 market. This is where the fee is highest per contract because p × (1 �
 * **Buyer (taker):** 0.0695 × 1,000 × 0.50 × 0.50 = **−\$17.38**
 * **Seller (maker):** 0.0125 × 1,000 × 0.50 × 0.50 = **+\$3.12**
 
+***
+
+#### Example 6: Buy 1,000 contracts at \$0.50 — Table Tennis market
+
+The same trade as Example 5, in a Table Tennis market. The taker pays the higher 0.10 coefficient; the maker rebate is unchanged.
+
+* **Buyer (taker):** 0.10 × 1,000 × 0.50 × 0.50 = **−\$25.00**
+* **Seller (maker):** 0.0125 × 1,000 × 0.50 × 0.50 = **+\$3.12**
+
 ## Combo Taker Fees
 
 The taker side of a combo trade uses a separate fee curve:
@@ -233,7 +236,7 @@ Fee = C × p × [0.0695 × (1 - p) + 0.06 × (1 - p)^4]
 
 `C` is the number of contracts and `p` is the combo execution price in decimal dollars. The curve applies to the combo execution as a whole, not separately to its component legs.
 
-Maker rebates on combo fills continue to use the `-0.0125 × C × p × (1 - p)` formula above. A participant's taker rebate percentage is applied to the actual combo taker fee collected. Taker rebate tiers and payout cadence are unchanged.
+Combo fills carry no maker rebate. A participant's taker rebate percentage is applied to the actual combo taker fee collected. Taker rebate tiers and payout cadence are unchanged.
 
 ### Combo Fee Schedule by Price
 
@@ -346,7 +349,7 @@ Maker rebates on combo fills continue to use the `-0.0125 × C × p × (1 - p)` 
 For a single fill, the combo fee is calculated from the combo execution price and quantity as a whole.
 
 * **Buyer (taker):** 1,000 × 0.10 × \[0.0695 × 0.90 + 0.06 × 0.90^4] = \$10.1916 → **−\$10.19**
-* **Seller (maker):** 0.0125 × 1,000 × 0.10 × 0.90 = **+\$1.12**
+* **Seller (maker):** **\$0.00** (no maker rebate on combos)
 
 ***
 
@@ -355,7 +358,7 @@ For a single fill, the combo fee is calculated from the combo execution price an
 At the midpoint, the combo taker fee is \$19.25.
 
 * **Buyer (taker):** 1,000 × 0.50 × \[0.0695 × 0.50 + 0.06 × 0.50^4] = \$19.25 → **−\$19.25**
-* **Seller (maker):** 0.0125 × 1,000 × 0.50 × 0.50 = **+\$3.12**
+* **Seller (maker):** **\$0.00** (no maker rebate on combos)
 
 ## FAQ
 

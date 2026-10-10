@@ -44,7 +44,7 @@ Separately, combo creation has a participant-wide service quota of 1,000 new ins
 }
 ```
 
-Leg symbols must be open, tradable, supported instruments. Duplicate symbols and invalid combinations are rejected. A canonical set of legs always maps to the same `caoc-...` combo symbol, so creating an existing combo returns that instrument.
+Leg symbols must be open, tradable, supported instruments. Duplicate symbols and invalid combinations are rejected. Treat the combo symbol as opaque: existing combos use `caoc-...` and new combos use `crossd-...`. Within one product, a canonical set of legs always maps to the same symbol, so creating an existing combo returns that instrument.
 
 ```json theme={null}
 {

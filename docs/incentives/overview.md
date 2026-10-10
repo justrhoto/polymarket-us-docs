@@ -35,9 +35,9 @@ Polymarket US offers incentive programs that pay you for trading activity and pr
     </tr>
 
     <tr>
-      <td><strong>Daily Trading Incentive Program</strong></td>
+      <td><strong>Sequential Incentive Program</strong></td>
       <td>Coming Soon</td>
-      <td>Earn incentive credits for daily trading activity</td>
+      <td>Earn daily credits for qualifying deposit and engagement activity</td>
     </tr>
 
     <tr>
