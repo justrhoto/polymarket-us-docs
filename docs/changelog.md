@@ -11,8 +11,30 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+<Update label="October 12, 2026" description="Upcoming: tiered maker and taker rebates" tags={["Upcoming", "Incentives", "Institutional API", "Retail API"]} rss={{ title: "Maker and taker rebates move to volume tiers at 1:00 PM ET on Monday, October 19, 2026", description: "From 1:00 PM ET on October 19 the maker rebate coefficient moves from a flat -0.0125 to tiers set by prior calendar-month maker volume (maker Tier 1 below $10M: no rebate; Tier 2 from $10M: -0.0035; Tier 3 from $50M: -0.0070; Tier 4 from $200M: -0.0104), and taker rebates move to six tiers (Tier 1 below $250K: no rebate; Tier 2 to Tier 6: 3%, 5%, 10%, 15% and 30% of taker fees paid at $250K, $1M, $10M, $25M and $50M). For the October 19 launch only, each tier is the higher of September volume or 4x October 12 to 18 volume. The additional weekly crypto maker rebate ends at 8:00 AM ET on October 15. Taker fees are unchanged." }}>
+  Effective **1:00 PM ET on Monday, October 19, 2026**, maker and taker rebates move to tiers set by your trading volume. Taker fees are unchanged. See [Rebate changes effective October 19, 2026](/fees#rebate-changes-effective-october-19-2026) on the Fee Schedule for the full rules and how volume is measured.
+
+  * **Maker rebates:** the maker rebate coefficient moves from a flat `-0.0125` to four tiers set by your prior calendar-month maker volume: Tier 1 below \$10M (no maker rebate), Tier 2 `-0.0035` from \$10M, Tier 3 `-0.0070` from \$50M and Tier 4 `-0.0104` from \$200M. Rebates are still credited at the point of trade. Combo fills continue to carry no maker rebate.
+  * **Taker rebates:** six tiers set by your prior calendar-month taker volume: Tier 1 below \$250K (no rebate), Tier 2 3% (\$250K to \$1M), Tier 3 5% (\$1M to \$10M), Tier 4 10% (\$10M to \$25M), Tier 5 15% (\$25M to \$50M) and Tier 6 30% (\$50M+) of taker fees paid. Rebates continue to be paid out weekly.
+  * **Crypto maker rebates:** the additional 17% weekly crypto maker rebate ends at **8:00 AM ET on Thursday, October 15, 2026**. From 8:00 AM ET on October 15 until 1:00 PM ET on October 19, crypto makers receive the standard `-0.0125` rebate. From 1:00 PM ET on October 19, crypto markets use the maker tiers above.
+  * **How tiers are set:** maker and taker tiers are numbered separately from Tier 1 (lowest volume) upward. For the October 19 launch only, each tier is the higher of your September 2026 volume or 4x your October 12 to 18 volume. From November 1, tiers reset on the first of each month based on the prior calendar month's volume. Your current tiers and rebates apply until 1:00 PM ET on October 19.
+  * **Volume** is contracts × the price of the side you received: buying at \$0.30 counts \$0.30 per contract, selling at \$0.30 counts \$0.70 per contract. Combo fills count toward both maker and taker volume. Voided fills are excluded.
+</Update>
+
+<Update label="October 9, 2026" description="Upcoming: primary markets on event lists" tags={["Breaking Change", "Upcoming", "Retail API"]} rss={{ title: "Event list responses change Thursday, October 15, 2026", description: "Event lists will return primary markets. Event detail endpoints by ID or slug will provide the full market set." }}>
+  Effective **Thursday, October 15, 2026**, these endpoints will return only the primary market set in each event's `markets` array:
+
+  * `GET /v1/events`
+  * `GET /v2/leagues/{slug}/events`
+  * `GET /v2/sports/{slug}/events`
+
+  Primary markets are the main winner outcomes. Soccer game-to-advance markets take precedence when present. Spreads, totals, and player props will no longer accompany a primary market in list responses. Events without a primary market will retain all eligible markets.
+
+  **Migration:** For the full market set, request `GET /v1/events/{id}` or `GET /v1/events/slug/{slug}`. Use the `id` or `slug` from the list response. See the [Events API](/api-reference/events/overview).
+</Update>
+
 <Update label="October 1, 2026" description="General access to RFQs and combos" tags={["New Feature", "Retail API"]} rss={{ title: "RFQs and combos are generally available on the Retail API", description: "RFQs and combos are available to all Retail API users with existing API keys." }}>
-  - [RFQs](/api-reference/rfqs/overview) and [combos](/api-reference/combos/overview) are now available to all Retail API users with existing API keys.
+  * [RFQs](/api-reference/rfqs/overview) and [combos](/api-reference/combos/overview) are now available to all Retail API users with existing API keys.
 </Update>
 
 <Update label="October 1, 2026" description="RFQ quote replacement IDs" tags={["Breaking Change", "Institutional API", "Retail API"]} rss={{ title: "CreateQuote returns a new ID on replacement", description: "CreateQuote no longer preserves quoteId on replacement. Use the returned ID for deletion and the accepted quote's ID for confirmation." }}>

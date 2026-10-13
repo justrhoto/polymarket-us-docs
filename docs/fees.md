@@ -6,6 +6,72 @@
 
 > Trading fee schedule, rebates, and examples
 
+<Warning>
+  **Update to rebates.** Maker and taker rebates move to volume-based tiers at **1:00 PM ET on Monday, October 19, 2026**. The additional weekly crypto maker rebate ends at **8:00 AM ET on Thursday, October 15, 2026**. Taker fees are unchanged.
+
+  * The **maker rebate** moves from a flat `-0.0125` fee coefficient to four tiers (Tier 1 to Tier 4) set by your prior calendar-month maker volume.
+  * The **taker rebate** moves to six tiers (Tier 1 to Tier 6), from no rebate below \$250,000 to 30% of taker fees paid from \$50,000,000, set by your prior calendar-month taker volume.
+  * For the October 19 launch only, each tier is set by the higher of your September 2026 volume or 4x your October 12 to 18 volume.
+
+  See [Rebate changes effective October 19, 2026](#rebate-changes-effective-october-19-2026) for the new tiers and how volume is measured. The schedule and examples below describe the fees and rebates in effect today. This page will be updated when the changes take effect.
+</Warning>
+
+## Rebate changes effective October 19, 2026
+
+From 1:00 PM ET on Monday, October 19, 2026, maker and taker rebates are set by your trading volume. Tiers are numbered from Tier 1 (lowest volume) upward, separately for maker and taker. The taker fee formula and coefficients do not change. Your current tiers and rebates apply until the new structure begins at 1:00 PM ET on October 19.
+
+### Maker rebate tiers (from October 19)
+
+The maker rebate coefficient (Θ) moves from a flat `-0.0125` to a tier set by your maker volume in the prior calendar month. The rebate is still computed per fill as `Θ × C × p × (1 - p)` and credited at the point of trade.
+
+| Maker tier | Prior calendar-month maker volume | Maker rebate coefficient (Θ) | Share of the standard taker fee |
+| - | - | - | - |
+| Tier 1 | Below \$10,000,000 | No maker rebate | 0% |
+| Tier 2 | \$10,000,000 - \$49,999,999 | -0.0035 | about 5% |
+| Tier 3 | \$50,000,000 - \$199,999,999 | -0.0070 | about 10% |
+| Tier 4 | \$200,000,000+ | -0.0104 | about 15% |
+
+For comparison, today's flat `-0.0125` coefficient is about 18% of the standard taker fee.
+
+* Combo fills carry no maker rebate at any tier, as today.
+* Table Tennis markets use the same maker tier coefficient as all other markets.
+* **Crypto markets:** the additional 17% weekly crypto maker rebate ends at 8:00 AM ET on Thursday, October 15, 2026. From 8:00 AM ET on October 15 until 1:00 PM ET on October 19, crypto makers receive the standard `-0.0125` rebate at the point of trade. From 1:00 PM ET on October 19, crypto markets use the maker tiers above.
+
+### Taker rebate tiers (from October 19)
+
+Taker rebates continue to be paid out weekly as a percentage of the taker fees you paid, including combo taker fees. The tiers move to:
+
+| Taker tier | Prior calendar-month taker volume | % Taker fee rebate |
+| - | - | - |
+| Tier 1 | Below \$250,000 | No taker rebate |
+| Tier 2 | \$250,000 - \$999,999 | 3% |
+| Tier 3 | \$1,000,000 - \$9,999,999 | 5% |
+| Tier 4 | \$10,000,000 - \$24,999,999 | 10% |
+| Tier 5 | \$25,000,000 - \$49,999,999 | 15% |
+| Tier 6 | \$50,000,000+ | 30% |
+
+Tier 1 (below \$250,000) earns no taker rebate, as today.
+
+### How tiers are set
+
+* **October 19 launch only:** your maker tier and your taker tier are each set by the higher of your September 2026 volume or 4x your volume from Monday, October 12 through Sunday, October 18, 2026.
+* **From November 1:** tiers reset on the first of each month (November 1, December 1, and so on) based on your volume in the prior calendar month.
+* Maker and taker tiers are numbered and set independently. Your maker tier (Tier 1 to Tier 4) uses maker volume only and your taker tier (Tier 1 to Tier 6) uses taker volume only.
+
+### How volume is measured
+
+Dollar volume is the amount you paid for the position you received, not the face value of the contracts. For each fill, volume is the number of contracts multiplied by the price of the side you received. If you buy at \$0.30, your volume is \$0.30 per contract. If you sell at \$0.30, which gives you the opposing side at \$0.70, your volume is \$0.70 per contract.
+
+```
+Volume (buy)  = C × p
+Volume (sell) = C × (1 - p)
+```
+
+* **Taker volume** is your dollar volume on fills where your order removed liquidity from the book.
+* **Maker volume** is your dollar volume on fills where your resting order was executed against.
+* Combo fills count toward both maker and taker volume.
+* Volume is measured over the calendar month in Eastern Time (ET). Voided fills are excluded.
+
 <Info>Effective exchange-wide from 10 AM ET, Wednesday October 7, 2026.</Info>
 
 ## Standard Trading Fees

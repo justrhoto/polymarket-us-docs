@@ -29,15 +29,15 @@ Polymarket US may modify, suspend, or terminate any incentive program or campaig
 
 ## Deposit Incentive Program
 
-Eligible Participants may receive an incentive credit after making a qualifying deposit under an applicable Deposit Incentive Program campaign.
+Eligible Participants may receive an incentive credit after onboarding as a new user and making a qualifying deposit within the deposit timeframe for an applicable Deposit Incentive Program campaign.
 
-A Participant qualifies only for the campaign presented to them, via an onboarding code or link, before the qualifying deposit. Each Participant may only receive one (1) incentive credit under the Deposit Incentive Program.
+A Participant qualifies for the campaign tied to the code or link used at onboarding or, if none is used, the campaign in effect when the Participant completes onboarding. Only the Participant's first deposit after onboarding counts as a qualifying deposit. Each Participant may only receive one (1) incentive credit under the Deposit Incentive Program.
 
 | Campaign | Qualifying Deposit | Incentive Credit |
 | - | - | - |
 | Campaign A | Deposit at least \$10 | Receive \$25 |
 
-Incentive credits are applied once Polymarket US confirms the Participant's deposit satisfies the applicable campaign requirements. Participants receive only the incentives they qualify for under the applicable campaign terms.
+Incentive credits are applied within 24 hours after Polymarket US confirms the Participant's deposit satisfies the applicable campaign requirements. Participants receive only the incentives they qualify for under the applicable campaign terms.
 
 ## Refer-A-Friend Incentive Program
 

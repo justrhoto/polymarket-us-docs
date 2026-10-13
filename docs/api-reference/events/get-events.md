@@ -282,12 +282,6 @@ paths:
             items:
               type: integer
               format: int32
-        - name: resolution
-          description: Filter by resolution status
-          in: query
-          required: false
-          schema:
-            type: boolean
         - name: categories
           description: Filter by categories
           in: query
