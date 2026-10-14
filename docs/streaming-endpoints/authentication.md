@@ -9,9 +9,9 @@
 The Polymarket Exchange API uses **Private Key JWT** authentication. You sign a JWT with your private key, exchange it for an access token, then include that token in every API request.
 
 <Warning>
-  **CRITICAL: Access tokens must be refreshed every 3 minutes.**
+  **Cache the access token and reuse it until close to expiry.**
 
-  Access tokens have a short expiration. Your application MUST implement automatic token refresh before expiration to maintain uninterrupted API and streaming connections.
+  Access tokens last 24 hours (`expires_in` is 86400 seconds). Keep one cache per process, shared across threads, and refresh shortly before expiry. Do not request a new token per API call.
 </Warning>
 
 ## Authentication Flow
@@ -28,7 +28,7 @@ sequenceDiagram
     Auth->>Client: Access Token
     Client->>API: API request with access token
     API->>Client: Response
-    Note over Client,API: Refresh token before expiration (every 3 min)
+    Note over Client,API: Reuse the access token until close to expiry (24h)
 ```
 
 ## Authentication Configuration
@@ -80,12 +80,12 @@ curl --request POST \
 {
   "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIs...",
   "token_type": "Bearer",
-  "expires_in": 180
+  "expires_in": 86400
 }
 ```
 
 <Info>
-  The `expires_in` value is in seconds. With a 3-minute (180 second) expiration, you must refresh tokens frequently.
+  `expires_in` is in seconds. 86400 is 24 hours. Reuse the token until close to that time.
 </Info>
 
 ## Step 3: Use Token in API Requests
@@ -122,7 +122,7 @@ response_stream = stub.CreateMarketDataSubscription(request, metadata=metadata)
 
 ## Token Refresh Strategy
 
-Since tokens expire every 3 minutes, implement automatic refresh:
+Access tokens last 24 hours. Cache one token per process and refresh it shortly before `expires_in`:
 
 ```python theme={null}
 import jwt

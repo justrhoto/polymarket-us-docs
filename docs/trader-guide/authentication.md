@@ -106,9 +106,13 @@ curl --request POST \
 {
   "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIs...",
   "token_type": "Bearer",
-  "expires_in": 180
+  "expires_in": 86400
 }
 ```
+
+<Info>
+  `expires_in` is in seconds. 86400 is 24 hours. Cache the access token and reuse it until close to expiry. Keep one cache per process, shared across threads. Do not request a new token per API call.
+</Info>
 
 ## Complete Python Example
 

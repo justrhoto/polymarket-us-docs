@@ -19,7 +19,7 @@ Your JWT token is missing, invalid, or expired.
 **Check:**
 
 1. Is the token included in the `Authorization: Bearer <token>` header?
-2. Has the token expired? Tokens are typically valid for 180 seconds (3 minutes)
+2. Has the token expired? Tokens are valid for 86400 seconds (24 hours)
 3. Is the token format correct? Should be `Bearer eyJ...`
 4. Was the token issued by the correct Auth0 domain for your environment?
 
@@ -139,7 +139,7 @@ class TokenManager:
         # Refresh if expired or expiring soon (30 second buffer)
         if time.time() >= self.token_expiry - 30:
             self.token = self.auth_client.get_token()
-            self.token_expiry = time.time() + 180  # 3 minutes
+            self.token_expiry = time.time() + 86400  # 24 hours; prefer expires_in from the token response
         return self.token
 ```
 

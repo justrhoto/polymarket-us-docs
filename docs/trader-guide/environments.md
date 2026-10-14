@@ -33,7 +33,7 @@ The Audience value for each environment matches its REST API base URL.
 | Prod | `https://pmx-prod.us.auth0.com/oauth/token` |
 
 <Warning>
-  **Tokens must be refreshed every 3 minutes** across all environments.
+  **Cache the access token and reuse it until close to expiry.** `expires_in` is 86400 seconds (24 hours) in every environment. Keep one cache per process, shared across threads. Do not request a new token per API call.
 </Warning>
 
 ## Health Check

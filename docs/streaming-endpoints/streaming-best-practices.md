@@ -157,12 +157,12 @@ The stream sends no explicit caught-up message. Use this heuristic:
 | Egress (server → client) | Unlimited | — |
 | Market data symbols per stream | 1000 | `INVALID_ARGUMENT` |
 | `StreamRFQEvents` new opens | 1/sec | Open-rate limit |
-| Access token lifetime | 180 seconds | Refresh **credentials**. Do not cancel a healthy stream to rotate JWT. |
+| Access token lifetime | 24 hours (86400 seconds) | Refresh **credentials** before expiry. Do not cancel a healthy stream to rotate JWT. |
 
 See [Rate Limits](/trader-guide/rate-limits#grpc-streaming) and [Authentication](/streaming-endpoints/authentication).
 
 <Warning>
-  Access tokens expire in **3 minutes**. Refresh the token in the background. Use the new token on the **next** connect. Do not tear down a live stream every 3 minutes to “re-auth.” The streaming RPC is authenticated when it starts.
+  Access tokens expire in **24 hours**. Cache the token and refresh it in the background before `expires_in`. Use the new token on the **next** connect. Do not tear down a live stream to re-auth. The streaming RPC is authenticated when it starts.
 </Warning>
 
 ## Client shape

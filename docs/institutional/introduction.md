@@ -57,7 +57,7 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/whoami" \
 ```
 
 <Warning>
-  Access tokens expire every **3 minutes**. Implement automatic token refresh in your application.
+  Access tokens last **24 hours** (`expires_in` is 86400). Cache the token and reuse it until close to expiry.
 </Warning>
 
 See the [Authentication Setup Guide](/trader-guide/authentication) for complete authentication setup.

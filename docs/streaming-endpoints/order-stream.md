@@ -306,8 +306,8 @@ class PolymarketOrderStreamer:
 
         token_data = response.json()
         self.access_token = token_data["access_token"]
-        # Set expiration with 30-second buffer (tokens expire in 180 seconds)
-        expires_in = token_data.get("expires_in", 180)
+        # Refresh 30 seconds before expires_in (86400 seconds / 24 hours)
+        expires_in = token_data.get("expires_in", 86400)
         self.access_expiration = datetime.now() + timedelta(seconds=expires_in - 30)
 
         return token_data

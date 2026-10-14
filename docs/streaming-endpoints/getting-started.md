@@ -59,9 +59,9 @@ This generates:
 ## Step 4: Authenticate
 
 <Warning>
-  **CRITICAL: Tokens must be refreshed every 3 minutes.**
+  **Cache the access token and reuse it until close to expiry.**
 
-  Access tokens have a short expiration. Your application MUST implement automatic token refresh before expiration to maintain uninterrupted streaming connections.
+  Access tokens last 24 hours (`expires_in` is 86400 seconds). Keep one cache per process, shared across threads, and refresh shortly before expiry. Do not request a new token per API call.
 </Warning>
 
 ### Auth Domains
@@ -116,12 +116,12 @@ The response contains your `access_token`:
 {
   "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIs...",
   "token_type": "Bearer",
-  "expires_in": 180
+  "expires_in": 86400
 }
 ```
 
 <Info>
-  The `expires_in` is 180 seconds (3 minutes). Implement automatic token refresh before expiration.
+  `expires_in` is 86400 seconds (24 hours). Cache the token and reuse it until close to expiry.
 </Info>
 
 <Info>
@@ -211,7 +211,7 @@ for response in response_stream:
 ### Authentication Failed
 
 * **Cause**: Invalid or expired access token
-* **Solution**: Verify JWT, refresh token if expired (tokens expire every 3 minutes)
+* **Solution**: Verify JWT, refresh token if expired (tokens expire after 24 hours)
 
 ### Import Errors
 
