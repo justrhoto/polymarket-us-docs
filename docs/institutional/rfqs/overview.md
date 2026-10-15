@@ -4,13 +4,13 @@
 
 # RFQ API Overview
 
-> Create and manage combo RFQs and quotes
+> Create and manage RFQs and quotes
 
 <Info>
-  Market makers should read the [Combos guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
+  Market makers should read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
 </Info>
 
-The public `polymarket.v1.RFQAPI` gRPC service creates, reads, and manages combo RFQs and quotes. An RFQ references the exact symbol of a [combo instrument](/institutional/combos/overview). The service also exposes the gRPC-only RFQ event stream.
+The public `polymarket.v1.RFQAPI` gRPC service creates, reads, and manages RFQs and quotes. An RFQ references the exact symbol of an open, tradable instrument, such as a [combo instrument](/institutional/combos/overview). The service also exposes the gRPC-only RFQ event stream.
 
 Every REST endpoint below has an equivalent unary gRPC RPC. REST JSON uses lower camel case; protobuf fields use snake case.
 
@@ -89,7 +89,7 @@ Successful `AcceptQuote` produces both `rfq_closed` and `quote_accepted`. A clie
 | - | - | - |
 | `qtyDecimal` | One sizing field | Exact contract quantity. Mutually exclusive with `cashOrderQty`. |
 | `cashOrderQty` | One sizing field | Positive cash notional with at most four decimal places. Mutually exclusive with `qtyDecimal`. |
-| `symbol` | Yes | Existing open and tradable combo symbol. |
+| `symbol` | Yes | Existing open and tradable instrument symbol. |
 | `restRemainder` | Yes | Whether an unfilled requester remainder may rest after paired order submission. |
 | `account` | Yes | Requester's fully qualified trading account. |
 
@@ -104,13 +104,13 @@ The response contains the new `rfqId`. A created RFQ starts in `RFQ_STATUS_OPEN`
 | `limit` | Results per page. Default 100; valid range 1–100. |
 | `cursor` | Opaque cursor returned by the preceding page. |
 | `rfqId` | Exact RFQ ID. Do not combine an exact-ID read with `cursor`. |
-| `symbol` | Exact combo symbol. |
+| `symbol` | Exact instrument symbol. |
 | `status` | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`. |
 | `userFilter` | `USER_FILTER_SELF` returns RFQs created by the caller. |
 
 The response has `rfqs` and an opaque `cursor`. An exact RFQ ID that is absent or not visible returns an empty `rfqs` array.
 
-Each RFQ includes the combo's ordered leg snapshot and optional price tick:
+Each RFQ includes an optional price tick. An RFQ on a combo also includes the combo's ordered leg snapshot:
 
 ```json theme={null}
 {
@@ -299,7 +299,7 @@ Open the stream for low-latency changes. On startup, reconnect, or after a suspe
     Create and read combo instruments
   </Card>
 
-  <Card title="Combos Guide" icon="shuffle" href="/trader-guide/combos">
+  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
     Maker workflow and quote rules
   </Card>
 

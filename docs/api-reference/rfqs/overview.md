@@ -4,9 +4,9 @@
 
 # RFQ API Overview
 
-> Manage combo RFQs and quotes and query RFQ trades
+> Manage RFQs and quotes and query RFQ trades
 
-An RFQ requests two-sided liquidity for the exact symbol of a [combo instrument](/api-reference/combos/overview). All calls use normal [Retail API authentication](/api-reference/authentication) at `https://api.polymarket.us`.
+An RFQ requests two-sided liquidity for the exact symbol of an open, tradable instrument, such as a [combo instrument](/api-reference/combos/overview). All calls use normal [Retail API authentication](/api-reference/authentication) at `https://api.polymarket.us`.
 
 The Retail API derives the participant and account from the API key; clients do not send an account.
 
@@ -97,7 +97,7 @@ For missed events, follow [Pagination and Recovery](#pagination-and-recovery). R
 
 Use `SUBSCRIPTION_TYPE_RFQ` for the RFQ lifecycle and anonymous trade prints, and `SUBSCRIPTION_TYPE_ORDER` for your own fills, rejections, cancellations, and expirations. Correlate your orders using `creatorOrderId` for the maker and `rfqCreatorOrderId` for the requester; both IDs are also returned by `GET /v1/rfqs/quotes`. Anonymous prints cannot be linked to your order IDs.
 
-RFQ orders enter the normal combo order book and may trade with other resting liquidity. Combo instruments can also be traded directly through the [Orders API](/api-reference/orders/overview); using an RFQ is optional. If either `restRemainder` setting is true, unfilled quantity on that side may remain on the book.
+RFQ orders enter the instrument's normal order book and may trade with other resting liquidity. Instruments, including combos, can also be traded directly through the [Orders API](/api-reference/orders/overview); using an RFQ is optional. If either `restRemainder` setting is true, unfilled quantity on that side may remain on the book.
 
 ## See Also
 

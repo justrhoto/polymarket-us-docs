@@ -7,7 +7,7 @@
 > Live RFQ, quote, and trade events through RFQAPI
 
 <Info>
-  Read the [Combos guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
+  Read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
 </Info>
 
 `StreamRFQEvents` is a gRPC server-side stream for live RFQ, quote, and trade events.
@@ -74,18 +74,18 @@ The current public stream does not emit expiration, done-away, pending-risk, pen
 | `id` | string | RFQ ID. |
 | `qtyDecimal` | optional string | Fixed contract quantity. Mutually exclusive with `cashOrderQty`. |
 | `cashOrderQty` | optional string | Cash notional. Mutually exclusive with `qtyDecimal`. |
-| `symbol` | string | Combo symbol. |
+| `symbol` | string | Instrument symbol. |
 | `rfqCreatorUserId` | string | Pseudonymous requester identity. |
 | `createdTime` | `Timestamp` | Creation time. |
 | `restRemainder` | bool | Whether an unfilled requester remainder may rest. |
 | `status` | `RFQStatus` | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`. |
 | `updatedTime` | `Timestamp` | Last durable state change. |
-| `comboLegs` | repeated `RFQComboLeg` | Ordered combo legs captured when the RFQ was created. |
+| `comboLegs` | repeated `RFQComboLeg` | Ordered combo legs captured when the RFQ was created. Present only when `symbol` is a combo. |
 | `tickSize` | optional double | Minimum price increment in dollars. Protobuf: `tick_size`. |
 
 Each `RFQComboLeg` contains `symbol`, `side`, and an optional `settlementPrice`. The settlement is the raw YES/LONG price normalized to `[0,1]`; it is never inverted for a `SIDE_SELL` leg. Presence matters: `"0"` is a valid settled price, while an absent field means no valid settlement was available when the event was published.
 
-`rfq_created` includes settlement prices available at creation. The stream does not emit a separate event when a leg later settles; use `GetRFQs` during reconciliation to obtain the latest available settlement projection. Historical RFQs can have no `comboLegs`.
+`rfq_created` includes settlement prices available at creation. The stream does not emit a separate event when a leg later settles; use `GetRFQs` during reconciliation to obtain the latest available settlement projection. Historical combo RFQs can have no `comboLegs`, and RFQs on other instruments have none.
 
 Quote prices must be multiples of `tickSize` and within the instrument's price limits. If `tickSize` is absent, use `GetCombos` with `rfq.symbol`.
 
@@ -96,7 +96,7 @@ Quote prices must be multiples of `tickSize` and within the instrument's price l
 | `id` | string | Quote ID. Changes on every replacement. |
 | `rfqId` | string | Parent RFQ ID. |
 | `creatorRfqUserId` | string | Pseudonymous quote creator identity. |
-| `symbol` | string | Combo symbol. |
+| `symbol` | string | Instrument symbol. |
 | `status` | `QuoteStatus` | Current quote state. |
 | `createdTime` | `Timestamp` | Original quote creation time. |
 | `buyPrice` | string | Requester-buy price; maker sells. |
@@ -258,7 +258,7 @@ For trade events, open the stream before querying `GetRFQTrades` and merge both 
 ## See Also
 
 <CardGroup cols={2}>
-  <Card title="Combos Guide" icon="shuffle" href="/trader-guide/combos">
+  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
     Maker workflow and quote rules
   </Card>
 

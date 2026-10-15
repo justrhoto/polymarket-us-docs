@@ -2,15 +2,17 @@
 > Fetch the complete documentation index at: https://docs.polymarket.us/llms.txt
 > Use this file to discover all available pages before exploring further.
 
-# Combos
+# Combos/RFQ
 
-> Quote combo requests distributed through the RFQ API
+> Quote RFQs, including combo RFQs, distributed through the RFQ API
 
 > REST and gRPC unary calls are supported. RFQ events are gRPC-only. FIX support is coming later.
 
 A combo is an instrument with 2–50 component legs. Each leg contains an existing market symbol and a buy or sell side. Combo instruments trade through normal order entry, but most combo price discovery starts with a request for quote (RFQ).
 
-Combo takers use a separate fee curve based on the combo execution price and quantity. Combo makers do not receive a maker rebate. See the [Fee Schedule](/fees#combo-taker-fees) for the formula, rounding rules, and examples.
+An RFQ can be for any open, tradable instrument, not only a combo. Combo RFQs also carry the combo's legs. Everything else in this guide applies to every RFQ.
+
+Combo takers use a separate fee curve based on the combo execution price and quantity. Combo makers do not receive a maker rebate. See the [Fee Schedule](/fees#combo-taker-fees) for the formula, rounding rules, and examples. RFQ fills on other instruments use that instrument's standard fees.
 
 This guide covers the market-maker workflow. The public contract is split between:
 
@@ -25,7 +27,7 @@ Download the current [proto bundle](https://drive.google.com/uc?export=download\
 2. Open one `StreamRFQEvents` stream with `read:orders`.
 3. Load open RFQs with `GetRFQs { status: RFQ_STATUS_OPEN }`.
 4. Load your quotes with `GetQuotes { user_filter: USER_FILTER_SELF }`.
-5. Read ordered legs from `rfq.combo_legs`. Call `GetCombos` when you need current combo state or tick size, or when a historical RFQ has no leg snapshot.
+5. For a combo RFQ, read ordered legs from `rfq.combo_legs`. Call `GetCombos` when you need current combo state or tick size, or when a historical combo RFQ has no leg snapshot.
 
 The stream is live and best-effort. It does not replay missed events or guarantee gap-free handoff, ordering, or deduplication. Repeat the durable reads after every reconnect.
 
@@ -107,16 +109,16 @@ An RFQ supplies either a contract quantity or a cash notional:
 | - | - |
 | `qtyDecimal` | Exact contract quantity. Present only for a quantity RFQ. |
 | `cashOrderQty` | Cash notional. Present only for a cash RFQ. |
-| `symbol` | Combo symbol to quote and trade. |
+| `symbol` | Instrument to quote and trade. |
 | `rfqCreatorUserId` | Pseudonymous requester identity. |
 | `restRemainder` | Whether the requester's unfilled order remainder may rest. |
 | `status` | `RFQ_STATUS_OPEN` or `RFQ_STATUS_CLOSED`. |
-| `comboLegs` | Ordered component legs captured when the RFQ was created. |
+| `comboLegs` | Ordered component legs captured when the RFQ was created. Present only when `symbol` is a combo. |
 | `tickSize` | Optional minimum price increment in dollars. |
 
 Each combo leg contains its `symbol`, combo `side`, and optional `settlementPrice`. Settlement is the raw YES/LONG result normalized to `[0,1]`; do not invert it for `SIDE_SELL`. A present `"0"` is a valid settlement and differs from an absent field. Exact and list reads hydrate the latest available settlements, while `rfq_created` contains those available when the event was published.
 
-Historical RFQs can have no inline legs. Use `GetCombos { symbol: rfq.symbol }` as the fallback and whenever you need current combo metadata. An RFQ still has no requested side, expiration time, or client request ID.
+Historical combo RFQs can have no inline legs. Use `GetCombos { symbol: rfq.symbol }` as the fallback and whenever you need current combo metadata. An RFQ still has no requested side, expiration time, or client request ID.
 
 Read `tickSize` (protobuf `tick_size`) before pricing the RFQ. If it is absent, use `GetCombos` with `rfq.symbol`.
 
@@ -203,7 +205,7 @@ Current timing is:
 
 | Interval | Duration | Source of truth |
 | - | - | - |
-| Quote submission window for RFQ Engine requests | 200 ms | Quote immediately after `rfq_created`. |
+| Quote response target | 200 ms | Quote immediately after `rfq_created`. Quotes that arrive later may miss the requester's quote window. |
 | Maker last look | 3 seconds | `quote_accepted.confirmationDeadline` |
 | Delay before paired order submission | 1 second | `quote_confirmed.executionDeadline` |
 

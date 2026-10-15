@@ -535,7 +535,7 @@
 | [Market Data](docs/trader-guide/market-data.md) | Accessing market data and order books |
 | [Sports Schema](docs/trader-guide/sports-schema.md) | Common instrument fields for safely identifying sports markets |
 | [Crypto Schema](docs/trader-guide/crypto-schema.md) | Instrument fields for safely identifying crypto price markets |
-| [Combos](docs/trader-guide/combos.md) | Quote combo requests distributed through the RFQ API |
+| [Combos/RFQ](docs/trader-guide/combos.md) | Quote RFQs, including combo RFQs, distributed through the RFQ API |
 | [Order Management](docs/trader-guide/order-management.md) | Best practices and troubleshooting for order operations |
 | [Positions & Risk](docs/trader-guide/positions-risk.md) | Position tracking and risk management |
 | [Reporting Data](docs/trader-guide/reporting.md) | Historical data, trade searches, and drop copy |

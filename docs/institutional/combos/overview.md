@@ -101,7 +101,7 @@ An unknown symbol returns an empty `combos` array. This endpoint does not pagina
     Create and manage combo RFQs and quotes
   </Card>
 
-  <Card title="Combos Guide" icon="shuffle" href="/trader-guide/combos">
+  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
     Maker workflow and quote rules
   </Card>
 
