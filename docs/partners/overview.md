@@ -12,6 +12,12 @@ This section is for **Introducing Brokers (IBs)** and **Independent Software Ven
   **New here?** Read [Your Role](/partners/your-role) and the [Platform Model](/partners/platform-model) first, then follow the [Integration Journey](/partners/integration-journey).
 </Info>
 
+## Entity Clearing Member Agreement
+
+<Card title="Entity Clearing Member Agreement" icon="file-contract" href="https://drive.google.com/uc?export=download&id=1YDjx79uDApWGQBWtHKagc4H0FCmeTnjR">
+  Download the Entity Clearing Member Agreement for Polymarket Clearing
+</Card>
+
 ## The integration journey
 
 ```mermaid theme={null}

@@ -180,13 +180,15 @@ Position messages can include `netPositionDecimal`, `qtyBoughtDecimal`, `qtySold
     "balanceChange": {
       "beforeBalance": {...},
       "afterBalance": {...},
-      "description": "Order execution",
+      "description": "",
       "updateTime": "2024-01-15T10:30:00Z",
       "entryType": "LEDGER_ENTRY_TYPE_ORDER_EXECUTION"
     }
   }
 }
 ```
+
+The `description` field is reserved and currently always empty.
 
 ## RFQ Subscriptions
 
