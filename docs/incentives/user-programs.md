@@ -29,17 +29,13 @@ Polymarket US may modify, suspend, or terminate any incentive program or campaig
 
 ## Deposit Incentive Program
 
-<Warning>
-  **Upcoming change.** A deposit timeframe of **7 days** will be implemented for the Deposit Incentive Program beginning on **October 16, 2026**. From that date, a Participant's qualifying deposit must be made within 7 days of onboarding.
-</Warning>
-
 Eligible Participants may receive an incentive credit after onboarding as a new user and making a qualifying deposit within the deposit timeframe for an applicable Deposit Incentive Program campaign.
 
 A Participant qualifies for the campaign tied to the code or link used at onboarding or, if none is used, the campaign in effect when the Participant completes onboarding. Only the Participant's first deposit after onboarding counts as a qualifying deposit. Each Participant may only receive one (1) incentive credit under the Deposit Incentive Program.
 
-| Campaign | Qualifying Deposit | Incentive Credit |
-| - | - | - |
-| Campaign A | Deposit at least \$10 | Receive \$25 |
+| Campaign | Qualifying Deposit | Deposit Timeframe | Incentive Credit |
+| - | - | - | - |
+| Campaign A (from October 16, 2026) | Deposit at least \$10 | 7 days | Receive \$25 |
 
 Incentive credits are applied within 24 hours after Polymarket US confirms the Participant's deposit satisfies the applicable campaign requirements. Participants receive only the incentives they qualify for under the applicable campaign terms.
 

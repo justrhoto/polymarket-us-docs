@@ -277,9 +277,13 @@ Yes, you will receive updates when trading status changes. Trading status change
 * HALTED
 * MATCH\_AND\_CLOSE\_AUCTION
 
-**Since SecurityListUpdate (35=d) is not supported, when a new instrument is added after receiving the initial SecurityList (35=y), how do we get that new instrument?**
+**Why do I receive several SecurityList (35=y) messages for one SecurityListRequest (35=x)?**
 
-Currently, SecurityListUpdate (35=d) is not supported. To discover new instruments, you must send another SecurityListRequest (35=x). SecurityListUpdate will soon be added to proactively notify clients when new instruments are added.
+Replies to an all-securities request (559=4) are fragmented into messages of up to 1000 instruments. Each carries your SecurityReqID (320), the count for that message in NoRelatedSym (146) and LastFragment (893) = N; the last one carries LastFragment (893) = Y. Accumulate until you see 893=Y. There is no total count field. Filtering with TradingSessionID (336) = OPEN keeps the reply to tradeable instruments; without it the reply includes every expired instrument. See [Reference Data](/institutional/fix-api/fix-api-reference-data).
+
+**When a new instrument is added after I receive the initial SecurityList (35=y), how do I get it?**
+
+Send the all-securities request (559=4) with SubscriptionRequestType (263) = 1. After the full list, the exchange sends a SecurityDefinitionUpdateReport (35=BP) for each instrument that is added (SecurityUpdateAction (980) = A) or terminated (980 = D), so you do not need to request the full list again. The subscription ends at logout; send the request again after you reconnect. See [Reference Data](/institutional/fix-api/fix-api-reference-data).
 
 **Are new instruments added to your system only once per day? When?**
 
