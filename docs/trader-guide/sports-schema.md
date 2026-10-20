@@ -86,6 +86,7 @@ The fully-qualified market type, including sport, participant scope, and game pe
 | `basketball_player_threes` | Basketball | Player | Full game | Three-pointers prop |
 | `basketball_player_steals` | Basketball | Player | Full game | Steals prop |
 | `basketball_player_blocks` | Basketball | Player | Full game | Blocks prop |
+| `basketball_player_points_rebounds_assists` | Basketball | Player | Full game | Points + rebounds + assists prop |
 | `basketball_player_double_double` | Basketball | Player | Full game | Double-double yes/no |
 | `basketball_player_triple_double` | Basketball | Player | Full game | Triple-double yes/no |
 | `basketball_team_first_half_winner` | Basketball | Team | First half | Prop |
@@ -103,6 +104,11 @@ The fully-qualified market type, including sport, participant scope, and game pe
 | `basketball_team_fourth_quarter_spread` | Basketball | Team | 4th quarter | Spread |
 | `basketball_team_fourth_quarter_total` | Basketball | Team | 4th quarter | Total |
 | `basketball_game_overtime` | Basketball | Game | Full game | Overtime yes/no |
+| `basketball_game_race_to_points` | Basketball | Game | Full game | First team to reach the points target (legs: each team); `outcome_strike` carries the target (10, 20, or 30) |
+| `basketball_game_winning_margin` | Basketball | Game | Full game | Winning margin band (legs: each team by 1-5, 6-10, 11-15, 16-20, or 21+ points, overtime included) |
+| `basketball_team_total_points` | Basketball | Team | Full game | Selected-team points total (overtime included) |
+| `basketball_team_total_points_first_half` | Basketball | Team | First half | Selected-team points total |
+| `basketball_team_total_points_second_half` | Basketball | Team | Second half | Selected-team points total (overtime included) |
 | `basketball_team_full_game_winner` | Basketball | Team | Full game | Moneyline |
 | `basketball_team_full_game_spread` | Basketball | Team | Full game | Spread |
 | `basketball_team_full_game_total` | Basketball | Team | Full game | Total |
@@ -406,6 +412,12 @@ Use this table as a recipe book for identifying a specific market type from inst
 | **NBA first-half total** | `basketball_team_first_half_total` |
 | **NBA player points prop** | `basketball_player_points` |
 | **NBA player assists prop** | `basketball_player_assists` |
+| **NBA player rebounds, three-pointers, steals, blocks, or points + rebounds + assists prop** | `basketball_player_rebounds`, `basketball_player_threes`, `basketball_player_steals`, `basketball_player_blocks`, `basketball_player_points_rebounds_assists` |
+| **NBA quarter spread or total** | `basketball_team_first_quarter_spread` through `basketball_team_fourth_quarter_total` — derive the quarter from this enum value, not the instrument ID |
+| **NBA selected-team points total** | `basketball_team_total_points` (full game), `basketball_team_total_points_first_half`, `basketball_team_total_points_second_half` |
+| **NBA race to X points** | `basketball_game_race_to_points` (`outcome_strike` carries the points target; two legs per target: away team, home team) |
+| **NBA winning margin** | `basketball_game_winning_margin` (one leg per team and margin band) |
+| **NBA overtime** | `basketball_game_overtime` |
 | **NFL player anytime touchdown prop** | `football_player_touchdowns` |
 | **NFL player rushing yards prop** | `football_player_rushing_yards` |
 | **NFL player passing yards prop** | `football_player_passing_yards` |

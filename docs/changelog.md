@@ -11,6 +11,15 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+<Update label="October 19, 2026" description="New NBA market sport types" tags={["New Feature", "Documentation", "Institutional API", "Retail API"]} rss={{ title: "NBA: team totals, race to X points, winning margin and points + rebounds + assists market sport types", description: "NBA markets now use six more market_sport_type values: basketball_team_total_points, basketball_team_total_points_first_half, basketball_team_total_points_second_half, basketball_game_race_to_points, basketball_game_winning_margin and basketball_player_points_rebounds_assists. The Sports Schema lists them." }}>
+  NBA markets now use six more `market_sport_type` values, starting with the October 20, 2026 games. The [Sports Schema](/trader-guide/sports-schema) lists them with the rest of the basketball types.
+
+  * **Team totals:** `basketball_team_total_points` (full game, overtime included), `basketball_team_total_points_first_half`, `basketball_team_total_points_second_half` (overtime included). Each names its team as the market's participant.
+  * **Race to X points:** `basketball_game_race_to_points`, two legs per target (one per team); `outcome_strike` carries the target (10, 20 or 30).
+  * **Winning margin:** `basketball_game_winning_margin`, one leg per team and margin band (1-5, 6-10, 11-15, 16-20, 21+ points), overtime included.
+  * **Points + rebounds + assists:** `basketball_player_points_rebounds_assists`, alongside the existing points, rebounds, assists, three-pointers, steals and blocks player props.
+</Update>
+
 <Update label="October 16, 2026" description="Upcoming: fragmented FIX SecurityList replies" tags={["Breaking Change", "Upcoming", "Institutional API"]} rss={{ title: "FIX: all-securities SecurityList replies will arrive in fragments of up to 1,000 instruments", description: "Replies to SecurityListRequest 559=4 on FIX market-data sessions will arrive as several SecurityList (35=y) messages of up to 1,000 instruments each, with LastFragment (893) = N and a final 893 = Y. Accumulate per SecurityReqID (320) until 893 = Y. Single-symbol requests are unchanged. Rollout dates will be announced here." }}>
   On a date announced here, replies to all-securities SecurityListRequests (`35=x`, `559=4`) on FIX market-data sessions will arrive as several SecurityList (`35=y`) messages of up to 1,000 instruments each, instead of one message. Requests for a single symbol (`559=0`) are unchanged. See [FIX Reference Data](/institutional/fix-api/fix-api-reference-data).
 

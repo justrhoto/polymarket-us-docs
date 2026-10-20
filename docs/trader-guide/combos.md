@@ -249,6 +249,10 @@ Use the stream for live state. Reserve `GetRFQs` and `GetQuotes` for startup, re
 ## Related Documentation
 
 <CardGroup cols={2}>
+  <Card title="Combos for Takers" icon="hand-holding-dollar" href="/partners/orders/combos-takers">
+    Requester sizing, Drop Copy reconciliation, settlement, and leg rules
+  </Card>
+
   <Card title="RFQ API" icon="code" href="/institutional/rfqs/overview">
     Complete RFQ and quote REST and unary gRPC contract
   </Card>

@@ -292,6 +292,12 @@ History can appear after the live event. Requery overlapping execution-time wind
 
 Open the stream for low-latency changes. On startup, reconnect, or after a suspected missed event, reconcile durable state with `GetRFQs` and `GetQuotes`. See [RFQ Events Stream](/streaming-endpoints/rfq-events-stream).
 
+## Accelerated Contracts
+
+Pursuant to Rule 5.3(n)(iv) of its Rulebook, Polymarket US has designated the following contracts as "accelerated contracts":
+
+* All contracts listed for trading on Polymarket US for which an RFQ may be submitted.
+
 ## See Also
 
 <CardGroup cols={2}>

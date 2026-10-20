@@ -173,7 +173,7 @@ This matches the 100-lot examples in the [fee schedule](/fees) — those tables 
 
 ### Maker rebates and zero-fee fills
 
-The same decoding applies to the maker side, where the fee coefficient is negative. The resting sell in the scale-`1` example above received `commissionNotionalCollected = "-4"` → `−$0.04`, matching `−0.0125 × 100 × 0.97 × 0.03 = −$0.036` rounded to the cent.
+The same decoding applies to the maker side, where the fee coefficient is negative. The resting sell in the scale-`1` example above received `commissionNotionalCollected = "-4"` → `−$0.04`, matching `−0.0125 × 100 × 0.97 × 0.03 = −$0.036` rounded to the cent. That fill used the earlier flat `−0.0125` maker coefficient; maker rebates now use your [maker tier](/fees#maker-rebate-tiers) coefficient, and the decoding is the same.
 
 Because fees round to \$0.01, small fills legitimately produce **zero** fee: the maker rebate in the scale-`100` example rounds `−$0.0011` to `$0.00`, and the field is simply absent from the JSON (proto3 omits default values). Treat a missing commission field as `0`, not as missing data.
 
