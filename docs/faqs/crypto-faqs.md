@@ -21,9 +21,9 @@ Polymarket US offers Event Contracts that settle on the published value of a cry
 
 The exchange also lists longer-dated Bitcoin markets by hand, such as the year-end price range and "How high will Bitcoin get this year?" ladders.
 
-<Note>
-  The automated families are currently listed in the preprod environment and roll out to production as announced in the [changelog](/changelog). For the fields that identify each market, see [Crypto Schema](/trader-guide/crypto-schema).
-</Note>
+> [!NOTE]
+>
+> The automated families are currently listed in the preprod environment and roll out to production as announced in the [changelog](/changelog). For the fields that identify each market, see [Crypto Schema](/trader-guide/crypto-schema).
 
 ### How are Cryptocurrency Contracts settled?
 

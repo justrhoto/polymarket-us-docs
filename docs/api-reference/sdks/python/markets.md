@@ -146,9 +146,9 @@ print(f"Settlement: ${settlement['settlement']}")
 
 Settlement values are typically `0.00` (No) or `1.00` (Yes).
 
-<Tip>
-  For real-time market data, use the [WebSocket](/api-reference/sdks/python/websocket) markets stream instead of polling.
-</Tip>
+> [!TIP]
+>
+> For real-time market data, use the [WebSocket](/api-reference/sdks/python/websocket) markets stream instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -181,11 +181,11 @@ There is no separate REST endpoint to fetch a side by ID or to list sides by mar
 | `long` | Whether this is the long side |
 | `participantId` | Associated participant ID |
 
-<Tip>
-  **Real-Time Market Data**
-
-  For real-time price updates and order book data, use the [WebSocket Markets Stream](/api-reference/websocket/markets) instead of polling the REST API.
-</Tip>
+> [!TIP]
+>
+> **Real-Time Market Data**
+>
+> For real-time price updates and order book data, use the [WebSocket Markets Stream](/api-reference/websocket/markets) instead of polling the REST API.
 
 ## Market Book (Full)
 
@@ -334,11 +334,11 @@ GET /v1/markets/{slug}/bbo
 | `/v1/markets/{slug}/bbo` | Display current prices, check spreads, lightweight polling |
 | `/v1/markets/{slug}/book` | View full order book depth, analyze liquidity at each level |
 
-<Tip>
-  **Real-Time Updates**
-
-  For continuous order book updates, use the [WebSocket Markets Stream](/api-reference/websocket/markets) instead of polling these endpoints.
-</Tip>
+> [!TIP]
+>
+> **Real-Time Updates**
+>
+> For continuous order book updates, use the [WebSocket Markets Stream](/api-reference/websocket/markets) instead of polling these endpoints.
 
 ## Settlement
 

@@ -18,9 +18,9 @@ Do not share Polymarket verification codes with anyone, including support.
 
 Only sign in through the official Polymarket app or at polymarket.us. Avoid fake Google or Apple login screens.
 
-<Note>
-  Need help? Contact support through the **in-app chat**.
-</Note>
+> [!NOTE]
+>
+> Need help? Contact support through the **in-app chat**.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

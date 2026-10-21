@@ -6,9 +6,9 @@
 
 > Resolving authentication and authorization issues
 
-<Info>
-  For authentication setup and code examples, see the main [Authentication](/trader-guide/authentication) guide.
-</Info>
+> [!NOTE]
+>
+> For authentication setup and code examples, see the main [Authentication](/trader-guide/authentication) guide.
 
 ## Common Authentication Errors
 
@@ -263,9 +263,9 @@ You are given your participant ID — there is no endpoint that discovers your f
 
 Once you hold one valid participant ID, `GET /v1/users` lists the rest of your firm's users. It is account-scoped and requires `x-participant-id` itself, so it can't be your starting point.
 
-<Warning>
-  Do not build a participant ID from the firm reported by `GET /v1/whoami`. The clearing member and the participant firm are different levels of the account hierarchy, so the firm shown there is not necessarily the firm segment of your participant ID — and an ID whose firm segment doesn't match your participant firm is rejected as a cross-firm request.
-</Warning>
+> [!WARNING]
+>
+> Do not build a participant ID from the firm reported by `GET /v1/whoami`. The clearing member and the participant firm are different levels of the account hierarchy, so the firm shown there is not necessarily the firm segment of your participant ID — and an ID whose firm segment doesn't match your participant firm is rejected as a cross-firm request.
 
 See [Accounts & Identity](/trader-guide/accounts-identity#finding-your-participant-id) for more details.
 

@@ -15,12 +15,12 @@
 | Price | Signed float price. | float field representing a price with a varying number of decimal places. For certain asset classes prices may be negative values. For example, prices for options strategies can be negative under certain market conditions. |
 | Amt | Signed float | float field typically representing a Price times a Qty. |
 | char | Case-sensitive, single alphanumeric character | Can include any alphanumeric character or punctuation except the delimiter (SOH). All char fields are case sensitive (i.e. m != M). |
-| Boolean | 'Y' = True/Yes<br />'N' = False/No | char field containing one of two possible values. |
+| Boolean | 'Y' = True/Yes 'N' = False/No | char field containing one of two possible values. |
 | String | Case-sensitive, alphanumeric string. | Can include any character or punctuation except the delimiter. All String fields are case sensitive (i.e. morstatt != Morstatt). |
 | MultipleCharValue | Space-delimited sequence of single character values | string field containing one or more space-delimited values (e.g. \| 18=G c \| ). |
 | Currency | Three character string. | string field representing a currency type using ISO 4217 Currency code (3 character) values. |
-| UTCTimestamp | Formatted UTC timestamp (date and time) | string field representing time/date combination represented in UTC in either:<br />YYYYMMDD-HH:MM:SS (whole seconds) or<br />YYYYMMDD-HH:MM:SS.sss\_format<br />Where:<br />SS can be 60 seconds in the rare case of UTC leap second, and<br />sss\_ represents fractions of seconds, either<br />3 digits to represent milliseconds,<br />6 digits to convey microseconds,<br />9 digits to convey nanoseconds, or<br />12 digits to convey picoseconds. |
-| UTCTimeOnly | Formatted UTC timestamp (time only) | string field representing a time represented in UTC in either:<br />HH:MM:SS (whole seconds) or<br />HH:MM:SS.sss\* format |
+| UTCTimestamp | Formatted UTC timestamp (date and time) | string field representing time/date combination represented in UTC in either: YYYYMMDD-HH:MM:SS (whole seconds) or YYYYMMDD-HH:MM:SS.sss\_format Where: SS can be 60 seconds in the rare case of UTC leap second, and sss\_ represents fractions of seconds, either 3 digits to represent milliseconds, 6 digits to convey microseconds, 9 digits to convey nanoseconds, or 12 digits to convey picoseconds. |
+| UTCTimeOnly | Formatted UTC timestamp (time only) | string field representing a time represented in UTC in either: HH:MM:SS (whole seconds) or HH:MM:SS.sss\* format |
 | UTCDateOnly | Formatted UTC timestamp (date only) | string field representing Date represented in UTC in YYYYMMDD format. |
 | LocalMktDate | Date in the timezone local to the sender | string field representing Date represented in sender's timezone in YYYYMMDD format. |
 

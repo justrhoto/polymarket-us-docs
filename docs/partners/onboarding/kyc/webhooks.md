@@ -6,23 +6,23 @@
 
 > Receive terminal KYC outcomes (approved / rejected) via signed webhooks.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 KYC outcomes that resolve after the initial request — instant approvals (whose account provisioning completes asynchronously), DocV results, and manual-review decisions — are delivered to a **webhook URL you register**. Webhooks are how you learn a participant's final provisioned `provisioned_participant` and any rejection.
 
-<Info>
-  **Only terminal outcomes are delivered.** Intermediate states (DocV in progress, manual review) produce **no** webhook — poll [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) if you need to track them.
-</Info>
+> [!NOTE]
+>
+> **Only terminal outcomes are delivered.** Intermediate states (DocV in progress, manual review) produce **no** webhook — poll [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) if you need to track them.
 
 ## Register your webhook
 
 `POST /v1/kyc/webhook` — requires the `write:kyc` scope. Register **once per firm** (not per participant). Registration runs a test POST to your URL before saving; if the test fails, nothing is saved and you may retry.
 
-<Note>
-  Also available over gRPC as `polymarket.us.kyc.v1.KYCAPI/SetWebhookURL` with the same two fields and the same validation behavior — see the [transport mapping](/partners/onboarding/kyc/overview#rest-and-grpc).
-</Note>
+> [!NOTE]
+>
+> Also available over gRPC as `polymarket.us.kyc.v1.KYCAPI/SetWebhookURL` with the same two fields and the same validation behavior — see the [transport mapping](/partners/onboarding/kyc/overview#rest-and-grpc).
 
 ```bash theme={null}
 POST /v1/kyc/webhook
@@ -42,9 +42,9 @@ POST /v1/kyc/webhook
 | `webhook_url` | string | Yes | HTTPS URL where notifications are delivered |
 | `signing_secret` | string | No | Your Standard Webhooks signing secret in `whsec_<base64-key>` format, where the decoded key is at least 24 bytes (e.g. `whsec_` followed by 32 random bytes in standard padded base64). Omit to receive **unsigned** webhooks. |
 
-<Warning>
-  **You bring your own signing secret.** Polymarket US never generates or returns a secret — you supply and keep it. Use the Standard Webhooks `whsec_<base64-key>` format (e.g. `whsec_` followed by the output of `openssl rand -base64 32`). Registration is **last-writer-wins**: re-registering without a `signing_secret` **clears** any previously stored one (switching you to unsigned).
-</Warning>
+> [!WARNING]
+>
+> **You bring your own signing secret.** Polymarket US never generates or returns a secret — you supply and keep it. Use the Standard Webhooks `whsec_<base64-key>` format (e.g. `whsec_` followed by the output of `openssl rand -base64 32`). Registration is **last-writer-wins**: re-registering without a `signing_secret` **clears** any previously stored one (switching you to unsigned).
 
 ### Response
 
@@ -81,9 +81,9 @@ Signed deliveries follow the [Standard Webhooks](https://www.standardwebhooks.co
 
 ### Body
 
-<Note>
-  Webhook `data` fields are `snake_case` (e.g. `external_id`, `provisioned_participant`), unlike the `camelCase` REST responses. See [Field naming](/partners/onboarding/kyc/overview#field-naming).
-</Note>
+> [!NOTE]
+>
+> Webhook `data` fields are `snake_case` (e.g. `external_id`, `provisioned_participant`), unlike the `camelCase` REST responses. See [Field naming](/partners/onboarding/kyc/overview#field-naming).
 
 ```json theme={null}
 {
@@ -139,9 +139,9 @@ When you place an order on behalf of a participant, **`provisioned_participant` 
 | `provisioned_participant` | `participantId` | `firms/ISV-Participant-YourFirmID/users/...` | Send as the **`x-participant-id` header** — this is *who* the order is for |
 | `external_id` / `user_id` | `status.externalId` | your own string | **Your** correlation key only — store it to map back to your user. **Never** sent to Polymarket US to identify the participant on a trading call |
 
-<Warning>
-  **Use `provisioned_participant`, not `external_id` / `user_id`, to identify the participant on a trading call.** The `external_id` (and its legacy duplicate `user_id`) is the identifier *you* supplied — it is meaningful only inside your own systems. The exchange identifies the participant by the `provisioned_participant` value carried in the `x-participant-id` header.
-</Warning>
+> [!WARNING]
+>
+> **Use `provisioned_participant`, not `external_id` / `user_id`, to identify the participant on a trading call.** The `external_id` (and its legacy duplicate `user_id`) is the identifier *you* supplied — it is meaningful only inside your own systems. The exchange identifies the participant by the `provisioned_participant` value carried in the `x-participant-id` header.
 
 The webhook and `GET /v1/kyc/status` carry the **same value** under different field names — the webhook calls it `provisioned_participant`, while the status read calls it `participantId`.
 
@@ -192,21 +192,19 @@ for _, candidate := range strings.Fields(signatureHeader) {
 return false // reject
 ```
 
-<Tip>
-  Reject deliveries whose `webhook-timestamp` is too old to limit replay exposure, and always verify against the **raw** body you received rather than a re-encoded copy.
-</Tip>
+> [!TIP]
+>
+> Reject deliveries whose `webhook-timestamp` is too old to limit replay exposure, and always verify against the **raw** body you received rather than a re-encoded copy.
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Verification Flow" icon="id-card" href="/partners/onboarding/kyc/verification-flow">
-    The synchronous outcomes that precede these webhooks.
-  </Card>
+> **[Verification Flow](/partners/onboarding/kyc/verification-flow)**
+>
+> The synchronous outcomes that precede these webhooks.
 
-  <Card title="Overview" icon="circle-info" href="/partners/onboarding/kyc/overview">
-    How the KYC process fits together.
-  </Card>
-</CardGroup>
+> **[Overview](/partners/onboarding/kyc/overview)**
+>
+> How the KYC process fits together.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

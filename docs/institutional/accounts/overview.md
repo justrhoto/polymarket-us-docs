@@ -10,9 +10,9 @@
 
 The Accounts API is the public identity and account **query** surface. Market makers and ISV/IB partners use it to learn who they are trading as and which accounts they can use.
 
-<Info>
-  Account **creation** is not a public REST call. ISV/IB trading accounts are provisioned when KYC is approved — see [Accounts](/partners/onboarding/accounts). Market-maker accounts are provisioned during onboarding.
-</Info>
+> [!NOTE]
+>
+> Account **creation** is not a public REST call. ISV/IB trading accounts are provisioned when KYC is approved — see [Accounts](/partners/onboarding/accounts). Market-maker accounts are provisioned during onboarding.
 
 ## Endpoints
 

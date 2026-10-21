@@ -6,7 +6,9 @@
 
 > View account balances and buying power
 
-<Note>Requires authentication.</Note>
+> [!NOTE]
+>
+> Requires authentication.
 
 The Account resource provides access to your account balances and financial information.
 
@@ -52,9 +54,9 @@ The `buyingPower` field represents unencumbered capital available for trading:
 buyingPower = currentBalance + assetAvailable - openOrders - marginRequirement
 ```
 
-<Tip>
-  For real-time balance updates, use the [WebSocket](/api-reference/sdks/python/websocket) with `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` instead of polling.
-</Tip>
+> [!TIP]
+>
+> For real-time balance updates, use the [WebSocket](/api-reference/sdks/python/websocket) with `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

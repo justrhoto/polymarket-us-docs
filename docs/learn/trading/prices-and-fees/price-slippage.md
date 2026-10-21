@@ -17,9 +17,9 @@ Price slippage occurs when the price you expect to sell at is different from the
 3. **Prices can move while you sell**\
    With limited liquidity, your sell order may fill at lower levels than the displayed price.
 
-<Note>
-  For example, if a contract is trading near 97¢ close to resolution, limited demand could cause your order to fill at 94¢ instead of the expected 97¢.
-</Note>
+> [!NOTE]
+>
+> For example, if a contract is trading near 97¢ close to resolution, limited demand could cause your order to fill at 94¢ instead of the expected 97¢.
 
 ## Best Practices
 
@@ -28,9 +28,9 @@ Price slippage occurs when the price you expect to sell at is different from the
 * **Always check before selling**\
   Compare your position value and the current trading price to understand what you may receive if you exit early.
 
-<Note>
-  If you would like to review a recent trade, contact **Polymarket US Support** — we can walk you through it.
-</Note>
+> [!NOTE]
+>
+> If you would like to review a recent trade, contact **Polymarket US Support** — we can walk you through it.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

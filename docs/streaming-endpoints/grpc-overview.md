@@ -18,9 +18,9 @@ gRPC streaming offers several advantages:
 
 ## REST + gRPC Hybrid Approach
 
-<Note>
-  Most participants use **REST for requests** and **gRPC for streaming**. This hybrid approach combines the simplicity of REST with the efficiency of gRPC streaming.
-</Note>
+> [!NOTE]
+>
+> Most participants use **REST for requests** and **gRPC for streaming**. This hybrid approach combines the simplicity of REST with the efficiency of gRPC streaming.
 
 ### Typical Integration Pattern
 
@@ -89,9 +89,9 @@ grpc-api.preprod.polymarketexchange.com:443
 grpc-api.prod.polymarketexchange.com:443
 ```
 
-<Info>
-  Both endpoints use **TLS/SSL** for secure communication. All connections must be encrypted.
-</Info>
+> [!NOTE]
+>
+> Both endpoints use **TLS/SSL** for secure communication. All connections must be encrypted.
 
 ## Protocol Buffer Definitions
 
@@ -156,11 +156,11 @@ The limits below apply to streaming connections. Unary gRPC order-entry calls ar
 | `StreamRFQEvents` new stream opens per firm | 1/sec |
 | Egress (server to client) | Unlimited |
 
-<Warning>
-  **Ingress Rate Limit**
-
-  Client-to-server messages are limited to **100 messages per second** across all streams per firm, averaged over a 1-minute window. Short bursts above this rate are allowed. This applies to requests you send, not to server-pushed updates like market data. Exceeding the average limit will result in throttled or rejected messages.
-</Warning>
+> [!WARNING]
+>
+> **Ingress Rate Limit**
+>
+> Client-to-server messages are limited to **100 messages per second** across all streams per firm, averaged over a 1-minute window. Short bursts above this rate are allowed. This applies to requests you send, not to server-pushed updates like market data. Exceeding the average limit will result in throttled or rejected messages.
 
 Streaming limits are flat and apply to all participants — they are not tiered. The `StreamRFQEvents` limit is checked only when opening a stream and does not limit server-pushed RFQ or quote events on an established stream, so reconnect with backoff.
 
@@ -186,31 +186,29 @@ Unique identifiers for each streaming session, useful for logging and debugging.
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Best Practices" icon="list-check" href="/streaming-endpoints/streaming-best-practices">
-    One long-lived stream per feed. Do not reconnect-cancel.
-  </Card>
+> **[Best Practices](/streaming-endpoints/streaming-best-practices)**
+>
+> One long-lived stream per feed. Do not reconnect-cancel.
 
-  <Card title="Getting Started" icon="rocket" href="/streaming-endpoints/getting-started">
-    Set up your first gRPC stream
-  </Card>
+> **[Getting Started](/streaming-endpoints/getting-started)**
+>
+> Set up your first gRPC stream
 
-  <Card title="Authentication" icon="key" href="/streaming-endpoints/authentication">
-    Learn how to authenticate gRPC connections
-  </Card>
+> **[Authentication](/streaming-endpoints/authentication)**
+>
+> Learn how to authenticate gRPC connections
 
-  <Card title="Market Data" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Stream real-time market data
-  </Card>
+> **[Market Data](/streaming-endpoints/market-data-stream)**
+>
+> Stream real-time market data
 
-  <Card title="Order Updates" icon="file-invoice" href="/streaming-endpoints/order-stream">
-    Subscribe to order execution updates
-  </Card>
+> **[Order Updates](/streaming-endpoints/order-stream)**
+>
+> Subscribe to order execution updates
 
-  <Card title="RFQ Events" icon="shuffle" href="/streaming-endpoints/rfq-events-stream">
-    Subscribe to combo RFQ and quote events
-  </Card>
-</CardGroup>
+> **[RFQ Events](/streaming-endpoints/rfq-events-stream)**
+>
+> Subscribe to combo RFQ and quote events
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

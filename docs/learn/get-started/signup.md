@@ -8,31 +8,29 @@
 
 ## Sign-Up and Verification Process
 
-<Steps>
-  <Step title="Create account">
-    Sign up with **Google** or **Apple ID** to create your Polymarket US account.
-  </Step>
+**1. Create account**
 
-  <Step title="Your username">
-    We create a **username** for you when you sign up. It's visible on your profile, and you can change it in **Settings** under **Edit profile**.
-  </Step>
+Sign up with **Google** or **Apple ID** to create your Polymarket US account.
 
-  <Step title="Enter personal details">
-    Provide your **date of birth**, **phone number** (we text you a code to confirm it), **legal name**, **residential address**, and **Social Security number** for verification.
-  </Step>
+**2. Your username**
 
-  <Step title="Verify identity (KYC)">
-    Most users are verified automatically. If additional verification is needed, you may be asked to upload a **government-issued ID** and complete a **selfie check.**
-  </Step>
+We create a **username** for you when you sign up. It's visible on your profile, and you can change it in **Settings** under **Edit profile**.
 
-  <Step title="Start trading">
-    Once verified, you can **deposit funds** and start trading.
-  </Step>
-</Steps>
+**3. Enter personal details**
 
-<Note>
-  Most verifications are completed instantly. If manual review is required, processing can take longer. You'll see the result in the app, and if notifications are on, we'll send you a push notification when you're approved.
-</Note>
+Provide your **date of birth**, **phone number** (we text you a code to confirm it), **legal name**, **residential address**, and **Social Security number** for verification.
+
+**4. Verify identity (KYC)**
+
+Most users are verified automatically. If additional verification is needed, you may be asked to upload a **government-issued ID** and complete a **selfie check.**
+
+**5. Start trading**
+
+Once verified, you can **deposit funds** and start trading.
+
+> [!NOTE]
+>
+> Most verifications are completed instantly. If manual review is required, processing can take longer. You'll see the result in the app, and if notifications are on, we'll send you a push notification when you're approved.
 
 ## Why KYC Is Required
 

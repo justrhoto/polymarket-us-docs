@@ -6,9 +6,9 @@
 
 > Optionally pre-populate the KYC form from a phone number and date of birth to reduce data entry.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 Prefill lets a participant auto-populate their KYC information from their phone number, reducing manual data entry and form abandonment. It is **optional** and sits entirely *in front of* the standard flow — you can skip it, collect all fields yourself, and go straight to [`POST /v1/kyc/start`](/partners/onboarding/kyc/verification-flow). Nothing about verification, outcomes, or webhooks changes.
 
@@ -115,17 +115,17 @@ On success, the response includes the prefilled identity data:
 | `ssn` | **Last 4 digits only** |
 | `address` | Residential address |
 
-<Note>
-  All identity fields are optional and may be absent if the prefill provider has no data for this phone/DOB. Always let the participant review and edit prefilled values before submission.
-</Note>
+> [!NOTE]
+>
+> All identity fields are optional and may be absent if the prefill provider has no data for this phone/DOB. Always let the participant review and edit prefilled values before submission.
 
 ## Step 3: Submit to verification
 
 Map the prefilled data into the standard [`POST /v1/kyc/start`](/partners/onboarding/kyc/verification-flow) request, collect the **full SSN** and agreement acceptance, and submit. Pass the prefill `externalId` as the request's `external_id` so the inquiry correlates end to end.
 
-<Warning>
-  Prefill returns only the **last 4 digits** of the SSN. Collect the full SSN from the participant before calling `/v1/kyc/start`.
-</Warning>
+> [!WARNING]
+>
+> Prefill returns only the **last 4 digits** of the SSN. Collect the full SSN from the participant before calling `/v1/kyc/start`.
 
 From here the flow is exactly the [standard verification flow](/partners/onboarding/kyc/verification-flow) — same outcomes, decision matrix, and webhooks.
 
@@ -211,15 +211,13 @@ Allow up to 3 OTP attempts before requiring a new code, and rate-limit OTP reque
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Verification Flow" icon="id-card" href="/partners/onboarding/kyc/verification-flow">
-    Submit the (prefilled) data and handle each outcome.
-  </Card>
+> **[Verification Flow](/partners/onboarding/kyc/verification-flow)**
+>
+> Submit the (prefilled) data and handle each outcome.
 
-  <Card title="Digital Intelligence" icon="shield-halved" href="/partners/onboarding/kyc/digital-intelligence">
-    Capture the `session_token` to lower your REVIEW rate.
-  </Card>
-</CardGroup>
+> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence)**
+>
+> Capture the `session_token` to lower your REVIEW rate.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -34,13 +34,13 @@ The Polymarket Exchange API exposes the following gRPC services:
 
 ## Obtaining Proto Files
 
-<Card title="Download Proto Files" icon="download" href="https://drive.google.com/uc?export=download&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng">
-  Get the complete Protocol Buffer definitions to generate client libraries in any language
-</Card>
+> **[Download Proto Files](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)**
+>
+> Get the complete Protocol Buffer definitions to generate client libraries in any language
 
-<Info>
-  Use the downloaded definitions as the client contract. Do not make client startup depend on gRPC reflection, whose availability can differ by environment.
-</Info>
+> [!NOTE]
+>
+> Use the downloaded definitions as the client contract. Do not make client startup depend on gRPC reflection, whose availability can differ by environment.
 
 ***
 
@@ -122,9 +122,9 @@ elif response.HasField('update'):
 | `price_scale` | `int64` | Decimal places for price (optional; wildcard subscriptions) |
 | `quantity_scale` | `int64` | Decimal places for quantity (optional; wildcard subscriptions) |
 
-<Tip>
-  **Instrument State Tracking:** The `state` field is optional. Use `ListInstruments` to get and cache the initial state, then subscribe to the instrument state change subscription for real-time state updates.
-</Tip>
+> [!TIP]
+>
+> **Instrument State Tracking:** The `state` field is optional. Use `ListInstruments` to get and cache the initial state, then subscribe to the instrument state change subscription for real-time state updates.
 
 ***
 
@@ -378,11 +378,11 @@ For full request/response field detail and a Python example, see [Balance Ledger
 | `TIME_IN_FORCE_GOOD_TILL_TIME` | 4 | Good-till-time; set the good-til timestamp |
 | `TIME_IN_FORCE_FILL_OR_KILL` | 5 | Fill-or-kill |
 
-<Warning>
-  **DAY orders do not automatically cancel at 5pm during trade day rolls.**
-
-  The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
-</Warning>
+> [!WARNING]
+>
+> **DAY orders do not automatically cancel at 5pm during trade day rolls.**
+>
+> The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
 
 ### OrderState
 
@@ -482,32 +482,30 @@ Requesting a suppressed value in `entry_types` returns `Aborted` (HTTP `409`).
 
 ## Price Representation
 
-<Warning>
-  **All prices are `int64` values.** Divide by the instrument's `price_scale` to get the decimal value.
-
-  ```python theme={null}
-  decimal_price = order.price / order.price_scale
-  print(f"Price: ${decimal_price:.4f}")
-  ```
-</Warning>
+> [!WARNING]
+>
+> **All prices are `int64` values.** Divide by the instrument's `price_scale` to get the decimal value.
+>
+> ```python theme={null}
+> decimal_price = order.price / order.price_scale
+> print(f"Price: ${decimal_price:.4f}")
+> ```
 
 ***
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Market Data Stream" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Learn about market data streaming
-  </Card>
+> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+>
+> Learn about market data streaming
 
-  <Card title="Order Stream" icon="file-invoice" href="/streaming-endpoints/order-stream">
-    Learn about order streaming
-  </Card>
+> **[Order Stream](/streaming-endpoints/order-stream)**
+>
+> Learn about order streaming
 
-  <Card title="Error Handling" icon="triangle-exclamation" href="/streaming-endpoints/error-handling">
-    Handle errors and reconnections
-  </Card>
-</CardGroup>
+> **[Error Handling](/streaming-endpoints/error-handling)**
+>
+> Handle errors and reconnections
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

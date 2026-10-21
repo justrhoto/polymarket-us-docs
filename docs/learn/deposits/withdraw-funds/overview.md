@@ -24,35 +24,33 @@ Here's how card, bank, and wire withdrawals compare:
 | Bank Transfer (ACH) | 3–4 business days | Medium withdrawals | Funds return to the same bank account used for deposit |
 | Wire Transfer | 1 business day | Large withdrawals | Not available in the app; contact support |
 
-<Note>
-  Withdrawals are only available for deposits that have **fully cleared**, which typically takes 3–4 business days. This includes instant buying power and any proceeds from trading activity tied to that deposit.
-</Note>
+> [!NOTE]
+>
+> Withdrawals are only available for deposits that have **fully cleared**, which typically takes 3–4 business days. This includes instant buying power and any proceeds from trading activity tied to that deposit.
 
 ***
 
 ## How to Withdraw
 
-<Steps>
-  <Step title="Open Portfolio">
-    From the home screen, tap the **Portfolio** tab at the bottom of the screen.
-  </Step>
+**1. Open Portfolio**
 
-  <Step title="Tap Withdraw">
-    Tap **Withdraw** on your Portfolio page.
-  </Step>
+From the home screen, tap the **Portfolio** tab at the bottom of the screen.
 
-  <Step title="Tap Send to">
-    Tap **Send to** to open your payout methods. If you haven't picked one yet, tap **Select payment method**.
-  </Step>
+**2. Tap Withdraw**
 
-  <Step title="Choose withdrawal method">
-    Choose where to send your funds, such as your debit card, bank account (ACH), Apple Pay, PayPal, or Venmo.
-  </Step>
-</Steps>
+Tap **Withdraw** on your Portfolio page.
 
-<Note>
-  Withdrawals must return to the **original funding source** used for deposit. This ensures accurate fund routing.
-</Note>
+**3. Tap Send to**
+
+Tap **Send to** to open your payout methods. If you haven't picked one yet, tap **Select payment method**.
+
+**4. Choose withdrawal method**
+
+Choose where to send your funds, such as your debit card, bank account (ACH), Apple Pay, PayPal, or Venmo.
+
+> [!NOTE]
+>
+> Withdrawals must return to the **original funding source** used for deposit. This ensures accurate fund routing.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

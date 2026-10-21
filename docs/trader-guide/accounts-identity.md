@@ -70,13 +70,13 @@ from depends on who the participant is:
 | Your own trading and drop copy users (institutional/DMA, market makers) | Provided during onboarding, when the users are provisioned for your firm |
 | An end user you onboard through KYC (brokers/partners) | Returned as `participantId` once the user's KYC reaches `ACCEPT` — on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) |
 
-<Warning>
-  **Do not assemble a participant ID by hand.** In particular, do not build one from the firm
-  reported by `GET /v1/whoami`: the clearing member and the participant firm are different
-  levels of the hierarchy above, so the firm shown there is not necessarily the firm segment of
-  your participant ID. A participant ID whose firm segment does not match your participant firm
-  is rejected as a cross-firm request. Always send the value you were given, unmodified.
-</Warning>
+> [!WARNING]
+>
+> **Do not assemble a participant ID by hand.** In particular, do not build one from the firm
+> reported by `GET /v1/whoami`: the clearing member and the participant firm are different
+> levels of the hierarchy above, so the firm shown there is not necessarily the firm segment of
+> your participant ID. A participant ID whose firm segment does not match your participant firm
+> is rejected as a cross-firm request. Always send the value you were given, unmodified.
 
 If you have lost the value, ask your Polymarket contact rather than reconstructing it. Once
 you hold one valid participant ID, `GET /v1/users` will return the rest of your firm's users.
@@ -118,13 +118,13 @@ Returns all trading accounts you have access to: account IDs, account names, acc
 
 ## Required Identity Resolution
 
-<Warning>
-  You must call these APIs before trading, funding, or reporting to ensure you:
-
-  * Know which trading accounts you can access
-  * Understand your entitlements
-  * Use the correct account IDs in subsequent requests
-</Warning>
+> [!WARNING]
+>
+> You must call these APIs before trading, funding, or reporting to ensure you:
+>
+> * Know which trading accounts you can access
+> * Understand your entitlements
+> * Use the correct account IDs in subsequent requests
 
 ## Multiple Trading Accounts
 

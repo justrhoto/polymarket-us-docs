@@ -16,9 +16,9 @@ This glossary defines the terms used across the Partner Integration docs. For ma
 | **Retail Participant** | **The canonical term in these docs for an end user you onboard** — a retail trader who trades through your platform. You act on their behalf. |
 | **Customer** | Used in the **FCM context** (a Futures Commission Merchant's customer). It is acceptable to use "customer" informally for a Retail Participant, but because it has a specific meaning for FCMs, prefer **Retail Participant** in partner integrations to avoid ambiguity. |
 
-<Note>
-  **"Participant" appears in two unrelated senses across Polymarket docs.** In these partner docs it always means a *trading identity* (a person you onboard — a Retail Participant). The [main glossary](/getting-started/glossary) separately uses "participant" in a market-structure sense (an outcome side of an instrument). The two meanings are unrelated; this section always means the trading identity.
-</Note>
+> [!NOTE]
+>
+> **"Participant" appears in two unrelated senses across Polymarket docs.** In these partner docs it always means a *trading identity* (a person you onboard — a Retail Participant). The [main glossary](/getting-started/glossary) separately uses "participant" in a market-structure sense (an outcome side of an instrument). The two meanings are unrelated; this section always means the trading identity.
 
 ## Platform and entities
 
@@ -59,15 +59,13 @@ This glossary defines the terms used across the Partner Integration docs. For ma
 
 ## Related references
 
-<CardGroup cols={2}>
-  <Card title="Main Glossary" icon="book" href="/getting-started/glossary">
-    Market structure, trading, and execution terms.
-  </Card>
+> **[Main Glossary](/getting-started/glossary)**
+>
+> Market structure, trading, and execution terms.
 
-  <Card title="Platform Model" icon="sitemap" href="/partners/platform-model">
-    How these entities relate in practice.
-  </Card>
-</CardGroup>
+> **[Platform Model](/partners/platform-model)**
+>
+> How these entities relate in practice.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

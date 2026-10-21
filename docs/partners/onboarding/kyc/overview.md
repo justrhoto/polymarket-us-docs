@@ -6,15 +6,15 @@
 
 > How identity verification works for partners: the Socure-backed KYC process, its four outcomes, and the integration architecture.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 Before any Retail Participant can trade, they must pass a **KYC (Know Your Customer)** identity check. Polymarket US uses [Socure](https://www.socure.com/) as its identity verification (IDV) provider. You collect the participant's information and submit it; Socure performs the identity evaluation; and on approval Polymarket US provisions the participant's trading account. You receive the result via a webhook you register in advance.
 
-<Info>
-  **You don't talk to Socure for evaluation — Polymarket US does.** You call the KYC endpoints on your participant's behalf, and Polymarket US handles the Socure evaluation and account provisioning. The only time a participant's device touches Socure directly is the optional [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) script and, when required, the document-upload (DocV) UI.
-</Info>
+> [!NOTE]
+>
+> **You don't talk to Socure for evaluation — Polymarket US does.** You call the KYC endpoints on your participant's behalf, and Polymarket US handles the Socure evaluation and account provisioning. The only time a participant's device touches Socure directly is the optional [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) script and, when required, the document-upload (DocV) UI.
 
 ## What a participant experiences
 
@@ -37,9 +37,9 @@ Every `POST /v1/kyc/start` resolves to one of four outcomes:
 
 See [Verification Flow](/partners/onboarding/kyc/verification-flow) for the request/response of each outcome and the decision matrix.
 
-<Warning>
-  **Approval is asynchronous even when instant.** A successful `POST /v1/kyc/start` may return a **non-terminal status with no `participantId` yet** while provisioning completes in the background. The final `participantId` arrives via the [webhook](/partners/onboarding/kyc/webhooks) and a later [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). Don't assume it's on the initial response.
-</Warning>
+> [!WARNING]
+>
+> **Approval is asynchronous even when instant.** A successful `POST /v1/kyc/start` may return a **non-terminal status with no `participantId` yet** while provisioning completes in the background. The final `participantId` arrives via the [webhook](/partners/onboarding/kyc/webhooks) and a later [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). Don't assume it's on the initial response.
 
 ## Integration architecture
 
@@ -111,19 +111,17 @@ Before going live, make sure you have:
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Digital Intelligence" icon="shield-halved" href="/partners/onboarding/kyc/digital-intelligence">
-    Capture the `session_token` that keeps your approval rate high.
-  </Card>
+> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence)**
+>
+> Capture the `session_token` that keeps your approval rate high.
 
-  <Card title="Verification Flow" icon="id-card" href="/partners/onboarding/kyc/verification-flow">
-    Submit a participant and handle each of the four outcomes.
-  </Card>
+> **[Verification Flow](/partners/onboarding/kyc/verification-flow)**
+>
+> Submit a participant and handle each of the four outcomes.
 
-  <Card title="Webhooks" icon="bell" href="/partners/onboarding/kyc/webhooks">
-    Receive the async decision instead of polling.
-  </Card>
-</CardGroup>
+> **[Webhooks](/partners/onboarding/kyc/webhooks)**
+>
+> Receive the async decision instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

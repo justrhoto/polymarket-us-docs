@@ -222,9 +222,9 @@ def make_request_with_retry(url, headers, max_retries=3):
 
 During periods of increased latency, Polymarket US applies a **5-second stopgap** to inbound orders. If an order has been received by Polymarket US but has not been processed within 5 seconds, we reject it to protect you from a bad fill at a stale price.
 
-<Warning>
-  These rejects carry the message **`Global Rate Limit Exceeded`**, but they are **not** an actual rate limit. You do **not** need to throttle your traffic in response to them. Treat them as a transient latency reject, not a signal to back off.
-</Warning>
+> [!WARNING]
+>
+> These rejects carry the message **`Global Rate Limit Exceeded`**, but they are **not** an actual rate limit. You do **not** need to throttle your traffic in response to them. Treat them as a transient latency reject, not a signal to back off.
 
 What it applies to:
 
@@ -247,9 +247,9 @@ The API is designed as a **streaming-first** system. Instead of repeatedly polli
 | Repeated calls to `/v1/positions` | `CreatePositionSubscription` gRPC stream |
 | Repeated calls to `/v1/orderbook` | `CreateMarketDataSubscription` gRPC stream |
 
-<Info>
-  Streaming connections don't count against the REST rate limit. One streaming connection can replace hundreds of polling requests. New `StreamRFQEvents` connections are limited to one open attempt per second per firm, so reconnect with backoff.
-</Info>
+> [!NOTE]
+>
+> Streaming connections don't count against the REST rate limit. One streaming connection can replace hundreds of polling requests. New `StreamRFQEvents` connections are limited to one open attempt per second per firm, so reconnect with backoff.
 
 ### Cache Reference Data
 
@@ -326,9 +326,9 @@ Patterns that may result in temporary or permanent restrictions:
 * Requesting the same unchanged data repeatedly
 * Automated retry loops without backoff
 
-<Warning>
-  Abuse of the API may result in temporary or permanent restrictions on your API credentials. Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) if you need higher limits for legitimate use cases.
-</Warning>
+> [!WARNING]
+>
+> Abuse of the API may result in temporary or permanent restrictions on your API credentials. Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) if you need higher limits for legitimate use cases.
 
 ## Troubleshooting Rate Limits
 
@@ -353,15 +353,13 @@ For production use cases requiring higher limits:
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="gRPC Streaming" icon="bolt" href="/streaming-endpoints/grpc-overview">
-    Replace polling with real-time streams
-  </Card>
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+>
+> Replace polling with real-time streams
 
-  <Card title="Authentication" icon="key" href="/trader-guide/authentication-troubleshooting">
-    Set up API authentication
-  </Card>
-</CardGroup>
+> **[Authentication](/trader-guide/authentication-troubleshooting)**
+>
+> Set up API authentication
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

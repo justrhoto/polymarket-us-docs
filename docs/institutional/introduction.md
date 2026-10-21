@@ -8,24 +8,24 @@
 
 The Polymarket US REST API provides programmatic access to trading, account management, market data, and funding operations.
 
-<Note>
-  This documentation is specific to Polymarket US. The international version can be found [here](https://docs.polymarket.com/).
-</Note>
+> [!NOTE]
+>
+> This documentation is specific to Polymarket US. The international version can be found [here](https://docs.polymarket.com/).
 
 ## Streaming First Architecture
 
-<Warning>
-  **Use gRPC Streaming for Real-Time Data**
-
-  For production applications requiring continuous data updates, use the [gRPC Streaming APIs](/streaming-endpoints/grpc-overview) instead of polling REST endpoints. Streaming provides:
-
-  * **Real-time updates** as they happen
-  * **No rate limiting** concerns
-  * **Lower latency** than polling
-  * **Reduced infrastructure load**
-
-  REST APIs are subject to rate limits and are best suited for one-time queries, historical data, and administrative operations.
-</Warning>
+> [!WARNING]
+>
+> **Use gRPC Streaming for Real-Time Data**
+>
+> For production applications requiring continuous data updates, use the [gRPC Streaming APIs](/streaming-endpoints/grpc-overview) instead of polling REST endpoints. Streaming provides:
+>
+> * **Real-time updates** as they happen
+> * **No rate limiting** concerns
+> * **Lower latency** than polling
+> * **Reduced infrastructure load**
+>
+> REST APIs are subject to rate limits and are best suited for one-time queries, historical data, and administrative operations.
 
 | Use Case | Recommended API |
 | - | - |
@@ -56,9 +56,9 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/whoami" \
   -H "x-participant-id: firms/YourFirm/users/your-user"
 ```
 
-<Warning>
-  Access tokens last **24 hours** (`expires_in` is 86400). Cache the token and reuse it until close to expiry.
-</Warning>
+> [!WARNING]
+>
+> Access tokens last **24 hours** (`expires_in` is 86400). Cache the token and reuse it until close to expiry.
 
 See the [Authentication Setup Guide](/trader-guide/authentication) for complete authentication setup.
 
@@ -87,16 +87,16 @@ Use the [Combos API](/institutional/combos/overview) to create and retrieve comb
 
 For partners building retail trading platforms with end-user onboarding, KYC, and payments.
 
-<Card title="Partner Guide" icon="building" href="/partners/overview">
-  Complete guide for partners including Accounts, KYC, and Payments APIs
-</Card>
+> **[Partner Guide](/partners/overview)**
+>
+> Complete guide for partners including Accounts, KYC, and Payments APIs
 
-<Info>
-  **Which APIs do I need?**
-
-  * **Direct trading partners**: Use the Trading APIs documented in this section
-  * **Retail partners**: Use Trading APIs plus the [Partner Guide](/partners/overview) APIs
-</Info>
+> [!NOTE]
+>
+> **Which APIs do I need?**
+>
+> * **Direct trading partners**: Use the Trading APIs documented in this section
+> * **Retail partners**: Use Trading APIs plus the [Partner Guide](/partners/overview) APIs
 
 ## Request Format
 
@@ -108,14 +108,14 @@ For partners building retail trading platforms with end-user onboarding, KYC, an
 | `Content-Type` | Yes | `application/json` |
 | `x-participant-id` | Conditional | Your participant ID (required for trading, positions, and report endpoints) |
 
-<Note>
-  **When is `x-participant-id` required?**
-
-  * **Required** for all account-scoped endpoints: trading, positions, reports, and account operations
-  * **Not required** for market data, order book, reference data, and instrument state endpoints
-
-  Your participant ID is given to you at onboarding, or returned as `participantId` on KYC approval for an end user you onboard — send it exactly as provided rather than assembling it from another response. `GET /v1/users` lists your firm's users once you already hold a valid participant ID, but is account-scoped itself and so can't be used to find your first one. See [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id) for details.
-</Note>
+> [!NOTE]
+>
+> **When is `x-participant-id` required?**
+>
+> * **Required** for all account-scoped endpoints: trading, positions, reports, and account operations
+> * **Not required** for market data, order book, reference data, and instrument state endpoints
+>
+> Your participant ID is given to you at onboarding, or returned as `participantId` on KYC approval for an end user you onboard — send it exactly as provided rather than assembling it from another response. `GET /v1/users` lists your firm's users once you already hold a valid participant ID, but is account-scoped itself and so can't be used to find your first one. See [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id) for details.
 
 ### Request Body
 
@@ -183,9 +183,9 @@ decimal_price = api_price / price_scale
 # 550 / 1000 = 0.55 ($0.55)
 ```
 
-<Info>
-  Query price\_scale from the Reference Data API and cache it for each instrument.
-</Info>
+> [!NOTE]
+>
+> Query price\_scale from the Reference Data API and cache it for each instrument.
 
 ## Rate Limits
 
@@ -199,23 +199,21 @@ For REST API questions or issues, contact [onboarding@qcex.com](mailto:onboardin
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Quickstart Guide" icon="rocket" href="/trader-guide/quickstart">
-    Place your first order in 5 minutes
-  </Card>
+> **[Quickstart Guide](/trader-guide/quickstart)**
+>
+> Place your first order in 5 minutes
 
-  <Card title="Authentication" icon="key" href="/trader-guide/authentication">
-    Set up Private Key JWT authentication
-  </Card>
+> **[Authentication](/trader-guide/authentication)**
+>
+> Set up Private Key JWT authentication
 
-  <Card title="gRPC Streaming" icon="bolt" href="/streaming-endpoints/grpc-overview">
-    Real-time market data and order updates
-  </Card>
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+>
+> Real-time market data and order updates
 
-  <Card title="Environments" icon="server" href="/trader-guide/environments">
-    API endpoints for dev, preprod, and prod
-  </Card>
-</CardGroup>
+> **[Environments](/trader-guide/environments)**
+>
+> API endpoints for dev, preprod, and prod
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

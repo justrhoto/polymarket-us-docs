@@ -29,9 +29,9 @@
 | Wire rejected | Incorrect routing or account number | Double-check wire details before resending |
 | Funds not received | Missing memo or reference code | Contact support with your wire confirmation |
 
-<Note>
-  Always include your **full name and phone number** in the memo or message field. Missing details can cause delays.
-</Note>
+> [!NOTE]
+>
+> Always include your **full name and phone number** in the memo or message field. Missing details can cause delays.
 
 ## Compliance Note
 

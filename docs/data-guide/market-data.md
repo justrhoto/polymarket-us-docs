@@ -84,9 +84,9 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/orderbook/{symbol}" \
 }
 ```
 
-<Info>
-  For OHLC/candlestick data generation, see the [Candlestick Data Guide](/data-guide/candlestick-data).
-</Info>
+> [!NOTE]
+>
+> For OHLC/candlestick data generation, see the [Candlestick Data Guide](/data-guide/candlestick-data).
 
 ## Streaming Market Data (gRPC)
 

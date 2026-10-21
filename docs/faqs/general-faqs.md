@@ -47,9 +47,9 @@ On the Institutional REST and gRPC APIs, quantities and prices are transmitted a
 
 Both `fractionalQtyScale` and `priceScale` are returned per instrument in [reference data](/institutional/refdata/overview). Always read them from the instrument before submitting or interpreting orders — do not assume a fixed scale across instruments. Note that `int64` fields like `priceScale` and `fractionalQtyScale` are serialized as **strings** in JSON, so parse them as numbers in your client.
 
-<Info>
-  **On FIX, prices and quantities are pre-scaled.** FIX messages carry decimal values directly, so you do **not** apply `priceScale` or `fractionalQtyScale` to them. Scaling only applies to the integer values on the REST and gRPC APIs.
-</Info>
+> [!NOTE]
+>
+> **On FIX, prices and quantities are pre-scaled.** FIX messages carry decimal values directly, so you do **not** apply `priceScale` or `fractionalQtyScale` to them. Scaling only applies to the integer values on the REST and gRPC APIs.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

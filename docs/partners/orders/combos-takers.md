@@ -134,23 +134,21 @@ Not currently. Call `CreateCombo` and handle `INVALID_ARGUMENT`. Creating a comb
 
 ## Related Documentation
 
-<CardGroup cols={2}>
-  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
-    Maker workflow, quote rules, and last look
-  </Card>
+> **[Combos/RFQ Guide](/trader-guide/combos)**
+>
+> Maker workflow, quote rules, and last look
 
-  <Card title="RFQ API" icon="code" href="/institutional/rfqs/overview">
-    RFQ and quote REST and unary gRPC contract
-  </Card>
+> **[RFQ API](/institutional/rfqs/overview)**
+>
+> RFQ and quote REST and unary gRPC contract
 
-  <Card title="Fee Schedule" icon="receipt" href="/fees#combo-taker-fees">
-    Combo taker fee curve and rounding
-  </Card>
+> **[Fee Schedule](/fees#combo-taker-fees)**
+>
+> Combo taker fee curve and rounding
 
-  <Card title="Drop Copy" icon="right-left" href="/streaming-endpoints/dropcopy-stream">
-    Exchange order and fill reconciliation
-  </Card>
-</CardGroup>
+> **[Drop Copy](/streaming-endpoints/dropcopy-stream)**
+>
+> Exchange order and fill reconciliation
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

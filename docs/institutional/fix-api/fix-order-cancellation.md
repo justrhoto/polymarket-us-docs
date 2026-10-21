@@ -32,8 +32,6 @@ If the order has been canceled, the Polymarket US will respond with an Execution
   </tbody>
 </table>
 
-<br />
-
 If the request to cancel the order passed validation, then the Polymarket US will acknowledge the order cancellation with an ExecutionReport \[8] message indicating OrdStatus (39) = 4 (canceled), and LeavesQty (151) = 0.
 
 ## Figure 12: Successful cancelation of existing order
@@ -74,13 +72,9 @@ Rejected attempts to cancel orders for any reason (for example order is no longe
   </tbody>
 </table>
 
-<br />
-
 ## Figure 13: Unsuccessful attempt to cancel existing order
 
 ![](https://files.readme.io/401042e-unsuccessful_cancel.png)
-
-<br />
 
 **Example 17: Rejection of an unsuccessful cancel attempt**
 

@@ -31,9 +31,9 @@ service OrderEntryAPI {
 | `accounts` | `list[str]` | No | Filter by trading accounts. Empty list = all accounts for authenticated user. |
 | `snapshot_only` | `bool` | No | If `True`, receive snapshot of current orders then close stream. If `False` (default), receive continuous updates. |
 
-<Note>
-  Unlike the [market data stream](/streaming-endpoints/market-data-stream), `CreateOrderSubscription` does **not** have a 1000-symbol-per-stream cap. An empty `symbols` list is all symbols for the requested accounts. A market-data list over 1000 is rejected with `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`), not `RESOURCE_EXHAUSTED`. How many streams to open: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
-</Note>
+> [!NOTE]
+>
+> Unlike the [market data stream](/streaming-endpoints/market-data-stream), `CreateOrderSubscription` does **not** have a 1000-symbol-per-stream cap. An empty `symbols` list is all symbols for the requested accounts. A market-data list over 1000 is rejected with `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`), not `RESOURCE_EXHAUSTED`. How many streams to open: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
 
 ### Example Request
 
@@ -141,18 +141,18 @@ if response.HasField('update'):
 | `insert_time` | `Timestamp` | When order was accepted |
 | `create_time` | `Timestamp` | When order was created |
 
-<Warning>
-  **Price Fields:**
-
-  * `price`, `avg_px`, `stop_price` are `int64` values
-  * Divide by the instrument's `price_scale` to get decimal prices
-  * `price_scale` is available from instrument metadata via the RefDataAPI
-
-  ```python theme={null}
-  price = order.price / price_scale
-  print(f"Price: ${price:.4f}")
-  ```
-</Warning>
+> [!WARNING]
+>
+> **Price Fields:**
+>
+> * `price`, `avg_px`, `stop_price` are `int64` values
+> * Divide by the instrument's `price_scale` to get decimal prices
+> * `price_scale` is available from instrument metadata via the RefDataAPI
+>
+> ```python theme={null}
+> price = order.price / price_scale
+> print(f"Price: ${price:.4f}")
+> ```
 
 ### Order States
 
@@ -556,19 +556,17 @@ Snapshot only: False
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Proto Reference" icon="book" href="/streaming-endpoints/proto-reference">
-    Detailed message and field reference
-  </Card>
+> **[Proto Reference](/streaming-endpoints/proto-reference)**
+>
+> Detailed message and field reference
 
-  <Card title="Error Handling" icon="triangle-exclamation" href="/streaming-endpoints/error-handling">
-    Handle errors and reconnections
-  </Card>
+> **[Error Handling](/streaming-endpoints/error-handling)**
+>
+> Handle errors and reconnections
 
-  <Card title="Market Data Stream" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Stream real-time market data
-  </Card>
-</CardGroup>
+> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+>
+> Stream real-time market data
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

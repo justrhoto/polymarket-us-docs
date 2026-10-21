@@ -19,19 +19,19 @@ Before receiving HTTP status codes, you may encounter connection-level errors:
 * `SocketError: other side closed` - ALB timeout (10 minutes)
 * `14 UNAVAILABLE` (gRPC) - Stream dropped
 
-<Card title="Connection Issues Guide" icon="plug" href="/trader-guide/connection-issues">
-  See the full Connection Issues guide for detailed troubleshooting of network errors, ALB timeouts, gRPC streams, keepalive settings, and reconnection strategies
-</Card>
+> **[Connection Issues Guide](/trader-guide/connection-issues)**
+>
+> See the full Connection Issues guide for detailed troubleshooting of network errors, ALB timeouts, gRPC streams, keepalive settings, and reconnection strategies
 
 ***
 
 ## HTTP Status Codes
 
-<Info>
-  **4xx errors are client-side errors.** These indicate problems with your request that you need to fix (invalid data, missing authentication, wrong permissions, etc.). Debug these by examining your request.
-
-  **5xx errors are server-side errors.** These indicate problems on the API server. Retry these with exponential backoff.
-</Info>
+> [!NOTE]
+>
+> **4xx errors are client-side errors.** These indicate problems with your request that you need to fix (invalid data, missing authentication, wrong permissions, etc.). Debug these by examining your request.
+>
+> **5xx errors are server-side errors.** These indicate problems on the API server. Retry these with exponential backoff.
 
 ### 400 Bad Request
 

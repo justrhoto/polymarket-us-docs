@@ -6,9 +6,9 @@
 
 FIX connectivity to Polymarket US is provisioned via AWS VPC PrivateLink. After your [onboarding](/trader-guide/onboarding) is complete, you will receive your connection details in the FIX Connectivity form:
 
-<Card title="Download FIX Connectivity Form" icon="download" href="https://drive.google.com/uc?export=download&id=1z-DxC8m-wUZKQq8S7tV64Rwi-WTMIps0">
-  Template form for FIX session configuration and connection details
-</Card>
+> **[Download FIX Connectivity Form](https://drive.google.com/uc?export=download\&id=1z-DxC8m-wUZKQq8S7tV64Rwi-WTMIps0)**
+>
+> Template form for FIX session configuration and connection details
 
 ***
 
@@ -16,9 +16,9 @@ FIX connectivity to Polymarket US is provisioned via AWS VPC PrivateLink. After 
 
 Connecting to Polymarket Exchange FIX services from your AWS VPC involves adding VPC Endpoints to your VPC's private subnets. You will need to have at least one (preferably 3) subnets in the Availability Zone IDs that are supported by the Polymarket environment you are connecting to.
 
-<Warning>
-  AWS randomly maps Availability Zones to physical Zone IDs per account. Please verify that the Zone IDs match. [Learn more about Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones).
-</Warning>
+> [!WARNING]
+>
+> AWS randomly maps Availability Zones to physical Zone IDs per account. Please verify that the Zone IDs match. [Learn more about Availability Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones).
 
 ### Supported AWS Availability Zone IDs
 
@@ -27,9 +27,9 @@ Connecting to Polymarket Exchange FIX services from your AWS VPC involves adding
 | **Production** | use1-az1, use1-az2, use1-az6 |
 | **Pre-Production** | use1-az1, use1-az2, use1-az4 |
 
-<Tip>
-  We strongly recommend using separate AWS accounts to clearly distinguish between your production and non-production sessions.
-</Tip>
+> [!TIP]
+>
+> We strongly recommend using separate AWS accounts to clearly distinguish between your production and non-production sessions.
 
 ### Creating a VPC Endpoint
 
@@ -58,9 +58,9 @@ In your AWS Console, create a new VPC Endpoint using the VPC Service Name provid
 
 Once you've created the VPC Endpoint, a connection request will be sent to Polymarket. Our DevOps team will review and accept the request, and we will notify you once it has been approved.
 
-<Note>
-  You will not be able to proceed with DNS configuration or FIX connection until we've accepted the connection on our end.
-</Note>
+> [!NOTE]
+>
+> You will not be able to proceed with DNS configuration or FIX connection until we've accepted the connection on our end.
 
 #### 5. Enable Private DNS
 
@@ -70,9 +70,9 @@ After connecting to the endpoint, enable Private DNS for the endpoint. When Priv
 
 ## Retrieving Your VPC Endpoint DNS Name
 
-<Note>
-  It is recommended to use the DNS name provided to you and not the AWS-generated DNS names assigned to your VPC Endpoint.
-</Note>
+> [!NOTE]
+>
+> It is recommended to use the DNS name provided to you and not the AWS-generated DNS names assigned to your VPC Endpoint.
 
 To connect to the VPC Endpoint Service, you can use the AWS-assigned DNS name generated within your account, or the Private DNS described above. If you choose the AWS-assigned DNS name, it will continue to work independent of the Private DNS.
 
@@ -84,9 +84,9 @@ To connect to the VPC Endpoint Service, you can use the AWS-assigned DNS name ge
 4. In the **Details** tab at the bottom of the screen, locate the **DNS names** section
 5. Copy the first entry listed (the Regional DNS Name)
 
-<Warning>
-  Do not use the zonal DNS names (the ones containing availability zone letters like .us-east-1a.) unless you are specifically targeting a single zone.
-</Warning>
+> [!WARNING]
+>
+> Do not use the zonal DNS names (the ones containing availability zone letters like .us-east-1a.) unless you are specifically targeting a single zone.
 
 ### Option 2: Using the AWS CLI
 
@@ -135,9 +135,9 @@ Polymarket Exchange provides three types of FIX sessions:
 
 ### Sequence Number Reset
 
-<Note>
-  Each participant's FIX session can have a different sequence reset time (e.g., 00:00:00 UTC, 00:00:00 ET). Your configured reset time will be provided in your connection details.
-</Note>
+> [!NOTE]
+>
+> Each participant's FIX session can have a different sequence reset time (e.g., 00:00:00 UTC, 00:00:00 ET). Your configured reset time will be provided in your connection details.
 
 ***
 

@@ -6,9 +6,9 @@
 
 > How vendor fees are declared per order, accrue as a receivable, appear on the daily Vendor Fees report, and are collected with one transfer per participant account.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This capability is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This capability is in beta and may change without notice.
 
 Your vendor fee is what you charge a Retail Participant for an order, per your agreement with them. On Polymarket US it follows a **declare → accrue → report → collect** lifecycle: the fee is *declared* when the order is placed, *recorded* against the order, *reported* to you daily, and *collected* periodically with a single [transfer](/partners/funding/transfers) per participant account. **No money moves for vendor fees at order time.**
 
@@ -23,9 +23,9 @@ graph LR
 
 Every order you place through [`CreateVendorOrder`](/partners/orders/create-order) carries a `vendor_fee` — a **fixed USD amount you compute** per your agreement with the participant. Polymarket US validates that it is well-formed, non-negative, and allowed for your firm, then records the mapping *"this firm declared vendor fee \$X for order Y"*.
 
-<Note>
-  **The platform never knows your fee basis.** If your agreement is 2% of principal and the order principal is \$100, you send `"2.00"` — Polymarket US does not compute fees from a percentage or schedule, does not know whether your basis is per-order, per-fill, or flat, and does not adjust the recorded amount if the order is partially filled or cancelled. What is recorded is exactly what you declared, keyed by order ID. Applying your own fee policy (for example, waiving fees on unfilled orders) happens in **your** books and in the amount you choose to collect.
-</Note>
+> [!NOTE]
+>
+> **The platform never knows your fee basis.** If your agreement is 2% of principal and the order principal is \$100, you send `"2.00"` — Polymarket US does not compute fees from a percentage or schedule, does not know whether your basis is per-order, per-fill, or flat, and does not adjust the recorded amount if the order is partially filled or cancelled. What is recorded is exactly what you declared, keyed by order ID. Applying your own fee policy (for example, waiving fees on unfilled orders) happens in **your** books and in the amount you choose to collect.
 
 ## Accrual and your buying-power gate
 
@@ -39,9 +39,9 @@ spendable balance = account cash − accrued, uncollected vendor fees
 
 and gate order submission on the *spendable* balance, so a participant can never place an order that spends the cash earmarked for your fees.
 
-<Warning>
-  **Accrued-fee tracking is not exposed on the API.** Declared fees are recorded in the DCO reporting system only — there is no endpoint or stream that returns a participant's accrued vendor fee balance. Track accruals in your own systems (your funding entity declared every fee, so it knows the accrual in real time) and reconcile against the daily [Vendor Fees report](#the-vendor-fees-report).
-</Warning>
+> [!WARNING]
+>
+> **Accrued-fee tracking is not exposed on the API.** Declared fees are recorded in the DCO reporting system only — there is no endpoint or stream that returns a participant's accrued vendor fee balance. Track accruals in your own systems (your funding entity declared every fee, so it knows the accrual in real time) and reconcile against the daily [Vendor Fees report](#the-vendor-fees-report).
 
 ### Accrued fees are credit exposure
 
@@ -51,9 +51,9 @@ Until collected, accrued fees are an unsecured receivable of your funding entity
 
 Polymarket US produces a **daily Vendor Fees report** covering the fees declared by your firm, so your funding entity can reconcile its own accrual and drive collection without tracking every order itself.
 
-<Warning>
-  **Delivery method TBD.** The report's delivery mechanism is being finalized and will be confirmed with your integration lead during onboarding. The structure below is the planned content and may change during beta.
-</Warning>
+> [!WARNING]
+>
+> **Delivery method TBD.** The report's delivery mechanism is being finalized and will be confirmed with your integration lead during onboarding. The structure below is the planned content and may change during beta.
 
 One row per declared fee, plus a per-account net summary:
 
@@ -93,23 +93,21 @@ Rules and mechanics:
 
 ## Related pages
 
-<CardGroup cols={2}>
-  <Card title="Create Order" icon="bolt" href="/partners/orders/create-order">
-    Where the fee is declared.
-  </Card>
+> **[Create Order](/partners/orders/create-order)**
+>
+> Where the fee is declared.
 
-  <Card title="Transfers" icon="right-left" href="/partners/funding/transfers">
-    The API that executes collection.
-  </Card>
+> **[Transfers](/partners/funding/transfers)**
+>
+> The API that executes collection.
 
-  <Card title="Partner Funding Overview" icon="building-columns" href="/partners/funding/overview">
-    The full money-flow model.
-  </Card>
+> **[Partner Funding Overview](/partners/funding/overview)**
+>
+> The full money-flow model.
 
-  <Card title="Reconciliation" icon="scale-balanced" href="/partners/reconciliation">
-    Keeping your books in sync with the ledger.
-  </Card>
-</CardGroup>
+> **[Reconciliation](/partners/reconciliation)**
+>
+> Keeping your books in sync with the ledger.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

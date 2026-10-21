@@ -6,9 +6,9 @@
 
 > Execution tape with time, price, size, and symbol
 
-<Card title="Download Time & Sales Reports" icon="download" href="https://www.polymarketexchange.com/time-and-sales.html">
-  Access historical Time & Sales Reports on polymarketexchange.com
-</Card>
+> **[Download Time & Sales Reports](https://www.polymarketexchange.com/time-and-sales.html)**
+>
+> Access historical Time & Sales Reports on polymarketexchange.com
 
 The Time & Sales Report is a minimal execution tape containing exactly 4 columns. It provides a pure log of executed trades without side, aggressor flag, or buyer/seller information.
 

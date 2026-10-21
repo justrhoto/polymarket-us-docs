@@ -6,7 +6,9 @@
 
 > View positions and trading activity
 
-<Note>Requires authentication.</Note>
+> [!NOTE]
+>
+> Requires authentication.
 
 The Portfolio resource provides access to your trading positions and activity history.
 
@@ -110,9 +112,9 @@ for (const act of activities.activities) {
 | `isAggressor` | boolean | True if taker |
 | `realizedPnl` | Amount | Realized P\&L |
 
-<Tip>
-  For real-time position updates, use the [WebSocket](/api-reference/sdks/typescript/websocket) with `SUBSCRIPTION_TYPE_POSITION` instead of polling.
-</Tip>
+> [!TIP]
+>
+> For real-time position updates, use the [WebSocket](/api-reference/sdks/typescript/websocket) with `SUBSCRIPTION_TYPE_POSITION` instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

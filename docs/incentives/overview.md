@@ -19,61 +19,61 @@ Polymarket US offers incentive programs that pay you for trading activity and pr
 
   <tbody>
     <tr>
-      <td colspan="3"><em><strong>User Incentive Programs</strong></em></td>
+      <td colspan="3">***User Incentive Programs***</td>
     </tr>
 
     <tr>
-      <td><strong>Deposit Incentive Program</strong></td>
+      <td>**Deposit Incentive Program**</td>
       <td>Open</td>
       <td>Earn incentive credits for making a qualifying deposit</td>
     </tr>
 
     <tr>
-      <td><strong>Refer-A-Friend Incentive Program</strong></td>
+      <td>**Refer-A-Friend Incentive Program**</td>
       <td>Open</td>
       <td>Earn incentive credits for referring your friends</td>
     </tr>
 
     <tr>
-      <td><strong>Sequential Incentive Program</strong></td>
+      <td>**Sequential Incentive Program**</td>
       <td>Coming Soon</td>
       <td>Earn daily credits for qualifying deposit and engagement activity</td>
     </tr>
 
     <tr>
-      <td><strong>Deposit and Trading Incentive Program</strong></td>
+      <td>**Deposit and Trading Incentive Program**</td>
       <td>Open</td>
       <td>Earn incentive credits for qualifying deposit and trading activity</td>
     </tr>
 
     <tr>
-      <td colspan="3"><em><strong>Institutional Incentive Programs</strong></em></td>
+      <td colspan="3">***Institutional Incentive Programs***</td>
     </tr>
 
     <tr>
-      <td><strong>Volume Incentive Program</strong></td>
+      <td>**Volume Incentive Program**</td>
       <td>Open</td>
       <td>Rewards for taker trading volume</td>
     </tr>
 
     <tr>
-      <td><strong>Liquidity Incentive Program</strong></td>
+      <td>**Liquidity Incentive Program**</td>
       <td>Open</td>
-      <td>Rewards for placing resting orders, whether they fill or not — see the <a href="https://polymarket.us/rewards">live rewards schedule</a></td>
+      <td>Rewards for placing resting orders, whether they fill or not — see the [live rewards schedule](https://polymarket.us/rewards)</td>
     </tr>
 
     <tr>
-      <td><strong>Market Maker Program</strong></td>
+      <td>**Market Maker Program**</td>
       <td>Application</td>
       <td>Strong incentives for providing stable liquidity across a variety of markets</td>
     </tr>
 
     <tr>
-      <td colspan="3"><em><strong>Affiliate Incentive Programs</strong></em></td>
+      <td colspan="3">***Affiliate Incentive Programs***</td>
     </tr>
 
     <tr>
-      <td><strong>Referral Incentive Program</strong></td>
+      <td>**Referral Incentive Program**</td>
       <td>Application</td>
       <td>Rewards for referring new traders to Polymarket US</td>
     </tr>

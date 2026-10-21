@@ -6,9 +6,9 @@
 
 > Troubleshooting network and connectivity problems
 
-<Warning>
-  **Connection drops are normal for HTTP/REST APIs.** Various infrastructure layers (load balancers, proxies, firewalls) have timeout limits. All API clients must implement automatic reconnection logic with exponential backoff - this is not optional.
-</Warning>
+> [!WARNING]
+>
+> **Connection drops are normal for HTTP/REST APIs.** Various infrastructure layers (load balancers, proxies, firewalls) have timeout limits. All API clients must implement automatic reconnection logic with exponential backoff - this is not optional.
 
 ## Required Client Implementation
 

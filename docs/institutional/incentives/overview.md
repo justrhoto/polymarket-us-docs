@@ -17,11 +17,11 @@ The Incentives API provides access to active incentive programs and your earned 
 | `GET` | `/v1/incentives` | None | Get incentive programs |
 | `GET` | `/v1/incentives/earnings` | Required | Get your incentive earnings |
 
-<Warning>
-  **Authentication Required for Earnings**
-
-  The `/v1/incentives/earnings` endpoint requires API key authentication. See the [Authentication guide](/trader-guide/authentication) for details. The `/v1/incentives` endpoint is public and requires no authentication.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required for Earnings**
+>
+> The `/v1/incentives/earnings` endpoint requires API key authentication. See the [Authentication guide](/trader-guide/authentication) for details. The `/v1/incentives` endpoint is public and requires no authentication.
 
 ## Get Incentive Programs
 
@@ -83,9 +83,9 @@ Parameter names accept both camelCase (`pageSize`) and snake\_case (`page_size`)
 }
 ```
 
-<Note>
-  `end` is omitted when the program's final end time is not known yet, such as an in-progress live game.
-</Note>
+> [!NOTE]
+>
+> `end` is omitted when the program's final end time is not known yet, such as an in-progress live game.
 
 ### IncentiveProgram Fields
 
@@ -110,18 +110,18 @@ Parameter names accept both camelCase (`pageSize`) and snake\_case (`page_size`)
 | `period` | string | Reward period type: `early`, `day_of`, `live`, etc. |
 | `createdAt` | string | ISO 8601 timestamp when the program was created |
 
-<Note>
-  **Reading `maxSpread`.** A liquidity program may carry a maximum spread from the midpoint. Where it does:
-
-  * **Units.** `maxSpread` is in price dollars of a \$1 contract (`0.035` = 3.5¢). The docs pages and polymarket.us/rewards quote the same value in cents; the API always returns dollars. It is a **half-width**: the two sides may be up to 2 × `maxSpread` apart (3.5¢ from the midpoint = a 7¢ gap).
-  * **What is compared.** Once per sampled second, each side of the book is walked from its best price outward, one whole price level at a time, until the resting size on that side (all participants combined) reaches `targetSize`. The price level that gets there is that side's *size-adjusted price*. The midpoint is halfway between the two size-adjusted prices — not the best-bid/best-offer midpoint. A small order at the best price counts toward that side's depth like any other order; it moves the size-adjusted price only when it is what carries the side to `targetSize`.
-  * **Pass / fail.** This is a test of the book, not of each trader: you do not have to quote both sides yourself. The second is scored as usual (every order from the best price through the size-adjusted price qualifies, weighted by its distance from that side's best price and by its size) when both sides reach `targetSize` and each size-adjusted price is no more than `maxSpread` from the midpoint — a gap of exactly 2 × `maxSpread` passes. If either side never reaches `targetSize`, or the gap is wider than 2 × `maxSpread`, **nobody is paid for that second**, including makers quoting tightly and including a side that did reach `targetSize`. Once a second qualifies, a one-sided quote still earns on the side it rests on. A failed second still counts toward the period's total, so its share of `rewardPool` is forfeited, not shifted to other seconds or other makers.
-  * **Tick size.** The check is in dollars, so a given `maxSpread` means the same thing on 1¢-tick and 0.1¢-tick markets.
-  * **Omission.** The key is absent (never `0`) when a program has no Max Spread; it is a `liquidityProgram` field. Programs without a Max Spread score each side independently, as before.
-  * **Scope.** The value applies to every scored second of that `timePeriods[]` entry. Parameters can differ between time periods of the same market, so read `maxSpread` per entry rather than per market.
-
-  Full explanation and worked example: [What is Max Spread?](/incentives/liquidity#what-is-max-spread).
-</Note>
+> [!NOTE]
+>
+> **Reading `maxSpread`.** A liquidity program may carry a maximum spread from the midpoint. Where it does:
+>
+> * **Units.** `maxSpread` is in price dollars of a \$1 contract (`0.035` = 3.5¢). The docs pages and polymarket.us/rewards quote the same value in cents; the API always returns dollars. It is a **half-width**: the two sides may be up to 2 × `maxSpread` apart (3.5¢ from the midpoint = a 7¢ gap).
+> * **What is compared.** Once per sampled second, each side of the book is walked from its best price outward, one whole price level at a time, until the resting size on that side (all participants combined) reaches `targetSize`. The price level that gets there is that side's *size-adjusted price*. The midpoint is halfway between the two size-adjusted prices — not the best-bid/best-offer midpoint. A small order at the best price counts toward that side's depth like any other order; it moves the size-adjusted price only when it is what carries the side to `targetSize`.
+> * **Pass / fail.** This is a test of the book, not of each trader: you do not have to quote both sides yourself. The second is scored as usual (every order from the best price through the size-adjusted price qualifies, weighted by its distance from that side's best price and by its size) when both sides reach `targetSize` and each size-adjusted price is no more than `maxSpread` from the midpoint — a gap of exactly 2 × `maxSpread` passes. If either side never reaches `targetSize`, or the gap is wider than 2 × `maxSpread`, **nobody is paid for that second**, including makers quoting tightly and including a side that did reach `targetSize`. Once a second qualifies, a one-sided quote still earns on the side it rests on. A failed second still counts toward the period's total, so its share of `rewardPool` is forfeited, not shifted to other seconds or other makers.
+> * **Tick size.** The check is in dollars, so a given `maxSpread` means the same thing on 1¢-tick and 0.1¢-tick markets.
+> * **Omission.** The key is absent (never `0`) when a program has no Max Spread; it is a `liquidityProgram` field. Programs without a Max Spread score each side independently, as before.
+> * **Scope.** The value applies to every scored second of that `timePeriods[]` entry. Parameters can differ between time periods of the same market, so read `maxSpread` per entry rather than per market.
+>
+> Full explanation and worked example: [What is Max Spread?](/incentives/liquidity#what-is-max-spread).
 
 ## Get Incentive Earnings
 
@@ -172,9 +172,9 @@ Parameter names accept both camelCase (`startDate`) and snake\_case (`start_date
 }
 ```
 
-<Note>
-  Each day represents rewards earned midnight to midnight ET. A single market on a single date may return multiple rows — one per payout `status` (`PAID`, `PENDING`, `SKIPPED`). Sum across statuses (or filter to one) when aggregating per market and date.
-</Note>
+> [!NOTE]
+>
+> Each day represents rewards earned midnight to midnight ET. A single market on a single date may return multiple rows — one per payout `status` (`PAID`, `PENDING`, `SKIPPED`). Sum across statuses (or filter to one) when aggregating per market and date.
 
 ### UserReward Fields
 

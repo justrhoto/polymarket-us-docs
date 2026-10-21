@@ -8,9 +8,9 @@
 
 Subscribe to real-time execution reports, trade captures, instrument state changes, and position updates for your firm using gRPC streaming.
 
-<Note>
-  **gRPC Only** - DropCopy endpoints are gRPC streaming only. There are no REST equivalents.
-</Note>
+> [!NOTE]
+>
+> **gRPC Only** - DropCopy endpoints are gRPC streaming only. There are no REST equivalents.
 
 ## Service Definition
 
@@ -66,9 +66,9 @@ Omit both `resume_token` and `resume_time` to receive only executions that occur
 | `resume_token` | `bytes` | Store for reconnection |
 | `executions` | `list[Execution]` | Execution reports in this batch |
 
-<Note>
-  Commission fields on executions (`commission_notional_collected`, `commission_notional_total_collected`) are fixed-point notional units scaled by `price_scale` × `fractional_quantity_scale` — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for decoding rules and worked examples.
-</Note>
+> [!NOTE]
+>
+> Commission fields on executions (`commission_notional_collected`, `commission_notional_total_collected`) are fixed-point notional units scaled by `price_scale` × `fractional_quantity_scale` — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for decoding rules and worked examples.
 
 ### Example
 
@@ -248,31 +248,31 @@ Each `Trade` carries a `state` field with one of the following values:
 | `TRADE_STATE_CLEARING_ACKNOWLEDGED` | 8 | Clearing request acknowledged by the clearing house. |
 | `TRADE_STATE_RETRY_REQUEST` | 9 | Retry requested; pending resubmission to the clearing house. |
 
-<Warning>
-  **Handling `TRADE_STATE_BUSTED`**
+> [!WARNING]
+>
+> **Handling `TRADE_STATE_BUSTED`**
+>
+> A busted trade was executed and then voided by the exchange (via an error-trade
+> bust), and its position impact was reversed. Busted trades remain visible in trade
+> history — treat them as reversed for position, P\&L, and reconciliation purposes.
+> Do not silently drop them.
 
-  A busted trade was executed and then voided by the exchange (via an error-trade
-  bust), and its position impact was reversed. Busted trades remain visible in trade
-  history — treat them as reversed for position, P\&L, and reconciliation purposes.
-  Do not silently drop them.
-</Warning>
+> [!NOTE]
+>
+> `TRADE_STATE_UNDEFINED` (value `0`) is the unset/unknown sentinel. It is omitted
+> from API responses and does not appear in the published enum lists. Treat any
+> unrecognized state value defensively rather than assuming the values above are
+> exhaustive.
 
-<Note>
-  `TRADE_STATE_UNDEFINED` (value `0`) is the unset/unknown sentinel. It is omitted
-  from API responses and does not appear in the published enum lists. Treat any
-  unrecognized state value defensively rather than assuming the values above are
-  exhaustive.
-</Note>
-
-<Warning>
-  **A bust reverses a prior trade record**
-
-  A trade can be re-sent on this stream with the same `id` but an updated `state`.
-  When a trade is re-sent with `TRADE_STATE_BUSTED`, that frame **supersedes and
-  reverses** the earlier record carrying the same `id`. Deduplicate on `id` and
-  always apply the latest `state`: a subsequent `TRADE_STATE_BUSTED` unwinds the
-  position and P\&L impact of a trade you previously recorded as `TRADE_STATE_CLEARED`.
-</Warning>
+> [!WARNING]
+>
+> **A bust reverses a prior trade record**
+>
+> A trade can be re-sent on this stream with the same `id` but an updated `state`.
+> When a trade is re-sent with `TRADE_STATE_BUSTED`, that frame **supersedes and
+> reverses** the earlier record carrying the same `id`. Deduplicate on `id` and
+> always apply the latest `state`: a subsequent `TRADE_STATE_BUSTED` unwinds the
+> position and P\&L impact of a trade you previously recorded as `TRADE_STATE_CLEARED`.
 
 ***
 
@@ -280,11 +280,11 @@ Each `Trade` carries a `state` field with one of the following values:
 
 Stream market state changes (halts, opens, closes).
 
-<Info>
-  **No Participant ID Required**
-
-  This endpoint only requires Auth0 JWT authentication with `read:instruments` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access instrument state changes.
-</Info>
+> [!NOTE]
+>
+> **No Participant ID Required**
+>
+> This endpoint only requires Auth0 JWT authentication with `read:instruments` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access instrument state changes.
 
 ### Request Parameters
 
@@ -421,11 +421,11 @@ request = dropcopy_pb2.CreateDropCopySubscriptionRequest(
 )
 ```
 
-<Warning>
-  **Resume Token Expiry**
-
-  Resume tokens may expire after extended disconnection periods. If resumption fails, start a fresh subscription and reconcile with the Report API for any missed data.
-</Warning>
+> [!WARNING]
+>
+> **Resume Token Expiry**
+>
+> Resume tokens may expire after extended disconnection periods. If resumption fails, start a fresh subscription and reconcile with the Report API for any missed data.
 
 ### Resume semantics
 
@@ -450,40 +450,38 @@ Persist the most recent `resume_token` you have fully applied, not the first tok
 | **Data** | Executions, trades | Orders, executions |
 | **Authentication** | Firm-level token | User token |
 
-<Tip>
-  **When to Use DropCopy**
-
-  Use DropCopy when you need:
-
-  * Firm-wide visibility across all users
-  * Trade capture reports for reconciliation
-  * Instrument state change notifications
-  * Real-time position monitoring across accounts
-</Tip>
+> [!TIP]
+>
+> **When to Use DropCopy**
+>
+> Use DropCopy when you need:
+>
+> * Firm-wide visibility across all users
+> * Trade capture reports for reconciliation
+> * Instrument state change notifications
+> * Real-time position monitoring across accounts
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Streaming Best Practices" icon="list-check" href="/streaming-endpoints/streaming-best-practices">
-    One stream per firm. Persist resume\_token after apply.
-  </Card>
+> **[Streaming Best Practices](/streaming-endpoints/streaming-best-practices)**
+>
+> One stream per firm. Persist resume\_token after apply.
 
-  <Card title="Order Stream" icon="list-check" href="/streaming-endpoints/order-stream">
-    Stream user-level order updates
-  </Card>
+> **[Order Stream](/streaming-endpoints/order-stream)**
+>
+> Stream user-level order updates
 
-  <Card title="Market Data Stream" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Stream real-time market data
-  </Card>
+> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+>
+> Stream real-time market data
 
-  <Card title="Funding Stream" icon="wallet" href="/streaming-endpoints/funding-stream">
-    Stream funding transaction updates
-  </Card>
+> **[Funding Stream](/streaming-endpoints/funding-stream)**
+>
+> Stream funding transaction updates
 
-  <Card title="Error Handling" icon="triangle-exclamation" href="/streaming-endpoints/error-handling">
-    Handle errors and reconnections
-  </Card>
-</CardGroup>
+> **[Error Handling](/streaming-endpoints/error-handling)**
+>
+> Handle errors and reconnections
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

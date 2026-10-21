@@ -8,15 +8,15 @@
 
 Independent Software Vendors (ISVs) provide the software experience for retail traders on Polymarket US. ISVs are **not** brokers and carry no broker registration. You integrate using the **same workflow** as Introducing Brokers — see [Your Role](/partners/your-role) for what that involves and the [Integration Journey](/partners/integration-journey) for the end-to-end build path.
 
-<Note>
-  **Audience: business and onboarding leads.** This page covers ISV eligibility and agreements. Developers can go straight to the [Integration Journey](/partners/integration-journey).
-</Note>
+> [!NOTE]
+>
+> **Audience: business and onboarding leads.** This page covers ISV eligibility and agreements. Developers can go straight to the [Integration Journey](/partners/integration-journey).
 
 ## Overview
 
-<Card title="ISV Connectivity Agreement" icon="file-contract" href="https://drive.google.com/uc?export=download&id=1cKsp4HrXEfU6_tduZxojXlbrB008YsB9">
-  Download the ISV Connectivity Agreement for Polymarket Exchange
-</Card>
+> **[ISV Connectivity Agreement](https://drive.google.com/uc?export=download\&id=1cKsp4HrXEfU6_tduZxojXlbrB008YsB9)**
+>
+> Download the ISV Connectivity Agreement for Polymarket Exchange
 
 ## Requirements
 
@@ -32,23 +32,21 @@ Users must review and accept the terms before beginning KYC verification.
 
 ISVs use the same end-to-end workflow as all partners. Rather than repeat it here, follow the [Integration Journey](/partners/integration-journey) — it covers onboarding, authentication, KYC, funding, trading, and monitoring in order.
 
-<CardGroup cols={2}>
-  <Card title="Your Role" icon="user-gear" href="/partners/your-role">
-    What you do, what Polymarket US does, and what you never handle.
-  </Card>
+> **[Your Role](/partners/your-role)**
+>
+> What you do, what Polymarket US does, and what you never handle.
 
-  <Card title="Integration Journey" icon="map" href="/partners/integration-journey">
-    The recommended order to build your integration.
-  </Card>
-</CardGroup>
+> **[Integration Journey](/partners/integration-journey)**
+>
+> The recommended order to build your integration.
 
-<Info>
-  **Participants are provisioned automatically.** When a Retail Participant's KYC is approved, their trading identity and account are created automatically — there is no separate account-creation step. See [Onboard Participants](/partners/onboarding/users).
-</Info>
+> [!NOTE]
+>
+> **Participants are provisioned automatically.** When a Retail Participant's KYC is approved, their trading identity and account are created automatically — there is no separate account-creation step. See [Onboard Participants](/partners/onboarding/users).
 
-<Note>
-  **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](/partners/funding/overview) *(Beta)*.
-</Note>
+> [!NOTE]
+>
+> **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](/partners/funding/overview) *(Beta)*.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

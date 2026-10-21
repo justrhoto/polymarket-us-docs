@@ -8,9 +8,9 @@
 
 As an Introducing Broker (IB) or Independent Software Vendor (ISV), you integrate with Polymarket US as a **message facilitator**: you authenticate as a **Firm**, act on behalf of the **Retail Participants** you onboard, and route their activity to and from the exchange. You build the experience; Polymarket US runs the regulated market and clearing.
 
-<Info>
-  **You never hold participant funds.** Participant accounts are funded by your **funding entity** through [Partner Funding](/partners/funding/overview) *(Beta)* — deposits and withdrawals that mirror each participant's wallet allocation. Your role is to onboard and verify participants, route their orders, and relay transfer instructions — never to custody funds.
-</Info>
+> [!NOTE]
+>
+> **You never hold participant funds.** Participant accounts are funded by your **funding entity** through [Partner Funding](/partners/funding/overview) *(Beta)* — deposits and withdrawals that mirror each participant's wallet allocation. Your role is to onboard and verify participants, route their orders, and relay transfer instructions — never to custody funds.
 
 ## What you do vs. what Polymarket US does
 
@@ -45,31 +45,27 @@ graph LR
 
 The two partner types **integrate identically** — the same APIs and the same workflow. The difference is legal classification, not mechanics.
 
-<CardGroup cols={2}>
-  <Card title="ISV" icon="code" href="/partners/partner-types/isvs">
-    An Independent Software Vendor provides the software experience. ISVs are **not** brokers and carry no broker registration.
-  </Card>
+> **[ISV](/partners/partner-types/isvs)**
+>
+> An Independent Software Vendor provides the software experience. ISVs are **not** brokers and carry no broker registration.
 
-  <Card title="IB" icon="scale-balanced" href="/partners/partner-types/ibs">
-    An Introducing Broker integrates the same way **plus** carries CFTC registration and NFA membership obligations.
-  </Card>
-</CardGroup>
+> **[IB](/partners/partner-types/ibs)**
+>
+> An Introducing Broker integrates the same way **plus** carries CFTC registration and NFA membership obligations.
 
-<Warning>
-  **IB-specific obligations.** If you are an Introducing Broker, you must maintain CFTC registration, NFA membership, and the supervisory/compliance requirements described on the [IBs](/partners/partner-types/ibs) page **in addition to** completing this integration. These are regulatory obligations, not technical ones.
-</Warning>
+> [!WARNING]
+>
+> **IB-specific obligations.** If you are an Introducing Broker, you must maintain CFTC registration, NFA membership, and the supervisory/compliance requirements described on the [IBs](/partners/partner-types/ibs) page **in addition to** completing this integration. These are regulatory obligations, not technical ones.
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Platform Model" icon="sitemap" href="/partners/platform-model">
-    How the DCM and DCO fit together, and the entities you act on.
-  </Card>
+> **[Platform Model](/partners/platform-model)**
+>
+> How the DCM and DCO fit together, and the entities you act on.
 
-  <Card title="Integration Journey" icon="map" href="/partners/integration-journey">
-    The end-to-end path from onboarding to live trading.
-  </Card>
-</CardGroup>
+> **[Integration Journey](/partners/integration-journey)**
+>
+> The end-to-end path from onboarding to live trading.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

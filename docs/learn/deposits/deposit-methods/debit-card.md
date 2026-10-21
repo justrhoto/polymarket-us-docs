@@ -6,31 +6,29 @@
 
 > Deposit instantly using a debit card
 
-<Steps>
-  <Step title="Add a card">
-    On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Add Card**. Before your first deposit, tap the card option on your Portfolio page instead.
-  </Step>
+**1. Add a card**
 
-  <Step title="Enter card details">
-    Enter your card information in the required fields.
-  </Step>
+On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Add Card**. Before your first deposit, tap the card option on your Portfolio page instead.
 
-  <Step title="Enter deposit amount">
-    Enter your deposit amount up to **\$50,000 per day**.
-  </Step>
+**2. Enter card details**
 
-  <Step title="Confirm deposit">
-    Tap **Deposit now**.
-  </Step>
+Enter your card information in the required fields.
 
-  <Step title="Deposit processing">
-    Start trading with instant buying power. The rest of your funds become available once the deposit fully clears.
-  </Step>
-</Steps>
+**3. Enter deposit amount**
 
-<Note>
-  Debit card deposits are limited to **\$25,000**/transaction, **\$50,000**/day, and **\$2,000,000** over a rolling 60-day period.
-</Note>
+Enter your deposit amount up to **\$50,000 per day**.
+
+**4. Confirm deposit**
+
+Tap **Deposit now**.
+
+**5. Deposit processing**
+
+Start trading with instant buying power. The rest of your funds become available once the deposit fully clears.
+
+> [!NOTE]
+>
+> Debit card deposits are limited to **\$25,000**/transaction, **\$50,000**/day, and **\$2,000,000** over a rolling 60-day period.
 
 ***
 

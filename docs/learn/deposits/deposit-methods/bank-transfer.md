@@ -6,31 +6,29 @@
 
 > Deposit using a bank transfer (ACH) via Aeropay
 
-<Steps>
-  <Step title="Add a bank">
-    On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Add bank**. Before your first deposit, tap **Bank** on your Portfolio page instead.
-  </Step>
+**1. Add a bank**
 
-  <Step title="Link your bank account">
-    Securely link your bank account via **Aeropay**.
-  </Step>
+On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Add bank**. Before your first deposit, tap **Bank** on your Portfolio page instead.
 
-  <Step title="Enter deposit amount">
-    Enter your deposit amount up to **\$50,000 per day**.
-  </Step>
+**2. Link your bank account**
 
-  <Step title="Confirm deposit">
-    Tap **Deposit now**.
-  </Step>
+Securely link your bank account via **Aeropay**.
 
-  <Step title="Deposit processing">
-    Start trading with instant buying power. The rest of your funds become available once the deposit fully clears.
-  </Step>
-</Steps>
+**3. Enter deposit amount**
 
-<Note>
-  Bank transfer (ACH) deposits are limited to **\$25,000**/transaction, **\$50,000**/day, and **\$2,000,000** over a rolling 60-day period.
-</Note>
+Enter your deposit amount up to **\$50,000 per day**.
+
+**4. Confirm deposit**
+
+Tap **Deposit now**.
+
+**5. Deposit processing**
+
+Start trading with instant buying power. The rest of your funds become available once the deposit fully clears.
+
+> [!NOTE]
+>
+> Bank transfer (ACH) deposits are limited to **\$25,000**/transaction, **\$50,000**/day, and **\$2,000,000** over a rolling 60-day period.
 
 ***
 

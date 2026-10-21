@@ -32,9 +32,9 @@ Use dotted, camelCase query parameter names. For array filters, repeat the param
 | `filters.providerPlayerId` | string\[] | Player IDs in the selected provider's namespace. Requires `filters.provider`. |
 | `filters.league` | string | Restrict provider lookups to players on teams in this league (for example, `mlb`). Ignored in list mode. |
 
-<Note>
-  Provider lookup uses only `filters.provider`, `filters.providerPlayerId`, and `filters.league`. It ignores `limit`, `offset`, `filters.id`, `filters.teamId`, `filters.name`, and `filters.abbreviation`, and returns results sorted by internal player ID. For list mode, leave `filters.provider` unset; `filters.providerPlayerId` and `filters.league` then have no effect.
-</Note>
+> [!NOTE]
+>
+> Provider lookup uses only `filters.provider`, `filters.providerPlayerId`, and `filters.league`. It ignores `limit`, `offset`, `filters.id`, `filters.teamId`, `filters.name`, and `filters.abbreviation`, and returns results sorted by internal player ID. For list mode, leave `filters.provider` unset; `filters.providerPlayerId` and `filters.league` then have no effect.
 
 ### Examples
 

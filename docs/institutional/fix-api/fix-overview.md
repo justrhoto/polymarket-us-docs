@@ -6,9 +6,9 @@
 
 The purpose of this document is to outline the trading functionality available via a FIX trading protocol.
 
-<Card title="Download FIX Dictionaries" icon="download" href="https://drive.google.com/uc?export=download&id=1zoMi4ucCbj6FoS-x7vE4ysZ-R02b49uB">
-  Download FIX 5.0 SP2 and FIXT 1.1 XML specifications (ZIP)
-</Card>
+> **[Download FIX Dictionaries](https://drive.google.com/uc?export=download\&id=1zoMi4ucCbj6FoS-x7vE4ysZ-R02b49uB)**
+>
+> Download FIX 5.0 SP2 and FIXT 1.1 XML specifications (ZIP)
 
 ## Rate Limits
 
@@ -48,8 +48,6 @@ A list of instruments on the platform can be retrieved using the SecurityListReq
 ## Instrument States
 
 Instruments follow the primary lifecycle: PENDING → OPEN → CLOSED → EXPIRED → TERMINATED. Instruments may also be SUSPENDED or HALTED during their lifecycle.
-
-<br />
 
 ### Primary State Flow
 

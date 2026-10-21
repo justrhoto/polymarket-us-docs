@@ -12,15 +12,13 @@ Polymarket US is a CFTC-regulated exchange for trading event contracts on real-w
 
 **Polymarket US** is a fiat-based, US-regulated platform operating as a designated contract market (DCM) and derivatives clearing organization (DCO) under CFTC oversight. All trading is conducted in US dollars with full regulatory compliance.
 
-<CardGroup cols={2}>
-  <Card title="Polymarket International" icon="globe" href="https://polymarket.com">
-    Crypto-based product on blockchain technology.
-  </Card>
+> **[Polymarket International](https://polymarket.com)**
+>
+> Crypto-based product on blockchain technology.
 
-  <Card title="Polymarket US" icon="mobile" href="https://apps.apple.com/us/app/polymarket/id6648798962">
-    Fiat-based, CFTC-regulated exchange. Trades in USD. Built for US residents.
-  </Card>
-</CardGroup>
+> **[Polymarket US](https://apps.apple.com/us/app/polymarket/id6648798962)**
+>
+> Fiat-based, CFTC-regulated exchange. Trades in USD. Built for US residents.
 
 ***
 
@@ -59,23 +57,21 @@ Polymarket US offers markets on sports (NFL, NBA, NHL, MLB, MLS, college sports,
 
 ## How is Polymarket US different from a sportsbook?
 
-<AccordionGroup>
-  <Accordion title="You trade against other users, not the house">
-    Polymarket US operates a central limit order book. Your order is matched against another user's order. The platform does not take the other side of your trades and does not set prices.
-  </Accordion>
+> **You trade against other users, not the house**
+>
+> Polymarket US operates a central limit order book. Your order is matched against another user's order. The platform does not take the other side of your trades and does not set prices.
 
-  <Accordion title="You can exit your position at any time">
-    Unlike a sportsbook where your trade is locked in, you can sell your contracts before the event resolves. If sentiment shifts and prices move in your favor, you can close out early and take profits.
-  </Accordion>
+> **You can exit your position at any time**
+>
+> Unlike a sportsbook where your trade is locked in, you can sell your contracts before the event resolves. If sentiment shifts and prices move in your favor, you can close out early and take profits.
 
-  <Accordion title="Prices reflect collective market opinion">
-    Odds on Polymarket US come from real trades. As new information becomes available, traders adjust their orders and prices update in real time - just like a financial market.
-  </Accordion>
+> **Prices reflect collective market opinion**
+>
+> Odds on Polymarket US come from real trades. As new information becomes available, traders adjust their orders and prices update in real time - just like a financial market.
 
-  <Accordion title="It is regulated as a derivatives exchange">
-    Polymarket US operates under CFTC oversight as a designated contract market. Event contracts are a regulated financial instrument.
-  </Accordion>
-</AccordionGroup>
+> **It is regulated as a derivatives exchange**
+>
+> Polymarket US operates under CFTC oversight as a designated contract market. Event contracts are a regulated financial instrument.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

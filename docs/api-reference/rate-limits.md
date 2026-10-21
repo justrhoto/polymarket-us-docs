@@ -52,9 +52,9 @@ def make_request_with_retry(fn, max_retries=3):
 
 During periods of increased latency, Polymarket US applies a **5-second stopgap** to inbound orders. If an order has been received by Polymarket US but has not been processed within 5 seconds, we reject it to protect you from a bad fill at a stale price.
 
-<Warning>
-  These rejects carry the message **`Global Rate Limit Exceeded`**, but they are **not** an actual rate limit. You do **not** need to throttle your traffic in response to them. Treat them as a transient latency reject, not a signal to back off.
-</Warning>
+> [!WARNING]
+>
+> These rejects carry the message **`Global Rate Limit Exceeded`**, but they are **not** an actual rate limit. You do **not** need to throttle your traffic in response to them. Treat them as a transient latency reject, not a signal to back off.
 
 What it applies to:
 

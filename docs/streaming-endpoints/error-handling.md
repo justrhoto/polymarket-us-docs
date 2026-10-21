@@ -79,23 +79,21 @@ except grpc.RpcError as e:
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Streaming Best Practices" icon="list-check" href="/streaming-endpoints/streaming-best-practices">
-    Long-lived streams, resume tokens, the 20-stream budget
-  </Card>
+> **[Streaming Best Practices](/streaming-endpoints/streaming-best-practices)**
+>
+> Long-lived streams, resume tokens, the 20-stream budget
 
-  <Card title="Authentication" icon="key" href="/streaming-endpoints/authentication">
-    Review authentication best practices
-  </Card>
+> **[Authentication](/streaming-endpoints/authentication)**
+>
+> Review authentication best practices
 
-  <Card title="Market Data Stream" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Learn about market data streaming
-  </Card>
+> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+>
+> Learn about market data streaming
 
-  <Card title="Order Stream" icon="file-invoice" href="/streaming-endpoints/order-stream">
-    Learn about order streaming
-  </Card>
-</CardGroup>
+> **[Order Stream](/streaming-endpoints/order-stream)**
+>
+> Learn about order streaming
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

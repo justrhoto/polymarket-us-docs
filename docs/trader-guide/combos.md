@@ -248,31 +248,29 @@ Use the stream for live state. Reserve `GetRFQs` and `GetQuotes` for startup, re
 
 ## Related Documentation
 
-<CardGroup cols={2}>
-  <Card title="Combos for Takers" icon="hand-holding-dollar" href="/partners/orders/combos-takers">
-    Requester sizing, Drop Copy reconciliation, settlement, and leg rules
-  </Card>
+> **[Combos for Takers](/partners/orders/combos-takers)**
+>
+> Requester sizing, Drop Copy reconciliation, settlement, and leg rules
 
-  <Card title="RFQ API" icon="code" href="/institutional/rfqs/overview">
-    Complete RFQ and quote REST and unary gRPC contract
-  </Card>
+> **[RFQ API](/institutional/rfqs/overview)**
+>
+> Complete RFQ and quote REST and unary gRPC contract
 
-  <Card title="Combos API" icon="shuffle" href="/institutional/combos/overview">
-    Combo instrument REST and unary gRPC contract
-  </Card>
+> **[Combos API](/institutional/combos/overview)**
+>
+> Combo instrument REST and unary gRPC contract
 
-  <Card title="RFQ Events Stream" icon="bolt" href="/streaming-endpoints/rfq-events-stream">
-    Event payloads and Python example
-  </Card>
+> **[RFQ Events Stream](/streaming-endpoints/rfq-events-stream)**
+>
+> Event payloads and Python example
 
-  <Card title="Drop Copy" icon="right-left" href="/streaming-endpoints/dropcopy-stream">
-    Exchange order and fill reconciliation
-  </Card>
+> **[Drop Copy](/streaming-endpoints/dropcopy-stream)**
+>
+> Exchange order and fill reconciliation
 
-  <Card title="Positions and Risk" icon="chart-line" href="/trader-guide/positions-risk">
-    Position and balance monitoring
-  </Card>
-</CardGroup>
+> **[Positions and Risk](/trader-guide/positions-risk)**
+>
+> Position and balance monitoring
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

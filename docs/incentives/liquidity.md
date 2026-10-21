@@ -6,11 +6,9 @@
 
 > Earn rewards for placing resting orders close to the best price.
 
-<div className="rewards-cta">
-  <Card title="View polymarket.us/rewards" icon="magnifying-glass-dollar" href="https://polymarket.us/rewards" arrow>
-    **The live rewards schedule is published at polymarket.us/rewards.** Search and filter rewards on every market — current reward pools, discount factors, target sizes, max spreads, and eligible markets, always up to date.
-  </Card>
-</div>
+> **[View polymarket.us/rewards](https://polymarket.us/rewards)**
+>
+> **The live rewards schedule is published at polymarket.us/rewards.** Search and filter rewards on every market — current reward pools, discount factors, target sizes, max spreads, and eligible markets, always up to date.
 
 This program rewards traders for placing resting limit orders. The closer your orders are to the best price and the larger they are, the more you earn. Every second, the Exchange scores each trader's resting orders based on price and size, and rewards are split proportionally.
 

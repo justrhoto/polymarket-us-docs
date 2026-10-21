@@ -8,11 +8,11 @@
 
 The Polymarket Exchange API uses **Private Key JWT** authentication. You sign a JWT with your private key, exchange it for an access token, then include that token in every API request.
 
-<Warning>
-  **Cache the access token and reuse it until close to expiry.**
-
-  Access tokens last 24 hours (`expires_in` is 86400 seconds). Keep one cache per process, shared across threads, and refresh shortly before expiry. Do not request a new token per API call.
-</Warning>
+> [!WARNING]
+>
+> **Cache the access token and reuse it until close to expiry.**
+>
+> Access tokens last 24 hours (`expires_in` is 86400 seconds). Keep one cache per process, shared across threads, and refresh shortly before expiry. Do not request a new token per API call.
 
 ## Authentication Flow
 
@@ -84,9 +84,9 @@ curl --request POST \
 }
 ```
 
-<Info>
-  `expires_in` is in seconds. 86400 is 24 hours. Reuse the token until close to that time.
-</Info>
+> [!NOTE]
+>
+> `expires_in` is in seconds. 86400 is 24 hours. Reuse the token until close to that time.
 
 ## Step 3: Use Token in API Requests
 
@@ -116,9 +116,9 @@ metadata = [
 response_stream = stub.CreateMarketDataSubscription(request, metadata=metadata)
 ```
 
-<Warning>
-  The metadata key **must** be `authorization` (lowercase). Include `Bearer ` prefix before the token.
-</Warning>
+> [!WARNING]
+>
+> The metadata key **must** be `authorization` (lowercase). Include `Bearer ` prefix before the token.
 
 ## Token Refresh Strategy
 
@@ -240,23 +240,21 @@ You can rotate your keys without downtime:
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Authentication Setup" icon="key" href="/trader-guide/authentication">
-    Complete onboarding guide with key generation
-  </Card>
+> **[Authentication Setup](/trader-guide/authentication)**
+>
+> Complete onboarding guide with key generation
 
-  <Card title="Market Data Streaming" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Learn how to stream market data
-  </Card>
+> **[Market Data Streaming](/streaming-endpoints/market-data-stream)**
+>
+> Learn how to stream market data
 
-  <Card title="Order Streaming" icon="file-invoice" href="/streaming-endpoints/order-stream">
-    Subscribe to order updates
-  </Card>
+> **[Order Streaming](/streaming-endpoints/order-stream)**
+>
+> Subscribe to order updates
 
-  <Card title="Error Handling" icon="triangle-exclamation" href="/streaming-endpoints/error-handling">
-    Handle errors and implement reconnection
-  </Card>
-</CardGroup>
+> **[Error Handling](/streaming-endpoints/error-handling)**
+>
+> Handle errors and implement reconnection
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

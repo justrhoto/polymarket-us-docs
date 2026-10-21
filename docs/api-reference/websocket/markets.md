@@ -10,11 +10,11 @@
 
 The Markets WebSocket endpoint provides real-time market data including order book updates, price changes, and trade notifications.
 
-<Warning>
-  **Authentication Required**
-
-  This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication) for details.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required**
+>
+> This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication) for details.
 
 ## Endpoint
 
@@ -193,11 +193,11 @@ For high-frequency markets, enable response debouncing to reduce message volume:
 
 When debouncing is enabled, updates are batched and sent at regular intervals rather than on every change.
 
-<Tip>
-  **Subscription Limits**
-
-  You can subscribe to a maximum of 100 markets per subscription. Use multiple subscriptions if you need more.
-</Tip>
+> [!TIP]
+>
+> **Subscription Limits**
+>
+> You can subscribe to a maximum of 100 markets per subscription. Use multiple subscriptions if you need more.
 
 ## Order Book Depth
 

@@ -6,17 +6,17 @@
 
 > How participant trading accounts are funded — instant deposits from your funding entity's pre-positioned pool, order-time vendor fee declaration, and periodic fee collection.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** Partner funding is in beta, enabled per partner. Email **[institutional@polymarket.us](mailto:institutional@polymarket.us)** to discuss access for your integration.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** Partner funding is in beta, enabled per partner. Email **[institutional@polymarket.us](mailto:institutional@polymarket.us)** to discuss access for your integration.
 
 Partner funding is the funding model for IB/ISV partners: your funding entity **pre-positions pooled funds** in a **partner funding account** at Polymarket US — the banking happens ahead of time. When a participant allocates funds to trade, your funding entity moves cash from that pool into their trading account with an instant **deposit transfer**; when they withdraw, cash moves back with a **withdrawal transfer**. Orders then trade against the cash in the participant's account like any other order — no money moves at order time.
 
 Your **vendor fee** is *declared* on each order placement and recorded by Polymarket US, but it is **not** moved per order. Fees accrue as a receivable and are collected periodically — at most once per day — with a single **vendor fee transfer** per participant account, reconciled against a daily [Vendor Fees report](/partners/funding/vendor-fees).
 
-<Note>
-  Partner funding is available to **IB and ISV partners with a configured funding relationship** only. The service authenticates your partner firm and looks up your funding configuration; calls from firms without a funding relationship are rejected.
-</Note>
+> [!NOTE]
+>
+> Partner funding is available to **IB and ISV partners with a configured funding relationship** only. The service authenticates your partner firm and looks up your funding configuration; calls from firms without a funding relationship are rejected.
 
 ## Why this model exists
 
@@ -50,9 +50,9 @@ The structure is established once, coordinated with your Polymarket US integrati
 4. **Each participant gets a \$0 account** — provisioned automatically on KYC approval (see [Onboard Participants](/partners/onboarding/onboard-participants)). Accounts hold cash from their first deposit transfer onward.
 5. **Three-party agreement in place** — participant, your firm, and your funding entity must have an agreement authorizing the deposits, withdrawals, and vendor fee collections.
 
-<Info>
-  The funding relationship is fixed per firm: a firm's participants are either all funded through the partner funding account or not — there is no per-participant mixing.
-</Info>
+> [!NOTE]
+>
+> The funding relationship is fixed per firm: a firm's participants are either all funded through the partner funding account or not — there is no per-participant mixing.
 
 ## How money moves
 
@@ -153,49 +153,45 @@ The partner funding APIs are **gRPC-only**. Connection and authentication follow
 | Deposits, withdrawals, vendor fee collection | `polymarket.us.cashmovement.v1.CashMovementService` | [Transfers](/partners/funding/transfers) |
 | Fee accrual reporting | Daily Vendor Fees report | [Vendor Fees](/partners/funding/vendor-fees) |
 
-<Warning>
-  **Orders that carry a vendor fee must go through `OrderFundingService`.** It records your declared fee against the order and passes the order through to the exchange. Orders placed via generic order entry or FIX carry no vendor fee and accrue nothing.
-</Warning>
+> [!WARNING]
+>
+> **Orders that carry a vendor fee must go through `OrderFundingService`.** It records your declared fee against the order and passes the order through to the exchange. Orders placed via generic order entry or FIX carry no vendor fee and accrue nothing.
 
 ## Reconciliation
 
 Every cash event — deposits, withdrawals, vendor fee collections, fills, exchange fees, settlement credits — is visible on the account's cash ledger. Use the standard surfaces to keep your books and your funding entity's records in sync:
 
-<CardGroup cols={3}>
-  <Card title="Balance Ledger Stream" icon="scale-balanced" href="/streaming-endpoints/balance-ledger-stream">
-    Real-time balance impact of every cash event, with replay.
-  </Card>
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+>
+> Real-time balance impact of every cash event, with replay.
 
-  <Card title="Funding Stream" icon="money-bill-transfer" href="/streaming-endpoints/funding-stream">
-    Funding transaction state changes.
-  </Card>
+> **[Funding Stream](/streaming-endpoints/funding-stream)**
+>
+> Funding transaction state changes.
 
-  <Card title="Drop Copy Stream" icon="copy" href="/streaming-endpoints/dropcopy-stream">
-    Firm-wide execution reports for placed orders.
-  </Card>
-</CardGroup>
+> **[Drop Copy Stream](/streaming-endpoints/dropcopy-stream)**
+>
+> Firm-wide execution reports for placed orders.
 
 See [Reconciliation](/partners/reconciliation) for the stream-first operating pattern — including how to consume ledger data across your whole participant base.
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Deposits & Withdrawals" icon="money-bill-transfer" href="/partners/funding/deposits-withdrawals">
-    Mirror wallet allocations into on-platform buying power.
-  </Card>
+> **[Deposits & Withdrawals](/partners/funding/deposits-withdrawals)**
+>
+> Mirror wallet allocations into on-platform buying power.
 
-  <Card title="Vendor Fees" icon="file-invoice-dollar" href="/partners/funding/vendor-fees">
-    Declare fees per order, track accrual, collect daily.
-  </Card>
+> **[Vendor Fees](/partners/funding/vendor-fees)**
+>
+> Declare fees per order, track accrual, collect daily.
 
-  <Card title="Transfers" icon="right-left" href="/partners/funding/transfers">
-    The transfer API — reasons, direction locks, rate limits.
-  </Card>
+> **[Transfers](/partners/funding/transfers)**
+>
+> The transfer API — reasons, direction locks, rate limits.
 
-  <Card title="Create Order" icon="bolt" href="/partners/orders/create-order">
-    Place an order with a declared vendor fee.
-  </Card>
-</CardGroup>
+> **[Create Order](/partners/orders/create-order)**
+>
+> Place an order with a declared vendor fee.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

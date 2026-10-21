@@ -8,13 +8,13 @@
 
 The Polymarket US API uses **Private Key JWT** authentication with RSA keys — the **same mechanism used across the platform**, including by institutional traders. You sign a JWT with your RSA private key and exchange it for a short-lived access token.
 
-<Card title="Full authentication guide" icon="key" href="/trader-guide/authentication">
-  Key generation, JWT claims, code samples (Python, Go, curl), key rotation, troubleshooting, and the complete scope reference live in the **Institutional API → Getting Started** guide. This page covers what's specific to partners and links you there for the implementation details.
-</Card>
+> **[Full authentication guide](/trader-guide/authentication)**
+>
+> Key generation, JWT claims, code samples (Python, Go, curl), key rotation, troubleshooting, and the complete scope reference live in the **Institutional API → Getting Started** guide. This page covers what's specific to partners and links you there for the implementation details.
 
-<Note>
-  Your RSA key pairs are generated during [Partner Onboarding](/partners/get-connected/onboarding) — you share only the **public** keys with Polymarket US and keep the private keys secure.
-</Note>
+> [!NOTE]
+>
+> Your RSA key pairs are generated during [Partner Onboarding](/partners/get-connected/onboarding) — you share only the **public** keys with Polymarket US and keep the private keys secure.
 
 ## How it works
 
@@ -46,9 +46,9 @@ The [full guide](/trader-guide/authentication) has the exact JWT claims, token r
 | Pre-production | `pmx-preprod.us.auth0.com` | `api.preprod.polymarketexchange.com` |
 | Production | `pmx-prod.us.auth0.com` | `api.prod.polymarketexchange.com` |
 
-<Note>
-  Use `https://[API Domain]` for both the JWT audience claim and the API base URL. Each environment requires separate onboarding — pre-production credentials do not work in production.
-</Note>
+> [!NOTE]
+>
+> Use `https://[API Domain]` for both the JWT audience claim and the API base URL. Each environment requires separate onboarding — pre-production credentials do not work in production.
 
 ## Prerequisites
 
@@ -84,29 +84,27 @@ Your application is granted **scopes** that control which endpoints you can call
 | `read:positions` | Positions, balances, and balance/position ledgers |
 | `read:funding` / `write:funding` | View funding; create transfers |
 
-<Note>
-  The **authoritative scope list and the full scope-by-endpoint mapping** are maintained in the [full authentication guide](/trader-guide/authentication#api-scopes). Missing a required scope returns `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
-</Note>
+> [!NOTE]
+>
+> The **authoritative scope list and the full scope-by-endpoint mapping** are maintained in the [full authentication guide](/trader-guide/authentication#api-scopes). Missing a required scope returns `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Full authentication guide" icon="key" href="/trader-guide/authentication">
-    JWT claims, code samples, key rotation, and troubleshooting.
-  </Card>
+> **[Full authentication guide](/trader-guide/authentication)**
+>
+> JWT claims, code samples, key rotation, and troubleshooting.
 
-  <Card title="Partner Onboarding" icon="id-card" href="/partners/get-connected/onboarding">
-    Get your keys registered and receive your Client ID.
-  </Card>
+> **[Partner Onboarding](/partners/get-connected/onboarding)**
+>
+> Get your keys registered and receive your Client ID.
 
-  <Card title="Quickstart" icon="rocket" href="/partners/get-connected/quickstart">
-    Authenticate and place your first order end to end.
-  </Card>
+> **[Quickstart](/partners/get-connected/quickstart)**
+>
+> Authenticate and place your first order end to end.
 
-  <Card title="Troubleshooting" icon="wrench" href="/trader-guide/authentication-troubleshooting">
-    Resolve common authentication errors.
-  </Card>
-</CardGroup>
+> **[Troubleshooting](/trader-guide/authentication-troubleshooting)**
+>
+> Resolve common authentication errors.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

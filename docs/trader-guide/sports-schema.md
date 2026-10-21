@@ -325,9 +325,9 @@ The fully-qualified market type, including sport, participant scope, and game pe
 
 Esports map markets (`esports_map_*`) apply to round-based titles such as Counter-Strike 2 and Valorant. Esports game markets (`esports_game_*`) apply to titles played as a series of games such as League of Legends and Dota 2. Series markets (`esports_series_*`) cover the whole best-of series.
 
-<Info>
-  The `market_sport_type` enum is the source of truth for sport, period, and prop variants, and is now guaranteed to be present on every instrument. When in doubt about which value applies to a market you're seeing, use this field rather than parsing the symbol.
-</Info>
+> [!NOTE]
+>
+> The `market_sport_type` enum is the source of truth for sport, period, and prop variants, and is now guaranteed to be present on every instrument. When in doubt about which value applies to a market you're seeing, use this field rather than parsing the symbol.
 
 ### Generic Values
 

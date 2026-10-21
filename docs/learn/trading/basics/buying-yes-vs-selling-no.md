@@ -39,9 +39,9 @@ Every binary market has only **one instrument**:
 * Maximum profit: sale price
 * Maximum loss: \$1.00 minus sale price
 
-<Note>
-  For more details on shorting mechanics, see [Collateral and Margin](/market-structure/collateral-and-margin#shorting-mechanics).
-</Note>
+> [!NOTE]
+>
+> For more details on shorting mechanics, see [Collateral and Margin](/market-structure/collateral-and-margin#shorting-mechanics).
 
 ## Synthetic No Position
 

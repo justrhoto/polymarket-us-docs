@@ -28,11 +28,11 @@
 
 **Good-Till-Time**: Expires at specified time; custom expiration timestamp
 
-<Warning>
-  **DAY orders do not automatically cancel at 5pm during trade day rolls.**
-
-  The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
-</Warning>
+> [!WARNING]
+>
+> **DAY orders do not automatically cancel at 5pm during trade day rolls.**
+>
+> The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
 
 ## Order Lifecycle
 
@@ -68,9 +68,9 @@ No. Trades progress through states:
 
 ## Verifying Order Status
 
-<Warning>
-  **Important**: A returned order ID with HTTP 200 does **not** guarantee the order was successfully processed. Failed orders don't generate user-visible errors unless a required field is missing.
-</Warning>
+> [!WARNING]
+>
+> **Important**: A returned order ID with HTTP 200 does **not** guarantee the order was successfully processed. Failed orders don't generate user-visible errors unless a required field is missing.
 
 **Always verify order status** via the order stream or by querying the order status endpoint. Do not rely solely on HTTP 200 responses or returned order IDs.
 

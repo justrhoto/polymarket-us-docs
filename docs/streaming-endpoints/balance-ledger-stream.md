@@ -10,9 +10,9 @@ Subscribe to real-time balance ledger entries (deposits, withdrawals, fills, fee
 
 For paginated historical queries and CSV exports of the same data, see the [Balance Ledger REST API](/institutional/funding/overview).
 
-<Note>
-  This stream is distinct from [Funding Transaction Streaming](/streaming-endpoints/funding-stream): that stream tracks **transaction state changes** (PENDING → COMPLETED, etc.) for deposits/withdrawals; this stream tracks the **balance impact** of every cash event in the ledger.
-</Note>
+> [!NOTE]
+>
+> This stream is distinct from [Funding Transaction Streaming](/streaming-endpoints/funding-stream): that stream tracks **transaction state changes** (PENDING → COMPLETED, etc.) for deposits/withdrawals; this stream tracks the **balance impact** of every cash event in the ledger.
 
 ## Service Definition
 
@@ -39,9 +39,9 @@ service FundingAPI {
 | `entry_types` | `list[LedgerEntryType]` | No | Filter by one or more allowlisted entry types. Empty = all allowlisted types. Suppressed types are filtered server-side regardless. |
 | `resume_time` | `Timestamp` | No | Replay entries with `update_time >= resume_time` before switching to live push. Clamped upstream to `2026-05-01T00:00:00Z`. |
 
-<Warning>
-  **Cross-firm access is rejected.** The `account` must belong to the firm in the JWT `firm_id` claim. Cross-firm subscriptions return `PERMISSION_DENIED` immediately.
-</Warning>
+> [!WARNING]
+>
+> **Cross-firm access is rejected.** The `account` must belong to the firm in the JWT `firm_id` claim. Cross-firm subscriptions return `PERMISSION_DENIED` immediately.
 
 ## Response Messages
 
@@ -69,9 +69,9 @@ The stream returns `CreateBalanceLedgerSubscriptionResponse` messages.
 | `symbol` | `str` | Instrument symbol associated with the change, if any. |
 | `update_business_date` | `str` | Business date in `YYYY-MM-DD`. |
 
-<Note>
-  Firm-level omnibus and reserve account identifiers are static configuration provided during onboarding; they are not discovered through the KYC API.
-</Note>
+> [!NOTE]
+>
+> Firm-level omnibus and reserve account identifiers are static configuration provided during onboarding; they are not discovered through the KYC API.
 
 ## Stream Behavior
 
@@ -245,23 +245,21 @@ if streamer.last_update_time is not None:
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Balance Ledger REST" icon="receipt" href="/institutional/funding/overview">
-    Paginated query and CSV download
-  </Card>
+> **[Balance Ledger REST](/institutional/funding/overview)**
+>
+> Paginated query and CSV download
 
-  <Card title="Position Ledger" icon="chart-line" href="/institutional/positions/overview#position-ledger">
-    Position changes (quantity, cost, realized P\&L)
-  </Card>
+> **[Position Ledger](/institutional/positions/overview#position-ledger)**
+>
+> Position changes (quantity, cost, realized P\&L)
 
-  <Card title="Funding Transactions" icon="arrow-right-arrow-left" href="/streaming-endpoints/funding-stream">
-    Deposit / withdrawal state changes
-  </Card>
+> **[Funding Transactions](/streaming-endpoints/funding-stream)**
+>
+> Deposit / withdrawal state changes
 
-  <Card title="Authentication" icon="key" href="/streaming-endpoints/authentication">
-    gRPC authentication setup
-  </Card>
-</CardGroup>
+> **[Authentication](/streaming-endpoints/authentication)**
+>
+> gRPC authentication setup
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -6,31 +6,29 @@
 
 > Fund your account by wire transfer
 
-<Steps>
-  <Step title="Select Wire Transfer">
-    On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Wire transfer**. Before your first deposit, tap **Wire Transfer** on your Portfolio page instead.
-  </Step>
+**1. Select Wire Transfer**
 
-  <Step title="View wire details">
-    Your wire details appear on the next screen.
-  </Step>
+On the Deposit screen, tap **Pay with** (or **Add payment method**), then tap **Wire transfer**. Before your first deposit, tap **Wire Transfer** on your Portfolio page instead.
 
-  <Step title="Enter wire details">
-    From your bank, enter the wire details **exactly as shown**, including the beneficiary, routing number, and account information.
-  </Step>
+**2. View wire details**
 
-  <Step title="Add memo information">
-    Include the **full name and phone number linked to your Polymarket US account** in the memo or message field, then send the wire.
-  </Step>
+Your wire details appear on the next screen.
 
-  <Step title="Confirm and wait for processing">
-    Funds are credited once received and verified, typically within **1 business day**.
-  </Step>
-</Steps>
+**3. Enter wire details**
 
-<Note>
-  Double-check every field, including the **memo**, in your wire instructions. Any missing or incorrect details can cause **delays** or **rejection**.
-</Note>
+From your bank, enter the wire details **exactly as shown**, including the beneficiary, routing number, and account information.
+
+**4. Add memo information**
+
+Include the **full name and phone number linked to your Polymarket US account** in the memo or message field, then send the wire.
+
+**5. Confirm and wait for processing**
+
+Funds are credited once received and verified, typically within **1 business day**.
+
+> [!NOTE]
+>
+> Double-check every field, including the **memo**, in your wire instructions. Any missing or incorrect details can cause **delays** or **rejection**.
 
 ## Wire Transfer Details
 
@@ -46,9 +44,9 @@
 | **Minimum Amount** | \$5,000 USD |
 | **Memo / FFC / FBO** | Include your full name and phone number linked to your Polymarket US account. Example: John Doe - 9175551234 |
 
-<Note>
-  You must include your **full name and phone number** linked to your Polymarket US account in your bank's **Message to Recipient**, **Memo**, **FFC**, or **FBO field**. Missing or incorrect details will delay processing.
-</Note>
+> [!NOTE]
+>
+> You must include your **full name and phone number** linked to your Polymarket US account in your bank's **Message to Recipient**, **Memo**, **FFC**, or **FBO field**. Missing or incorrect details will delay processing.
 
 ## Processing Time
 

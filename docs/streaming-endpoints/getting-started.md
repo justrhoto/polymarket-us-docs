@@ -35,9 +35,9 @@ Proto files define the gRPC service interfaces and message structures. The downl
 
 Download the proto files directly: [Polymarket - Proto Files.zip](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)
 
-<Info>
-  Do not make client startup depend on gRPC reflection. Reflection availability can differ by environment.
-</Info>
+> [!NOTE]
+>
+> Do not make client startup depend on gRPC reflection. Reflection availability can differ by environment.
 
 ```bash theme={null}
 unzip polymarket-protos.zip -d protos
@@ -58,11 +58,11 @@ This generates:
 
 ## Step 4: Authenticate
 
-<Warning>
-  **Cache the access token and reuse it until close to expiry.**
-
-  Access tokens last 24 hours (`expires_in` is 86400 seconds). Keep one cache per process, shared across threads, and refresh shortly before expiry. Do not request a new token per API call.
-</Warning>
+> [!WARNING]
+>
+> **Cache the access token and reuse it until close to expiry.**
+>
+> Access tokens last 24 hours (`expires_in` is 86400 seconds). Keep one cache per process, shared across threads, and refresh shortly before expiry. Do not request a new token per API call.
 
 ### Auth Domains
 
@@ -120,13 +120,13 @@ The response contains your `access_token`:
 }
 ```
 
-<Info>
-  `expires_in` is 86400 seconds (24 hours). Cache the token and reuse it until close to expiry.
-</Info>
+> [!NOTE]
+>
+> `expires_in` is 86400 seconds (24 hours). Cache the token and reuse it until close to expiry.
 
-<Info>
-  See the [Authentication Setup Guide](/trader-guide/authentication) for complete authentication details.
-</Info>
+> [!NOTE]
+>
+> See the [Authentication Setup Guide](/trader-guide/authentication) for complete authentication details.
 
 ## Step 5: Connect to Market Data Stream
 
@@ -187,19 +187,19 @@ for response in response_stream:
             print(f"  Top Offer: ${top_offer_px:.4f} x {update.offers[0].qty}")
 ```
 
-<Note>
-  **Price Representation**: All prices are `int64` values. Divide by the instrument's `price_scale` to get the decimal price.
-
-  `price_scale` varies by instrument. Get it from:
-
-  * Instrument metadata via `list_instruments` or `get_instrument_metadata`
-  * The `price_scale` field in order responses
-
-  ```python theme={null}
-  price_scale = get_instrument_price_scale(symbol)
-  decimal_price = raw_price / price_scale
-  ```
-</Note>
+> [!NOTE]
+>
+> **Price Representation**: All prices are `int64` values. Divide by the instrument's `price_scale` to get the decimal price.
+>
+> `price_scale` varies by instrument. Get it from:
+>
+> * Instrument metadata via `list_instruments` or `get_instrument_metadata`
+> * The `price_scale` field in order responses
+>
+> ```python theme={null}
+> price_scale = get_instrument_price_scale(symbol)
+> decimal_price = raw_price / price_scale
+> ```
 
 ## Common Setup Issues
 
@@ -228,19 +228,17 @@ for response in response_stream:
 
 ## Next Steps
 
-<CardGroup cols={3}>
-  <Card title="Authentication Guide" icon="key" href="/streaming-endpoints/authentication">
-    Deep dive into authentication and token management
-  </Card>
+> **[Authentication Guide](/streaming-endpoints/authentication)**
+>
+> Deep dive into authentication and token management
 
-  <Card title="Market Data Streaming" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Learn about all market data streaming features
-  </Card>
+> **[Market Data Streaming](/streaming-endpoints/market-data-stream)**
+>
+> Learn about all market data streaming features
 
-  <Card title="Order Streaming" icon="file-invoice" href="/streaming-endpoints/order-stream">
-    Subscribe to order execution updates
-  </Card>
-</CardGroup>
+> **[Order Streaming](/streaming-endpoints/order-stream)**
+>
+> Subscribe to order execution updates
 
 ## Need Help?
 

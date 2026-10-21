@@ -37,9 +37,9 @@ Polymarket Exchange provides multiple environments for testing and production:
 * **Pre-production** - UAT environment with test funds
 * **Production** - Live trading environment
 
-<Card title="Environments" icon="globe" href="/trader-guide/environments">
-  View API endpoints and configuration
-</Card>
+> **[Environments](/trader-guide/environments)**
+>
+> View API endpoints and configuration
 
 ### Rate Limits
 
@@ -48,9 +48,9 @@ API requests are subject to rate limits to ensure fair usage:
 * REST API: Request-based limits per endpoint
 * gRPC: Connection and message limits
 
-<Card title="Rate Limits" icon="gauge" href="/trader-guide/rate-limits">
-  Understand rate limiting policies
-</Card>
+> **[Rate Limits](/trader-guide/rate-limits)**
+>
+> Understand rate limiting policies
 
 ### Connection Options
 
@@ -60,21 +60,21 @@ Choose the right protocol for your use case:
 * **gRPC** - High-performance streaming for market data and order updates
 * **FIX** - Industry-standard protocol for institutional trading
 
-<Card title="Connection Options" icon="network-wired" href="/trader-guide/connection-options">
-  Compare connection protocols
-</Card>
+> **[Connection Options](/trader-guide/connection-options)**
+>
+> Compare connection protocols
 
 ### Schema
 
 Strongly-typed instrument fields for safely identifying sports and crypto price markets without parsing symbols or slugs.
 
-<Card title="Sports Schema" icon="table" href="/trader-guide/sports-schema">
-  Identify sports markets via instrument metadata
-</Card>
+> **[Sports Schema](/trader-guide/sports-schema)**
+>
+> Identify sports markets via instrument metadata
 
-<Card title="Crypto Schema" icon="bitcoin-sign" href="/trader-guide/crypto-schema">
-  Identify crypto price markets via instrument metadata
-</Card>
+> **[Crypto Schema](/trader-guide/crypto-schema)**
+>
+> Identify crypto price markets via instrument metadata
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

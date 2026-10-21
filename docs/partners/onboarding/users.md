@@ -27,9 +27,9 @@ When a Retail Participant completes KYC and is approved:
 
 There is no separate "create user" or "create account" call. See the [KYC Verification Flow](/partners/onboarding/kyc/verification-flow) for the steps, and [Partner Funding](/partners/funding/overview) *(Beta)* for how participant trading is funded.
 
-<Info>
-  **Terminology.** These docs use **Retail Participant** for the end user. In API payloads the underlying field names use `user`/`users`; treat those as the Retail Participant's trading identity. See the [Glossary](/partners/glossary).
-</Info>
+> [!NOTE]
+>
+> **Terminology.** These docs use **Retail Participant** for the end user. In API payloads the underlying field names use `user`/`users`; treat those as the Retail Participant's trading identity. See the [Glossary](/partners/glossary).
 
 ## Resolve who you can act for
 
@@ -45,15 +45,15 @@ For the account and identity **hierarchy** and entitlements model, see [Accounts
 
 In partner usage, IDs of the form `firms/your-firm/users/participant-123` are the values you place in the **`x-participant-id`** header to act on behalf of a specific Retail Participant.
 
-<Warning>
-  **`GET /v1/users` is a roster read, not your starting point.** It is account-scoped and requires an `x-participant-id` header itself, so it cannot be used to find your first participant ID.
+> [!WARNING]
+>
+> **`GET /v1/users` is a roster read, not your starting point.** It is account-scoped and requires an `x-participant-id` header itself, so it cannot be used to find your first participant ID.
+>
+> Each Retail Participant's ID is delivered to you when their KYC reaches `ACCEPT` — as `participantId` on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). That is the authoritative source; record it against your own user record as you onboard. Use `GET /v1/users` afterwards to reconcile or re-list the Retail Participants your Firm may act for.
 
-  Each Retail Participant's ID is delivered to you when their KYC reaches `ACCEPT` — as `participantId` on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). That is the authoritative source; record it against your own user record as you onboard. Use `GET /v1/users` afterwards to reconcile or re-list the Retail Participants your Firm may act for.
-</Warning>
-
-<Info>
-  Call `GET /v1/whoami` and `GET /v1/users` after authenticating and before trading, so you use the correct participant and account IDs in subsequent requests.
-</Info>
+> [!NOTE]
+>
+> Call `GET /v1/whoami` and `GET /v1/users` after authenticating and before trading, so you use the correct participant and account IDs in subsequent requests.
 
 ## Participant vs Account
 

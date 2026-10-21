@@ -6,9 +6,9 @@
 
 > The cash-movement API for deposits, withdrawals, and vendor fee collection between the partner funding account and participant accounts.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 A **transfer** moves cash between your **partner funding account** and a **participant account** under your Firm. It is the only way money enters or leaves a participant account outside of trading itself, and it exists for exactly three reasons:
 
@@ -243,23 +243,21 @@ An insufficient-funds outcome is not a gRPC error at create time: the workflow r
 
 ## Related pages
 
-<CardGroup cols={2}>
-  <Card title="Partner Funding Overview" icon="building-columns" href="/partners/funding/overview">
-    The model — parties, money flows, and directional guarantees.
-  </Card>
+> **[Partner Funding Overview](/partners/funding/overview)**
+>
+> The model — parties, money flows, and directional guarantees.
 
-  <Card title="Deposits & Withdrawals" icon="money-bill-transfer" href="/partners/funding/deposits-withdrawals">
-    Mirroring wallet allocations into buying power.
-  </Card>
+> **[Deposits & Withdrawals](/partners/funding/deposits-withdrawals)**
+>
+> Mirroring wallet allocations into buying power.
 
-  <Card title="Vendor Fees" icon="file-invoice-dollar" href="/partners/funding/vendor-fees">
-    Accrual, the daily report, and collection.
-  </Card>
+> **[Vendor Fees](/partners/funding/vendor-fees)**
+>
+> Accrual, the daily report, and collection.
 
-  <Card title="Reconciliation" icon="scale-balanced" href="/partners/reconciliation">
-    Keeping your books in sync with the ledger.
-  </Card>
-</CardGroup>
+> **[Reconciliation](/partners/reconciliation)**
+>
+> Keeping your books in sync with the ledger.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

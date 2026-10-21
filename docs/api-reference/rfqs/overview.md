@@ -101,19 +101,17 @@ RFQ orders enter the instrument's normal order book and may trade with other res
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="Combos API" icon="shuffle" href="/api-reference/combos/overview">
-    Create and read combo instruments
-  </Card>
+> **[Combos API](/api-reference/combos/overview)**
+>
+> Create and read combo instruments
 
-  <Card title="Private WebSocket" icon="bolt" href="/api-reference/websocket/private#rfq-subscriptions">
-    Receive RFQ lifecycle events and anonymous trade prints
-  </Card>
+> **[Private WebSocket](/api-reference/websocket/private#rfq-subscriptions)**
+>
+> Receive RFQ lifecycle events and anonymous trade prints
 
-  <Card title="Authentication" icon="key" href="/api-reference/authentication">
-    Sign Retail API requests
-  </Card>
-</CardGroup>
+> **[Authentication](/api-reference/authentication)**
+>
+> Sign Retail API requests
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

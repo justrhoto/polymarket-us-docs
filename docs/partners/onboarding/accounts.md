@@ -8,9 +8,9 @@
 
 The Accounts API provides trading account information for partners. Accounts are the containers for positions, balances, and order history.
 
-<Info>
-  **Accounts are created by KYC, not by a separate call.** A trading account is provisioned automatically when a Retail Participant's KYC verification is approved — there is no manual account-creation endpoint. See [Onboard Participants](/partners/onboarding/onboard-participants) for how KYC creates the Participant and Account together.
-</Info>
+> [!NOTE]
+>
+> **Accounts are created by KYC, not by a separate call.** A trading account is provisioned automatically when a Retail Participant's KYC verification is approved — there is no manual account-creation endpoint. See [Onboard Participants](/partners/onboarding/onboard-participants) for how KYC creates the Participant and Account together.
 
 ## Endpoints
 
@@ -18,9 +18,9 @@ The Accounts API provides trading account information for partners. Accounts are
 | - | - | - | - |
 | `GET` | `/v1/accounts` | List trading accounts | [List accounts ↗](/institutional/accounts/overview#endpoints) |
 
-<Note>
-  For participant **identity**, see [Participants](/partners/onboarding/users). The underlying identity endpoints are documented in the API reference: [Get who am I ↗](/institutional/accounts/overview#endpoints) (`GET /v1/whoami`) and [List users ↗](/institutional/accounts/overview#endpoints) (`GET /v1/users`).
-</Note>
+> [!NOTE]
+>
+> For participant **identity**, see [Participants](/partners/onboarding/users). The underlying identity endpoints are documented in the API reference: [Get who am I ↗](/institutional/accounts/overview#endpoints) (`GET /v1/whoami`) and [List users ↗](/institutional/accounts/overview#endpoints) (`GET /v1/users`).
 
 ## Account Hierarchy
 

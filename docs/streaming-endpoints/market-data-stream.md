@@ -8,11 +8,11 @@
 
 Subscribe to real-time market data updates including order book depth, instrument states, and trade statistics using Python and gRPC.
 
-<Info>
-  **No Participant ID Required**
-
-  This streaming endpoint only requires Auth0 JWT authentication with `read:marketdata` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access market data streams.
-</Info>
+> [!NOTE]
+>
+> **No Participant ID Required**
+>
+> This streaming endpoint only requires Auth0 JWT authentication with `read:marketdata` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access market data streams.
 
 ## Service Definition
 
@@ -35,12 +35,12 @@ service MarketDataSubscriptionAPI {
 }
 ```
 
-<Tip>
-  **When to use which method:**
-
-  * Use `CreateMarketDataSubscription` for simple subscriptions where symbols are known upfront
-  * Use `BiDirectionalStreamMarketData` when you need to dynamically add/remove symbols without reconnecting
-</Tip>
+> [!TIP]
+>
+> **When to use which method:**
+>
+> * Use `CreateMarketDataSubscription` for simple subscriptions where symbols are known upfront
+> * Use `BiDirectionalStreamMarketData` when you need to dynamically add/remove symbols without reconnecting
 
 ## Request Parameters
 
@@ -53,9 +53,9 @@ service MarketDataSubscriptionAPI {
 | `depth` | `int` | No | Number of price levels to include in order book. Default: `10` |
 | `snapshot_only` | `bool` | No | If `True`, receive only initial snapshot then close stream. If `False` (default), receive continuous updates. |
 
-<Warning>
-  **Symbol Limit**: Each gRPC stream is limited to **1000 symbols maximum**. If you need more than 1000 symbols, prefer `symbols=[]` (full universe) or one [bidirectional](#bidirectional-streaming) stream — extra `CreateMarketDataSubscription` streams count against the **20** concurrent-stream budget. Do not burst-open tens of streams. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
-</Warning>
+> [!WARNING]
+>
+> **Symbol Limit**: Each gRPC stream is limited to **1000 symbols maximum**. If you need more than 1000 symbols, prefer `symbols=[]` (full universe) or one [bidirectional](#bidirectional-streaming) stream — extra `CreateMarketDataSubscription` streams count against the **20** concurrent-stream budget. Do not burst-open tens of streams. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
 
 ### Example Request
 
@@ -90,9 +90,9 @@ if response.HasField('heartbeat'):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] Heartbeat received")
 ```
 
-<Info>
-  If you stop receiving heartbeats, the connection may be stale. Consider reconnecting.
-</Info>
+> [!NOTE]
+>
+> If you stop receiving heartbeats, the connection may be stale. Consider reconnecting.
 
 ### 2. Market Data Updates
 
@@ -123,10 +123,10 @@ if response.HasField('update'):
 | `price_scale` | `int64` | Number of decimal places for price (optional; included for wildcard subscriptions) |
 | `quantity_scale` | `int64` | Number of decimal places for quantity (optional; included for wildcard subscriptions) |
 
-<Tip>
-  **Instrument State Tracking:**
-  The `state` field in `MarketDataUpdate` is optional and should not be relied upon for tracking instrument state changes. The preferred approach is to use `ListInstruments` to get and cache the initial state for each instrument, then subscribe to the **instrument state change subscription** for real-time state updates.
-</Tip>
+> [!TIP]
+>
+> **Instrument State Tracking:**
+> The `state` field in `MarketDataUpdate` is optional and should not be relied upon for tracking instrument state changes. The preferred approach is to use `ListInstruments` to get and cache the initial state for each instrument, then subscribe to the **instrument state change subscription** for real-time state updates.
 
 ### BookEntry Structure
 
@@ -137,17 +137,17 @@ Each price level in the order book contains:
 | `px` | `int64` | **Price as integer** (divide by price\_scale) |
 | `qty` | `int64` | Aggregate quantity at this price level |
 
-<Warning>
-  **Price Representation:**
-  All prices are `int64` values. Divide by the instrument's `price_scale` to get the decimal value.
-
-  `price_scale` varies by instrument. Query instrument metadata to get the correct value.
-
-  ```python theme={null}
-  px = bid.px / price_scale # Convert from price representation
-  print(f"${px:.4f}")
-  ```
-</Warning>
+> [!WARNING]
+>
+> **Price Representation:**
+> All prices are `int64` values. Divide by the instrument's `price_scale` to get the decimal value.
+>
+> `price_scale` varies by instrument. Query instrument metadata to get the correct value.
+>
+> ```python theme={null}
+> px = bid.px / price_scale # Convert from price representation
+> print(f"${px:.4f}")
+> ```
 
 ### InstrumentStats Structure
 
@@ -170,14 +170,14 @@ Market statistics include:
 | `settlement_price_calculation_method` | `string` | Method used to calculate the settlement price. See below for values. |
 | `settlement_price_calculation_text` | `string` | Free-form text describing the outcome that determined the settlement (e.g., "Buffalo Bills win", "Kansas City Chiefs win"). |
 
-<Note>
-  Stats fields use protobuf `oneof`, so they may not always be present. Always check with `HasField()` before accessing.
-
-  ```python theme={null}
-  if update.HasField('stats') and update.stats.HasField('last_trade_px'):
-      last_px = update.stats.last_trade_px / price_scale
-  ```
-</Note>
+> [!NOTE]
+>
+> Stats fields use protobuf `oneof`, so they may not always be present. Always check with `HasField()` before accessing.
+>
+> ```python theme={null}
+> if update.HasField('stats') and update.stats.HasField('last_trade_px'):
+>     last_px = update.stats.last_trade_px / price_scale
+> ```
 
 #### Settlement Fields
 
@@ -188,9 +188,9 @@ Market statistics include:
 | `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1` | Settlement via event resolution. This is the primary method for Polymarket event markets. |
 | Other methods | Used for daily settlement of futures-style products (VWAP-based). These can be ignored for event markets. |
 
-<Tip>
-  For Polymarket event markets, `settlement_price_calculation_method` will be `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1`. If you see a different method, you can treat it as a daily mark rather than final resolution.
-</Tip>
+> [!TIP]
+>
+> For Polymarket event markets, `settlement_price_calculation_method` will be `SETTLEMENT_PRICE_CALCULATION_METHOD_EVENT_TIER_1`. If you see a different method, you can treat it as a daily mark rather than final resolution.
 
 **Example: Settled Market (YES wins)**
 
@@ -229,9 +229,9 @@ In this example, `settlement_px = 0` equals \$0.00 (NO won, Kansas City won so B
 
 ## Instrument States
 
-<Tip>
-  **Preferred approach:** Use `ListInstruments` to get and cache the initial state for each instrument, then subscribe to the instrument state change stream for ongoing state updates. The `state` field on `MarketDataUpdate` is now optional.
-</Tip>
+> [!TIP]
+>
+> **Preferred approach:** Use `ListInstruments` to get and cache the initial state for each instrument, then subscribe to the instrument state change stream for ongoing state updates. The `state` field on `MarketDataUpdate` is now optional.
 
 ### Primary State Flow
 
@@ -503,15 +503,15 @@ message KeepAliveCommand {}
 | `unsubscribe` | 2 | Remove the listed symbols from the active subscription. |
 | `keepalive` | 7 | Application-level keepalive. Server handles it as a no-op (no response, no state change). Safe to send any time after the first `SubscribeCommand`. |
 
-<Warning>
-  **ALB Idle Timeout & Keepalives**
-
-  Long-lived bidirectional streams that send no client-to-server traffic for \~1 hour will be terminated with `RST_STREAM` by the AWS Application Load Balancer (idle timeout is **3600 seconds** by default).
-
-  To keep an otherwise-quiet stream alive, send a `KeepAliveCommand` every **30–60 minutes**. The server treats it as a no-op: no response, no change to subscription state or symbol list.
-
-  This only applies to `BiDirectionalStreamMarketData`. Server-streaming RPCs like `CreateMarketDataSubscription` are not affected.
-</Warning>
+> [!WARNING]
+>
+> **ALB Idle Timeout & Keepalives**
+>
+> Long-lived bidirectional streams that send no client-to-server traffic for \~1 hour will be terminated with `RST_STREAM` by the AWS Application Load Balancer (idle timeout is **3600 seconds** by default).
+>
+> To keep an otherwise-quiet stream alive, send a `KeepAliveCommand` every **30–60 minutes**. The server treats it as a no-op: no response, no change to subscription state or symbol list.
+>
+> This only applies to `BiDirectionalStreamMarketData`. Server-streaming RPCs like `CreateMarketDataSubscription` are not affected.
 
 ### Response Messages
 
@@ -743,19 +743,17 @@ func sendKeepalives(stream polymarketv1.MarketDataSubscriptionAPI_BiDirectionalS
 
 ## Next Steps
 
-<CardGroup cols={3}>
-  <Card title="Order Streaming" icon="file-invoice" href="/streaming-endpoints/order-stream">
-    Subscribe to order execution updates
-  </Card>
+> **[Order Streaming](/streaming-endpoints/order-stream)**
+>
+> Subscribe to order execution updates
 
-  <Card title="Proto Reference" icon="book" href="/streaming-endpoints/proto-reference">
-    Detailed protocol buffer reference
-  </Card>
+> **[Proto Reference](/streaming-endpoints/proto-reference)**
+>
+> Detailed protocol buffer reference
 
-  <Card title="Error Handling" icon="triangle-exclamation" href="/streaming-endpoints/error-handling">
-    Handle errors and reconnections
-  </Card>
-</CardGroup>
+> **[Error Handling](/streaming-endpoints/error-handling)**
+>
+> Handle errors and reconnections
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

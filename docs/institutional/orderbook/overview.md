@@ -6,11 +6,11 @@
 
 > Access L2 order book snapshots and best bid/offer (BBO) data
 
-<Warning>
-  **Prefer Streaming for Production Use**
-
-  This polling API is subject to rate limits. For production applications that need continuous market data, use the [gRPC Market Data Stream](/streaming-endpoints/market-data-stream) instead. The streaming API provides real-time updates with lower latency and no rate limit concerns.
-</Warning>
+> [!WARNING]
+>
+> **Prefer Streaming for Production Use**
+>
+> This polling API is subject to rate limits. For production applications that need continuous market data, use the [gRPC Market Data Stream](/streaming-endpoints/market-data-stream) instead. The streaming API provides real-time updates with lower latency and no rate limit concerns.
 
 ## Endpoints
 
@@ -19,11 +19,11 @@
 | `GET` | `/v1/orderbook/{symbol}` | Get L2 order book snapshot |
 | `GET` | `/v1/orderbook/{symbol}/bbo` | Get best bid/offer |
 
-<Info>
-  **No Participant ID Required**
-
-  These endpoints only require Auth0 JWT authentication with `read:marketdata` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access order book data.
-</Info>
+> [!NOTE]
+>
+> **No Participant ID Required**
+>
+> These endpoints only require Auth0 JWT authentication with `read:marketdata` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access order book data.
 
 ## L2 Order Book
 
@@ -76,9 +76,9 @@ The BBO endpoint returns only the top of book - the best (highest) bid and best 
 | `state` | string | Current trading state (optional) |
 | `transactTime` | datetime | Server timestamp |
 
-<Tip>
-  **Instrument State Tracking:** The `state` field in order book and BBO responses is optional. The preferred approach is to use `ListInstruments` to get and cache the initial state, then subscribe to the instrument state change subscription for real-time state updates.
-</Tip>
+> [!TIP]
+>
+> **Instrument State Tracking:** The `state` field in order book and BBO responses is optional. The preferred approach is to use `ListInstruments` to get and cache the initial state, then subscribe to the instrument state change subscription for real-time state updates.
 
 ## Instrument States
 
@@ -133,16 +133,16 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/orderbook/tec-nfl-sbw
 | Building a trading UI | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream) |
 | Quick price check | REST BBO endpoint |
 
-<Tip>
-  **Streaming First Architecture**
-
-  For any use case requiring more than occasional snapshots, use the streaming API. It provides:
-
-  * Real-time updates as they happen
-  * No rate limiting concerns
-  * Lower latency than polling
-  * Reduced API calls and infrastructure load
-</Tip>
+> [!TIP]
+>
+> **Streaming First Architecture**
+>
+> For any use case requiring more than occasional snapshots, use the streaming API. It provides:
+>
+> * Real-time updates as they happen
+> * No rate limiting concerns
+> * Lower latency than polling
+> * Reduced API calls and infrastructure load
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

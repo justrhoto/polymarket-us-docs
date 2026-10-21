@@ -6,9 +6,9 @@
 
 > Create and manage RFQs and quotes
 
-<Info>
-  Market makers should read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
-</Info>
+> [!NOTE]
+>
+> Market makers should read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
 
 The public `polymarket.v1.RFQAPI` gRPC service creates, reads, and manages RFQs and quotes. An RFQ references the exact symbol of an open, tradable instrument, such as a [combo instrument](/institutional/combos/overview). The service also exposes the gRPC-only RFQ event stream.
 
@@ -224,9 +224,9 @@ The requester and quoter can both see both exchange order IDs. A `Quote` does no
 
 For compatibility, stream events retain their existing recipient-specific wrapper fields. The embedded `Quote` contains the durable fields above.
 
-<Warning>
-  Cursors are query-, participant-, and path-bound. Treat them as opaque and reuse them only with the same filters and authenticated participant.
-</Warning>
+> [!WARNING]
+>
+> Cursors are query-, participant-, and path-bound. Treat them as opaque and reuse them only with the same filters and authenticated participant.
 
 ### Accept a Quote
 
@@ -268,9 +268,9 @@ REST timestamps use RFC 3339; gRPC uses `google.protobuf.Timestamp`. The respons
 
 Repeat the same participant, filters, and limit on every page; change only `cursor`. Keep omitted timestamps omitted: the cursor preserves the original boundaries. Invalid limits, changed query parameters, or `start_time >= end_time` return `INVALID_ARGUMENT`. A start time before available history returns `FAILED_PRECONDITION`.
 
-<Warning>
-  Use **gRPC for pagination**. Long REST cursors can exceed the current query-string size limit and return HTTP 403.
-</Warning>
+> [!WARNING]
+>
+> Use **gRPC for pagination**. Long REST cursors can exceed the current query-string size limit and return HTTP 403.
 
 History can appear after the live event. Requery overlapping execution-time windows with a fresh cursor and deduplicate by `trade_id` to find late arrivals. See [stream recovery](/streaming-endpoints/rfq-events-stream#delivery-and-recovery).
 
@@ -300,23 +300,21 @@ Pursuant to Rule 5.3(n)(iv) of its Rulebook, Polymarket US has designated the fo
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="Combos API" icon="shuffle" href="/institutional/combos/overview">
-    Create and read combo instruments
-  </Card>
+> **[Combos API](/institutional/combos/overview)**
+>
+> Create and read combo instruments
 
-  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
-    Maker workflow and quote rules
-  </Card>
+> **[Combos/RFQ Guide](/trader-guide/combos)**
+>
+> Maker workflow and quote rules
 
-  <Card title="RFQ Events Stream" icon="bolt" href="/streaming-endpoints/rfq-events-stream">
-    Current event payloads and recovery behavior
-  </Card>
+> **[RFQ Events Stream](/streaming-endpoints/rfq-events-stream)**
+>
+> Current event payloads and recovery behavior
 
-  <Card title="Authentication" icon="key" href="/trader-guide/authentication#api-scopes">
-    OAuth metadata and required scopes
-  </Card>
-</CardGroup>
+> **[Authentication](/trader-guide/authentication#api-scopes)**
+>
+> OAuth metadata and required scopes
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

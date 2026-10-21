@@ -12,25 +12,19 @@
 
 2. **Complete identity verification** - You'll be asked to verify your identity before you can trade or access the API. Once approved, you'll see a confirmation in the app.
 
-<Frame>
-  <img src="https://polymarket-upload.s3.us-east-2.amazonaws.com/approved-to-start-trading-6d9aa7abb3.png" alt="Approved to Start Trading" style={{ maxWidth: '300px' }} />
-</Frame>
+![Approved to Start Trading](https://polymarket-upload.s3.us-east-2.amazonaws.com/approved-to-start-trading-6d9aa7abb3.png)
 
 3. **Go to the developer portal** - Visit [polymarket.us/developer](https://polymarket.us/developer) and sign in with the same method you used in the app (Apple, Google, or email).
 
-<Frame>
-  <img src="https://polymarket-upload.s3.us-east-2.amazonaws.com/developer-api-access-ae4cff5410.png" alt="Developer Portal" />
-</Frame>
+![Developer Portal](https://polymarket-upload.s3.us-east-2.amazonaws.com/developer-api-access-ae4cff5410.png)
 
 4. **Create an API key** - Click to create a new key. You'll get a **Key ID** and a **Secret Key**.
 
-<Frame>
-  <img src="https://polymarket-upload.s3.us-east-2.amazonaws.com/create-api-key-825cc3e241.png" alt="Create API Key" />
-</Frame>
+![Create API Key](https://polymarket-upload.s3.us-east-2.amazonaws.com/create-api-key-825cc3e241.png)
 
-<Warning>
-  Your secret key is shown **only once**. Copy it somewhere safe before closing the dialog.
-</Warning>
+> [!WARNING]
+>
+> Your secret key is shown **only once**. Copy it somewhere safe before closing the dialog.
 
 If you need help getting set up or need an invite code to access the app, email [support@polymarket.us](mailto:support@polymarket.us).
 
@@ -38,42 +32,40 @@ If you need help getting set up or need an invite code to access the app, email 
 
 ## Step 2: Install the SDK
 
-<CodeGroup>
-  ```bash TypeScript theme={null}
-  npm install polymarket-us
-  ```
+```bash TypeScript theme={null}
+npm install polymarket-us
+```
 
-  ```bash Python theme={null}
-  pip install polymarket-us
-  ```
-</CodeGroup>
+```bash Python theme={null}
+pip install polymarket-us
+```
 
-<Note>TypeScript requires Node.js 18+. Python requires 3.10+.</Note>
+> [!NOTE]
+>
+> TypeScript requires Node.js 18+. Python requires 3.10+.
 
 ***
 
 ## Step 3: Configure the client
 
-<CodeGroup>
-  ```typescript TypeScript theme={null}
-  import { PolymarketUS } from 'polymarket-us';
+```typescript TypeScript theme={null}
+import { PolymarketUS } from 'polymarket-us';
 
-  const client = new PolymarketUS({
-    keyId: process.env.POLYMARKET_KEY_ID,
-    secretKey: process.env.POLYMARKET_SECRET_KEY,
-  });
-  ```
+const client = new PolymarketUS({
+  keyId: process.env.POLYMARKET_KEY_ID,
+  secretKey: process.env.POLYMARKET_SECRET_KEY,
+});
+```
 
-  ```python Python theme={null}
-  import os
-  from polymarket_us import PolymarketUS
+```python Python theme={null}
+import os
+from polymarket_us import PolymarketUS
 
-  client = PolymarketUS(
-      key_id=os.environ["POLYMARKET_KEY_ID"],
-      secret_key=os.environ["POLYMARKET_SECRET_KEY"],
-  )
-  ```
-</CodeGroup>
+client = PolymarketUS(
+    key_id=os.environ["POLYMARKET_KEY_ID"],
+    secret_key=os.environ["POLYMARKET_SECRET_KEY"],
+)
+```
 
 ***
 
@@ -81,120 +73,112 @@ If you need help getting set up or need an invite code to access the app, email 
 
 No authentication required for public endpoints.
 
-<CodeGroup>
-  ```typescript TypeScript theme={null}
-  const client = new PolymarketUS();
+```typescript TypeScript theme={null}
+const client = new PolymarketUS();
 
-  const events = await client.events.list({ limit: 10, active: true });
-  const market = await client.markets.retrieveBySlug('chiefs-super-bowl');
-  const book = await client.markets.book('chiefs-super-bowl');
-  ```
+const events = await client.events.list({ limit: 10, active: true });
+const market = await client.markets.retrieveBySlug('chiefs-super-bowl');
+const book = await client.markets.book('chiefs-super-bowl');
+```
 
-  ```python Python theme={null}
-  client = PolymarketUS()
+```python Python theme={null}
+client = PolymarketUS()
 
-  events = client.events.list({"limit": 10, "active": True})
-  market = client.markets.retrieve_by_slug("chiefs-super-bowl")
-  book = client.markets.book("chiefs-super-bowl")
-  ```
-</CodeGroup>
+events = client.events.list({"limit": 10, "active": True})
+market = client.markets.retrieve_by_slug("chiefs-super-bowl")
+book = client.markets.book("chiefs-super-bowl")
+```
 
 ***
 
 ## Step 5: Place an order
 
-<CodeGroup>
-  ```typescript TypeScript theme={null}
-  const order = await client.orders.create({
-    marketSlug: 'chiefs-super-bowl',
-    intent: 'ORDER_INTENT_BUY_LONG',
-    type: 'ORDER_TYPE_LIMIT',
-    price: { value: '0.55', currency: 'USD' },
-    quantity: 100,
-    tif: 'TIME_IN_FORCE_GOOD_TILL_CANCEL',
-  });
-  ```
+```typescript TypeScript theme={null}
+const order = await client.orders.create({
+  marketSlug: 'chiefs-super-bowl',
+  intent: 'ORDER_INTENT_BUY_LONG',
+  type: 'ORDER_TYPE_LIMIT',
+  price: { value: '0.55', currency: 'USD' },
+  quantity: 100,
+  tif: 'TIME_IN_FORCE_GOOD_TILL_CANCEL',
+});
+```
 
-  ```python Python theme={null}
-  order = client.orders.create({
-      "marketSlug": "chiefs-super-bowl",
-      "intent": "ORDER_INTENT_BUY_LONG",
-      "type": "ORDER_TYPE_LIMIT",
-      "price": {"value": "0.55", "currency": "USD"},
-      "quantity": 100,
-      "tif": "TIME_IN_FORCE_GOOD_TILL_CANCEL",
-  })
-  ```
-</CodeGroup>
+```python Python theme={null}
+order = client.orders.create({
+    "marketSlug": "chiefs-super-bowl",
+    "intent": "ORDER_INTENT_BUY_LONG",
+    "type": "ORDER_TYPE_LIMIT",
+    "price": {"value": "0.55", "currency": "USD"},
+    "quantity": 100,
+    "tif": "TIME_IN_FORCE_GOOD_TILL_CANCEL",
+})
+```
 
 ***
 
 ## Check your account
 
-<CodeGroup>
-  ```typescript TypeScript theme={null}
-  const balances = await client.account.balances();
-  const positions = await client.portfolio.positions();
-  const openOrders = await client.orders.list();
-  ```
+```typescript TypeScript theme={null}
+const balances = await client.account.balances();
+const positions = await client.portfolio.positions();
+const openOrders = await client.orders.list();
+```
 
-  ```python Python theme={null}
-  balances = client.account.balances()
-  positions = client.portfolio.positions()
-  open_orders = client.orders.list()
-  ```
-</CodeGroup>
+```python Python theme={null}
+balances = client.account.balances()
+positions = client.portfolio.positions()
+open_orders = client.orders.list()
+```
 
 ***
 
 ## Error handling
 
-<CodeGroup>
-  ```typescript TypeScript theme={null}
-  import {
+```typescript TypeScript theme={null}
+import {
+  AuthenticationError,
+  BadRequestError,
+  NotFoundError,
+  RateLimitError,
+} from 'polymarket-us';
+
+try {
+  const order = await client.orders.create({ marketSlug: '...' });
+} catch (error) {
+  if (error instanceof AuthenticationError) {
+    console.error('Invalid credentials');
+  } else if (error instanceof BadRequestError) {
+    console.error('Invalid parameters:', error.message);
+  } else if (error instanceof RateLimitError) {
+    console.error('Rate limited');
+  } else if (error instanceof NotFoundError) {
+    console.error('Not found');
+  }
+}
+```
+
+```python Python theme={null}
+from polymarket_us import (
     AuthenticationError,
     BadRequestError,
     NotFoundError,
     RateLimitError,
-  } from 'polymarket-us';
+    APITimeoutError,
+    APIConnectionError,
+)
 
-  try {
-    const order = await client.orders.create({ marketSlug: '...' });
-  } catch (error) {
-    if (error instanceof AuthenticationError) {
-      console.error('Invalid credentials');
-    } else if (error instanceof BadRequestError) {
-      console.error('Invalid parameters:', error.message);
-    } else if (error instanceof RateLimitError) {
-      console.error('Rate limited');
-    } else if (error instanceof NotFoundError) {
-      console.error('Not found');
-    }
-  }
-  ```
-
-  ```python Python theme={null}
-  from polymarket_us import (
-      AuthenticationError,
-      BadRequestError,
-      NotFoundError,
-      RateLimitError,
-      APITimeoutError,
-      APIConnectionError,
-  )
-
-  try:
-      order = client.orders.create({"marketSlug": "..."})
-  except AuthenticationError as e:
-      print(f"Invalid credentials: {e.message}")
-  except BadRequestError as e:
-      print(f"Invalid parameters: {e.message}")
-  except RateLimitError as e:
-      print(f"Rate limited: {e.message}")
-  except NotFoundError as e:
-      print(f"Not found: {e.message}")
-  ```
-</CodeGroup>
+try:
+    order = client.orders.create({"marketSlug": "..."})
+except AuthenticationError as e:
+    print(f"Invalid credentials: {e.message}")
+except BadRequestError as e:
+    print(f"Invalid parameters: {e.message}")
+except RateLimitError as e:
+    print(f"Rate limited: {e.message}")
+except NotFoundError as e:
+    print(f"Not found: {e.message}")
+```
 
 | Error | Description |
 | - | - |
@@ -209,23 +193,21 @@ No authentication required for public endpoints.
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="TypeScript SDK" icon="js" href="/api-reference/sdks/typescript/quickstart">
-    Full SDK reference for TypeScript.
-  </Card>
+> **[TypeScript SDK](/api-reference/sdks/typescript/quickstart)**
+>
+> Full SDK reference for TypeScript.
 
-  <Card title="Python SDK" icon="python" href="/api-reference/sdks/python/quickstart">
-    Full SDK reference for Python.
-  </Card>
+> **[Python SDK](/api-reference/sdks/python/quickstart)**
+>
+> Full SDK reference for Python.
 
-  <Card title="API Reference" icon="code" href="/api-reference">
-    Explore all REST endpoints.
-  </Card>
+> **[API Reference](/api-reference)**
+>
+> Explore all REST endpoints.
 
-  <Card title="WebSockets" icon="bolt" href="/streaming-endpoints">
-    Stream live market data.
-  </Card>
-</CardGroup>
+> **[WebSockets](/streaming-endpoints)**
+>
+> Stream live market data.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

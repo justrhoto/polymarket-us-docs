@@ -24,31 +24,29 @@ Here's how card, bank, and wire deposits compare:
 | Bank Transfer (ACH) | \$50,000 | 3–4 business days | Medium deposits |
 | Wire Transfer | \$5,000 minimum, no max | 1 business day | Large deposits |
 
-<Note>
-  Deposits other than wire transfers may be credited with instant buying power while the deposit is processing. Withdrawals are available once the deposit has fully cleared.
-</Note>
+> [!NOTE]
+>
+> Deposits other than wire transfers may be credited with instant buying power while the deposit is processing. Withdrawals are available once the deposit has fully cleared.
 
 ***
 
 ## How to Deposit
 
-<Steps>
-  <Step title="Open Portfolio">
-    From the home screen, tap the **Portfolio** tab at the bottom of the screen.
-  </Step>
+**1. Open Portfolio**
 
-  <Step title="Tap Deposit">
-    Tap **Deposit** on your Portfolio page. If you haven't made a deposit yet, your Portfolio page lists deposit methods instead; tap one to start.
-  </Step>
+From the home screen, tap the **Portfolio** tab at the bottom of the screen.
 
-  <Step title="Choose funding method">
-    Tap **Pay with** (or **Add payment method** if you haven't added one yet), then choose a saved payment method or add a new one, such as **Add Card**, **Add bank**, or **Wire transfer**.
-  </Step>
-</Steps>
+**2. Tap Deposit**
 
-<Note>
-  All deposits must come from accounts in **your own name** and may be subject to verification checks.
-</Note>
+Tap **Deposit** on your Portfolio page. If you haven't made a deposit yet, your Portfolio page lists deposit methods instead; tap one to start.
+
+**3. Choose funding method**
+
+Tap **Pay with** (or **Add payment method** if you haven't added one yet), then choose a saved payment method or add a new one, such as **Add Card**, **Add bank**, or **Wire transfer**.
+
+> [!NOTE]
+>
+> All deposits must come from accounts in **your own name** and may be subject to verification checks.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

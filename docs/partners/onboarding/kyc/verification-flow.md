@@ -6,15 +6,15 @@
 
 > Submit a participant for KYC and handle each of the four outcomes: instant approval, document verification, manual review, and rejection.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 `POST /v1/kyc/start` is the primary endpoint for onboarding. You submit the participant's identity data (optionally with a Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) `session_token`), and the response tells you which of the [four outcomes](/partners/onboarding/kyc/overview#the-four-outcomes) applies.
 
-<Note>
-  Every action on this page is also available over gRPC with identical fields and semantics — see [Using gRPC](#using-grpc) and the [transport mapping](/partners/onboarding/kyc/overview#rest-and-grpc). To reduce form friction, the optional [Prefill Flow](/partners/onboarding/kyc/prefill-flow) can pre-populate most of the identity fields before you submit.
-</Note>
+> [!NOTE]
+>
+> Every action on this page is also available over gRPC with identical fields and semantics — see [Using gRPC](#using-grpc) and the [transport mapping](/partners/onboarding/kyc/overview#rest-and-grpc). To reduce form friction, the optional [Prefill Flow](/partners/onboarding/kyc/prefill-flow) can pre-populate most of the identity fields before you submit.
 
 ## Start verification
 
@@ -92,17 +92,17 @@ The response's `status` object carries `decision`, `status`, `subStatus`, and `e
 | `RESUBMIT` | No | Participant must resubmit documents |
 | `REJECT` | No | **Rejection** — no account created |
 
-<Warning>
-  **Treat `decision` / `status` / `subStatus` as informational, not control flow.** These values are passed through from the verification provider and the provider may emit values beyond the set above. Key your logic off the **`docv` presence** on the start and [status](#resuming-an-interrupted-docv-session) responses, and off the **[webhook](/partners/onboarding/kyc/webhooks) `event_type` / `status`** (`kyc.approved` / `kyc.rejected`) for the terminal outcome.
-</Warning>
+> [!WARNING]
+>
+> **Treat `decision` / `status` / `subStatus` as informational, not control flow.** These values are passed through from the verification provider and the provider may emit values beyond the set above. Key your logic off the **`docv` presence** on the start and [status](#resuming-an-interrupted-docv-session) responses, and off the **[webhook](/partners/onboarding/kyc/webhooks) `event_type` / `status`** (`kyc.approved` / `kyc.rejected`) for the terminal outcome.
 
 ## Approval
 
 The most common path. Note that **approval is asynchronous even when the decision is instant**: a successful `POST /v1/kyc/start` may return a **non-terminal status** while backend account provisioning completes in the background. `participantId` is **often empty on this response** — you learn the final values from the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) and from a later [`GET /v1/kyc/status`](#check-status) read.
 
-<Note>
-  You send `snake_case`, but REST responses come back in `camelCase` (protobuf JSON naming) — e.g. `externalId`, `participantId`. See [Field naming](/partners/onboarding/kyc/overview#field-naming).
-</Note>
+> [!NOTE]
+>
+> You send `snake_case`, but REST responses come back in `camelCase` (protobuf JSON naming) — e.g. `externalId`, `participantId`. See [Field naming](/partners/onboarding/kyc/overview#field-naming).
 
 ```json theme={null}
 {
@@ -148,17 +148,17 @@ Once provisioning completes, `GET /v1/kyc/status` (and the webhook) return the e
 
 `provisionedAccount` is the fully qualified DCM account name. Its account identifier is opaque and cannot be derived from participant or user data.
 
-<Info>
-  **Automatic provisioning.** On approval, Polymarket US automatically creates the participant's trading identity and account — there is no separate account-creation step (see [Onboard Participants](/partners/onboarding/onboard-participants)). Because provisioning is asynchronous, **wait for the webhook (or a populated `participantId` from status) before enabling trading** rather than assuming the start response carries it.
-</Info>
+> [!NOTE]
+>
+> **Automatic provisioning.** On approval, Polymarket US automatically creates the participant's trading identity and account — there is no separate account-creation step (see [Onboard Participants](/partners/onboarding/onboard-participants)). Because provisioning is asynchronous, **wait for the webhook (or a populated `participantId` from status) before enabling trading** rather than assuming the start response carries it.
 
-<Note>
-  **Persist the account mapping.** At approval time, store the `externalId` → `provisionedAccount` mapping. `provisionedAccount` exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream); exact string matching is the only way to attribute those stream entries to a user.
-</Note>
+> [!NOTE]
+>
+> **Persist the account mapping.** At approval time, store the `externalId` → `provisionedAccount` mapping. `provisionedAccount` exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream); exact string matching is the only way to attribute those stream entries to a user.
 
-<Note>
-  **Which field identifies the participant when you trade?** Use `participantId` (the webhook calls the same value `provisioned_participant`) as the [`x-participant-id`](/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header — that is *who* the order is for. `provisionedAccount` identifies the participant's balance-ledger account. Your `externalId` is **your** reference only and is never sent to identify the participant. See [Using these identifiers to trade](/partners/onboarding/kyc/webhooks#using-these-identifiers-to-trade).
-</Note>
+> [!NOTE]
+>
+> **Which field identifies the participant when you trade?** Use `participantId` (the webhook calls the same value `provisioned_participant`) as the [`x-participant-id`](/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header — that is *who* the order is for. `provisionedAccount` identifies the participant's balance-ledger account. Your `externalId` is **your** reference only and is never sent to identify the participant. See [Using these identifiers to trade](/partners/onboarding/kyc/webhooks#using-these-identifiers-to-trade).
 
 ## Document verification (DocV)
 
@@ -199,9 +199,9 @@ When Socure can't verify from the submitted data alone and the evaluation is Doc
 
 You can direct the participant three ways — a **web URL**, a **QR code** for desktop→mobile handoff, or the **native Socure SDK**. Document capture is fully handled by Socure's UI; you don't build capture logic yourself.
 
-<Warning>
-  The SDK `onSuccess` callback (or completing the web upload) only means the participant **submitted** documents — not that they were **approved**. After submission, await the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or poll `GET /v1/kyc/status`.
-</Warning>
+> [!WARNING]
+>
+> The SDK `onSuccess` callback (or completing the web upload) only means the participant **submitted** documents — not that they were **approved**. After submission, await the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or poll `GET /v1/kyc/status`.
 
 After the participant completes DocV, Socure notifies Polymarket US, which provisions the account (on approval) and sends you the final-decision webhook.
 
@@ -257,9 +257,9 @@ Partner-relevant `status.status` values:
 | `ON_HOLD` | Non-terminal provider status (for example, an instant approval while provisioning completes, or a document-upload step) |
 | `CLOSED` | Terminal — check `decision` |
 
-<Note>
-  Values are passed through from the verification provider and may extend beyond this set. Use populated provisioning identifiers (and the [webhook](/partners/onboarding/kyc/webhooks)) as your signal that the participant is ready to trade — not a specific `status` string.
-</Note>
+> [!NOTE]
+>
+> Values are passed through from the verification provider and may extend beyond this set. Use populated provisioning identifiers (and the [webhook](/partners/onboarding/kyc/webhooks)) as your signal that the participant is ready to trade — not a specific `status` string.
 
 ### Resuming an interrupted DocV session
 
@@ -289,9 +289,9 @@ The fields are identical to the start response — including `sdkKey`, which is 
 
 `docv` is returned **only while a capture step is genuinely outstanding**. It is absent once the participant finishes uploading, absent on terminal evaluations, and absent on every evaluation that never needed DocV — including the instant-approval `ON_HOLD` shown under [Approval](#approval), which is a *provisioning* hold rather than a document hold. So `docv` presence, not `status.status`, is what tells you a participant still owes documents.
 
-<Warning>
-  **The capture URL and transaction token are credentials.** Deliver them only to the participant who owns the evaluation; never log them, cache them in a shared store, or expose them on an endpoint another user can reach.
-</Warning>
+> [!WARNING]
+>
+> **The capture URL and transaction token are credentials.** Deliver them only to the participant who owns the evaluation; never log them, cache them in a shared store, or expose them on an endpoint another user can reach.
 
 ## Error handling & polling
 
@@ -305,9 +305,9 @@ The fields are identical to the start response — including `sdkKey`, which is 
 | 429 | — | Throttled at the edge before reaching the API | Retry with backoff (honor `Retry-After`) |
 | 500 | INTERNAL | Gateway error | Retry with exponential backoff |
 
-<Info>
-  **`external_id` is idempotent.** Re-submitting `POST /v1/kyc/start` for a participant who already passed KYC returns `409 ALREADY_EXISTS`. Handle it by fetching the existing status rather than treating it as an error.
-</Info>
+> [!NOTE]
+>
+> **`external_id` is idempotent.** Re-submitting `POST /v1/kyc/start` for a participant who already passed KYC returns `409 ALREADY_EXISTS`. Handle it by fetching the existing status rather than treating it as an error.
 
 **Prefer [webhooks](/partners/onboarding/kyc/webhooks) over polling.** As a fallback, poll `GET /v1/kyc/status` every 5–10 seconds for up to 5 minutes after DocV submission. For manual-review cases, poll on a longer cadence (e.g. every 30 minutes for up to 2 business days) and notify the participant asynchronously.
 
@@ -398,15 +398,13 @@ Use these placeholder agreement values in sandbox (the onboarding team provides 
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Webhooks" icon="bell" href="/partners/onboarding/kyc/webhooks">
-    Receive the async approval/rejection notifications.
-  </Card>
+> **[Webhooks](/partners/onboarding/kyc/webhooks)**
+>
+> Receive the async approval/rejection notifications.
 
-  <Card title="Digital Intelligence" icon="shield-halved" href="/partners/onboarding/kyc/digital-intelligence">
-    Lower your REVIEW rate with the `session_token`.
-  </Card>
-</CardGroup>
+> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence)**
+>
+> Lower your REVIEW rate with the `session_token`.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

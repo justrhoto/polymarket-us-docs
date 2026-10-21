@@ -26,17 +26,17 @@
 
 See [Sports Reference Data](/api-reference/refdata/sports) for detailed documentation.
 
-<Info>
-  **No Participant ID Required**
+> [!NOTE]
+>
+> **No Participant ID Required**
+>
+> These endpoints only require Auth0 JWT authentication with `read:instruments` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access reference data.
 
-  These endpoints only require Auth0 JWT authentication with `read:instruments` scope. You do not need to provide the `x-participant-id` header or complete KYC onboarding to access reference data.
-</Info>
-
-<Info>
-  **No GET endpoint for single instrument**
-
-  To get a single instrument, use `POST /v1/refdata/instruments` with `{"symbols": ["SYMBOL-NAME"]}` in the body.
-</Info>
+> [!NOTE]
+>
+> **No GET endpoint for single instrument**
+>
+> To get a single instrument, use `POST /v1/refdata/instruments` with `{"symbols": ["SYMBOL-NAME"]}` in the body.
 
 ***
 
@@ -62,15 +62,15 @@ The `/v1/refdata/instruments` endpoint supports configurable query parameters to
 | `endTimeGte` | string | Instruments expiring on or after date |
 | `endTimeLte` | string | Instruments expiring on or before date |
 
-<Info>
-  All parameter names accept both camelCase and snake\_case (e.g., `eventSeries` and `event_series` are equivalent). This is standard protobuf JSON serialization behavior.
-</Info>
+> [!NOTE]
+>
+> All parameter names accept both camelCase and snake\_case (e.g., `eventSeries` and `event_series` are equivalent). This is standard protobuf JSON serialization behavior.
 
-<Warning>
-  **Protobuf Enum Caution**
-
-  The `states` and `tradableFilter` parameters use protobuf enums. Unrecognized values (typos, made-up states, etc.) **silently map to the default enum value** and return misleading results - they do not error or return empty. Only use the exact values documented here.
-</Warning>
+> [!WARNING]
+>
+> **Protobuf Enum Caution**
+>
+> The `states` and `tradableFilter` parameters use protobuf enums. Unrecognized values (typos, made-up states, etc.) **silently map to the default enum value** and return misleading results - they do not error or return empty. Only use the exact values documented here.
 
 ### Response Fields
 
@@ -84,69 +84,67 @@ The `/v1/refdata/instruments` endpoint supports configurable query parameters to
 
 Use `pageSize` and `pageToken` to paginate through large result sets.
 
-<CodeGroup>
-  ```bash cURL theme={null}
-  # First page
-  curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments" \
-    -H "Authorization: Bearer $TOKEN" \
-    -H "Content-Type: application/json" \
-    -d '{"pageSize": 100}'
+```bash cURL theme={null}
+# First page
+curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"pageSize": 100}'
 
-  # Next page (use nextPageToken from previous response)
-  curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments" \
-    -H "Authorization: Bearer $TOKEN" \
-    -H "Content-Type: application/json" \
-    -d '{"pageSize": 100, "pageToken": "eyJvIjoxMDB9"}'
-  ```
+# Next page (use nextPageToken from previous response)
+curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"pageSize": 100, "pageToken": "eyJvIjoxMDB9"}'
+```
 
-  ```python Python theme={null}
-  page_token = None
-  all_instruments = []
+```python Python theme={null}
+page_token = None
+all_instruments = []
 
-  while True:
-      body = {"pageSize": 100}
-      if page_token:
-          body["pageToken"] = page_token
+while True:
+    body = {"pageSize": 100}
+    if page_token:
+        body["pageToken"] = page_token
 
-      response = requests.post(
-          "https://api.preprod.polymarketexchange.com/v1/refdata/instruments",
-          headers={"Authorization": f"Bearer {token}"},
-          json=body
-      )
-      data = response.json()
-      all_instruments.extend(data["instruments"])
+    response = requests.post(
+        "https://api.preprod.polymarketexchange.com/v1/refdata/instruments",
+        headers={"Authorization": f"Bearer {token}"},
+        json=body
+    )
+    data = response.json()
+    all_instruments.extend(data["instruments"])
 
-      if data.get("eof", False):
-          break
-      page_token = data.get("nextPageToken")
-      if not page_token:
-          break
+    if data.get("eof", False):
+        break
+    page_token = data.get("nextPageToken")
+    if not page_token:
+        break
 
-  print(f"Total instruments: {len(all_instruments)}")
-  ```
+print(f"Total instruments: {len(all_instruments)}")
+```
 
-  ```go Go theme={null}
-  var allInstruments []Instrument
-  pageToken := ""
+```go Go theme={null}
+var allInstruments []Instrument
+pageToken := ""
 
-  for {
-      resp, err := client.ListInstrumentsWithPagination(rest.ListInstrumentsRequest{
-          PageSize:  100,
-          PageToken: pageToken,
-      })
-      if err != nil {
-          return err
-      }
+for {
+    resp, err := client.ListInstrumentsWithPagination(rest.ListInstrumentsRequest{
+        PageSize:  100,
+        PageToken: pageToken,
+    })
+    if err != nil {
+        return err
+    }
 
-      allInstruments = append(allInstruments, resp.Instruments...)
+    allInstruments = append(allInstruments, resp.Instruments...)
 
-      if resp.Eof || resp.NextPageToken == "" {
-          break
-      }
-      pageToken = resp.NextPageToken
-  }
-  ```
-</CodeGroup>
+    if resp.Eof || resp.NextPageToken == "" {
+        break
+    }
+    pageToken = resp.NextPageToken
+}
+```
 
 ### Filtering by State
 
@@ -268,9 +266,9 @@ Supported columns:
 | `clearing_house` | e.g., `'QCC'` |
 | `product_id` | Product identifier |
 
-<Warning>
-  Do **not** use `instrument_product`, `outcome_type`, or `event_subcategory` in `whereClause` - these cause HTTP 500 errors. The column `event_id` is accepted but returns 0 results for known values.
-</Warning>
+> [!WARNING]
+>
+> Do **not** use `instrument_product`, `outcome_type`, or `event_subcategory` in `whereClause` - these cause HTTP 500 errors. The column `event_id` is accepted but returns 0 results for known values.
 
 **Option B: `fieldFilters`** - Structured, type-safe filters:
 
@@ -342,13 +340,13 @@ Each instrument includes:
 | `createTime` | string (Timestamp) | Instrument creation time (RFC 3339) |
 | `updateTime` | string (Timestamp) | Last update time (RFC 3339) |
 
-<Warning>
-  **Integer Fields Encoded as Strings in JSON**
-
-  Fields typed as `int64` in the protocol buffer definition (such as `minimumTradeQty`, `priceScale`, `fractionalQtyScale`, `priceLimit.low`, `priceLimit.high`) are serialized as **strings** in JSON responses per the proto3 JSON specification. Parse these values as numbers in your client code.
-
-  For example, `"priceScale": "100"` is the string `"100"`, not the number `100`.
-</Warning>
+> [!WARNING]
+>
+> **Integer Fields Encoded as Strings in JSON**
+>
+> Fields typed as `int64` in the protocol buffer definition (such as `minimumTradeQty`, `priceScale`, `fractionalQtyScale`, `priceLimit.low`, `priceLimit.high`) are serialized as **strings** in JSON responses per the proto3 JSON specification. Parse these values as numbers in your client code.
+>
+> For example, `"priceScale": "100"` is the string `"100"`, not the number `100`.
 
 ## Instrument States
 
@@ -385,11 +383,11 @@ decimal_price = int_price / instrument.price_scale
 # Example: 50 / 100 = $0.50
 ```
 
-<Tip>
-  **Cache Reference Data**
-
-  Instrument metadata changes infrequently. Cache reference data locally and refresh periodically (e.g., daily or on startup) rather than fetching for every request.
-</Tip>
+> [!TIP]
+>
+> **Cache Reference Data**
+>
+> Instrument metadata changes infrequently. Cache reference data locally and refresh periodically (e.g., daily or on startup) rather than fetching for every request.
 
 ## Usage Notes
 

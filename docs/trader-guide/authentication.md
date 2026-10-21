@@ -8,9 +8,9 @@
 
 The Polymarket Exchange API uses **Private Key JWT** authentication with RSA keys. You sign a JWT with your RSA private key and exchange it for an access token.
 
-<Info>
-  Complete [Onboarding](/trader-guide/onboarding) first to generate your keys and receive your Client ID.
-</Info>
+> [!NOTE]
+>
+> Complete [Onboarding](/trader-guide/onboarding) first to generate your keys and receive your Client ID.
 
 ## Environments
 
@@ -19,13 +19,13 @@ The Polymarket Exchange API uses **Private Key JWT** authentication with RSA key
 | Pre-production | `pmx-preprod.us.auth0.com` | `api.preprod.polymarketexchange.com` |
 | Production | `pmx-prod.us.auth0.com` | `api.prod.polymarketexchange.com` |
 
-<Note>
-  Use `https://[API Domain]` for both the JWT audience claim and API base URL.
-</Note>
+> [!NOTE]
+>
+> Use `https://[API Domain]` for both the JWT audience claim and API base URL.
 
-<Info>
-  Each environment requires separate onboarding. Your pre-production credentials will not work in production.
-</Info>
+> [!NOTE]
+>
+> Each environment requires separate onboarding. Your pre-production credentials will not work in production.
 
 ## How It Works
 
@@ -110,9 +110,9 @@ curl --request POST \
 }
 ```
 
-<Info>
-  `expires_in` is in seconds. 86400 is 24 hours. Cache the access token and reuse it until close to expiry. Keep one cache per process, shared across threads. Do not request a new token per API call.
-</Info>
+> [!NOTE]
+>
+> `expires_in` is in seconds. 86400 is 24 hours. Cache the access token and reuse it until close to expiry. Keep one cache per process, shared across threads. Do not request a new token per API call.
 
 ## Complete Python Example
 
@@ -290,9 +290,9 @@ metadata = [
 response = stub.SomeMethod(request, metadata=metadata)
 ```
 
-<Note>
-  Verify your token scopes and ensure `x-participant-id` is included for account-scoped endpoints. Send the participant ID exactly as it was given to you — from onboarding for your own users, or as `participantId` on KYC approval for an end user. Don't assemble it by hand from another response. You will have one participant firm but can have multiple users; see [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id).
-</Note>
+> [!NOTE]
+>
+> Verify your token scopes and ensure `x-participant-id` is included for account-scoped endpoints. Send the participant ID exactly as it was given to you — from onboarding for your own users, or as `participantId` on KYC approval for an end user. Don't assemble it by hand from another response. You will have one participant firm but can have multiple users; see [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id).
 
 ## Key Rotation
 
@@ -357,9 +357,9 @@ Your application is granted specific **scopes** that control which API endpoints
 | `read:funding` | View funding sources and transactions |
 | `write:funding` | Update funding, create deposits and withdrawals |
 
-<Note>
-  **Strict scope enforcement.** Calls that are missing a required scope fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC) and the message `permission denied: missing required scope <scope>`. Balance ledger endpoints use `read:positions` (not `read:funding`) to stay consistent with the existing balance-query endpoints (`GetAccountBalance`, `ListAccountBalances`).
-</Note>
+> [!NOTE]
+>
+> **Strict scope enforcement.** Calls that are missing a required scope fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC) and the message `permission denied: missing required scope <scope>`. Balance ledger endpoints use `read:positions` (not `read:funding`) to stay consistent with the existing balance-query endpoints (`GetAccountBalance`, `ListAccountBalances`).
 
 ### Scope Requirements by Endpoint
 
@@ -406,13 +406,13 @@ Your application is granted specific **scopes** that control which API endpoints
 | `/v1/checkout/deposits` | POST | `write:funding` |
 | `/v1/health` | GET | *(no auth required)* |
 
-<Note>
-  **gRPC streams (`BiDirectionalStreamMarketData`, `CreateMarketDataSubscription`, `CreateBalanceLedgerSubscription`, `StreamRFQEvents`) run on a separate ALB** (`grpc-api.{env}.polymarketexchange.com:443`) that bypasses the API Gateway and its 30-second idle timeout. Scope validation for these streams happens at the application layer rather than at the load balancer, but the resulting `PERMISSION_DENIED` behavior is identical to REST endpoints.
-</Note>
+> [!NOTE]
+>
+> **gRPC streams (`BiDirectionalStreamMarketData`, `CreateMarketDataSubscription`, `CreateBalanceLedgerSubscription`, `StreamRFQEvents`) run on a separate ALB** (`grpc-api.{env}.polymarketexchange.com:443`) that bypasses the API Gateway and its 30-second idle timeout. Scope validation for these streams happens at the application layer rather than at the load balancer, but the resulting `PERMISSION_DENIED` behavior is identical to REST endpoints.
 
-<Warning>
-  **`/v1/incentives/earnings` is currently disabled in `preprod`** and returns a route-not-found error there. The endpoint is live in `prod`. Earnings flow shape can still be validated against the [OpenAPI schema](/institutional/oapi-schemas/incentives-schema.json) and the [incentives overview](/institutional/incentives/overview).
-</Warning>
+> [!WARNING]
+>
+> **`/v1/incentives/earnings` is currently disabled in `preprod`** and returns a route-not-found error there. The endpoint is live in `prod`. Earnings flow shape can still be validated against the [OpenAPI schema](/institutional/oapi-schemas/incentives-schema.json) and the [incentives overview](/institutional/incentives/overview).
 
 ### Permission Denied Response
 
@@ -448,9 +448,9 @@ claims = json.loads(base64.urlsafe_b64decode(payload))
 print("Granted scopes:", claims.get("scope", ""))
 ```
 
-<Info>
-  If you receive a `403 Forbidden` error, check that your application has been granted the required scope for that endpoint. Contact support to request additional scopes.
-</Info>
+> [!NOTE]
+>
+> If you receive a `403 Forbidden` error, check that your application has been granted the required scope for that endpoint. Contact support to request additional scopes.
 
 ***
 

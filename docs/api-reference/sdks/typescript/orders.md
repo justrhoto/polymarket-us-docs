@@ -6,7 +6,9 @@
 
 > Create, cancel, and manage orders
 
-<Note>Requires authentication.</Note>
+> [!NOTE]
+>
+> Requires authentication.
 
 The Orders resource provides order entry and management capabilities for trading on markets.
 
@@ -181,9 +183,9 @@ Orders progress through these states:
 | `ORDER_STATE_REJECTED` | Rejected by exchange |
 | `ORDER_STATE_EXPIRED` | Expired (GTD orders) |
 
-<Tip>
-  For real-time order updates, use the [WebSocket](/api-reference/sdks/typescript/websocket) with `SUBSCRIPTION_TYPE_ORDER` instead of polling.
-</Tip>
+> [!TIP]
+>
+> For real-time order updates, use the [WebSocket](/api-reference/sdks/typescript/websocket) with `SUBSCRIPTION_TYPE_ORDER` instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

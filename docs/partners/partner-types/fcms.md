@@ -8,9 +8,9 @@
 
 ## Overview
 
-<Card title="FCM Participant and Clearing Member Agreement" icon="file-contract" href="https://drive.google.com/uc?export=download&id=1-F_KrpgofMrS-OqcBmV_hw5iaN9GUqZR">
-  Download the FCM Participant and Clearing Member Agreement for Polymarket Exchange and Polymarket Clearing
-</Card>
+> **[FCM Participant and Clearing Member Agreement](https://drive.google.com/uc?export=download\&id=1-F_KrpgofMrS-OqcBmV_hw5iaN9GUqZR)**
+>
+> Download the FCM Participant and Clearing Member Agreement for Polymarket Exchange and Polymarket Clearing
 
 Polymarket US partners with licensed Futures Commission Merchants (FCMs) to provide customers access to prediction markets on our platform; it maintains comprehensive compliance and operational standards for them to that end. All FCM records must be maintained for the periods specified by CFTC regulations and be readily accessible for examination. To learn more about becoming an FCM with Polymarket US, please contact **[institutional@polymarket.us](mailto:institutional@polymarket.us)**
 

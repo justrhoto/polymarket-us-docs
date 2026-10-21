@@ -8,27 +8,25 @@
 
 gRPC streams on Polymarket US are **long-lived connections**. Open the stream, keep it open, and apply every message. A reconnect is for a dropped connection, not a polling loop.
 
-<Warning>
-  **A short deadline on Drop Copy is not a reconnect strategy.**
+> [!WARNING]
+>
+> **A short deadline on Drop Copy is not a reconnect strategy.**
+>
+> Opening `CreateDropCopySubscription` every few seconds and cancelling it a few seconds later never catches up. Each reconnect starts a replay from your last `resume_token`. If you cancel before that replay finishes, the next connect starts the same replay again.
+>
+> Do not put a 5–10 second deadline on a streaming RPC. Do not open one Drop Copy stream per order. The request has no order id.
 
-  Opening `CreateDropCopySubscription` every few seconds and cancelling it a few seconds later never catches up. Each reconnect starts a replay from your last `resume_token`. If you cancel before that replay finishes, the next connect starts the same replay again.
+> **One Drop Copy**
+>
+> Empty `symbols` is the whole firm. One leader-elected consumer per environment.
 
-  Do not put a 5–10 second deadline on a streaming RPC. Do not open one Drop Copy stream per order. The request has no order id.
-</Warning>
+> **Commit, then resume**
+>
+> Persist `resume_token` only after every execution in that batch is durable. Dedup on `execution.id`.
 
-<CardGroup cols={3}>
-  <Card title="One Drop Copy" icon="copy">
-    Empty `symbols` is the whole firm. One leader-elected consumer per environment.
-  </Card>
-
-  <Card title="Commit, then resume" icon="floppy-disk">
-    Persist `resume_token` only after every execution in that batch is durable. Dedup on `execution.id`.
-  </Card>
-
-  <Card title="20 streams total" icon="layer-group">
-    The 20 concurrent-stream budget is pooled across **all** gRPC subscriptions, not 20 per RPC.
-  </Card>
-</CardGroup>
+> **20 streams total**
+>
+> The 20 concurrent-stream budget is pooled across **all** gRPC subscriptions, not 20 per RPC.
 
 ## How many streams
 
@@ -46,9 +44,9 @@ gRPC streams on Polymarket US are **long-lived connections**. Open the stream, k
 
 Full numbers: [Rate Limits](/trader-guide/rate-limits#grpc-streaming).
 
-<Tip>
-  Need market data on more than 1000 symbols? Do **not** open 80 streams. Use `symbols=[]` for the full book, or one [bidirectional market-data](/streaming-endpoints/market-data-stream) stream and add symbols there. Stay inside the **20** concurrent-stream budget for Drop Copy, orders, ledger, RFQ, and market data **together**.
-</Tip>
+> [!TIP]
+>
+> Need market data on more than 1000 symbols? Do **not** open 80 streams. Use `symbols=[]` for the full book, or one [bidirectional market-data](/streaming-endpoints/market-data-stream) stream and add symbols there. Stay inside the **20** concurrent-stream budget for Drop Copy, orders, ledger, RFQ, and market data **together**.
 
 ## Snapshot vs resume
 
@@ -78,21 +76,19 @@ flowchart TD
   G --> H[Persist token after each applied batch]
 ```
 
-<AccordionGroup>
-  <Accordion title="What goes wrong">
-    A behind `resume_token` is normal after a restart. The server replays from that point up to live. Replay can take longer than a few seconds.
+> **What goes wrong**
+>
+> A behind `resume_token` is normal after a restart. The server replays from that point up to live. Replay can take longer than a few seconds.
+>
+> If the client sets a short RPC deadline, or a 10-second “no message means dead” timer that fires during replay, it cancels the stream. The next connect uses the same behind token. Replay starts over. You never reach live, and the exchange keeps replaying.
 
-    If the client sets a short RPC deadline, or a 10-second “no message means dead” timer that fires during replay, it cancels the stream. The next connect uses the same behind token. Replay starts over. You never reach live, and the exchange keeps replaying.
-  </Accordion>
-
-  <Accordion title="What to do instead">
-    1. Open **one** Drop Copy stream with `symbols=[]`.
-    2. Do **not** set a per-RPC timeout of a few seconds.
-    3. Apply each batch, then persist `response.resume_token`.
-    4. On `UNAVAILABLE` or a real disconnect, back off and reconnect with that token.
-    5. Treat `CANCELLED` you caused (process restart, deadline) as your bug, not a signal to hammer reconnect.
-  </Accordion>
-</AccordionGroup>
+> **What to do instead**
+>
+> 1. Open **one** Drop Copy stream with `symbols=[]`.
+> 2. Do **not** set a per-RPC timeout of a few seconds.
+> 3. Apply each batch, then persist `response.resume_token`.
+> 4. On `UNAVAILABLE` or a real disconnect, back off and reconnect with that token.
+> 5. Treat `CANCELLED` you caused (process restart, deadline) as your bug, not a signal to hammer reconnect.
 
 ## Knowing you are caught up
 
@@ -106,47 +102,45 @@ The stream sends no explicit caught-up message. Use this heuristic:
 
 `transact_time` is ordered per symbol, not across symbols, so judge the trend rather than a single execution.
 
-<Note>
-  **Not every order produces a fill.** A fill-or-kill order that cannot fill in full reports `EXECUTION_TYPE_NEW` followed by `EXECUTION_TYPE_EXPIRED`, with no fill. A consumer that waits only for fills never sees an outcome for it. Handle every [execution type](/streaming-endpoints/order-stream#execution-types).
-</Note>
+> [!NOTE]
+>
+> **Not every order produces a fill.** A fill-or-kill order that cannot fill in full reports `EXECUTION_TYPE_NEW` followed by `EXECUTION_TYPE_EXPIRED`, with no fill. A consumer that waits only for fills never sees an outcome for it. Handle every [execution type](/streaming-endpoints/order-stream#execution-types).
 
 ## Do / don't
 
-<Tabs>
-  <Tab title="Drop Copy">
-    | Do | Don't |
-    | - | - |
-    | One long-lived `CreateDropCopySubscription` per environment | One stream per order, per user, or per pod |
-    | `symbols=[]` for the firm | Fan out a stream per symbol “to go faster” |
-    | Persist `resume_token` **after** durable apply | Persist the token, then crash before apply |
-    | Dedup on `execution.id` | Assume exactly-once delivery |
-    | Reconnect only after the TCP/gRPC stream actually died | Cancel at 5–10s and open again |
-    | Leader-elect if you run many replicas | Every replica opens the same stream |
-  </Tab>
+**Drop Copy**
 
-  <Tab title="Market data">
-    | Do | Don't |
-    | - | - |
-    | `snapshot_only: false` for a live book | Poll `snapshot_only: true` in a tight loop |
-    | At most **1000** symbols per `CreateMarketDataSubscription` | Send 1000+ and expect a stream (that is `INVALID_ARGUMENT`) |
-    | Empty `symbols` or one bidirectional stream for a large universe | Open tens of MD streams and blow the 20 cap |
-    | Open extra MD streams **one after another** if you must split | Burst-open every stream at once |
-    | [KeepAlive](/streaming-endpoints/market-data-stream) every 30–60 min on **bidirectional** MD | Send keepalive on server-streaming MD (not used there) |
-  </Tab>
+| Do | Don't |
+| - | - |
+| One long-lived `CreateDropCopySubscription` per environment | One stream per order, per user, or per pod |
+| `symbols=[]` for the firm | Fan out a stream per symbol “to go faster” |
+| Persist `resume_token` **after** durable apply | Persist the token, then crash before apply |
+| Dedup on `execution.id` | Assume exactly-once delivery |
+| Reconnect only after the TCP/gRPC stream actually died | Cancel at 5–10s and open again |
+| Leader-elect if you run many replicas | Every replica opens the same stream |
 
-  <Tab title="Orders and ledger">
-    | Do | Don't |
-    | - | - |
-    | One `CreateOrderSubscription` with empty `symbols` | Copy the MD 1000-symbol cap onto orders |
-    | Reconnect order stream and take the snapshot | Look for an order-stream `resume_token` (there isn't one) |
-    | One ledger stream per **account** you must watch live | One ledger stream per customer when you have thousands of accounts |
-    | Persist ledger `update_time` as `resume_time` | Re-fetch the full ledger on every process restart |
-  </Tab>
-</Tabs>
+**Market data**
 
-<Note>
-  `CreateOrderSubscription` over 1000 symbols is **not** the market-data cap. Market data over 1000 is `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`). Hitting `RESOURCE_EXHAUSTED` on a stream is the **20 concurrent-stream** budget, ingress rate, or a too-large message — not the 1000 check. Details: [Order stream](/streaming-endpoints/order-stream).
-</Note>
+| Do | Don't |
+| - | - |
+| `snapshot_only: false` for a live book | Poll `snapshot_only: true` in a tight loop |
+| At most **1000** symbols per `CreateMarketDataSubscription` | Send 1000+ and expect a stream (that is `INVALID_ARGUMENT`) |
+| Empty `symbols` or one bidirectional stream for a large universe | Open tens of MD streams and blow the 20 cap |
+| Open extra MD streams **one after another** if you must split | Burst-open every stream at once |
+| [KeepAlive](/streaming-endpoints/market-data-stream) every 30–60 min on **bidirectional** MD | Send keepalive on server-streaming MD (not used there) |
+
+**Orders and ledger**
+
+| Do | Don't |
+| - | - |
+| One `CreateOrderSubscription` with empty `symbols` | Copy the MD 1000-symbol cap onto orders |
+| Reconnect order stream and take the snapshot | Look for an order-stream `resume_token` (there isn't one) |
+| One ledger stream per **account** you must watch live | One ledger stream per customer when you have thousands of accounts |
+| Persist ledger `update_time` as `resume_time` | Re-fetch the full ledger on every process restart |
+
+> [!NOTE]
+>
+> `CreateOrderSubscription` over 1000 symbols is **not** the market-data cap. Market data over 1000 is `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`). Hitting `RESOURCE_EXHAUSTED` on a stream is the **20 concurrent-stream** budget, ingress rate, or a too-large message — not the 1000 check. Details: [Order stream](/streaming-endpoints/order-stream).
 
 ## Limits that matter here
 
@@ -161,9 +155,9 @@ The stream sends no explicit caught-up message. Use this heuristic:
 
 See [Rate Limits](/trader-guide/rate-limits#grpc-streaming) and [Authentication](/streaming-endpoints/authentication).
 
-<Warning>
-  Access tokens expire in **24 hours**. Cache the token and refresh it in the background before `expires_in`. Use the new token on the **next** connect. Do not tear down a live stream to re-auth. The streaming RPC is authenticated when it starts.
-</Warning>
+> [!WARNING]
+>
+> Access tokens expire in **24 hours**. Cache the token and refresh it in the background before `expires_in`. Use the new token on the **next** connect. Do not tear down a live stream to re-auth. The streaming RPC is authenticated when it starts.
 
 ## Client shape
 
@@ -233,23 +227,21 @@ If you consume fills on FIX instead of gRPC, that is **one** Drop Copy session, 
 
 ## Related
 
-<CardGroup cols={2}>
-  <Card title="Drop Copy stream" icon="copy" href="/streaming-endpoints/dropcopy-stream">
-    Executions, trade capture, state change, positions
-  </Card>
+> **[Drop Copy stream](/streaming-endpoints/dropcopy-stream)**
+>
+> Executions, trade capture, state change, positions
 
-  <Card title="Reconciliation" icon="scale-balanced" href="/partners/reconciliation">
-    Streams first, unary reads as anchors
-  </Card>
+> **[Reconciliation](/partners/reconciliation)**
+>
+> Streams first, unary reads as anchors
 
-  <Card title="Market data stream" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    1000-symbol cap, snapshot vs live, keepalive
-  </Card>
+> **[Market data stream](/streaming-endpoints/market-data-stream)**
+>
+> 1000-symbol cap, snapshot vs live, keepalive
 
-  <Card title="Rate limits" icon="gauge-high" href="/trader-guide/rate-limits">
-    20 streams, 100 msg/s ingress, RFQ open rate
-  </Card>
-</CardGroup>
+> **[Rate limits](/trader-guide/rate-limits)**
+>
+> 20 streams, 100 msg/s ingress, RFQ open rate
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

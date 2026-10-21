@@ -6,9 +6,9 @@
 
 > Mirroring wallet allocations into on-platform buying power with deposit and withdrawal transfers.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This capability is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This capability is in beta and may change without notice.
 
 A participant's buying power at Polymarket US is the cash in their trading account. Your funding entity manages that cash with two [transfer](/partners/funding/transfers) reasons — **`DEPOSIT`** (partner funding account → participant account) and **`WITHDRAWAL`** (participant account → funding account) — mirroring what the participant does in their wallet:
 
@@ -65,23 +65,21 @@ Your funding entity's wallet ledger and the platform's account ledger should agr
 
 ## Related pages
 
-<CardGroup cols={2}>
-  <Card title="Transfers" icon="right-left" href="/partners/funding/transfers">
-    The API — request shape, idempotency, rate limits.
-  </Card>
+> **[Transfers](/partners/funding/transfers)**
+>
+> The API — request shape, idempotency, rate limits.
 
-  <Card title="Partner Funding Overview" icon="building-columns" href="/partners/funding/overview">
-    The model and the transfer budget.
-  </Card>
+> **[Partner Funding Overview](/partners/funding/overview)**
+>
+> The model and the transfer budget.
 
-  <Card title="Vendor Fees" icon="file-invoice-dollar" href="/partners/funding/vendor-fees">
-    The fee earmark that withdrawals must respect.
-  </Card>
+> **[Vendor Fees](/partners/funding/vendor-fees)**
+>
+> The fee earmark that withdrawals must respect.
 
-  <Card title="Reconciliation" icon="scale-balanced" href="/partners/reconciliation">
-    Ledger projection and authoritative balance reads.
-  </Card>
-</CardGroup>
+> **[Reconciliation](/partners/reconciliation)**
+>
+> Ledger projection and authoritative balance reads.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

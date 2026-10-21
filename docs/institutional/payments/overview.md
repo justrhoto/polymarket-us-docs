@@ -6,17 +6,17 @@
 
 > Funding options for deposits and withdrawals
 
-<Warning>
-  **BETA - SUBJECT TO CHANGE** - This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA - SUBJECT TO CHANGE** - This API is in beta and may change without notice.
 
 # Payments API
 
 The Payments API provides multiple funding options for deposits and withdrawals. Users can fund their accounts via bank transfers (ACH) through Aeropay or card payments through Checkout.com.
 
-<Warning>
-  **Authentication Required** - All payment endpoints require a valid access token. See [Authentication Setup](/trader-guide/authentication) for setup instructions.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required** - All payment endpoints require a valid access token. See [Authentication Setup](/trader-guide/authentication) for setup instructions.
 
 ## Payment Methods
 

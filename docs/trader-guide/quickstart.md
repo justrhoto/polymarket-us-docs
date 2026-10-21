@@ -13,9 +13,9 @@ This guide walks you through placing your first order on Polymarket US. By the e
 3. Checked your account balance
 4. Placed a limit order
 
-<Info>
-  **Prerequisites:** Complete [Onboarding](/trader-guide/onboarding) first to generate your keys and receive your Client ID.
-</Info>
+> [!NOTE]
+>
+> **Prerequisites:** Complete [Onboarding](/trader-guide/onboarding) first to generate your keys and receive your Client ID.
 
 ## Step 1: Get an Access Token
 
@@ -96,9 +96,9 @@ response.raise_for_status()
 print(f"Authenticated as: {response.json()}")
 ```
 
-<Warning>
-  **The `x-participant-id` header is required** for all account-scoped endpoints (trading, positions, reports). You are given this value rather than discovering it: it comes from onboarding for your own users, or as `participantId` on KYC approval for an end user you onboard. Don't construct it by hand — see [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id).
-</Warning>
+> [!WARNING]
+>
+> **The `x-participant-id` header is required** for all account-scoped endpoints (trading, positions, reports). You are given this value rather than discovering it: it comes from onboarding for your own users, or as `participantId` on KYC approval for an end user you onboard. Don't construct it by hand — see [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id).
 
 Expected response:
 
@@ -133,9 +133,9 @@ for inst in instruments[:5]:
     print(f"  {inst['symbol']}: {inst.get('description', 'N/A')}")
 ```
 
-<Info>
-  Cache the `price_scale` for each instrument - you'll need it to convert prices.
-</Info>
+> [!NOTE]
+>
+> Cache the `price_scale` for each instrument - you'll need it to convert prices.
 
 ## Step 4: Check Your Balance
 
@@ -381,23 +381,21 @@ if __name__ == "__main__":
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Authentication Deep Dive" icon="key" href="/trader-guide/authentication">
-    Token refresh and key rotation
-  </Card>
+> **[Authentication Deep Dive](/trader-guide/authentication)**
+>
+> Token refresh and key rotation
 
-  <Card title="gRPC Streaming" icon="bolt" href="/streaming-endpoints/grpc-overview">
-    Real-time order and market data
-  </Card>
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+>
+> Real-time order and market data
 
-  <Card title="REST API Reference" icon="book" href="/api-reference/introduction">
-    Complete endpoint documentation
-  </Card>
+> **[REST API Reference](/api-reference/introduction)**
+>
+> Complete endpoint documentation
 
-  <Card title="Rate Limits" icon="gauge" href="/trader-guide/rate-limits">
-    Usage limits and best practices
-  </Card>
-</CardGroup>
+> **[Rate Limits](/trader-guide/rate-limits)**
+>
+> Usage limits and best practices
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

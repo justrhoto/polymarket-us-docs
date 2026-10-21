@@ -33,15 +33,11 @@ The Logon \[A] message initiates a connection to the Polymarket US. FIX sessions
   </tbody>
 </table>
 
-<br />
-
 **Example 1: Logon message**
 
 ```
 8=FIXT.1.1 | 9=76 | 35=A | 49=SENDER | 56=TARGET | 34=1 | 52=20240516-14:14:53 | 98=0 | 108=30 | 1137=9 | 141=Y | 10=132 |
 ```
-
-<br />
 
 ### Figure 1: Successful Logon
 
@@ -50,8 +46,6 @@ The Logon \[A] message initiates a connection to the Polymarket US. FIX sessions
 Under normal circumstances, both FIX engines on either side of the connection will regularly exchange Heartbeat messages. The frequency of such a message exchange is determined by the HeartBtInt (108) value indicated in the Logon \[A] message.
 
 Regular application messages qualify as a heartbeat, i.e both sides of the connection are behaving nominally if a message is received during the HeartBtInt (108).  If no application messages are received during the interval, the Heartbeat \[0] message is used as described below.
-
-<br />
 
 ### Table 5: Heartbeat (0) message
 
@@ -298,15 +292,11 @@ BusinessMessageReject \[j] is a more generic message used to reject errors such 
   </tbody>
 </table>
 
-<br />
-
 **Example 3: Reject \[3] example due to bad limit price**
 
 ```
 8=FIXT.1.1 | 9=127 | 35=3 | 34=39 | 49=TARGET | 52=20240517-19:08:47 | 56=SENDER | 45=42 | 58=Value is incorrect (out of range) for this tag | 371=44 | 372=D | 373=5 | 10=237 |
 ```
-
-<br />
 
 ### Table 11: BusinessMessageReject (j) message
 
@@ -331,8 +321,6 @@ BusinessMessageReject \[j] is a more generic message used to reject errors such 
     <tr><td>\< Standard Trailer ></td><td /><td>Y</td><td /><td /></tr>
   </tbody>
 </table>
-
-<br />
 
 **Example 4: BusinessMessageReject \[j] example due to bad role permissions**
 

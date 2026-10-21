@@ -55,11 +55,11 @@ NEW → PARTIALLY_FILLED → FILLED
       CANCELED
 ```
 
-<Tip>
-  **Real-Time Order Updates**
-
-  After submitting orders via REST, use the [gRPC Order Stream](/streaming-endpoints/order-stream) to receive real-time updates on order status, fills, and cancellations. This is more efficient than polling for order status.
-</Tip>
+> [!TIP]
+>
+> **Real-Time Order Updates**
+>
+> After submitting orders via REST, use the [gRPC Order Stream](/streaming-endpoints/order-stream) to receive real-time updates on order status, fills, and cancellations. This is more efficient than polling for order status.
 
 ## Time in Force
 
@@ -70,11 +70,11 @@ NEW → PARTIALLY_FILLED → FILLED
 | `IOC` | Immediate or cancel |
 | `FOK` | Fill or kill |
 
-<Warning>
-  **DAY orders do not automatically cancel at 5pm during trade day rolls.**
-
-  The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
-</Warning>
+> [!WARNING]
+>
+> **DAY orders do not automatically cancel at 5pm during trade day rolls.**
+>
+> The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
 
 ## Best Practices
 

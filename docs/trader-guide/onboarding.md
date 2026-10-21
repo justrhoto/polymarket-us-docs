@@ -6,7 +6,9 @@
 
 > Get started with the Polymarket Exchange API
 
-<Note>**Individual traders:** You do not need to complete this onboarding process. Head to the [Retail Trading](/retail-api/overview) tab to get started.</Note>
+> [!NOTE]
+>
+> **Individual traders:** You do not need to complete this onboarding process. Head to the [Retail Trading](/retail-api/overview) tab to get started.
 
 ## Step 1: Register
 
@@ -14,17 +16,15 @@ Create your account through the [Polymarket Institutional registration portal](h
 
 ### API-Specific Requirements
 
-<AccordionGroup>
-  <Accordion title="REST / gRPC">
-    No additional setup is required beyond registering through the portal.
-  </Accordion>
+> **REST / gRPC**
+>
+> No additional setup is required beyond registering through the portal.
 
-  <Accordion title="FIX">
-    If you intend to use the FIX API, include your **AWS Account ID** during registration so that a VPC PrivateLink connection can be established.
-
-    You should still complete registration even if FIX is your primary connectivity method, as it is required for full platform functionality.
-  </Accordion>
-</AccordionGroup>
+> **FIX**
+>
+> If you intend to use the FIX API, include your **AWS Account ID** during registration so that a VPC PrivateLink connection can be established.
+>
+> You should still complete registration even if FIX is your primary connectivity method, as it is required for full platform functionality.
 
 ## Step 2: Submit Your Onboarding Documents
 

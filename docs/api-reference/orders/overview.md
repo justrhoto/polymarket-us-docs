@@ -10,11 +10,11 @@
 
 The Orders API provides order entry and management capabilities for trading on markets.
 
-<Warning>
-  **Authentication Required**
-
-  All Orders API endpoints require API key authentication. See the [Authentication guide](/api/authentication) for details on signing requests.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required**
+>
+> All Orders API endpoints require API key authentication. See the [Authentication guide](/api/authentication) for details on signing requests.
 
 ## Base URL
 
@@ -59,14 +59,14 @@ Up to 20 orders per call.
 
 Note: `/v1/orders/open/cancel` cancels **all** of your open orders (optionally filtered by market). Use `/v1/orders/batched/cancel` when you want to cancel a specific list of order IDs.
 
-<Warning>
-  **Batched responses do not confirm per-entry success.**
-
-  * Gateway validation is atomic: if any entry fails request-shape checks (missing `orderId`, batch > 20, etc.), the whole batch is rejected with `400`.
-  * The exchange processes entries independently. An unknown `orderId` in a batched cancel or modify is silently ignored.
-  * `canceledOrderIds` and `modifiedOrderIds` echo the request; they do not certify that each ID was acted on. For real outcomes, subscribe to the [Private WebSocket order stream](/api-reference/websocket/private) and watch for `EXECUTION_TYPE_REPLACE`, `EXECUTION_TYPE_CANCELED`, and `EXECUTION_TYPE_REJECTED`.
-  * `createdOrderIds` from `/v1/orders/batched` are real exchange-assigned IDs, but per-order accept/fill/reject events still come via the order stream.
-</Warning>
+> [!WARNING]
+>
+> **Batched responses do not confirm per-entry success.**
+>
+> * Gateway validation is atomic: if any entry fails request-shape checks (missing `orderId`, batch > 20, etc.), the whole batch is rejected with `400`.
+> * The exchange processes entries independently. An unknown `orderId` in a batched cancel or modify is silently ignored.
+> * `canceledOrderIds` and `modifiedOrderIds` echo the request; they do not certify that each ID was acted on. For real outcomes, subscribe to the [Private WebSocket order stream](/api-reference/websocket/private) and watch for `EXECUTION_TYPE_REPLACE`, `EXECUTION_TYPE_CANCELED`, and `EXECUTION_TYPE_REJECTED`.
+> * `createdOrderIds` from `/v1/orders/batched` are real exchange-assigned IDs, but per-order accept/fill/reject events still come via the order stream.
 
 ## Order Types
 
@@ -227,11 +227,11 @@ PENDING_NEW → PARTIALLY_FILLED → FILLED
 | `TIME_IN_FORCE_IMMEDIATE_OR_CANCEL` | IOC - Fills immediately available quantity, cancels rest |
 | `TIME_IN_FORCE_FILL_OR_KILL` | FOK - Must fill entirely or cancel completely |
 
-<Warning>
-  **DAY orders do not automatically cancel at 5pm during trade day rolls.**
-
-  The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
-</Warning>
+> [!WARNING]
+>
+> **DAY orders do not automatically cancel at 5pm during trade day rolls.**
+>
+> The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
 
 ## Manual Order Indicator
 
@@ -300,11 +300,11 @@ For market orders or close position orders, you can specify slippage tolerance:
 
 Slippage tolerance defines the maximum price movement you'll accept. For example, if you submit a market order to buy at current price 0.50 with `ticks: 5`, the order will reject if the best ask moves above 0.55 before execution.
 
-<Tip>
-  **Real-Time Order Updates**
-
-  After submitting orders via REST, use the [WebSocket Private Stream](/api-reference/websocket/private) to receive real-time updates on order status, fills, and cancellations.
-</Tip>
+> [!TIP]
+>
+> **Real-Time Order Updates**
+>
+> After submitting orders via REST, use the [WebSocket Private Stream](/api-reference/websocket/private) to receive real-time updates on order status, fills, and cancellations.
 
 ## Complete Create Order Example
 
@@ -328,11 +328,11 @@ Slippage tolerance defines the maximum price movement you'll accept. For example
 
 The API enforces a global rate limit of **20 requests per second** per API key across all endpoints.
 
-<Warning>
-  **Rate Limit Exceeded**
-
-  When rate limits are exceeded, the API returns HTTP status `429 Too Many Requests`.
-</Warning>
+> [!WARNING]
+>
+> **Rate Limit Exceeded**
+>
+> When rate limits are exceeded, the API returns HTTP status `429 Too Many Requests`.
 
 **Notes:**
 

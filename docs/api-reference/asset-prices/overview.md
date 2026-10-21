@@ -73,9 +73,9 @@ Candles are dense and ascending, one per bucket in the effective window. An unkn
 * An Up/Down market's `priceToBeat` is the simple average of the 60 one-second prices in the sixty seconds before `windowStart`, from `T − 60 s` up to but not including `windowStart` itself (the interval `[T − 60 s, T)`); its `settlementPrice` is the same statistic at `windowEnd`. The reading 60 seconds before the boundary is part of the average and the reading exactly at the boundary is not. To reproduce it, query `bucket=ASSET_PRICE_BUCKET_1S` with `from = T − 60` and `to = T − 1` and average the 60 `close` values. For `cpc-btc-updown-15m-2026-10-06-1900z`, the candles from 18:59:00 to 18:59:59 inclusive average to the published `priceToBeat` of 85501.45; the minute 18:59:01 to 19:00:00 averages to 85501.37 and does not match.
 * Poll the latest candle for a live price display. Prices are published about once per second.
 
-<Note>
-  Index price history is available in the preprod environment today and becomes available in production together with the automated crypto markets, as announced in the [changelog](/changelog).
-</Note>
+> [!NOTE]
+>
+> Index price history is available in the preprod environment today and becomes available in production together with the automated crypto markets, as announced in the [changelog](/changelog).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

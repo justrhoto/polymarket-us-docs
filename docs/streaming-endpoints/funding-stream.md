@@ -8,11 +8,11 @@
 
 Subscribe to real-time funding transaction state changes (deposits, withdrawals) using gRPC streaming. This is the **recommended approach** for monitoring funding status.
 
-<Warning>
-  **Rate Limiting Notice**
-
-  The REST endpoint `GET /v1/funding/transactions` is rate limited. For real-time funding status updates, **prefer the gRPC streaming connection** to avoid rate limit issues and reduce latency.
-</Warning>
+> [!WARNING]
+>
+> **Rate Limiting Notice**
+>
+> The REST endpoint `GET /v1/funding/transactions` is rate limited. For real-time funding status updates, **prefer the gRPC streaming connection** to avoid rate limit issues and reduce latency.
 
 ## Service Definition
 
@@ -261,9 +261,9 @@ if streamer.last_server_time:
     )
 ```
 
-<Note>
-  The server polls for transaction changes every 15 seconds. State changes are broadcast to subscribers as they are detected.
-</Note>
+> [!NOTE]
+>
+> The server polls for transaction changes every 15 seconds. State changes are broadcast to subscribers as they are detected.
 
 ## Comparing REST vs Streaming
 
@@ -274,33 +274,31 @@ if streamer.last_server_time:
 | **Efficiency** | Multiple requests needed | Single persistent connection |
 | **Use Case** | One-time queries, historical data | Real-time monitoring |
 
-<Warning>
-  **Recommendation:** Use the gRPC streaming endpoint for monitoring deposit/withdrawal status. Reserve the REST endpoint for one-time queries or fetching historical transaction data.
-</Warning>
+> [!WARNING]
+>
+> **Recommendation:** Use the gRPC streaming endpoint for monitoring deposit/withdrawal status. Reserve the REST endpoint for one-time queries or fetching historical transaction data.
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="Balance Ledger Stream" icon="receipt" href="/streaming-endpoints/balance-ledger-stream">
-    Stream every cash balance change (fills, fees, deposits, ...)
-  </Card>
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+>
+> Stream every cash balance change (fills, fees, deposits, ...)
 
-  <Card title="Order Stream" icon="list-check" href="/streaming-endpoints/order-stream">
-    Stream real-time order updates
-  </Card>
+> **[Order Stream](/streaming-endpoints/order-stream)**
+>
+> Stream real-time order updates
 
-  <Card title="Market Data Stream" icon="chart-line" href="/streaming-endpoints/market-data-stream">
-    Stream real-time market data
-  </Card>
+> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+>
+> Stream real-time market data
 
-  <Card title="Error Handling" icon="triangle-exclamation" href="/streaming-endpoints/error-handling">
-    Handle errors and reconnections
-  </Card>
+> **[Error Handling](/streaming-endpoints/error-handling)**
+>
+> Handle errors and reconnections
 
-  <Card title="Authentication" icon="key" href="/streaming-endpoints/authentication">
-    gRPC authentication setup
-  </Card>
-</CardGroup>
+> **[Authentication](/streaming-endpoints/authentication)**
+>
+> gRPC authentication setup
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

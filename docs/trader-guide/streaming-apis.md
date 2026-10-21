@@ -6,9 +6,9 @@
 
 > Real-time data streaming semantics and best practices
 
-<Note>
-  How many streams to open, Drop Copy resume tokens, and the reconnect-cancel loop: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices). Not every stream starts with a snapshot. Drop Copy has no snapshot; reconnect with `resume_token`.
-</Note>
+> [!NOTE]
+>
+> How many streams to open, Drop Copy resume tokens, and the reconnect-cancel loop: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices). Not every stream starts with a snapshot. Drop Copy has no snapshot; reconnect with `resume_token`.
 
 ## Streaming Semantics
 

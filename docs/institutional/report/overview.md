@@ -6,11 +6,11 @@
 
 > Search and export orders, trades, and executions
 
-<Warning>
-  **Prefer Streaming for Real-Time Updates**
-
-  This polling API is subject to rate limits. For production applications that need continuous order and trade updates, use the [gRPC Order Stream](/streaming-endpoints/order-stream) instead. The streaming API provides real-time execution reports as they happen.
-</Warning>
+> [!WARNING]
+>
+> **Prefer Streaming for Real-Time Updates**
+>
+> This polling API is subject to rate limits. For production applications that need continuous order and trade updates, use the [gRPC Order Stream](/streaming-endpoints/order-stream) instead. The streaming API provides real-time execution reports as they happen.
 
 ## Endpoints
 
@@ -24,13 +24,13 @@
 | `POST` | `/v1/report/executions/csv` | Export executions to CSV |
 | `POST` | `/v1/report/trades/stats` | Get aggregated trade statistics |
 
-<Warning>
-  **Participant context required for Trade Stats**
-
-  `POST /v1/report/trades/stats` (`GetTradeStats`) accepts Auth0 JWT with `read:reports` at the gateway, but still requires participant context downstream (`x-participant-id` / DCM participant context). Market-data-only clients without a participant receive `401`. This route is **not supported for MD-only** access today, and there is no public/retail substitute.
-
-  `read:reports` alone is not enough. Other report endpoints (orders search, trades search, etc.) also require participant context.
-</Warning>
+> [!WARNING]
+>
+> **Participant context required for Trade Stats**
+>
+> `POST /v1/report/trades/stats` (`GetTradeStats`) accepts Auth0 JWT with `read:reports` at the gateway, but still requires participant context downstream (`x-participant-id` / DCM participant context). Market-data-only clients without a participant receive `401`. This route is **not supported for MD-only** access today, and there is no public/retail substitute.
+>
+> `read:reports` alone is not enough. Other report endpoints (orders search, trades search, etc.) also require participant context.
 
 ## When to Use
 
@@ -42,15 +42,15 @@
 | End-of-day reconciliation | REST Reports Export |
 | Audit and compliance reports | REST Reports Export |
 
-<Tip>
-  **Streaming First Architecture**
-
-  For any use case requiring real-time order or trade updates, use the streaming API. Use the REST Report API only for:
-
-  * Historical data queries
-  * One-time lookups
-  * Batch exports for reporting
-</Tip>
+> [!TIP]
+>
+> **Streaming First Architecture**
+>
+> For any use case requiring real-time order or trade updates, use the streaming API. Use the REST Report API only for:
+>
+> * Historical data queries
+> * One-time lookups
+> * Batch exports for reporting
 
 ## Search vs Export
 

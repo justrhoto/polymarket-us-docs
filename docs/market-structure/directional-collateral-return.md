@@ -17,9 +17,9 @@ Directional events have multiple instruments with ordered strike levels where ou
 
 Each instrument has an ordinal rank (rank 1 = lowest threshold). If rank 3 resolves Yes, then ranks 1 and 2 must also resolve Yes.
 
-<Note>
-  Whether an event is directional is a property of how the exchange lists it, not of the question. Sports spread and total ladders are listed as directional events. Crypto Above/Below and One-Touch ladders are currently listed as independent events and do not receive directional collateral return; crypto Price Range ladders are mutually exclusive events and receive [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return) instead. See [Crypto Schema](/trader-guide/crypto-schema).
-</Note>
+> [!NOTE]
+>
+> Whether an event is directional is a property of how the exchange lists it, not of the question. Sports spread and total ladders are listed as directional events. Crypto Above/Below and One-Touch ladders are currently listed as independent events and do not receive directional collateral return; crypto Price Range ladders are mutually exclusive events and receive [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return) instead. See [Crypto Schema](/trader-guide/crypto-schema).
 
 ## How Collateral Return Works
 

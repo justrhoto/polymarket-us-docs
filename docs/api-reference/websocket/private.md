@@ -10,11 +10,11 @@
 
 The Private WebSocket endpoint provides real-time updates for user-specific data including orders, positions, account balances, and RFQs. Enabled RFQ subscribers also receive anonymous trade prints shared across participants.
 
-<Warning>
-  **Authentication Required**
-
-  This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication) for details.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required**
+>
+> This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication) for details.
 
 ## Endpoint
 
@@ -320,11 +320,11 @@ The stream is live and best effort, with no replay or durable cursor. Unsubscrib
 | `ORDER_INTENT_BUY_SHORT` | Buy NO contracts |
 | `ORDER_INTENT_SELL_SHORT` | Sell NO contracts |
 
-<Tip>
-  **Subscription Limits**
-
-  You can subscribe to a maximum of 100 markets per subscription. Use multiple subscriptions if you need more.
-</Tip>
+> [!TIP]
+>
+> **Subscription Limits**
+>
+> You can subscribe to a maximum of 100 markets per subscription. Use multiple subscriptions if you need more.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

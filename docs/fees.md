@@ -6,7 +6,9 @@
 
 > Trading fee schedule, rebates, and examples
 
-<Info>Effective exchange-wide from 1:00 PM ET, Monday, October 19, 2026.</Info>
+> [!NOTE]
+>
+> Effective exchange-wide from 1:00 PM ET, Monday, October 19, 2026.
 
 ## Standard Trading Fees
 
@@ -86,9 +88,9 @@ Volume (sell) = C × (1 - p)
 * Combo fills count toward both maker and taker volume.
 * Volume is measured over the calendar month in Eastern Time (ET). Voided fills are excluded.
 
-<Note>
-  API integrators: `C` is the number of **contracts** and `p` the **decimal** price. Execution reports carry these as fixed-point integers, and the collected fee in scaled notional units — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for how to decode `commission_notional_collected` with `price_scale` and `fractional_quantity_scale`.
-</Note>
+> [!NOTE]
+>
+> API integrators: `C` is the number of **contracts** and `p` the **decimal** price. Execution reports carry these as fixed-point integers, and the collected fee in scaled notional units — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for how to decode `commission_notional_collected` with `price_scale` and `fractional_quantity_scale`.
 
 ### Standard Fee Schedule by Price
 

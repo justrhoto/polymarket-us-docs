@@ -96,23 +96,21 @@ An unknown symbol returns an empty `combos` array. This endpoint does not pagina
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="RFQ API" icon="code" href="/institutional/rfqs/overview">
-    Create and manage combo RFQs and quotes
-  </Card>
+> **[RFQ API](/institutional/rfqs/overview)**
+>
+> Create and manage combo RFQs and quotes
 
-  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
-    Maker workflow and quote rules
-  </Card>
+> **[Combos/RFQ Guide](/trader-guide/combos)**
+>
+> Maker workflow and quote rules
 
-  <Card title="Authentication" icon="key" href="/trader-guide/authentication#api-scopes">
-    OAuth metadata and required scopes
-  </Card>
+> **[Authentication](/trader-guide/authentication#api-scopes)**
+>
+> OAuth metadata and required scopes
 
-  <Card title="Rate Limits" icon="gauge" href="/trader-guide/rate-limits">
-    Endpoint-level request limits
-  </Card>
-</CardGroup>
+> **[Rate Limits](/trader-guide/rate-limits)**
+>
+> Endpoint-level request limits
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

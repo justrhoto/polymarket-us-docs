@@ -6,9 +6,9 @@
 
 > EOD contract summary
 
-<Card title="Download Daily Market Reports" icon="download" href="https://www.polymarketexchange.com/daily-market-report.html">
-  Access historical Daily Market Reports on polymarketexchange.com
-</Card>
+> **[Download Daily Market Reports](https://www.polymarketexchange.com/daily-market-report.html)**
+>
+> Access historical Daily Market Reports on polymarketexchange.com
 
 The Daily Market Report is an EOD contract summary containing 21 columns. It includes volume decomposition, price ranges, open interest, and settlement prices.
 

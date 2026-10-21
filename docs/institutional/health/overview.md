@@ -12,11 +12,11 @@
 | - | - | - |
 | `GET` | `/v1/health` | Check service health status |
 
-<Info>
-  **No Authentication Required**
-
-  The health check endpoint is publicly accessible and does not require authentication. This allows monitoring systems to verify service availability without credentials.
-</Info>
+> [!NOTE]
+>
+> **No Authentication Required**
+>
+> The health check endpoint is publicly accessible and does not require authentication. This allows monitoring systems to verify service availability without credentials.
 
 ## When to Use
 
@@ -55,14 +55,14 @@ curl https://api.preprod.polymarketexchange.com/v1/health
 curl https://api.prod.polymarketexchange.com/v1/health
 ```
 
-<Tip>
-  **Quick Links**
-
-  Test the health endpoint for each environment:
-
-  * [Preprod Health Check](https://api.preprod.polymarketexchange.com/v1/health)
-  * [Production Health Check](https://api.prod.polymarketexchange.com/v1/health)
-</Tip>
+> [!TIP]
+>
+> **Quick Links**
+>
+> Test the health endpoint for each environment:
+>
+> * [Preprod Health Check](https://api.preprod.polymarketexchange.com/v1/health)
+> * [Production Health Check](https://api.prod.polymarketexchange.com/v1/health)
 
 ## Integration Examples
 

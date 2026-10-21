@@ -14,8 +14,6 @@ They remain outside the central limit order book until the StopPx (99) has been 
 
 ![](https://files.readme.io/4350afd-StopLimit.png)
 
-<br />
-
 **Example 9: Entry of a Stop Limit order**
 
 ```
@@ -48,23 +46,15 @@ When a new Market-to-Limit order selling 1,800 hits the order book, then the ord
 
 ### Figure 7: Handling of Market-to-Limit order (see example)
 
-<br />
-
 ![](https://files.readme.io/10ea2fc-mkt_to_limit.png)
 
-<br />
-
 Note that unlike Stop Orders, Market-to-Limit orders retain the same OrdType (40) of K (Market-to-limit) throughout their life; the initial acknowledgement contains the limit Price (44) of the resting order.
-
-<br />
 
 **Example 12: Initial acknowledgment of Market-to-Limit order indicating end Limit Price (44)**
 
 ```
 8=FIXT.1.1 | 9=278 | 35=8 | 34=11 | 49=TARGET | 52=20240521-10:40:28.546598320 | 56=SENDER | 57=SENDERSUB | 1=ACCT | 6=0.00 | 11=1886428739 | 14=0 | 17=1HPT7DQ1GC4GH | 22=8 | 31=0.00 | 32=0 | 37=1HQ4A5T0EDM20 | 38=1000 | 39=0 | 40=K | 44=0.02 | 48=GOOG | 54=2 | 55=GOOG | 59=0 | 60=20240521-10:40:28.542693638 | 99=0.00 | 150=0 | 151=1000 | 581=3 | 582=1 | 10=012 |
 ```
-
-<br />
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

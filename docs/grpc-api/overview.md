@@ -17,9 +17,9 @@ gRPC offers several advantages over REST:
 * **Streaming**: Native support for bidirectional streaming (covered in gRPC Streaming tab)
 * **Code Generation**: Auto-generate client libraries in any language
 
-<Card title="Download Proto Files" icon="download" href="https://drive.google.com/uc?export=download&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng">
-  Get the complete Protocol Buffer definitions to generate client libraries in any language
-</Card>
+> **[Download Proto Files](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)**
+>
+> Get the complete Protocol Buffer definitions to generate client libraries in any language
 
 ## Server Endpoints
 
@@ -35,9 +35,9 @@ grpc-api.preprod.polymarketexchange.com:443
 grpc-api.prod.polymarketexchange.com:443
 ```
 
-<Info>
-  All gRPC connections use **TLS/SSL**. Ensure your client is configured for secure connections.
-</Info>
+> [!NOTE]
+>
+> All gRPC connections use **TLS/SSL**. Ensure your client is configured for secure connections.
 
 ## Authentication
 
@@ -108,9 +108,9 @@ See [Authentication](/streaming-endpoints/authentication) for details on obtaini
 
 The `DropCopyAPI` service provides real-time streaming endpoints for execution reports, trade capture, and position changes. These are **gRPC streaming only** - there are no REST equivalents.
 
-<Note>
-  For complete documentation including code examples, see [DropCopy & Trade Capture Streaming](/streaming-endpoints/dropcopy-stream).
-</Note>
+> [!NOTE]
+>
+> For complete documentation including code examples, see [DropCopy & Trade Capture Streaming](/streaming-endpoints/dropcopy-stream).
 
 ### Available Streaming Endpoints
 
@@ -180,16 +180,16 @@ for response in stub.CreateDropCopySubscription(request, metadata=metadata):
         print(f"Execution: {execution.id} - {execution.type}")
 ```
 
-<Tip>
-  **When to Use Each Stream**
-
-  | Stream | Use Case |
-  | - | - |
-  | **DropCopy** | Real-time execution monitoring, trading systems |
-  | **Trade Capture Report** | Back-office reconciliation, compliance reporting |
-  | **Instrument State Change** | Trading halts, market open/close notifications |
-  | **Position Change** | Real-time P\&L, risk monitoring |
-</Tip>
+> [!TIP]
+>
+> **When to Use Each Stream**
+>
+> | Stream | Use Case |
+> | - | - |
+> | **DropCopy** | Real-time execution monitoring, trading systems |
+> | **Trade Capture Report** | Back-office reconciliation, compliance reporting |
+> | **Instrument State Change** | Trading halts, market open/close notifications |
+> | **Position Change** | Real-time P\&L, risk monitoring |
 
 ***
 
@@ -273,29 +273,27 @@ Both REST and gRPC access the same underlying services. Choose based on your nee
 | Browser Support | Native | Requires proxy |
 | Tooling | curl, Postman | grpcurl, Bloom RPC |
 
-<Tip>
-  Most integrations use **REST for simplicity** and **gRPC for performance-critical paths** like order entry.
-</Tip>
+> [!TIP]
+>
+> Most integrations use **REST for simplicity** and **gRPC for performance-critical paths** like order entry.
 
 ## Next Steps
 
-<CardGroup cols={2}>
-  <Card title="gRPC Streaming" icon="bolt" href="/streaming-endpoints/grpc-overview">
-    Real-time market data and order subscriptions
-  </Card>
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+>
+> Real-time market data and order subscriptions
 
-  <Card title="Authentication" icon="lock" href="/streaming-endpoints/authentication">
-    Access token setup for gRPC
-  </Card>
+> **[Authentication](/streaming-endpoints/authentication)**
+>
+> Access token setup for gRPC
 
-  <Card title="REST API" icon="code" href="/api-reference">
-    Equivalent REST endpoints
-  </Card>
+> **[REST API](/api-reference)**
+>
+> Equivalent REST endpoints
 
-  <Card title="Proto Reference" icon="file-code" href="/streaming-endpoints/proto-reference">
-    Proto message definitions
-  </Card>
-</CardGroup>
+> **[Proto Reference](/streaming-endpoints/proto-reference)**
+>
+> Proto message definitions
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

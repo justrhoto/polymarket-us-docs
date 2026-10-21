@@ -4,8 +4,6 @@
 
 # Order Modification
 
-<br />
-
 Participants may request to amend any open order using the OrderCancelReplaceRequest \[G] message.
 
 In this case, the order to be amended is identified using the last-entered ClOrdID (11) value relating to the order into the OrigClOrdID (41) field. Following FIX convention, this modification message will also contain a fresh ClOrdID (11) value which can then be used by the Participant to further modify the order if required. Note that the Polymarket US does not require the entry of the (platform-generated) OrderID (37) in order to amend the order.
@@ -18,11 +16,7 @@ Note that a modification which increases the remaining order quantity will lose 
 
 ## Figure 10: Successful amend of existing order to adjust OrderQty \[38]
 
-<br />
-
 ![](https://files.readme.io/b69c215-order_replace.png)
-
-<br />
 
 **Example 15: Request to replace an existing order**
 

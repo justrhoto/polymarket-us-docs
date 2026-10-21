@@ -6,9 +6,9 @@
 
 > Onboard a participant, fund their trading account, and place their first order with a declared vendor fee.
 
-<Note>
-  **Audience: developers.** This is a hands-on, copy-paste guide. For eligibility, agreements, and the business setup, see [ISVs](/partners/partner-types/isvs) / [IBs](/partners/partner-types/ibs) and [Partner Onboarding](/partners/get-connected/onboarding).
-</Note>
+> [!NOTE]
+>
+> **Audience: developers.** This is a hands-on, copy-paste guide. For eligibility, agreements, and the business setup, see [ISVs](/partners/partner-types/isvs) / [IBs](/partners/partner-types/ibs) and [Partner Onboarding](/partners/get-connected/onboarding).
 
 This guide walks the core partner loop end to end — the same moves your production integration will repeat for every participant:
 
@@ -25,9 +25,9 @@ By the end you'll have:
 4. Placed a FOK limit order with a **declared vendor fee** on their behalf
 5. Seen where the money moves — and how fees are collected later
 
-<Info>
-  **Prerequisites:** Complete [Partner Onboarding](/partners/get-connected/onboarding) to receive your Client ID and register your public key, and have your **funding relationship** configured ([Partner Funding](/partners/funding/overview) is Beta, enabled per partner). This guide uses **pre-production** (`api.preprod.polymarketexchange.com`).
-</Info>
+> [!NOTE]
+>
+> **Prerequisites:** Complete [Partner Onboarding](/partners/get-connected/onboarding) to receive your Client ID and register your public key, and have your **funding relationship** configured ([Partner Funding](/partners/funding/overview) is Beta, enabled per partner). This guide uses **pre-production** (`api.preprod.polymarketexchange.com`).
 
 ## Step 1: Authenticate
 
@@ -61,9 +61,9 @@ Expected response:
 }
 ```
 
-<Note>
-  **Your Firm authenticates; it never trades or holds funds.** The Firm identity above is a permissions container — every trading action in this guide is performed **on behalf of a Retail Participant**. Participant-scoped REST calls (positions, reports) identify them with the `x-participant-id` header — see [Authentication → Acting on behalf of a participant](/partners/get-connected/authentication#acting-on-behalf-of-a-participant). Partner order entry and transfers carry the participant's provisioned DCM **trading account** in the request body. You'll capture both identifiers in Step 2.
-</Note>
+> [!NOTE]
+>
+> **Your Firm authenticates; it never trades or holds funds.** The Firm identity above is a permissions container — every trading action in this guide is performed **on behalf of a Retail Participant**. Participant-scoped REST calls (positions, reports) identify them with the `x-participant-id` header — see [Authentication → Acting on behalf of a participant](/partners/get-connected/authentication#acting-on-behalf-of-a-participant). Partner order entry and transfers carry the participant's provisioned DCM **trading account** in the request body. You'll capture both identifiers in Step 2.
 
 ## Step 2: Onboard a participant (KYC)
 
@@ -110,9 +110,9 @@ print(resp.json()["accounts"])
 participant_account = resp.json()["accounts"][0]
 ```
 
-<Info>
-  The account is provisioned with a **\$0 balance**. The participant can trade as soon as you fund it — the next step.
-</Info>
+> [!NOTE]
+>
+> The account is provisioned with a **\$0 balance**. The participant can trade as soon as you fund it — the next step.
 
 ## Step 3: Fund the account (deposit transfer)
 
@@ -235,9 +235,9 @@ Every cash event is visible in real time — this is how your backend keeps its 
 * **Trading proceeds stay in the account** — settlement credits and realized profit simply increase the participant's buying power. Nothing needs to move after fills or settlements.
 * Persist the response's `correlation` identifiers with `order.account`, `clord_id`, and the exchange order ID. They tie ledger entries and vendor-fee reporting back to the placement workflow.
 
-<Note>
-  **Scaling note — per-account balance streams are provided now for accelerated development.** The balance ledger subscription is **per-account**, and concurrent ledger streams per firm are capped — opening one stream per participant does not scale to thousands of accounts. A **firm-level balance stream** delivering ledger entries for every account under your Firm on a single subscription is coming soon. Build against the per-account stream today, but plan for the firm-level stream in production — see [firm-wide ledger consumption](/partners/reconciliation#firm-wide-ledger-consumption) for the interim pattern. Drop Copy is the opposite: **one** long-lived firm stream, not one per order — [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
-</Note>
+> [!NOTE]
+>
+> **Scaling note — per-account balance streams are provided now for accelerated development.** The balance ledger subscription is **per-account**, and concurrent ledger streams per firm are capped — opening one stream per participant does not scale to thousands of accounts. A **firm-level balance stream** delivering ledger entries for every account under your Firm on a single subscription is coming soon. Build against the per-account stream today, but plan for the firm-level stream in production — see [firm-wide ledger consumption](/partners/reconciliation#firm-wide-ledger-consumption) for the interim pattern. Drop Copy is the opposite: **one** long-lived firm stream, not one per order — [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
 
 ## Step 8: Fees and withdrawals — later, not per order
 
@@ -384,31 +384,29 @@ The `polymarket.v1`, `polymarket.us.cashmovement.v1`, and `polymarket.us.orderfu
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Create Order" icon="bolt" href="/partners/orders/create-order">
-    Request and response contract, supported examples, and retry behavior.
-  </Card>
+> **[Create Order](/partners/orders/create-order)**
+>
+> Request and response contract, supported examples, and retry behavior.
 
-  <Card title="Order Data Model" icon="table" href="/partners/orders/data-model">
-    Fixed-point values and the fail-closed launch allowlist.
-  </Card>
+> **[Order Data Model](/partners/orders/data-model)**
+>
+> Fixed-point values and the fail-closed launch allowlist.
 
-  <Card title="Transfers" icon="right-left" href="/partners/funding/transfers">
-    Deposits, withdrawals, vendor fee collection, and paced queues.
-  </Card>
+> **[Transfers](/partners/funding/transfers)**
+>
+> Deposits, withdrawals, vendor fee collection, and paced queues.
 
-  <Card title="Partner Funding" icon="building-columns" href="/partners/funding/overview">
-    The full model — parties, money flows, and the transfer budget.
-  </Card>
+> **[Partner Funding](/partners/funding/overview)**
+>
+> The full model — parties, money flows, and the transfer budget.
 
-  <Card title="KYC Verification" icon="id-card" href="/partners/onboarding/kyc/overview">
-    All verification outcomes and webhook handling.
-  </Card>
+> **[KYC Verification](/partners/onboarding/kyc/overview)**
+>
+> All verification outcomes and webhook handling.
 
-  <Card title="Balance Ledger Stream" icon="scale-balanced" href="/streaming-endpoints/balance-ledger-stream">
-    Track every deposit, fill, and settlement credit in real time.
-  </Card>
-</CardGroup>
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+>
+> Track every deposit, fill, and settlement credit in real time.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

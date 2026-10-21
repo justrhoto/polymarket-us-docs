@@ -8,15 +8,15 @@
 
 Introducing Brokers (IBs) integrate with Polymarket US using the **same workflow and APIs as ISVs** — the difference is regulatory, not technical. Start with [Your Role](/partners/your-role) and the [Integration Journey](/partners/integration-journey) for the build path; this page covers the IB-specific agreement and regulatory requirements.
 
-<Note>
-  **Audience: business, legal, and compliance teams.** This page is about IB eligibility and regulatory obligations. Developers can go straight to the [Integration Journey](/partners/integration-journey).
-</Note>
+> [!NOTE]
+>
+> **Audience: business, legal, and compliance teams.** This page is about IB eligibility and regulatory obligations. Developers can go straight to the [Integration Journey](/partners/integration-journey).
 
 ## Overview
 
-<Card title="IB Participant Agreement" icon="file-contract" href="https://drive.google.com/uc?export=download&id=18wye7vrDbXUdNpYMRrilXE92-KrUdz0P">
-  Download the IB Participant Agreement for Polymarket Exchange
-</Card>
+> **[IB Participant Agreement](https://drive.google.com/uc?export=download\&id=18wye7vrDbXUdNpYMRrilXE92-KrUdz0P)**
+>
+> Download the IB Participant Agreement for Polymarket Exchange
 
 Polymarket US partners with licensed Introducing Brokers (IBs) to provide customers access to prediction markets on our platform. Polymarket US reviews all IB applications and may approve, deny, or condition applications at its discretion in an impartial and transparent manner. Decisions are communicated in writing with specified rationale. IBs may request reconsideration within 28 business days. To learn more about becoming an Introducing Broker with Polymarket US, please contact **[institutional@polymarket.us](mailto:institutional@polymarket.us)**
 
@@ -24,23 +24,21 @@ Polymarket US partners with licensed Introducing Brokers (IBs) to provide custom
 
 The technical integration is identical to an ISV's — same APIs, same workflow. Follow the standard path:
 
-<CardGroup cols={2}>
-  <Card title="Your Role" icon="user-gear" href="/partners/your-role">
-    What you do, what Polymarket US does, and what you never handle.
-  </Card>
+> **[Your Role](/partners/your-role)**
+>
+> What you do, what Polymarket US does, and what you never handle.
 
-  <Card title="Integration Journey" icon="map" href="/partners/integration-journey">
-    The recommended order to build your integration.
-  </Card>
-</CardGroup>
+> **[Integration Journey](/partners/integration-journey)**
+>
+> The recommended order to build your integration.
 
-<Note>
-  **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](/partners/funding/overview) *(Beta)*.
-</Note>
+> [!NOTE]
+>
+> **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](/partners/funding/overview) *(Beta)*.
 
-<Warning>
-  **The requirements below are regulatory obligations** specific to Introducing Brokers — they apply *in addition to* the technical integration above.
-</Warning>
+> [!WARNING]
+>
+> **The requirements below are regulatory obligations** specific to Introducing Brokers — they apply *in addition to* the technical integration above.
 
 ## Requirements
 

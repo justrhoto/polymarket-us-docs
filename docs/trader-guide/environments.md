@@ -32,9 +32,9 @@ The Audience value for each environment matches its REST API base URL.
 | Preprod | `https://pmx-preprod.us.auth0.com/oauth/token` |
 | Prod | `https://pmx-prod.us.auth0.com/oauth/token` |
 
-<Warning>
-  **Cache the access token and reuse it until close to expiry.** `expires_in` is 86400 seconds (24 hours) in every environment. Keep one cache per process, shared across threads. Do not request a new token per API call.
-</Warning>
+> [!WARNING]
+>
+> **Cache the access token and reuse it until close to expiry.** `expires_in` is 86400 seconds (24 hours) in every environment. Keep one cache per process, shared across threads. Do not request a new token per API call.
 
 ## Health Check
 
@@ -52,9 +52,9 @@ curl https://api.preprod.polymarketexchange.com/v1/health
 
 ## AWS PrivateLink Connection
 
-<Warning>
-  **VPC connections are required only for FIX API access.** REST and gRPC APIs use the public endpoints listed above and do not require VPC setup.
-</Warning>
+> [!WARNING]
+>
+> **VPC connections are required only for FIX API access.** REST and gRPC APIs use the public endpoints listed above and do not require VPC setup.
 
 For secure, private connectivity from your AWS VPC for the FIX API, use AWS PrivateLink. This routes traffic over AWS's private network instead of the public internet.
 
@@ -67,9 +67,9 @@ We recommend the following integration progression:
 1. **Preprod** - Integration testing and pre-launch validation
 2. **Prod** - Live trading
 
-<Info>
-  Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) to request access credentials for each environment.
-</Info>
+> [!NOTE]
+>
+> Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) to request access credentials for each environment.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

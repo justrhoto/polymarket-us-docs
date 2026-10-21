@@ -22,9 +22,9 @@ The Reference Data API provides three endpoints:
 | - | - |
 | `read:instruments` | All reference data endpoints |
 
-<Info>
-  For details on the hierarchical structure of instruments (categories, series, events, products), see the [Asset Master](/data-guide/asset-master) guide.
-</Info>
+> [!NOTE]
+>
+> For details on the hierarchical structure of instruments (categories, series, events, products), see the [Asset Master](/data-guide/asset-master) guide.
 
 ## REST API Endpoints
 
@@ -123,15 +123,15 @@ curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments"
 }
 ```
 
-<Warning>
-  **Integer Fields Encoded as Strings**
+> [!WARNING]
+>
+> **Integer Fields Encoded as Strings**
+>
+> Fields typed as `int64` (such as `minimumTradeQty`, `priceScale`, `fractionalQtyScale`, `priceLimit.low`, `priceLimit.high`) are serialized as **strings** in JSON responses per the proto3 JSON specification. Parse these values as numbers in your client code.
 
-  Fields typed as `int64` (such as `minimumTradeQty`, `priceScale`, `fractionalQtyScale`, `priceLimit.low`, `priceLimit.high`) are serialized as **strings** in JSON responses per the proto3 JSON specification. Parse these values as numbers in your client code.
-</Warning>
-
-<Info>
-  The `settlementCurrency` and `settlementPriceScale` fields are reserved for future use and currently return empty string and `"0"` respectively.
-</Info>
+> [!NOTE]
+>
+> The `settlementCurrency` and `settlementPriceScale` fields are reserved for future use and currently return empty string and `"0"` respectively.
 
 ### List Symbols
 

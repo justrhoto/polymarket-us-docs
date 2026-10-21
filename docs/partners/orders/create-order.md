@@ -6,9 +6,9 @@
 
 > Place an order with a declared vendor fee — recorded against the order and passed through to the exchange in one idempotent call.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 `CreateVendorOrder` is the partner order-entry call: it validates the supported structure of an embedded public `polymarket.v1.InsertOrderRequest`, **records your declared vendor fee against the order**, passes the order through to the exchange, and waits for its durable outcome before returning.
 
@@ -45,9 +45,9 @@ message CreateVendorOrderRequest {
 
 The participant is identified **only by `order.account`**. Use the DCM trading account returned by the KYC approval webhook—the same account identifier used to match the participant's Drop Copy activity. There is no separate customer-account field in this request. Do not set `order.user` or `order.session_id`; both are rejected.
 
-<Warning>
-  The embedded public message is wider than the partner launch surface. The service uses a fail-closed allowlist: if you populate an unsupported field, the request is rejected with `INVALID_ARGUMENT` and an error that names the offending field. Do not copy a generic `InsertOrderRequest` wholesale; construct one of the supported shapes below.
-</Warning>
+> [!WARNING]
+>
+> The embedded public message is wider than the partner launch surface. The service uses a fail-closed allowlist: if you populate an unsupported field, the request is rejected with `INVALID_ARGUMENT` and an error that names the offending field. Do not copy a generic `InsertOrderRequest` wholesale; construct one of the supported shapes below.
 
 ## Response
 
@@ -77,11 +77,11 @@ The participant is identified **only by `order.account`**. Use the DCM trading a
 | `VENDOR_ORDER_STATUS_REJECTED` | The order was rejected. Nothing was recorded and no fee accrues. **Terminal.** |
 | `VENDOR_ORDER_STATUS_PENDING` | The service could not establish the durable exchange outcome before its deadline. No collectible vendor fee exists yet. **Durable, but not terminal.** |
 
-<Info>
-  **`ACCEPTED` means durable acceptance, not an execution state.** The service does not report acceptance based on submission alone, but an accepted order may have rested, matched immediately, or been cancelled under FOK. Track fills and other execution outcomes on [Drop Copy](/streaming-endpoints/dropcopy-stream). An order the exchange rejects asynchronously after submission is returned as `REJECTED`, not as a phantom accepted order.
-
-  If you reconnect Drop Copy with an old `resume_token`, the stream replays older executions before it delivers this order's reports. See [Knowing you are caught up](/streaming-endpoints/streaming-best-practices#knowing-you-are-caught-up).
-</Info>
+> [!NOTE]
+>
+> **`ACCEPTED` means durable acceptance, not an execution state.** The service does not report acceptance based on submission alone, but an accepted order may have rested, matched immediately, or been cancelled under FOK. Track fills and other execution outcomes on [Drop Copy](/streaming-endpoints/dropcopy-stream). An order the exchange rejects asynchronously after submission is returned as `REJECTED`, not as a phantom accepted order.
+>
+> If you reconnect Drop Copy with an old `resume_token`, the stream replays older executions before it delivers this order's reports. See [Knowing you are caught up](/streaming-endpoints/streaming-best-practices#knowing-you-are-caught-up).
 
 ## Funding request lifecycle
 
@@ -211,9 +211,9 @@ response = stub.CreateVendorOrder(request, metadata=metadata)
 
 The exchange divides the \$20.00 cash quantity by the \$0.20 complement, so the \$20.00 buys 100 NO contracts at \$0.20. Commission is additional—\$0.80 in this example.
 
-<Warning>
-  On a SELL, `cash_order_qty = 2_000` does not mean “sell enough to receive \$20.00.” It means spend \$20.00 of complementary NO collateral.
-</Warning>
+> [!WARNING]
+>
+> On a SELL, `cash_order_qty = 2_000` does not mean “sell enough to receive \$20.00.” It means spend \$20.00 of complementary NO collateral.
 
 ## Buying power and previews
 

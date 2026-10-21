@@ -44,11 +44,11 @@ Looking for a "classic" Market Order? Simply enter a Market-to-Limit order with 
 | FILL OR KILL (FOK) | 4 | If the entire order quantity can not be satisfied immediately, then the order is canceled in full. |
 | GOOD TILL DATE (GTD) | 6 | The trade is active until a specific date and time (expressed in UTC) as indicated in ExpireTime (126). |
 
-<Warning>
-  **DAY orders do not automatically cancel at 5pm during trade day rolls.**
-
-  The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
-</Warning>
+> [!WARNING]
+>
+> **DAY orders do not automatically cancel at 5pm during trade day rolls.**
+>
+> The Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls. Please use GTD orders with the desired timestamp. GTD orders will remain functional with the good-til-time specified.
 
 In addition to order-level Time In force conditions, participants can also specify a minimum order quantity using MinQty (110), which requires that an order receives at least a minimum execution quantity upon entry (possibly in multiple fills). When used in combination with Time In Force, this field offers fine-grained control over the conditions under which an order can participate. For example:
 
@@ -68,8 +68,6 @@ Note that MinQty (110) only limits order behavior as it enters the order book; i
 | SINGLE EXECUTION REQUESTED FOR BLOCK TRADE | j | A flag for submitting block trades to Polymarket US. |
 | BEST LIMIT | R | A flag that if set indicates that the price of a limit order shall be set to the price at the top of the book on the same side as this order. |
 | IMMEDIATELY EXECUTABLE LIMIT | T | A flag that if set indicates that the price of a limit order shall be set to the price at the top of the book on the opposing side as this order, thus able to immediately match. |
-
-<br />
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

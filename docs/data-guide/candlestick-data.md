@@ -18,9 +18,9 @@ Use the REST API's trade statistics endpoint to get pre-calculated OHLC data:
 POST /v1/report/trades/stats
 ```
 
-<Warning>
-  **Not available for MD-only.** `GetTradeStats` / `POST /v1/report/trades/stats` requires participant context (`x-participant-id`) in addition to `read:reports`. Market-data-only credentials (no participant) get `401`. There is no public/retail substitute. MD-only clients should use [Method 3: Real-Time Streaming](#method-3-real-time-streaming) instead.
-</Warning>
+> [!WARNING]
+>
+> **Not available for MD-only.** `GetTradeStats` / `POST /v1/report/trades/stats` requires participant context (`x-participant-id`) in addition to `read:reports`. Market-data-only credentials (no participant) get `401`. There is no public/retail substitute. MD-only clients should use [Method 3: Real-Time Streaming](#method-3-real-time-streaming) instead.
 
 **Request Example:**
 

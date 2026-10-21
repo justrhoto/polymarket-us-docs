@@ -10,11 +10,11 @@
 
 The Portfolio API provides access to user positions, account balances, and trading activity history.
 
-<Warning>
-  **Authentication Required**
-
-  All Portfolio API endpoints require API key authentication. See the [Authentication guide](/api/authentication) for details on signing requests.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required**
+>
+> All Portfolio API endpoints require API key authentication. See the [Authentication guide](/api/authentication) for details on signing requests.
 
 ## Base URL
 
@@ -156,21 +156,21 @@ The `state` field on a trade progresses through the following values:
 | `TRADE_STATE_CLEARING_ACKNOWLEDGED` | 8 | Clearing request acknowledged by the clearing house. |
 | `TRADE_STATE_RETRY_REQUEST` | 9 | Retry requested; pending resubmission to the clearing house. |
 
-<Warning>
-  **Handling `TRADE_STATE_BUSTED`**
+> [!WARNING]
+>
+> **Handling `TRADE_STATE_BUSTED`**
+>
+> A busted trade was executed and then voided by the exchange (via an error-trade
+> bust), and its position impact was reversed. Busted trades remain visible in trade
+> history — treat them as reversed for position, P\&L, and reconciliation purposes.
+> Do not silently drop them.
 
-  A busted trade was executed and then voided by the exchange (via an error-trade
-  bust), and its position impact was reversed. Busted trades remain visible in trade
-  history — treat them as reversed for position, P\&L, and reconciliation purposes.
-  Do not silently drop them.
-</Warning>
-
-<Note>
-  `TRADE_STATE_UNDEFINED` (value `0`) is the unset/unknown sentinel. It is omitted
-  from API responses and does not appear in the published enum lists. Treat any
-  unrecognized state value defensively rather than assuming the values above are
-  exhaustive.
-</Note>
+> [!NOTE]
+>
+> `TRADE_STATE_UNDEFINED` (value `0`) is the unset/unknown sentinel. It is omitted
+> from API responses and does not appear in the published enum lists. Treat any
+> unrecognized state value defensively rather than assuming the values above are
+> exhaustive.
 
 ### Position Resolution Object
 
@@ -197,11 +197,11 @@ The `state` field on a trade progresses through the following values:
 
 Both endpoints support cursor-based pagination. Use `cursor` parameter with the `nextCursor` value to fetch the next page. When `eof` is `true`, there are no more results.
 
-<Tip>
-  **Real-Time Position Updates**
-
-  For real-time position changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_POSITION` subscription instead of polling.
-</Tip>
+> [!TIP]
+>
+> **Real-Time Position Updates**
+>
+> For real-time position changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_POSITION` subscription instead of polling.
 
 ## Filtering Activities
 
@@ -267,11 +267,11 @@ buyingPower = currentBalance
             - marginRequirement
 ```
 
-<Tip>
-  **Real-Time Balance Updates**
-
-  For real-time balance changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` subscription instead of polling.
-</Tip>
+> [!TIP]
+>
+> **Real-Time Balance Updates**
+>
+> For real-time balance changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` subscription instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

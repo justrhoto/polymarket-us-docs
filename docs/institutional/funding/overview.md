@@ -17,9 +17,9 @@ For real-time push of these same entries, see the [Balance Ledger Stream](/strea
 | `GET` | `/v1/funding/balance-ledger` | `read:positions` | Paginated query of balance ledger entries |
 | `GET` | `/v1/funding/balance-ledger/download` | `read:positions` | Streamed CSV download of balance ledger entries |
 
-<Note>
-  Balance ledger endpoints are scoped under `read:positions` (not `read:funding`) to stay consistent with the existing balance-query endpoints (`GetAccountBalance`, `ListAccountBalances`). Calls without `read:positions` fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
-</Note>
+> [!NOTE]
+>
+> Balance ledger endpoints are scoped under `read:positions` (not `read:funding`) to stay consistent with the existing balance-query endpoints (`GetAccountBalance`, `ListAccountBalances`). Calls without `read:positions` fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
 
 ## Historical Floor
 
@@ -173,9 +173,9 @@ GET /v1/funding/balance-ledger/download?account=firms/ISV-Alice/accounts/alice-t
 
 The download endpoint streams **raw CSV bytes** from the upstream ledger as a passthrough.
 
-<Warning>
-  **CSV passthrough caveat.** Because the body is opaque to the gateway, individual rows cannot be post-filtered. To prevent suppressed types from leaking in CSV bytes, the gateway substitutes the **full allowlist** for `entry_types` upstream when the caller leaves it empty.
-</Warning>
+> [!WARNING]
+>
+> **CSV passthrough caveat.** Because the body is opaque to the gateway, individual rows cannot be post-filtered. To prevent suppressed types from leaking in CSV bytes, the gateway substitutes the **full allowlist** for `entry_types` upstream when the caller leaves it empty.
 
 Empty result sets return a single empty chunk followed by EOF (HTTP 200 with an empty body).
 
@@ -202,23 +202,21 @@ Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="Balance Ledger Stream" icon="bolt" href="/streaming-endpoints/balance-ledger-stream">
-    Real-time gRPC subscription for balance ledger entries
-  </Card>
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+>
+> Real-time gRPC subscription for balance ledger entries
 
-  <Card title="Position Ledger" icon="chart-line" href="/institutional/positions/overview#position-ledger">
-    Position changes (quantity, cost, realized P\&L)
-  </Card>
+> **[Position Ledger](/institutional/positions/overview#position-ledger)**
+>
+> Position changes (quantity, cost, realized P\&L)
 
-  <Card title="Funding Transactions" icon="arrow-right-arrow-left" href="/streaming-endpoints/funding-stream">
-    Deposit / withdrawal state changes
-  </Card>
+> **[Funding Transactions](/streaming-endpoints/funding-stream)**
+>
+> Deposit / withdrawal state changes
 
-  <Card title="Authentication" icon="key" href="/trader-guide/authentication#api-scopes">
-    Required scopes and OAuth flow
-  </Card>
-</CardGroup>
+> **[Authentication](/trader-guide/authentication#api-scopes)**
+>
+> Required scopes and OAuth flow
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

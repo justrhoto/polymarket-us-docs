@@ -6,9 +6,9 @@
 
 > Bank account linking and ACH transfers
 
-<Warning>
-  **Work in Progress** — This page is currently being updated and is not yet available. Please check back soon.
-</Warning>
+> [!WARNING]
+>
+> **Work in Progress** — This page is currently being updated and is not yet available. Please check back soon.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

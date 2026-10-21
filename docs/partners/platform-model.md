@@ -8,9 +8,9 @@
 
 Polymarket US operates as a CFTC-regulated **Designated Contract Market (DCM)** and **Derivatives Clearing Organization (DCO)**. As a partner you integrate against a **single platform** — the internal split between matching and clearing is ours to manage, not something your integration needs to model.
 
-<Note>
-  **Audience: developers and solution architects.** A conceptual model of the platform and the entities your integration acts on.
-</Note>
+> [!NOTE]
+>
+> **Audience: developers and solution architects.** A conceptual model of the platform and the entities your integration acts on.
 
 ## One platform, two functions
 
@@ -19,9 +19,9 @@ Polymarket US operates as a CFTC-regulated **Designated Contract Market (DCM)** 
 | **DCM** (matching) | Maintains the order book, matches orders, publishes market data | Order entry, market data |
 | **DCO** (clearing) | Holds collateral, clears trades, settles contracts | Balances, positions, funding transfers |
 
-<Info>
-  In every diagram and API in these docs, the platform is represented as a single actor: **Polymarket US**. You authenticate once and use one set of credentials regardless of whether a given call is served by the matching or clearing function.
-</Info>
+> [!NOTE]
+>
+> In every diagram and API in these docs, the platform is represented as a single actor: **Polymarket US**. You authenticate once and use one set of credentials regardless of whether a given call is served by the matching or clearing function.
 
 ## The entity model
 
@@ -43,9 +43,9 @@ graph TD
 
 You authenticate as the **Firm** and act **on behalf of** the Retail Participants beneath it. You **collect** each participant's KYC information and submit it; Polymarket US **performs the verification and decision**. On approval, identity and accounts are **provisioned automatically** — there is no separate "create user" or "create account" call.
 
-<Note>
-  In these partner docs, **Participant** means a *trading identity* — a person you onboard. Be aware the [main glossary](/getting-started/glossary) also uses the word "participant" in an unrelated market-structure sense; the [Partner Glossary](/partners/glossary) explains the distinction.
-</Note>
+> [!NOTE]
+>
+> In these partner docs, **Participant** means a *trading identity* — a person you onboard. Be aware the [main glossary](/getting-started/glossary) also uses the word "participant" in an unrelated market-structure sense; the [Partner Glossary](/partners/glossary) explains the distinction.
 
 ## How messages flow
 
@@ -77,15 +77,13 @@ See [Accounts & Identity](/trader-guide/accounts-identity) for the identity hier
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Integration Journey" icon="map" href="/partners/integration-journey">
-    The recommended order to build your integration.
-  </Card>
+> **[Integration Journey](/partners/integration-journey)**
+>
+> The recommended order to build your integration.
 
-  <Card title="Authentication" icon="key" href="/partners/get-connected/authentication">
-    Authenticate as your Firm with Private Key JWT.
-  </Card>
-</CardGroup>
+> **[Authentication](/partners/get-connected/authentication)**
+>
+> Authenticate as your Firm with Private Key JWT.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

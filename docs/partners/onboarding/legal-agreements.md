@@ -10,9 +10,9 @@ Every end user accepts the Polymarket US legal document set during onboarding, i
 
 Identity verification (KYC), funding, and account provisioning are covered in the [Integration Journey](/partners/integration-journey) and the [KYC](/partners/onboarding/kyc/overview) documentation.
 
-<Info>
-  **Regulatory context.** Polymarket US is a CFTC-regulated marketplace for event contracts. Two distinct regulated entities are party to the customer relationship: **QCX LLC** d/b/a Polymarket US, the Designated Contract Market (DCM), and **QC Clearing LLC** d/b/a Polymarket Clearing, the Derivatives Clearing Organization (DCO).
-</Info>
+> [!NOTE]
+>
+> **Regulatory context.** Polymarket US is a CFTC-regulated marketplace for event contracts. Two distinct regulated entities are party to the customer relationship: **QCX LLC** d/b/a Polymarket US, the Designated Contract Market (DCM), and **QC Clearing LLC** d/b/a Polymarket Clearing, the Derivatives Clearing Organization (DCO).
 
 ## Required documents
 
@@ -66,21 +66,19 @@ How updates work:
 * When the agreement is updated, the new effective date becomes the value to send in `agreement.version`.
 * The updated Participant Agreement publishes automatically to its location in [Required documents](#required-documents), so the document link in your acceptance flow always resolves to the current version.
 
-<Warning>
-  **Do not hard-code the version.** Treat the version value as configuration your system can rotate without a code change.
-</Warning>
+> [!WARNING]
+>
+> **Do not hard-code the version.** Treat the version value as configuration your system can rotate without a code change.
 
 ## Next steps
 
-<CardGroup cols={2}>
-  <Card title="Start KYC" icon="id-card" href="/partners/onboarding/kyc/verification-flow">
-    Submit the accepted `agreement.version` on `POST /v1/kyc/start`.
-  </Card>
+> **[Start KYC](/partners/onboarding/kyc/verification-flow)**
+>
+> Submit the accepted `agreement.version` on `POST /v1/kyc/start`.
 
-  <Card title="Onboard Participants" icon="user-plus" href="/partners/onboarding/onboard-participants">
-    How acceptance fits into the wider participant onboarding flow.
-  </Card>
-</CardGroup>
+> **[Onboard Participants](/partners/onboarding/onboard-participants)**
+>
+> How acceptance fits into the wider participant onboarding flow.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

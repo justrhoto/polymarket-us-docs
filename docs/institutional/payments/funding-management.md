@@ -6,9 +6,9 @@
 
 > Manage funding sources, accounts, and transactions
 
-<Warning>
-  **BETA - SUBJECT TO CHANGE** - This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA - SUBJECT TO CHANGE** - This API is in beta and may change without notice.
 
 # Funding Management
 
@@ -16,9 +16,9 @@ The Funding API provides read access to funding sources, accounts, and transacti
 
 ## Authentication
 
-<Warning>
-  **Authentication Required** - All Funding endpoints require authentication. Include your access token in the `Authorization` header.
-</Warning>
+> [!WARNING]
+>
+> **Authentication Required** - All Funding endpoints require authentication. Include your access token in the `Authorization` header.
 
 ```bash theme={null}
 Authorization: Bearer YOUR_ACCESS_TOKEN

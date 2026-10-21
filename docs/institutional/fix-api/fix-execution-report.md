@@ -4,11 +4,7 @@
 
 # ExecutionReport
 
-<br />
-
 The ExecutionReport \[8] message is used to acknowledge various order lifecycle events including the acceptance, rejection, and expiry of orders, as well as providing details of matches (fills) against orders.
-
-<br />
 
 All orders entering the Platform are first either accepted or rejected using an Execution Report \[8]. The order may then receive further Execution Reports \[8] as necessary given their marketability and TimeInForce (59) constraints. For example:
 
@@ -84,8 +80,6 @@ All orders entering the Platform are first either accepted or rejected using an 
 ## Figure 5: Simple limit order for 150 is acknowledged, partially filled for 100, and fully filled
 
 ![](https://files.readme.io/df29571-ExecutionReport.png)
-
-<br />
 
 **Example 6: Acknowledgement of new limit order to buy 1,000 shares at 50.00**
 

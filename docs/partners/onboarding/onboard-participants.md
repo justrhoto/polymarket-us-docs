@@ -10,19 +10,17 @@ Onboarding a retail trader onto your platform **is the KYC process**. You collec
 
 This section has three parts that fit together:
 
-<CardGroup cols={3}>
-  <Card title="KYC Verification" icon="id-card" href="/partners/onboarding/kyc/overview">
-    **The process.** Collect and submit identity information; Polymarket US verifies and decides.
-  </Card>
+> **[KYC Verification](/partners/onboarding/kyc/overview)**
+>
+> **The process.** Collect and submit identity information; Polymarket US verifies and decides.
 
-  <Card title="Participants" icon="user" href="/partners/onboarding/users">
-    **The identity created.** The trading identity you act on behalf of after approval.
-  </Card>
+> **[Participants](/partners/onboarding/users)**
+>
+> **The identity created.** The trading identity you act on behalf of after approval.
 
-  <Card title="Accounts" icon="wallet" href="/partners/onboarding/accounts">
-    **The account created.** The container for the participant's balances and positions.
-  </Card>
-</CardGroup>
+> **[Accounts](/partners/onboarding/accounts)**
+>
+> **The account created.** The container for the participant's balances and positions.
 
 ## How they fit together
 
@@ -53,37 +51,35 @@ sequenceDiagram
 4. **You're notified by [webhook](/partners/onboarding/kyc/webhooks)** when the outcome is terminal. On approval, the `kyc.approved` event carries the participant's `provisioned_account` and `provisioned_participant` once the trading account is provisioned (provisioning is asynchronous, so this can arrive shortly after the initial response).
 5. **On approval**, the trader's [Participant](/partners/onboarding/users) identity and [Account](/partners/onboarding/accounts) are already provisioned. Once their account is funded with a [deposit transfer](/partners/funding/deposits-withdrawals) *(Beta)*, they can trade.
 
-<Tip>
-  **Prefer the webhook over polling.** Register a [KYC webhook](/partners/onboarding/kyc/webhooks) so your platform is informed the moment a decision is made. An `ACCEPT` decision means the Participant and Account are provisioned for you with no separate setup call, but provisioning is asynchronous: their identifiers arrive on the [`kyc.approved`](/partners/onboarding/kyc/webhooks) event (which can follow shortly after the initial response), so don't assume they're on the first response. You can still fall back to `GET /v1/kyc/status` for one-off checks.
-</Tip>
+> [!TIP]
+>
+> **Prefer the webhook over polling.** Register a [KYC webhook](/partners/onboarding/kyc/webhooks) so your platform is informed the moment a decision is made. An `ACCEPT` decision means the Participant and Account are provisioned for you with no separate setup call, but provisioning is asynchronous: their identifiers arrive on the [`kyc.approved`](/partners/onboarding/kyc/webhooks) event (which can follow shortly after the initial response), so don't assume they're on the first response. You can still fall back to `GET /v1/kyc/status` for one-off checks.
 
-<Info>
-  **One process, two results.** Think of KYC as the onboarding action and the Participant and Account as its outputs. You never create them directly — a successful KYC produces both.
-</Info>
+> [!NOTE]
+>
+> **One process, two results.** Think of KYC as the onboarding action and the Participant and Account as its outputs. You never create them directly — a successful KYC produces both.
 
 ## Where to go next
 
-<CardGroup cols={2}>
-  <Card title="Start with KYC" icon="id-card" href="/partners/onboarding/kyc/overview">
-    The verification workflow and document verification.
-  </Card>
+> **[Start with KYC](/partners/onboarding/kyc/overview)**
+>
+> The verification workflow and document verification.
 
-  <Card title="Set up status webhooks" icon="bell" href="/partners/onboarding/kyc/webhooks">
-    Receive the async KYC decision instead of polling.
-  </Card>
+> **[Set up status webhooks](/partners/onboarding/kyc/webhooks)**
+>
+> Receive the async KYC decision instead of polling.
 
-  <Card title="Act on participants" icon="user-check" href="/partners/onboarding/users">
-    Resolve who you can act for and use the `x-participant-id` header.
-  </Card>
+> **[Act on participants](/partners/onboarding/users)**
+>
+> Resolve who you can act for and use the `x-participant-id` header.
 
-  <Card title="Funding" icon="building-columns" href="/partners/funding/overview">
-    How an approved participant's account is funded *(Beta)*.
-  </Card>
+> **[Funding](/partners/funding/overview)**
+>
+> How an approved participant's account is funded *(Beta)*.
 
-  <Card title="End-user legal agreements" icon="file-contract" href="/partners/onboarding/legal-agreements">
-    The four documents each trader accepts, the exact acceptance language, and agreement versioning.
-  </Card>
-</CardGroup>
+> **[End-user legal agreements](/partners/onboarding/legal-agreements)**
+>
+> The four documents each trader accepts, the exact acceptance language, and agreement versioning.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

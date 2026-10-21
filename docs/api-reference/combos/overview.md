@@ -73,19 +73,17 @@ Leg symbols must be open, tradable, supported instruments. Duplicate symbols and
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="RFQ API" icon="code" href="/api-reference/rfqs/overview">
-    Create and manage combo RFQs and quotes
-  </Card>
+> **[RFQ API](/api-reference/rfqs/overview)**
+>
+> Create and manage combo RFQs and quotes
 
-  <Card title="Authentication" icon="key" href="/api-reference/authentication">
-    Sign Retail API requests
-  </Card>
+> **[Authentication](/api-reference/authentication)**
+>
+> Sign Retail API requests
 
-  <Card title="Private WebSocket" icon="bolt" href="/api-reference/websocket/private#rfq-subscriptions">
-    Receive RFQ and quote lifecycle events
-  </Card>
-</CardGroup>
+> **[Private WebSocket](/api-reference/websocket/private#rfq-subscriptions)**
+>
+> Receive RFQ and quote lifecycle events
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -6,9 +6,9 @@
 
 > Supported fields for the public InsertOrderRequest embedded in partner order entry.
 
-<Warning>
-  **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
-</Warning>
+> [!WARNING]
+>
+> **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
 `CreateVendorOrder` embeds the public `polymarket.v1.InsertOrderRequest`. The supported order shape for partner entry is intentionally narrow: **limit orders** with **fill-or-kill (FOK)** time in force and either a share quantity or a cash quantity such as “spend \$20.”
 
@@ -46,9 +46,9 @@ The service validates populated fields against a fail-closed allowlist. Any fiel
 | `ignore_price_validity_checks` | `bool` | **Rejected if set** | Price validity checks cannot be bypassed. |
 | `manual_order_indicator` | `ManualOrderIndicator` | **Required** | `MANUAL_ORDER_INDICATOR_MANUAL` for a human-entered order or `MANUAL_ORDER_INDICATOR_AUTOMATED` for a system-generated order. |
 
-<Info>
-  In proto3, scalar fields at their default value are not populated on the wire. “Rejected if set” means do not send a non-default value for that field. Construct the supported request directly rather than reusing a broad public-order object.
-</Info>
+> [!NOTE]
+>
+> In proto3, scalar fields at their default value are not populated on the wire. “Rejected if set” means do not send a non-default value for that field. Construct the supported request directly rather than reusing a broad public-order object.
 
 ## Outcomes and prices
 
@@ -69,9 +69,9 @@ Set exactly one of `order_qty` or `cash_order_qty`. The service rejects requests
 * On `SIDE_BUY`, `cash_order_qty` is the principal to spend on YES, and fill quantity is principal divided by actual execution price. A \$20.00 principal fills 25 contracts at the \$0.80 limit or 62.5 contracts with price improvement to \$0.32. The limit bounds the worst-case price; commission is additional to the principal.
 * On `SIDE_SELL`, `cash_order_qty` is the complementary NO collateral to spend, not a target for sale proceeds. At a YES limit price of \$0.80, \$20.00 is divided by the \$0.20 complement and buys 100 NO contracts. "Spend \$20 on NO at up to \$0.20" therefore uses `SIDE_SELL`, `cash_order_qty = 2000`, and `price = 80` when `priceScale = 100`.
 
-<Warning>
-  On `SIDE_SELL`, `cash_order_qty = 2000` does not mean “sell enough to receive \$20.00.” It means commit \$20.00 of complementary NO collateral.
-</Warning>
+> [!WARNING]
+>
+> On `SIDE_SELL`, `cash_order_qty = 2000` does not mean “sell enough to receive \$20.00.” It means commit \$20.00 of complementary NO collateral.
 
 Cash quantities are valid with the partner surface's required `ORDER_TYPE_LIMIT`. Exchange commission is charged in addition to the principal represented by `cash_order_qty`.
 
@@ -111,9 +111,9 @@ For standard trades, the dollar amount reconciles with the [fee schedule](/fees)
 
 Combo taker fees instead use `Fee = C × p × [0.0695 × (1 − p) + 0.04 × (1 − p)^4]`, with the same definitions of `C` and `p`. Apply the combo curve to the combo execution as a whole, not separately to its component legs.
 
-<Warning>
-  The most common reconciliation mistake is using raw `order_qty` units as `C`. On an instrument with `fractional_quantity_scale = 100`, that overstates the fee 100×. Instruments with scale `1` make the naive math accidentally correct, so the error often surfaces only on the first fill in a scale-`100` market.
-</Warning>
+> [!WARNING]
+>
+> The most common reconciliation mistake is using raw `order_qty` units as `C`. On an instrument with `fractional_quantity_scale = 100`, that overstates the fee 100×. Instruments with scale `1` make the naive math accidentally correct, so the error often surfaces only on the first fill in a scale-`100` market.
 
 ### Worked example — quantity scale 100
 
@@ -198,9 +198,9 @@ Do not set `order.user` or `order.session_id`. The service authenticates your fi
 
 ## Next step
 
-<Card title="CreateVendorOrder" icon="bolt" href="/partners/orders/create-order" horizontal>
-  See complete YES, NO, cash-BUY, and cash-SELL order examples.
-</Card>
+> **[CreateVendorOrder](/partners/orders/create-order)**
+>
+> See complete YES, NO, cash-BUY, and cash-SELL order examples.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

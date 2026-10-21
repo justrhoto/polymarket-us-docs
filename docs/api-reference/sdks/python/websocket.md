@@ -6,7 +6,9 @@
 
 > Real-time streaming data
 
-<Note>WebSocket is async-only. Use `asyncio.run()` or `AsyncPolymarketUS`.</Note>
+> [!NOTE]
+>
+> WebSocket is async-only. Use `asyncio.run()` or `AsyncPolymarketUS`.
 
 The WebSocket resource provides real-time streaming data for market information and private user data.
 

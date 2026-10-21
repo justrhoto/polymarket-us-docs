@@ -6,9 +6,9 @@
 
 > Live RFQ, quote, and trade events through RFQAPI
 
-<Info>
-  Read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
-</Info>
+> [!NOTE]
+>
+> Read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
 
 `StreamRFQEvents` is a gRPC server-side stream for live RFQ, quote, and trade events.
 
@@ -257,23 +257,21 @@ For trade events, open the stream before querying `GetRFQTrades` and merge both 
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="Combos/RFQ Guide" icon="shuffle" href="/trader-guide/combos">
-    Maker workflow and quote rules
-  </Card>
+> **[Combos/RFQ Guide](/trader-guide/combos)**
+>
+> Maker workflow and quote rules
 
-  <Card title="RFQ API" icon="code" href="/institutional/rfqs/overview">
-    RFQ and quote REST and unary gRPC operations
-  </Card>
+> **[RFQ API](/institutional/rfqs/overview)**
+>
+> RFQ and quote REST and unary gRPC operations
 
-  <Card title="gRPC Authentication" icon="key" href="/streaming-endpoints/authentication">
-    Metadata, tokens, and scopes
-  </Card>
+> **[gRPC Authentication](/streaming-endpoints/authentication)**
+>
+> Metadata, tokens, and scopes
 
-  <Card title="Drop Copy" icon="right-left" href="/streaming-endpoints/dropcopy-stream">
-    Exchange order and fill reconciliation
-  </Card>
-</CardGroup>
+> **[Drop Copy](/streaming-endpoints/dropcopy-stream)**
+>
+> Exchange order and fill reconciliation
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

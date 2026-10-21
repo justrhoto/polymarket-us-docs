@@ -30,9 +30,9 @@ Polymarket Exchange offers drop copy feeds via both FIX and gRPC protocols:
 
 Choose FIX Drop Copy if you have existing FIX infrastructure. Choose gRPC if you prefer modern streaming APIs with protobuf messages.
 
-<Tip>
-  For more information on gRPC DropCopy streaming, see the [DropCopy Stream](/streaming-endpoints/dropcopy-stream) documentation.
-</Tip>
+> [!TIP]
+>
+> For more information on gRPC DropCopy streaming, see the [DropCopy Stream](/streaming-endpoints/dropcopy-stream) documentation.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

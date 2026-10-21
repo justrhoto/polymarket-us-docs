@@ -21,11 +21,7 @@ Where specified, two otherwise-executable orders from the same participant and w
 
 ### Figure 8: Self-match prevention expires the oldest order to prevent self-trading
 
-<br />
-
 ![](https://files.readme.io/ff5ba39-selfmatch.png)
-
-<br />
 
 Note that resting order(s) will expire just after the incoming order has been accepted by the Platform, and before any trades have taken place. The incoming order is therefore permitted to trade against other orders in the order book as it entered the market.
 
@@ -41,19 +37,13 @@ Note that the incoming order is fully canceled in the case it would potentially 
 
 ### Figure 9: Self-match prevention causes newest order to be rejected
 
-<br />
-
 ![](https://files.readme.io/f39184350c03a8ce8bca9bc6aa9799e5a75e95bf388b74e00311fa475f083dad-figure9.jpeg)
-
-<br />
 
 **Example 14: ExecutionReport immediately rejecting incoming order as a result of self-match prevention**
 
 ```
 8=FIXT.1.1 | 9=314 | 35=8 | 34=109 | 49=TARGET | 52=20240521-11:55:30.495116582 | 56=SENDER | 57=SENDERSUB | 1=ACCT | 6=0.00 | 11=1886428755 | 14=0 | 17=1HPT7DQ1GC4JT | 22=8 | 31=0.00 | 32=0 | 37=1HQ4A5T0EDM2E | 38=10 | 39=8 | 40=2 | 44=0.02 | 48=GOOG | 54=1 | 55=GOOG | 58=Self Match Prevention | 59=0 | 60=20240521-11:55:30.487845738 | 99=0.00 | 103=0 | 150=8 | 151=0 | 581=3 | 582=1 | 7928=222 | 10=165 |
 ```
-
-<br />
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

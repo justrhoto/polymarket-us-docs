@@ -10,9 +10,9 @@ This page documents the strongly-typed fields on the instrument that identify a 
 
 Every crypto price market settles against a published reference index, not a spot venue. Today that index is CF Benchmarks' Bitcoin Real-Time Index (`BRTI`). The Retail API exposes the same terms as the typed `assetPriceTerms` object; see [Crypto Price Market Fields](/api-reference/market/overview#crypto-price-market-fields).
 
-<Note>
-  The automated market families in Section 2 are listed in the preprod environment and roll out to production as announced in the [changelog](/changelog). Production currently carries the hand-listed Bitcoin markets described in Section 4.
-</Note>
+> [!NOTE]
+>
+> The automated market families in Section 2 are listed in the preprod environment and roll out to production as announced in the [changelog](/changelog). Production currently carries the hand-listed Bitcoin markets described in Section 4.
 
 ## Section 1: Common Identifying Fields
 

@@ -58,9 +58,9 @@ Query positions as they existed at a specific point in time. Useful for regulato
 | `as_of_time` | RFC3339 timestamp | Exact point-in-time (e.g., `2026-01-02T17:00:00Z`) |
 | `as_of_date` | Date object | End-of-trading-day snapshot (year, month, day) |
 
-<Warning>
-  **Mutually Exclusive**: Use `as_of_time` OR `as_of_date`, not both. The `as_of_time` parameter already contains date information.
-</Warning>
+> [!WARNING]
+>
+> **Mutually Exclusive**: Use `as_of_time` OR `as_of_date`, not both. The `as_of_time` parameter already contains date information.
 
 ### Examples
 
@@ -85,11 +85,11 @@ GET /v1/positions?name=firms/ISV-Alice/accounts/trading&as_of_date.year=2026&as_
 
 ## Usage Notes
 
-<Info>
-  **Position Updates After Trades**
-
-  Position data is updated after each trade execution. For real-time trade notifications that affect positions, use the [gRPC Order Stream](/streaming-endpoints/order-stream).
-</Info>
+> [!NOTE]
+>
+> **Position Updates After Trades**
+>
+> Position data is updated after each trade execution. For real-time trade notifications that affect positions, use the [gRPC Order Stream](/streaming-endpoints/order-stream).
 
 * Positions are aggregated by symbol and account
 * Balances reflect current available and reserved amounts
@@ -109,9 +109,9 @@ The position ledger records every change to a position as a single entry, with b
 | `GET` | `/v1/positions/ledger` | `PositionAPI.GetPositionLedger` | `read:positions` | Paginated query of position ledger entries |
 | `GET` | `/v1/positions/ledger/download` | `PositionAPI.DownloadPositionLedger` | `read:positions` | Streamed CSV download of position ledger entries |
 
-<Note>
-  Both endpoints are scoped under `read:positions` (the same scope used for `GetAccountBalance`, `ListAccountBalances`, and the position queries on this section). Calls without `read:positions` fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
-</Note>
+> [!NOTE]
+>
+> Both endpoints are scoped under `read:positions` (the same scope used for `GetAccountBalance`, `ListAccountBalances`, and the position queries on this section). Calls without `read:positions` fail with `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
 
 ### Historical Floor
 
@@ -209,9 +209,9 @@ GET /v1/positions/ledger?account=firms/ISV-Alice/accounts/alice-trading&start_ti
 | `updateBusinessDate` | string | Business date in `YYYY-MM-DD`. |
 | `description` | string | Human-readable reason (e.g., trade fill, expiry, correction). |
 
-<Note>
-  **int64 fields are serialized as strings in JSON** (e.g., `"50"` not `50`) per the protobuf JSON mapping spec. Parse them as strings to avoid precision loss in languages with 53-bit integer limits.
-</Note>
+> [!NOTE]
+>
+> **int64 fields are serialized as strings in JSON** (e.g., `"50"` not `50`) per the protobuf JSON mapping spec. Parse them as strings to avoid precision loss in languages with 53-bit integer limits.
 
 #### Response Wrapper Fields
 
@@ -231,9 +231,9 @@ The download endpoint accepts the **same query parameters** as `GET /v1/position
 
 It streams **raw CSV bytes from the upstream ledger** as a passthrough; the gateway does not parse individual rows.
 
-<Warning>
-  **CSV passthrough caveat.** Because the body is opaque to the gateway, ledger entries cannot be post-filtered row-by-row. The historical floor is still enforced upstream via `start_time` clamping, but no per-row filtering is performed on the CSV stream.
-</Warning>
+> [!WARNING]
+>
+> **CSV passthrough caveat.** Because the body is opaque to the gateway, ledger entries cannot be post-filtered row-by-row. The historical floor is still enforced upstream via `start_time` clamping, but no per-row filtering is performed on the CSV stream.
 
 Empty result sets return a single empty chunk followed by EOF (HTTP 200 with an empty body). The gateway translates an upstream "stream returned a nil response" condition into an empty result.
 
@@ -259,23 +259,21 @@ Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
 
 ## See Also
 
-<CardGroup cols={2}>
-  <Card title="Balance Ledger" icon="receipt" href="/institutional/funding/overview">
-    Cash balance changes (deposits, withdrawals, fills, fees)
-  </Card>
+> **[Balance Ledger](/institutional/funding/overview)**
+>
+> Cash balance changes (deposits, withdrawals, fills, fees)
 
-  <Card title="Balance Ledger Stream" icon="bolt" href="/streaming-endpoints/balance-ledger-stream">
-    Real-time balance ledger via gRPC
-  </Card>
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+>
+> Real-time balance ledger via gRPC
 
-  <Card title="Order Stream" icon="list-check" href="/streaming-endpoints/order-stream">
-    Real-time execution updates that affect positions
-  </Card>
+> **[Order Stream](/streaming-endpoints/order-stream)**
+>
+> Real-time execution updates that affect positions
 
-  <Card title="Authentication" icon="key" href="/trader-guide/authentication#api-scopes">
-    Required scopes and OAuth flow
-  </Card>
-</CardGroup>
+> **[Authentication](/trader-guide/authentication#api-scopes)**
+>
+> Required scopes and OAuth flow
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
