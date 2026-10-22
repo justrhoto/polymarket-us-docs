@@ -143,7 +143,7 @@ Invalid values cause order-level rejects.
 Self-service after initial onboarding, no network infrastructure required, cryptographically secured (RSA signatures), public internet access.
 
 1. Generate RSA key pairs for each environment
-2. Submit onboarding request via Google Drive to [onboarding@polymarket.us](mailto:onboarding@polymarket.us) with public keys and signed Individual or Entity Participant Agreement
+2. Share your public keys and signed Individual or Entity Participant Agreement with your Polymarket contact via Google Drive
 3. Receive Client ID credentials from Polymarket
 4. Sign JWTs with private key to obtain access tokens
 5. Fund account via wire transfer (production only)

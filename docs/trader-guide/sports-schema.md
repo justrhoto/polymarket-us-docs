@@ -89,18 +89,22 @@ The fully-qualified market type, including sport, participant scope, and game pe
 | `basketball_player_points_rebounds_assists` | Basketball | Player | Full game | Points + rebounds + assists prop |
 | `basketball_player_double_double` | Basketball | Player | Full game | Double-double yes/no |
 | `basketball_player_triple_double` | Basketball | Player | Full game | Triple-double yes/no |
-| `basketball_team_first_half_winner` | Basketball | Team | First half | Prop |
+| `basketball_team_first_half_winner` | Basketball | Team | First half | Winner (legs: away team, Tie, home team) |
 | `basketball_team_first_half_spread` | Basketball | Team | First half | Spread |
 | `basketball_team_first_half_total` | Basketball | Team | First half | Total |
-| `basketball_team_second_half_winner` | Basketball | Team | Second half | Prop |
+| `basketball_team_second_half_winner` | Basketball | Team | Second half | Winner (legs: away team, Tie, home team; overtime included) |
 | `basketball_team_second_half_spread` | Basketball | Team | Second half | Spread |
 | `basketball_team_second_half_total` | Basketball | Team | Second half | Total |
+| `basketball_team_first_quarter_winner` | Basketball | Team | 1st quarter | Winner (legs: away team, Tie, home team) |
 | `basketball_team_first_quarter_spread` | Basketball | Team | 1st quarter | Spread |
 | `basketball_team_first_quarter_total` | Basketball | Team | 1st quarter | Total |
+| `basketball_team_second_quarter_winner` | Basketball | Team | 2nd quarter | Winner (legs: away team, Tie, home team) |
 | `basketball_team_second_quarter_spread` | Basketball | Team | 2nd quarter | Spread |
 | `basketball_team_second_quarter_total` | Basketball | Team | 2nd quarter | Total |
+| `basketball_team_third_quarter_winner` | Basketball | Team | 3rd quarter | Winner (legs: away team, Tie, home team) |
 | `basketball_team_third_quarter_spread` | Basketball | Team | 3rd quarter | Spread |
 | `basketball_team_third_quarter_total` | Basketball | Team | 3rd quarter | Total |
+| `basketball_team_fourth_quarter_winner` | Basketball | Team | 4th quarter | Winner (legs: away team, Tie, home team; overtime not included) |
 | `basketball_team_fourth_quarter_spread` | Basketball | Team | 4th quarter | Spread |
 | `basketball_team_fourth_quarter_total` | Basketball | Team | 4th quarter | Total |
 | `basketball_game_overtime` | Basketball | Game | Full game | Overtime yes/no |
@@ -407,7 +411,9 @@ Use this table as a recipe book for identifying a specific market type from inst
 | **MLB player RBIs prop** | `baseball_player_rbis` |
 | **MLB player stolen bases prop** | `baseball_player_stolen_bases` |
 | **MLB selected-team total runs** | `baseball_team_total_runs` |
-| **NBA first-half moneyline** | `basketball_team_first_half_winner` |
+| **NBA first-half winner** | `basketball_team_first_half_winner` (three legs: away team, Tie, home team) |
+| **NBA second-half winner** | `basketball_team_second_half_winner` (three legs: away team, Tie, home team; overtime included) |
+| **NBA quarter winner** | `basketball_team_first_quarter_winner` through `basketball_team_fourth_quarter_winner` (three legs: away team, Tie, home team; the 4th quarter excludes overtime) — derive the quarter from this enum value, not the instrument ID |
 | **NBA first-half spread** | `basketball_team_first_half_spread` |
 | **NBA first-half total** | `basketball_team_first_half_total` |
 | **NBA player points prop** | `basketball_player_points` |

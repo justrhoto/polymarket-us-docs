@@ -11,6 +11,14 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**October 21, 2026**
+
+NBA games now list half and quarter winner markets, starting with the October 21, 2026 games. The [Sports Schema](/trader-guide/sports-schema) lists them with the rest of the basketball types.
+
+* **Half winners:** `basketball_team_first_half_winner` and `basketball_team_second_half_winner` (overtime included).
+* **Quarter winners:** `basketball_team_first_quarter_winner`, `basketball_team_second_quarter_winner`, `basketball_team_third_quarter_winner` and `basketball_team_fourth_quarter_winner` (overtime not included).
+* **Legs:** every period lists three mutually exclusive legs: the away team, Tie, and the home team. A period that ends level settles to Tie.
+
 **October 19, 2026**
 
 NBA markets now use six more `market_sport_type` values, starting with the October 20, 2026 games. The [Sports Schema](/trader-guide/sports-schema) lists them with the rest of the basketball types.

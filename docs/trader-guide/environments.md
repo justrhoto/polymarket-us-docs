@@ -58,7 +58,7 @@ curl https://api.preprod.polymarketexchange.com/v1/health
 
 For secure, private connectivity from your AWS VPC for the FIX API, use AWS PrivateLink. This routes traffic over AWS's private network instead of the public internet.
 
-VPC Service Names and PrivateLink endpoints are provisioned per-firm during FIX onboarding. Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) with your AWS Account ID to get started.
+VPC Service Names and PrivateLink endpoints are provisioned per-firm during FIX onboarding. Send your AWS Account ID to your Polymarket contact to get started.
 
 ## Environment Progression
 
@@ -69,7 +69,7 @@ We recommend the following integration progression:
 
 > [!NOTE]
 >
-> Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) to request access credentials for each environment.
+> Ask your Polymarket contact for access credentials for each environment.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

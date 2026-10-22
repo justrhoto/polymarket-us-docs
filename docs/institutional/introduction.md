@@ -193,10 +193,6 @@ Order-entry endpoints use tiered per-firm, per-method limits that apply to REST 
 
 See [Rate Limits](/trader-guide/rate-limits) for the full breakdown by endpoint and protocol.
 
-## Support
-
-For REST API questions or issues, contact [onboarding@qcex.com](mailto:onboarding@qcex.com).
-
 ## Next Steps
 
 > **[Quickstart Guide](/trader-guide/quickstart)**

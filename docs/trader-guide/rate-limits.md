@@ -328,7 +328,7 @@ Patterns that may result in temporary or permanent restrictions:
 
 > [!WARNING]
 >
-> Abuse of the API may result in temporary or permanent restrictions on your API credentials. Contact [onboarding@polymarket.us](mailto:onboarding@polymarket.us) if you need higher limits for legitimate use cases.
+> Abuse of the API may result in temporary or permanent restrictions on your API credentials.
 
 ## Troubleshooting Rate Limits
 
@@ -340,16 +340,11 @@ If you're consistently receiving 429 errors:
 * Batch multiple operations where possible
 * Cache responses that don't change frequently (reference data, instrument lists)
 * Use streaming endpoints instead of polling
-* Contact support to discuss higher rate limits for production use
+* Request higher limits for production use (see below)
 
 ### Need Higher Limits
 
-For production use cases requiring higher limits:
-
-1. Document your use case and expected volume
-2. Contact support at [onboarding@polymarket.us](mailto:onboarding@polymarket.us)
-3. Provide environment (dev, preprod, prod)
-4. Specify which endpoints you need higher limits for
+For production use cases requiring higher limits, send your Polymarket contact your use case, expected volume, environment (dev, preprod, prod), and the endpoints you need higher limits for.
 
 ## Next Steps
 
