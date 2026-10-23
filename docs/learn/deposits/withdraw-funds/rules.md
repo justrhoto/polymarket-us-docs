@@ -38,7 +38,7 @@ This rule ensures compliance with **anti-money-laundering (AML) regulations**.
 * Withdrawals return only to the original funding source
 * First-In-First-Out (FIFO) applies to every withdrawal
 
-Need help? See [Troubleshooting](/learn/deposits/withdraw-funds/troubleshooting) for common issues.
+Need help? See [Troubleshooting](/learn/deposits/withdraw-funds/troubleshooting.md) for common issues.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

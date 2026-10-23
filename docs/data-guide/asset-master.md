@@ -109,6 +109,7 @@ Where descriptors vary by event type:
 * **Sports**: `mls-atl-clt-2026-03-22`
 * **Politics**: `uspres-2028-11-05`
 * **Crypto**: `btc-updown-15m-2026-09-21-0015z` (one 15-minute window), `btc-above-day-2026-09-21` (one daily ladder)
+* **Gold and silver**: `gold-updown-15m-2026-10-22-1630z` (one 15-minute window), `silver-updown-1d-2026-10-22-2215z` (one daily window)
 * **Culture**: `oscars-2027-03-28`
 
 **Metadata Fields:**
@@ -116,7 +117,7 @@ Where descriptors vary by event type:
 * `event_id` - Unique event identifier (e.g., `nfl-hou-mia-2025-12-16`)
 * `event_start_time` - Event start timestamp (UTC)
 * `event_category` - Category code (e.g., `SPR`, `POL`, `CRY`, `FIN`)
-* `event_subcategory` - Subcategory code (e.g., `football`, `soccer`, `BTC`, `uspres`)
+* `event_subcategory` - Subcategory code (e.g., `football`, `soccer`, `BTC`, `COMMODITY`, `uspres`)
 
 **Example:** Event `mls-atl-clt-2026-03-22` with multiple products applied:
 
@@ -145,7 +146,7 @@ Where descriptors vary by event type:
 * **POL**: uspres, ushse, usstate, ussen, intlpol, legislate, cabinet, fedagency, uscrt
 * **CRY**: the asset symbol, e.g. BTC
 * **CUL**: movies, music, tv, video, awd, people, entertain
-* **FIN**: indices, forex, treasuries, bankruptcy, corpaction, earnings, ipo, commod
+* **FIN**: indices, forex, treasuries, bankruptcy, corpaction, earnings, ipo, commod, COMMODITY. `COMMODITY` (upper case) is the code gold and silver spot price contracts use; `commod` is the older code for other commodity markets
 * **CLI**: weather, climate, geological, health, space
 * **GEO**: namer, eur, apac, mena, latam, ssa, conflict, unitednat
 * **MAC**: growth, inflation, monetary, employment, fiscal
@@ -160,6 +161,7 @@ Where descriptors vary by event type:
 * **baseball**: mlb
 * **ncaa**: cfb, cbb
 * **BTC**: btc-updown-15m, btc-updown-1h, btc-strike-hourly, btc-strike-daily, btc-strike-weekly, btc-range-hourly, btc-range-daily, btc-range-weekly, btc-hit-monthly (hand-listed Bitcoin markets use `btc`)
+* **COMMODITY**: gold-updown-15m, gold-updown-1h, gold-updown-1d, silver-updown-15m, silver-updown-1h, silver-updown-1d
 * **uspres**: usp, prm, pres
 
 ## Product
@@ -189,7 +191,9 @@ Products are templates that define types of tradable outcomes. The same product 
 | Title Event | TEC | Group (Exclusive) | `tec-ggb-bmpd-2026-01-11` | Will participant win title? |
 | Title Award | TAC | Group (Exclusive) | `tac-ggb-bmpd-2026-01-11-sinners` | Which nominee will win award? |
 | Election Winner | EWC | Group (Exclusive) | `ewc-usp-pres-2028-11-07` | Which candidate will win election? |
-| Crypto Price | CPC | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000` | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](/trader-guide/crypto-schema) |
+| Crypto Price | CPC | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000` | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](/trader-guide/crypto-schema.md) |
+| Gold Spot Price | CPAUSP | Single (Binary) | `cpausp-gold-updown-15m-2026-10-22-1630z` | Gold Up/Down windows on the Chainlink XAU/USD spot stream. Clearing symbol `CPAUSP-COMMODITY`. See [Metals Schema](/trader-guide/metals-schema.md) |
+| Silver Spot Price | CPAGSP | Single (Binary) | `cpagsp-silver-updown-15m-2026-10-22-1630z` | Silver Up/Down windows on the Chainlink XAG/USD spot stream. Clearing symbol `CPAGSP-COMMODITY`. See [Metals Schema](/trader-guide/metals-schema.md) |
 
 ### Product Reusability
 

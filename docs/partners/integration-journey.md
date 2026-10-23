@@ -20,7 +20,7 @@ graph TD
 
 > [!NOTE]
 >
-> **Funding is in beta.** Your funding entity **pre-positions pooled funds** at Polymarket US and funds each participant's trading account with instant deposit transfers that mirror their wallet allocation, via [Partner Funding](/partners/funding/overview), enabled per partner. There is no per-participant bank-deposit step in the journey.
+> **Funding is in beta.** Your funding entity **pre-positions pooled funds** at Polymarket US and funds each participant's trading account with instant deposit transfers that mirror their wallet allocation, via [Partner Funding](/partners/funding/overview.md), enabled per partner. There is no per-participant bank-deposit step in the journey.
 
 ## What you'll build
 
@@ -28,11 +28,11 @@ A complete partner integration has a handful of components. You can build them i
 
 | Component | Purpose | Primary interface |
 | - | - | - |
-| **Auth client** | Authenticate as your Firm and refresh access tokens | [Private Key JWT](/partners/get-connected/authentication) |
-| **KYC flow** | Onboard and verify Retail Participants | [KYC](/partners/onboarding/kyc/overview) |
-| **Order entry** | Submit orders with declared vendor fees on behalf of participants | [Submitting Orders](/partners/orders/create-order) *(Beta)* |
-| **Funding** | Fund participant trading accounts and collect vendor fees | [Partner Funding](/partners/funding/overview) *(Beta)* |
-| **Stream consumers** | Maintain a live mirror of orders, positions, and balances | [gRPC streaming](/streaming-endpoints/grpc-overview) |
+| **Auth client** | Authenticate as your Firm and refresh access tokens | [Private Key JWT](/partners/get-connected/authentication.md) |
+| **KYC flow** | Onboard and verify Retail Participants | [KYC](/partners/onboarding/kyc/overview.md) |
+| **Order entry** | Submit orders with declared vendor fees on behalf of participants | [Submitting Orders](/partners/orders/create-order.md) *(Beta)* |
+| **Funding** | Fund participant trading accounts and collect vendor fees | [Partner Funding](/partners/funding/overview.md) *(Beta)* |
+| **Stream consumers** | Maintain a live mirror of orders, positions, and balances | [gRPC streaming](/streaming-endpoints/grpc-overview.md) |
 | **Webhook receiver** | Receive KYC and account lifecycle notifications | Account notifications *(coming soon)* |
 
 > [!NOTE]
@@ -43,43 +43,43 @@ A complete partner integration has a handful of components. You can build them i
 
 **1. Understand the platform and your role**
 
-Start with [Your Role](/partners/your-role) and the [Platform Model](/partners/platform-model). Keep the [Glossary](/partners/glossary) open in a tab.
+Start with [Your Role](/partners/your-role.md) and the [Platform Model](/partners/platform-model.md). Keep the [Glossary](/partners/glossary.md) open in a tab.
 
 **2. Understand funding**
 
-Your funding entity **pre-positions pooled funds** and funds participant accounts with instant deposit transfers, with vendor fees declared per order and collected periodically — read the [Partner Funding](/partners/funding/overview) *(Beta)* model before designing your deposit, order, and fee flows. Contact your Polymarket US integration lead to enable funding for your integration.
+Your funding entity **pre-positions pooled funds** and funds participant accounts with instant deposit transfers, with vendor fees declared per order and collected periodically — read the [Partner Funding](/partners/funding/overview.md) *(Beta)* model before designing your deposit, order, and fee flows. Contact your Polymarket US integration lead to enable funding for your integration.
 
 **3. Get connected**
 
-Complete partner [onboarding](/partners/get-connected/onboarding), then set up [authentication](/partners/get-connected/authentication). Confirm you can call `GET /v1/whoami` successfully.
+Complete partner [onboarding](/partners/get-connected/onboarding.md), then set up [authentication](/partners/get-connected/authentication.md). Confirm you can call `GET /v1/whoami` successfully.
 
 **4. Onboard your participants**
 
-Implement the [KYC flow](/partners/onboarding/kyc/overview). You **collect** each participant's required information and submit it; Polymarket US **performs the verification and decision**. On approval, the Retail Participant and their [account](/partners/onboarding/accounts) are provisioned automatically. See [Onboard Participants](/partners/onboarding/users).
+Implement the [KYC flow](/partners/onboarding/kyc/overview.md). You **collect** each participant's required information and submit it; Polymarket US **performs the verification and decision**. On approval, the Retail Participant and their [account](/partners/onboarding/accounts.md) are provisioned automatically. See [Onboard Participants](/partners/onboarding/users.md).
 
 **5. Place your first order**
 
-Walk through the [Quickstart](/partners/get-connected/quickstart) to authenticate, list instruments, and place and cancel an order end to end.
+Walk through the [Quickstart](/partners/get-connected/quickstart.md) to authenticate, list instruments, and place and cancel an order end to end.
 
 **6. Monitor and reconcile**
 
-Subscribe to the [order, position, and balance streams](/streaming-endpoints/grpc-overview) and maintain a local mirror. Add a webhook receiver for KYC and account lifecycle events.
+Subscribe to the [order, position, and balance streams](/streaming-endpoints/grpc-overview.md) and maintain a local mirror. Add a webhook receiver for KYC and account lifecycle events.
 
 ## Start here
 
-> **[Your Role](/partners/your-role)**
+> **[Your Role](/partners/your-role.md)**
 >
 > What you do, what we do, and what you never handle.
 
-> **[Platform Model](/partners/platform-model)**
+> **[Platform Model](/partners/platform-model.md)**
 >
 > DCM + DCO and the entities you act on.
 
-> **[Authentication](/partners/get-connected/authentication)**
+> **[Authentication](/partners/get-connected/authentication.md)**
 >
 > Authenticate as your Firm with Private Key JWT.
 
-> **[Quickstart](/partners/get-connected/quickstart)**
+> **[Quickstart](/partners/get-connected/quickstart.md)**
 >
 > Place your first order end to end.
 

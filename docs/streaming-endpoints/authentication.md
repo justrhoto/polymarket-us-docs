@@ -226,7 +226,7 @@ Scopes are enforced on streaming RPCs the same way they are on REST endpoints. T
 | `CreateDropCopySubscription` | `read:dropcopy` |
 | `CreateFundingSubscription` | `read:funding` |
 
-See the full scope reference in the [trader guide authentication page](/trader-guide/authentication#api-scopes).
+See the full scope reference in the [trader guide authentication page](/trader-guide/authentication.md#api-scopes).
 
 ## Key Rotation
 
@@ -240,19 +240,19 @@ You can rotate your keys without downtime:
 
 ## Next Steps
 
-> **[Authentication Setup](/trader-guide/authentication)**
+> **[Authentication Setup](/trader-guide/authentication.md)**
 >
 > Complete onboarding guide with key generation
 
-> **[Market Data Streaming](/streaming-endpoints/market-data-stream)**
+> **[Market Data Streaming](/streaming-endpoints/market-data-stream.md)**
 >
 > Learn how to stream market data
 
-> **[Order Streaming](/streaming-endpoints/order-stream)**
+> **[Order Streaming](/streaming-endpoints/order-stream.md)**
 >
 > Subscribe to order updates
 
-> **[Error Handling](/streaming-endpoints/error-handling)**
+> **[Error Handling](/streaming-endpoints/error-handling.md)**
 >
 > Handle errors and implement reconnection
 

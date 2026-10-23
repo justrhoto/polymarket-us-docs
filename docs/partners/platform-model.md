@@ -45,7 +45,7 @@ You authenticate as the **Firm** and act **on behalf of** the Retail Participant
 
 > [!NOTE]
 >
-> In these partner docs, **Participant** means a *trading identity* — a person you onboard. Be aware the [main glossary](/getting-started/glossary) also uses the word "participant" in an unrelated market-structure sense; the [Partner Glossary](/partners/glossary) explains the distinction.
+> In these partner docs, **Participant** means a *trading identity* — a person you onboard. Be aware the [main glossary](/getting-started/glossary.md) also uses the word "participant" in an unrelated market-structure sense; the [Partner Glossary](/partners/glossary.md) explains the distinction.
 
 ## How messages flow
 
@@ -73,15 +73,15 @@ API calls that are scoped to a participant carry an `x-participant-id` header id
 * [`GET /v1/whoami`](/institutional/accounts/overview#endpoints) — your Firm identity
 * [`GET /v1/users`](/institutional/accounts/overview#endpoints) — the Retail Participants your Firm may act on behalf of
 
-See [Accounts & Identity](/trader-guide/accounts-identity) for the identity hierarchy, or [Onboard Participants](/partners/onboarding/onboard-participants) for how identities are created and listed.
+See [Accounts & Identity](/trader-guide/accounts-identity.md) for the identity hierarchy, or [Onboard Participants](/partners/onboarding/onboard-participants.md) for how identities are created and listed.
 
 ## Next steps
 
-> **[Integration Journey](/partners/integration-journey)**
+> **[Integration Journey](/partners/integration-journey.md)**
 >
 > The recommended order to build your integration.
 
-> **[Authentication](/partners/get-connected/authentication)**
+> **[Authentication](/partners/get-connected/authentication.md)**
 >
 > Authenticate as your Firm with Private Key JWT.
 

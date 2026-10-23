@@ -4,7 +4,7 @@
 
 # FIX Connection Setup
 
-FIX connectivity to Polymarket US is provisioned via AWS VPC PrivateLink. After your [onboarding](/trader-guide/onboarding) is complete, you will receive your connection details in the FIX Connectivity form:
+FIX connectivity to Polymarket US is provisioned via AWS VPC PrivateLink. After your [onboarding](/trader-guide/onboarding.md) is complete, you will receive your connection details in the FIX Connectivity form:
 
 > **[Download FIX Connectivity Form](https://drive.google.com/uc?export=download\&id=1z-DxC8m-wUZKQq8S7tV64Rwi-WTMIps0)**
 >
@@ -152,9 +152,9 @@ Once your VPC Endpoint is approved and configured:
 
 For detailed FIX protocol specifications, see:
 
-* [FIX Session Management](/institutional/fix-api/fix-session-management)
-* [FIX Order Entry](/institutional/fix-api/fix-order-entry-overview)
-* [FIX Market Data](/institutional/fix-api/fix-market-data-subscription)
+* [FIX Session Management](/institutional/fix-api/fix-session-management.md)
+* [FIX Order Entry](/institutional/fix-api/fix-order-entry-overview.md)
+* [FIX Market Data](/institutional/fix-api/fix-market-data-subscription.md)
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

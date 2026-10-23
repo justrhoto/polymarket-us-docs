@@ -14,9 +14,9 @@ A **transfer** moves cash between your **partner funding account** and a **parti
 
 | Reason | Direction | Business event |
 | - | - | - |
-| `DEPOSIT` | Funding account → participant account | The participant allocated wallet funds to trade — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals) |
-| `WITHDRAWAL` | Participant account → funding account | The participant withdrew funds from trading — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals) |
-| `VENDOR_FEES` | Participant account → funding account | Periodic collection of accrued vendor fees — see [Vendor Fees](/partners/funding/vendor-fees) |
+| `DEPOSIT` | Funding account → participant account | The participant allocated wallet funds to trade — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals.md) |
+| `WITHDRAWAL` | Participant account → funding account | The participant withdrew funds from trading — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals.md) |
+| `VENDOR_FEES` | Participant account → funding account | Periodic collection of accrued vendor fees — see [Vendor Fees](/partners/funding/vendor-fees.md) |
 
 **Direction is fixed by the reason.** You name only the participant account; the platform resolves your funding account from your firm's configured funding relationship and derives the source and destination from the reason. There is no way to express any other movement — transfers to your firm, between participants, or to an external destination are structurally impossible.
 
@@ -93,7 +93,7 @@ message CashMovement {
 }
 ```
 
-The read model returns the typed `reason` and derived source and destination accounts, but it does not echo `participant_account_id`, `external_reference`, or `memo`. Persist those request fields in your own ledger alongside `workflow_id`. There are no order, execution, or market correlation fields on a transfer. Both sides of a confirmed transfer appear on the [balance ledger](/streaming-endpoints/balance-ledger-stream) of the affected accounts, so your projection and your funding entity's records see the same event.
+The read model returns the typed `reason` and derived source and destination accounts, but it does not echo `participant_account_id`, `external_reference`, or `memo`. Persist those request fields in your own ledger alongside `workflow_id`. There are no order, execution, or market correlation fields on a transfer. Both sides of a confirmed transfer appear on the [balance ledger](/streaming-endpoints/balance-ledger-stream.md) of the affected accounts, so your projection and your funding entity's records see the same event.
 
 ### GetFundingAccountBalance
 
@@ -169,11 +169,11 @@ A transfer is rejected if the **source account** cannot cover the amount:
 | `WITHDRAWAL` | Participant account | The participant's *free* cash (net of collateral locked by open orders and positions) is below the amount. |
 | `VENDOR_FEES` | Participant account | The participant's free cash is below the accrued amount — e.g. trading losses since accrual. |
 
-This is enforced across the system regardless of reason — no transfer can drive an account negative. **Managing the risk is on you and your funding entity**: gate spendable balance so accrued fees stay covered ([Vendor Fees](/partners/funding/vendor-fees#accrued-fees-are-credit-exposure)), and check free cash before initiating withdrawals ([Deposits & Withdrawals](/partners/funding/deposits-withdrawals#withdrawals)).
+This is enforced across the system regardless of reason — no transfer can drive an account negative. **Managing the risk is on you and your funding entity**: gate spendable balance so accrued fees stay covered ([Vendor Fees](/partners/funding/vendor-fees.md#accrued-fees-are-credit-exposure)), and check free cash before initiating withdrawals ([Deposits & Withdrawals](/partners/funding/deposits-withdrawals.md#withdrawals)).
 
 ## Frequency rules
 
-Transfers are a limited, shared resource — see [the transfer budget](/partners/funding/overview#the-transfer-budget):
+Transfers are a limited, shared resource — see [the transfer budget](/partners/funding/overview.md#the-transfer-budget):
 
 * **`DEPOSIT` / `WITHDRAWAL`** — event-driven: **typically one transfer per wallet deposit/withdrawal event** per participant. Mirroring wallet events 1:1 is the intended pattern; batch micro-events into fewer, larger transfers where your product allows.
 * **`VENDOR_FEES`** — **at most once per day per participant account.** Collecting weekly or monthly is fine; collecting more often than daily is not permitted.
@@ -222,7 +222,7 @@ def dispatch_loop(stub, metadata):
 * A transport timeout or an `AMBIGUOUS` status is **not** permission to create a second workflow — replay the same create request with the same key, or read the original workflow by `workflow_id`.
 * A replay must be **identical**: the request is hashed under the key, so retrying with a changed amount, account, reason, or reference is rejected as key reuse with a different request.
 * Use bounded recovery for `PENDING` workflows rather than a permanent polling scheduler.
-* Persist `workflow_id`, the reason, and `external_reference` through a terminal result — they are your join keys across your books, the [balance ledger](/streaming-endpoints/balance-ledger-stream), and support requests.
+* Persist `workflow_id`, the reason, and `external_reference` through a terminal result — they are your join keys across your books, the [balance ledger](/streaming-endpoints/balance-ledger-stream.md), and support requests.
 
 ## Transfer workflow errors
 
@@ -243,19 +243,19 @@ An insufficient-funds outcome is not a gRPC error at create time: the workflow r
 
 ## Related pages
 
-> **[Partner Funding Overview](/partners/funding/overview)**
+> **[Partner Funding Overview](/partners/funding/overview.md)**
 >
 > The model — parties, money flows, and directional guarantees.
 
-> **[Deposits & Withdrawals](/partners/funding/deposits-withdrawals)**
+> **[Deposits & Withdrawals](/partners/funding/deposits-withdrawals.md)**
 >
 > Mirroring wallet allocations into buying power.
 
-> **[Vendor Fees](/partners/funding/vendor-fees)**
+> **[Vendor Fees](/partners/funding/vendor-fees.md)**
 >
 > Accrual, the daily report, and collection.
 
-> **[Reconciliation](/partners/reconciliation)**
+> **[Reconciliation](/partners/reconciliation.md)**
 >
 > Keeping your books in sync with the ledger.
 

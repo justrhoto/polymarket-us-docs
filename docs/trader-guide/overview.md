@@ -37,7 +37,7 @@ Polymarket Exchange provides multiple environments for testing and production:
 * **Pre-production** - UAT environment with test funds
 * **Production** - Live trading environment
 
-> **[Environments](/trader-guide/environments)**
+> **[Environments](/trader-guide/environments.md)**
 >
 > View API endpoints and configuration
 
@@ -48,7 +48,7 @@ API requests are subject to rate limits to ensure fair usage:
 * REST API: Request-based limits per endpoint
 * gRPC: Connection and message limits
 
-> **[Rate Limits](/trader-guide/rate-limits)**
+> **[Rate Limits](/trader-guide/rate-limits.md)**
 >
 > Understand rate limiting policies
 
@@ -60,21 +60,25 @@ Choose the right protocol for your use case:
 * **gRPC** - High-performance streaming for market data and order updates
 * **FIX** - Industry-standard protocol for institutional trading
 
-> **[Connection Options](/trader-guide/connection-options)**
+> **[Connection Options](/trader-guide/connection-options.md)**
 >
 > Compare connection protocols
 
 ### Schema
 
-Strongly-typed instrument fields for safely identifying sports and crypto price markets without parsing symbols or slugs.
+Strongly-typed instrument fields for safely identifying sports, crypto, gold and silver price markets without parsing symbols or slugs.
 
-> **[Sports Schema](/trader-guide/sports-schema)**
+> **[Sports Schema](/trader-guide/sports-schema.md)**
 >
 > Identify sports markets via instrument metadata
 
-> **[Crypto Schema](/trader-guide/crypto-schema)**
+> **[Crypto Schema](/trader-guide/crypto-schema.md)**
 >
 > Identify crypto price markets via instrument metadata
+
+> **[Metals Schema](/trader-guide/metals-schema.md)**
+>
+> Identify gold and silver price markets via instrument metadata
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

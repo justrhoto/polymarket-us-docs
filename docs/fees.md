@@ -90,7 +90,7 @@ Volume (sell) = C × (1 - p)
 
 > [!NOTE]
 >
-> API integrators: `C` is the number of **contracts** and `p` the **decimal** price. Execution reports carry these as fixed-point integers, and the collected fee in scaled notional units — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for how to decode `commission_notional_collected` with `price_scale` and `fractional_quantity_scale`.
+> API integrators: `C` is the number of **contracts** and `p` the **decimal** price. Execution reports carry these as fixed-point integers, and the collected fee in scaled notional units — see [Fees on execution reports](/partners/orders/data-model.md#fees-on-execution-reports) for how to decode `commission_notional_collected` with `price_scale` and `fractional_quantity_scale`.
 
 ### Standard Fee Schedule by Price
 

@@ -23,7 +23,7 @@ The exchange also lists longer-dated Bitcoin markets by hand, such as the year-e
 
 > [!NOTE]
 >
-> The automated families are currently listed in the preprod environment and roll out to production as announced in the [changelog](/changelog). For the fields that identify each market, see [Crypto Schema](/trader-guide/crypto-schema).
+> The automated families are currently listed in the preprod environment and roll out to production as announced in the [changelog](/changelog.md). For the fields that identify each market, see [Crypto Schema](/trader-guide/crypto-schema.md).
 
 ### How are Cryptocurrency Contracts settled?
 
@@ -58,7 +58,7 @@ Settlement requires the complete set of index prices for the settlement minute (
 
 ### Do Cryptocurrency Contracts trade around the clock?
 
-Yes. Windows and ladders are listed continuously, including weekends. The exchange's trade-day roll at 5:00 PM ET applies as on every other market, and no ladder is created to expire during that hour; daily and weekly ladders instead expire exactly at 5:00 PM ET. See [Trading Hours](/learn/trading/access-and-limits/trading-hours) for the recurring maintenance window.
+Yes. Windows and ladders are listed continuously, including weekends. The exchange's trade-day roll at 5:00 PM ET applies as on every other market, and no ladder is created to expire during that hour; daily and weekly ladders instead expire exactly at 5:00 PM ET. See [Trading Hours](/learn/trading/access-and-limits/trading-hours.md) for the recurring maintenance window.
 
 ### What happens during scheduled maintenance?
 
@@ -80,7 +80,7 @@ Hourly ladders are listed about four hours before expiry; the daily ladder is li
 
 ### How do Price Range ladders work?
 
-A price range ladder shares its expiry and grid with the Above/Below ladder of the same horizon: the bucket width equals that ladder's strike spacing. The lowest bucket is "or below", the highest is "or above", and the buckets in between are inclusive ranges one cent apart. Exactly one bucket settles Yes, so the event is listed as mutually exclusive; see [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return) for how that reduces margin on offsetting short positions.
+A price range ladder shares its expiry and grid with the Above/Below ladder of the same horizon: the bucket width equals that ladder's strike spacing. The lowest bucket is "or below", the highest is "or above", and the buckets in between are inclusive ranges one cent apart. Exactly one bucket settles Yes, so the event is listed as mutually exclusive; see [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return.md) for how that reduces margin on offsetting short positions.
 
 ### How do One-Touch markets work?
 
@@ -90,11 +90,13 @@ Each month has two events: "Reaches \$X" targets above the price at listing and 
 
 ### How do I find crypto markets on the Retail API?
 
-Filter by category: `GET /v1/markets?categories=crypto&closed=false`. Automated markets carry a typed `assetPriceTerms` object with the market type, window, strike or range bounds and, once known, the price to beat and the settlement price. Hand-listed markets show `assetPriceTerms: null` and `marketType: "futures"`. See [Crypto Price Market Fields](/api-reference/market/overview#crypto-price-market-fields). Index price history is available from `GET /v1/asset-prices/history`; see [Asset Prices](/api-reference/asset-prices/overview).
+Filter by category: `GET /v1/markets?categories=crypto&closed=false`. Automated markets carry a typed `assetPriceTerms` object with the market type, window, strike or range bounds and, once known, the price to beat and the settlement price. Hand-listed markets show `assetPriceTerms: null` and `marketType: "futures"`. See [Asset Price Market Fields](/api-reference/market/overview.md#asset-price-market-fields). Index price history is available from `GET /v1/asset-prices/history`; see [Asset Prices](/api-reference/asset-prices/overview.md).
 
 ### How do I find crypto instruments on the Institutional API?
 
-Filter reference data by category or clearing symbol: `POST /v1/refdata/instruments` with `{"eventCategory": "CRY"}` or `{"clearingSym": "CPC-BTC"}`, or by series such as `{"eventSeries": "btc-updown-15m"}`. Identify the market from `crypto_market_type` and the other fields documented in [Crypto Schema](/trader-guide/crypto-schema). Never parse the symbol.
+Filter reference data by category or clearing symbol: `POST /v1/refdata/instruments` with `{"eventCategory": "CRY"}` or `{"clearingSym": "CPC-BTC"}`, or by series such as `{"eventSeries": "btc-updown-15m"}`. Identify the market from `crypto_market_type` and the other fields documented in [Crypto Schema](/trader-guide/crypto-schema.md). Never parse the symbol.
+
+The reference data list is served from a cache, so a newly stamped `price_to_beat` or `crypto_settlement_price` can take up to an hour to appear there. Read fresh prices from the Retail market endpoints, and the final settlement from `GET /v1/instruments/{symbol}/settlement`.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

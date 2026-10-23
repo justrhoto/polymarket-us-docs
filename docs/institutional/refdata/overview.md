@@ -216,7 +216,30 @@ curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments"
   }'
 ```
 
-Identify each instrument from its `crypto_market_type` metadata; see [Crypto Schema](/trader-guide/crypto-schema).
+Identify each instrument from its `crypto_market_type` metadata; see [Crypto Schema](/trader-guide/crypto-schema.md).
+
+### Filtering Gold and Silver Instruments
+
+Gold and silver price instruments use category `FIN`, subcategory `COMMODITY` and one clearing symbol per metal: `CPAUSP-COMMODITY` for gold and `CPAGSP-COMMODITY` for silver. Filter by clearing symbol and series to get one metal and one window length, e.g. every 15-minute gold window:
+
+```bash theme={null}
+curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventCategory": "FIN",
+    "clearingSym": "CPAUSP-COMMODITY",
+    "eventSeries": "gold-updown-15m",
+    "states": ["INSTRUMENT_STATE_OPEN"],
+    "pageSize": 1000
+  }'
+```
+
+The series are `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-updown-15m`, `silver-updown-1h` and `silver-updown-1d`. Identify each instrument from its `metals_market_type` metadata; see [Metals Schema](/trader-guide/metals-schema.md).
+
+> [!NOTE]
+>
+> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat` and the settlement price fields on crypto and metals Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat`).
 
 ### Combining Filters
 

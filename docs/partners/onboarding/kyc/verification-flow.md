@@ -10,11 +10,11 @@
 >
 > **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
-`POST /v1/kyc/start` is the primary endpoint for onboarding. You submit the participant's identity data (optionally with a Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) `session_token`), and the response tells you which of the [four outcomes](/partners/onboarding/kyc/overview#the-four-outcomes) applies.
+`POST /v1/kyc/start` is the primary endpoint for onboarding. You submit the participant's identity data (optionally with a Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md) `session_token`), and the response tells you which of the [four outcomes](/partners/onboarding/kyc/overview.md#the-four-outcomes) applies.
 
 > [!NOTE]
 >
-> Every action on this page is also available over gRPC with identical fields and semantics — see [Using gRPC](#using-grpc) and the [transport mapping](/partners/onboarding/kyc/overview#rest-and-grpc). To reduce form friction, the optional [Prefill Flow](/partners/onboarding/kyc/prefill-flow) can pre-populate most of the identity fields before you submit.
+> Every action on this page is also available over gRPC with identical fields and semantics — see [Using gRPC](#using-grpc) and the [transport mapping](/partners/onboarding/kyc/overview.md#rest-and-grpc). To reduce form friction, the optional [Prefill Flow](/partners/onboarding/kyc/prefill-flow.md) can pre-populate most of the identity fields before you submit.
 
 ## Start verification
 
@@ -65,7 +65,7 @@ POST /v1/kyc/start
 | `address` | object | Yes | Residential address (see below) |
 | `agreement.version` | string | Yes | Version of the participant agreement accepted. Confirm the current value with the onboarding team — do not hardcode. |
 | `agreement.signed_at` | string | Yes | UTC ISO-8601 timestamp of acceptance |
-| `session_token` | string | No | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) token — **strongly recommended** |
+| `session_token` | string | No | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md) token — **strongly recommended** |
 | `docv_eligible` | boolean | No | Whether this evaluation may use [document verification (DocV)](#document-verification-docv). Omitted = not DocV-eligible. |
 | `ip_address` | string | Yes | Participant's IP address |
 
@@ -94,7 +94,7 @@ The response's `status` object carries `decision`, `status`, `subStatus`, and `e
 
 > [!WARNING]
 >
-> **Treat `decision` / `status` / `subStatus` as informational, not control flow.** These values are passed through from the verification provider and the provider may emit values beyond the set above. Key your logic off the **`docv` presence** on the start and [status](#resuming-an-interrupted-docv-session) responses, and off the **[webhook](/partners/onboarding/kyc/webhooks) `event_type` / `status`** (`kyc.approved` / `kyc.rejected`) for the terminal outcome.
+> **Treat `decision` / `status` / `subStatus` as informational, not control flow.** These values are passed through from the verification provider and the provider may emit values beyond the set above. Key your logic off the **`docv` presence** on the start and [status](#resuming-an-interrupted-docv-session) responses, and off the **[webhook](/partners/onboarding/kyc/webhooks.md) `event_type` / `status`** (`kyc.approved` / `kyc.rejected`) for the terminal outcome.
 
 ## Approval
 
@@ -102,7 +102,7 @@ The most common path. Note that **approval is asynchronous even when the decisio
 
 > [!NOTE]
 >
-> You send `snake_case`, but REST responses come back in `camelCase` (protobuf JSON naming) — e.g. `externalId`, `participantId`. See [Field naming](/partners/onboarding/kyc/overview#field-naming).
+> You send `snake_case`, but REST responses come back in `camelCase` (protobuf JSON naming) — e.g. `externalId`, `participantId`. See [Field naming](/partners/onboarding/kyc/overview.md#field-naming).
 
 ```json theme={null}
 {
@@ -150,15 +150,15 @@ Once provisioning completes, `GET /v1/kyc/status` (and the webhook) return the e
 
 > [!NOTE]
 >
-> **Automatic provisioning.** On approval, Polymarket US automatically creates the participant's trading identity and account — there is no separate account-creation step (see [Onboard Participants](/partners/onboarding/onboard-participants)). Because provisioning is asynchronous, **wait for the webhook (or a populated `participantId` from status) before enabling trading** rather than assuming the start response carries it.
+> **Automatic provisioning.** On approval, Polymarket US automatically creates the participant's trading identity and account — there is no separate account-creation step (see [Onboard Participants](/partners/onboarding/onboard-participants.md)). Because provisioning is asynchronous, **wait for the webhook (or a populated `participantId` from status) before enabling trading** rather than assuming the start response carries it.
 
 > [!NOTE]
 >
-> **Persist the account mapping.** At approval time, store the `externalId` → `provisionedAccount` mapping. `provisionedAccount` exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream); exact string matching is the only way to attribute those stream entries to a user.
+> **Persist the account mapping.** At approval time, store the `externalId` → `provisionedAccount` mapping. `provisionedAccount` exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream.md); exact string matching is the only way to attribute those stream entries to a user.
 
 > [!NOTE]
 >
-> **Which field identifies the participant when you trade?** Use `participantId` (the webhook calls the same value `provisioned_participant`) as the [`x-participant-id`](/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header — that is *who* the order is for. `provisionedAccount` identifies the participant's balance-ledger account. Your `externalId` is **your** reference only and is never sent to identify the participant. See [Using these identifiers to trade](/partners/onboarding/kyc/webhooks#using-these-identifiers-to-trade).
+> **Which field identifies the participant when you trade?** Use `participantId` (the webhook calls the same value `provisioned_participant`) as the [`x-participant-id`](/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header — that is *who* the order is for. `provisionedAccount` identifies the participant's balance-ledger account. Your `externalId` is **your** reference only and is never sent to identify the participant. See [Using these identifiers to trade](/partners/onboarding/kyc/webhooks.md#using-these-identifiers-to-trade).
 
 ## Document verification (DocV)
 
@@ -194,7 +194,7 @@ When Socure can't verify from the submitted data alone and the evaluation is Doc
 | `url` | Redirect or embed for browser-based document upload |
 | `qrCode` | Base64 PNG — display on desktop for mobile handoff |
 | `docvTransactionToken` | Launch token for the Socure mobile SDK |
-| `sdkKey` | **Always empty — ignore it.** Initialise the Socure SDK with the SDK key issued by the Polymarket US onboarding team; a [single key initialises both Digital Intelligence and DocV](/partners/onboarding/kyc/digital-intelligence#implementation) |
+| `sdkKey` | **Always empty — ignore it.** Initialise the Socure SDK with the SDK key issued by the Polymarket US onboarding team; a [single key initialises both Digital Intelligence and DocV](/partners/onboarding/kyc/digital-intelligence.md#implementation) |
 | `eventId` | Socure event identifier |
 
 You can direct the participant three ways — a **web URL**, a **QR code** for desktop→mobile handoff, or the **native Socure SDK**. Document capture is fully handled by Socure's UI; you don't build capture logic yourself.
@@ -259,7 +259,7 @@ Partner-relevant `status.status` values:
 
 > [!NOTE]
 >
-> Values are passed through from the verification provider and may extend beyond this set. Use populated provisioning identifiers (and the [webhook](/partners/onboarding/kyc/webhooks)) as your signal that the participant is ready to trade — not a specific `status` string.
+> Values are passed through from the verification provider and may extend beyond this set. Use populated provisioning identifiers (and the [webhook](/partners/onboarding/kyc/webhooks.md)) as your signal that the participant is ready to trade — not a specific `status` string.
 
 ### Resuming an interrupted DocV session
 
@@ -309,7 +309,7 @@ The fields are identical to the start response — including `sdkKey`, which is 
 >
 > **`external_id` is idempotent.** Re-submitting `POST /v1/kyc/start` for a participant who already passed KYC returns `409 ALREADY_EXISTS`. Handle it by fetching the existing status rather than treating it as an error.
 
-**Prefer [webhooks](/partners/onboarding/kyc/webhooks) over polling.** As a fallback, poll `GET /v1/kyc/status` every 5–10 seconds for up to 5 minutes after DocV submission. For manual-review cases, poll on a longer cadence (e.g. every 30 minutes for up to 2 business days) and notify the participant asynchronously.
+**Prefer [webhooks](/partners/onboarding/kyc/webhooks.md) over polling.** As a fallback, poll `GET /v1/kyc/status` every 5–10 seconds for up to 5 minutes after DocV submission. For manual-review cases, poll on a longer cadence (e.g. every 30 minutes for up to 2 business days) and notify the participant asynchronously.
 
 ## Using gRPC
 
@@ -349,7 +349,7 @@ message GetKYCStatusResponse {
 }
 ```
 
-Handle outcomes exactly as described above: key off `docv` presence for the synchronous step and the [webhook](/partners/onboarding/kyc/webhooks) for the terminal outcome. gRPC status codes map to the REST errors in the [table above](#error-handling--polling).
+Handle outcomes exactly as described above: key off `docv` presence for the synchronous step and the [webhook](/partners/onboarding/kyc/webhooks.md) for the terminal outcome. gRPC status codes map to the REST errors in the [table above](#error-handling--polling).
 
 ## Outcome flowchart
 
@@ -398,11 +398,11 @@ Use these placeholder agreement values in sandbox (the onboarding team provides 
 
 ## Next steps
 
-> **[Webhooks](/partners/onboarding/kyc/webhooks)**
+> **[Webhooks](/partners/onboarding/kyc/webhooks.md)**
 >
 > Receive the async approval/rejection notifications.
 
-> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence)**
+> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md)**
 >
 > Lower your REVIEW rate with the `session_token`.
 

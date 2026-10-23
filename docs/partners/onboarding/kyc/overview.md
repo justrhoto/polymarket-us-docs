@@ -14,13 +14,13 @@ Before any Retail Participant can trade, they must pass a **KYC (Know Your Custo
 
 > [!NOTE]
 >
-> **You don't talk to Socure for evaluation — Polymarket US does.** You call the KYC endpoints on your participant's behalf, and Polymarket US handles the Socure evaluation and account provisioning. The only time a participant's device touches Socure directly is the optional [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence) script and, when required, the document-upload (DocV) UI.
+> **You don't talk to Socure for evaluation — Polymarket US does.** You call the KYC endpoints on your participant's behalf, and Polymarket US handles the Socure evaluation and account provisioning. The only time a participant's device touches Socure directly is the optional [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md) script and, when required, the document-upload (DocV) UI.
 
 ## What a participant experiences
 
-1. They complete an identity form on your platform (name, address, SSN, date of birth) and accept the participant agreement. Optionally, the [Prefill Flow](/partners/onboarding/kyc/prefill-flow) can auto-populate most of the form from their phone number and date of birth via an SMS one-time passcode.
+1. They complete an identity form on your platform (name, address, SSN, date of birth) and accept the participant agreement. Optionally, the [Prefill Flow](/partners/onboarding/kyc/prefill-flow.md) can auto-populate most of the form from their phone number and date of birth via an SMS one-time passcode.
 2. In most cases, verification is **instant** — approved or rejected within seconds.
-3. Sometimes Socure asks them to **upload a photo ID** (document verification, "DocV") via a web URL or a mobile SDK. *This happens only if you [opted the evaluation in](/partners/onboarding/kyc/verification-flow#document-verification-docv) with `docv_eligible: true`; otherwise these cases go to manual review.*
+3. Sometimes Socure asks them to **upload a photo ID** (document verification, "DocV") via a web URL or a mobile SDK. *This happens only if you [opted the evaluation in](/partners/onboarding/kyc/verification-flow.md#document-verification-docv) with `docv_eligible: true`; otherwise these cases go to manual review.*
 4. In a small number of cases, the application needs **manual review** by the Polymarket US compliance team — no action required from the participant.
 5. Once approved, their trading account is ready and you receive a webhook.
 
@@ -35,11 +35,11 @@ Every `POST /v1/kyc/start` resolves to one of four outcomes:
 | **Manual compliance review** | Automated checks were inconclusive | Tell the participant to wait; await the webhook |
 | **Rejection** | Verification or risk assessment failed | Notify the participant — they cannot trade |
 
-See [Verification Flow](/partners/onboarding/kyc/verification-flow) for the request/response of each outcome and the decision matrix.
+See [Verification Flow](/partners/onboarding/kyc/verification-flow.md) for the request/response of each outcome and the decision matrix.
 
 > [!WARNING]
 >
-> **Approval is asynchronous even when instant.** A successful `POST /v1/kyc/start` may return a **non-terminal status with no `participantId` yet** while provisioning completes in the background. The final `participantId` arrives via the [webhook](/partners/onboarding/kyc/webhooks) and a later [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). Don't assume it's on the initial response.
+> **Approval is asynchronous even when instant.** A successful `POST /v1/kyc/start` may return a **non-terminal status with no `participantId` yet** while provisioning completes in the background. The final `participantId` arrives via the [webhook](/partners/onboarding/kyc/webhooks.md) and a later [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). Don't assume it's on the initial response.
 
 ## Integration architecture
 
@@ -84,7 +84,7 @@ Every KYC action is available over **both REST and gRPC**. They are the same und
 | Start identity prefill *(optional)* | `POST /v1/kyc/prefill` | `StartKYCPrefill` |
 | Submit prefill OTP *(optional)* | `POST /v1/kyc/prefill/otp` | `SubmitKYCPrefillOTP` |
 
-Both transports authenticate with the same firm [access token](/partners/get-connected/authentication) — REST in the `Authorization` header, gRPC as `authorization: Bearer <token>` metadata on each RPC. These pages use REST for the worked examples; the gRPC message shapes are in [Verification Flow → Using gRPC](/partners/onboarding/kyc/verification-flow#using-grpc).
+Both transports authenticate with the same firm [access token](/partners/get-connected/authentication.md) — REST in the `Authorization` header, gRPC as `authorization: Bearer <token>` metadata on each RPC. These pages use REST for the worked examples; the gRPC message shapes are in [Verification Flow → Using gRPC](/partners/onboarding/kyc/verification-flow.md#using-grpc).
 
 ## Field naming
 
@@ -95,7 +95,7 @@ The REST API is a JSON mapping of the same protobuf-defined service, which is wh
 * **gRPC messages** use the proto field names (`snake_case`) natively.
 * **Webhook payloads** use `snake_case` (e.g. `external_id`, `provisioned_participant`).
 
-We may align casing across the API in a future version; any change will be announced in the [changelog](/changelog).
+We may align casing across the API in a future version; any change will be announced in the [changelog](/changelog.md).
 
 ## Prerequisites
 
@@ -111,15 +111,15 @@ Before going live, make sure you have:
 
 ## Next steps
 
-> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence)**
+> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md)**
 >
 > Capture the `session_token` that keeps your approval rate high.
 
-> **[Verification Flow](/partners/onboarding/kyc/verification-flow)**
+> **[Verification Flow](/partners/onboarding/kyc/verification-flow.md)**
 >
 > Submit a participant and handle each of the four outcomes.
 
-> **[Webhooks](/partners/onboarding/kyc/webhooks)**
+> **[Webhooks](/partners/onboarding/kyc/webhooks.md)**
 >
 > Receive the async decision instead of polling.
 

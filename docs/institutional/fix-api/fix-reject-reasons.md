@@ -42,7 +42,7 @@ Note that the FIX protocol specifies different enumerations for OrdRejReason vs 
 
 > [!NOTE]
 >
-> **`Global Rate Limit Exceeded` is a latency stopgap, not a rate limit.** During periods of increased latency, an order that has been received but not processed within 5 seconds is rejected with the text `Global Rate Limit Exceeded` to protect you from a bad fill at a stale price. This is **not** an actual rate limit — do **not** throttle your traffic in response. It applies to new orders and cancel/replace modifications, but **not** to pure cancels. You can always cancel an order before it has been acknowledged or processed. See [Rate Limits](/trader-guide/rate-limits#latency-stopgap-on-orders).
+> **`Global Rate Limit Exceeded` is a latency stopgap, not a rate limit.** During periods of increased latency, an order that has been received but not processed within 5 seconds is rejected with the text `Global Rate Limit Exceeded` to protect you from a bad fill at a stale price. This is **not** an actual rate limit — do **not** throttle your traffic in response. It applies to new orders and cancel/replace modifications, but **not** to pure cancels. You can always cancel an order before it has been acknowledged or processed. See [Rate Limits](/trader-guide/rate-limits.md#latency-stopgap-on-orders).
 
 ### Market Data Request Reject (35=Y)
 

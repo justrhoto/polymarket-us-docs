@@ -10,7 +10,7 @@ This section is for **Introducing Brokers (IBs)** and **Independent Software Ven
 
 > [!NOTE]
 >
-> **New here?** Read [Your Role](/partners/your-role) and the [Platform Model](/partners/platform-model) first, then follow the [Integration Journey](/partners/integration-journey).
+> **New here?** Read [Your Role](/partners/your-role.md) and the [Platform Model](/partners/platform-model.md) first, then follow the [Integration Journey](/partners/integration-journey.md).
 
 ## Entity Clearing Member Agreement
 
@@ -30,15 +30,15 @@ graph TD
 
 ## Which partner are you?
 
-> **[ISV](/partners/partner-types/isvs)**
+> **[ISV](/partners/partner-types/isvs.md)**
 >
 > An Independent Software Vendor provides the software experience for retail traders. Not a broker.
 
-> **[IB](/partners/partner-types/ibs)**
+> **[IB](/partners/partner-types/ibs.md)**
 >
 > An Introducing Broker integrates the same way, plus carries CFTC/NFA regulatory obligations.
 
-> **[FCM](/partners/partner-types/fcms)**
+> **[FCM](/partners/partner-types/fcms.md)**
 >
 > A Futures Commission Merchant connects and clears differently. See the FCM guide.
 
@@ -50,24 +50,24 @@ graph TD
 
 | Question | Go to |
 | - | - |
-| "What does a partner actually do?" | [Your Role](/partners/your-role) |
-| "How is Polymarket US structured?" | [Platform Model](/partners/platform-model) |
-| "What's the end-to-end build order?" | [Integration Journey](/partners/integration-journey) |
-| "How is funding handled?" | [Partner Funding](/partners/funding/overview) *(Beta)* |
-| "How do I authenticate?" | [Authentication](/partners/get-connected/authentication) |
-| "How do I onboard and verify a user?" | [KYC Verification](/partners/onboarding/kyc/overview) |
-| "How do I place my first order?" | [Quickstart](/partners/get-connected/quickstart) |
-| "What does a term mean?" | [Partner Glossary](/partners/glossary) |
+| "What does a partner actually do?" | [Your Role](/partners/your-role.md) |
+| "How is Polymarket US structured?" | [Platform Model](/partners/platform-model.md) |
+| "What's the end-to-end build order?" | [Integration Journey](/partners/integration-journey.md) |
+| "How is funding handled?" | [Partner Funding](/partners/funding/overview.md) *(Beta)* |
+| "How do I authenticate?" | [Authentication](/partners/get-connected/authentication.md) |
+| "How do I onboard and verify a user?" | [KYC Verification](/partners/onboarding/kyc/overview.md) |
+| "How do I place my first order?" | [Quickstart](/partners/get-connected/quickstart.md) |
+| "What does a term mean?" | [Partner Glossary](/partners/glossary.md) |
 
 ## Get started
 
-> **[Start the Integration Journey](/partners/integration-journey)**
+> **[Start the Integration Journey](/partners/integration-journey.md)**
 >
 > The recommended path from onboarding to live trading.
 
 > [!NOTE]
 >
-> **Ready to onboard?** Contact [institutional@polymarket.us](mailto:institutional@polymarket.us) to begin. See [Partner Onboarding](/partners/get-connected/onboarding) for what we need from you and what you'll receive.
+> **Ready to onboard?** Contact [institutional@polymarket.us](mailto:institutional@polymarket.us) to begin. See [Partner Onboarding](/partners/get-connected/onboarding.md) for what we need from you and what you'll receive.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

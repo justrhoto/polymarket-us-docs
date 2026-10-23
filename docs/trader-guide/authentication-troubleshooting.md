@@ -8,7 +8,7 @@
 
 > [!NOTE]
 >
-> For authentication setup and code examples, see the main [Authentication](/trader-guide/authentication) guide.
+> For authentication setup and code examples, see the main [Authentication](/trader-guide/authentication.md) guide.
 
 ## Common Authentication Errors
 
@@ -34,7 +34,7 @@ Your token is valid but doesn't have the required scope for the endpoint.
 **Check:**
 
 1. Decode your token at jwt.io to see which scopes you have
-2. Verify the endpoint requires a scope you have (see [Authentication scopes](/trader-guide/authentication#api-scopes))
+2. Verify the endpoint requires a scope you have (see [Authentication scopes](/trader-guide/authentication.md#api-scopes))
 3. Scopes must be space-separated in the `scope` claim (e.g., `"read:orders write:orders"`)
 
 **Solution**: Contact support to request additional scopes for your Client ID.
@@ -267,7 +267,7 @@ Once you hold one valid participant ID, `GET /v1/users` lists the rest of your f
 >
 > Do not build a participant ID from the firm reported by `GET /v1/whoami`. The clearing member and the participant firm are different levels of the account hierarchy, so the firm shown there is not necessarily the firm segment of your participant ID — and an ID whose firm segment doesn't match your participant firm is rejected as a cross-firm request.
 
-See [Accounts & Identity](/trader-guide/accounts-identity#finding-your-participant-id) for more details.
+See [Accounts & Identity](/trader-guide/accounts-identity.md#finding-your-participant-id) for more details.
 
 ### Endpoints That Do NOT Require x-participant-id
 

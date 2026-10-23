@@ -12,7 +12,7 @@
 
 `CreateVendorOrder` is the partner order-entry call: it validates the supported structure of an embedded public `polymarket.v1.InsertOrderRequest`, **records your declared vendor fee against the order**, passes the order through to the exchange, and waits for its durable outcome before returning.
 
-No money moves in this call — the order trades against cash already in the participant's account, and the vendor fee [accrues for later collection](/partners/funding/vendor-fees). The exchange is authoritative for order economics and buying-power validation; `CreateVendorOrder` does not calculate or return order economics.
+No money moves in this call — the order trades against cash already in the participant's account, and the vendor fee [accrues for later collection](/partners/funding/vendor-fees.md). The exchange is authoritative for order economics and buying-power validation; `CreateVendorOrder` does not calculate or return order economics.
 
 ## Service definition
 
@@ -39,7 +39,7 @@ message CreateVendorOrderRequest {
 
 | Field | Type | Required | Description |
 | - | - | - | - |
-| `order` | `polymarket.v1.InsertOrderRequest` | Yes | The public order-entry shape. Set only the [supported fields](/partners/orders/data-model#supported-fields). |
+| `order` | `polymarket.v1.InsertOrderRequest` | Yes | The public order-entry shape. Set only the [supported fields](/partners/orders/data-model.md#supported-fields). |
 | `vendor_fee` | `MoneyAmount` | Yes | Your fixed USD vendor fee for this order. It is recorded against the exchange order ID and collected later with a [`VENDOR_FEES` transfer](/partners/funding/vendor-fees), never moved at order time. |
 | `idempotency_key` | `string` | Yes | Your unique key for this placement request. Persist it before calling the service. |
 
@@ -56,7 +56,7 @@ The participant is identified **only by `order.account`**. Use the DCM trading a
 | Field | Type | Description |
 | - | - | - |
 | `funding_request_id` | `string` | Service-assigned durable identifier for this placement workflow. Persist it even if `id` is empty, and include it in support requests. |
-| `id` | `string` | Exchange order identifier, when the exchange assigned one. The vendor fee for an accepted order is recorded under this ID, which is also `order_id` on the [Vendor Fees report](/partners/funding/vendor-fees#the-vendor-fees-report). |
+| `id` | `string` | Exchange order identifier, when the exchange assigned one. The vendor fee for an accepted order is recorded under this ID, which is also `order_id` on the [Vendor Fees report](/partners/funding/vendor-fees.md#the-vendor-fees-report). |
 | `status` | `VendorOrderStatus` | Durable or current placement outcome. See below. |
 | `correlation` | `FundingCorrelation` | Partner and service identifiers for recovery, audit, and support. Log these. |
 
@@ -79,9 +79,9 @@ The participant is identified **only by `order.account`**. Use the DCM trading a
 
 > [!NOTE]
 >
-> **`ACCEPTED` means durable acceptance, not an execution state.** The service does not report acceptance based on submission alone, but an accepted order may have rested, matched immediately, or been cancelled under FOK. Track fills and other execution outcomes on [Drop Copy](/streaming-endpoints/dropcopy-stream). An order the exchange rejects asynchronously after submission is returned as `REJECTED`, not as a phantom accepted order.
+> **`ACCEPTED` means durable acceptance, not an execution state.** The service does not report acceptance based on submission alone, but an accepted order may have rested, matched immediately, or been cancelled under FOK. Track fills and other execution outcomes on [Drop Copy](/streaming-endpoints/dropcopy-stream.md). An order the exchange rejects asynchronously after submission is returned as `REJECTED`, not as a phantom accepted order.
 >
-> If you reconnect Drop Copy with an old `resume_token`, the stream replays older executions before it delivers this order's reports. See [Knowing you are caught up](/streaming-endpoints/streaming-best-practices#knowing-you-are-caught-up).
+> If you reconnect Drop Copy with an old `resume_token`, the stream replays older executions before it delivers this order's reports. See [Knowing you are caught up](/streaming-endpoints/streaming-best-practices.md#knowing-you-are-caught-up).
 
 ## Funding request lifecycle
 
@@ -98,7 +98,7 @@ Persist the `funding_request_id`, `idempotency_key`, and `clord_id` together. Th
 
 ## Supported order examples
 
-These examples deliberately populate only the launch fields. They assume the instrument publishes `priceScale = 100` and `fractionalQtyScale = 100` in [Reference Data](/institutional/refdata/overview). Use each instrument's published scales when converting decimal prices and quantities to integers. Every order must set exactly one of `order_qty` or `cash_order_qty`.
+These examples deliberately populate only the launch fields. They assume the instrument publishes `priceScale = 100` and `fractionalQtyScale = 100` in [Reference Data](/institutional/refdata/overview.md). Use each instrument's published scales when converting decimal prices and quantities to integers. Every order must set exactly one of `order_qty` or `cash_order_qty`.
 
 ### Consumer FOK share limit order
 
@@ -155,9 +155,9 @@ request = order_funding_pb2.CreateVendorOrderRequest(
 response = stub.CreateVendorOrder(request, metadata=metadata)
 ```
 
-A fill changes the participant's position by -10 in YES terms. Economically, buying 10 NO contracts at \$0.20 costs \$2.00, with \$0.08 commission in this example charged additionally. The cost is reflected in the account's buying power. Partners can query the authoritative cash `balance` and `buying_power` with `polymarket.v1.PositionAPI/GetAccountBalance`; see [Reconciliation](/partners/reconciliation).
+A fill changes the participant's position by -10 in YES terms. Economically, buying 10 NO contracts at \$0.20 costs \$2.00, with \$0.08 commission in this example charged additionally. The cost is reflected in the account's buying power. Partners can query the authoritative cash `balance` and `buying_power` with `polymarket.v1.PositionAPI/GetAccountBalance`; see [Reconciliation](/partners/reconciliation.md).
 
-The same complementary convention applies in the other direction: SELL `q` NO at `p` is BUY `q` YES at `1 − p`. See [Outcomes and prices](/partners/orders/data-model#outcomes-and-prices).
+The same complementary convention applies in the other direction: SELL `q` NO at `p` is BUY `q` YES at `1 − p`. See [Outcomes and prices](/partners/orders/data-model.md#outcomes-and-prices).
 
 ### Consumer cash BUY: spend \$20 on YES
 
@@ -223,7 +223,7 @@ The exchange validates buying power when the order is placed and rejects an orde
 spendable balance = account cash − accrued uncollected vendor fees
 ```
 
-For a BUY share limit order, client-side worst-case collateral is the contract quantity multiplied by the YES limit price. For a SELL share limit order expressing a NO position, it is the contract quantity multiplied by the complementary NO price. For a cash order, `cash_order_qty` is the principal: YES principal on BUY or complementary NO collateral on SELL. Add the maximum exchange fee from the [fee schedule](/fees) when estimating required cash; fees are additional to `cash_order_qty`.
+For a BUY share limit order, client-side worst-case collateral is the contract quantity multiplied by the YES limit price. For a SELL share limit order expressing a NO position, it is the contract quantity multiplied by the complementary NO price. For a cash order, `cash_order_qty` is the principal: YES principal on BUY or complementary NO collateral on SELL. Add the maximum exchange fee from the [fee schedule](/fees.md) when estimating required cash; fees are additional to `cash_order_qty`.
 
 `CreateVendorOrder` does not calculate these amounts. You may calculate them in your client or separately call the public `polymarket.v1.OrderEntryAPI/PreviewOrder` with the participant's order shape. The preview is optional and informational, not a locked quote; the exchange validates the order again at placement.
 
@@ -240,7 +240,7 @@ The `idempotency_key` identifies one placement request for your authenticated fi
 
 ## Cancelling an order
 
-An order placed through this service is a standard exchange order. Cancel it through the standard [order entry cancel](/institutional/trading/overview). Cancellation does not alter the recorded vendor fee: the platform records exactly what you declared at placement. If your fee policy waives fees on cancelled or unfilled orders, apply that policy in your books and in the amount you [collect](/partners/funding/vendor-fees#collecting-the-fees).
+An order placed through this service is a standard exchange order. Cancel it through the standard [order entry cancel](/institutional/trading/overview.md). Cancellation does not alter the recorded vendor fee: the platform records exactly what you declared at placement. If your fee policy waives fees on cancelled or unfilled orders, apply that policy in your books and in the amount you [collect](/partners/funding/vendor-fees.md#collecting-the-fees).
 
 ## Errors
 

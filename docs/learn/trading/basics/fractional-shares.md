@@ -23,7 +23,7 @@ You want to spend 100 dollars to buy Yes contracts priced at **\$0.65**. To keep
 * On a market that trades in 0.01-contract steps, that rounds down to **153.84 contracts**
 * On a whole-contract market, it rounds down to **153 contracts**
 
-In practice, part of your \$100 pays the trading fee, so you receive slightly fewer contracts. See the [Fee Schedule](/fees) for how the fee is calculated.
+In practice, part of your \$100 pays the trading fee, so you receive slightly fewer contracts. See the [Fee Schedule](/fees.md) for how the fee is calculated.
 
 ## Key Points
 

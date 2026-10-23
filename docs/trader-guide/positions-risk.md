@@ -63,7 +63,7 @@ GET /v1/accounts/accounts?accountId=your-account-id
 
 Returns account details including current buying power.
 
-Open orders consume buying power per instrument, and resting orders that become unfunded after a fill are automatically canceled - see [Collateral and Margin](/market-structure/collateral-and-margin#open-orders-and-order-collateralization).
+Open orders consume buying power per instrument, and resting orders that become unfunded after a fill are automatically canceled - see [Collateral and Margin](/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization).
 
 ## Position Reconciliation
 
@@ -91,15 +91,15 @@ If you manage multiple trading accounts: each account has independent positions,
 
 Download position reports for end-of-day positions, historical position snapshots, P\&L statements, and compliance reporting.
 
-See [Reporting](/trader-guide/reporting) for report access.
+See [Reporting](/trader-guide/reporting.md) for report access.
 
 ## Ledger Access
 
 For full audit-grade history of every position change and every cash event, use the ledger APIs (covered by the `read:positions` scope, with a hard historical floor of `2026-05-01`):
 
-* **[Position Ledger](/institutional/positions/overview#position-ledger)** — `GET /v1/positions/ledger` (paginated) and `/download` (CSV) return every position change with both deltas (`quantityChange`, `costChange`, `realizedChange`) and the cumulative state after each change.
-* **[Balance Ledger](/institutional/funding/overview)** — `GET /v1/funding/balance-ledger` (paginated) and `/download` (CSV) return every cash balance change with `before_balance` / `after_balance` and a typed `entry_type` (deposits, withdrawals, fills, fees, adjustments, …).
-* **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)** — gRPC `CreateBalanceLedgerSubscription` pushes the same balance ledger entries in real time, with `resume_time` for gap-free reconnection.
+* **[Position Ledger](/institutional/positions/overview.md#position-ledger)** — `GET /v1/positions/ledger` (paginated) and `/download` (CSV) return every position change with both deltas (`quantityChange`, `costChange`, `realizedChange`) and the cumulative state after each change.
+* **[Balance Ledger](/institutional/funding/overview.md)** — `GET /v1/funding/balance-ledger` (paginated) and `/download` (CSV) return every cash balance change with `before_balance` / `after_balance` and a typed `entry_type` (deposits, withdrawals, fills, fees, adjustments, …).
+* **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md)** — gRPC `CreateBalanceLedgerSubscription` pushes the same balance ledger entries in real time, with `resume_time` for gap-free reconnection.
 
 ## Troubleshooting
 

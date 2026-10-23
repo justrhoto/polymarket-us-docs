@@ -19,7 +19,7 @@ Before receiving HTTP status codes, you may encounter connection-level errors:
 * `SocketError: other side closed` - ALB timeout (10 minutes)
 * `14 UNAVAILABLE` (gRPC) - Stream dropped
 
-> **[Connection Issues Guide](/trader-guide/connection-issues)**
+> **[Connection Issues Guide](/trader-guide/connection-issues.md)**
 >
 > See the full Connection Issues guide for detailed troubleshooting of network errors, ALB timeouts, gRPC streams, keepalive settings, and reconnection strategies
 
@@ -52,7 +52,7 @@ Your JWT token is missing, invalid, or expired.
 
 **Solution**: Request a new token from Auth0 and retry your request.
 
-See [Authentication](/trader-guide/authentication-troubleshooting) for detailed troubleshooting.
+See [Authentication](/trader-guide/authentication-troubleshooting.md) for detailed troubleshooting.
 
 ### 403 Forbidden
 
@@ -64,9 +64,9 @@ Your token is valid but doesn't have the required scope for the endpoint, or the
 * Missing `x-participant-id` header on an account-scoped endpoint (trading, positions, reports)
 * Incorrect `x-participant-id` value
 
-**Solution**: Verify your token scopes and ensure `x-participant-id` is included for account-scoped endpoints, exactly as it was given to you. Don't rebuild the value by hand from another response — a participant ID whose firm segment doesn't match your participant firm is rejected as a cross-firm request. See [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id) for where the value comes from.
+**Solution**: Verify your token scopes and ensure `x-participant-id` is included for account-scoped endpoints, exactly as it was given to you. Don't rebuild the value by hand from another response — a participant ID whose firm segment doesn't match your participant firm is rejected as a cross-firm request. See [Finding Your Participant ID](/trader-guide/accounts-identity.md#finding-your-participant-id) for where the value comes from.
 
-See [Authentication](/trader-guide/authentication-troubleshooting) for detailed troubleshooting.
+See [Authentication](/trader-guide/authentication-troubleshooting.md) for detailed troubleshooting.
 
 ### 404 Not Found
 
@@ -133,7 +133,7 @@ You've exceeded the rate limit.
 
 **Solution**: Check the `Retry-After` header in the response and wait that long before retrying.
 
-See [Rate Limits](/trader-guide/rate-limits) for details and troubleshooting.
+See [Rate Limits](/trader-guide/rate-limits.md) for details and troubleshooting.
 
 ### 500 Internal Server Error
 

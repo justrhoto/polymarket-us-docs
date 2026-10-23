@@ -68,7 +68,7 @@ Omit both `resume_token` and `resume_time` to receive only executions that occur
 
 > [!NOTE]
 >
-> Commission fields on executions (`commission_notional_collected`, `commission_notional_total_collected`) are fixed-point notional units scaled by `price_scale` × `fractional_quantity_scale` — see [Fees on execution reports](/partners/orders/data-model#fees-on-execution-reports) for decoding rules and worked examples.
+> Commission fields on executions (`commission_notional_collected`, `commission_notional_total_collected`) are fixed-point notional units scaled by `price_scale` × `fractional_quantity_scale` — see [Fees on execution reports](/partners/orders/data-model.md#fees-on-execution-reports) for decoding rules and worked examples.
 
 ### Example
 
@@ -407,7 +407,7 @@ def stream_position_changes(self, symbols: list = None):
 
 ## Reconnection Handling
 
-Keep **one** long-lived Drop Copy stream per environment. Do not open a stream per order, and do not cancel the RPC after a few seconds — that restarts replay and never catches up. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
+Keep **one** long-lived Drop Copy stream per environment. Do not open a stream per order, and do not cancel the RPC after a few seconds — that restarts replay and never catches up. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md).
 
 Execution, trade-capture, and position-change streams carry `resume_token` for reconnect:
 
@@ -439,7 +439,7 @@ The two resume fields are mutually exclusive. Send one or neither.
 
 Replay always runs to the present before live executions arrive. An old token or an early `resume_time` means a long replay, and a fill for an order you just placed is delivered only after that replay reaches it. If you do not need past executions, do not send a resume field.
 
-Persist the most recent `resume_token` you have fully applied, not the first token you received. Responses with no executions still carry a current `resume_token`; persist those too. To tell when a replay has caught up, see [Knowing you are caught up](/streaming-endpoints/streaming-best-practices#knowing-you-are-caught-up).
+Persist the most recent `resume_token` you have fully applied, not the first token you received. Responses with no executions still carry a current `resume_token`; persist those too. To tell when a replay has caught up, see [Knowing you are caught up](/streaming-endpoints/streaming-best-practices.md#knowing-you-are-caught-up).
 
 ## Comparing DropCopy vs Order Stream
 
@@ -463,23 +463,23 @@ Persist the most recent `resume_token` you have fully applied, not the first tok
 
 ## Next Steps
 
-> **[Streaming Best Practices](/streaming-endpoints/streaming-best-practices)**
+> **[Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md)**
 >
 > One stream per firm. Persist resume\_token after apply.
 
-> **[Order Stream](/streaming-endpoints/order-stream)**
+> **[Order Stream](/streaming-endpoints/order-stream.md)**
 >
 > Stream user-level order updates
 
-> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+> **[Market Data Stream](/streaming-endpoints/market-data-stream.md)**
 >
 > Stream real-time market data
 
-> **[Funding Stream](/streaming-endpoints/funding-stream)**
+> **[Funding Stream](/streaming-endpoints/funding-stream.md)**
 >
 > Stream funding transaction updates
 
-> **[Error Handling](/streaming-endpoints/error-handling)**
+> **[Error Handling](/streaming-endpoints/error-handling.md)**
 >
 > Handle errors and reconnections
 

@@ -4,7 +4,7 @@
 
 # Get A Bucketed OHLC Price Series For One Or More Assets
 
-> Returns a dense, ascending OHLC candle series per requested asset between from and to, one candle per bucket. Buckets with no ticks are gap-filled: close is carried forward, open/high/low equal that close, and tick_count is 0. The server clamps rather than rejects: a to of 0 or in the future becomes now, and from is raised so the series holds at most 3600 candles. That count is the only size limit, so the widest window scales with the bucket: an hour at 1S, 60 hours at 1M, 150 days at 1H. The effective bounds are echoed on each series. Duplicate assets are deduped; the response holds one series per distinct asset. Match a series to a requested asset by its asset field, never by position: the order is not guaranteed, and the REST surface returns the series sorted by symbol because a repeated query parameter does not keep its order. An unknown symbol in a known class returns an empty series, not an error; an unknown class is rejected.
+> Returns a dense, ascending OHLC candle series per requested asset between from and to, one candle per bucket. Buckets with no ticks are gap-filled: close is carried forward, open/high/low equal that close, and tick_count is 0. The server clamps rather than rejects: a to of 0 or in the future becomes now, and from is raised so the series holds at most 3600 candles. That count is the only size limit, so the widest window scales with the bucket: an hour at 1S, 60 hours at 1M, 150 days at 1H. The effective bounds are echoed on each series. Duplicate assets are deduped; the response holds one series per distinct asset. Match a series to a requested asset by its asset field, never by position: the order is not guaranteed, and the REST surface returns the series sorted by symbol because a repeated query parameter does not keep its order. An unknown symbol, or an asset whose markets are not available yet, fails the whole request with 404 (asset price history is not available). An available asset with no prices yet returns an empty series; an unknown class is rejected.
 
 
 
@@ -40,17 +40,19 @@ paths:
         series to a requested asset by its asset field, never by position: the
         order is not guaranteed, and the REST surface returns the series sorted
         by symbol because a repeated query parameter does not keep its order. An
-        unknown symbol in a known class returns an empty series, not an error;
-        an unknown class is rejected.
+        unknown symbol, or an asset whose markets are not available yet, fails
+        the whole request with 404 (asset price history is not available). An
+        available asset with no prices yet returns an empty series; an unknown
+        class is rejected.
       operationId: AssetPricesService_GetAssetPriceHistory
       parameters:
         - name: assets
           description: >-
             Assets in canonical <class>:<symbol> form
-            (gateway.types.v1.AssetId), e.g. crypto:btc. Repeat the query
-            parameter to request multiple, e.g.
-            ?assets=crypto:btc&assets=crypto:eth. At most 10; duplicates are
-            deduped server-side.
+            (gateway.types.v1.AssetId), e.g. crypto:btc, commodity:gold or
+            commodity:silver. Repeat the query parameter to request multiple,
+            e.g. ?assets=crypto:btc&assets=commodity:gold. At most 10;
+            duplicates are deduped server-side.
           in: query
           required: false
           explode: true
@@ -163,11 +165,11 @@ components:
           type: string
           example: btc
           description: >-
-            Lower-case symbol within the class, e.g. btc. Matches [a-z0-9-], at
-            most 64 characters.
+            Lower-case symbol within the class, e.g. btc or gold. Matches
+            [a-z0-9-], at most 64 characters.
       description: >-
         Identifies one priced asset. The canonical string form is class:symbol,
-        e.g. crypto:btc.
+        e.g. crypto:btc or commodity:gold.
     gateway.asset_prices.v1.AssetPriceBucket:
       type: string
       enum:
@@ -225,6 +227,7 @@ components:
       type: string
       enum:
         - ASSET_CLASS_CRYPTO
+        - ASSET_CLASS_COMMODITY
       description: AssetClass namespaces asset symbols.
 
 ````

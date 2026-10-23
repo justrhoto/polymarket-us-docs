@@ -8,11 +8,11 @@
 
 > [!NOTE]
 >
-> Read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
+> Read the [Combos/RFQ guide](/trader-guide/combos.md) before integrating. It explains quote construction, visibility, last look, and recovery.
 
 `StreamRFQEvents` is a gRPC server-side stream for live RFQ, quote, and trade events.
 
-Regenerate your client from the updated [proto bundle](/streaming-endpoints/proto-reference#obtaining-proto-files) to consume `rfq_trade` events.
+Regenerate your client from the updated [proto bundle](/streaming-endpoints/proto-reference.md#obtaining-proto-files) to consume `rfq_trade` events.
 
 ## Service Definition
 
@@ -36,7 +36,7 @@ from polymarket.v1 import rfq_pb2
 request = rfq_pb2.StreamRFQEventsRequest()
 ```
 
-`StreamRFQEvents` is gRPC-only. REST and unary gRPC operations are documented in the [RFQ API Overview](/institutional/rfqs/overview).
+`StreamRFQEvents` is gRPC-only. REST and unary gRPC operations are documented in the [RFQ API Overview](/institutional/rfqs/overview.md).
 
 ## Rate Limit
 
@@ -59,7 +59,7 @@ Each response contains exactly one event payload.
 
 Ignore unrecognized event variants and keep reading. Older protobuf clients may report no recognized `event` when they receive a newly added variant.
 
-Confirm or decline using `quote_accepted.quote.id`. See [quote replacement](/institutional/rfqs/overview#create-or-replace-a-quote).
+Confirm or decline using `quote_accepted.quote.id`. See [quote replacement](/institutional/rfqs/overview.md#create-or-replace-a-quote).
 
 Successful quote acceptance produces both events: public `rfq_closed` and participant-private `quote_accepted`. A client may receive `rfq_closed` first. Treat it as "stop quoting this RFQ," not "no quote was accepted." Keep existing quote state until the private quote event arrives, or reconcile it with `GetQuotes`.
 
@@ -121,7 +121,7 @@ The requester and quoter can both see both exchange order IDs on the embedded `Q
 
 ### RFQTrade
 
-The `rfq_trade` event (field 15) wraps an `RFQTrade` in `RFQTradeEvent.trade`. Read it from `response.rfq_trade.trade`. These anonymous fills are visible to all authorized subscribers; see [RFQ trade history](/institutional/rfqs/overview#query-rfq-trades) for which fills are included.
+The `rfq_trade` event (field 15) wraps an `RFQTrade` in `RFQTradeEvent.trade`. Read it from `response.rfq_trade.trade`. These anonymous fills are visible to all authorized subscribers; see [RFQ trade history](/institutional/rfqs/overview.md#query-rfq-trades) for which fills are included.
 
 | Field | Type | Description |
 | - | - | - |
@@ -241,7 +241,7 @@ On startup:
 
 After a disconnect, reopen the stream and repeat both durable reads. If any stream event may have been missed, `GetQuotes` is the durable recovery path for the current Quote execution state. An empty read collection is a valid snapshot.
 
-For trade events, open the stream before querying `GetRFQTrades` and merge both sources by `trade_id`. After a disconnect, reopen the stream and query an overlapping execution-time window. History is eventually visible; a fresh query can find fills absent from an earlier traversal. See [pagination and history constraints](/institutional/rfqs/overview#query-rfq-trades).
+For trade events, open the stream before querying `GetRFQTrades` and merge both sources by `trade_id`. After a disconnect, reopen the stream and query an overlapping execution-time window. History is eventually visible; a fresh query can find fills absent from an earlier traversal. See [pagination and history constraints](/institutional/rfqs/overview.md#query-rfq-trades).
 
 ## Errors
 
@@ -257,19 +257,19 @@ For trade events, open the stream before querying `GetRFQTrades` and merge both 
 
 ## See Also
 
-> **[Combos/RFQ Guide](/trader-guide/combos)**
+> **[Combos/RFQ Guide](/trader-guide/combos.md)**
 >
 > Maker workflow and quote rules
 
-> **[RFQ API](/institutional/rfqs/overview)**
+> **[RFQ API](/institutional/rfqs/overview.md)**
 >
 > RFQ and quote REST and unary gRPC operations
 
-> **[gRPC Authentication](/streaming-endpoints/authentication)**
+> **[gRPC Authentication](/streaming-endpoints/authentication.md)**
 >
 > Metadata, tokens, and scopes
 
-> **[Drop Copy](/streaming-endpoints/dropcopy-stream)**
+> **[Drop Copy](/streaming-endpoints/dropcopy-stream.md)**
 >
 > Exchange order and fill reconciliation
 

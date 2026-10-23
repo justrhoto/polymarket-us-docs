@@ -77,7 +77,7 @@ Cash quantities are valid with the partner surface's required `ORDER_TYPE_LIMIT`
 
 ## Fixed-point values
 
-`price`, `order_qty`, and `cash_order_qty` are integers on the public exchange message. Convert user-facing decimals with the scales published for the instrument — the `priceScale` and `fractionalQtyScale` fields returned by the [Reference Data API](/institutional/refdata/overview):
+`price`, `order_qty`, and `cash_order_qty` are integers on the public exchange message. Convert user-facing decimals with the scales published for the instrument — the `priceScale` and `fractionalQtyScale` fields returned by the [Reference Data API](/institutional/refdata/overview.md):
 
 ```text theme={null}
 wire price = decimal YES price × priceScale
@@ -89,7 +89,7 @@ For example, when both scales are `100`, a \$0.45 YES limit price is `price = 45
 
 ## Fees on execution reports
 
-Execution reports — on the [Drop Copy stream](/streaming-endpoints/dropcopy-stream) and from `SearchExecutions` / `SearchOrders` — carry the exchange fee in the same fixed-point convention as every other wire value. The commission fields are **notional units**, scaled by *both* the price scale and the quantity scale:
+Execution reports — on the [Drop Copy stream](/streaming-endpoints/dropcopy-stream.md) and from `SearchExecutions` / `SearchOrders` — carry the exchange fee in the same fixed-point convention as every other wire value. The commission fields are **notional units**, scaled by *both* the price scale and the quantity scale:
 
 ```text theme={null}
 contracts        = order_qty / fractional_quantity_scale
@@ -105,9 +105,9 @@ The relevant fields:
 | - | - | - |
 | `commission_notional_collected` | execution | Fee collected for this fill, in notional units. Negative values are rebates credited to the account. |
 | `commission_notional_total_collected` | embedded order | Cumulative fee across all fills of the order, in notional units. |
-| `fractional_quantity_scale`, `price_scale` | embedded order | The scales to decode with. Also published per instrument as `fractionalQtyScale` / `priceScale` by the [Reference Data API](/institutional/refdata/overview); treat an instrument that does not publish `fractionalQtyScale` as scale `1`. |
+| `fractional_quantity_scale`, `price_scale` | embedded order | The scales to decode with. Also published per instrument as `fractionalQtyScale` / `priceScale` by the [Reference Data API](/institutional/refdata/overview.md); treat an instrument that does not publish `fractionalQtyScale` as scale `1`. |
 
-For standard trades, the dollar amount reconciles with the [fee schedule](/fees) formula `Fee = Θ × C × p × (1 − p)` — where `C` is **contracts** (not raw `order_qty` units) and `p` is the **decimal** price — rounded to \$0.01.
+For standard trades, the dollar amount reconciles with the [fee schedule](/fees.md) formula `Fee = Θ × C × p × (1 − p)` — where `C` is **contracts** (not raw `order_qty` units) and `p` is the **decimal** price — rounded to \$0.01.
 
 Combo taker fees instead use `Fee = C × p × [0.0695 × (1 − p) + 0.04 × (1 − p)^4]`, with the same definitions of `C` and `p`. Apply the combo curve to the combo execution as a whole, not separately to its component legs.
 
@@ -169,11 +169,11 @@ fee formula = 0.0695 × 100 × 0.97 × 0.03 = $0.202245 → rounds to $0.20
 wire fee    = 20 / (100 × 1)             = $0.20  ✓
 ```
 
-This matches the 100-lot examples in the [fee schedule](/fees) — those tables assume scale-`1` instruments. The ledger debit is `97.20` = `$97.00` principal + `$0.20` commission.
+This matches the 100-lot examples in the [fee schedule](/fees.md) — those tables assume scale-`1` instruments. The ledger debit is `97.20` = `$97.00` principal + `$0.20` commission.
 
 ### Maker rebates and zero-fee fills
 
-The same decoding applies to the maker side, where the fee coefficient is negative. The resting sell in the scale-`1` example above received `commissionNotionalCollected = "-4"` → `−$0.04`, matching `−0.0125 × 100 × 0.97 × 0.03 = −$0.036` rounded to the cent. That fill used the earlier flat `−0.0125` maker coefficient; maker rebates now use your [maker tier](/fees#maker-rebate-tiers) coefficient, and the decoding is the same.
+The same decoding applies to the maker side, where the fee coefficient is negative. The resting sell in the scale-`1` example above received `commissionNotionalCollected = "-4"` → `−$0.04`, matching `−0.0125 × 100 × 0.97 × 0.03 = −$0.036` rounded to the cent. That fill used the earlier flat `−0.0125` maker coefficient; maker rebates now use your [maker tier](/fees.md#maker-rebate-tiers) coefficient, and the decoding is the same.
 
 Because fees round to \$0.01, small fills legitimately produce **zero** fee: the maker rebate in the scale-`100` example rounds `−$0.0011` to `$0.00`, and the field is simply absent from the JSON (proto3 omits default values). Treat a missing commission field as `0`, not as missing data.
 
@@ -182,7 +182,7 @@ Because fees round to \$0.01, small fills legitimately produce **zero** fee: the
 `order.account` is the only customer identifier accepted by `CreateVendorOrder`. Persist the DCM account delivered when KYC is approved and use it consistently for:
 
 * `order.account` on partner order placement
-* `participant_account_id` on [transfers](/partners/funding/transfers)
+* `participant_account_id` on [transfers](/partners/funding/transfers.md)
 * the account field on Drop Copy and reconciliation records
 
 Do not set `order.user` or `order.session_id`. The service authenticates your firm, verifies that `order.account` belongs to an enabled participant relationship, and derives the submitting participant.
@@ -198,7 +198,7 @@ Do not set `order.user` or `order.session_id`. The service authenticates your fi
 
 ## Next step
 
-> **[CreateVendorOrder](/partners/orders/create-order)**
+> **[CreateVendorOrder](/partners/orders/create-order.md)**
 >
 > See complete YES, NO, cash-BUY, and cash-SELL order examples.
 

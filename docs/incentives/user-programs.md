@@ -81,9 +81,15 @@ Active campaigns:
 | Campaign F | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$100 | Receive \$50 |
 | Campaign G | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$25 | Receive \$15 |
 | Campaign H | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$15 | Receive \$10 |
-| Campaign I | Last trade after September 30, 2026 | October 20 to October 21, 2026 | Deposit at least \$250 | Receive \$50 |
-| Campaign J | Last trade after September 30, 2026 | October 20 to October 21, 2026 | Deposit at least \$100 | Receive \$25 |
-| Campaign K | Last trade after September 30, 2026 | October 20 to October 21, 2026 | Deposit at least \$25 | Receive \$10 |
+
+The following campaigns are also live:
+
+| Campaign | Qualifying Deposit | Incentive Credit |
+| - | - | - |
+| Campaign L | Deposit at least \$1,000 | Receive \$250 |
+| Campaign M | Deposit at least \$500 | Receive \$100 |
+| Campaign N | Deposit at least \$100 | Receive \$25 |
+| Campaign O | Deposit at least \$50 | Receive \$10 |
 
 Participants are eligible for a campaign based on their prior deposit and trading activity.
 

@@ -14,7 +14,7 @@ The Private WebSocket endpoint provides real-time updates for user-specific data
 >
 > **Authentication Required**
 >
-> This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication) for details.
+> This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication.md) for details.
 
 ## Endpoint
 
@@ -226,7 +226,7 @@ No separate success acknowledgment is sent. Events use the `rfqEvent` envelope, 
 }
 ```
 
-The RFQ in `rfqCreated` and `rfqClosed` includes optional `tickSize`, the price increment in dollars. See [RFQ price ticks](/api-reference/rfqs/overview#rfq-price-tick) for pricing rules.
+The RFQ in `rfqCreated` and `rfqClosed` includes optional `tickSize`, the price increment in dollars. See [RFQ price ticks](/api-reference/rfqs/overview.md#rfq-price-tick) for pricing rules.
 
 | Event | Meaning |
 | - | - |
@@ -239,11 +239,11 @@ The RFQ in `rfqCreated` and `rfqClosed` includes optional `tickSize`, the price 
 | `quoteExecuted` | Paired order submission completed and generated order IDs became available. This does not guarantee a fill; track the generated orders with `SUBSCRIPTION_TYPE_ORDER`. |
 | `rfqTrade` | An anonymous original fill where either order originated from an RFQ, including later fills on resting orders. |
 
-Confirm or decline using `quoteAccepted.quote.id`. See [quote replacement](/api-reference/rfqs/overview#replace-a-quote).
+Confirm or decline using `quoteAccepted.quote.id`. See [quote replacement](/api-reference/rfqs/overview.md#replace-a-quote).
 
 ### RFQ Trade Response
 
-`rfqTrade.trade` uses the same fields as [RFQ trade history](/api-reference/rfqs/overview#rfq-trade-history):
+`rfqTrade.trade` uses the same fields as [RFQ trade history](/api-reference/rfqs/overview.md#rfq-trade-history):
 
 ```json theme={null}
 {
@@ -268,7 +268,7 @@ Prices and quantities are decimal strings. Continue using `SUBSCRIPTION_TYPE_ORD
 
 ### Recovery
 
-The stream is live and best effort, with no replay or durable cursor. Unsubscribing, disconnecting, or an upstream failure ends it. Recover missed trades through [RFQ trade history](/api-reference/rfqs/overview#pagination-and-recovery), and reconcile RFQ and quote state with `GET /v1/rfqs` and `GET /v1/rfqs/quotes`.
+The stream is live and best effort, with no replay or durable cursor. Unsubscribing, disconnecting, or an upstream failure ends it. Recover missed trades through [RFQ trade history](/api-reference/rfqs/overview.md#pagination-and-recovery), and reconcile RFQ and quote state with `GET /v1/rfqs` and `GET /v1/rfqs/quotes`.
 
 ## Execution Types
 

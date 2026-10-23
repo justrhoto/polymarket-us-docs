@@ -20,7 +20,7 @@ The Sports API provides access to sporting events organized by league or sport, 
 
 ## Players
 
-Use `/v1/sports/players?filters.id=781` to retrieve a specific player directly, or `filters.teamId` to list players on a team. This public endpoint is supported and is not deprecated; there is no standalone v2 players lookup endpoint. See [Players Endpoint](/data-guide/sports-data#players-endpoint) for filters, pagination, response fields, and examples for player props and combos.
+Use `/v1/sports/players?filters.id=781` to retrieve a specific player directly, or `filters.teamId` to list players on a team. This public endpoint is supported and is not deprecated; there is no standalone v2 players lookup endpoint. See [Players Endpoint](/data-guide/sports-data.md#players-endpoint) for filters, pagination, response fields, and examples for player props and combos.
 
 ## Get League Events
 
@@ -72,7 +72,7 @@ GET /v2/sports/football/events
 
 ## Teams
 
-For fetching team information, use the [Sports (Legacy) API](/api-reference/sports-legacy/overview).
+For fetching team information, use the [Sports (Legacy) API](/api-reference/sports-legacy/overview.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

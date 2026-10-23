@@ -8,7 +8,7 @@
 
 > [!NOTE]
 >
-> How many streams to open, Drop Copy resume tokens, and the reconnect-cancel loop: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices). Not every stream starts with a snapshot. Drop Copy has no snapshot; reconnect with `resume_token`.
+> How many streams to open, Drop Copy resume tokens, and the reconnect-cancel loop: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md). Not every stream starts with a snapshot. Drop Copy has no snapshot; reconnect with `resume_token`.
 
 ## Streaming Semantics
 
@@ -35,7 +35,7 @@ for message in stream:
 
 ## Snapshots and Deltas
 
-**Do streams always start with a snapshot?** No. Order stream and market data send a snapshot, then updates. Drop Copy, trade capture, and position change do **not** — they replay from `resume_token` or start live. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices#snapshot-vs-resume).
+**Do streams always start with a snapshot?** No. Order stream and market data send a snapshot, then updates. Drop Copy, trade capture, and position change do **not** — they replay from `resume_token` or start live. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md#snapshot-vs-resume).
 
 **Example:**
 
@@ -153,7 +153,7 @@ Some streams send periodic snapshots even if state hasn't changed to help detect
 
 **Process snapshots correctly**: Replace state, don't merge.
 
-**Use appropriate connection counts**: Stay within the **20** concurrent-stream limit. See [Rate Limits](/trader-guide/rate-limits#grpc-streaming).
+**Use appropriate connection counts**: Stay within the **20** concurrent-stream limit. See [Rate Limits](/trader-guide/rate-limits.md#grpc-streaming).
 
 **Handle snapshot + delta pattern**: Apply initial snapshot, then process deltas.
 

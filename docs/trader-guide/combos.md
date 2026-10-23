@@ -12,7 +12,7 @@ A combo is an instrument with 2–50 component legs. Each leg contains an existi
 
 An RFQ can be for any open, tradable instrument, not only a combo. Combo RFQs also carry the combo's legs. Everything else in this guide applies to every RFQ.
 
-Combo takers use a separate fee curve based on the combo execution price and quantity. Combo makers do not receive a maker rebate. See the [Fee Schedule](/fees#combo-taker-fees) for the formula, rounding rules, and examples. RFQ fills on other instruments use that instrument's standard fees.
+Combo takers use a separate fee curve based on the combo execution price and quantity. Combo makers do not receive a maker rebate. See the [Fee Schedule](/fees.md#combo-taker-fees) for the formula, rounding rules, and examples. RFQ fills on other instruments use that instrument's standard fees.
 
 This guide covers the market-maker workflow. The public contract is split between:
 
@@ -74,7 +74,7 @@ sequenceDiagram
 
 Successful acceptance produces both `rfq_closed` and `quote_accepted`. A maker may receive public `rfq_closed` first. Stop creating or replacing quotes for that RFQ, but do not discard existing quote state. The selected maker then receives private `quote_accepted`, which starts last look. Confirm or delete the selected quote before its `confirmationDeadline`. `quote_confirmed` means paired order submission is scheduled; `quote_executed` means both exchange orders were accepted for submission. Use Drop Copy as the source of truth for fills.
 
-`rfq_trade` reports each original fill to all authorized RFQ stream subscribers, including participants outside that quote. The diagram shows the logical flow; delivery order across `quote_executed`, `rfq_trade`, and Drop Copy is not guaranteed. See [RFQ trade history](/institutional/rfqs/overview#query-rfq-trades) for recovery with `GetRFQTrades`.
+`rfq_trade` reports each original fill to all authorized RFQ stream subscribers, including participants outside that quote. The diagram shows the logical flow; delivery order across `quote_executed`, `rfq_trade`, and Drop Copy is not guaranteed. See [RFQ trade history](/institutional/rfqs/overview.md#query-rfq-trades) for recovery with `GetRFQTrades`.
 
 ## Read an RFQ
 
@@ -158,7 +158,7 @@ Do not send a side, symbol, quantity, expiration, or client request ID. The API 
 
 ### Replace a Quote
 
-Call `CreateQuote` with the same `rfqId` and new prices. Every successful call returns a new `quoteId`, including replacements. Use that ID to delete the new quote; use `quote_accepted.quote.id` to confirm or decline an accepted quote. See [replacement events and recovery](/institutional/rfqs/overview#create-or-replace-a-quote).
+Call `CreateQuote` with the same `rfqId` and new prices. Every successful call returns a new `quoteId`, including replacements. Use that ID to delete the new quote; use `quote_accepted.quote.id` to confirm or decline an accepted quote. See [replacement events and recovery](/institutional/rfqs/overview.md#create-or-replace-a-quote).
 
 ### Quote Selection
 
@@ -244,31 +244,31 @@ Use opaque cursors only with the same participant, query path, and filters. If a
 
 ## Rate Limits
 
-Use the stream for live state. Reserve `GetRFQs` and `GetQuotes` for startup, recovery, and targeted reconciliation. See [Rate Limits](/trader-guide/rate-limits) for current per-firm limits.
+Use the stream for live state. Reserve `GetRFQs` and `GetQuotes` for startup, recovery, and targeted reconciliation. See [Rate Limits](/trader-guide/rate-limits.md) for current per-firm limits.
 
 ## Related Documentation
 
-> **[Combos for Takers](/partners/orders/combos-takers)**
+> **[Combos for Takers](/partners/orders/combos-takers.md)**
 >
 > Requester sizing, Drop Copy reconciliation, settlement, and leg rules
 
-> **[RFQ API](/institutional/rfqs/overview)**
+> **[RFQ API](/institutional/rfqs/overview.md)**
 >
 > Complete RFQ and quote REST and unary gRPC contract
 
-> **[Combos API](/institutional/combos/overview)**
+> **[Combos API](/institutional/combos/overview.md)**
 >
 > Combo instrument REST and unary gRPC contract
 
-> **[RFQ Events Stream](/streaming-endpoints/rfq-events-stream)**
+> **[RFQ Events Stream](/streaming-endpoints/rfq-events-stream.md)**
 >
 > Event payloads and Python example
 
-> **[Drop Copy](/streaming-endpoints/dropcopy-stream)**
+> **[Drop Copy](/streaming-endpoints/dropcopy-stream.md)**
 >
 > Exchange order and fill reconciliation
 
-> **[Positions and Risk](/trader-guide/positions-risk)**
+> **[Positions and Risk](/trader-guide/positions-risk.md)**
 >
 > Position and balance monitoring
 

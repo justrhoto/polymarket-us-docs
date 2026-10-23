@@ -171,7 +171,7 @@ The same logic applies to open orders: unmatched longs or shorts cannot remain i
 
 ## Portfolio Margin
 
-Polymarket Exchange applies portfolio-level margining to **positions**: margin requirements consider your entire set of open positions rather than treating each market in isolation, and mutually exclusive or directional events can reduce the requirement further (see [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return) and [Directional Collateral Return](/market-structure/directional-collateral-return)). Open **orders** are assessed per instrument, as described in [Open Orders and Order Collateralization](#open-orders-and-order-collateralization).
+Polymarket Exchange applies portfolio-level margining to **positions**: margin requirements consider your entire set of open positions rather than treating each market in isolation, and mutually exclusive or directional events can reduce the requirement further (see [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return.md) and [Directional Collateral Return](/market-structure/directional-collateral-return.md)). Open **orders** are assessed per instrument, as described in [Open Orders and Order Collateralization](#open-orders-and-order-collateralization).
 
 ## Reducing or Closing a Short
 

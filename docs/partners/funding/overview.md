@@ -12,7 +12,7 @@
 
 Partner funding is the funding model for IB/ISV partners: your funding entity **pre-positions pooled funds** in a **partner funding account** at Polymarket US — the banking happens ahead of time. When a participant allocates funds to trade, your funding entity moves cash from that pool into their trading account with an instant **deposit transfer**; when they withdraw, cash moves back with a **withdrawal transfer**. Orders then trade against the cash in the participant's account like any other order — no money moves at order time.
 
-Your **vendor fee** is *declared* on each order placement and recorded by Polymarket US, but it is **not** moved per order. Fees accrue as a receivable and are collected periodically — at most once per day — with a single **vendor fee transfer** per participant account, reconciled against a daily [Vendor Fees report](/partners/funding/vendor-fees).
+Your **vendor fee** is *declared* on each order placement and recorded by Polymarket US, but it is **not** moved per order. Fees accrue as a receivable and are collected periodically — at most once per day — with a single **vendor fee transfer** per participant account, reconciled against a daily [Vendor Fees report](/partners/funding/vendor-fees.md).
 
 > [!NOTE]
 >
@@ -42,12 +42,12 @@ The participant, your firm, and your funding entity coordinate through your prod
 
 ## Getting set up
 
-The structure is established once, coordinated with your Polymarket US integration lead during [partner onboarding](/partners/get-connected/onboarding):
+The structure is established once, coordinated with your Polymarket US integration lead during [partner onboarding](/partners/get-connected/onboarding.md):
 
 1. **Create your funding entity** — a separate legal entity that will custody participant cash and hold the pooled funding account. Your firm cannot hold participant funds itself.
 2. **Two onboardings, coordinated as one workflow** — your firm onboards as an access shell (holds no funds, no positions); your funding entity onboards as its own entity with an active, funded account. **Your funding entity must exist and be active before your firm's API credentials can be enabled.**
 3. **Credentials linked to the funding account** — your firm's API credentials are provisioned against your funding entity's account. Every transfer you submit has the partner funding account as one side, enforced by the platform.
-4. **Each participant gets a \$0 account** — provisioned automatically on KYC approval (see [Onboard Participants](/partners/onboarding/onboard-participants)). Accounts hold cash from their first deposit transfer onward.
+4. **Each participant gets a \$0 account** — provisioned automatically on KYC approval (see [Onboard Participants](/partners/onboarding/onboard-participants.md)). Accounts hold cash from their first deposit transfer onward.
 5. **Three-party agreement in place** — participant, your firm, and your funding entity must have an agreement authorizing the deposits, withdrawals, and vendor fee collections.
 
 > [!NOTE]
@@ -78,11 +78,11 @@ sequenceDiagram
 
 | Flow | Direction | When | Moved by |
 | - | - | - | - |
-| **Deposit** | Funding account → participant account | Participant allocates funds to trade | Your funding entity, via [transfer](/partners/funding/transfers) |
+| **Deposit** | Funding account → participant account | Participant allocates funds to trade | Your funding entity, via [transfer](/partners/funding/transfers.md) |
 | **Trading** | Within the participant account | Continuously | Polymarket US — collateral locks, exchange fees, fills, settlement credits, realized P\&L all post to the account |
 | **Vendor fee accrual** | *No movement* | Each order placement | Recorded only — Polymarket US stores your declared fee against the order |
-| **Vendor fee collection** | Participant account → funding account | Periodic, at most once per day | Your funding entity, via [transfer](/partners/funding/transfers), reconciled against the [Vendor Fees report](/partners/funding/vendor-fees) |
-| **Withdrawal** | Participant account → funding account | Participant withdraws from their wallet | Your funding entity, via [transfer](/partners/funding/transfers) |
+| **Vendor fee collection** | Participant account → funding account | Periodic, at most once per day | Your funding entity, via [transfer](/partners/funding/transfers.md), reconciled against the [Vendor Fees report](/partners/funding/vendor-fees.md) |
+| **Withdrawal** | Participant account → funding account | Participant withdraws from their wallet | Your funding entity, via [transfer](/partners/funding/transfers.md) |
 
 **Trading proceeds stay put.** Settlement credits, realized profit, and released collateral remain in the participant's account — they *are* the participant's buying power for the next trade. Nothing needs to be swept after fills or settlements; cash only leaves an account for a withdrawal or a vendor fee collection.
 
@@ -95,9 +95,9 @@ Two numbers matter for every order, and they are owned by different systems:
 | **Platform check** | Polymarket US | An order is rejected unless the participant account's available cash covers **worst-case collateral + exchange fee** |
 | **Your gate** | You & your funding entity | Spendable balance = account cash − **accrued, uncollected vendor fees** |
 
-Polymarket US knows nothing about your fee basis and does not reserve for vendor fees — it only records the amounts you declare. Between collections, accrued fees are cash sitting in the participant's account that the participant could otherwise trade with. **Your platform must gate order submission off-platform** so a participant cannot spend the cash that is earmarked for your accrued fees. See [Vendor Fees](/partners/funding/vendor-fees) for the accrual model and the credit-risk consequences of not gating.
+Polymarket US knows nothing about your fee basis and does not reserve for vendor fees — it only records the amounts you declare. Between collections, accrued fees are cash sitting in the participant's account that the participant could otherwise trade with. **Your platform must gate order submission off-platform** so a participant cannot spend the cash that is earmarked for your accrued fees. See [Vendor Fees](/partners/funding/vendor-fees.md) for the accrual model and the credit-risk consequences of not gating.
 
-If deposits and withdrawals are the only balance events in your wallet product, mirroring them 1:1 with deposit and withdrawal transfers keeps on-platform buying power exactly in step with the participant's wallet allocation — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals).
+If deposits and withdrawals are the only balance events in your wallet product, mirroring them 1:1 with deposit and withdrawal transfers keeps on-platform buying power exactly in step with the participant's wallet allocation — see [Deposits & Withdrawals](/partners/funding/deposits-withdrawals.md).
 
 ## The transfer budget
 
@@ -107,7 +107,7 @@ Platform transfers are a **limited, shared resource — budget for 5 transfers p
 * **Vendor fees are batched** — one transfer per participant account per collection period, **at most once per day** (weekly or monthly are fine too).
 * **Trading itself uses zero transfers** — collateral, exchange fees, fills, and settlement all post inside the participant account.
 
-Do not design flows that scale transfers with order volume, and smooth out bursts — for example, spread an end-of-day vendor fee collection run across minutes rather than firing one call per account simultaneously. See [Transfers](/partners/funding/transfers#rate-limits-and-smoothing) for concrete rate-limit handling patterns.
+Do not design flows that scale transfers with order volume, and smooth out bursts — for example, spread an end-of-day vendor fee collection run across minutes rather than firing one call per account simultaneously. See [Transfers](/partners/funding/transfers.md#rate-limits-and-smoothing) for concrete rate-limit handling patterns.
 
 ## Sizing the funding account
 
@@ -124,7 +124,7 @@ pool balance = treasury top-ups (external)
              + Σ vendor fee collections (back in)
 ```
 
-The RPC is the source of truth when the mirror and the returned balance differ. See [GetFundingAccountBalance](/partners/funding/transfers#getfundingaccountbalance) for the request, response, and retry behavior.
+The RPC is the source of truth when the mirror and the returned balance differ. See [GetFundingAccountBalance](/partners/funding/transfers.md#getfundingaccountbalance) for the request, response, and retry behavior.
 
 ### Deposits and withdrawals at the wallet
 
@@ -145,13 +145,13 @@ This is what lets your firm operate without ever holding participant funds: you 
 
 ## API surface
 
-The partner funding APIs are **gRPC-only**. Connection and authentication follow the standard conventions — TLS and a Bearer access token in the `authorization` metadata header; see the [gRPC API Overview](/grpc-api/overview) and [Authentication](/streaming-endpoints/authentication).
+The partner funding APIs are **gRPC-only**. Connection and authentication follow the standard conventions — TLS and a Bearer access token in the `authorization` metadata header; see the [gRPC API Overview](/grpc-api/overview.md) and [Authentication](/streaming-endpoints/authentication.md).
 
 | Concern | Service | Pages |
 | - | - | - |
-| Order placement with vendor fee declaration | `polymarket.us.orderfunding.v1.OrderFundingService/CreateVendorOrder` | [Create Order](/partners/orders/create-order) · [Data Model](/partners/orders/data-model) |
-| Deposits, withdrawals, vendor fee collection | `polymarket.us.cashmovement.v1.CashMovementService` | [Transfers](/partners/funding/transfers) |
-| Fee accrual reporting | Daily Vendor Fees report | [Vendor Fees](/partners/funding/vendor-fees) |
+| Order placement with vendor fee declaration | `polymarket.us.orderfunding.v1.OrderFundingService/CreateVendorOrder` | [Create Order](/partners/orders/create-order.md) · [Data Model](/partners/orders/data-model.md) |
+| Deposits, withdrawals, vendor fee collection | `polymarket.us.cashmovement.v1.CashMovementService` | [Transfers](/partners/funding/transfers.md) |
+| Fee accrual reporting | Daily Vendor Fees report | [Vendor Fees](/partners/funding/vendor-fees.md) |
 
 > [!WARNING]
 >
@@ -161,35 +161,35 @@ The partner funding APIs are **gRPC-only**. Connection and authentication follow
 
 Every cash event — deposits, withdrawals, vendor fee collections, fills, exchange fees, settlement credits — is visible on the account's cash ledger. Use the standard surfaces to keep your books and your funding entity's records in sync:
 
-> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md)**
 >
 > Real-time balance impact of every cash event, with replay.
 
-> **[Funding Stream](/streaming-endpoints/funding-stream)**
+> **[Funding Stream](/streaming-endpoints/funding-stream.md)**
 >
 > Funding transaction state changes.
 
-> **[Drop Copy Stream](/streaming-endpoints/dropcopy-stream)**
+> **[Drop Copy Stream](/streaming-endpoints/dropcopy-stream.md)**
 >
 > Firm-wide execution reports for placed orders.
 
-See [Reconciliation](/partners/reconciliation) for the stream-first operating pattern — including how to consume ledger data across your whole participant base.
+See [Reconciliation](/partners/reconciliation.md) for the stream-first operating pattern — including how to consume ledger data across your whole participant base.
 
 ## Next steps
 
-> **[Deposits & Withdrawals](/partners/funding/deposits-withdrawals)**
+> **[Deposits & Withdrawals](/partners/funding/deposits-withdrawals.md)**
 >
 > Mirror wallet allocations into on-platform buying power.
 
-> **[Vendor Fees](/partners/funding/vendor-fees)**
+> **[Vendor Fees](/partners/funding/vendor-fees.md)**
 >
 > Declare fees per order, track accrual, collect daily.
 
-> **[Transfers](/partners/funding/transfers)**
+> **[Transfers](/partners/funding/transfers.md)**
 >
 > The transfer API — reasons, direction locks, rate limits.
 
-> **[Create Order](/partners/orders/create-order)**
+> **[Create Order](/partners/orders/create-order.md)**
 >
 > Place an order with a declared vendor fee.
 

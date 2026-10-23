@@ -8,7 +8,7 @@
 
 > [!NOTE]
 >
-> **Audience: developers.** This is a hands-on, copy-paste guide. For eligibility, agreements, and the business setup, see [ISVs](/partners/partner-types/isvs) / [IBs](/partners/partner-types/ibs) and [Partner Onboarding](/partners/get-connected/onboarding).
+> **Audience: developers.** This is a hands-on, copy-paste guide. For eligibility, agreements, and the business setup, see [ISVs](/partners/partner-types/isvs.md) / [IBs](/partners/partner-types/ibs.md) and [Partner Onboarding](/partners/get-connected/onboarding.md).
 
 This guide walks the core partner loop end to end — the same moves your production integration will repeat for every participant:
 
@@ -27,11 +27,11 @@ By the end you'll have:
 
 > [!NOTE]
 >
-> **Prerequisites:** Complete [Partner Onboarding](/partners/get-connected/onboarding) to receive your Client ID and register your public key, and have your **funding relationship** configured ([Partner Funding](/partners/funding/overview) is Beta, enabled per partner). This guide uses **pre-production** (`api.preprod.polymarketexchange.com`).
+> **Prerequisites:** Complete [Partner Onboarding](/partners/get-connected/onboarding.md) to receive your Client ID and register your public key, and have your **funding relationship** configured ([Partner Funding](/partners/funding/overview.md) is Beta, enabled per partner). This guide uses **pre-production** (`api.preprod.polymarketexchange.com`).
 
 ## Step 1: Authenticate
 
-Authentication uses **Private Key JWT** — you sign a JWT with your private key and exchange it for a short-lived access token. The full mechanism, claims, and key rotation are covered in the [Authentication](/partners/get-connected/authentication) guide; the complete, runnable token code is in the [full script](#complete-example) at the bottom of this page.
+Authentication uses **Private Key JWT** — you sign a JWT with your private key and exchange it for a short-lived access token. The full mechanism, claims, and key rotation are covered in the [Authentication](/partners/get-connected/authentication.md) guide; the complete, runnable token code is in the [full script](#complete-example) at the bottom of this page.
 
 Once you have a token, set your auth header and confirm your identity with [`GET /v1/whoami`](/institutional/accounts/overview#endpoints):
 
@@ -63,7 +63,7 @@ Expected response:
 
 > [!NOTE]
 >
-> **Your Firm authenticates; it never trades or holds funds.** The Firm identity above is a permissions container — every trading action in this guide is performed **on behalf of a Retail Participant**. Participant-scoped REST calls (positions, reports) identify them with the `x-participant-id` header — see [Authentication → Acting on behalf of a participant](/partners/get-connected/authentication#acting-on-behalf-of-a-participant). Partner order entry and transfers carry the participant's provisioned DCM **trading account** in the request body. You'll capture both identifiers in Step 2.
+> **Your Firm authenticates; it never trades or holds funds.** The Firm identity above is a permissions container — every trading action in this guide is performed **on behalf of a Retail Participant**. Participant-scoped REST calls (positions, reports) identify them with the `x-participant-id` header — see [Authentication → Acting on behalf of a participant](/partners/get-connected/authentication.md#acting-on-behalf-of-a-participant). Partner order entry and transfers carry the participant's provisioned DCM **trading account** in the request body. You'll capture both identifiers in Step 2.
 
 ## Step 2: Onboard a participant (KYC)
 
@@ -94,7 +94,7 @@ resp.raise_for_status()
 print(resp.json()["status"])  # decision path — see the decision matrix
 ```
 
-The outcome may be instant approval, document verification, or manual review — handle each per the [decision matrix](/partners/onboarding/kyc/verification-flow#decision-matrix). **Approval is asynchronous**: the terminal outcome arrives on your registered [webhook](/partners/onboarding/kyc/webhooks) as a `kyc.approved` event, which carries the two identifiers you need:
+The outcome may be instant approval, document verification, or manual review — handle each per the [decision matrix](/partners/onboarding/kyc/verification-flow.md#decision-matrix). **Approval is asynchronous**: the terminal outcome arrives on your registered [webhook](/partners/onboarding/kyc/webhooks.md) as a `kyc.approved` event, which carries the two identifiers you need:
 
 * **`provisioned_participant`** (e.g. `firms/ISV-Participant-Acme/users/user-123`) — the `x-participant-id` value for participant-scoped REST calls.
 * The participant's provisioned **DCM trading account** — use it as `order.account` for `CreateVendorOrder`, `participant_account_id` for transfers, and the account identity on Drop Copy and reconciliation records.
@@ -143,11 +143,11 @@ deposit = cash_stub.CreateCashMovement(request, metadata=metadata)
 print(deposit.cash_movement.workflow_id, deposit.cash_movement.status)
 ```
 
-Persist the request fields alongside `workflow_id`; the transfer read model does not echo `participant_account_id`, `external_reference`, or `memo`. Wait until the workflow is `CONFIRMED` before placing the order. If it remains `PENDING`, recover the same workflow rather than creating another; if it is `AMBIGUOUS`, replay the identical request with the same idempotency key. Once confirmed, the participant has \$500 of buying power — seconds after they allocated it in their wallet. See [Transfers](/partners/funding/transfers) for recovery, terminal statuses, and rate-limit handling.
+Persist the request fields alongside `workflow_id`; the transfer read model does not echo `participant_account_id`, `external_reference`, or `memo`. Wait until the workflow is `CONFIRMED` before placing the order. If it remains `PENDING`, recover the same workflow rather than creating another; if it is `AMBIGUOUS`, replay the identical request with the same idempotency key. Once confirmed, the participant has \$500 of buying power — seconds after they allocated it in their wallet. See [Transfers](/partners/funding/transfers.md) for recovery, terminal statuses, and rate-limit handling.
 
 ## Step 4: Pick a market and instrument
 
-Discover a market with the [Market API](/api-reference/market/overview), then confirm the one you want:
+Discover a market with the [Market API](/api-reference/market/overview.md), then confirm the one you want:
 
 ```python theme={null}
 market_slug = "example-market-slug"
@@ -158,7 +158,7 @@ market = resp.json()
 print(market["slug"], market["orderPriceMinTickSize"], market["minimumTradeQty"])
 ```
 
-Partner order entry uses the exchange `symbol`, not the market slug. Use the [Reference Data API](/institutional/refdata/overview) to obtain the selected instrument's symbol, `priceScale`, `fractionalQtyScale`, tick size, and minimum quantity. Validate the participant's price and quantity against that metadata before submitting.
+Partner order entry uses the exchange `symbol`, not the market slug. Use the [Reference Data API](/institutional/refdata/overview.md) to obtain the selected instrument's symbol, `priceScale`, `fractionalQtyScale`, tick size, and minimum quantity. Validate the participant's price and quantity against that metadata before submitting.
 
 The embedded public order uses fixed-point integers. The `priceScale` and `fractionalQtyScale` values published by Reference Data are the multipliers:
 
@@ -178,7 +178,7 @@ Placement returns no economics. The exchange is authoritative and checks that ac
 spendable balance = account cash − accrued uncollected vendor fees
 ```
 
-For a buy share limit order, estimate collateral as quantity × limit price; for a cash order, `cash_order_qty` is the requested maximum spend. Add the maximum exchange fee from the [fee schedule](/fees). If you need an informational server-side preview, call the optional public `polymarket.v1.OrderEntryAPI/PreviewOrder` with the same public order shape. It is not a locked quote; the exchange validates again at placement.
+For a buy share limit order, estimate collateral as quantity × limit price; for a cash order, `cash_order_qty` is the requested maximum spend. Add the maximum exchange fee from the [fee schedule](/fees.md). If you need an informational server-side preview, call the optional public `polymarket.v1.OrderEntryAPI/PreviewOrder` with the same public order shape. It is not a locked quote; the exchange validates again at placement.
 
 ## Step 6: Place the order
 
@@ -214,7 +214,7 @@ result = order_stub.CreateVendorOrder(request, metadata=metadata)
 print(result.status, result.id, result.funding_request_id)
 ```
 
-The partner launch allowlist is intentionally narrow. Set only the fields shown for this use case; `order.user`, `order.session_id`, non-FOK time-in-force values, non-default `good_till_time`, and every unsupported feature are rejected with `INVALID_ARGUMENT` naming the offending field. See the [supported-fields table](/partners/orders/data-model) and the [cash-order example](/partners/orders/create-order#consumer-cash-order-spend-20).
+The partner launch allowlist is intentionally narrow. Set only the fields shown for this use case; `order.user`, `order.session_id`, non-FOK time-in-force values, non-default `good_till_time`, and every unsupported feature are rejected with `INVALID_ARGUMENT` naming the offending field. See the [supported-fields table](/partners/orders/data-model.md) and the [cash-order example](/partners/orders/create-order.md#consumer-cash-order-spend-20).
 
 Handle all three durable outcomes:
 
@@ -224,31 +224,31 @@ Handle all three durable outcomes:
 | `VENDOR_ORDER_STATUS_REJECTED` | The order was rejected. Nothing was recorded and no fee accrues. | Surface the rejection; nothing to clean up. |
 | `VENDOR_ORDER_STATUS_PENDING` | The durable exchange outcome was not confirmed within the deadline. | Retry the identical request with the **same** `idempotency_key` and `clord_id` until terminal. |
 
-The service guarantees **at most one order per idempotency key — retrying with the same key can never place a duplicate order or double-charge the declared vendor fee.** On transport errors (`UNAVAILABLE`, timeouts), also retry the identical request with the same key and `clord_id`. Match the participant's Drop Copy activity by `order.account` and `clord_id`. See [idempotency and retries](/partners/orders/create-order#idempotency-and-retries) and the [funding request lifecycle](/partners/orders/create-order#funding-request-lifecycle).
+The service guarantees **at most one order per idempotency key — retrying with the same key can never place a duplicate order or double-charge the declared vendor fee.** On transport errors (`UNAVAILABLE`, timeouts), also retry the identical request with the same key and `clord_id`. Match the participant's Drop Copy activity by `order.account` and `clord_id`. See [idempotency and retries](/partners/orders/create-order.md#idempotency-and-retries) and the [funding request lifecycle](/partners/orders/create-order.md#funding-request-lifecycle).
 
 ## Step 7: Watch the money
 
 Every cash event is visible in real time — this is how your backend keeps its books and its buying-power gate current:
 
-* The **deposit transfer** appears on the [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream) for the participant account and your funding account.
-* **Fills** arrive on the [Drop Copy Stream](/streaming-endpoints/dropcopy-stream); per-execution exchange fees and settlement credits land on the ledger.
+* The **deposit transfer** appears on the [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md) for the participant account and your funding account.
+* **Fills** arrive on the [Drop Copy Stream](/streaming-endpoints/dropcopy-stream.md); per-execution exchange fees and settlement credits land on the ledger.
 * **Trading proceeds stay in the account** — settlement credits and realized profit simply increase the participant's buying power. Nothing needs to move after fills or settlements.
 * Persist the response's `correlation` identifiers with `order.account`, `clord_id`, and the exchange order ID. They tie ledger entries and vendor-fee reporting back to the placement workflow.
 
 > [!NOTE]
 >
-> **Scaling note — per-account balance streams are provided now for accelerated development.** The balance ledger subscription is **per-account**, and concurrent ledger streams per firm are capped — opening one stream per participant does not scale to thousands of accounts. A **firm-level balance stream** delivering ledger entries for every account under your Firm on a single subscription is coming soon. Build against the per-account stream today, but plan for the firm-level stream in production — see [firm-wide ledger consumption](/partners/reconciliation#firm-wide-ledger-consumption) for the interim pattern. Drop Copy is the opposite: **one** long-lived firm stream, not one per order — [Streaming Best Practices](/streaming-endpoints/streaming-best-practices).
+> **Scaling note — per-account balance streams are provided now for accelerated development.** The balance ledger subscription is **per-account**, and concurrent ledger streams per firm are capped — opening one stream per participant does not scale to thousands of accounts. A **firm-level balance stream** delivering ledger entries for every account under your Firm on a single subscription is coming soon. Build against the per-account stream today, but plan for the firm-level stream in production — see [firm-wide ledger consumption](/partners/reconciliation.md#firm-wide-ledger-consumption) for the interim pattern. Drop Copy is the opposite: **one** long-lived firm stream, not one per order — [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md).
 
 ## Step 8: Fees and withdrawals — later, not per order
 
 Two flows complete the lifecycle, and neither happens at order time:
 
-* **Vendor fees**: the fee you declared in Step 6 accrued as a receivable. Collect accrued fees periodically — **at most once per day per participant account** — with one [`VENDOR_FEES` transfer](/partners/funding/transfers) per participant account, reconciled against the daily [Vendor Fees report](/partners/funding/vendor-fees).
+* **Vendor fees**: the fee you declared in Step 6 accrued as a receivable. Collect accrued fees periodically — **at most once per day per participant account** — with one [`VENDOR_FEES` transfer](/partners/funding/transfers) per participant account, reconciled against the daily [Vendor Fees report](/partners/funding/vendor-fees.md).
 * **Withdrawals**: when the participant de-allocates funds in their wallet, mirror it with a [`WITHDRAWAL` transfer](/partners/funding/deposits-withdrawals#withdrawals) — checking their free cash (net of accrued fees) first.
 
 ## Complete example
 
-A single runnable script covering the deposit-and-order path — including the full token exchange (see the [Authentication](/partners/get-connected/authentication) guide for an explanation of each claim). KYC is omitted because its terminal outcome arrives on your webhook; run Step 2 once and plug in the resulting account and the instrument metadata from Step 4:
+A single runnable script covering the deposit-and-order path — including the full token exchange (see the [Authentication](/partners/get-connected/authentication.md) guide for an explanation of each claim). KYC is omitted because its terminal outcome arrives on your webhook; run Step 2 once and plug in the resulting account and the instrument metadata from Step 4:
 
 ```python theme={null}
 #!/usr/bin/env python3
@@ -384,27 +384,27 @@ The `polymarket.v1`, `polymarket.us.cashmovement.v1`, and `polymarket.us.orderfu
 
 ## Next steps
 
-> **[Create Order](/partners/orders/create-order)**
+> **[Create Order](/partners/orders/create-order.md)**
 >
 > Request and response contract, supported examples, and retry behavior.
 
-> **[Order Data Model](/partners/orders/data-model)**
+> **[Order Data Model](/partners/orders/data-model.md)**
 >
 > Fixed-point values and the fail-closed launch allowlist.
 
-> **[Transfers](/partners/funding/transfers)**
+> **[Transfers](/partners/funding/transfers.md)**
 >
 > Deposits, withdrawals, vendor fee collection, and paced queues.
 
-> **[Partner Funding](/partners/funding/overview)**
+> **[Partner Funding](/partners/funding/overview.md)**
 >
 > The full model — parties, money flows, and the transfer budget.
 
-> **[KYC Verification](/partners/onboarding/kyc/overview)**
+> **[KYC Verification](/partners/onboarding/kyc/overview.md)**
 >
 > All verification outcomes and webhook handling.
 
-> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md)**
 >
 > Track every deposit, fill, and settlement credit in real time.
 

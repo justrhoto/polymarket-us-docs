@@ -38,7 +38,7 @@ Drop-copy sessions receive unsolicited ExecutionReport messages for all order ac
 
 > [!NOTE]
 >
-> For detailed field specifications of the ExecutionReport message, see [ExecutionReport Message](/institutional/fix-api/fix-drop-copy-execution-report).
+> For detailed field specifications of the ExecutionReport message, see [ExecutionReport Message](/institutional/fix-api/fix-drop-copy-execution-report.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

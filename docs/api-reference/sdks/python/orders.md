@@ -184,7 +184,7 @@ Orders progress through these states:
 
 > [!TIP]
 >
-> For real-time order updates, use the [WebSocket](/api-reference/sdks/python/websocket) with `SUBSCRIPTION_TYPE_ORDER` instead of polling.
+> For real-time order updates, use the [WebSocket](/api-reference/sdks/python/websocket.md) with `SUBSCRIPTION_TYPE_ORDER` instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

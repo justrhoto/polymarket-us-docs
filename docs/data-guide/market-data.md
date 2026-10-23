@@ -86,11 +86,11 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/orderbook/{symbol}" \
 
 > [!NOTE]
 >
-> For OHLC/candlestick data generation, see the [Candlestick Data Guide](/data-guide/candlestick-data).
+> For OHLC/candlestick data generation, see the [Candlestick Data Guide](/data-guide/candlestick-data.md).
 
 ## Streaming Market Data (gRPC)
 
-For real-time updates, use the gRPC [Market Data Stream](/streaming-endpoints/market-data-stream).
+For real-time updates, use the gRPC [Market Data Stream](/streaming-endpoints/market-data-stream.md).
 
 ### Subscribe to Market Data
 
@@ -121,7 +121,7 @@ for update in stub.Subscribe(request, metadata=[('authorization', f'Bearer {toke
 
 ### Rate Limits
 
-* REST endpoints are subject to [rate limits](/trader-guide/rate-limits)
+* REST endpoints are subject to [rate limits](/trader-guide/rate-limits.md)
 * Use streaming (gRPC) for real-time data to reduce API calls
 * Cache reference data locally
 

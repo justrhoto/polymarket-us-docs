@@ -12,7 +12,7 @@ Markets stay open until the outcome is known. Once the outcome becomes publicly 
 
 Each market asks a clear question about a real-world event. When the outcome becomes publicly known, the Exchange confirms it using the criteria defined in the market's description and rules.
 
-Markets resolve using the **specific sources listed in the rules**. These sources provide the authoritative outcome. Some contracts also have backup sources that can be used if a listed source is unavailable; for sports markets, see the [Sports FAQs](/faqs/sports-faqs).
+Markets resolve using the **specific sources listed in the rules**. These sources provide the authoritative outcome. Some contracts also have backup sources that can be used if a listed source is unavailable; for sports markets, see the [Sports FAQs](/faqs/sports-faqs.md).
 
 All determinations follow the event-contract framework used across Polymarket US.
 
@@ -31,6 +31,8 @@ Sports markets resolve using results published by the governing league or compet
 ### Financial benchmarks
 
 Crypto price markets resolve on the published value of a named reference index, such as CF Benchmarks' Bitcoin Real-Time Index. Each market's rules state the index and how its value is calculated (for example, the average of the index prices in the final minute before the settlement time). Prices on exchanges or other indices do not count.
+
+Gold and silver price markets resolve on Chainlink's spot price data streams for gold ([XAU/USD](https://data.chain.link/streams/xau-usd-forexprice-streams)) and silver ([XAG/USD](https://data.chain.link/streams/xag-usd-forexprice-streams)). Each market uses the spot price Chainlink publishes for the market's start time and end time, not an average, rounded to the nearest cent for gold and to three decimal places for silver. If a price has not been published, the market waits for it rather than settling on a fallback price. If the price is still missing an hour after the market ends, the Exchange settles the market manually. See the [Gold and Silver FAQs](/faqs/metals-faqs.md).
 
 ### News
 

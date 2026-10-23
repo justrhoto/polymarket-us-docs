@@ -10,7 +10,7 @@
 >
 > **Prefer Streaming for Real-Time Updates**
 >
-> This polling API is subject to rate limits. For production applications that need continuous order and trade updates, use the [gRPC Order Stream](/streaming-endpoints/order-stream) instead. The streaming API provides real-time execution reports as they happen.
+> This polling API is subject to rate limits. For production applications that need continuous order and trade updates, use the [gRPC Order Stream](/streaming-endpoints/order-stream.md) instead. The streaming API provides real-time execution reports as they happen.
 
 ## Endpoints
 
@@ -36,8 +36,8 @@
 
 | Use Case | Recommended API |
 | - | - |
-| Real-time order status updates | [gRPC Order Stream](/streaming-endpoints/order-stream) |
-| Real-time fill notifications | [gRPC Order Stream](/streaming-endpoints/order-stream) |
+| Real-time order status updates | [gRPC Order Stream](/streaming-endpoints/order-stream.md) |
+| Real-time fill notifications | [gRPC Order Stream](/streaming-endpoints/order-stream.md) |
 | Historical order lookup | REST Orders Search (this API) |
 | End-of-day reconciliation | REST Reports Export |
 | Audit and compliance reports | REST Reports Export |

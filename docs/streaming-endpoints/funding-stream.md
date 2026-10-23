@@ -280,23 +280,23 @@ if streamer.last_server_time:
 
 ## Next Steps
 
-> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream)**
+> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md)**
 >
 > Stream every cash balance change (fills, fees, deposits, ...)
 
-> **[Order Stream](/streaming-endpoints/order-stream)**
+> **[Order Stream](/streaming-endpoints/order-stream.md)**
 >
 > Stream real-time order updates
 
-> **[Market Data Stream](/streaming-endpoints/market-data-stream)**
+> **[Market Data Stream](/streaming-endpoints/market-data-stream.md)**
 >
 > Stream real-time market data
 
-> **[Error Handling](/streaming-endpoints/error-handling)**
+> **[Error Handling](/streaming-endpoints/error-handling.md)**
 >
 > Handle errors and reconnections
 
-> **[Authentication](/streaming-endpoints/authentication)**
+> **[Authentication](/streaming-endpoints/authentication.md)**
 >
 > gRPC authentication setup
 

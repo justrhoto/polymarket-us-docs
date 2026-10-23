@@ -41,7 +41,7 @@ Every binary market has only **one instrument**:
 
 > [!NOTE]
 >
-> For more details on shorting mechanics, see [Collateral and Margin](/market-structure/collateral-and-margin#shorting-mechanics).
+> For more details on shorting mechanics, see [Collateral and Margin](/market-structure/collateral-and-margin.md#shorting-mechanics).
 
 ## Synthetic No Position
 

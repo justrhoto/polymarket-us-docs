@@ -193,11 +193,11 @@ except NotFoundError as e:
 
 ## Next steps
 
-> **[TypeScript SDK](/api-reference/sdks/typescript/quickstart)**
+> **[TypeScript SDK](/api-reference/sdks/typescript/quickstart.md)**
 >
 > Full SDK reference for TypeScript.
 
-> **[Python SDK](/api-reference/sdks/python/quickstart)**
+> **[Python SDK](/api-reference/sdks/python/quickstart.md)**
 >
 > Full SDK reference for Python.
 

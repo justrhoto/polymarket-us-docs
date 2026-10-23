@@ -6,7 +6,7 @@
 
 > Sports players, teams, and league data available through the ISV gateway
 
-The ISV gateway exposes sports reference data - players, teams, logos, colors, records, and provider mappings - that complement the exchange-level [Reference Data](/data-guide/reference-data).
+The ISV gateway exposes sports reference data - players, teams, logos, colors, records, and provider mappings - that complement the exchange-level [Reference Data](/data-guide/reference-data.md).
 
 ## Players Endpoint
 

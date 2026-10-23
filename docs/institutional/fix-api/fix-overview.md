@@ -14,7 +14,7 @@ The purpose of this document is to outline the trading functionality available v
 
 The exchange rate limits inbound FIX messages from the client, per session.
 
-Order-entry sessions use the firm tier on [Rate Limits](/trader-guide/rate-limits#fix-protocol): **35, 150, 300, or 500 messages per second**.
+Order-entry sessions use the firm tier on [Rate Limits](/trader-guide/rate-limits.md#fix-protocol): **35, 150, 300, or 500 messages per second**.
 
 Market-data and drop-copy sessions are limited to **150 inbound messages per second**, regardless of the firm's order-entry tier. This limit applies only to messages you send. It does not limit the market data or drop-copy messages the exchange sends you.
 

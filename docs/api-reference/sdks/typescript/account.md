@@ -56,7 +56,7 @@ buyingPower = currentBalance + assetAvailable - openOrders - marginRequirement
 
 > [!TIP]
 >
-> For real-time balance updates, use the [WebSocket](/api-reference/sdks/typescript/websocket) with `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` instead of polling.
+> For real-time balance updates, use the [WebSocket](/api-reference/sdks/typescript/websocket.md) with `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

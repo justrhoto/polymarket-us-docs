@@ -105,13 +105,13 @@ Additional accounts can be created as needed via API or administrator interface.
 
 * Use `NewOrderSingle` to submit orders
 * Use `OrderCancelReplace` to modify orders
-* View our [FIX API documentation](/institutional/fix-api/fix-overview)
+* View our [FIX API documentation](/institutional/fix-api/fix-overview.md)
 
 **REST & gRPC APIs**
 
-* Download [proto files](/streaming-endpoints/proto-reference) and generate bindings
+* Download [proto files](/streaming-endpoints/proto-reference.md) and generate bindings
 * Subscribe to order updates before sending orders
-* View our [REST API documentation](/api-reference/introduction)
+* View our [REST API documentation](/api-reference/introduction.md)
 
 ## Risk Management
 

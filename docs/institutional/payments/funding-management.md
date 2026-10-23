@@ -24,7 +24,7 @@ The Funding API provides read access to funding sources, accounts, and transacti
 Authorization: Bearer YOUR_ACCESS_TOKEN
 ```
 
-See [Authentication Setup](/trader-guide/authentication) for instructions on obtaining tokens.
+See [Authentication Setup](/trader-guide/authentication.md) for instructions on obtaining tokens.
 
 ## Endpoints
 

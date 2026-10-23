@@ -8,9 +8,9 @@
 
 > [!NOTE]
 >
-> Market makers should read the [Combos/RFQ guide](/trader-guide/combos) before integrating. It explains quote construction, visibility, last look, and recovery.
+> Market makers should read the [Combos/RFQ guide](/trader-guide/combos.md) before integrating. It explains quote construction, visibility, last look, and recovery.
 
-The public `polymarket.v1.RFQAPI` gRPC service creates, reads, and manages RFQs and quotes. An RFQ references the exact symbol of an open, tradable instrument, such as a [combo instrument](/institutional/combos/overview). The service also exposes the gRPC-only RFQ event stream.
+The public `polymarket.v1.RFQAPI` gRPC service creates, reads, and manages RFQs and quotes. An RFQ references the exact symbol of an open, tradable instrument, such as a [combo instrument](/institutional/combos/overview.md). The service also exposes the gRPC-only RFQ event stream.
 
 Every REST endpoint below has an equivalent unary gRPC RPC. REST JSON uses lower camel case; protobuf fields use snake case.
 
@@ -31,9 +31,9 @@ Every REST endpoint below has an equivalent unary gRPC RPC. REST JSON uses lower
 
 All calls require bearer-token authentication and an acting participant, supplied through `x-participant-id` or the token's `participant_id` claim.
 
-Each unary method has a separate per-firm rate-limit bucket with one second of burst capacity, shared across REST and gRPC requests. Your RFQ tier determines the `CreateQuote` and `DeleteQuote` limits. See [RFQ rate-limit tiers](/trader-guide/rate-limits#rfq-rate-limit-tiers) for rates and eligibility requirements.
+Each unary method has a separate per-firm rate-limit bucket with one second of burst capacity, shared across REST and gRPC requests. Your RFQ tier determines the `CreateQuote` and `DeleteQuote` limits. See [RFQ rate-limit tiers](/trader-guide/rate-limits.md#rfq-rate-limit-tiers) for rates and eligibility requirements.
 
-Opening `StreamRFQEvents` is limited to one new stream per second per firm. See [Rate Limits](/trader-guide/rate-limits#rfq-endpoints).
+Opening `StreamRFQEvents` is limited to one new stream per second per firm. See [Rate Limits](/trader-guide/rate-limits.md#rfq-endpoints).
 
 ## RFQ Lifecycle
 
@@ -264,7 +264,7 @@ All authorized RFQ participants see the same trades. Each fill appears once, eve
 | `endTime` | Exclusive execution-time boundary. Defaults to the time the first request arrived. |
 | `symbol` | Exact, case-sensitive instrument symbol. Omit for all symbols. |
 
-REST timestamps use RFC 3339; gRPC uses `google.protobuf.Timestamp`. The response contains `trades` and `cursor`, ordered by execution time descending, then trade ID descending. An empty cursor ends the traversal. Each trade has the same [RFQTrade fields](/streaming-endpoints/rfq-events-stream#rfqtrade) as the stream event.
+REST timestamps use RFC 3339; gRPC uses `google.protobuf.Timestamp`. The response contains `trades` and `cursor`, ordered by execution time descending, then trade ID descending. An empty cursor ends the traversal. Each trade has the same [RFQTrade fields](/streaming-endpoints/rfq-events-stream.md#rfqtrade) as the stream event.
 
 Repeat the same participant, filters, and limit on every page; change only `cursor`. Keep omitted timestamps omitted: the cursor preserves the original boundaries. Invalid limits, changed query parameters, or `start_time >= end_time` return `INVALID_ARGUMENT`. A start time before available history returns `FAILED_PRECONDITION`.
 
@@ -272,7 +272,7 @@ Repeat the same participant, filters, and limit on every page; change only `curs
 >
 > Use **gRPC for pagination**. Long REST cursors can exceed the current query-string size limit and return HTTP 403.
 
-History can appear after the live event. Requery overlapping execution-time windows with a fresh cursor and deduplicate by `trade_id` to find late arrivals. See [stream recovery](/streaming-endpoints/rfq-events-stream#delivery-and-recovery).
+History can appear after the live event. Requery overlapping execution-time windows with a fresh cursor and deduplicate by `trade_id` to find late arrivals. See [stream recovery](/streaming-endpoints/rfq-events-stream.md#delivery-and-recovery).
 
 ## Statuses
 
@@ -290,7 +290,7 @@ History can appear after the live event. Requery overlapping execution-time wind
 
 `RFQAPI.StreamRFQEvents` is a live, best-effort gRPC stream. Public RFQ events are visible to participants; quote events are private to the requester and relevant maker. The stream has no replay, gap-free handoff, ordering, or deduplication guarantee.
 
-Open the stream for low-latency changes. On startup, reconnect, or after a suspected missed event, reconcile durable state with `GetRFQs` and `GetQuotes`. See [RFQ Events Stream](/streaming-endpoints/rfq-events-stream).
+Open the stream for low-latency changes. On startup, reconnect, or after a suspected missed event, reconcile durable state with `GetRFQs` and `GetQuotes`. See [RFQ Events Stream](/streaming-endpoints/rfq-events-stream.md).
 
 ## Accelerated Contracts
 
@@ -300,19 +300,19 @@ Pursuant to Rule 5.3(n)(iv) of its Rulebook, Polymarket US has designated the fo
 
 ## See Also
 
-> **[Combos API](/institutional/combos/overview)**
+> **[Combos API](/institutional/combos/overview.md)**
 >
 > Create and read combo instruments
 
-> **[Combos/RFQ Guide](/trader-guide/combos)**
+> **[Combos/RFQ Guide](/trader-guide/combos.md)**
 >
 > Maker workflow and quote rules
 
-> **[RFQ Events Stream](/streaming-endpoints/rfq-events-stream)**
+> **[RFQ Events Stream](/streaming-endpoints/rfq-events-stream.md)**
 >
 > Current event payloads and recovery behavior
 
-> **[Authentication](/trader-guide/authentication#api-scopes)**
+> **[Authentication](/trader-guide/authentication.md#api-scopes)**
 >
 > OAuth metadata and required scopes
 

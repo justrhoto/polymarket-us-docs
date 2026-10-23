@@ -15,7 +15,7 @@ This guide walks you through placing your first order on Polymarket US. By the e
 
 > [!NOTE]
 >
-> **Prerequisites:** Complete [Onboarding](/trader-guide/onboarding) first to generate your keys and receive your Client ID.
+> **Prerequisites:** Complete [Onboarding](/trader-guide/onboarding.md) first to generate your keys and receive your Client ID.
 
 ## Step 1: Get an Access Token
 
@@ -98,7 +98,7 @@ print(f"Authenticated as: {response.json()}")
 
 > [!WARNING]
 >
-> **The `x-participant-id` header is required** for all account-scoped endpoints (trading, positions, reports). You are given this value rather than discovering it: it comes from onboarding for your own users, or as `participantId` on KYC approval for an end user you onboard. Don't construct it by hand — see [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id).
+> **The `x-participant-id` header is required** for all account-scoped endpoints (trading, positions, reports). You are given this value rather than discovering it: it comes from onboarding for your own users, or as `participantId` on KYC approval for an end user you onboard. Don't construct it by hand — see [Finding Your Participant ID](/trader-guide/accounts-identity.md#finding-your-participant-id).
 
 Expected response:
 
@@ -381,19 +381,19 @@ if __name__ == "__main__":
 
 ## Next Steps
 
-> **[Authentication Deep Dive](/trader-guide/authentication)**
+> **[Authentication Deep Dive](/trader-guide/authentication.md)**
 >
 > Token refresh and key rotation
 
-> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview.md)**
 >
 > Real-time order and market data
 
-> **[REST API Reference](/api-reference/introduction)**
+> **[REST API Reference](/api-reference/introduction.md)**
 >
 > Complete endpoint documentation
 
-> **[Rate Limits](/trader-guide/rate-limits)**
+> **[Rate Limits](/trader-guide/rate-limits.md)**
 >
 > Usage limits and best practices
 

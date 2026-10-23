@@ -14,7 +14,7 @@ The Markets WebSocket endpoint provides real-time market data including order bo
 >
 > **Authentication Required**
 >
-> This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication) for details.
+> This WebSocket endpoint requires API key authentication in the connection handshake. See the [Authentication guide](/api/authentication.md) for details.
 
 ## Endpoint
 

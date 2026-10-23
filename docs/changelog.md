@@ -11,9 +11,20 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**October 22, 2026**
+
+Gold and silver Up/Down markets
+
+* **Gold and silver Up/Down markets are listed from today.** Windows of 15 minutes, 1 hour and one day ask whether the gold (silver) price closes the window at or above its open. Daily windows run from 6:15 PM ET to 5:00 PM ET the next day, five a week on Sunday to Thursday evenings. Windows are listed from Sunday 6:15 PM ET to Friday 5:00 PM ET, never from 5:00 PM to 6:15 PM ET, and not on holidays.
+* **Institutional API:** the new [Metals Schema](/trader-guide/metals-schema.md) page documents the identifying fields. Products are `cpausp` (gold) and `cpagsp` (silver), with clearing symbols `CPAUSP-COMMODITY` and `CPAGSP-COMMODITY`, category `FIN` and subcategory `COMMODITY`. Map on `metals_market_type` and `metals_horizon`, read the window from `interval_start` / `interval_end`, the open value from `price_to_beat`, the settled value from `metals_settlement_price`, and when trading resumes from `metals_next_window_start`.
+* **Retail API:** markets carry the same typed [`assetPriceTerms`](/api-reference/market/overview#asset-price-market-fields) object as crypto, with `asset.assetClass` `ASSET_CLASS_COMMODITY` and an empty `indexSymbol`. `assetPriceTerms` now also documents `priceDecimals`, `assetName`, `priceUnit` and `nextWindowStart`. The [Asset Prices API](/api-reference/asset-prices/overview.md) serves the raw spot price at `GET /v1/asset-prices/history?assets=commodity:gold` (or `commodity:silver`), with no authentication.
+* **Settlement rules** are summarised in the new [Gold and Silver FAQs](/faqs/metals-faqs.md), with the trading hours and the holiday calendar: each window settles on the spot value that Chainlink's `XAU/USD-Streams-ForexPrice` (gold) or `XAG/USD-Streams-ForexPrice` (silver) stream publishes for the window's start and end. This is a single spot value, not the 60-second average the crypto markets use. Gold is rounded to the cent and silver to three decimals. A flat window settles Up. A window opens for trading at its start, and its price to beat is published about a minute later.
+
 **October 21, 2026**
 
-NBA games now list half and quarter winner markets, starting with the October 21, 2026 games. The [Sports Schema](/trader-guide/sports-schema) lists them with the rest of the basketball types.
+NBA half and quarter winners
+
+NBA games now list half and quarter winner markets, starting with the October 21, 2026 games. The [Sports Schema](/trader-guide/sports-schema.md) lists them with the rest of the basketball types.
 
 * **Half winners:** `basketball_team_first_half_winner` and `basketball_team_second_half_winner` (overtime included).
 * **Quarter winners:** `basketball_team_first_quarter_winner`, `basketball_team_second_quarter_winner`, `basketball_team_third_quarter_winner` and `basketball_team_fourth_quarter_winner` (overtime not included).
@@ -21,7 +32,9 @@ NBA games now list half and quarter winner markets, starting with the October 21
 
 **October 19, 2026**
 
-NBA markets now use six more `market_sport_type` values, starting with the October 20, 2026 games. The [Sports Schema](/trader-guide/sports-schema) lists them with the rest of the basketball types.
+New NBA market sport types
+
+NBA markets now use six more `market_sport_type` values, starting with the October 20, 2026 games. The [Sports Schema](/trader-guide/sports-schema.md) lists them with the rest of the basketball types.
 
 * **Team totals:** `basketball_team_total_points` (full game, overtime included), `basketball_team_total_points_first_half`, `basketball_team_total_points_second_half` (overtime included). Each names its team as the market's participant.
 * **Race to X points:** `basketball_game_race_to_points`, two legs per target (one per team); `outcome_strike` carries the target (10, 20 or 30).
@@ -30,7 +43,9 @@ NBA markets now use six more `market_sport_type` values, starting with the Octob
 
 **October 16, 2026**
 
-On a date announced here, replies to all-securities SecurityListRequests (`35=x`, `559=4`) on FIX market-data sessions will arrive as several SecurityList (`35=y`) messages of up to 1,000 instruments each, instead of one message. Requests for a single symbol (`559=0`) are unchanged. See [FIX Reference Data](/institutional/fix-api/fix-api-reference-data).
+Upcoming: fragmented FIX SecurityList replies
+
+On a date announced here, replies to all-securities SecurityListRequests (`35=x`, `559=4`) on FIX market-data sessions will arrive as several SecurityList (`35=y`) messages of up to 1,000 instruments each, instead of one message. Requests for a single symbol (`559=0`) are unchanged. See [FIX Reference Data](/institutional/fix-api/fix-api-reference-data.md).
 
 * **Fragments:** each message carries your SecurityReqID (320), its own SecurityResponseID (322), the number of instruments in that message in NoRelatedSym (146), and LastFragment (893) = N. The final message carries LastFragment (893) = Y. Accumulate entries per SecurityReqID until 893 = Y; no total count is sent.
 * **One request at a time:** a session is served one all-securities request at a time. A second one sent before the first reaches 893 = Y is answered with SecurityRequestResult (560) = 4 and a Text (58); retry after the first reply completes.
@@ -42,7 +57,9 @@ On a date announced here, replies to all-securities SecurityListRequests (`35=x`
 
 **October 12, 2026**
 
-Effective **1:00 PM ET on Monday, October 19, 2026**, maker and taker rebates move to tiers set by your trading volume. Taker fees are unchanged. See [Rebate changes effective October 19, 2026](/fees#rebate-changes-effective-october-19-2026) on the Fee Schedule for the full rules and how volume is measured.
+Upcoming: tiered maker and taker rebates
+
+Effective **1:00 PM ET on Monday, October 19, 2026**, maker and taker rebates move to tiers set by your trading volume. Taker fees are unchanged. See [Rebate changes effective October 19, 2026](/fees.md#rebate-changes-effective-october-19-2026) on the Fee Schedule for the full rules and how volume is measured.
 
 * **Maker rebates:** the maker rebate coefficient moves from a flat `-0.0125` to four tiers set by your prior calendar-month maker volume: Tier 1 below \$10M (no maker rebate), Tier 2 `-0.0035` from \$10M, Tier 3 `-0.0070` from \$50M and Tier 4 `-0.0104` from \$200M. Rebates are still credited at the point of trade. Combo fills continue to carry no maker rebate.
 * **Taker rebates:** six tiers set by your prior calendar-month taker volume: Tier 1 below \$250K (no rebate), Tier 2 3% (\$250K to \$1M), Tier 3 5% (\$1M to \$10M), Tier 4 10% (\$10M to \$25M), Tier 5 15% (\$25M to \$50M) and Tier 6 30% (\$50M+) of taker fees paid. Rebates continue to be paid out weekly.
@@ -52,6 +69,8 @@ Effective **1:00 PM ET on Monday, October 19, 2026**, maker and taker rebates mo
 
 **October 9, 2026**
 
+Upcoming: primary markets on event lists
+
 Effective **Thursday, October 15, 2026**, these endpoints will return only the primary market set in each event's `markets` array:
 
 * `GET /v1/events`
@@ -60,18 +79,24 @@ Effective **Thursday, October 15, 2026**, these endpoints will return only the p
 
 Primary markets are the main winner outcomes. Soccer game-to-advance markets take precedence when present. Spreads, totals, and player props will no longer accompany a primary market in list responses. Events without a primary market will retain all eligible markets.
 
-**Migration:** For the full market set, request `GET /v1/events/{id}` or `GET /v1/events/slug/{slug}`. Use the `id` or `slug` from the list response. See the [Events API](/api-reference/events/overview).
+**Migration:** For the full market set, request `GET /v1/events/{id}` or `GET /v1/events/slug/{slug}`. Use the `id` or `slug` from the list response. See the [Events API](/api-reference/events/overview.md).
 
 **October 1, 2026**
 
-* [RFQs](/api-reference/rfqs/overview) and [combos](/api-reference/combos/overview) are now available to all Retail API users with existing API keys.
+General access to RFQs and combos
+
+* [RFQs](/api-reference/rfqs/overview.md) and [combos](/api-reference/combos/overview.md) are now available to all Retail API users with existing API keys.
 
 **October 1, 2026**
+
+RFQ quote replacement IDs
 
 * `CreateQuote` now returns a new `quoteId` on every successful call, including replacements.
-* Use the returned ID to delete the new quote. Confirm or decline using the ID in the acceptance event. See the [Institutional](/institutional/rfqs/overview#create-or-replace-a-quote) and [Retail](/api-reference/rfqs/overview#replace-a-quote) RFQ docs.
+* Use the returned ID to delete the new quote. Confirm or decline using the ID in the acceptance event. See the [Institutional](/institutional/rfqs/overview.md#create-or-replace-a-quote) and [Retail](/api-reference/rfqs/overview.md#replace-a-quote) RFQ docs.
 
 **September 29, 2026**
+
+v0.0.93
 
 * **Nine new MLB inning-total sports market types, listing today with the MLB playoffs:** `baseball_team_inning1_total` through `baseball_team_inning9_total`.
 * **Two lines per inning:** Over/Under on the combined runs scored by both teams in that inning, at `outcome_strike` `0.5` and `1.5`.
@@ -80,34 +105,46 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **September 21, 2026**
 
+v0.0.92
+
 * **Crypto price markets are documented ahead of their production listing.** Four automated Bitcoin market families settle on CF Benchmarks' Bitcoin Real-Time Index (`BRTI`): 15-minute and 60-minute **Up/Down** windows, hourly, daily and weekly **Above/Below** ladders, **Price Range** ladders on the same expiries, and monthly **One-Touch** ladders. They are listed in preprod today and reach production on the schedule announced here.
-* **Institutional API:** the new [Crypto Schema](/trader-guide/crypto-schema) page documents the identifying fields. Map on `crypto_market_type` (`updown`, `strike`, `range`, `hit`) and read the window from `interval_start` / `interval_end`, the threshold from `outcome_strike` or `crypto_range_lower` / `crypto_range_upper`, the Up/Down open value from `price_to_beat`, and the settled value from `crypto_settlement_price`. Filter reference data with `eventCategory=CRY` or `clearingSym=CPC-BTC`.
-* **Retail API:** markets carry a typed [`assetPriceTerms`](/api-reference/market/overview#crypto-price-market-fields) object with the same terms, and the new [Asset Prices API](/api-reference/asset-prices/overview) serves BRTI candles from `GET /v1/asset-prices/history`. Automated crypto markets have an empty `marketType`; identify them from `assetPriceTerms.marketType`.
-* **Settlement rules** are summarised in the new [Crypto FAQs](/faqs/crypto-faqs): Up/Down, Above/Below and Price Range settle on the simple average of the 60 one-second index prices from 59 seconds before the settlement instant up to and including it (a flat Up/Down window settles Up; a value equal to a strike settles Yes); One-Touch settles on a rolling 60-second 20% trimmed mean and may settle early.
+* **Institutional API:** the new [Crypto Schema](/trader-guide/crypto-schema.md) page documents the identifying fields. Map on `crypto_market_type` (`updown`, `strike`, `range`, `hit`) and read the window from `interval_start` / `interval_end`, the threshold from `outcome_strike` or `crypto_range_lower` / `crypto_range_upper`, the Up/Down open value from `price_to_beat`, and the settled value from `crypto_settlement_price`. Filter reference data with `eventCategory=CRY` or `clearingSym=CPC-BTC`.
+* **Retail API:** markets carry a typed [`assetPriceTerms`](/api-reference/market/overview#asset-price-market-fields) object with the same terms, and the new [Asset Prices API](/api-reference/asset-prices/overview.md) serves BRTI candles from `GET /v1/asset-prices/history`. Automated crypto markets have an empty `marketType`; identify them from `assetPriceTerms.marketType`.
+* **Settlement rules** are summarised in the new [Crypto FAQs](/faqs/crypto-faqs.md): Up/Down, Above/Below and Price Range settle on the simple average of the 60 one-second index prices from 59 seconds before the settlement instant up to and including it (a flat Up/Down window settles Up; a value equal to a strike settles Yes); One-Touch settles on a rolling 60-second 20% trimmed mean and may settle early.
 * **Existing hand-listed year-end Bitcoin markets are unchanged.** They carry none of the `crypto_*` fields, show `marketType: "futures"` and `assetPriceTerms: null`, and state their statistic in the market rules. The Data Guide's crypto examples now use real identifiers.
 
 **September 19, 2026**
 
-* **New [Streaming Best Practices](/streaming-endpoints/streaming-best-practices) page.** One long-lived `CreateDropCopySubscription` per firm and environment. Persist `resume_token` after you apply the batch. Do not put a short deadline on the streaming RPC and reconnect — that restarts replay and never catches up. Drop Copy has no per-order stream.
-* **20 concurrent gRPC streams per firm**, pooled across stream types. Market data is still 1000 symbols per stream; `CreateOrderSubscription` is not. Full table: [Rate Limits](/trader-guide/rate-limits#grpc-streaming).
+Streaming best practices
+
+* **New [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md) page.** One long-lived `CreateDropCopySubscription` per firm and environment. Persist `resume_token` after you apply the batch. Do not put a short deadline on the streaming RPC and reconnect — that restarts replay and never catches up. Drop Copy has no per-order stream.
+* **20 concurrent gRPC streams per firm**, pooled across stream types. Market data is still 1000 symbols per stream; `CreateOrderSubscription` is not. Full table: [Rate Limits](/trader-guide/rate-limits.md#grpc-streaming).
 
 **September 17, 2026**
+
+v0.0.91
 
 * **Maintenance window — Friday, September 18, 5:00am–7:00am ET.** Affects both the Institutional API and Retail API. Please note the schedule change, as this is outside our normal recurring maintenance schedule.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **September 15, 2026**
 
-* **New parameter: Max Spread.** Where a program sets one, every second the exchange walks both sides of the book to Target Size and requires each side's size-adjusted price to sit within the Max Spread of the midpoint between the two size-adjusted prices. This is a test of the book, not of each trader: you do not have to quote both sides yourself. Max Spread is a half-width: a 3.5¢ Max Spread allows the two size-adjusted prices to be up to 7¢ apart. If they sit farther apart than that, or either side never reaches Target Size, nobody is paid for that second — including any side that did reach Target Size. Once a second qualifies, a one-sided quote still earns on the side it rests on. Forfeited seconds still count toward the time period and are not redistributed. Programs without a Max Spread score each side independently, exactly as today. See [What is Max Spread?](/incentives/liquidity#what-is-max-spread).
+v0.0.91
+
+* **New parameter: Max Spread.** Where a program sets one, every second the exchange walks both sides of the book to Target Size and requires each side's size-adjusted price to sit within the Max Spread of the midpoint between the two size-adjusted prices. This is a test of the book, not of each trader: you do not have to quote both sides yourself. Max Spread is a half-width: a 3.5¢ Max Spread allows the two size-adjusted prices to be up to 7¢ apart. If they sit farther apart than that, or either side never reaches Target Size, nobody is paid for that second — including any side that did reach Target Size. Once a second qualifies, a one-sided quote still earns on the side it rests on. Forfeited seconds still count toward the time period and are not redistributed. Programs without a Max Spread score each side independently, exactly as today. See [What is Max Spread?](/incentives/liquidity.md#what-is-max-spread).
 * **No live program sets a Max Spread yet.** When a program adopts one, its Max Spread is published alongside the program's other parameters on [polymarket.us/rewards](https://polymarket.us/rewards) and in `GET /v1/incentives` (`timePeriods[].maxSpread`).
-* **Retail and Institutional APIs:** `GET /v1/incentives` now includes `timePeriods[].maxSpread` for liquidity programs that set a Max Spread, in price dollars (`0.035` = 3.5¢). It is the half-width: how far each side's size-adjusted price may sit from the midpoint between the two. The field is omitted — never `0` — when a program has no Max Spread. See the [Retail](/api-reference/incentives/overview) and [Institutional](/institutional/incentives/overview) Incentives API references.
+* **Retail and Institutional APIs:** `GET /v1/incentives` now includes `timePeriods[].maxSpread` for liquidity programs that set a Max Spread, in price dollars (`0.035` = 3.5¢). It is the half-width: how far each side's size-adjusted price may sit from the midpoint between the two. The field is omitted — never `0` — when a program has no Max Spread. See the [Retail](/api-reference/incentives/overview.md) and [Institutional](/institutional/incentives/overview.md) Incentives API references.
 
 **September 13, 2026**
+
+v0.0.90
 
 * **Maintenance window — Monday, September 14, 5:00am–8:00am ET.** Affects both the Institutional API and Retail API. Please note the schedule change, as this is outside our normal recurring maintenance schedule.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **September 13, 2026**
+
+v0.0.89
 
 * **Day orders will cancel not auto-cancel on 9/13 during traded day roll.**
 * **Why:** the Exchange team is working on improving the DAY order types performance. While the Exchange makes improvement, DAY orders will not automatically cancel at 5pm during trade day rolls.
@@ -115,10 +152,14 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **September 10, 2026**
 
+v0.0.88
+
 * **Maintenance window — Friday, September 11, 4:00am–7:00am ET.** Affects both the Institutional API and Retail API. Please note the schedule change, as this is outside our normal recurring maintenance schedule.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **September 9, 2026**
+
+v0.0.87
 
 * **Eight additional football sports market types are now documented:**
   * **Player props:** `football_player_passing_attempts`, `football_player_passing_completions`, `football_player_rushing_attempts`, `football_player_longest_rush`, and `football_player_longest_reception`
@@ -126,11 +167,13 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
   * **Selected-team total:** `football_team_total_fourth_down_conversions`
   * **Game outcome:** `football_game_double_result` combines the first-half result and final-game result into nine mutually exclusive outcomes.
 * **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`.
-* See [Sports Schema](/trader-guide/sports-schema) for the complete inventory and football metadata profiles.
+* See [Sports Schema](/trader-guide/sports-schema.md) for the complete inventory and football metadata profiles.
 
 **September 8, 2026**
 
-* **71 additional sports market types are now documented.** The `market_sport_type` inventory on [Sports Schema](/trader-guide/sports-schema) now matches the full set of sports market types registered by the exchange. Some values are already listed; others are registered ahead of their first listing. Treat every value in the inventory as one that can appear on an instrument. Instruments with no sport-specific value show their `outcome_type` value in the Retail `sportsMarketType` field (for example `futures`); see the new Generic Values section.
+v0.0.86
+
+* **71 additional sports market types are now documented.** The `market_sport_type` inventory on [Sports Schema](/trader-guide/sports-schema.md) now matches the full set of sports market types registered by the exchange. Some values are already listed; others are registered ahead of their first listing. Treat every value in the inventory as one that can appear on an instrument. Instruments with no sport-specific value show their `outcome_type` value in the Retail `sportsMarketType` field (for example `futures`); see the new Generic Values section.
 * **Football (35 values):**
   * **Player props:** `football_player_receptions`, `football_player_passer_rating`, `football_player_interceptions_thrown`, `football_player_sacks`, `football_player_defensive_interceptions`, `football_player_field_goals_made`, `football_player_50_plus_yard_field_goals_made`, `football_player_fantasy_points_ppr`, and `football_player_scrimmage_yards`, plus the yes/no props `football_player_first_touchdown`, `football_player_most_passing_yards`, `football_player_most_rushing_yards`, and `football_player_most_receiving_yards`.
   * **Combined game totals:** passing and rushing touchdowns, passing and rushing yards, offensive yards, turnovers, defensive interceptions, fourth-down conversions, and a successful two-point conversion yes/no. `football_game_total_pass_yards` and `football_game_total_pass_touchdowns` are also reserved for combined receiving yards and receiving touchdowns.
@@ -141,24 +184,32 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 * **Esports (24 values):** series handicaps and totals (`esports_series_map_handicap`, `esports_series_total_maps`, `esports_series_game_handicap`, `esports_series_total_games`); per-map rounds handicap and total rounds for maps 1–4; per-game first blood, total kills, and kills odd/even for games 1–4. Map markets apply to round-based titles such as Counter-Strike 2 and Valorant; game markets apply to series-of-games titles such as League of Legends and Dota 2.
 * **New sports (9 values):** `boxing_match_winner`, `darts_match_winner`, `pickleball_match_winner`, `lacrosse_team_full_game_winner`, and table tennis (`table_tennis_match_winner` plus `table_tennis_set_1_winner` through `table_tennis_set_4_winner`).
 * **Generic values:** `moneyline`, `spreads`, `totals`, and `drawable_outcome` are documented as valid `market_sport_type` values. They have the same structure as the matching `outcome_type` value and appear on instruments that carry no sport-specific value, such as instruments created before the sport-specific values existed or hand-listed markets.
-* **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`. See [Sports Schema](/trader-guide/sports-schema) for the full inventory, the esports map/game note, and the football metadata profiles.
+* **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`. See [Sports Schema](/trader-guide/sports-schema.md) for the full inventory, the esports map/game note, and the football metadata profiles.
 
 **September 8, 2026**
+
+v0.0.85
 
 * **Maintenance window — Wednesday, September 9, 3:00am–7:00am ET.** Affects both the Institutional API and Retail API. Please note the schedule change, as this is outside our normal recurring maintenance schedule.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **September 7, 2026**
 
+v0.0.84
+
 * **Maintenance window — Tuesday, September 8, 2:00am–6:00am ET.** Affects both the Institutional API and Retail API. Please note the schedule change, as this is outside our normal recurring maintenance schedule.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **September 4, 2026**
 
+v0.0.83
+
 * **Maintenance windows — Saturday, September 5, 2:00am–6:00am ET, and Sunday, September 6, 2:00am–6:00am ET.** Affects both the Institutional API and Retail API. Please note the schedule change, as these are outside our normal recurring maintenance schedule.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **September 1, 2026**
+
+v0.0.82
 
 * **Maintenance window — Wednesday, September 2, 2:00am–8:00am ET.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Execution history reset:** we archive the stored execution history during the maintenance window. After maintenance, queries for pre-maintenance executions return empty results.
@@ -167,12 +218,16 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **August 31, 2026**
 
+v0.0.81
+
 * **Maintenance window — Tuesday, September 1, 2:00am–7:00am ET.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Execution history reset:** we archive the stored execution history during the maintenance window. After maintenance, queries for pre-maintenance executions return empty results.
 * **Action required:** export and retain any execution data you need before the window begins. To retrieve every page, pass each `nextPageToken` value back as `pageToken` until the response returns `eof: true`.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **August 29, 2026**
+
+v0.0.80
 
 * **16 additional football sports market types are being listed** with college football (CFB) games, covering:
   * **First touchdown:** `football_game_first_half_first_touchdown`, joining the existing full-game and second-half variants
@@ -181,9 +236,11 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
   * **Selected-team statistical totals:** passing and rushing touchdowns, passing and rushing yards, scrimmage yards, receptions, takeaways, defensive interceptions, sacks, field goals made, and 40+ yard field goals made
 * **Receiving markets reuse the passing types:** `football_team_total_pass_yards` is also used for team receiving yards, and `football_team_total_pass_touchdowns` for team receiving touchdowns.
 * **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`.
-* See [Sports Schema](/trader-guide/sports-schema) for the full `market_sport_type` inventory and football metadata profiles.
+* See [Sports Schema](/trader-guide/sports-schema.md) for the full `market_sport_type` inventory and football metadata profiles.
 
 **August 26, 2026**
+
+v0.0.79
 
 * **One-off maintenance extension — Thursday, August 27, 2:00am–8:00am ET.** This week's recurring maintenance window will be extended to 8:00am ET. Normal recurring maintenance hours are unchanged. Affects both the Institutional API and Retail API.
 * **Execution history reset:** we clear the stored execution history during the maintenance window. Queries for pre-maintenance executions return empty results afterwards.
@@ -192,15 +249,21 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **August 24, 2026**
 
+v0.0.78
+
 * **Maintenance window — Tuesday, August 25, 2:00am–8:00am ET.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **August 10, 2026**
 
+v0.0.77
+
 * **Maintenance window — Tuesday, August 11, 6:00am–10:00am ET.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **August 5, 2026**
+
+v0.0.76
 
 * **50 NFL sports market types are being listed**, covering:
   * **Primary game lines:** full-game winner, spread, and total
@@ -212,14 +275,18 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
   * **Player props:** touchdowns from scrimmage (passing touchdowns excluded), rushing yards, passing yards, receiving yards, and passing touchdowns
 * **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`. All secondary game and player markets use `outcome_type=props`; player markets also use `prop_type=player`.
 * **Market identity:** use `event_external_id_sportradar`, `market_sport_type`, `long_participant_id`, `short_participant_id`, and `outcome_strike` as the canonical lookup and deduplication key. Participant IDs can be empty for game-wide totals; also use `external_participant_id` when resolving a player.
-* See [Sports Schema](/trader-guide/sports-schema) for the complete 50-type inventory and football metadata profiles.
+* See [Sports Schema](/trader-guide/sports-schema.md) for the complete 50-type inventory and football metadata profiles.
 
 **July 29, 2026**
+
+v0.0.75
 
 * **Scheduled maintenance window — Thursday, July 30, 2:00am–4:00am ET.** Affects both the Institutional API and Retail API.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **July 29, 2026**
+
+v0.0.74
 
 * **Nine new MLB inning-winner sports market types:** `BASEBALL_TEAM_INNING1_WINNER` through `BASEBALL_TEAM_INNING9_WINNER`.
 * **Inning number:** derive it from mapping the `market_sport_type` enum rather than parsing the instrument ID.
@@ -230,6 +297,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **July 28, 2026**
 
+v0.0.73
+
 * **Preprod maintenance window — Tuesday, July 29, 8:00am–10:00am ET (\~2 hours).** The preprod environment will be placed into maintenance mode for scheduled database maintenance.
 * **Preprod only — production is not affected.**
 * During the window, preprod FIX sessions will disconnect and preprod Institutional API requests will be rejected.
@@ -237,10 +306,14 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **July 24, 2026**
 
+v0.0.72
+
 * **Scheduled maintenance window — Saturday, July 25, 2:00am–4:00am ET.** Affects both the Institutional API and Retail API.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **July 20, 2026**
+
+v0.0.71
 
 * **Three new instrument metadata fields on sports instruments.** The `metadata` map returned by `SearchInstruments` / `GetInstrument` now includes:
   * `home_team_name` — display name of the home side (e.g., "Kansas City Chiefs")
@@ -252,6 +325,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **July 13, 2026**
 
+v0.0.70
+
 * During the **Thursday, July 16, 2026 maintenance window**, we will prune all executions, market data beyond 45 days, and orders beyond 90 days.
 * **Trades and positions remain unchanged.**
 * Store what you need before the window.
@@ -262,6 +337,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
   * executions — **7 days**
 
 **July 10, 2026**
+
+v0.0.69
 
 * **Liquidity rewards reductions, effective 12:00am ET, Monday July 13, 2026:**
   * **WNBA:** \$5,000 → **\$2,000** per game.
@@ -278,15 +355,21 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **July 9, 2026**
 
+v0.0.68
+
 * **Weekly maintenance window moved to Thursday 2:00am–6:00am ET**, effective July 9, 2026. Previously, the window was every Thursday, 6:00am–8:00am ET. Affects both the Institutional API and Retail API.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **July 6, 2026**
 
+v0.0.67
+
 * **Scheduled maintenance window — Tuesday, July 7, 2:00am–6:00am EDT.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **July 5, 2026**
+
+v0.0.66
 
 * **Soccer To Advance is now a single two-sided instrument.** `soccer_game_to_advance` markets are created as **one moneyline instrument** carrying both teams (long and short), instead of two separate per-team Yes/No instruments. Live starting with the **World Cup quarter-finals**.
 * **First instrument:** `aadc-fwc-fra-mar-2026-07-09-to-advance` (France vs Morocco, July 9) — a single id. It is **not** two instruments (`aadc-fwc-fra-mar-2026-07-09-to-advance-fra` and `aadc-fwc-fra-mar-2026-07-09-to-advance-mar`).
@@ -294,6 +377,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 * **All To Advance games from here on use this format.** Read both sides off the one instrument — Retail: `marketSides` from `GET /v1/market/slug/{slug}`; Institutional: `long_participant_id` / `short_participant_id` from `SearchInstruments` / `GetInstrument`.
 
 **July 2, 2026**
+
+v0.0.65
 
 * **Politics and tennis winner futures liquidity rewards are reduced, effective 8:00pm ET, Thursday July 2 (00:00 UTC, Friday July 3):**
   * **Politics**: \$500/day → **\$250/day** per event, pro-rated across all markets within the event.
@@ -303,15 +388,19 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **July 2, 2026**
 
+v0.0.64
+
 * **Upcoming — these markets become a single two-sided instrument.** Instead of two separate per-team instruments, each of the following is created as **one instrument with both participants** (a single long/short winner market):
   * `soccer_game_to_advance` — Soccer To Advance, starting with the **World Cup quarter-finals onward**
   * `esports_map_winner_1` / `esports_map_winner_2` / `esports_map_winner_3` and `esports_game_winner_1` / `esports_game_winner_2` / `esports_game_winner_3` — esports map / game winner\*\*
   * `tennis_set_1_winner` / `tennis_set_2_winner` / `tennis_set_3_winner` — tennis set winner\*\*
 * **One market, two sides.** Each market now exposes a single instrument carrying both teams/players (`long_participant_id` / `short_participant_id`; Retail two-sided `marketSides`) rather than one Yes/No market per participant. Read both sides off the one instrument instead of expecting two separate markets per event.
 * **Effective for newly created instruments only.** Existing instruments keep their current shape. Soccer To Advance applies **starting with the World Cup quarter-finals onward**; esports map/game winner and tennis set winner apply to instruments created from **Friday night (July 3, 2026)** onward.
-* **Where to read it:** Retail — `marketSides` and `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `long_participant_id` / `short_participant_id` and `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `marketSides` and `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `long_participant_id` / `short_participant_id` and `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **July 2, 2026**
+
+v0.0.63
 
 * **Nathan's Hot Dog Eating Contest markets (July 4, 2026) now carry \$13,000 in liquidity rewards**, effective July 2.
 * **Men's contest — \$10,000.** Each of the four men's events — Chestnut to win, winner without Chestnut, winner's total hot dogs & buns, and men's record broken — has **\$2,500**: \$1,250 Early + \$1,250 Day-of (discount factor 0.40/0.35, target size 2,500), distributed pro-rata across eligible instruments.
@@ -319,6 +408,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 * Full details on the [live liquidity rewards page](https://polymarket.us/rewards).
 
 **July 2, 2026**
+
+v0.0.62
 
 * **`lastPriceSample` is being removed.** As of **Friday, July 3, 2026**, this field should no longer be considered supported — do not rely on it in your integration going forward.
 * **Where it appears:**
@@ -328,16 +419,22 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **July 1, 2026**
 
+v0.0.61
+
 * **Scheduled maintenance window — Thursday, July 2, 2:00am–6:00am EDT.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Live status:** [status.polymarketexchange.com](https://status.polymarketexchange.com).
 
 **June 29, 2026**
+
+v0.0.60
 
 * **Wimbledon match winner markets are now decimalized.** Wimbledon and Wimbledon qualifiers **match winner** markets (`tennis_match_winner`) were initially listed with full cent ticks. New markets for the rest of the tournament are decimalized with a **0.5 cent (`$0.005`)** tick size.
 * **Existing instruments are unaffected** — they keep the tick they were created with.
 * **Read the tick per instrument before trading.** Retail — `market.orderPriceMinTickSize` from `GET /v1/market/slug/{slug}`; Institutional — `instrument.tickSize` from `SearchInstruments` / `GetInstrument`. Do not assume 1 cent ticks.
 
 **June 28, 2026**
+
+v0.0.59
 
 * **Tennis props:**
 * **All tennis prop markets** (alongside the `tennis_match_winner` moneyline):
@@ -350,6 +447,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **June 27, 2026**
 
+v0.0.58
+
 * **Soccer half BTTS and First Team to Score are live.** The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * `soccer_game_first_half_btts` — both teams to score in the first half
   * `soccer_game_first_half_first_team_to_score` — first team to score in the first half (per-team plus a "None" outcome)
@@ -358,9 +457,11 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 * **Each market counts its own half only.** First-half markets count goals up to and including minute 45 (plus first-half stoppage time); second-half markets count minutes 46 through 90 (plus second-half stoppage time). Goals scored in extra time never count toward either half.
 * **Settlement timing.** First-half markets settle once the first half is complete (halftime); second-half markets settle at full time. If a half is goalless, the First Team to Score market resolves **None**.
 * **Standard 1 cent (`$0.01`) tick size** — these are not decimalized.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **June 26, 2026**
+
+v0.0.57
 
 * **Subjects API is deprecated.** The Subjects endpoints — `GET /v1/subjects`, `GET /v1/subjects/{id}`, `GET /v1/subjects/slug/{slug}`, and their `/markets` variants — are deprecated and will be removed on **June 29, 2026**. They are no longer used, and their documentation has been removed from the API reference. If you currently depend on them, please reach out before the removal.
 * **Deprecated Market, MarketSide, and Event fields.** The following response fields are now marked deprecated in the API reference and will be removed on **June 29, 2026**. They continue to work until then — please migrate to the structured replacements:
@@ -369,9 +470,11 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
   * Event `participants` → `teams`
   * `MarketSide.team` → the market side's participant data
   * `MarketSide.participantId`, and Market `archived`, `manualActivation`, `gameStartTime` → being removed from public responses
-* Deprecated fields are flagged in the [API reference](/api-reference/introduction) so you can identify them while migrating. Removal is scheduled for **June 29, 2026**.
+* Deprecated fields are flagged in the [API reference](/api-reference/introduction.md) so you can identify them while migrating. Removal is scheduled for **June 29, 2026**.
 
 **June 27, 2026**
+
+v0.0.57
 
 * **Soccer extra-time markets are live for the World Cup.** The following enums are added to `market_sport_type` (Retail `sportsMarketType`) on knockout fixtures:
   * `soccer_game_goes_to_extra_time` — binary Yes/No: will the match go to extra time?
@@ -389,17 +492,21 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
   * Extra-time total: `tsc-fwc-rsa-can-2026-06-28-et-1pt5`
   * Both teams to score (ET): `astatc-fwc-rsa-can-2026-06-28-et-btts`
   * First team to score (ET): `astatc-fwc-rsa-can-2026-06-28-et-ftts-rsa` (and `-can`, `-none`)
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **June 26, 2026**
+
+v0.0.56
 
 * **Cricket now covers international & domestic T20.** In addition to IPL, the match winner market is now live for **T20 Internationals**, **Major League Cricket**, the **T20 Blast (men's and women's)**, and the **Women's T20 World Cup**.
 * **Same market type — no integration changes.** Each match lists one match winner market (`market_sport_type = "cricket_match_winner"`, Retail `sportsMarketType = "cricket_match_winner"`), identical in structure to IPL. It resolves to the official match winner; a no result, tie, or abandonment with no declared winner resolves to **\$0.50**.
 * **Liquidity rewards — \$500 per match** on the match winner market, split **early / day-of / live = \$25 / \$75 / \$400** (discount factors 0.40 / 0.35 / 0.30, target size 10,000 each). IPL keeps its own \$20,000 structure.
 * **Example slugs** (Major League Cricket): `aec-mlc-sfu-soe-2026-06-27` (San Francisco Unicorns vs Seattle Orcas), `aec-mlc-mny-lakr-2026-06-27` (MI New York vs Los Angeles Knight Riders).
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema) and [Liquidity Rewards](https://polymarket.us/rewards).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md) and [Liquidity Rewards](https://polymarket.us/rewards).
 
 **June 26, 2026**
+
+v0.0.55
 
 * **Soccer To Advance is live for the World Cup.** Knockout fixtures now list a To Advance market (`market_sport_type = soccer_game_to_advance`, Retail `sportsMarketType = "soccer_game_to_advance"`). It is created per knockout game once the main match market is open.
 * **Structure:** each knockout tie has **two separate instruments — one per team** (e.g. "Will South Africa advance?" and "Will Canada advance?"), each a binary Yes/No market. They resolve on the team that progresses over the **whole tie — regulation, extra time, and penalties** — not the 90-minute result.
@@ -409,46 +516,58 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 * **Example slugs** (Round of 32, South Africa vs Canada, event `aadc-fwc-rsa-can-2026-06-28-to-advance`):
   * South Africa to advance: `aadc-fwc-rsa-can-2026-06-28-to-advance-rsa`
   * Canada to advance: `aadc-fwc-rsa-can-2026-06-28-to-advance-can`
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **June 25, 2026**
+
+v0.0.54
 
 * **Maintenance window — Friday, June 26, 2:30am–4:30am EST.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours.
 * **Live status:** [status.polymarketexchange.com/incidents/d936p4wqsp77](https://status.polymarketexchange.com/incidents/d936p4wqsp77).
 
 **June 24, 2026**
 
+v0.0.53
+
 * **`GET /v1/portfolio/positions` will be paginated.** The endpoint will return up to **100 positions per page** instead of the entire set in a single response.
 * **Action required for large accounts.** To retrieve all of your positions, follow the `nextCursor` value (sent as the `cursor` query parameter) until the response returns `eof: true`. Accounts with more than 100 positions that do not paginate will only receive the first page.
 * **No change for smaller accounts.** Accounts with 100 or fewer positions still receive every position in a single response, now with `eof: true`.
 * **Why:** returning every position in one response caused request timeouts and out-of-memory errors for accounts with very large position lists (tens of thousands of positions).
 * **Rollout:** rolling out soon — we'll announce the enablement date here in advance. Subscribe to the RSS feed to be notified before it ships.
-* **Where to read it:** `GET /v1/portfolio/positions`. See [Portfolio API](/api-reference/portfolio/overview).
+* **Where to read it:** `GET /v1/portfolio/positions`. See [Portfolio API](/api-reference/portfolio/overview.md).
 
 **June 23, 2026**
+
+v0.0.52
 
 * **Backfill complete.** Every open instrument in production now carries `market_sport_type`, including full-game winner/spread/total and full-time/match/fight winner markets.
 * **Map on `market_sport_type` alone — you no longer need to check `outcome_type`.** `market_sport_type` fully identifies a market's structure and period on its own.
 * **`outcome_type` is still there, just don't rely on it for mapping.** It remains populated on every instrument but is subject to change; treat it as informational only and migrate any mapping logic to `market_sport_type`.
 * **One exception:** season/event-long **futures** carry no `market_sport_type` and are still identified by `outcome_type = "futures"`.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **June 20, 2026**
+
+v0.0.51
 
 * **Starting Monday, June 22, 2026, every instrument in production will have `market_sport_type` filled in** — including full-game winner/spread/total (and full-time / match / fight winner), which previously left it unset (see v0.0.48 for the enum list).
 * **Backfill:** we'll backfill all open instruments with `market_sport_type` on Monday, June 22.
 * **`outcome_type` remains on the instrument** and is unchanged (`moneyline` / `spreads` / `totals` / `drawable_outcome`). However, please do not use this for mappings and use sport\_market\_type instead, outcome\_type will be deprecated in the coming weeks.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **June 18, 2026**
+
+v0.0.50
 
 * **Every instrument now carries an explicit `market_sport_type` — production Tuesday, June 23, 2026.** This adds full-game winner/spread/total and full-time/match winner markets, which previously left it unset (see v0.0.48 for the enum list).
 * **Backfill:** we'll backfill all open instruments with the new `market_sport_type` on **Tuesday, June 23 at 12:00pm ET**.
 * **You can now fully identify an instrument from `market_sport_type` alone** — it encodes both market structure (winner/spread/total) and period (full game, first half, etc.). Use it as your single source of truth going forward.
 * **`outcome_type` is deprecated.** Please don't rely on it — it's subject to change. Migrate any logic keyed off `outcome_type` to `market_sport_type` before Tuesday.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
 
 **June 17, 2026**
+
+v0.0.49
 
 * **New tennis match props (coming soon).** The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * **Games:** `tennis_match_games_spread`, `tennis_match_total_games`
@@ -467,6 +586,8 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **June 17, 2026**
 
+v0.0.48
+
 * **Full-game and full-match markets now carry an explicit `market_sport_type` — live in preprod now.** Previously these markets left `market_sport_type` unset and were identifiable only by `outcome_type` (`moneyline`/`spreads`/`totals`/`drawable_outcome`). Newly created instruments now also carry a fine-grained `market_sport_type`, consistent with the existing period markets (e.g. `basketball_team_first_half_spread`). The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * **Basketball — full game (NBA, WNBA, CBB, WCBB):** `basketball_team_full_game_winner`, `basketball_team_full_game_spread`, `basketball_team_full_game_total`
   * **Football — full game (NFL, CFB):** `football_team_full_game_winner`, `football_team_full_game_spread`, `football_team_full_game_total`
@@ -481,9 +602,13 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **June 16, 2026**
 
+v0.0.47
+
 * **Maintenance window — Wednesday, June 17, 6:00am–9:00am EST.** Affects both the Institutional API and Retail API. Please note the time change, as this is different than our normal hours. This is a one-off time change.
 
 **June 12, 2026**
+
+v0.0.46
 
 * **World Cup futures liquidity rewards increased (effective 12:00am ET, Friday June 12):**
   * **Tournament Winner Futures:** \$1,500/day → **\$5,000/day**.
@@ -493,13 +618,17 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **June 11, 2026**
 
+v0.0.45
+
 * **Soccer spread/total markets now use the `spreads`/`totals` `outcome_type` for every period.** Previously, soccer first-half, second-half, and team-total markets were listed with `outcome_type = "props"`. They now use the same structural `outcome_type` as full-game spreads/totals, matching basketball and baseball period markets. The period is encoded by `market_sport_type`.
   * **Spread → `outcome_type = "spreads"`:** `soccer_team_first_half_spread`, `soccer_team_second_half_spread`.
   * **Total → `outcome_type = "totals"`:** `soccer_team_first_half_total`, `soccer_team_second_half_total`, `soccer_team_total_goals`, `soccer_team_total_goals_first_half`.
-* **Action recommended:** identify market structure from `outcome_type` and the period from `market_sport_type`. Do not assume soccer period spread/total markets are `props`. See [Sports Schema](/trader-guide/sports-schema).
+* **Action recommended:** identify market structure from `outcome_type` and the period from `market_sport_type`. Do not assume soccer period spread/total markets are `props`. See [Sports Schema](/trader-guide/sports-schema.md).
 * **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `outcome_type` and `market_sport_type` from `SearchInstruments` / `GetInstrument`.
 
 **June 11, 2026**
+
+v0.0.45
 
 * **World Cup liquidity rewards increased (effective 2:00pm ET, Thursday June 11):** Total per game raised from \$30,000 → **\$50,000**.
   * **Moneyline/spreads/totals:** \$20,000 → **\$35,000** (Moneyline \$26,250, Spreads \$4,375, Totals \$4,375).
@@ -509,13 +638,19 @@ Primary markets are the main winner outcomes. Soccer game-to-advance markets tak
 
 **June 9, 2026**
 
+v0.0.44
+
 * **Maintenance window — Thursday, June 11, 3:00am–5:00am EST.** Please note the time change, as this is different than our normal hours. This is a one-off time change.
 
 **June 9, 2026**
 
+v0.0.43
+
 We heard feedback from some of our users that they needed more time to fully migrate to partial contracts, so we pushed back full rollout. All newly listed instruments will become partial-contract markets on **Thursday, June 11, 2026 at 5:00 PM ET (21:00 UTC)**. Long-dated futures markets listed before then and all World Cup instruments are partial-contract markets, so all market makers and API users should support partial-contract instruments now.
 
 **June 6, 2026**
+
+v0.0.42
 
 * **NHL hockey market types are live.** The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * **Game:**
@@ -529,6 +664,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **June 6, 2026**
 
+v0.0.41
+
 * **UFC market types are live.** The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * `ufc_method_of_victory`
   * `ufc_go_the_distance`
@@ -538,6 +675,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 * **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`.
 
 **June 6, 2026**
+
+v0.0.40
 
 * **Soccer market types are live.** The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * **Team — full game:**
@@ -560,6 +699,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **June 5, 2026**
 
+v0.0.39
+
 * **NBA Playoffs props expansion (effective 1:00pm ET, Friday June 5):** Props pool increased from \$10,000 → \$20,000 per game. Categories reorganized:
   * **Player Props:** \$10,000/game (\$5,000 Day-of + \$5,000 Live).
   * **Game Props (new):** \$5,000/game (\$2,500 Day-of + \$2,500 Live).
@@ -573,6 +714,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **June 4, 2026**
 
+v0.0.38
+
 * **Starting Monday, June 8, 2026 at 12:00 PM EST, every newly listed instrument will be a partial-contract market.** Existing instruments are unchanged. Do not assume whole-contract quantities — derive the partial scale per instrument before submitting orders.
 * **Institutional API — derive the scale, then convert:**
   * `instrument.fractionalQtyScale` — divide raw integer quantities by this to get decimal contracts. For example, with `fractionalQtyScale == 100`, `quantity = 1` is `0.01` contracts and `quantity = 100` is `1` full contract.
@@ -584,6 +727,8 @@ We heard feedback from some of our users that they needed more time to fully mig
   * Treat `quantity`, `cumQuantity`, and `leavesQuantity` as decimals, and use the decimal portfolio fields (`netPositionDecimal`, `qtyBoughtDecimal`, …).
 
 **June 2, 2026**
+
+v0.0.37
 
 * **NBA quarter spread + total markets and game-to-overtime (preprod now, production by midnight EST on June 2, 2026).** The following enums are added to `market_sport_type` (Retail `sportsMarketType`):
   * **Spread:** `basketball_team_first_quarter_spread`, `basketball_team_second_quarter_spread`, `basketball_team_third_quarter_spread`, `basketball_team_fourth_quarter_spread`
@@ -597,6 +742,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 * **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`.
 
 **June 1, 2026**
+
+v0.0.36
 
 * **NBA second half + new player props (preprod now, production June 2, 2026 at 6:00 PM EST):** Basketball second-half team markets and six additional player props are live in preprod and will be deployed to production on **June 2, 2026 at 6:00 PM EST**. The following enums are added to the instrument `market_sport_type` field (Retail `sportsMarketType`):
   * **Team — second half:**
@@ -630,6 +777,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **May 31, 2026**
 
+v0.0.35
+
 * **NBA Finals Game 2:** New York vs. San Antonio Game 2 of the NBA Finals (`aec-nba-ny-sa-2026-06-05`) will be listed on **Monday, June 1, 2026** and will be the first market with a **0.5 cent** tick size (`$0.005`). The remainder of NBA Finals markets will also use **0.5 cent** ticks.
 * **Retail API:** read `market.orderPriceMinTickSize` from the market response before submitting orders. For this market, use `GET /v1/market/slug/aec-nba-ny-sa-2026-06-05` and expect `orderPriceMinTickSize: 0.005`.
 * **Institutional API:** read `instrument.tickSize` from instrument reference data (`SearchInstruments` / `GetInstrument`). For this instrument, `instrument.tickSize = 0.005`.
@@ -637,6 +786,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 * **Action recommended:** do not assume 1 cent ticks. Read tick size and price scale per market or instrument before validating or submitting orders.
 
 **May 30, 2026**
+
+v0.0.34
 
 * **Markets API:** market responses now document `minimumTradeQty` alongside `orderPriceMinTickSize`.
   * Applies to `GET /v1/markets`, `GET /v1/market/id/{id}`, `GET /v1/market/slug/{slug}`, and documented Retail API responses that embed the market object, including Events, Search, Sports, Sports Legacy, and Subjects.
@@ -660,6 +811,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **May 29, 2026**
 
+v0.0.34
+
 * **Two additive fields on the `Order` message:**
   * `fractional_quantity_scale` (field 49, `int64`) — the fractional quantity scale copied from the instrument at order creation time. Divide raw integer quantities (`order_qty`, `cum_qty`, `leaves_qty`, etc.) by this value to get the properly scaled decimal quantity.
   * `price_to_quantity_filled` (field 41, `map<int64, int64>`) — quantity filled at each price point over the life of the order. The key is the price, the value is the quantity filled at that price.
@@ -670,6 +823,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 * **Action recommended:** rebuild your gRPC clients from the latest proto bundle to pick up the new fields.
 
 **May 28, 2026**
+
+v0.0.33
 
 * **Partial contracts in preprod:** `aec-mlb-az-mil-2026-06-15` is open in preprod as a dummy partial contract instrument.
   * Read `instrument.fractionalQtyScale` to determine how submitted integer order quantities are scaled. For example, if `instrument.fractionalQtyScale == 100`, submitting `quantity = 1` means 0.01 contracts, `quantity = 50` means 0.50 contracts, and `quantity = 100` means 1 full contract.
@@ -684,10 +839,12 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **May 26, 2026**
 
+v0.0.32
+
 * **New ledger endpoints** for reconciliation, point-in-time replay, and end-of-day reporting:
-  * **Position ledger (REST):** `GET /v1/positions/ledger`, `GET /v1/positions/ledger/download` — paginated query + streamed CSV of position changes (with both deltas and post-change cumulative state). See [Position Ledger](/institutional/positions/overview#position-ledger).
-  * **Balance ledger (REST):** `GET /v1/funding/balance-ledger`, `GET /v1/funding/balance-ledger/download` — paginated query + streamed CSV of cash balance changes (deposits, withdrawals, fills, fees, corrections). See [Balance Ledger](/institutional/funding/overview).
-  * **Balance ledger (gRPC):** `CreateBalanceLedgerSubscription` for real-time push of balance ledger entries. See [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream).
+  * **Position ledger (REST):** `GET /v1/positions/ledger`, `GET /v1/positions/ledger/download` — paginated query + streamed CSV of position changes (with both deltas and post-change cumulative state). See [Position Ledger](/institutional/positions/overview.md#position-ledger).
+  * **Balance ledger (REST):** `GET /v1/funding/balance-ledger`, `GET /v1/funding/balance-ledger/download` — paginated query + streamed CSV of cash balance changes (deposits, withdrawals, fills, fees, corrections). See [Balance Ledger](/institutional/funding/overview.md).
+  * **Balance ledger (gRPC):** `CreateBalanceLedgerSubscription` for real-time push of balance ledger entries. See [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md).
   * All three are scoped under `read:positions`. Both ledgers enforce a hard historical floor of **`2026-05-01T00:00:00Z`**; pre-floor entries are not retrievable.
 * **`InstrumentStats` additions** on the market data stream and `GetOrderBook` / `GetBBO` responses:
   * `last_trade_qty` (field 14, `optional int64`) — quantity of the most recent trade. Populated after any trade executes on the instrument.
@@ -698,6 +855,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **May 26, 2026**
 
+v0.0.32
+
 * **Portfolio Activities API:** added two activity types now returned by `GET /v1/portfolio/activities`:
   * `ACTIVITY_TYPE_TAKER_FEE_REBATE` — taker fee rebate credit. Previously surfaced under `ACTIVITY_TYPE_REFERRAL_BONUS`.
   * `ACTIVITY_TYPE_LIQUIDITY_PROGRAM` — liquidity program payout. Previously surfaced under `ACTIVITY_TYPE_TRANSFER`.
@@ -705,6 +864,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 * Clients that have not regenerated against the updated OpenAPI schema will decode the new values as unknown enum members. Regenerate to surface the proper label.
 
 **May 21, 2026**
+
+v0.0.31
 
 * **Volume Incentive Program is now live:** Program status moved from coming soon to open, with rewards based on share of eligible **taker-side notional** volume.
 * **Increase / new reward launch:** Added **NBA Playoffs Moneyline Volume Rewards** with a **\$100,000 in-game reward pool per market** (live May 21, 2026).
@@ -714,6 +875,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 * **Reduction — Politics events:** reduced from **\$5,000/day** to **\$1,000/day**.
 
 **May 21, 2026**
+
+v0.0.30
 
 * **NBA Props (production):** Basketball player props and first half markets are going live in production the morning of **May 22, 2026**. The `market_sport_type` enums previously released to preprod will be active in production:
   * `basketball_player_points`
@@ -727,9 +890,13 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **May 21, 2026**
 
+v0.0.28
+
 * **Retail API:** Removing usernames from trade tape responses
 
 **May 20, 2026**
+
+v0.0.29
 
 * **NBA Props (preprod):** Added the following enums to the instrument `market_sport_type` field:
   * `basketball_player_points`
@@ -740,6 +907,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **May 4, 2026**
 
+v0.0.27
+
 * **Execution responses:** Now exposing commission and trade date fields on all execution-level responses:
   * `commissionNotionalCollected` - Commission amount collected
   * `commissionSpreadPx` - Commission spread price
@@ -748,19 +917,27 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **April 21, 2026**
 
+v0.0.26
+
 * **Retail Orders API:** documented three batched endpoints: `POST /v1/orders/batched`, `/v1/orders/batched/cancel`, `/v1/orders/batched/modify`. The first two were already shipped; the third is new.
 * **Retail Orders API:** documented `outcomeSide` + `action` as an alternative to `intent` on `CreateOrderRequest`, and added both fields to the `Order` response. `intent` is no longer marked `required` on `CreateOrderRequest`. Existing requests that send `intent` keep working; regenerated clients will see it flip from required to optional.
 * **Retail Orders API:** added enum members that were already on the wire but missing from the schema: `TIME_IN_FORCE_DAY`, `ORDER_STATE_NEW`, `EXECUTION_TYPE_NEW`, `ORD_REJECT_REASON_EXCHANGE_OPTION`.
 
 **April 17, 2026**
 
+v0.0.25
+
 * Corrected production gRPC endpoint from `grpc-api.polymarketexchange.com` to `grpc-api.prod.polymarketexchange.com`
 
 **April 13, 2026**
 
+v0.0.24
+
 * Weekly maintenance window moved from **Tuesday 4am–6am ET** to **Thursday 6am–8am ET**, effective April 16, 2026
 
 **April 10, 2026**
+
+v0.0.23
 
 * Updated rate limits across all APIs:
   * Institutional Gateway (REST/gRPC): reduced to **100 messages per second** per firm
@@ -769,12 +946,16 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **March 30, 2026**
 
+v0.0.22
+
 * FIX API: `Product` field (tag 460) changed from required to optional on New Order Single. All current products on Polymarket are `Product=12` (OTHER).
 * Corrected REST API routes: `/v1/accounts/whoami` → `/v1/whoami`, `/v1/accounts/users` → `/v1/users`, `/v1/accounts/accounts` → `/v1/accounts`
 * Fixed price scale examples across documentation to reflect correct values
 * Corrected production API base URLs to `api.prod.polymarketexchange.com` across all documentation
 
 **March 3, 2026**
+
+v0.0.21
 
 * Edited proto files to improve the gRPC streaming experience
 * `state` field changed from required to optional in three messages:
@@ -785,10 +966,14 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **February 26, 2026**
 
+v0.0.20
+
 * Updated settlement responses in `marketdatasubscription`, adding `settlement_price_calculation_text`
 * Added `price_scale` to order message
 
 **January 10, 2026**
+
+v0.0.19
 
 * Added Bidirectional Market Data Streaming API: `BiDirectionalStreamMarketData` RPC
 * Dynamically add and remove symbols during subscription lifetime without reconnecting
@@ -798,6 +983,8 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **January 4, 2026**
 
+v0.0.18
+
 * Added Account Valuation APIs for book-close accounting use cases
 * `POST /v1/valuations/accounts/statement/download`: Multi-account summaries as CSV
 * All new endpoints support historical queries via `as_of_time` or `as_of_date`
@@ -805,20 +992,28 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **January 3, 2026**
 
+v0.0.17
+
 * Documented configurable instrument queries: pagination, state filtering, and metadata filters
 * Added sports league filtering via `metadata.sports_game_league` (nfl, nba, mlb, nhl, cbb, cfb)
 * Added instrument metadata field documentation with sports-specific attributes
 
 **January 3, 2026**
 
+v0.0.16
+
 * Added Historical Positions API: query positions at any point in time using `as_of_time` (RFC3339 timestamp) or `as_of_date` (trade date)
 * Use cases: end-of-day reporting, regulatory snapshots, position reconciliation
 
 **January 3, 2026**
 
+v0.0.15
+
 * Documentation deployment refresh
 
 **December 31, 2025**
+
+v0.0.14
 
 * Added slow consumer handling option for streaming endpoints with skip-to-head behavior
 * Proto files now available for direct download (polymarket-protos.zip)
@@ -826,11 +1021,15 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **December 8, 2025**
 
+v0.0.13
+
 * Added 25 REST API endpoints with full OpenAPI documentation
 * New sections: Authentication, Accounts, Orders, Positions, Market Data, Drop Copy
 * Organized API documentation by functional category
 
 **November 25, 2025**
+
+v0.0.12
 
 * Added complete gRPC streaming API documentation with Python code examples for market data and order execution streams
 * Introduced Protocol Buffer reference documentation with detailed message structures and field definitions
@@ -839,9 +1038,13 @@ We heard feedback from some of our users that they needed more time to fully mig
 
 **August 18, 2025**
 
+v0.0.11
+
 * Aesthetic changes including new figures and cleaner formatting of FIX examples.
 
 **August 14, 2025**
+
+v0.0.10
 
 * First DRAFT of Polymarket Exchange Documentation
 

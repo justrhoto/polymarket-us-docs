@@ -16,7 +16,7 @@ The Payments API provides multiple funding options for deposits and withdrawals.
 
 > [!WARNING]
 >
-> **Authentication Required** - All payment endpoints require a valid access token. See [Authentication Setup](/trader-guide/authentication) for setup instructions.
+> **Authentication Required** - All payment endpoints require a valid access token. See [Authentication Setup](/trader-guide/authentication.md) for setup instructions.
 
 ## Payment Methods
 

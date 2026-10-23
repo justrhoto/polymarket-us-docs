@@ -6,9 +6,9 @@
 
 > Create and read combo instruments through the Retail API
 
-A combo is a user-defined instrument containing 2–50 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Once open, a combo trades through the normal [Orders API](/api-reference/orders/overview); an RFQ is optional and provides a price-discovery and paired order-submission workflow over the same order book.
+A combo is a user-defined instrument containing 2–50 legs. Each leg identifies an existing market symbol and whether the combo buys or sells that leg. Once open, a combo trades through the normal [Orders API](/api-reference/orders/overview.md); an RFQ is optional and provides a price-discovery and paired order-submission workflow over the same order book.
 
-All calls use normal [Retail API authentication](/api-reference/authentication) at:
+All calls use normal [Retail API authentication](/api-reference/authentication.md) at:
 
 ```text theme={null}
 https://api.polymarket.us
@@ -21,7 +21,7 @@ https://api.polymarket.us
 | `POST` | `/v1/combos` | Create or retrieve the canonical combo for a set of legs |
 | `GET` | `/v1/combos?symbol={symbol}` | Get a combo by exact symbol |
 
-On the Retail API, Combo and RFQ creation share an additional [edge rate limit](/api-reference/rate-limits) of 10 requests per 10 seconds, enforced per API key and per IP.
+On the Retail API, Combo and RFQ creation share an additional [edge rate limit](/api-reference/rate-limits.md) of 10 requests per 10 seconds, enforced per API key and per IP.
 
 Separately, combo creation has a participant-wide service quota of 1,000 new instruments per week across all accounts and both Retail and Institutional APIs. The quota resets Monday at 00:00 UTC; returning an existing canonical combo does not consume it.
 
@@ -73,15 +73,15 @@ Leg symbols must be open, tradable, supported instruments. Duplicate symbols and
 
 ## See Also
 
-> **[RFQ API](/api-reference/rfqs/overview)**
+> **[RFQ API](/api-reference/rfqs/overview.md)**
 >
 > Create and manage combo RFQs and quotes
 
-> **[Authentication](/api-reference/authentication)**
+> **[Authentication](/api-reference/authentication.md)**
 >
 > Sign Retail API requests
 
-> **[Private WebSocket](/api-reference/websocket/private#rfq-subscriptions)**
+> **[Private WebSocket](/api-reference/websocket/private.md#rfq-subscriptions)**
 >
 > Receive RFQ and quote lifecycle events
 

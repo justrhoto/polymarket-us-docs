@@ -10,17 +10,17 @@ The Accounts API provides trading account information for partners. Accounts are
 
 > [!NOTE]
 >
-> **Accounts are created by KYC, not by a separate call.** A trading account is provisioned automatically when a Retail Participant's KYC verification is approved — there is no manual account-creation endpoint. See [Onboard Participants](/partners/onboarding/onboard-participants) for how KYC creates the Participant and Account together.
+> **Accounts are created by KYC, not by a separate call.** A trading account is provisioned automatically when a Retail Participant's KYC verification is approved — there is no manual account-creation endpoint. See [Onboard Participants](/partners/onboarding/onboard-participants.md) for how KYC creates the Participant and Account together.
 
 ## Endpoints
 
 | Method | Endpoint | Description | API reference |
 | - | - | - | - |
-| `GET` | `/v1/accounts` | List trading accounts | [List accounts ↗](/institutional/accounts/overview#endpoints) |
+| `GET` | `/v1/accounts` | List trading accounts | [List accounts ↗](/institutional/accounts/overview.md#endpoints) |
 
 > [!NOTE]
 >
-> For participant **identity**, see [Participants](/partners/onboarding/users). The underlying identity endpoints are documented in the API reference: [Get who am I ↗](/institutional/accounts/overview#endpoints) (`GET /v1/whoami`) and [List users ↗](/institutional/accounts/overview#endpoints) (`GET /v1/users`).
+> For participant **identity**, see [Participants](/partners/onboarding/users.md). The underlying identity endpoints are documented in the API reference: [Get who am I ↗](/institutional/accounts/overview.md#endpoints) (`GET /v1/whoami`) and [List users ↗](/institutional/accounts/overview.md#endpoints) (`GET /v1/users`).
 
 ## Account Hierarchy
 
@@ -82,10 +82,10 @@ A Retail Participant can have multiple accounts for different purposes (e.g., se
 
 ## Related guides
 
-* [Onboard Participants](/partners/onboarding/onboard-participants) — How KYC creates the Participant and Account
-* [Participants](/partners/onboarding/users) — Resolve who you can act for
-* [KYC Verification](/partners/onboarding/kyc/overview) — The participant onboarding process
-* [Positions API](/institutional/positions/overview) — Check account balances and positions
+* [Onboard Participants](/partners/onboarding/onboard-participants.md) — How KYC creates the Participant and Account
+* [Participants](/partners/onboarding/users.md) — Resolve who you can act for
+* [KYC Verification](/partners/onboarding/kyc/overview.md) — The participant onboarding process
+* [Positions API](/institutional/positions/overview.md) — Check account balances and positions
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

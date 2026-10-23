@@ -14,7 +14,7 @@ The Orders API provides order entry and management capabilities for trading on m
 >
 > **Authentication Required**
 >
-> All Orders API endpoints require API key authentication. See the [Authentication guide](/api/authentication) for details on signing requests.
+> All Orders API endpoints require API key authentication. See the [Authentication guide](/api/authentication.md) for details on signing requests.
 
 ## Base URL
 
@@ -65,7 +65,7 @@ Note: `/v1/orders/open/cancel` cancels **all** of your open orders (optionally f
 >
 > * Gateway validation is atomic: if any entry fails request-shape checks (missing `orderId`, batch > 20, etc.), the whole batch is rejected with `400`.
 > * The exchange processes entries independently. An unknown `orderId` in a batched cancel or modify is silently ignored.
-> * `canceledOrderIds` and `modifiedOrderIds` echo the request; they do not certify that each ID was acted on. For real outcomes, subscribe to the [Private WebSocket order stream](/api-reference/websocket/private) and watch for `EXECUTION_TYPE_REPLACE`, `EXECUTION_TYPE_CANCELED`, and `EXECUTION_TYPE_REJECTED`.
+> * `canceledOrderIds` and `modifiedOrderIds` echo the request; they do not certify that each ID was acted on. For real outcomes, subscribe to the [Private WebSocket order stream](/api-reference/websocket/private.md) and watch for `EXECUTION_TYPE_REPLACE`, `EXECUTION_TYPE_CANCELED`, and `EXECUTION_TYPE_REJECTED`.
 > * `createdOrderIds` from `/v1/orders/batched` are real exchange-assigned IDs, but per-order accept/fill/reject events still come via the order stream.
 
 ## Order Types
@@ -304,7 +304,7 @@ Slippage tolerance defines the maximum price movement you'll accept. For example
 >
 > **Real-Time Order Updates**
 >
-> After submitting orders via REST, use the [WebSocket Private Stream](/api-reference/websocket/private) to receive real-time updates on order status, fills, and cancellations.
+> After submitting orders via REST, use the [WebSocket Private Stream](/api-reference/websocket/private.md) to receive real-time updates on order status, fills, and cancellations.
 
 ## Complete Create Order Example
 

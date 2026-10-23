@@ -41,7 +41,7 @@ Series: NFL 2025-26 Season
         └── Market: Total points over 47.5 (total)
 ```
 
-## Crypto price markets
+## Crypto, gold and silver price markets
 
 Crypto price markets follow the same three levels, but the event is a time window or an expiry rather than a game. A series groups one asset, one market family and one cadence (for example `btc-updown-15m`); an Up/Down event holds a single market for one window, while an Above/Below or Price Range event holds one market per strike or bucket, all expiring at the same instant.
 
@@ -53,7 +53,15 @@ Series: btc-strike-daily
         └── Market: $74,500 or above
 ```
 
-Each market carries a typed `assetPriceTerms` object with the window, strike or range bounds, the reference price to beat and, once settled, the settlement price. See [Crypto Price Market Fields](/api-reference/market/overview#crypto-price-market-fields).
+Gold and silver price markets use the same shape as crypto Up/Down. A series groups one metal and one window length (for example `gold-updown-15m`, `silver-updown-1d`), and each event holds a single market for one window. Windows are listed only during the metals trading hours, Sunday 6:15 PM ET to Friday 5:00 PM ET; see [Metals Schema](/trader-guide/metals-schema.md).
+
+```
+Series: gold-updown-15m
+  └── Event: gold-updown-15m-2026-10-22-1630z (12:30 PM to 12:45 PM ET)
+        └── Market: Gold Up or Down 15m
+```
+
+Each market carries a typed `assetPriceTerms` object with the window, strike or range bounds, the reference price to beat and, once settled, the settlement price. See [Asset Price Market Fields](/api-reference/market/overview.md#asset-price-market-fields).
 
 ## Market slugs
 

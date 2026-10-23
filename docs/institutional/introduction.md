@@ -18,7 +18,7 @@ The Polymarket US REST API provides programmatic access to trading, account mana
 >
 > **Use gRPC Streaming for Real-Time Data**
 >
-> For production applications requiring continuous data updates, use the [gRPC Streaming APIs](/streaming-endpoints/grpc-overview) instead of polling REST endpoints. Streaming provides:
+> For production applications requiring continuous data updates, use the [gRPC Streaming APIs](/streaming-endpoints/grpc-overview.md) instead of polling REST endpoints. Streaming provides:
 >
 > * **Real-time updates** as they happen
 > * **No rate limiting** concerns
@@ -29,8 +29,8 @@ The Polymarket US REST API provides programmatic access to trading, account mana
 
 | Use Case | Recommended API |
 | - | - |
-| Real-time market data | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream) |
-| Real-time order/trade updates | [gRPC Order Stream](/streaming-endpoints/order-stream) |
+| Real-time market data | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream.md) |
+| Real-time order/trade updates | [gRPC Order Stream](/streaming-endpoints/order-stream.md) |
 | Order entry/cancellation | REST Trading API |
 | Historical data queries | REST Report API |
 | Account management | REST Accounts API |
@@ -60,7 +60,7 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/whoami" \
 >
 > Access tokens last **24 hours** (`expires_in` is 86400). Cache the token and reuse it until close to expiry.
 
-See the [Authentication Setup Guide](/trader-guide/authentication) for complete authentication setup.
+See the [Authentication Setup Guide](/trader-guide/authentication.md) for complete authentication setup.
 
 ## API Groups
 
@@ -72,22 +72,22 @@ For direct trading operations. Used by all partners.
 | - | - | - |
 | **Trading** | Insert, cancel, and replace orders | - |
 | **Combos** | Create and retrieve combo instruments | - |
-| **RFQs** | Create, quote, accept, and confirm combo RFQs | [RFQ Events Stream](/streaming-endpoints/rfq-events-stream) |
-| **Report** | Search orders and trades, download history | [Order Stream](/streaming-endpoints/order-stream) |
+| **RFQs** | Create, quote, accept, and confirm combo RFQs | [RFQ Events Stream](/streaming-endpoints/rfq-events-stream.md) |
+| **Report** | Search orders and trades, download history | [Order Stream](/streaming-endpoints/order-stream.md) |
 | **Positions** | Query account balances and positions | - |
 | **Reference Data** | List instruments, symbols, and metadata | - |
-| **Order Book** | Get order book depth and best bid/offer | [Market Data Stream](/streaming-endpoints/market-data-stream) |
-| **Drop Copy** | Execution feed and trade capture | [Order Stream](/streaming-endpoints/order-stream) |
+| **Order Book** | Get order book depth and best bid/offer | [Market Data Stream](/streaming-endpoints/market-data-stream.md) |
+| **Drop Copy** | Execution feed and trade capture | [Order Stream](/streaming-endpoints/order-stream.md) |
 
 ### Combos and RFQ APIs
 
-Use the [Combos API](/institutional/combos/overview) to create and retrieve combo instruments. Use the [RFQ API](/institutional/rfqs/overview) to create RFQs, quote RFQs, delete quotes, accept quotes, and confirm accepted quotes during last look. Use the [RFQ Events Stream](/streaming-endpoints/rfq-events-stream) for real-time RFQ and quote lifecycle events instead of polling `GetRFQs` and `GetQuotes`.
+Use the [Combos API](/institutional/combos/overview.md) to create and retrieve combo instruments. Use the [RFQ API](/institutional/rfqs/overview.md) to create RFQs, quote RFQs, delete quotes, accept quotes, and confirm accepted quotes during last look. Use the [RFQ Events Stream](/streaming-endpoints/rfq-events-stream.md) for real-time RFQ and quote lifecycle events instead of polling `GetRFQs` and `GetQuotes`.
 
 ### Partner APIs
 
 For partners building retail trading platforms with end-user onboarding, KYC, and payments.
 
-> **[Partner Guide](/partners/overview)**
+> **[Partner Guide](/partners/overview.md)**
 >
 > Complete guide for partners including Accounts, KYC, and Payments APIs
 
@@ -96,7 +96,7 @@ For partners building retail trading platforms with end-user onboarding, KYC, an
 > **Which APIs do I need?**
 >
 > * **Direct trading partners**: Use the Trading APIs documented in this section
-> * **Retail partners**: Use Trading APIs plus the [Partner Guide](/partners/overview) APIs
+> * **Retail partners**: Use Trading APIs plus the [Partner Guide](/partners/overview.md) APIs
 
 ## Request Format
 
@@ -115,7 +115,7 @@ For partners building retail trading platforms with end-user onboarding, KYC, an
 > * **Required** for all account-scoped endpoints: trading, positions, reports, and account operations
 > * **Not required** for market data, order book, reference data, and instrument state endpoints
 >
-> Your participant ID is given to you at onboarding, or returned as `participantId` on KYC approval for an end user you onboard — send it exactly as provided rather than assembling it from another response. `GET /v1/users` lists your firm's users once you already hold a valid participant ID, but is account-scoped itself and so can't be used to find your first one. See [Finding Your Participant ID](/trader-guide/accounts-identity#finding-your-participant-id) for details.
+> Your participant ID is given to you at onboarding, or returned as `participantId` on KYC approval for an end user you onboard — send it exactly as provided rather than assembling it from another response. `GET /v1/users` lists your firm's users once you already hold a valid participant ID, but is account-scoped itself and so can't be used to find your first one. See [Finding Your Participant ID](/trader-guide/accounts-identity.md#finding-your-participant-id) for details.
 
 ### Request Body
 
@@ -191,23 +191,23 @@ decimal_price = api_price / price_scale
 
 Order-entry endpoints use tiered per-firm, per-method limits that apply to REST and unary gRPC. Query endpoints have separate per-endpoint limits. Public (unauthenticated) endpoints are limited to **20 requests per second per IP**.
 
-See [Rate Limits](/trader-guide/rate-limits) for the full breakdown by endpoint and protocol.
+See [Rate Limits](/trader-guide/rate-limits.md) for the full breakdown by endpoint and protocol.
 
 ## Next Steps
 
-> **[Quickstart Guide](/trader-guide/quickstart)**
+> **[Quickstart Guide](/trader-guide/quickstart.md)**
 >
 > Place your first order in 5 minutes
 
-> **[Authentication](/trader-guide/authentication)**
+> **[Authentication](/trader-guide/authentication.md)**
 >
 > Set up Private Key JWT authentication
 
-> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview.md)**
 >
 > Real-time market data and order updates
 
-> **[Environments](/trader-guide/environments)**
+> **[Environments](/trader-guide/environments.md)**
 >
 > API endpoints for dev, preprod, and prod
 

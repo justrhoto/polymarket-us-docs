@@ -49,7 +49,7 @@ Subscribe to real-time market data updates including:
 
 **Service:** `MarketDataSubscriptionAPI.CreateMarketDataSubscription`
 
-[Learn more about Market Data Streaming →](/streaming-endpoints/market-data-stream)
+[Learn more about Market Data Streaming →](/streaming-endpoints/market-data-stream.md)
 
 ### Order Execution Streaming
 
@@ -62,7 +62,7 @@ Subscribe to real-time order and execution updates:
 
 **Service:** `OrderEntryAPI.CreateOrderSubscription`
 
-[Learn more about Order Streaming →](/streaming-endpoints/order-stream)
+[Learn more about Order Streaming →](/streaming-endpoints/order-stream.md)
 
 ### RFQ Events Streaming
 
@@ -73,7 +73,7 @@ Subscribe to live combo RFQ and quote lifecycle events:
 
 **Service:** `RFQAPI.StreamRFQEvents`
 
-[Learn more about RFQ Events Streaming →](/streaming-endpoints/rfq-events-stream)
+[Learn more about RFQ Events Streaming →](/streaming-endpoints/rfq-events-stream.md)
 
 ## Server Endpoints
 
@@ -116,7 +116,7 @@ polymarket.v1                       # Core services
 
 ## Quick Start
 
-Ready to get started? Follow our [Getting Started Guide](/streaming-endpoints/getting-started) to:
+Ready to get started? Follow our [Getting Started Guide](/streaming-endpoints/getting-started.md) to:
 
 1. Install Python gRPC libraries
 2. Obtain and compile proto files
@@ -143,11 +143,11 @@ graph LR
 2. **Attach Token**: Include token in gRPC metadata as `authorization` header
 3. **Stream Data**: Receive continuous updates over persistent connection
 
-[Learn more about Authentication →](/streaming-endpoints/authentication)
+[Learn more about Authentication →](/streaming-endpoints/authentication.md)
 
 ## Rate Limits
 
-The limits below apply to streaming connections. Unary gRPC order-entry calls are limited separately — see [Institutional Order Entry](/trader-guide/rate-limits#institutional-order-entry) for the per-method, per-tier rates.
+The limits below apply to streaming connections. Unary gRPC order-entry calls are limited separately — see [Institutional Order Entry](/trader-guide/rate-limits.md#institutional-order-entry) for the per-method, per-tier rates.
 
 | Setting | Value |
 | - | - |
@@ -164,7 +164,7 @@ The limits below apply to streaming connections. Unary gRPC order-entry calls ar
 
 Streaming limits are flat and apply to all participants — they are not tiered. The `StreamRFQEvents` limit is checked only when opening a stream and does not limit server-pushed RFQ or quote events on an established stream, so reconnect with backoff.
 
-See [Rate Limits](/trader-guide/rate-limits) for the full picture, including tiered order entry and the [contract volume share](/trader-guide/rate-limits#volume-share-and-tier-requirements) that determines your tier.
+See [Rate Limits](/trader-guide/rate-limits.md) for the full picture, including tiered order entry and the [contract volume share](/trader-guide/rate-limits.md#volume-share-and-tier-requirements) that determines your tier.
 
 ## Key Concepts
 
@@ -186,27 +186,27 @@ Unique identifiers for each streaming session, useful for logging and debugging.
 
 ## Next Steps
 
-> **[Best Practices](/streaming-endpoints/streaming-best-practices)**
+> **[Best Practices](/streaming-endpoints/streaming-best-practices.md)**
 >
 > One long-lived stream per feed. Do not reconnect-cancel.
 
-> **[Getting Started](/streaming-endpoints/getting-started)**
+> **[Getting Started](/streaming-endpoints/getting-started.md)**
 >
 > Set up your first gRPC stream
 
-> **[Authentication](/streaming-endpoints/authentication)**
+> **[Authentication](/streaming-endpoints/authentication.md)**
 >
 > Learn how to authenticate gRPC connections
 
-> **[Market Data](/streaming-endpoints/market-data-stream)**
+> **[Market Data](/streaming-endpoints/market-data-stream.md)**
 >
 > Stream real-time market data
 
-> **[Order Updates](/streaming-endpoints/order-stream)**
+> **[Order Updates](/streaming-endpoints/order-stream.md)**
 >
 > Subscribe to order execution updates
 
-> **[RFQ Events](/streaming-endpoints/rfq-events-stream)**
+> **[RFQ Events](/streaming-endpoints/rfq-events-stream.md)**
 >
 > Subscribe to combo RFQ and quote events
 

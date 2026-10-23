@@ -10,7 +10,7 @@ As an Introducing Broker (IB) or Independent Software Vendor (ISV), you integrat
 
 > [!NOTE]
 >
-> **You never hold participant funds.** Participant accounts are funded by your **funding entity** through [Partner Funding](/partners/funding/overview) *(Beta)* — deposits and withdrawals that mirror each participant's wallet allocation. Your role is to onboard and verify participants, route their orders, and relay transfer instructions — never to custody funds.
+> **You never hold participant funds.** Participant accounts are funded by your **funding entity** through [Partner Funding](/partners/funding/overview.md) *(Beta)* — deposits and withdrawals that mirror each participant's wallet allocation. Your role is to onboard and verify participants, route their orders, and relay transfer instructions — never to custody funds.
 
 ## What you do vs. what Polymarket US does
 
@@ -23,7 +23,7 @@ As an Introducing Broker (IB) or Independent Software Vendor (ISV), you integrat
 | Present markets, prices, and a trading UI | ✅ | — |
 | Match orders and maintain the order book | — | ✅ (DCM) |
 | Hold collateral, clear, and settle | — | ✅ (DCO) |
-| Monitor orders, positions, balances | ✅ Consume [streams](/streaming-endpoints/grpc-overview) | ✅ Emit streams |
+| Monitor orders, positions, balances | ✅ Consume [streams](/streaming-endpoints/grpc-overview.md) | ✅ Emit streams |
 
 ## You are a facilitator, not a counterparty
 
@@ -39,31 +39,31 @@ graph LR
 
 * You authenticate **once** as your Firm and act for any Retail Participant under it.
 * Polymarket US matches, clears, and settles — you never take the other side of a trade.
-* Funding of participant trading accounts flows between your funding entity and each participant's account — see [Partner Funding](/partners/funding/overview) *(Beta)*.
+* Funding of participant trading accounts flows between your funding entity and each participant's account — see [Partner Funding](/partners/funding/overview.md) *(Beta)*.
 
 ## ISV or IB?
 
 The two partner types **integrate identically** — the same APIs and the same workflow. The difference is legal classification, not mechanics.
 
-> **[ISV](/partners/partner-types/isvs)**
+> **[ISV](/partners/partner-types/isvs.md)**
 >
 > An Independent Software Vendor provides the software experience. ISVs are **not** brokers and carry no broker registration.
 
-> **[IB](/partners/partner-types/ibs)**
+> **[IB](/partners/partner-types/ibs.md)**
 >
 > An Introducing Broker integrates the same way **plus** carries CFTC registration and NFA membership obligations.
 
 > [!WARNING]
 >
-> **IB-specific obligations.** If you are an Introducing Broker, you must maintain CFTC registration, NFA membership, and the supervisory/compliance requirements described on the [IBs](/partners/partner-types/ibs) page **in addition to** completing this integration. These are regulatory obligations, not technical ones.
+> **IB-specific obligations.** If you are an Introducing Broker, you must maintain CFTC registration, NFA membership, and the supervisory/compliance requirements described on the [IBs](/partners/partner-types/ibs.md) page **in addition to** completing this integration. These are regulatory obligations, not technical ones.
 
 ## Next steps
 
-> **[Platform Model](/partners/platform-model)**
+> **[Platform Model](/partners/platform-model.md)**
 >
 > How the DCM and DCO fit together, and the entities you act on.
 
-> **[Integration Journey](/partners/integration-journey)**
+> **[Integration Journey](/partners/integration-journey.md)**
 >
 > The end-to-end path from onboarding to live trading.
 

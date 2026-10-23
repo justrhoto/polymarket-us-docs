@@ -6,7 +6,7 @@
 
 > Guide to using gRPC unary (request/response) methods on Polymarket Exchange
 
-The Polymarket Exchange exposes all API functionality via **gRPC** using Protocol Buffers. This section covers **unary (request/response) methods** - for streaming services, see [gRPC Streaming](/streaming-endpoints/grpc-overview).
+The Polymarket Exchange exposes all API functionality via **gRPC** using Protocol Buffers. This section covers **unary (request/response) methods** - for streaming services, see [gRPC Streaming](/streaming-endpoints/grpc-overview.md).
 
 ## Why Use gRPC?
 
@@ -58,7 +58,7 @@ metadata = [("authorization", f"Bearer {token}")]
 response = stub.GetWhoAmI(request, metadata=metadata)
 ```
 
-See [Authentication](/streaming-endpoints/authentication) for details on obtaining access tokens.
+See [Authentication](/streaming-endpoints/authentication.md) for details on obtaining access tokens.
 
 ## Available Services
 
@@ -78,7 +78,7 @@ See [Authentication](/streaming-endpoints/authentication) for details on obtaini
 | - | - |
 | **RefDataAPI** | List instruments, symbols, and metadata |
 | **OrderBookAPI** | Get order book snapshots and BBO |
-| **[SettlementService](/streaming-endpoints/proto-reference#instrument-settlement)** | Read final settlement prices, including after instrument termination |
+| **[SettlementService](/streaming-endpoints/proto-reference.md#instrument-settlement)** | Read final settlement prices, including after instrument termination |
 
 ### Account Services
 
@@ -110,7 +110,7 @@ The `DropCopyAPI` service provides real-time streaming endpoints for execution r
 
 > [!NOTE]
 >
-> For complete documentation including code examples, see [DropCopy & Trade Capture Streaming](/streaming-endpoints/dropcopy-stream).
+> For complete documentation including code examples, see [DropCopy & Trade Capture Streaming](/streaming-endpoints/dropcopy-stream.md).
 
 ### Available Streaming Endpoints
 
@@ -154,7 +154,7 @@ Stream completed trades for reconciliation and compliance. Each trade contains:
 * `aggressor` - The incoming (taker) execution
 * `passive` - The resting (maker) execution
 * `trade_type` - Type of trade (REGULAR, CROSS, etc.)
-* `state` - Trade state (NEW, CLEARED, BUSTED, ...); see [Trade States](/streaming-endpoints/dropcopy-stream#trade-states)
+* `state` - Trade state (NEW, CLEARED, BUSTED, ...); see [Trade States](/streaming-endpoints/dropcopy-stream.md#trade-states)
 
 ### Quick Example
 
@@ -195,7 +195,7 @@ for response in stub.CreateDropCopySubscription(request, metadata=metadata):
 
 ## Package Structure
 
-Most services are in the `polymarket.v1` package. [SettlementService](/streaming-endpoints/proto-reference#instrument-settlement) uses `polymarket.us.settlement.v1`.
+Most services are in the `polymarket.v1` package. [SettlementService](/streaming-endpoints/proto-reference.md#instrument-settlement) uses `polymarket.us.settlement.v1`.
 
 For example, the order-entry service uses:
 
@@ -279,11 +279,11 @@ Both REST and gRPC access the same underlying services. Choose based on your nee
 
 ## Next Steps
 
-> **[gRPC Streaming](/streaming-endpoints/grpc-overview)**
+> **[gRPC Streaming](/streaming-endpoints/grpc-overview.md)**
 >
 > Real-time market data and order subscriptions
 
-> **[Authentication](/streaming-endpoints/authentication)**
+> **[Authentication](/streaming-endpoints/authentication.md)**
 >
 > Access token setup for gRPC
 
@@ -291,7 +291,7 @@ Both REST and gRPC access the same underlying services. Choose based on your nee
 >
 > Equivalent REST endpoints
 
-> **[Proto Reference](/streaming-endpoints/proto-reference)**
+> **[Proto Reference](/streaming-endpoints/proto-reference.md)**
 >
 > Proto message definitions
 

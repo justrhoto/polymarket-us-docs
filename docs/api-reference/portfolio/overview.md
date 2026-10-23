@@ -14,7 +14,7 @@ The Portfolio API provides access to user positions, account balances, and tradi
 >
 > **Authentication Required**
 >
-> All Portfolio API endpoints require API key authentication. See the [Authentication guide](/api/authentication) for details on signing requests.
+> All Portfolio API endpoints require API key authentication. See the [Authentication guide](/api/authentication.md) for details on signing requests.
 
 ## Base URL
 
@@ -201,7 +201,7 @@ Both endpoints support cursor-based pagination. Use `cursor` parameter with the 
 >
 > **Real-Time Position Updates**
 >
-> For real-time position changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_POSITION` subscription instead of polling.
+> For real-time position changes, use the [WebSocket Private Stream](/api-reference/websocket/private.md) with the `SUBSCRIPTION_TYPE_POSITION` subscription instead of polling.
 
 ## Filtering Activities
 
@@ -271,7 +271,7 @@ buyingPower = currentBalance
 >
 > **Real-Time Balance Updates**
 >
-> For real-time balance changes, use the [WebSocket Private Stream](/api-reference/websocket/private) with the `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` subscription instead of polling.
+> For real-time balance changes, use the [WebSocket Private Stream](/api-reference/websocket/private.md) with the `SUBSCRIPTION_TYPE_ACCOUNT_BALANCE` subscription instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -61,7 +61,7 @@ Max Spread is an optional per-program parameter that requires two-sided liquidit
 
 For example, with a Max Spread of 3.5¢ (so the two size-adjusted prices may be up to 7¢ apart) and a Target Size of 1,000: if bids reach 1,000 contracts by 49¢ and asks reach 1,000 contracts by 51¢, the midpoint is 50¢ and each side sits 1¢ from it, so the second pays and is split as usual. If the asks only reach 1,000 contracts by 57¢, the midpoint is 53¢ and each side sits 4¢ from it — more than 3.5¢ — so nobody is paid for that second. Sitting exactly on the limit still pays: bids by 47¢ and asks by 54¢ put the midpoint at 50.5¢ and each side exactly 3.5¢ from it (a 7¢ gap).
 
-* Max Spread is a price distance, not a number of ticks, so 3.5¢ means the same on a 1c and a 0.1c market. This page and [polymarket.us/rewards](https://polymarket.us/rewards) show cents; the [incentives API](/api-reference/incentives/overview) returns the same value as `timePeriods[].maxSpread` in dollars (`0.035` = 3.5¢), omitted when a program has no Max Spread. A program with no Max Spread shows a dash on the rewards page.
+* Max Spread is a price distance, not a number of ticks, so 3.5¢ means the same on a 1c and a 0.1c market. This page and [polymarket.us/rewards](https://polymarket.us/rewards) show cents; the [incentives API](/api-reference/incentives/overview.md) returns the same value as `timePeriods[].maxSpread` in dollars (`0.035` = 3.5¢), omitted when a program has no Max Spread. A program with no Max Spread shows a dash on the rewards page.
 * Forfeited seconds still count toward the time period and are not redistributed.
 * Programs without a Max Spread score each side on its own, so a side that reaches Target Size still pays even if the other side does not.
 

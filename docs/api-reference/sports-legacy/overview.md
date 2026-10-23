@@ -22,7 +22,7 @@ The v1 Sports API provides access to sports configuration, player and team infor
 
 ## Get Sports Players
 
-Retrieve player reference data without loading an event. Use `filters.id` for a specific player or `filters.teamId` for players on a team. See [Players Endpoint](/data-guide/sports-data#players-endpoint) for all filters, provider lookup behavior, pagination, response fields, and curl examples.
+Retrieve player reference data without loading an event. Use `filters.id` for a specific player or `filters.teamId` for players on a team. See [Players Endpoint](/data-guide/sports-data.md#players-endpoint) for all filters, provider lookup behavior, pagination, response fields, and curl examples.
 
 ## Get Sports
 

@@ -12,7 +12,7 @@
 | - | - | - |
 | `GET` | `/v1/instruments/{symbol}/settlement` | Get final settlement, including for terminated instruments |
 
-Requires a bearer token with `read:marketdata` scope. No `x-participant-id` header is required. See [Authentication](/trader-guide/authentication).
+Requires a bearer token with `read:marketdata` scope. No `x-participant-id` header is required. See [Authentication](/trader-guide/authentication.md).
 
 ## Response Fields
 
@@ -49,7 +49,7 @@ Example response for a final zero settlement (`int64` values are JSON strings):
 }
 ```
 
-For gRPC, see [Instrument Settlement](/streaming-endpoints/proto-reference#instrument-settlement).
+For gRPC, see [Instrument Settlement](/streaming-endpoints/proto-reference.md#instrument-settlement).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

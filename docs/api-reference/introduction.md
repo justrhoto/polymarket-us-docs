@@ -14,7 +14,7 @@ The Polymarket US API is split into two parts: an authenticated API for trading 
 https://api.polymarket.us
 ```
 
-Use the authenticated API to trade. This is where you place orders, check your positions, and manage your account. Every request requires an API key - see [Authentication](/api-reference/authentication) to get set up.
+Use the authenticated API to trade. This is where you place orders, check your positions, and manage your account. Every request requires an API key - see [Authentication](/api-reference/authentication.md) to get set up.
 
 | Group | What you get |
 | - | - |

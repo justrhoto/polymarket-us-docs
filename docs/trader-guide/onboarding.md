@@ -36,7 +36,7 @@ Complete your application in the institutional registration portal, then review 
 
 The Polymarket team will review your submission and provide your Client ID credentials for both pre-production and production environments.
 
-If you requested FIX connectivity, you will also receive your FIX connection details. See [FIX Connection Setup](/institutional/fix-api/fix-connection-setup) for VPC endpoint configuration and session setup.
+If you requested FIX connectivity, you will also receive your FIX connection details. See [FIX Connection Setup](/institutional/fix-api/fix-connection-setup.md) for VPC endpoint configuration and session setup.
 
 ## Step 4: Fund Your Account
 

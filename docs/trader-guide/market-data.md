@@ -49,7 +49,7 @@ Always use string parsing for prices and quantities. Never use floating-point ma
 
 **Is there a public trade tape?**
 
-No. Trades are not disseminated via market data APIs. You can only see your own trades via [Reporting APIs](/trader-guide/reporting) and your own executions via [Order subscriptions](/trader-guide/streaming-apis).
+No. Trades are not disseminated via market data APIs. You can only see your own trades via [Reporting APIs](/trader-guide/reporting.md) and your own executions via [Order subscriptions](/trader-guide/streaming-apis.md).
 
 ## Market Data Scopes
 
@@ -66,7 +66,7 @@ Use the Market Data Subscription API to receive updates:
 ```
 POST /v1/marketdata/subscribe
 {
-  "instruments": ["tec-nfl-sbw-2026-02-08-kc", "aec-nfl-buf-nyj-2025-01-15", "cpc-btc-updown-15m-2026-09-21-0015z"],
+  "instruments": ["tec-nfl-sbw-2026-02-08-kc", "aec-nfl-buf-nyj-2025-01-15", "cpc-btc-updown-15m-2026-09-21-0015z", "cpausp-gold-updown-15m-2026-10-22-1630z"],
   "dataType": "orderbook"
 }
 ```
@@ -107,7 +107,7 @@ Check:
 
 **Can't see my own orders in the book**
 
-Correct behavior. Market data shows aggregated depth only. To see your own orders, use the [Order Management](/trader-guide/order-management) APIs.
+Correct behavior. Market data shows aggregated depth only. To see your own orders, use the [Order Management](/trader-guide/order-management.md) APIs.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

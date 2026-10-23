@@ -48,8 +48,8 @@ Two streaming CSV endpoints expose the full position and cash audit trail:
 
 | Endpoint | Description |
 | - | - |
-| `GET /v1/positions/ledger/download` | Every position change (deltas + cumulative state). See [Position Ledger](/institutional/positions/overview#position-ledger). |
-| `GET /v1/funding/balance-ledger/download` | Every cash balance change (`before_balance` / `after_balance` + typed `entry_type`). See [Balance Ledger](/institutional/funding/overview). |
+| `GET /v1/positions/ledger/download` | Every position change (deltas + cumulative state). See [Position Ledger](/institutional/positions/overview.md#position-ledger). |
+| `GET /v1/funding/balance-ledger/download` | Every cash balance change (`before_balance` / `after_balance` + typed `entry_type`). See [Balance Ledger](/institutional/funding/overview.md). |
 
 Both require the `read:positions` scope and are subject to a per-firm rate limit of \~5 downloads per minute. The historical floor is `2026-05-01`; pre-floor data is not retrievable.
 
@@ -57,7 +57,7 @@ Both require the `read:positions` scope and are subject to a per-firm rate limit
 
 **Are reporting APIs real-time?**
 
-No. Reporting APIs are query-based (not streaming), paginated (for large result sets), and designed for historical analysis. For real-time updates, use [Streaming APIs](/trader-guide/streaming-apis) for orders and positions and [Drop Copy](#drop-copy) for authoritative post-trade feed.
+No. Reporting APIs are query-based (not streaming), paginated (for large result sets), and designed for historical analysis. For real-time updates, use [Streaming APIs](/trader-guide/streaming-apis.md) for orders and positions and [Drop Copy](#drop-copy) for authoritative post-trade feed.
 
 ## Drop Copy
 
@@ -137,7 +137,7 @@ Historical data is retained according to regulatory requirements. Contact suppor
 
 A trade contains two executions (one for each side).
 
-**Are trades final immediately?** No. Trades progress through states: **NEW** (initial matched state), **CLEARED** (cleared through DCO), **BUSTED** (voided post-execution by the exchange and reversed; terminal and rare — busted trades stay in history, so treat them as reversed rather than dropping them). See [Trade States](/streaming-endpoints/dropcopy-stream#trade-states) for the full list.
+**Are trades final immediately?** No. Trades progress through states: **NEW** (initial matched state), **CLEARED** (cleared through DCO), **BUSTED** (voided post-execution by the exchange and reversed; terminal and rare — busted trades stay in history, so treat them as reversed rather than dropping them). See [Trade States](/streaming-endpoints/dropcopy-stream.md#trade-states) for the full list.
 
 ## Reporting Best Practices
 

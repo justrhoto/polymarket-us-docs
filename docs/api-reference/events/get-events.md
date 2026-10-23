@@ -1269,7 +1269,9 @@ components:
           $ref: '#/components/schemas/gateway.types.v1.AssetId'
         indexSymbol:
           type: string
-          description: Reference index the market settles on, e.g. BRTI.
+          description: >-
+            Reference index the market settles on, e.g. BRTI. Empty on commodity
+            (gold and silver) markets, which settle on a Chainlink spot stream.
         horizon:
           type: string
           description: Supply-side horizon slug. Display and grouping only.
@@ -1321,6 +1323,34 @@ components:
           description: >-
             Null until resolved, and stays null on a ONE_TOUCH market that
             resolved No: no price was touched.
+        priceDecimals:
+          type: integer
+          format: int32
+          description: >-
+            Decimal places every price of the market carries, e.g. 2 for BTC and
+            gold, 3 for silver. Always read this field: it can differ between
+            assets, and between market types of one asset, for example 4 for SOL
+            Up/Down. Show prices at exactly this many places.
+        assetName:
+          type: string
+          description: >-
+            Display name of the asset, e.g. Gold. Empty when the asset has none:
+            show the symbol.
+        priceUnit:
+          type: string
+          description: >-
+            Unit one price is quoted per, e.g. oz for gold and silver. Empty
+            when the asset needs no unit, as crypto.
+        nextWindowStart:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            Start of the next window of this market's length that the asset's
+            trading hours allow. Equals windowEnd on crypto windows. On gold and
+            silver it is later than windowEnd when trading closes after this
+            window (the daily break, the weekend or a holiday). Null when
+            unknown.
       description: >-
         Terms of a market settled against an external reference (index) price.
         Fields a market type does not use are null, never zero-filled. Prices
@@ -1724,11 +1754,11 @@ components:
           type: string
           example: btc
           description: >-
-            Lower-case symbol within the class, e.g. btc. Matches [a-z0-9-], at
-            most 64 characters.
+            Lower-case symbol within the class, e.g. btc or gold. Matches
+            [a-z0-9-], at most 64 characters.
       description: >-
         Identifies one priced asset. The canonical string form is class:symbol,
-        e.g. crypto:btc.
+        e.g. crypto:btc or commodity:gold.
     gateway.types.v1.NullableAmount:
       type: object
       properties:
@@ -1913,6 +1943,7 @@ components:
       type: string
       enum:
         - ASSET_CLASS_CRYPTO
+        - ASSET_CLASS_COMMODITY
       description: AssetClass namespaces asset symbols.
     gateway.market.v1.FootballFieldPosition:
       type: object
