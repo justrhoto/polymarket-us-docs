@@ -8,7 +8,7 @@
 
 > [!NOTE]
 >
-> **Individual traders:** You do not need to complete this onboarding process. Head to the [Retail Trading](/retail-api/overview) tab to get started.
+> **Individual traders:** You do not need to complete this onboarding process. Head to the [Retail Trading](https://docs.polymarket.us/retail-api/overview) tab to get started.
 
 ## Step 1: Register
 
@@ -36,7 +36,7 @@ Complete your application in the institutional registration portal, then review 
 
 The Polymarket team will review your submission and provide your Client ID credentials for both pre-production and production environments.
 
-If you requested FIX connectivity, you will also receive your FIX connection details. See [FIX Connection Setup](/institutional/fix-api/fix-connection-setup.md) for VPC endpoint configuration and session setup.
+If you requested FIX connectivity, you will also receive your FIX connection details. See [FIX Connection Setup](https://docs.polymarket.us/institutional/fix-api/fix-connection-setup.md) for VPC endpoint configuration and session setup.
 
 ## Step 4: Fund Your Account
 

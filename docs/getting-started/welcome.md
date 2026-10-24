@@ -17,7 +17,7 @@ Build on the world's largest prediction market.
 
 Make your first API request in minutes. Learn the basics of the Polymarket US platform, fetch market data, place orders, and redeem winning positions.
 
-[Get Started →](/getting-started/quickstart.md)
+[Get Started →](https://docs.polymarket.us/getting-started/quickstart.md)
 
 ```typescript TypeScript theme={null}
 import { PolymarketUS } from 'polymarket-us';
@@ -60,19 +60,19 @@ order = client.orders.create({
 
 Learn the fundamentals, explore our APIs, and start building on the world's largest prediction market.
 
-> **[Quickstart](/getting-started/quickstart.md)**
+> **[Quickstart](https://docs.polymarket.us/getting-started/quickstart.md)**
 >
 > Set up your environment and make your first API call in minutes.
 
-> **[Core Concepts](/concepts/events-and-markets.md)**
+> **[Core Concepts](https://docs.polymarket.us/concepts/events-and-markets.md)**
 >
 > Understand markets, events, and how trading works.
 
-> **[API Reference](/api-reference/introduction.md)**
+> **[API Reference](https://docs.polymarket.us/api-reference/introduction.md)**
 >
 > Explore REST endpoints, WebSocket streams, and authentication.
 
-> **[SDKs](/api-reference/sdks/introduction.md)**
+> **[SDKs](https://docs.polymarket.us/api-reference/sdks/introduction.md)**
 >
 > Official Python and TypeScript libraries for faster development.
 

@@ -6,7 +6,7 @@
 
 > Manage RFQs and quotes and query RFQ trades
 
-An RFQ requests two-sided liquidity for the exact symbol of an open, tradable instrument, such as a [combo instrument](/api-reference/combos/overview.md). All calls use normal [Retail API authentication](/api-reference/authentication.md) at `https://api.polymarket.us`.
+An RFQ requests two-sided liquidity for the exact symbol of an open, tradable instrument, such as a [combo instrument](https://docs.polymarket.us/api-reference/combos/overview.md). All calls use normal [Retail API authentication](https://docs.polymarket.us/api-reference/authentication.md) at `https://api.polymarket.us`.
 
 The Retail API derives the participant and account from the API key; clients do not send an account.
 
@@ -25,7 +25,7 @@ The Retail API derives the participant and account from the API key; clients do 
 | `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/accept` | Accept one side of a quote |
 | `PUT` | `/v1/rfqs/{rfqId}/quotes/{quoteId}/confirm` | Confirm an accepted quote during last look |
 
-See [rate limits](/api-reference/rate-limits.md#limits) for endpoint limits. RFQ-specific business limits and participant restrictions are enforced separately by the RFQ service.
+See [rate limits](https://docs.polymarket.us/api-reference/rate-limits.md#limits) for endpoint limits. RFQ-specific business limits and participant restrictions are enforced separately by the RFQ service.
 
 For `GET /v1/rfqs/quotes`, provide an `rfqId` or exactly one of `userFilter=USER_FILTER_SELF` and `rfqUserFilter=USER_FILTER_SELF`. Cursors are opaque and must be reused with the same filters and authenticated participant.
 
@@ -65,7 +65,7 @@ Prices and quantities are decimal strings. `aggressorSide` is the incoming order
 
 Repeat the same authenticated participant, filters, and limit on every continuation, changing only `cursor`. Keep omitted time bounds omitted; the cursor preserves them. Continue until the response cursor is empty, even if a page contains no trades.
 
-On startup or reconnect, subscribe to the [RFQ WebSocket](/api-reference/websocket/private.md#rfq-subscriptions) first, then query overlapping history and deduplicate by `tradeId`. History is eventually visible and pagination is not a snapshot. Repeat overlapping queries to find late arrivals.
+On startup or reconnect, subscribe to the [RFQ WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions) first, then query overlapping history and deduplicate by `tradeId`. History is eventually visible and pagination is not a snapshot. Repeat overlapping queries to find late arrivals.
 
 These are original prints: later corrections and busts do not amend them. Use your order and account data for reconciliation.
 
@@ -87,7 +87,7 @@ If `tickSize` is absent, read it from `GET /v1/combos?symbol=<rfq.symbol>`.
 
 ## Real-time stream
 
-RFQ and quote lifecycle events and anonymous `rfqTrade` prints are available on the [Private WebSocket](/api-reference/websocket/private.md#rfq-subscriptions). Subscribe with `SUBSCRIPTION_TYPE_RFQ`.
+RFQ and quote lifecycle events and anonymous `rfqTrade` prints are available on the [Private WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions). Subscribe with `SUBSCRIPTION_TYPE_RFQ`.
 
 For missed events, follow [Pagination and Recovery](#pagination-and-recovery). Reconcile RFQ and quote state with `GET /v1/rfqs` and `GET /v1/rfqs/quotes`.
 
@@ -97,19 +97,19 @@ For missed events, follow [Pagination and Recovery](#pagination-and-recovery). R
 
 Use `SUBSCRIPTION_TYPE_RFQ` for the RFQ lifecycle and anonymous trade prints, and `SUBSCRIPTION_TYPE_ORDER` for your own fills, rejections, cancellations, and expirations. Correlate your orders using `creatorOrderId` for the maker and `rfqCreatorOrderId` for the requester; both IDs are also returned by `GET /v1/rfqs/quotes`. Anonymous prints cannot be linked to your order IDs.
 
-RFQ orders enter the instrument's normal order book and may trade with other resting liquidity. Instruments, including combos, can also be traded directly through the [Orders API](/api-reference/orders/overview.md); using an RFQ is optional. If either `restRemainder` setting is true, unfilled quantity on that side may remain on the book.
+RFQ orders enter the instrument's normal order book and may trade with other resting liquidity. Instruments, including combos, can also be traded directly through the [Orders API](https://docs.polymarket.us/api-reference/orders/overview.md); using an RFQ is optional. If either `restRemainder` setting is true, unfilled quantity on that side may remain on the book.
 
 ## See Also
 
-> **[Combos API](/api-reference/combos/overview.md)**
+> **[Combos API](https://docs.polymarket.us/api-reference/combos/overview.md)**
 >
 > Create and read combo instruments
 
-> **[Private WebSocket](/api-reference/websocket/private.md#rfq-subscriptions)**
+> **[Private WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions)**
 >
 > Receive RFQ lifecycle events and anonymous trade prints
 
-> **[Authentication](/api-reference/authentication.md)**
+> **[Authentication](https://docs.polymarket.us/api-reference/authentication.md)**
 >
 > Sign Retail API requests
 

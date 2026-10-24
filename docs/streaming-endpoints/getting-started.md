@@ -12,7 +12,7 @@ This guide will help you set up gRPC streaming with Python and connect to your f
 
 Before you begin, ensure you have:
 
-* **API Credentials**: Client ID from [authentication setup](/trader-guide/authentication.md)
+* **API Credentials**: Client ID from [authentication setup](https://docs.polymarket.us/trader-guide/authentication.md)
 * **Python 3.7+**: Python development environment
 * **Network Access**: Ability to connect to `grpc-api.preprod.polymarketexchange.com:443`
 
@@ -126,7 +126,7 @@ The response contains your `access_token`:
 
 > [!NOTE]
 >
-> See the [Authentication Setup Guide](/trader-guide/authentication.md) for complete authentication details.
+> See the [Authentication Setup Guide](https://docs.polymarket.us/trader-guide/authentication.md) for complete authentication details.
 
 ## Step 5: Connect to Market Data Stream
 
@@ -228,15 +228,15 @@ for response in response_stream:
 
 ## Next Steps
 
-> **[Authentication Guide](/streaming-endpoints/authentication.md)**
+> **[Authentication Guide](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
 >
 > Deep dive into authentication and token management
 
-> **[Market Data Streaming](/streaming-endpoints/market-data-stream.md)**
+> **[Market Data Streaming](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
 >
 > Learn about all market data streaming features
 
-> **[Order Streaming](/streaming-endpoints/order-stream.md)**
+> **[Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
 >
 > Subscribe to order execution updates
 
@@ -244,8 +244,8 @@ for response in response_stream:
 
 If you encounter issues during setup:
 
-1. Check the [Error Handling Guide](/streaming-endpoints/error-handling.md)
-2. Review the [Market Data Stream](/streaming-endpoints/market-data-stream.md) or [Order Stream](/streaming-endpoints/order-stream.md) pages for complete implementations
+1. Check the [Error Handling Guide](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
+2. Review the [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) or [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md) pages for complete implementations
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

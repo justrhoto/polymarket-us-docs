@@ -150,7 +150,7 @@
 | --- | --- |
 | [Fee Schedule](docs/fees.md) | Trading fee schedule, rebates, and examples |
 | [Changelog](docs/changelog.md) | Updates and Announcements for all APIs, tagged and filterable |
-| [Notices and Filings](docs/legal-notices.md) | Exchange and Clearing notices. |
+| [Notices and Filings](docs/notices-and-filings.md) | Exchange and Clearing notices. |
 
 ## API Reference
 

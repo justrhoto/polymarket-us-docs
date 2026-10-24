@@ -8,7 +8,7 @@
 
 # Incentives API
 
-The Incentives API provides access to active incentive programs and your earned rewards. For details on how incentive programs work, see the [Incentive Programs overview](/incentives/overview.md); for how liquidity programs score — Target Size, Discount Factor, and Max Spread — see the [Liquidity Incentive Program](/incentives/liquidity.md) page.
+The Incentives API provides access to active incentive programs and your earned rewards. For details on how incentive programs work, see the [Incentive Programs overview](https://docs.polymarket.us/incentives/overview.md); for how liquidity programs score — Target Size, Discount Factor, and Max Spread — see the [Liquidity Incentive Program](https://docs.polymarket.us/incentives/liquidity.md) page.
 
 ## Endpoints
 
@@ -21,7 +21,7 @@ The Incentives API provides access to active incentive programs and your earned 
 >
 > **Authentication Required for Earnings**
 >
-> The `/v1/incentives/earnings` endpoint requires API key authentication. See the [Authentication guide](/trader-guide/authentication.md) for details. The `/v1/incentives` endpoint is public and requires no authentication.
+> The `/v1/incentives/earnings` endpoint requires API key authentication. See the [Authentication guide](https://docs.polymarket.us/trader-guide/authentication.md) for details. The `/v1/incentives` endpoint is public and requires no authentication.
 
 ## Get Incentive Programs
 
@@ -121,7 +121,7 @@ Parameter names accept both camelCase (`pageSize`) and snake\_case (`page_size`)
 > * **Omission.** The key is absent (never `0`) when a program has no Max Spread; it is a `liquidityProgram` field. Programs without a Max Spread score each side independently, as before.
 > * **Scope.** The value applies to every scored second of that `timePeriods[]` entry. Parameters can differ between time periods of the same market, so read `maxSpread` per entry rather than per market.
 >
-> Full explanation and worked example: [What is Max Spread?](/incentives/liquidity.md#what-is-max-spread).
+> Full explanation and worked example: [What is Max Spread?](https://docs.polymarket.us/incentives/liquidity.md#what-is-max-spread).
 
 ## Get Incentive Earnings
 

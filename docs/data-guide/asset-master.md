@@ -191,9 +191,9 @@ Products are templates that define types of tradable outcomes. The same product 
 | Title Event | TEC | Group (Exclusive) | `tec-ggb-bmpd-2026-01-11` | Will participant win title? |
 | Title Award | TAC | Group (Exclusive) | `tac-ggb-bmpd-2026-01-11-sinners` | Which nominee will win award? |
 | Election Winner | EWC | Group (Exclusive) | `ewc-usp-pres-2028-11-07` | Which candidate will win election? |
-| Crypto Price | CPC | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000` | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](/trader-guide/crypto-schema.md) |
-| Gold Spot Price | CPAUSP | Single (Binary) | `cpausp-gold-updown-15m-2026-10-22-1630z` | Gold Up/Down windows on the Chainlink XAU/USD spot stream. Clearing symbol `CPAUSP-COMMODITY`. See [Metals Schema](/trader-guide/metals-schema.md) |
-| Silver Spot Price | CPAGSP | Single (Binary) | `cpagsp-silver-updown-15m-2026-10-22-1630z` | Silver Up/Down windows on the Chainlink XAG/USD spot stream. Clearing symbol `CPAGSP-COMMODITY`. See [Metals Schema](/trader-guide/metals-schema.md) |
+| Crypto Price | CPC | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000` | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md) |
+| Gold Spot Price | CPAUSP | Single (Binary) | `cpausp-gold-updown-15m-2026-10-22-1630z` | Gold Up/Down windows on the Chainlink XAU/USD spot stream. Clearing symbol `CPAUSP-COMMODITY`. See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) |
+| Silver Spot Price | CPAGSP | Single (Binary) | `cpagsp-silver-updown-15m-2026-10-22-1630z` | Silver Up/Down windows on the Chainlink XAG/USD spot stream. Clearing symbol `CPAGSP-COMMODITY`. See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) |
 
 ### Product Reusability
 

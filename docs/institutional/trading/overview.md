@@ -59,7 +59,7 @@ NEW → PARTIALLY_FILLED → FILLED
 >
 > **Real-Time Order Updates**
 >
-> After submitting orders via REST, use the [gRPC Order Stream](/streaming-endpoints/order-stream.md) to receive real-time updates on order status, fills, and cancellations. This is more efficient than polling for order status.
+> After submitting orders via REST, use the [gRPC Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md) to receive real-time updates on order status, fills, and cancellations. This is more efficient than polling for order status.
 
 ## Time in Force
 

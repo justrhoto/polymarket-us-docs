@@ -60,7 +60,7 @@ No. Trades progress through states:
 
 * **NEW**: Initial matched state
 * **CLEARED**: Cleared through DCO
-* **BUSTED**: Voided post-execution by the exchange and the position reversed; terminal, and rare. Busted trades stay in history — treat them as reversed, don't drop them. See [Trade States](/streaming-endpoints/dropcopy-stream.md#trade-states).
+* **BUSTED**: Voided post-execution by the exchange and the position reversed; terminal, and rare. Busted trades stay in history — treat them as reversed, don't drop them. See [Trade States](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md#trade-states).
 
 **What identifies a trade uniquely?**
 
@@ -94,7 +94,7 @@ The instrument you're trying to trade has expired or is no longer active.
 
 Your account doesn't have enough funds to place the order.
 
-**Solution**: Check your account balance before placing orders. Consider the total notional value including fees. Note that risk checks are scoped per instrument - see [Open Orders and Order Collateralization](/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization) for how open orders and buying power interact.
+**Solution**: Check your account balance before placing orders. Consider the total notional value including fees. Note that risk checks are scoped per instrument - see [Open Orders and Order Collateralization](https://docs.polymarket.us/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization) for how open orders and buying power interact.
 
 ### Invalid Price
 
@@ -161,7 +161,7 @@ Use the order preview endpoint to validate orders without submitting them.
 
 ### 3. Monitor Order Status
 
-Implement order status monitoring: subscribe to order status updates via streaming API, poll order status for important orders, track partial fills and remaining quantity, handle unexpected cancellations. In particular, the exchange automatically cancels resting orders that are no longer fully funded after a fill elsewhere in your account - see [Open Orders and Order Collateralization](/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization).
+Implement order status monitoring: subscribe to order status updates via streaming API, poll order status for important orders, track partial fills and remaining quantity, handle unexpected cancellations. In particular, the exchange automatically cancels resting orders that are no longer fully funded after a fill elsewhere in your account - see [Open Orders and Order Collateralization](https://docs.polymarket.us/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization).
 
 ### 4. Handle Rejections Gracefully
 
@@ -197,7 +197,7 @@ Set appropriate time-in-force (TIF) values: **Day** (order expires at end of tra
 
 Order operations have specific rate limits: maximum orders per second, maximum cancellations per second, maximum modifications per second.
 
-Exceeding these limits results in 429 errors. See [Rate Limits](/trader-guide/rate-limits.md) for details.
+Exceeding these limits results in 429 errors. See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md) for details.
 
 ## Order Fill Notifications
 

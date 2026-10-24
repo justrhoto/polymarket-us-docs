@@ -193,19 +193,19 @@ except NotFoundError as e:
 
 ## Next steps
 
-> **[TypeScript SDK](/api-reference/sdks/typescript/quickstart.md)**
+> **[TypeScript SDK](https://docs.polymarket.us/api-reference/sdks/typescript/quickstart.md)**
 >
 > Full SDK reference for TypeScript.
 
-> **[Python SDK](/api-reference/sdks/python/quickstart.md)**
+> **[Python SDK](https://docs.polymarket.us/api-reference/sdks/python/quickstart.md)**
 >
 > Full SDK reference for Python.
 
-> **[API Reference](/api-reference)**
+> **[API Reference](https://docs.polymarket.us/api-reference)**
 >
 > Explore all REST endpoints.
 
-> **[WebSockets](/streaming-endpoints)**
+> **[WebSockets](https://docs.polymarket.us/streaming-endpoints)**
 >
 > Stream live market data.
 

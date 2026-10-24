@@ -8,11 +8,11 @@
 
 This page documents the strongly-typed fields on the instrument that identify a crypto price market (product code `cpc`, "Cryptocurrency Contracts"). **Do not parse the instrument symbol or slug** — symbol formats are not part of the public contract and may change. Identify markets using the fields below.
 
-Every crypto price market settles against a published reference index, not a spot venue. Today that index is CF Benchmarks' Bitcoin Real-Time Index (`BRTI`). The Retail API exposes the same terms as the typed `assetPriceTerms` object; see [Asset Price Market Fields](/api-reference/market/overview.md#asset-price-market-fields).
+Every crypto price market settles against a published reference index, not a spot venue. Today that index is CF Benchmarks' Bitcoin Real-Time Index (`BRTI`). The Retail API exposes the same terms as the typed `assetPriceTerms` object; see [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields).
 
 > [!NOTE]
 >
-> The automated market families in Section 2 are listed in the preprod environment and roll out to production as announced in the [changelog](/changelog.md). Production currently carries the hand-listed Bitcoin markets described in Section 4.
+> The automated market families in Section 2 are listed in the preprod environment and roll out to production as announced in the [changelog](https://docs.polymarket.us/changelog.md). Production currently carries the hand-listed Bitcoin markets described in Section 4.
 
 ## Section 1: Common Identifying Fields
 
@@ -84,7 +84,7 @@ Treat an unknown value as a newer family: render the fields that are present and
 
 `event_attributes` records the strike for the exchange's DCM record. `strike_unit` is `USD` and `strike_description` is the index symbol on every family except up/down, which uses `strike_value: "Up"` with `strike_unit: "string"`. Price range interior buckets record the exact bounds as `strike_value: "<lower>-<upper>"` with `evaluation_type: "=="`. Settlement never depends on these fields; the `crypto_*` metadata above is authoritative.
 
-Every family resolves each instrument independently (`EVENT_OUTCOME_INDEPENDENT`) except price range, whose event is mutually exclusive (`EVENT_OUTCOME_MUTUALLY_EXCLUSIVE`) so that exactly one bucket settles Yes. See [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return.md) for the margin treatment.
+Every family resolves each instrument independently (`EVENT_OUTCOME_INDEPENDENT`) except price range, whose event is mutually exclusive (`EVENT_OUTCOME_MUTUALLY_EXCLUSIVE`) so that exactly one bucket settles Yes. See [Mutually Exclusive Collateral Return](https://docs.polymarket.us/market-structure/mutually-exclusive-collateral-return.md) for the margin treatment.
 
 ***
 
@@ -314,12 +314,12 @@ For these markets the contract terms are only in `instrument_rules` (Retail `des
 ## Best Practices
 
 * **Never parse the symbol or slug** to determine the market type, window, or strike. Symbol formats are not part of the public contract.
-* **Map on `crypto_market_type`.** Treat an unknown value as a newer family: render the terms that are present and watch the [changelog](/changelog.md).
+* **Map on `crypto_market_type`.** Treat an unknown value as a newer family: render the terms that are present and watch the [changelog](https://docs.polymarket.us/changelog.md).
 * **Read windows from `interval_start` and `interval_end`**, not from the instrument's expiration date, which is 30 minutes after settlement.
 * **Treat every price as a decimal string** (`outcome_strike`, `price_to_beat`, `crypto_range_*`, `crypto_settlement_price`) and convert it yourself. Compare in cents; bounds end in `.99`.
 * **Expect `price_to_beat` to appear a few seconds after an up/down window opens.** Re-read the instrument metadata after `interval_start` rather than assuming the value at listing.
-* **Read fresh prices from the Retail API.** `POST /v1/refdata/instruments` serves a cached copy of each instrument, so `price_to_beat` and `crypto_settlement_price` can appear there up to an hour after they are stamped. The Retail market endpoints (`assetPriceTerms.priceToBeat` and `assetPriceTerms.settlementPrice`) update when the value is stamped, and `GET /v1/instruments/{symbol}/settlement` reads the final settlement from the exchange live. See [Settlement API](/institutional/settlement/overview.md).
-* **Ladders are wide.** An hourly above/below or price range ladder has 30 to 100 legs; subscribe to instrument updates via the [streaming APIs](/trader-guide/streaming-apis.md) to catch each new ladder as it lists.
+* **Read fresh prices from the Retail API.** `POST /v1/refdata/instruments` serves a cached copy of each instrument, so `price_to_beat` and `crypto_settlement_price` can appear there up to an hour after they are stamped. The Retail market endpoints (`assetPriceTerms.priceToBeat` and `assetPriceTerms.settlementPrice`) update when the value is stamped, and `GET /v1/instruments/{symbol}/settlement` reads the final settlement from the exchange live. See [Settlement API](https://docs.polymarket.us/institutional/settlement/overview.md).
+* **Ladders are wide.** An hourly above/below or price range ladder has 30 to 100 legs; subscribe to instrument updates via the [streaming APIs](https://docs.polymarket.us/trader-guide/streaming-apis.md) to catch each new ladder as it lists.
 * **Follow each market's own rules text.** Hand-listed markets and automated markets can use different statistics for the same asset.
 
 

@@ -18,7 +18,7 @@ gRPC uses standard status codes to indicate errors. Understanding these codes is
 | - | - | - | - |
 | `0` | `OK` | Success | Continue processing |
 | `1` | `CANCELLED` | Operation canceled | Clean up resources |
-| `3` | `INVALID_ARGUMENT` | Invalid request parameters | Fix request and retry. See [Request Parameters](/streaming-endpoints/proto-reference.md) for details. |
+| `3` | `INVALID_ARGUMENT` | Invalid request parameters | Fix request and retry. See [Request Parameters](https://docs.polymarket.us/streaming-endpoints/proto-reference.md) for details. |
 | `4` | `DEADLINE_EXCEEDED` | Operation timeout | Retry with backoff |
 | `7` | `PERMISSION_DENIED` | Insufficient permissions | Check account permissions |
 | `14` | `UNAVAILABLE` | Service unavailable | Reconnect with backoff |
@@ -79,19 +79,19 @@ except grpc.RpcError as e:
 
 ## Next Steps
 
-> **[Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md)**
+> **[Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)**
 >
 > Long-lived streams, resume tokens, the 20-stream budget
 
-> **[Authentication](/streaming-endpoints/authentication.md)**
+> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
 >
 > Review authentication best practices
 
-> **[Market Data Stream](/streaming-endpoints/market-data-stream.md)**
+> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
 >
 > Learn about market data streaming
 
-> **[Order Stream](/streaming-endpoints/order-stream.md)**
+> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
 >
 > Learn about order streaming
 

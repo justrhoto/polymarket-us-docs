@@ -44,7 +44,7 @@ Account balances include:
 | `excessCapital` | Capital above requirements |
 | `marginRequirement` | Margin required for open positions |
 | `unsettledFunds` | Funds pending settlement |
-| `openOrders` | Worst-case value of open orders (see [Open Orders and Order Collateralization](/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization) for how open orders are risk-checked) |
+| `openOrders` | Worst-case value of open orders (see [Open Orders and Order Collateralization](https://docs.polymarket.us/market-structure/collateral-and-margin.md#open-orders-and-order-collateralization) for how open orders are risk-checked) |
 | `updateTime` | Last update timestamp |
 
 ## Historical Position Queries
@@ -89,7 +89,7 @@ GET /v1/positions?name=firms/ISV-Alice/accounts/trading&as_of_date.year=2026&as_
 >
 > **Position Updates After Trades**
 >
-> Position data is updated after each trade execution. For real-time trade notifications that affect positions, use the [gRPC Order Stream](/streaming-endpoints/order-stream.md).
+> Position data is updated after each trade execution. For real-time trade notifications that affect positions, use the [gRPC Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md).
 
 * Positions are aggregated by symbol and account
 * Balances reflect current available and reserved amounts
@@ -259,19 +259,19 @@ Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
 
 ## See Also
 
-> **[Balance Ledger](/institutional/funding/overview.md)**
+> **[Balance Ledger](https://docs.polymarket.us/institutional/funding/overview.md)**
 >
 > Cash balance changes (deposits, withdrawals, fills, fees)
 
-> **[Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md)**
+> **[Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)**
 >
 > Real-time balance ledger via gRPC
 
-> **[Order Stream](/streaming-endpoints/order-stream.md)**
+> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
 >
 > Real-time execution updates that affect positions
 
-> **[Authentication](/trader-guide/authentication.md#api-scopes)**
+> **[Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)**
 >
 > Required scopes and OAuth flow
 

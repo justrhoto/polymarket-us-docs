@@ -68,7 +68,7 @@ from depends on who the participant is:
 | Participant | Where the ID comes from |
 | - | - |
 | Your own trading and drop copy users (institutional/DMA, market makers) | Provided during onboarding, when the users are provisioned for your firm |
-| An end user you onboard through KYC (brokers/partners) | Returned as `participantId` once the user's KYC reaches `ACCEPT` — on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) |
+| An end user you onboard through KYC (brokers/partners) | Returned as `participantId` once the user's KYC reaches `ACCEPT` — on the [`kyc.approved` webhook](https://docs.polymarket.us/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow#check-status) |
 
 > [!WARNING]
 >

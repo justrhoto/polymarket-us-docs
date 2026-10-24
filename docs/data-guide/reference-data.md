@@ -24,7 +24,7 @@ The Reference Data API provides three endpoints:
 
 > [!NOTE]
 >
-> For details on the hierarchical structure of instruments (categories, series, events, products), see the [Asset Master](/data-guide/asset-master.md) guide.
+> For details on the hierarchical structure of instruments (categories, series, events, products), see the [Asset Master](https://docs.polymarket.us/data-guide/asset-master.md) guide.
 
 ## REST API Endpoints
 

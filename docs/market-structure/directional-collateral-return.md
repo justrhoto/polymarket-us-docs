@@ -19,7 +19,7 @@ Each instrument has an ordinal rank (rank 1 = lowest threshold). If rank 3 resol
 
 > [!NOTE]
 >
-> Whether an event is directional is a property of how the exchange lists it, not of the question. Sports spread and total ladders are listed as directional events. Crypto Above/Below and One-Touch ladders are currently listed as independent events and do not receive directional collateral return; crypto Price Range ladders are mutually exclusive events and receive [Mutually Exclusive Collateral Return](/market-structure/mutually-exclusive-collateral-return.md) instead. See [Crypto Schema](/trader-guide/crypto-schema.md).
+> Whether an event is directional is a property of how the exchange lists it, not of the question. Sports spread and total ladders are listed as directional events. Crypto Above/Below and One-Touch ladders are currently listed as independent events and do not receive directional collateral return; crypto Price Range ladders are mutually exclusive events and receive [Mutually Exclusive Collateral Return](https://docs.polymarket.us/market-structure/mutually-exclusive-collateral-return.md) instead. See [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md).
 
 ## How Collateral Return Works
 

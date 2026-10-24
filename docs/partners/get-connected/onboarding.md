@@ -39,21 +39,21 @@ graph TD
 
 The agreements depend on your partner type:
 
-> **[ISV agreement](/partners/partner-types/isvs.md)**
+> **[ISV agreement](https://docs.polymarket.us/partners/partner-types/isvs.md)**
 >
 > The ISV Connectivity Agreement and the participant clickthrough agreements you present to your users.
 
-> **[IB agreement](/partners/partner-types/ibs.md)**
+> **[IB agreement](https://docs.polymarket.us/partners/partner-types/ibs.md)**
 >
 > The IB Participant Agreement, plus the CFTC/NFA regulatory requirements specific to Introducing Brokers.
 
-Your Retail Participants must accept the appropriate participant agreement before they begin KYC. See [ISVs](/partners/partner-types/isvs.md) for the individual and entity participant agreement links.
+Your Retail Participants must accept the appropriate participant agreement before they begin KYC. See [ISVs](https://docs.polymarket.us/partners/partner-types/isvs.md) for the individual and entity participant agreement links.
 
 ## Step 2 — Generate your API keys
 
 Authentication uses Private Key JWT with RSA keys. Generate a key pair **per environment** and share only the **public** keys with Polymarket US — never your private keys.
 
-> **[Authentication — key generation](/partners/get-connected/authentication.md)**
+> **[Authentication — key generation](https://docs.polymarket.us/partners/get-connected/authentication.md)**
 >
 > Step-by-step key generation and the full authentication flow.
 
@@ -69,7 +69,7 @@ Authentication uses Private Key JWT with RSA keys. Generate a key pair **per env
 
 > [!NOTE]
 >
-> **Using FIX connectivity?** Also include your **AWS Account ID** so a private connection can be established, and note FIX in your request. You still generate and submit RSA key pairs even if FIX is your primary connectivity method. See the [FIX API](/institutional/fix-api/fix-overview.md) for protocol details.
+> **Using FIX connectivity?** Also include your **AWS Account ID** so a private connection can be established, and note FIX in your request. You still generate and submit RSA key pairs even if FIX is your primary connectivity method. See the [FIX API](https://docs.polymarket.us/institutional/fix-api/fix-overview.md) for protocol details.
 
 ## Step 4 — Receive your credentials
 
@@ -84,11 +84,11 @@ Polymarket US reviews your submission and provisions your access:
 
 ## Next steps
 
-> **[Authentication](/partners/get-connected/authentication.md)**
+> **[Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)**
 >
 > Exchange your signed JWT for an access token and call the API.
 
-> **[Quickstart](/partners/get-connected/quickstart.md)**
+> **[Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)**
 >
 > Place your first order end to end.
 

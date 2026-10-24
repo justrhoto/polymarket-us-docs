@@ -21,7 +21,7 @@ Socure **Digital Intelligence (DI)** is a device and behavioural risk-assessment
 Socure's evaluation combines the identity data you submit (PII) with device and behavioural context. The DI signals are what tip borderline cases into a clear **ACCEPT**:
 
 * **More participants approved instantly.** Without DI signals, Socure has less confidence in legitimate participants, and more of them land in **REVIEW**.
-* **Lower REVIEW rate.** A REVIEW means onboarding isn't finished — the participant must either upload a photo ID ([DocV](/partners/onboarding/kyc/verification-flow.md#document-verification-docv) — adds friction and drop-off) or wait for a [manual review](/partners/onboarding/kyc/verification-flow.md#manual-compliance-review) (hours to days). Every reduction in REVIEW is a direct conversion win.
+* **Lower REVIEW rate.** A REVIEW means onboarding isn't finished — the participant must either upload a photo ID ([DocV](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md#document-verification-docv) — adds friction and drop-off) or wait for a [manual review](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md#manual-compliance-review) (hours to days). Every reduction in REVIEW is a direct conversion win.
 * **Device-level fraud detection.** DI also flags velocity abuse, bot patterns, and fraud rings, improving the quality of your participant population.
 
 Omitting the `session_token` will **not** cause an evaluation to fail — but expect a higher false-REVIEW rate.
@@ -39,7 +39,7 @@ DI collects **non-PII** device and session signals only. PII (name, SSN, address
 
 ## Implementation
 
-The Socure `sdk_key` is provided by the Polymarket US onboarding team. A **single** SDK key initialises both Digital Intelligence and [DocV](/partners/onboarding/kyc/verification-flow.md#document-verification-docv). It is a **public** key and safe to include in client-side code. Initialise DI when the KYC form page loads, then call `getSessionToken()` immediately before submitting the form.
+The Socure `sdk_key` is provided by the Polymarket US onboarding team. A **single** SDK key initialises both Digital Intelligence and [DocV](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md#document-verification-docv). It is a **public** key and safe to include in client-side code. Initialise DI when the KYC form page loads, then call `getSessionToken()` immediately before submitting the form.
 
 ```javascript Web theme={null}
 // 1. On KYC form page load — initialise early
@@ -107,11 +107,11 @@ SocureSDK.getSessionToken { sessionToken ->
 
 ## Next steps
 
-> **[Verification Flow](/partners/onboarding/kyc/verification-flow.md)**
+> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
 >
 > Submit the participant with the `session_token` and handle each outcome.
 
-> **[Overview](/partners/onboarding/kyc/overview.md)**
+> **[Overview](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
 >
 > How the Socure-backed KYC process fits together.
 

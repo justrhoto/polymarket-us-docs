@@ -24,7 +24,7 @@
 | `GET` | `/v1/refdata/sports/teams` | List teams with optional filtering |
 | `GET` | `/v1/refdata/sports/teams/provider` | Get teams by provider-specific IDs |
 
-See [Sports Reference Data](/api-reference/refdata/sports) for detailed documentation.
+See [Sports Reference Data](https://docs.polymarket.us/api-reference/refdata/sports) for detailed documentation.
 
 > [!NOTE]
 >
@@ -216,7 +216,7 @@ curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments"
   }'
 ```
 
-Identify each instrument from its `crypto_market_type` metadata; see [Crypto Schema](/trader-guide/crypto-schema.md).
+Identify each instrument from its `crypto_market_type` metadata; see [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md).
 
 ### Filtering Gold and Silver Instruments
 
@@ -235,11 +235,11 @@ curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments"
   }'
 ```
 
-The series are `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-updown-15m`, `silver-updown-1h` and `silver-updown-1d`. Identify each instrument from its `metals_market_type` metadata; see [Metals Schema](/trader-guide/metals-schema.md).
+The series are `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-updown-15m`, `silver-updown-1h` and `silver-updown-1d`. Identify each instrument from its `metals_market_type` metadata; see [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
 
 > [!NOTE]
 >
-> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat` and the settlement price fields on crypto and metals Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat`).
+> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat` and the settlement price fields on crypto and metals Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat`).
 
 ### Combining Filters
 

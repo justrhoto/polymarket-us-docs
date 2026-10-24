@@ -8,13 +8,13 @@
 
 The Polymarket US API uses **Private Key JWT** authentication with RSA keys — the **same mechanism used across the platform**, including by institutional traders. You sign a JWT with your RSA private key and exchange it for a short-lived access token.
 
-> **[Full authentication guide](/trader-guide/authentication.md)**
+> **[Full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md)**
 >
 > Key generation, JWT claims, code samples (Python, Go, curl), key rotation, troubleshooting, and the complete scope reference live in the **Institutional API → Getting Started** guide. This page covers what's specific to partners and links you there for the implementation details.
 
 > [!NOTE]
 >
-> Your RSA key pairs are generated during [Partner Onboarding](/partners/get-connected/onboarding.md) — you share only the **public** keys with Polymarket US and keep the private keys secure.
+> Your RSA key pairs are generated during [Partner Onboarding](https://docs.polymarket.us/partners/get-connected/onboarding.md) — you share only the **public** keys with Polymarket US and keep the private keys secure.
 
 ## How it works
 
@@ -37,7 +37,7 @@ sequenceDiagram
 2. **Exchange it for an access token** — send the assertion to the token endpoint.
 3. **Call the API with the access token** — include it as a `Bearer` token on each request.
 
-The [full guide](/trader-guide/authentication.md) has the exact JWT claims, token request, and ready-to-use Python and Go clients.
+The [full guide](https://docs.polymarket.us/trader-guide/authentication.md) has the exact JWT claims, token request, and ready-to-use Python and Go clients.
 
 ## Environments
 
@@ -52,7 +52,7 @@ The [full guide](/trader-guide/authentication.md) has the exact JWT claims, toke
 
 ## Prerequisites
 
-After completing [Partner Onboarding](/partners/get-connected/onboarding.md), you will have everything you need to authenticate:
+After completing [Partner Onboarding](https://docs.polymarket.us/partners/get-connected/onboarding.md), you will have everything you need to authenticate:
 
 | You have | From onboarding |
 | - | - |
@@ -70,7 +70,7 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/whoami" \
   -H "x-participant-id: firms/ISV-Participant-YourISV/users/participant-123"
 ```
 
-Use [`GET /v1/users`](/institutional/accounts/overview#endpoints) to discover the participant IDs your Firm may act on behalf of. See [Participants](/partners/onboarding/users.md) for how to resolve identities, and [Accounts & Identity](/trader-guide/accounts-identity.md) for the full hierarchy.
+Use [`GET /v1/users`](https://docs.polymarket.us/institutional/accounts/overview#endpoints) to discover the participant IDs your Firm may act on behalf of. See [Participants](https://docs.polymarket.us/partners/onboarding/users.md) for how to resolve identities, and [Accounts & Identity](https://docs.polymarket.us/trader-guide/accounts-identity.md) for the full hierarchy.
 
 ## Scopes
 
@@ -86,23 +86,23 @@ Your application is granted **scopes** that control which endpoints you can call
 
 > [!NOTE]
 >
-> The **authoritative scope list and the full scope-by-endpoint mapping** are maintained in the [full authentication guide](/trader-guide/authentication.md#api-scopes). Missing a required scope returns `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
+> The **authoritative scope list and the full scope-by-endpoint mapping** are maintained in the [full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes). Missing a required scope returns `403 Forbidden` (REST) / `PERMISSION_DENIED` (gRPC).
 
 ## Next steps
 
-> **[Full authentication guide](/trader-guide/authentication.md)**
+> **[Full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md)**
 >
 > JWT claims, code samples, key rotation, and troubleshooting.
 
-> **[Partner Onboarding](/partners/get-connected/onboarding.md)**
+> **[Partner Onboarding](https://docs.polymarket.us/partners/get-connected/onboarding.md)**
 >
 > Get your keys registered and receive your Client ID.
 
-> **[Quickstart](/partners/get-connected/quickstart.md)**
+> **[Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)**
 >
 > Authenticate and place your first order end to end.
 
-> **[Troubleshooting](/trader-guide/authentication-troubleshooting.md)**
+> **[Troubleshooting](https://docs.polymarket.us/trader-guide/authentication-troubleshooting.md)**
 >
 > Resolve common authentication errors.
 

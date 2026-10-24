@@ -18,13 +18,13 @@ Python and TypeScript SDKs for integrating with the Polymarket US API. Both libr
 
 ## Choose Your SDK
 
-> **[Python SDK](/api-reference/sdks/python/quickstart.md)**
+> **[Python SDK](https://docs.polymarket.us/api-reference/sdks/python/quickstart.md)**
 >
 > Sync and async support. Python 3.10+.
 >
 > [GitHub](https://github.com/Polymarket/polymarket-us-python) · [PyPI](https://pypi.org/project/polymarket-us/)
 
-> **[TypeScript SDK](/api-reference/sdks/typescript/quickstart.md)**
+> **[TypeScript SDK](https://docs.polymarket.us/api-reference/sdks/typescript/quickstart.md)**
 >
 > Full TypeScript types. Node.js 18+.
 >

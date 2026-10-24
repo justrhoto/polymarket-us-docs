@@ -12,7 +12,7 @@ The Accounts API is the public identity and account **query** surface. Market ma
 
 > [!NOTE]
 >
-> Account **creation** is not a public REST call. ISV/IB trading accounts are provisioned when KYC is approved — see [Accounts](/partners/onboarding/accounts.md). Market-maker accounts are provisioned during onboarding.
+> Account **creation** is not a public REST call. ISV/IB trading accounts are provisioned when KYC is approved — see [Accounts](https://docs.polymarket.us/partners/onboarding/accounts.md). Market-maker accounts are provisioned during onboarding.
 
 ## Endpoints
 

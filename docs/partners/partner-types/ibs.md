@@ -6,11 +6,11 @@
 
 > Introducing Brokers building a trading experience on Polymarket US.
 
-Introducing Brokers (IBs) integrate with Polymarket US using the **same workflow and APIs as ISVs** — the difference is regulatory, not technical. Start with [Your Role](/partners/your-role.md) and the [Integration Journey](/partners/integration-journey.md) for the build path; this page covers the IB-specific agreement and regulatory requirements.
+Introducing Brokers (IBs) integrate with Polymarket US using the **same workflow and APIs as ISVs** — the difference is regulatory, not technical. Start with [Your Role](https://docs.polymarket.us/partners/your-role.md) and the [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md) for the build path; this page covers the IB-specific agreement and regulatory requirements.
 
 > [!NOTE]
 >
-> **Audience: business, legal, and compliance teams.** This page is about IB eligibility and regulatory obligations. Developers can go straight to the [Integration Journey](/partners/integration-journey.md).
+> **Audience: business, legal, and compliance teams.** This page is about IB eligibility and regulatory obligations. Developers can go straight to the [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md).
 
 ## Overview
 
@@ -24,17 +24,17 @@ Polymarket US partners with licensed Introducing Brokers (IBs) to provide custom
 
 The technical integration is identical to an ISV's — same APIs, same workflow. Follow the standard path:
 
-> **[Your Role](/partners/your-role.md)**
+> **[Your Role](https://docs.polymarket.us/partners/your-role.md)**
 >
 > What you do, what Polymarket US does, and what you never handle.
 
-> **[Integration Journey](/partners/integration-journey.md)**
+> **[Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)**
 >
 > The recommended order to build your integration.
 
 > [!NOTE]
 >
-> **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](/partners/funding/overview.md) *(Beta)*.
+> **Funding.** Participant trading accounts are funded by your funding entity via [Partner Funding](https://docs.polymarket.us/partners/funding/overview.md) *(Beta)*.
 
 > [!WARNING]
 >

@@ -40,7 +40,7 @@ X-PM-Signature: <base64-encoded-signature>
 
 The signature is constructed from: `timestamp + "GET" + path` where path is `/v1/ws/private` or `/v1/ws/markets`.
 
-See [Authentication](/api/authentication.md) for details on request signing.
+See [Authentication](https://docs.polymarket.us/api/authentication.md) for details on request signing.
 
 ## Message Format
 

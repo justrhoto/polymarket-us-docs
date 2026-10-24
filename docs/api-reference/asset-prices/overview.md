@@ -108,7 +108,7 @@ Candles are dense and ascending, one per bucket in the effective window. An unkn
 
 ## Closed Hours
 
-Gold and silver have a price only while the metals market is open. Chainlink publishes no spot price from 5:00 PM to 6:00 PM ET each day or at the weekend, and none, or only part of a day, on some holidays. No windows are listed on the holidays in the [Gold and Silver FAQs](/faqs/metals-faqs.md), even when prices are published. Candles in a closed period are gap-filled: `tickCount` is `0` and `close` carries the last price forward. Drop `tickCount: 0` candles if you chart only published prices.
+Gold and silver have a price only while the metals market is open. Chainlink publishes no spot price from 5:00 PM to 6:00 PM ET each day or at the weekend, and none, or only part of a day, on some holidays. No windows are listed on the holidays in the [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md), even when prices are published. Candles in a closed period are gap-filled: `tickCount` is `0` and `close` carries the last price forward. Drop `tickCount: 0` candles if you chart only published prices.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

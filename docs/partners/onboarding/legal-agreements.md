@@ -8,7 +8,7 @@
 
 Every end user accepts the Polymarket US legal document set during onboarding, inside your app. This page covers the required documents, the acceptance language and flow, and how agreement versioning works. You can build against this now — the structure will not change.
 
-Identity verification (KYC), funding, and account provisioning are covered in the [Integration Journey](/partners/integration-journey.md) and the [KYC](/partners/onboarding/kyc/overview.md) documentation.
+Identity verification (KYC), funding, and account provisioning are covered in the [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md) and the [KYC](https://docs.polymarket.us/partners/onboarding/kyc/overview.md) documentation.
 
 > [!NOTE]
 >
@@ -47,7 +47,7 @@ Display the following language, exactly as written, immediately above the accept
 
 ## Agreement versioning
 
-The [KYC start request](/partners/onboarding/kyc/verification-flow.md) (`POST /v1/kyc/start`) carries an `agreement.version` field identifying the version of the Participant Agreement the customer accepted.
+The [KYC start request](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md) (`POST /v1/kyc/start`) carries an `agreement.version` field identifying the version of the Participant Agreement the customer accepted.
 
 **Version value.** The version is the **effective date** of the current Participant Agreement, formatted `MM.DD.YYYY`. The current value is `08.06.2026`.
 
@@ -72,11 +72,11 @@ How updates work:
 
 ## Next steps
 
-> **[Start KYC](/partners/onboarding/kyc/verification-flow.md)**
+> **[Start KYC](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
 >
 > Submit the accepted `agreement.version` on `POST /v1/kyc/start`.
 
-> **[Onboard Participants](/partners/onboarding/onboard-participants.md)**
+> **[Onboard Participants](https://docs.polymarket.us/partners/onboarding/onboard-participants.md)**
 >
 > How acceptance fits into the wider participant onboarding flow.
 

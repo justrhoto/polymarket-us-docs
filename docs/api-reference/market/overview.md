@@ -67,20 +67,20 @@ Use `orderPriceMinTickSize` and `minimumTradeQty` from the market response befor
 
 | Field | Type | Description |
 | - | - | - |
-| `sportsMarketType` | string | Fine-grained sports market type, for example `football_team_full_game_spread`. Same inventory as the Institutional `market_sport_type` field; see [Sports Schema](/trader-guide/sports-schema.md) |
+| `sportsMarketType` | string | Fine-grained sports market type, for example `football_team_full_game_spread`. Same inventory as the Institutional `market_sport_type` field; see [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) |
 | `sportsMarketTypeV2` | string (enum) | Type: MONEYLINE, SPREAD, TOTAL, or PROP |
 | `gameId` | string | Sports provider game ID |
 | `line` | number | Line value for spread/total markets |
 
 ### Asset Price Market Fields
 
-Markets that settle against a reference price carry a typed `assetPriceTerms` object: crypto price markets (`ASSET_CLASS_CRYPTO`) and gold and silver price markets (`ASSET_CLASS_COMMODITY`). It is `null` on every other market, including the hand-listed year-end Bitcoin markets, which show `marketType: "futures"`. Automated crypto, gold and silver markets have an empty `marketType` and `sportsMarketType`; identify them from `assetPriceTerms.marketType`. See [Crypto Schema](/trader-guide/crypto-schema.md) and [Metals Schema](/trader-guide/metals-schema.md) for the Institutional counterpart of every field. `priceDecimals`, `assetName` and `priceUnit` are Retail only and have no Institutional counterpart. `nextWindowStart` maps to `metals_next_window_start` on gold and silver, and to `interval_end` on crypto, which trades around the clock.
+Markets that settle against a reference price carry a typed `assetPriceTerms` object: crypto price markets (`ASSET_CLASS_CRYPTO`) and gold and silver price markets (`ASSET_CLASS_COMMODITY`). It is `null` on every other market, including the hand-listed year-end Bitcoin markets, which show `marketType: "futures"`. Automated crypto, gold and silver markets have an empty `marketType` and `sportsMarketType`; identify them from `assetPriceTerms.marketType`. See [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md) and [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) for the Institutional counterpart of every field. `priceDecimals`, `assetName` and `priceUnit` are Retail only and have no Institutional counterpart. `nextWindowStart` maps to `metals_next_window_start` on gold and silver, and to `interval_end` on crypto, which trades around the clock.
 
 | Field | Type | Description |
 | - | - | - |
 | `assetPriceTerms.marketType` | string (enum) | `ASSET_PRICE_MARKET_TYPE_UP_DOWN`, `ASSET_PRICE_MARKET_TYPE_ABOVE_BELOW`, `ASSET_PRICE_MARKET_TYPE_RANGE`, or `ASSET_PRICE_MARKET_TYPE_ONE_TOUCH`. `ASSET_PRICE_MARKET_TYPE_UNSPECIFIED` means a newer type: render the terms that are present |
-| `assetPriceTerms.asset` | object | `assetClass` and `symbol`, e.g. `ASSET_CLASS_CRYPTO` / `btc` or `ASSET_CLASS_COMMODITY` / `gold`. Its canonical form (`crypto:btc`, `commodity:gold`, `commodity:silver`) is the `assets` parameter of the [Asset Prices API](/api-reference/asset-prices/overview.md) |
-| `assetPriceTerms.indexSymbol` | string | Reference index the market settles on, e.g. `BRTI`. Empty on gold and silver markets, which settle on Chainlink spot streams; see [Metals Schema](/trader-guide/metals-schema.md) |
+| `assetPriceTerms.asset` | object | `assetClass` and `symbol`, e.g. `ASSET_CLASS_CRYPTO` / `btc` or `ASSET_CLASS_COMMODITY` / `gold`. Its canonical form (`crypto:btc`, `commodity:gold`, `commodity:silver`) is the `assets` parameter of the [Asset Prices API](https://docs.polymarket.us/api-reference/asset-prices/overview.md) |
+| `assetPriceTerms.indexSymbol` | string | Reference index the market settles on, e.g. `BRTI`. Empty on gold and silver markets, which settle on Chainlink spot streams; see [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) |
 | `assetPriceTerms.horizon` | string | Cadence or window length, e.g. `15m`, `1h`, `1d`, `hourly`, `daily`, `weekly`, `monthly`. Display and grouping only |
 | `assetPriceTerms.windowStart` | timestamp | Start of the measurement window. Set on UP\_DOWN and ONE\_TOUCH; `null` on ladders |
 | `assetPriceTerms.windowEnd` | timestamp | End of the measurement window, i.e. the settlement instant. Use this rather than `endDate` for the settlement time |
@@ -97,7 +97,7 @@ Markets that settle against a reference price carry a typed `assetPriceTerms` ob
 
 Amounts are `{ "value": "81650.14", "currency": "USD" }` with the value as a decimal string exactly as stamped. On UP\_DOWN markets the long side (`Yes`) pays when the close value is at or above `priceToBeat`. Filter crypto markets with `categories=crypto`.
 
-Gold and silver markets are in the `finance` category (`categories=finance`); select them with `assetPriceTerms.asset.assetClass = ASSET_CLASS_COMMODITY`. Their `priceToBeat` and `settlementPrice` are single Chainlink spot values at `windowStart` and `windowEnd`, not 60-second averages, and `priceToBeat` is usually stamped about a minute after `windowStart`. See [Metals Schema](/trader-guide/metals-schema.md) and [Gold and Silver FAQs](/faqs/metals-faqs.md).
+Gold and silver markets are in the `finance` category (`categories=finance`); select them with `assetPriceTerms.asset.assetClass = ASSET_CLASS_COMMODITY`. Their `priceToBeat` and `settlementPrice` are single Chainlink spot values at `windowStart` and `windowEnd`, not 60-second averages, and `priceToBeat` is usually stamped about a minute after `windowStart`. See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) and [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md).
 
 ## Filtering Markets
 
@@ -191,7 +191,7 @@ There is no separate REST endpoint to fetch a side by ID or to list sides by mar
 >
 > **Real-Time Market Data**
 >
-> For real-time price updates and order book data, use the [WebSocket Markets Stream](/api-reference/websocket/markets.md) instead of polling the REST API.
+> For real-time price updates and order book data, use the [WebSocket Markets Stream](https://docs.polymarket.us/api-reference/websocket/markets.md) instead of polling the REST API.
 
 ## Market Book (Full)
 
@@ -344,7 +344,7 @@ GET /v1/markets/{slug}/bbo
 >
 > **Real-Time Updates**
 >
-> For continuous order book updates, use the [WebSocket Markets Stream](/api-reference/websocket/markets.md) instead of polling these endpoints.
+> For continuous order book updates, use the [WebSocket Markets Stream](https://docs.polymarket.us/api-reference/websocket/markets.md) instead of polling these endpoints.
 
 ## Settlement
 

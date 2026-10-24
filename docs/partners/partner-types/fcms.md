@@ -105,13 +105,13 @@ Additional accounts can be created as needed via API or administrator interface.
 
 * Use `NewOrderSingle` to submit orders
 * Use `OrderCancelReplace` to modify orders
-* View our [FIX API documentation](/institutional/fix-api/fix-overview.md)
+* View our [FIX API documentation](https://docs.polymarket.us/institutional/fix-api/fix-overview.md)
 
 **REST & gRPC APIs**
 
-* Download [proto files](/streaming-endpoints/proto-reference.md) and generate bindings
+* Download [proto files](https://docs.polymarket.us/streaming-endpoints/proto-reference.md) and generate bindings
 * Subscribe to order updates before sending orders
-* View our [REST API documentation](/api-reference/introduction.md)
+* View our [REST API documentation](https://docs.polymarket.us/api-reference/introduction.md)
 
 ## Risk Management
 

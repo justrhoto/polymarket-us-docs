@@ -33,7 +33,7 @@ service OrderEntryAPI {
 
 > [!NOTE]
 >
-> Unlike the [market data stream](/streaming-endpoints/market-data-stream.md), `CreateOrderSubscription` does **not** have a 1000-symbol-per-stream cap. An empty `symbols` list is all symbols for the requested accounts. A market-data list over 1000 is rejected with `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`), not `RESOURCE_EXHAUSTED`. How many streams to open: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md).
+> Unlike the [market data stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md), `CreateOrderSubscription` does **not** have a 1000-symbol-per-stream cap. An empty `symbols` list is all symbols for the requested accounts. A market-data list over 1000 is rejected with `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`), not `RESOURCE_EXHAUSTED`. How many streams to open: [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md).
 
 ### Example Request
 
@@ -556,15 +556,15 @@ Snapshot only: False
 
 ## Next Steps
 
-> **[Proto Reference](/streaming-endpoints/proto-reference.md)**
+> **[Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)**
 >
 > Detailed message and field reference
 
-> **[Error Handling](/streaming-endpoints/error-handling.md)**
+> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
 >
 > Handle errors and reconnections
 
-> **[Market Data Stream](/streaming-endpoints/market-data-stream.md)**
+> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
 >
 > Stream real-time market data
 

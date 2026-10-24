@@ -41,7 +41,7 @@ With read-only access, you can consume:
 
 ### gRPC Streaming
 
-For real-time data, use the [Market Data Stream](/streaming-endpoints/market-data-stream.md):
+For real-time data, use the [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md):
 
 * Subscribe to BBO updates
 * Subscribe to L2 order book changes

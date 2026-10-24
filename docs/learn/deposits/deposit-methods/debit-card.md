@@ -32,7 +32,7 @@ Start trading with instant buying power. The rest of your funds become available
 
 ***
 
-Need help? See [Troubleshooting](/learn/deposits/deposit-methods/troubleshooting.md) for common issues.
+Need help? See [Troubleshooting](https://docs.polymarket.us/learn/deposits/deposit-methods/troubleshooting.md) for common issues.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

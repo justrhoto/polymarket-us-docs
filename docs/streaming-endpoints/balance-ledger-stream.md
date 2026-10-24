@@ -8,11 +8,11 @@
 
 Subscribe to real-time balance ledger entries (deposits, withdrawals, fills, fees, adjustments) using gRPC streaming. The stream first replays any entries since `resume_time`, then pushes new entries as they happen.
 
-For paginated historical queries and CSV exports of the same data, see the [Balance Ledger REST API](/institutional/funding/overview.md).
+For paginated historical queries and CSV exports of the same data, see the [Balance Ledger REST API](https://docs.polymarket.us/institutional/funding/overview.md).
 
 > [!NOTE]
 >
-> This stream is distinct from [Funding Transaction Streaming](/streaming-endpoints/funding-stream.md): that stream tracks **transaction state changes** (PENDING → COMPLETED, etc.) for deposits/withdrawals; this stream tracks the **balance impact** of every cash event in the ledger.
+> This stream is distinct from [Funding Transaction Streaming](https://docs.polymarket.us/streaming-endpoints/funding-stream.md): that stream tracks **transaction state changes** (PENDING → COMPLETED, etc.) for deposits/withdrawals; this stream tracks the **balance impact** of every cash event in the ledger.
 
 ## Service Definition
 
@@ -58,7 +58,7 @@ The stream returns `CreateBalanceLedgerSubscriptionResponse` messages.
 | Field | Type | Description |
 | - | - | - |
 | `id` | `str` | Unique entry identifier. |
-| `account` | `str` | Account this entry belongs to. For IB/ISV-managed end users, this exactly matches `provisioned_account` from the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks#data-fields) and `provisionedAccount` from [KYC status](/partners/onboarding/kyc/verification-flow.md#check-status). Route entries to users by exact string match on `entry.account`. |
+| `account` | `str` | Account this entry belongs to. For IB/ISV-managed end users, this exactly matches `provisioned_account` from the [`kyc.approved` webhook](https://docs.polymarket.us/partners/onboarding/kyc/webhooks#data-fields) and `provisionedAccount` from [KYC status](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md#check-status). Route entries to users by exact string match on `entry.account`. |
 | `currency` | `str` | ISO currency code. |
 | `before_balance` | `str` | Balance immediately before this change (decimal). |
 | `after_balance` | `str` | Balance immediately after this change (decimal). |
@@ -96,7 +96,7 @@ The stream returns `CreateBalanceLedgerSubscriptionResponse` messages.
 | `17` | `MANUAL_TRANSFER` |
 | `22` | `PENDING_WITHDRAWAL_CREATION` |
 
-The full allowlist plus suppressed (internal) types are documented on the [Balance Ledger REST overview](/institutional/funding/overview.md#ledgerentrytype).
+The full allowlist plus suppressed (internal) types are documented on the [Balance Ledger REST overview](https://docs.polymarket.us/institutional/funding/overview.md#ledgerentrytype).
 
 ## Stream Limits
 
@@ -245,19 +245,19 @@ if streamer.last_update_time is not None:
 
 ## Next Steps
 
-> **[Balance Ledger REST](/institutional/funding/overview.md)**
+> **[Balance Ledger REST](https://docs.polymarket.us/institutional/funding/overview.md)**
 >
 > Paginated query and CSV download
 
-> **[Position Ledger](/institutional/positions/overview.md#position-ledger)**
+> **[Position Ledger](https://docs.polymarket.us/institutional/positions/overview.md#position-ledger)**
 >
 > Position changes (quantity, cost, realized P\&L)
 
-> **[Funding Transactions](/streaming-endpoints/funding-stream.md)**
+> **[Funding Transactions](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)**
 >
 > Deposit / withdrawal state changes
 
-> **[Authentication](/streaming-endpoints/authentication.md)**
+> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
 >
 > gRPC authentication setup
 

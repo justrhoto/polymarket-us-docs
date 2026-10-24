@@ -10,10 +10,10 @@ Your integration maintains a local projection of each participant's orders, posi
 
 ## The operating pattern
 
-**Streams are the system of record; reads are anchors.** The firm-scoped [Drop Copy execution and position streams](/streaming-endpoints/dropcopy-stream.md) drive your projection in real time. Unary reads exist for discovery, user-driven views, and reconciliation — they are not polling feeds.
+**Streams are the system of record; reads are anchors.** The firm-scoped [Drop Copy execution and position streams](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md) drive your projection in real time. Unary reads exist for discovery, user-driven views, and reconciliation — they are not polling feeds.
 
 * **Replay before new work.** Persist a stream response's `resume_token` only after every record in it is durably applied. Reconnect with the last committed token; deduplicate replayed events by stable exchange IDs.
-* **Single active subscriber.** Run one leader-elected consumer per firm, environment, and stream. Followers take over from the durable cursor — never one subscription per pod, and never one stream per customer. How to open and hold those streams: [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md).
+* **Single active subscriber.** Run one leader-elected consumer per firm, environment, and stream. Followers take over from the durable cursor — never one subscription per pod, and never one stream per customer. How to open and hold those streams: [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md).
 * **Reconcile after gaps.** After an outage: resume and replay the streams first, then compare your projections against the reads below, and surface freshness caveats rather than presenting incomplete state as final.
 * **No cron pollers.** Reads are triggered by onboarding, user views, bounded workflow recovery, reconnect reconciliation, or an incident — not recurring schedules.
 
@@ -25,24 +25,24 @@ Your integration maintains a local projection of each participant's orders, posi
 
 ## Reconciliation reads
 
-The anchors are the standard gRPC read APIs — the same `polymarket.v1` services documented under [Institutional API](/grpc-api/overview.md), called with your partner credentials over TLS with a Bearer token. Full message definitions are in the [proto download](/grpc-api/overview.md); the tables below map each reconciliation concern to its RPC.
+The anchors are the standard gRPC read APIs — the same `polymarket.v1` services documented under [Institutional API](https://docs.polymarket.us/grpc-api/overview.md), called with your partner credentials over TLS with a Bearer token. Full message definitions are in the [proto download](https://docs.polymarket.us/grpc-api/overview.md); the tables below map each reconciliation concern to its RPC.
 
 > [!WARNING]
 >
 > **These are low-volume anchors, not a data-access layer.** Every RPC below is rate-limited per firm and must not be polled.
 
-The correct architecture is **stream-first**: build your local database from [Drop Copy](/streaming-endpoints/dropcopy-stream.md) and [Order Stream](/streaming-endpoints/order-stream.md), serve reads from that database, and call these RPCs only for cold-start hydration, point-in-time queries, and gap recovery — never as a substitute for a subscription. See [Rate Limits](/trader-guide/rate-limits.md) for the full list; `SearchOrders`, `SearchExecutions`, and `SearchTrades`, for example, are capped at 12 requests/minute, and sustained call volume against any of these endpoints will get throttled.
+The correct architecture is **stream-first**: build your local database from [Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md) and [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md), serve reads from that database, and call these RPCs only for cold-start hydration, point-in-time queries, and gap recovery — never as a substitute for a subscription. See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md) for the full list; `SearchOrders`, `SearchExecutions`, and `SearchTrades`, for example, are capped at 12 requests/minute, and sustained call volume against any of these endpoints will get throttled.
 
 ### Cash balances — `polymarket.v1.PositionAPI`
 
-An account balance is the authoritative cash figure for one account and currency, plus the risk context used to size orders — see [Balance Data](/institutional/positions/overview.md#balance-data) for the full field reference.
+An account balance is the authoritative cash figure for one account and currency, plus the risk context used to size orders — see [Balance Data](https://docs.polymarket.us/institutional/positions/overview.md#balance-data) for the full field reference.
 
 | RPC | Use |
 | - | - |
 | `GetAccountBalance` | Authoritative cash balance for one account and currency. Returns `balance` plus risk context: `buying_power`, `capital_requirement`, `excess_capital`, `unsettled_funds`, `margin_requirement`, `open_orders`, and an `update_time`. |
 | `ListAccountBalances` | All currencies for one account in one call. |
 
-This balance read is the authoritative confirmation to take before initiating a [`WITHDRAWAL` transfer](/partners/funding/deposits-withdrawals#withdrawals) — confirm the participant's free cash covers the amount (net of accrued vendor fees) before creating the transfer.
+This balance read is the authoritative confirmation to take before initiating a [`WITHDRAWAL` transfer](https://docs.polymarket.us/partners/funding/deposits-withdrawals#withdrawals) — confirm the participant's free cash covers the amount (net of accrued vendor fees) before creating the transfer.
 
 #### Stream it instead
 
@@ -56,7 +56,7 @@ This balance read is the authoritative confirmation to take before initiating a 
 
 ### Positions — `polymarket.v1.PositionAPI`
 
-A position tracks net quantity, cost basis, and realized P\&L for one account and symbol — see [Position Data](/institutional/positions/overview.md#position-data) for the full field reference.
+A position tracks net quantity, cost basis, and realized P\&L for one account and symbol — see [Position Data](https://docs.polymarket.us/institutional/positions/overview.md#position-data) for the full field reference.
 
 | RPC | Use |
 | - | - |
@@ -66,14 +66,14 @@ A position tracks net quantity, cost basis, and realized P\&L for one account an
 
 > [!TIP]
 >
-> **Streaming equivalent:** `CreatePositionChangeSubscription` on the [Drop Copy stream](/streaming-endpoints/dropcopy-stream.md) keeps positions current in real time.
+> **Streaming equivalent:** `CreatePositionChangeSubscription` on the [Drop Copy stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md) keeps positions current in real time.
 
 * Call `ListAccountPositions` to hydrate a brand-new projection (true cold start) or to answer point-in-time (`as_of_time` / `as_of_date`) queries a stream can't answer — not on every process restart.
 * A restarting service persists its position projection alongside the stream's `resume_token` and reconnects with that token; a routine restart is never a reason to re-fetch positions.
 
 ### Orders — `polymarket.v1.ReportAPI`
 
-An order carries its full lifecycle state — quantity, price, fills, and status — see [Order Message Structure](/streaming-endpoints/order-stream.md#order-message-structure) for the full field reference (the same fields these reads return).
+An order carries its full lifecycle state — quantity, price, fills, and status — see [Order Message Structure](https://docs.polymarket.us/streaming-endpoints/order-stream.md#order-message-structure) for the full field reference (the same fields these reads return).
 
 | RPC | Use |
 | - | - |
@@ -85,7 +85,7 @@ An order carries its full lifecycle state — quantity, price, fills, and status
 
 > [!TIP]
 >
-> **Streaming equivalent:** `CreateOrderSubscription` on the [Order Stream](/streaming-endpoints/order-stream.md) is snapshot **and** stream on one connection — no unary call is needed for cold start.
+> **Streaming equivalent:** `CreateOrderSubscription` on the [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md) is snapshot **and** stream on one connection — no unary call is needed for cold start.
 
 * Open with the default `snapshot_only: false`; the first message carries a `snapshot` of every currently-open order, then `update` messages push executions continuously.
 * This request carries no `resume_token`, so a restart simply reconnects and gets a fresh snapshot for free — there's no checkpoint to persist for this one.
@@ -94,14 +94,14 @@ An order carries its full lifecycle state — quantity, price, fills, and status
 
 ### Cash ledger — `polymarket.v1.FundingAPI`
 
-A ledger entry records a single cash-balance change with its before/after amounts — see [BalanceLedgerEntry Fields](/institutional/funding/overview.md#balanceledgerentry-fields) for the full field reference.
+A ledger entry records a single cash-balance change with its before/after amounts — see [BalanceLedgerEntry Fields](https://docs.polymarket.us/institutional/funding/overview.md#balanceledgerentry-fields) for the full field reference.
 
 | RPC | Use |
 | - | - |
-| `GetAccountBalanceLedger` | Paginated, typed ledger of every cash balance change (deposits, withdrawals, fills, fees, adjustments) with before/after balances — see the [Funding reference](/institutional/funding/overview.md) for entry types and query semantics. |
-| `CreateBalanceLedgerSubscription` | The streaming counterpart with replay — see [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md). |
+| `GetAccountBalanceLedger` | Paginated, typed ledger of every cash balance change (deposits, withdrawals, fills, fees, adjustments) with before/after balances — see the [Funding reference](https://docs.polymarket.us/institutional/funding/overview.md) for entry types and query semantics. |
+| `CreateBalanceLedgerSubscription` | The streaming counterpart with replay — see [Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md). |
 
-The cash ledger is where every [transfer](/partners/funding/transfers.md) (deposits, withdrawals, vendor fee collections), fill, exchange fee, and settlement credit lands with before/after balances — it is the platform-side record your funding entity's books reconcile against, per account.
+The cash ledger is where every [transfer](https://docs.polymarket.us/partners/funding/transfers.md) (deposits, withdrawals, vendor fee collections), fill, exchange fee, and settlement credit lands with before/after balances — it is the platform-side record your funding entity's books reconcile against, per account.
 
 #### Stream it instead
 
@@ -122,32 +122,32 @@ The ledger subscription is **per-account** — one fully-qualified account per s
 
 Until then, cover the firm-wide need with the surfaces that are already firm-scoped:
 
-* **Executions and positions:** the [Drop Copy streams](/streaming-endpoints/dropcopy-stream.md) are firm-wide — one execution stream and one position stream cover every account's trading activity.
+* **Executions and positions:** the [Drop Copy streams](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md) are firm-wide — one execution stream and one position stream cover every account's trading activity.
 * **Cash events:** drive per-account cash projections from your own transfer records (you initiate every deposit, withdrawal, and fee collection) plus firm-wide execution data, and reconcile against `GetAccountBalanceLedger` / CSV export per account on a batch cadence — not with per-account live streams.
 
 > [!NOTE]
 >
-> **Decoding fees on fills.** Commission fields on execution reports are fixed-point notional units, scaled by both `price_scale` and `fractional_quantity_scale` — see [Fees on execution reports](/partners/orders/data-model.md#fees-on-execution-reports) before reconciling fill-level fees against the [fee schedule](/fees.md).
+> **Decoding fees on fills.** Commission fields on execution reports are fixed-point notional units, scaled by both `price_scale` and `fractional_quantity_scale` — see [Fees on execution reports](https://docs.polymarket.us/partners/orders/data-model.md#fees-on-execution-reports) before reconciling fill-level fees against the [fee schedule](https://docs.polymarket.us/fees.md).
 
 > [!NOTE]
 >
-> **Joining orders to fees and funding.** For orders placed through the partner order API, the `clord_id` on execution streams is the **partner-assigned** `order.clord_id` from [`CreateVendorOrder`](/partners/orders/create-order), and the execution account is the same DCM identifier supplied as `order.account`. `SearchOrders` filters by `clord_id` directly. Keep the exchange `order_id` as the canonical venue identifier: it and your `clord_id` are the join keys on the [Vendor Fees report](/partners/funding/vendor-fees.md#the-vendor-fees-report). Persist the create response's correlation fields so ledger rows, stream events, fee records, and transfers all join cleanly.
+> **Joining orders to fees and funding.** For orders placed through the partner order API, the `clord_id` on execution streams is the **partner-assigned** `order.clord_id` from [`CreateVendorOrder`](https://docs.polymarket.us/partners/orders/create-order), and the execution account is the same DCM identifier supplied as `order.account`. `SearchOrders` filters by `clord_id` directly. Keep the exchange `order_id` as the canonical venue identifier: it and your `clord_id` are the join keys on the [Vendor Fees report](https://docs.polymarket.us/partners/funding/vendor-fees.md#the-vendor-fees-report). Persist the create response's correlation fields so ledger rows, stream events, fee records, and transfers all join cleanly.
 
 ## Related pages
 
-> **[Transfers](/partners/funding/transfers.md)**
+> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
 >
 > The cash-movement API these reads gate.
 
-> **[Drop Copy Stream](/streaming-endpoints/dropcopy-stream.md)**
+> **[Drop Copy Stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
 >
 > The firm-scoped execution stream that drives your projection.
 
-> **[Order Stream](/streaming-endpoints/order-stream.md)**
+> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
 >
 > Real-time order and execution updates for your accounts.
 
-> **[Rate Limits](/trader-guide/rate-limits.md)**
+> **[Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)**
 >
 > Per-endpoint limits for the reads on this page.
 

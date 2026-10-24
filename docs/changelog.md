@@ -16,15 +16,15 @@
 Gold and silver Up/Down markets
 
 * **Gold and silver Up/Down markets are listed from today.** Windows of 15 minutes, 1 hour and one day ask whether the gold (silver) price closes the window at or above its open. Daily windows run from 6:15 PM ET to 5:00 PM ET the next day, five a week on Sunday to Thursday evenings. Windows are listed from Sunday 6:15 PM ET to Friday 5:00 PM ET, never from 5:00 PM to 6:15 PM ET, and not on holidays.
-* **Institutional API:** the new [Metals Schema](/trader-guide/metals-schema.md) page documents the identifying fields. Products are `cpausp` (gold) and `cpagsp` (silver), with clearing symbols `CPAUSP-COMMODITY` and `CPAGSP-COMMODITY`, category `FIN` and subcategory `COMMODITY`. Map on `metals_market_type` and `metals_horizon`, read the window from `interval_start` / `interval_end`, the open value from `price_to_beat`, the settled value from `metals_settlement_price`, and when trading resumes from `metals_next_window_start`.
-* **Retail API:** markets carry the same typed [`assetPriceTerms`](/api-reference/market/overview#asset-price-market-fields) object as crypto, with `asset.assetClass` `ASSET_CLASS_COMMODITY` and an empty `indexSymbol`. `assetPriceTerms` now also documents `priceDecimals`, `assetName`, `priceUnit` and `nextWindowStart`. The [Asset Prices API](/api-reference/asset-prices/overview.md) serves the raw spot price at `GET /v1/asset-prices/history?assets=commodity:gold` (or `commodity:silver`), with no authentication.
-* **Settlement rules** are summarised in the new [Gold and Silver FAQs](/faqs/metals-faqs.md), with the trading hours and the holiday calendar: each window settles on the spot value that Chainlink's `XAU/USD-Streams-ForexPrice` (gold) or `XAG/USD-Streams-ForexPrice` (silver) stream publishes for the window's start and end. This is a single spot value, not the 60-second average the crypto markets use. Gold is rounded to the cent and silver to three decimals. A flat window settles Up. A window opens for trading at its start, and its price to beat is published about a minute later.
+* **Institutional API:** the new [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) page documents the identifying fields. Products are `cpausp` (gold) and `cpagsp` (silver), with clearing symbols `CPAUSP-COMMODITY` and `CPAGSP-COMMODITY`, category `FIN` and subcategory `COMMODITY`. Map on `metals_market_type` and `metals_horizon`, read the window from `interval_start` / `interval_end`, the open value from `price_to_beat`, the settled value from `metals_settlement_price`, and when trading resumes from `metals_next_window_start`.
+* **Retail API:** markets carry the same typed [`assetPriceTerms`](https://docs.polymarket.us/api-reference/market/overview#asset-price-market-fields) object as crypto, with `asset.assetClass` `ASSET_CLASS_COMMODITY` and an empty `indexSymbol`. `assetPriceTerms` now also documents `priceDecimals`, `assetName`, `priceUnit` and `nextWindowStart`. The [Asset Prices API](https://docs.polymarket.us/api-reference/asset-prices/overview.md) serves the raw spot price at `GET /v1/asset-prices/history?assets=commodity:gold` (or `commodity:silver`), with no authentication.
+* **Settlement rules** are summarised in the new [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md), with the trading hours and the holiday calendar: each window settles on the spot value that Chainlink's `XAU/USD-Streams-ForexPrice` (gold) or `XAG/USD-Streams-ForexPrice` (silver) stream publishes for the window's start and end. This is a single spot value, not the 60-second average the crypto markets use. Gold is rounded to the cent and silver to three decimals. A flat window settles Up. A window opens for trading at its start, and its price to beat is published about a minute later.
 
 **October 21, 2026**
 
 NBA half and quarter winners
 
-NBA games now list half and quarter winner markets, starting with the October 21, 2026 games. The [Sports Schema](/trader-guide/sports-schema.md) lists them with the rest of the basketball types.
+NBA games now list half and quarter winner markets, starting with the October 21, 2026 games. The [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) lists them with the rest of the basketball types.
 
 * **Half winners:** `basketball_team_first_half_winner` and `basketball_team_second_half_winner` (overtime included).
 * **Quarter winners:** `basketball_team_first_quarter_winner`, `basketball_team_second_quarter_winner`, `basketball_team_third_quarter_winner` and `basketball_team_fourth_quarter_winner` (overtime not included).
@@ -34,7 +34,7 @@ NBA games now list half and quarter winner markets, starting with the October 21
 
 New NBA market sport types
 
-NBA markets now use six more `market_sport_type` values, starting with the October 20, 2026 games. The [Sports Schema](/trader-guide/sports-schema.md) lists them with the rest of the basketball types.
+NBA markets now use six more `market_sport_type` values, starting with the October 20, 2026 games. The [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) lists them with the rest of the basketball types.
 
 * **Team totals:** `basketball_team_total_points` (full game, overtime included), `basketball_team_total_points_first_half`, `basketball_team_total_points_second_half` (overtime included). Each names its team as the market's participant.
 * **Race to X points:** `basketball_game_race_to_points`, two legs per target (one per team); `outcome_strike` carries the target (10, 20 or 30).
@@ -45,7 +45,7 @@ NBA markets now use six more `market_sport_type` values, starting with the Octob
 
 Upcoming: fragmented FIX SecurityList replies
 
-On a date announced here, replies to all-securities SecurityListRequests (`35=x`, `559=4`) on FIX market-data sessions will arrive as several SecurityList (`35=y`) messages of up to 1,000 instruments each, instead of one message. Requests for a single symbol (`559=0`) are unchanged. See [FIX Reference Data](/institutional/fix-api/fix-api-reference-data.md).
+On a date announced here, replies to all-securities SecurityListRequests (`35=x`, `559=4`) on FIX market-data sessions will arrive as several SecurityList (`35=y`) messages of up to 1,000 instruments each, instead of one message. Requests for a single symbol (`559=0`) are unchanged. See [FIX Reference Data](https://docs.polymarket.us/institutional/fix-api/fix-api-reference-data.md).
 
 * **Fragments:** each message carries your SecurityReqID (320), its own SecurityResponseID (322), the number of instruments in that message in NoRelatedSym (146), and LastFragment (893) = N. The final message carries LastFragment (893) = Y. Accumulate entries per SecurityReqID until 893 = Y; no total count is sent.
 * **One request at a time:** a session is served one all-securities request at a time. A second one sent before the first reaches 893 = Y is answered with SecurityRequestResult (560) = 4 and a Text (58); retry after the first reply completes.
@@ -59,7 +59,7 @@ On a date announced here, replies to all-securities SecurityListRequests (`35=x`
 
 Upcoming: tiered maker and taker rebates
 
-Effective **1:00 PM ET on Monday, October 19, 2026**, maker and taker rebates move to tiers set by your trading volume. Taker fees are unchanged. See [Rebate changes effective October 19, 2026](/fees.md#rebate-changes-effective-october-19-2026) on the Fee Schedule for the full rules and how volume is measured.
+Effective **1:00 PM ET on Monday, October 19, 2026**, maker and taker rebates move to tiers set by your trading volume. Taker fees are unchanged. See [Rebate changes effective October 19, 2026](https://docs.polymarket.us/fees.md#rebate-changes-effective-october-19-2026) on the Fee Schedule for the full rules and how volume is measured.
 
 * **Maker rebates:** the maker rebate coefficient moves from a flat `-0.0125` to four tiers set by your prior calendar-month maker volume: Tier 1 below \$10M (no maker rebate), Tier 2 `-0.0035` from \$10M, Tier 3 `-0.0070` from \$50M and Tier 4 `-0.0104` from \$200M. Rebates are still credited at the point of trade. Combo fills continue to carry no maker rebate.
 * **Taker rebates:** six tiers set by your prior calendar-month taker volume: Tier 1 below \$250K (no rebate), Tier 2 3% (\$250K to \$1M), Tier 3 5% (\$1M to \$10M), Tier 4 10% (\$10M to \$25M), Tier 5 15% (\$25M to \$50M) and Tier 6 30% (\$50M+) of taker fees paid. Rebates continue to be paid out weekly.
@@ -79,20 +79,20 @@ Effective **Thursday, October 15, 2026**, these endpoints will return only the p
 
 Primary markets are the main winner outcomes. Soccer game-to-advance markets take precedence when present. Spreads, totals, and player props will no longer accompany a primary market in list responses. Events without a primary market will retain all eligible markets.
 
-**Migration:** For the full market set, request `GET /v1/events/{id}` or `GET /v1/events/slug/{slug}`. Use the `id` or `slug` from the list response. See the [Events API](/api-reference/events/overview.md).
+**Migration:** For the full market set, request `GET /v1/events/{id}` or `GET /v1/events/slug/{slug}`. Use the `id` or `slug` from the list response. See the [Events API](https://docs.polymarket.us/api-reference/events/overview.md).
 
 **October 1, 2026**
 
 General access to RFQs and combos
 
-* [RFQs](/api-reference/rfqs/overview.md) and [combos](/api-reference/combos/overview.md) are now available to all Retail API users with existing API keys.
+* [RFQs](https://docs.polymarket.us/api-reference/rfqs/overview.md) and [combos](https://docs.polymarket.us/api-reference/combos/overview.md) are now available to all Retail API users with existing API keys.
 
 **October 1, 2026**
 
 RFQ quote replacement IDs
 
 * `CreateQuote` now returns a new `quoteId` on every successful call, including replacements.
-* Use the returned ID to delete the new quote. Confirm or decline using the ID in the acceptance event. See the [Institutional](/institutional/rfqs/overview.md#create-or-replace-a-quote) and [Retail](/api-reference/rfqs/overview.md#replace-a-quote) RFQ docs.
+* Use the returned ID to delete the new quote. Confirm or decline using the ID in the acceptance event. See the [Institutional](https://docs.polymarket.us/institutional/rfqs/overview.md#create-or-replace-a-quote) and [Retail](https://docs.polymarket.us/api-reference/rfqs/overview.md#replace-a-quote) RFQ docs.
 
 **September 29, 2026**
 
@@ -108,17 +108,17 @@ v0.0.93
 v0.0.92
 
 * **Crypto price markets are documented ahead of their production listing.** Four automated Bitcoin market families settle on CF Benchmarks' Bitcoin Real-Time Index (`BRTI`): 15-minute and 60-minute **Up/Down** windows, hourly, daily and weekly **Above/Below** ladders, **Price Range** ladders on the same expiries, and monthly **One-Touch** ladders. They are listed in preprod today and reach production on the schedule announced here.
-* **Institutional API:** the new [Crypto Schema](/trader-guide/crypto-schema.md) page documents the identifying fields. Map on `crypto_market_type` (`updown`, `strike`, `range`, `hit`) and read the window from `interval_start` / `interval_end`, the threshold from `outcome_strike` or `crypto_range_lower` / `crypto_range_upper`, the Up/Down open value from `price_to_beat`, and the settled value from `crypto_settlement_price`. Filter reference data with `eventCategory=CRY` or `clearingSym=CPC-BTC`.
-* **Retail API:** markets carry a typed [`assetPriceTerms`](/api-reference/market/overview#asset-price-market-fields) object with the same terms, and the new [Asset Prices API](/api-reference/asset-prices/overview.md) serves BRTI candles from `GET /v1/asset-prices/history`. Automated crypto markets have an empty `marketType`; identify them from `assetPriceTerms.marketType`.
-* **Settlement rules** are summarised in the new [Crypto FAQs](/faqs/crypto-faqs.md): Up/Down, Above/Below and Price Range settle on the simple average of the 60 one-second index prices from 59 seconds before the settlement instant up to and including it (a flat Up/Down window settles Up; a value equal to a strike settles Yes); One-Touch settles on a rolling 60-second 20% trimmed mean and may settle early.
+* **Institutional API:** the new [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md) page documents the identifying fields. Map on `crypto_market_type` (`updown`, `strike`, `range`, `hit`) and read the window from `interval_start` / `interval_end`, the threshold from `outcome_strike` or `crypto_range_lower` / `crypto_range_upper`, the Up/Down open value from `price_to_beat`, and the settled value from `crypto_settlement_price`. Filter reference data with `eventCategory=CRY` or `clearingSym=CPC-BTC`.
+* **Retail API:** markets carry a typed [`assetPriceTerms`](https://docs.polymarket.us/api-reference/market/overview#asset-price-market-fields) object with the same terms, and the new [Asset Prices API](https://docs.polymarket.us/api-reference/asset-prices/overview.md) serves BRTI candles from `GET /v1/asset-prices/history`. Automated crypto markets have an empty `marketType`; identify them from `assetPriceTerms.marketType`.
+* **Settlement rules** are summarised in the new [Crypto FAQs](https://docs.polymarket.us/faqs/crypto-faqs.md): Up/Down, Above/Below and Price Range settle on the simple average of the 60 one-second index prices from 59 seconds before the settlement instant up to and including it (a flat Up/Down window settles Up; a value equal to a strike settles Yes); One-Touch settles on a rolling 60-second 20% trimmed mean and may settle early.
 * **Existing hand-listed year-end Bitcoin markets are unchanged.** They carry none of the `crypto_*` fields, show `marketType: "futures"` and `assetPriceTerms: null`, and state their statistic in the market rules. The Data Guide's crypto examples now use real identifiers.
 
 **September 19, 2026**
 
 Streaming best practices
 
-* **New [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md) page.** One long-lived `CreateDropCopySubscription` per firm and environment. Persist `resume_token` after you apply the batch. Do not put a short deadline on the streaming RPC and reconnect — that restarts replay and never catches up. Drop Copy has no per-order stream.
-* **20 concurrent gRPC streams per firm**, pooled across stream types. Market data is still 1000 symbols per stream; `CreateOrderSubscription` is not. Full table: [Rate Limits](/trader-guide/rate-limits.md#grpc-streaming).
+* **New [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md) page.** One long-lived `CreateDropCopySubscription` per firm and environment. Persist `resume_token` after you apply the batch. Do not put a short deadline on the streaming RPC and reconnect — that restarts replay and never catches up. Drop Copy has no per-order stream.
+* **20 concurrent gRPC streams per firm**, pooled across stream types. Market data is still 1000 symbols per stream; `CreateOrderSubscription` is not. Full table: [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#grpc-streaming).
 
 **September 17, 2026**
 
@@ -131,9 +131,9 @@ v0.0.91
 
 v0.0.91
 
-* **New parameter: Max Spread.** Where a program sets one, every second the exchange walks both sides of the book to Target Size and requires each side's size-adjusted price to sit within the Max Spread of the midpoint between the two size-adjusted prices. This is a test of the book, not of each trader: you do not have to quote both sides yourself. Max Spread is a half-width: a 3.5¢ Max Spread allows the two size-adjusted prices to be up to 7¢ apart. If they sit farther apart than that, or either side never reaches Target Size, nobody is paid for that second — including any side that did reach Target Size. Once a second qualifies, a one-sided quote still earns on the side it rests on. Forfeited seconds still count toward the time period and are not redistributed. Programs without a Max Spread score each side independently, exactly as today. See [What is Max Spread?](/incentives/liquidity.md#what-is-max-spread).
+* **New parameter: Max Spread.** Where a program sets one, every second the exchange walks both sides of the book to Target Size and requires each side's size-adjusted price to sit within the Max Spread of the midpoint between the two size-adjusted prices. This is a test of the book, not of each trader: you do not have to quote both sides yourself. Max Spread is a half-width: a 3.5¢ Max Spread allows the two size-adjusted prices to be up to 7¢ apart. If they sit farther apart than that, or either side never reaches Target Size, nobody is paid for that second — including any side that did reach Target Size. Once a second qualifies, a one-sided quote still earns on the side it rests on. Forfeited seconds still count toward the time period and are not redistributed. Programs without a Max Spread score each side independently, exactly as today. See [What is Max Spread?](https://docs.polymarket.us/incentives/liquidity.md#what-is-max-spread).
 * **No live program sets a Max Spread yet.** When a program adopts one, its Max Spread is published alongside the program's other parameters on [polymarket.us/rewards](https://polymarket.us/rewards) and in `GET /v1/incentives` (`timePeriods[].maxSpread`).
-* **Retail and Institutional APIs:** `GET /v1/incentives` now includes `timePeriods[].maxSpread` for liquidity programs that set a Max Spread, in price dollars (`0.035` = 3.5¢). It is the half-width: how far each side's size-adjusted price may sit from the midpoint between the two. The field is omitted — never `0` — when a program has no Max Spread. See the [Retail](/api-reference/incentives/overview.md) and [Institutional](/institutional/incentives/overview.md) Incentives API references.
+* **Retail and Institutional APIs:** `GET /v1/incentives` now includes `timePeriods[].maxSpread` for liquidity programs that set a Max Spread, in price dollars (`0.035` = 3.5¢). It is the half-width: how far each side's size-adjusted price may sit from the midpoint between the two. The field is omitted — never `0` — when a program has no Max Spread. See the [Retail](https://docs.polymarket.us/api-reference/incentives/overview.md) and [Institutional](https://docs.polymarket.us/institutional/incentives/overview.md) Incentives API references.
 
 **September 13, 2026**
 
@@ -167,13 +167,13 @@ v0.0.87
   * **Selected-team total:** `football_team_total_fourth_down_conversions`
   * **Game outcome:** `football_game_double_result` combines the first-half result and final-game result into nine mutually exclusive outcomes.
 * **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`.
-* See [Sports Schema](/trader-guide/sports-schema.md) for the complete inventory and football metadata profiles.
+* See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) for the complete inventory and football metadata profiles.
 
 **September 8, 2026**
 
 v0.0.86
 
-* **71 additional sports market types are now documented.** The `market_sport_type` inventory on [Sports Schema](/trader-guide/sports-schema.md) now matches the full set of sports market types registered by the exchange. Some values are already listed; others are registered ahead of their first listing. Treat every value in the inventory as one that can appear on an instrument. Instruments with no sport-specific value show their `outcome_type` value in the Retail `sportsMarketType` field (for example `futures`); see the new Generic Values section.
+* **71 additional sports market types are now documented.** The `market_sport_type` inventory on [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) now matches the full set of sports market types registered by the exchange. Some values are already listed; others are registered ahead of their first listing. Treat every value in the inventory as one that can appear on an instrument. Instruments with no sport-specific value show their `outcome_type` value in the Retail `sportsMarketType` field (for example `futures`); see the new Generic Values section.
 * **Football (35 values):**
   * **Player props:** `football_player_receptions`, `football_player_passer_rating`, `football_player_interceptions_thrown`, `football_player_sacks`, `football_player_defensive_interceptions`, `football_player_field_goals_made`, `football_player_50_plus_yard_field_goals_made`, `football_player_fantasy_points_ppr`, and `football_player_scrimmage_yards`, plus the yes/no props `football_player_first_touchdown`, `football_player_most_passing_yards`, `football_player_most_rushing_yards`, and `football_player_most_receiving_yards`.
   * **Combined game totals:** passing and rushing touchdowns, passing and rushing yards, offensive yards, turnovers, defensive interceptions, fourth-down conversions, and a successful two-point conversion yes/no. `football_game_total_pass_yards` and `football_game_total_pass_touchdowns` are also reserved for combined receiving yards and receiving touchdowns.
@@ -184,7 +184,7 @@ v0.0.86
 * **Esports (24 values):** series handicaps and totals (`esports_series_map_handicap`, `esports_series_total_maps`, `esports_series_game_handicap`, `esports_series_total_games`); per-map rounds handicap and total rounds for maps 1–4; per-game first blood, total kills, and kills odd/even for games 1–4. Map markets apply to round-based titles such as Counter-Strike 2 and Valorant; game markets apply to series-of-games titles such as League of Legends and Dota 2.
 * **New sports (9 values):** `boxing_match_winner`, `darts_match_winner`, `pickleball_match_winner`, `lacrosse_team_full_game_winner`, and table tennis (`table_tennis_match_winner` plus `table_tennis_set_1_winner` through `table_tennis_set_4_winner`).
 * **Generic values:** `moneyline`, `spreads`, `totals`, and `drawable_outcome` are documented as valid `market_sport_type` values. They have the same structure as the matching `outcome_type` value and appear on instruments that carry no sport-specific value, such as instruments created before the sport-specific values existed or hand-listed markets.
-* **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`. See [Sports Schema](/trader-guide/sports-schema.md) for the full inventory, the esports map/game note, and the football metadata profiles.
+* **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) for the full inventory, the esports map/game note, and the football metadata profiles.
 
 **September 8, 2026**
 
@@ -236,7 +236,7 @@ v0.0.80
   * **Selected-team statistical totals:** passing and rushing touchdowns, passing and rushing yards, scrimmage yards, receptions, takeaways, defensive interceptions, sacks, field goals made, and 40+ yard field goals made
 * **Receiving markets reuse the passing types:** `football_team_total_pass_yards` is also used for team receiving yards, and `football_team_total_pass_touchdowns` for team receiving touchdowns.
 * **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`.
-* See [Sports Schema](/trader-guide/sports-schema.md) for the full `market_sport_type` inventory and football metadata profiles.
+* See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) for the full `market_sport_type` inventory and football metadata profiles.
 
 **August 26, 2026**
 
@@ -275,7 +275,7 @@ v0.0.76
   * **Player props:** touchdowns from scrimmage (passing touchdowns excluded), rushing yards, passing yards, receiving yards, and passing touchdowns
 * **Identify the market from structured metadata:** Retail uses `sportsMarketType`; Institutional uses `market_sport_type`. All secondary game and player markets use `outcome_type=props`; player markets also use `prop_type=player`.
 * **Market identity:** use `event_external_id_sportradar`, `market_sport_type`, `long_participant_id`, `short_participant_id`, and `outcome_strike` as the canonical lookup and deduplication key. Participant IDs can be empty for game-wide totals; also use `external_participant_id` when resolving a player.
-* See [Sports Schema](/trader-guide/sports-schema.md) for the complete 50-type inventory and football metadata profiles.
+* See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) for the complete 50-type inventory and football metadata profiles.
 
 **July 29, 2026**
 
@@ -396,7 +396,7 @@ v0.0.64
   * `tennis_set_1_winner` / `tennis_set_2_winner` / `tennis_set_3_winner` — tennis set winner\*\*
 * **One market, two sides.** Each market now exposes a single instrument carrying both teams/players (`long_participant_id` / `short_participant_id`; Retail two-sided `marketSides`) rather than one Yes/No market per participant. Read both sides off the one instrument instead of expecting two separate markets per event.
 * **Effective for newly created instruments only.** Existing instruments keep their current shape. Soccer To Advance applies **starting with the World Cup quarter-finals onward**; esports map/game winner and tennis set winner apply to instruments created from **Friday night (July 3, 2026)** onward.
-* **Where to read it:** Retail — `marketSides` and `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `long_participant_id` / `short_participant_id` and `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `marketSides` and `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `long_participant_id` / `short_participant_id` and `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **July 2, 2026**
 
@@ -457,7 +457,7 @@ v0.0.58
 * **Each market counts its own half only.** First-half markets count goals up to and including minute 45 (plus first-half stoppage time); second-half markets count minutes 46 through 90 (plus second-half stoppage time). Goals scored in extra time never count toward either half.
 * **Settlement timing.** First-half markets settle once the first half is complete (halftime); second-half markets settle at full time. If a half is goalless, the First Team to Score market resolves **None**.
 * **Standard 1 cent (`$0.01`) tick size** — these are not decimalized.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **June 26, 2026**
 
@@ -470,7 +470,7 @@ v0.0.57
   * Event `participants` → `teams`
   * `MarketSide.team` → the market side's participant data
   * `MarketSide.participantId`, and Market `archived`, `manualActivation`, `gameStartTime` → being removed from public responses
-* Deprecated fields are flagged in the [API reference](/api-reference/introduction.md) so you can identify them while migrating. Removal is scheduled for **June 29, 2026**.
+* Deprecated fields are flagged in the [API reference](https://docs.polymarket.us/api-reference/introduction.md) so you can identify them while migrating. Removal is scheduled for **June 29, 2026**.
 
 **June 27, 2026**
 
@@ -492,7 +492,7 @@ v0.0.57
   * Extra-time total: `tsc-fwc-rsa-can-2026-06-28-et-1pt5`
   * Both teams to score (ET): `astatc-fwc-rsa-can-2026-06-28-et-btts`
   * First team to score (ET): `astatc-fwc-rsa-can-2026-06-28-et-ftts-rsa` (and `-can`, `-none`)
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **June 26, 2026**
 
@@ -502,7 +502,7 @@ v0.0.56
 * **Same market type — no integration changes.** Each match lists one match winner market (`market_sport_type = "cricket_match_winner"`, Retail `sportsMarketType = "cricket_match_winner"`), identical in structure to IPL. It resolves to the official match winner; a no result, tie, or abandonment with no declared winner resolves to **\$0.50**.
 * **Liquidity rewards — \$500 per match** on the match winner market, split **early / day-of / live = \$25 / \$75 / \$400** (discount factors 0.40 / 0.35 / 0.30, target size 10,000 each). IPL keeps its own \$20,000 structure.
 * **Example slugs** (Major League Cricket): `aec-mlc-sfu-soe-2026-06-27` (San Francisco Unicorns vs Seattle Orcas), `aec-mlc-mny-lakr-2026-06-27` (MI New York vs Los Angeles Knight Riders).
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md) and [Liquidity Rewards](https://polymarket.us/rewards).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md) and [Liquidity Rewards](https://polymarket.us/rewards).
 
 **June 26, 2026**
 
@@ -516,7 +516,7 @@ v0.0.55
 * **Example slugs** (Round of 32, South Africa vs Canada, event `aadc-fwc-rsa-can-2026-06-28-to-advance`):
   * South Africa to advance: `aadc-fwc-rsa-can-2026-06-28-to-advance-rsa`
   * Canada to advance: `aadc-fwc-rsa-can-2026-06-28-to-advance-can`
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **June 25, 2026**
 
@@ -534,7 +534,7 @@ v0.0.53
 * **No change for smaller accounts.** Accounts with 100 or fewer positions still receive every position in a single response, now with `eof: true`.
 * **Why:** returning every position in one response caused request timeouts and out-of-memory errors for accounts with very large position lists (tens of thousands of positions).
 * **Rollout:** rolling out soon — we'll announce the enablement date here in advance. Subscribe to the RSS feed to be notified before it ships.
-* **Where to read it:** `GET /v1/portfolio/positions`. See [Portfolio API](/api-reference/portfolio/overview.md).
+* **Where to read it:** `GET /v1/portfolio/positions`. See [Portfolio API](https://docs.polymarket.us/api-reference/portfolio/overview.md).
 
 **June 23, 2026**
 
@@ -544,7 +544,7 @@ v0.0.52
 * **Map on `market_sport_type` alone — you no longer need to check `outcome_type`.** `market_sport_type` fully identifies a market's structure and period on its own.
 * **`outcome_type` is still there, just don't rely on it for mapping.** It remains populated on every instrument but is subject to change; treat it as informational only and migrate any mapping logic to `market_sport_type`.
 * **One exception:** season/event-long **futures** carry no `market_sport_type` and are still identified by `outcome_type = "futures"`.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **June 20, 2026**
 
@@ -553,7 +553,7 @@ v0.0.51
 * **Starting Monday, June 22, 2026, every instrument in production will have `market_sport_type` filled in** — including full-game winner/spread/total (and full-time / match / fight winner), which previously left it unset (see v0.0.48 for the enum list).
 * **Backfill:** we'll backfill all open instruments with `market_sport_type` on Monday, June 22.
 * **`outcome_type` remains on the instrument** and is unchanged (`moneyline` / `spreads` / `totals` / `drawable_outcome`). However, please do not use this for mappings and use sport\_market\_type instead, outcome\_type will be deprecated in the coming weeks.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **June 18, 2026**
 
@@ -563,7 +563,7 @@ v0.0.50
 * **Backfill:** we'll backfill all open instruments with the new `market_sport_type` on **Tuesday, June 23 at 12:00pm ET**.
 * **You can now fully identify an instrument from `market_sport_type` alone** — it encodes both market structure (winner/spread/total) and period (full game, first half, etc.). Use it as your single source of truth going forward.
 * **`outcome_type` is deprecated.** Please don't rely on it — it's subject to change. Migrate any logic keyed off `outcome_type` to `market_sport_type` before Tuesday.
-* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `market_sport_type` from `SearchInstruments` / `GetInstrument`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 
 **June 17, 2026**
 
@@ -623,7 +623,7 @@ v0.0.45
 * **Soccer spread/total markets now use the `spreads`/`totals` `outcome_type` for every period.** Previously, soccer first-half, second-half, and team-total markets were listed with `outcome_type = "props"`. They now use the same structural `outcome_type` as full-game spreads/totals, matching basketball and baseball period markets. The period is encoded by `market_sport_type`.
   * **Spread → `outcome_type = "spreads"`:** `soccer_team_first_half_spread`, `soccer_team_second_half_spread`.
   * **Total → `outcome_type = "totals"`:** `soccer_team_first_half_total`, `soccer_team_second_half_total`, `soccer_team_total_goals`, `soccer_team_total_goals_first_half`.
-* **Action recommended:** identify market structure from `outcome_type` and the period from `market_sport_type`. Do not assume soccer period spread/total markets are `props`. See [Sports Schema](/trader-guide/sports-schema.md).
+* **Action recommended:** identify market structure from `outcome_type` and the period from `market_sport_type`. Do not assume soccer period spread/total markets are `props`. See [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md).
 * **Where to read it:** Retail — `sportsMarketType` from `GET /v1/market/slug/{slug}`; Institutional — `outcome_type` and `market_sport_type` from `SearchInstruments` / `GetInstrument`.
 
 **June 11, 2026**
@@ -842,9 +842,9 @@ v0.0.33
 v0.0.32
 
 * **New ledger endpoints** for reconciliation, point-in-time replay, and end-of-day reporting:
-  * **Position ledger (REST):** `GET /v1/positions/ledger`, `GET /v1/positions/ledger/download` — paginated query + streamed CSV of position changes (with both deltas and post-change cumulative state). See [Position Ledger](/institutional/positions/overview.md#position-ledger).
-  * **Balance ledger (REST):** `GET /v1/funding/balance-ledger`, `GET /v1/funding/balance-ledger/download` — paginated query + streamed CSV of cash balance changes (deposits, withdrawals, fills, fees, corrections). See [Balance Ledger](/institutional/funding/overview.md).
-  * **Balance ledger (gRPC):** `CreateBalanceLedgerSubscription` for real-time push of balance ledger entries. See [Balance Ledger Stream](/streaming-endpoints/balance-ledger-stream.md).
+  * **Position ledger (REST):** `GET /v1/positions/ledger`, `GET /v1/positions/ledger/download` — paginated query + streamed CSV of position changes (with both deltas and post-change cumulative state). See [Position Ledger](https://docs.polymarket.us/institutional/positions/overview.md#position-ledger).
+  * **Balance ledger (REST):** `GET /v1/funding/balance-ledger`, `GET /v1/funding/balance-ledger/download` — paginated query + streamed CSV of cash balance changes (deposits, withdrawals, fills, fees, corrections). See [Balance Ledger](https://docs.polymarket.us/institutional/funding/overview.md).
+  * **Balance ledger (gRPC):** `CreateBalanceLedgerSubscription` for real-time push of balance ledger entries. See [Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md).
   * All three are scoped under `read:positions`. Both ledgers enforce a hard historical floor of **`2026-05-01T00:00:00Z`**; pre-floor entries are not retrievable.
 * **`InstrumentStats` additions** on the market data stream and `GetOrderBook` / `GetBBO` responses:
   * `last_trade_qty` (field 14, `optional int64`) — quantity of the most recent trade. Populated after any trade executes on the instrument.

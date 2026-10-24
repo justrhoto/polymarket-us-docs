@@ -8,7 +8,7 @@
 
 > [!NOTE]
 >
-> For authentication setup and code examples, see the main [Authentication](/trader-guide/authentication.md) guide.
+> For authentication setup and code examples, see the main [Authentication](https://docs.polymarket.us/trader-guide/authentication.md) guide.
 
 ## Common Authentication Errors
 
@@ -34,7 +34,7 @@ Your token is valid but doesn't have the required scope for the endpoint.
 **Check:**
 
 1. Decode your token at jwt.io to see which scopes you have
-2. Verify the endpoint requires a scope you have (see [Authentication scopes](/trader-guide/authentication.md#api-scopes))
+2. Verify the endpoint requires a scope you have (see [Authentication scopes](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes))
 3. Scopes must be space-separated in the `scope` claim (e.g., `"read:orders write:orders"`)
 
 **Solution**: Contact support to request additional scopes for your Client ID.
@@ -259,7 +259,7 @@ You are given your participant ID — there is no endpoint that discovers your f
 
 **Institutional traders (DMA) and market makers:** Your participant ID is provided during onboarding, when your trading and drop copy users are provisioned. If you no longer have it, ask your Polymarket contact.
 
-**Brokers/Partners:** Participant IDs for your end users are returned once the user's KYC reaches `ACCEPT` — as `participantId` on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks), or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). Provisioning is asynchronous, so `participantId` may be absent on the initial `POST /v1/kyc/start` response even for an instant approval; prefer the webhook and poll the status endpoint as a fallback.
+**Brokers/Partners:** Participant IDs for your end users are returned once the user's KYC reaches `ACCEPT` — as `participantId` on the [`kyc.approved` webhook](https://docs.polymarket.us/partners/onboarding/kyc/webhooks), or from [`GET /v1/kyc/status`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow#check-status). Provisioning is asynchronous, so `participantId` may be absent on the initial `POST /v1/kyc/start` response even for an instant approval; prefer the webhook and poll the status endpoint as a fallback.
 
 Once you hold one valid participant ID, `GET /v1/users` lists the rest of your firm's users. It is account-scoped and requires `x-participant-id` itself, so it can't be your starting point.
 
@@ -267,7 +267,7 @@ Once you hold one valid participant ID, `GET /v1/users` lists the rest of your f
 >
 > Do not build a participant ID from the firm reported by `GET /v1/whoami`. The clearing member and the participant firm are different levels of the account hierarchy, so the firm shown there is not necessarily the firm segment of your participant ID — and an ID whose firm segment doesn't match your participant firm is rejected as a cross-firm request.
 
-See [Accounts & Identity](/trader-guide/accounts-identity.md#finding-your-participant-id) for more details.
+See [Accounts & Identity](https://docs.polymarket.us/trader-guide/accounts-identity.md#finding-your-participant-id) for more details.
 
 ### Endpoints That Do NOT Require x-participant-id
 

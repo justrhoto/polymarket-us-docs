@@ -14,7 +14,7 @@ KYC outcomes that resolve after the initial request — instant approvals (whose
 
 > [!NOTE]
 >
-> **Only terminal outcomes are delivered.** Intermediate states (DocV in progress, manual review) produce **no** webhook — poll [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status) if you need to track them.
+> **Only terminal outcomes are delivered.** Intermediate states (DocV in progress, manual review) produce **no** webhook — poll [`GET /v1/kyc/status`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow#check-status) if you need to track them.
 
 ## Register your webhook
 
@@ -22,7 +22,7 @@ KYC outcomes that resolve after the initial request — instant approvals (whose
 
 > [!NOTE]
 >
-> Also available over gRPC as `polymarket.us.kyc.v1.KYCAPI/SetWebhookURL` with the same two fields and the same validation behavior — see the [transport mapping](/partners/onboarding/kyc/overview.md#rest-and-grpc).
+> Also available over gRPC as `polymarket.us.kyc.v1.KYCAPI/SetWebhookURL` with the same two fields and the same validation behavior — see the [transport mapping](https://docs.polymarket.us/partners/onboarding/kyc/overview.md#rest-and-grpc).
 
 ```bash theme={null}
 POST /v1/kyc/webhook
@@ -83,7 +83,7 @@ Signed deliveries follow the [Standard Webhooks](https://www.standardwebhooks.co
 
 > [!NOTE]
 >
-> Webhook `data` fields are `snake_case` (e.g. `external_id`, `provisioned_participant`), unlike the `camelCase` REST responses. See [Field naming](/partners/onboarding/kyc/overview.md#field-naming).
+> Webhook `data` fields are `snake_case` (e.g. `external_id`, `provisioned_participant`), unlike the `camelCase` REST responses. See [Field naming](https://docs.polymarket.us/partners/onboarding/kyc/overview.md#field-naming).
 
 ```json theme={null}
 {
@@ -124,7 +124,7 @@ Empty fields are omitted from the JSON.
 | `status` | both | `KYC_STATUS_APPROVED` or `KYC_STATUS_REJECTED` |
 | `status_set_at` | both | RFC 3339 timestamp of the decision |
 | `provisioned_participant` | `kyc.approved` | Engine-neutral participant identifier — opaque string. Use it to act on behalf of the participant |
-| `provisioned_account` | `kyc.approved` | Fully qualified DCM account name provisioned on approval. It exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](/streaming-endpoints/balance-ledger-stream.md); store it to route ledger entries to the user |
+| `provisioned_account` | `kyc.approved` | Fully qualified DCM account name provisioned on approval. It exactly matches `BalanceLedgerEntry.account` on the [balance ledger stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md); store it to route ledger entries to the user |
 | `date_of_birth` | `kyc.approved` | The participant's date of birth may be included. Treat as sensitive PII |
 | `referral_code_owned` | `kyc.approved` | Present when an owned referral code is assigned |
 | `rejection_reason` | `kyc.rejected` | Finer-grained rejection detail (provider sub-status) |
@@ -132,9 +132,9 @@ Empty fields are omitted from the JSON.
 
 ## Using these identifiers to trade
 
-When you place an order on behalf of a participant, **`provisioned_participant` is the "who"** — pass it as the [`x-participant-id`](/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header on participant-scoped requests (trading, positions, reports). It is the only provisioning identifier you need.
+When you place an order on behalf of a participant, **`provisioned_participant` is the "who"** — pass it as the [`x-participant-id`](https://docs.polymarket.us/partners/get-connected/authentication#acting-on-behalf-of-a-participant) header on participant-scoped requests (trading, positions, reports). It is the only provisioning identifier you need.
 
-| KYC field (webhook) | Same value in [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#approval) | Format | What to do with it |
+| KYC field (webhook) | Same value in [`GET /v1/kyc/status`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow#approval) | Format | What to do with it |
 | - | - | - | - |
 | `provisioned_participant` | `participantId` | `firms/ISV-Participant-YourFirmID/users/...` | Send as the **`x-participant-id` header** — this is *who* the order is for |
 | `external_id` / `user_id` | `status.externalId` | your own string | **Your** correlation key only — store it to map back to your user. **Never** sent to Polymarket US to identify the participant on a trading call |
@@ -198,11 +198,11 @@ return false // reject
 
 ## Next steps
 
-> **[Verification Flow](/partners/onboarding/kyc/verification-flow.md)**
+> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
 >
 > The synchronous outcomes that precede these webhooks.
 
-> **[Overview](/partners/onboarding/kyc/overview.md)**
+> **[Overview](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
 >
 > How the KYC process fits together.
 

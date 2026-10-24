@@ -54,7 +54,7 @@ Crypto price events have no participants or game state. Use these fields instead
 | - | - |
 | `seriesSlug` | Asset, family and cadence, e.g. `btc-updown-15m`, `btc-strike-daily`, `btc-range-hourly`, `btc-hit-monthly` |
 | `tags` | Taxonomy tags such as `crypto`, `crypto-prices`, `recurring`, the family (`up-or-down`, `multi-strikes`, `neg-risk`, `hit-price`), the window (`15M`, `1H`, `daily`, `weekly`, `monthly`) and the asset (`bitcoin`) |
-| `markets[].assetPriceTerms` | Typed terms of each leg; see [Asset Price Market Fields](/api-reference/market/overview.md#asset-price-market-fields) |
+| `markets[].assetPriceTerms` | Typed terms of each leg; see [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields) |
 
 An Up/Down event holds one market per window; a ladder event holds one market per strike or bucket.
 
@@ -67,9 +67,9 @@ Gold and silver price events have the same shape as crypto Up/Down events: one m
 | `category` | `finance` |
 | `seriesSlug` | Metal, family and cadence: `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-updown-15m`, `silver-updown-1h`, `silver-updown-1d` |
 | `tags` | Taxonomy tags such as `commodities`, `metals`, `recurring`, `up-or-down`, the window (`15M`, `1H`, `daily`), the metal (`gold` or `silver`), and `daily-close` on daily windows |
-| `markets[].assetPriceTerms` | Typed terms of the window, with `asset.assetClass` `ASSET_CLASS_COMMODITY`; see [Asset Price Market Fields](/api-reference/market/overview.md#asset-price-market-fields) |
+| `markets[].assetPriceTerms` | Typed terms of the window, with `asset.assetClass` `ASSET_CLASS_COMMODITY`; see [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields) |
 
-See [Metals Schema](/trader-guide/metals-schema.md) for the Institutional fields and the trading hours.
+See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) for the Institutional fields and the trading hours.
 
 ### Volume & Liquidity
 

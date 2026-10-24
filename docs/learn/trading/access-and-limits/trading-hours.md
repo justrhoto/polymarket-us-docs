@@ -6,7 +6,7 @@
 
 > Learn about Polymarket US trading availability, reporting schedule, and maintenance policy
 
-Polymarket US operates nearly 24/7, with a recurring weekly maintenance window every **Thursday from 6:00–8:00 AM ET**. Gold and silver markets follow the metals market instead: Sunday 6:15 PM ET to Friday 5:00 PM ET, with a daily break from 5:00 PM to 6:15 PM ET and holiday closures. See the [Gold and Silver FAQs](/faqs/metals-faqs.md). Trading may also be temporarily suspended if technical issues, emergency maintenance, or other operational needs require action to maintain security, integrity, or orderly market operation.
+Polymarket US operates nearly 24/7, with a recurring weekly maintenance window every **Thursday from 6:00–8:00 AM ET**. Gold and silver markets follow the metals market instead: Sunday 6:15 PM ET to Friday 5:00 PM ET, with a daily break from 5:00 PM to 6:15 PM ET and holiday closures. See the [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md). Trading may also be temporarily suspended if technical issues, emergency maintenance, or other operational needs require action to maintain security, integrity, or orderly market operation.
 
 ## Emergency Maintenance
 

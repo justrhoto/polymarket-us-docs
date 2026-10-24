@@ -8,7 +8,7 @@
 
 # Incentives API
 
-The Incentives API exposes the active incentive programs and the rewards you have earned. For background on how programs work and their reward formulas, see the [Incentive Programs overview](/incentives/overview.md); for how liquidity programs score — Target Size, Discount Factor, and Max Spread — see the [Liquidity Incentive Program](/incentives/liquidity.md) page.
+The Incentives API exposes the active incentive programs and the rewards you have earned. For background on how programs work and their reward formulas, see the [Incentive Programs overview](https://docs.polymarket.us/incentives/overview.md); for how liquidity programs score — Target Size, Discount Factor, and Max Spread — see the [Liquidity Incentive Program](https://docs.polymarket.us/incentives/liquidity.md) page.
 
 ## Base URL
 
@@ -31,7 +31,7 @@ https://api.polymarket.us
 >
 > **Authentication**
 >
-> Both endpoints require API key authentication — see the [Authentication guide](/api-reference/authentication.md).
+> Both endpoints require API key authentication — see the [Authentication guide](https://docs.polymarket.us/api-reference/authentication.md).
 
 ## Get Incentive Programs
 
@@ -144,7 +144,7 @@ GET /v1/incentives?page_size=10&symbols=aec-nba-bos-nyk-2026-04-01
 > * **Omission.** The key is absent (never `0`) when a program has no Max Spread; it is a `liquidityProgram` field. Programs without a Max Spread score each side independently, as before.
 > * **Scope.** The value applies to every scored second of that `timePeriods[]` entry. Parameters can differ between time periods of the same market, so read `maxSpread` per entry rather than per market.
 >
-> Full explanation and worked example: [What is Max Spread?](/incentives/liquidity.md#what-is-max-spread).
+> Full explanation and worked example: [What is Max Spread?](https://docs.polymarket.us/incentives/liquidity.md#what-is-max-spread).
 
 ## Get Incentive Earnings
 

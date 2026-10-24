@@ -16,7 +16,7 @@ The Payments API provides multiple funding options for deposits and withdrawals.
 
 > [!WARNING]
 >
-> **Authentication Required** - All payment endpoints require a valid access token. See [Authentication Setup](/trader-guide/authentication.md) for setup instructions.
+> **Authentication Required** - All payment endpoints require a valid access token. See [Authentication Setup](https://docs.polymarket.us/trader-guide/authentication.md) for setup instructions.
 
 ## Payment Methods
 
@@ -42,7 +42,7 @@ Bank account linking and ACH transfers.
 | `POST` | `/v1/aeropay/deposits` | Create ACH deposit |
 | `POST` | `/v1/aeropay/withdrawals` | Create ACH withdrawal |
 
-[Aeropay Integration Guide](/api-reference/payments/aeropay-guide)
+[Aeropay Integration Guide](https://docs.polymarket.us/api-reference/payments/aeropay-guide)
 
 ### Checkout API
 
@@ -55,7 +55,7 @@ Card payment processing:
 | `POST` | `/v1/checkout/deposits` | Process card or Apple Pay deposit |
 | `POST` | `/v1/checkout/withdrawals` | Process card or Apple Pay withdrawal |
 
-[Checkout Integration Guide](/api-reference/payments/checkout-guide)
+[Checkout Integration Guide](https://docs.polymarket.us/api-reference/payments/checkout-guide)
 
 ### Funding API
 
@@ -69,7 +69,7 @@ Manage funding sources and transactions:
 | `GET` | `/v1/funding/transactions` | View transaction history |
 | `GET` | `/v1/funding/transaction-requirements` | Check withdrawal requirements |
 
-[Funding Management](/api-reference/payments/funding-management)
+[Funding Management](https://docs.polymarket.us/api-reference/payments/funding-management)
 
 ## Typical Integration Flow
 

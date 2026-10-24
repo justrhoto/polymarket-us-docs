@@ -42,11 +42,11 @@ gRPC streams on Polymarket US are **long-lived connections**. Open the stream, k
 | `CreateBalanceLedgerSubscription` | 1 **per account** | Per-account today. Each one counts toward 20. Do not open one per customer at scale. |
 | `StreamRFQEvents` | 1 | New opens are limited to **1 per firm per second**. |
 
-Full numbers: [Rate Limits](/trader-guide/rate-limits.md#grpc-streaming).
+Full numbers: [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#grpc-streaming).
 
 > [!TIP]
 >
-> Need market data on more than 1000 symbols? Do **not** open 80 streams. Use `symbols=[]` for the full book, or one [bidirectional market-data](/streaming-endpoints/market-data-stream.md) stream and add symbols there. Stay inside the **20** concurrent-stream budget for Drop Copy, orders, ledger, RFQ, and market data **together**.
+> Need market data on more than 1000 symbols? Do **not** open 80 streams. Use `symbols=[]` for the full book, or one [bidirectional market-data](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) stream and add symbols there. Stay inside the **20** concurrent-stream budget for Drop Copy, orders, ledger, RFQ, and market data **together**.
 
 ## Snapshot vs resume
 
@@ -60,7 +60,7 @@ Not every stream starts with a snapshot. Do not copy a snapshot client onto Drop
 | Instrument state change | Current-state snapshot (paged), then live updates. | Reconnect. Take the new snapshot. Do not depend on catching up via an old token. |
 | Balance ledger | Replay from `resume_time`, then live. | Pass the last applied `update_time`. |
 
-Unary reads (`SearchExecutions`, `SearchTrades`, `GetOrderBook`) are **anchors**, not a substitute for the stream. See [Reconciliation](/partners/reconciliation.md).
+Unary reads (`SearchExecutions`, `SearchTrades`, `GetOrderBook`) are **anchors**, not a substitute for the stream. See [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md).
 
 ## The reconnect-cancel loop
 
@@ -92,7 +92,7 @@ flowchart TD
 
 ## Knowing you are caught up
 
-A stream opened with a `resume_token` or `resume_time` delivers the backlog first. A fill for an order you just placed arrives only after the replay reaches it. The fill is not missing — it is queued behind older executions. If you do not need past executions, open the stream with neither field. See [Resume semantics](/streaming-endpoints/dropcopy-stream.md#resume-semantics).
+A stream opened with a `resume_token` or `resume_time` delivers the backlog first. A fill for an order you just placed arrives only after the replay reaches it. The fill is not missing — it is queued behind older executions. If you do not need past executions, open the stream with neither field. See [Resume semantics](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md#resume-semantics).
 
 The stream sends no explicit caught-up message. Use this heuristic:
 
@@ -104,7 +104,7 @@ The stream sends no explicit caught-up message. Use this heuristic:
 
 > [!NOTE]
 >
-> **Not every order produces a fill.** A fill-or-kill order that cannot fill in full reports `EXECUTION_TYPE_NEW` followed by `EXECUTION_TYPE_EXPIRED`, with no fill. A consumer that waits only for fills never sees an outcome for it. Handle every [execution type](/streaming-endpoints/order-stream.md#execution-types).
+> **Not every order produces a fill.** A fill-or-kill order that cannot fill in full reports `EXECUTION_TYPE_NEW` followed by `EXECUTION_TYPE_EXPIRED`, with no fill. A consumer that waits only for fills never sees an outcome for it. Handle every [execution type](https://docs.polymarket.us/streaming-endpoints/order-stream.md#execution-types).
 
 ## Do / don't
 
@@ -127,7 +127,7 @@ The stream sends no explicit caught-up message. Use this heuristic:
 | At most **1000** symbols per `CreateMarketDataSubscription` | Send 1000+ and expect a stream (that is `INVALID_ARGUMENT`) |
 | Empty `symbols` or one bidirectional stream for a large universe | Open tens of MD streams and blow the 20 cap |
 | Open extra MD streams **one after another** if you must split | Burst-open every stream at once |
-| [KeepAlive](/streaming-endpoints/market-data-stream.md) every 30–60 min on **bidirectional** MD | Send keepalive on server-streaming MD (not used there) |
+| [KeepAlive](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) every 30–60 min on **bidirectional** MD | Send keepalive on server-streaming MD (not used there) |
 
 **Orders and ledger**
 
@@ -140,7 +140,7 @@ The stream sends no explicit caught-up message. Use this heuristic:
 
 > [!NOTE]
 >
-> `CreateOrderSubscription` over 1000 symbols is **not** the market-data cap. Market data over 1000 is `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`). Hitting `RESOURCE_EXHAUSTED` on a stream is the **20 concurrent-stream** budget, ingress rate, or a too-large message — not the 1000 check. Details: [Order stream](/streaming-endpoints/order-stream.md).
+> `CreateOrderSubscription` over 1000 symbols is **not** the market-data cap. Market data over 1000 is `INVALID_ARGUMENT` (`at most 1000 symbols per subscription`). Hitting `RESOURCE_EXHAUSTED` on a stream is the **20 concurrent-stream** budget, ingress rate, or a too-large message — not the 1000 check. Details: [Order stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md).
 
 ## Limits that matter here
 
@@ -153,7 +153,7 @@ The stream sends no explicit caught-up message. Use this heuristic:
 | `StreamRFQEvents` new opens | 1/sec | Open-rate limit |
 | Access token lifetime | 24 hours (86400 seconds) | Refresh **credentials** before expiry. Do not cancel a healthy stream to rotate JWT. |
 
-See [Rate Limits](/trader-guide/rate-limits.md#grpc-streaming) and [Authentication](/streaming-endpoints/authentication.md).
+See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#grpc-streaming) and [Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md).
 
 > [!WARNING]
 >
@@ -223,23 +223,23 @@ def connect_forever(stub, metadata, last_token: bytes, apply_batch):
 
 ## FIX Drop Copy
 
-If you consume fills on FIX instead of gRPC, that is **one** Drop Copy session, not a gRPC stream per order. See [FIX Drop Copy](/institutional/fix-api/fix-drop-copy-overview.md). Do not run a reconnecting gRPC Drop Copy **and** a FIX DC session against the same work unless you can dedup.
+If you consume fills on FIX instead of gRPC, that is **one** Drop Copy session, not a gRPC stream per order. See [FIX Drop Copy](https://docs.polymarket.us/institutional/fix-api/fix-drop-copy-overview.md). Do not run a reconnecting gRPC Drop Copy **and** a FIX DC session against the same work unless you can dedup.
 
 ## Related
 
-> **[Drop Copy stream](/streaming-endpoints/dropcopy-stream.md)**
+> **[Drop Copy stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
 >
 > Executions, trade capture, state change, positions
 
-> **[Reconciliation](/partners/reconciliation.md)**
+> **[Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)**
 >
 > Streams first, unary reads as anchors
 
-> **[Market data stream](/streaming-endpoints/market-data-stream.md)**
+> **[Market data stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
 >
 > 1000-symbol cap, snapshot vs live, keepalive
 
-> **[Rate limits](/trader-guide/rate-limits.md)**
+> **[Rate limits](https://docs.polymarket.us/trader-guide/rate-limits.md)**
 >
 > 20 streams, 100 msg/s ingress, RFQ open rate
 

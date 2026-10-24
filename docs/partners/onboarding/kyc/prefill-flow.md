@@ -10,7 +10,7 @@
 >
 > **BETA — SUBJECT TO CHANGE.** This API is in beta and may change without notice.
 
-Prefill lets a participant auto-populate their KYC information from their phone number, reducing manual data entry and form abandonment. It is **optional** and sits entirely *in front of* the standard flow — you can skip it, collect all fields yourself, and go straight to [`POST /v1/kyc/start`](/partners/onboarding/kyc/verification-flow). Nothing about verification, outcomes, or webhooks changes.
+Prefill lets a participant auto-populate their KYC information from their phone number, reducing manual data entry and form abandonment. It is **optional** and sits entirely *in front of* the standard flow — you can skip it, collect all fields yourself, and go straight to [`POST /v1/kyc/start`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow). Nothing about verification, outcomes, or webhooks changes.
 
 ## How it works
 
@@ -18,7 +18,7 @@ Prefill lets a participant auto-populate their KYC information from their phone 
 2. Polymarket US sends a one-time passcode (OTP) to the phone.
 3. The participant enters the OTP to verify ownership.
 4. You receive prefilled identity data (name, address, last 4 of SSN, etc.).
-5. The participant reviews and corrects it, provides the full SSN, accepts the agreement, and you submit the standard [verification request](/partners/onboarding/kyc/verification-flow.md).
+5. The participant reviews and corrects it, provides the full SSN, accepts the agreement, and you submit the standard [verification request](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md).
 
 ## Step 1: Start prefill
 
@@ -41,7 +41,7 @@ POST /v1/kyc/prefill
 | `phone_number` | string | Yes | E.164 format (e.g. `+15551234567`) |
 | `date_of_birth` | string | Yes | `YYYY-MM-DD` |
 | `user_id` | string | Yes | Your stable internal identifier for this participant |
-| `session_token` | string | No | Socure [Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md) token — strongly recommended |
+| `session_token` | string | No | Socure [Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md) token — strongly recommended |
 | `ip_address` | string | No | Participant's IP address |
 
 Response:
@@ -121,13 +121,13 @@ On success, the response includes the prefilled identity data:
 
 ## Step 3: Submit to verification
 
-Map the prefilled data into the standard [`POST /v1/kyc/start`](/partners/onboarding/kyc/verification-flow) request, collect the **full SSN** and agreement acceptance, and submit. Pass the prefill `externalId` as the request's `external_id` so the inquiry correlates end to end.
+Map the prefilled data into the standard [`POST /v1/kyc/start`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow) request, collect the **full SSN** and agreement acceptance, and submit. Pass the prefill `externalId` as the request's `external_id` so the inquiry correlates end to end.
 
 > [!WARNING]
 >
 > Prefill returns only the **last 4 digits** of the SSN. Collect the full SSN from the participant before calling `/v1/kyc/start`.
 
-From here the flow is exactly the [standard verification flow](/partners/onboarding/kyc/verification-flow.md) — same outcomes, decision matrix, and webhooks.
+From here the flow is exactly the [standard verification flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md) — same outcomes, decision matrix, and webhooks.
 
 ## Complete flow
 
@@ -154,7 +154,7 @@ sequenceDiagram
 
 ## Using gRPC
 
-Both steps are also available on `polymarket.us.kyc.v1.KYCAPI` with identical fields and semantics — see the [transport mapping](/partners/onboarding/kyc/overview.md#rest-and-grpc):
+Both steps are also available on `polymarket.us.kyc.v1.KYCAPI` with identical fields and semantics — see the [transport mapping](https://docs.polymarket.us/partners/onboarding/kyc/overview.md#rest-and-grpc):
 
 ```protobuf theme={null}
 // POST /v1/kyc/prefill ≡ KYCAPI/StartKYCPrefill
@@ -211,11 +211,11 @@ Allow up to 3 OTP attempts before requiring a new code, and rate-limit OTP reque
 
 ## Next steps
 
-> **[Verification Flow](/partners/onboarding/kyc/verification-flow.md)**
+> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
 >
 > Submit the (prefilled) data and handle each outcome.
 
-> **[Digital Intelligence](/partners/onboarding/kyc/digital-intelligence.md)**
+> **[Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)**
 >
 > Capture the `session_token` to lower your REVIEW rate.
 

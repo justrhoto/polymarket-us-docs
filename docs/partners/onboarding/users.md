@@ -25,11 +25,11 @@ When a Retail Participant completes KYC and is approved:
 2. A **trading account** is created for them.
 3. They can then be funded and trade.
 
-There is no separate "create user" or "create account" call. See the [KYC Verification Flow](/partners/onboarding/kyc/verification-flow.md) for the steps, and [Partner Funding](/partners/funding/overview.md) *(Beta)* for how participant trading is funded.
+There is no separate "create user" or "create account" call. See the [KYC Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md) for the steps, and [Partner Funding](https://docs.polymarket.us/partners/funding/overview.md) *(Beta)* for how participant trading is funded.
 
 > [!NOTE]
 >
-> **Terminology.** These docs use **Retail Participant** for the end user. In API payloads the underlying field names use `user`/`users`; treat those as the Retail Participant's trading identity. See the [Glossary](/partners/glossary.md).
+> **Terminology.** These docs use **Retail Participant** for the end user. In API payloads the underlying field names use `user`/`users`; treat those as the Retail Participant's trading identity. See the [Glossary](https://docs.polymarket.us/partners/glossary.md).
 
 ## Resolve who you can act for
 
@@ -37,11 +37,11 @@ You discover the identities available to your Firm with three endpoints from the
 
 | Endpoint | Use it to | API reference |
 | - | - | - |
-| `GET /v1/whoami` | Confirm your Firm identity and entitlements | [Get who am I ↗](/institutional/accounts/overview.md#endpoints) |
-| `GET /v1/users` | List the Retail Participants your Firm may act on behalf of | [List users ↗](/institutional/accounts/overview.md#endpoints) |
-| `GET /v1/accounts` | List the trading accounts you can access | [List accounts ↗](/institutional/accounts/overview.md#endpoints) |
+| `GET /v1/whoami` | Confirm your Firm identity and entitlements | [Get who am I ↗](https://docs.polymarket.us/institutional/accounts/overview.md#endpoints) |
+| `GET /v1/users` | List the Retail Participants your Firm may act on behalf of | [List users ↗](https://docs.polymarket.us/institutional/accounts/overview.md#endpoints) |
+| `GET /v1/accounts` | List the trading accounts you can access | [List accounts ↗](https://docs.polymarket.us/institutional/accounts/overview.md#endpoints) |
 
-For the account and identity **hierarchy** and entitlements model, see [Accounts & Identity](/trader-guide/accounts-identity.md).
+For the account and identity **hierarchy** and entitlements model, see [Accounts & Identity](https://docs.polymarket.us/trader-guide/accounts-identity.md).
 
 In partner usage, IDs of the form `firms/your-firm/users/participant-123` are the values you place in the **`x-participant-id`** header to act on behalf of a specific Retail Participant.
 
@@ -49,7 +49,7 @@ In partner usage, IDs of the form `firms/your-firm/users/participant-123` are th
 >
 > **`GET /v1/users` is a roster read, not your starting point.** It is account-scoped and requires an `x-participant-id` header itself, so it cannot be used to find your first participant ID.
 >
-> Each Retail Participant's ID is delivered to you when their KYC reaches `ACCEPT` — as `participantId` on the [`kyc.approved` webhook](/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](/partners/onboarding/kyc/verification-flow#check-status). That is the authoritative source; record it against your own user record as you onboard. Use `GET /v1/users` afterwards to reconcile or re-list the Retail Participants your Firm may act for.
+> Each Retail Participant's ID is delivered to you when their KYC reaches `ACCEPT` — as `participantId` on the [`kyc.approved` webhook](https://docs.polymarket.us/partners/onboarding/kyc/webhooks) or from [`GET /v1/kyc/status`](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow#check-status). That is the authoritative source; record it against your own user record as you onboard. Use `GET /v1/users` afterwards to reconcile or re-list the Retail Participants your Firm may act for.
 
 > [!NOTE]
 >
@@ -66,11 +66,11 @@ A Participant can have multiple accounts for different purposes (e.g., separate 
 
 ## Related guides
 
-* [Onboard Participants](/partners/onboarding/onboard-participants.md) — How KYC creates the Participant and Account
-* [Accounts & Identity](/trader-guide/accounts-identity.md) — The account and identity hierarchy
-* [KYC Verification](/partners/onboarding/kyc/overview.md) — Identity verification (provisions participants automatically)
-* [Accounts](/partners/onboarding/accounts.md) — List trading accounts
-* [Funding](/partners/funding/overview.md) — How participant trading is funded *(Beta)*
+* [Onboard Participants](https://docs.polymarket.us/partners/onboarding/onboard-participants.md) — How KYC creates the Participant and Account
+* [Accounts & Identity](https://docs.polymarket.us/trader-guide/accounts-identity.md) — The account and identity hierarchy
+* [KYC Verification](https://docs.polymarket.us/partners/onboarding/kyc/overview.md) — Identity verification (provisions participants automatically)
+* [Accounts](https://docs.polymarket.us/partners/onboarding/accounts.md) — List trading accounts
+* [Funding](https://docs.polymarket.us/partners/funding/overview.md) — How participant trading is funded *(Beta)*
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

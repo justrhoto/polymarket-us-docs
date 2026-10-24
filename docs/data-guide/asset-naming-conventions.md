@@ -75,7 +75,7 @@ Instruments combine product, event, and outcome:
 * `cpausp-gold-updown-15m-2026-10-22-1630z` - Gold Up/Down window (no additional outcome)
 * `cpagsp-silver-updown-1h-2026-10-22-1700z` - Silver Up/Down window (no additional outcome)
 
-Crypto identifiers are display identity only. Read the market type, window and strike from the `crypto_*` metadata documented in [Crypto Schema](/trader-guide/crypto-schema.md), never from the ID. The same holds for gold and silver: read the `metals_*` metadata documented in [Metals Schema](/trader-guide/metals-schema.md).
+Crypto identifiers are display identity only. Read the market type, window and strike from the `crypto_*` metadata documented in [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md), never from the ID. The same holds for gold and silver: read the `metals_*` metadata documented in [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
 
 ## Participant ID Format
 
@@ -244,7 +244,7 @@ All metadata fields available on instruments:
 | `outcome_type` | Outcome | Yes | String | `"moneyline"` | Outcome type |
 | `outcome_strike` | Outcome | Yes | String | `"ne"` | Strike value (participant abbreviation for moneyline, numeric for spreads/totals) |
 
-Crypto price instruments carry no participant fields. They add `crypto_market_type`, `crypto_horizon`, `interval_start`, `interval_end`, `price_to_beat`, `crypto_range_lower` / `crypto_range_upper`, `crypto_hit_direction` and `crypto_settlement_price`; see [Crypto Schema](/trader-guide/crypto-schema.md). Gold and silver instruments carry no participant fields and no `crypto_*` fields. They add `metals_market_type`, `metals_horizon`, `metals_asset_slug`, `metals_price_symbol`, `interval_start`, `interval_end`, `price_to_beat`, `metals_settlement_price` and `metals_next_window_start`; see [Metals Schema](/trader-guide/metals-schema.md).
+Crypto price instruments carry no participant fields. They add `crypto_market_type`, `crypto_horizon`, `interval_start`, `interval_end`, `price_to_beat`, `crypto_range_lower` / `crypto_range_upper`, `crypto_hit_direction` and `crypto_settlement_price`; see [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md). Gold and silver instruments carry no participant fields and no `crypto_*` fields. They add `metals_market_type`, `metals_horizon`, `metals_asset_slug`, `metals_price_symbol`, `interval_start`, `interval_end`, `price_to_beat`, `metals_settlement_price` and `metals_next_window_start`; see [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
 
 ### Attributes vs Metadata vs Event Attributes
 

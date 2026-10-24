@@ -10,7 +10,7 @@
 >
 > **BETA — SUBJECT TO CHANGE.** This capability is in beta and may change without notice.
 
-Your vendor fee is what you charge a Retail Participant for an order, per your agreement with them. On Polymarket US it follows a **declare → accrue → report → collect** lifecycle: the fee is *declared* when the order is placed, *recorded* against the order, *reported* to you daily, and *collected* periodically with a single [transfer](/partners/funding/transfers.md) per participant account. **No money moves for vendor fees at order time.**
+Your vendor fee is what you charge a Retail Participant for an order, per your agreement with them. On Polymarket US it follows a **declare → accrue → report → collect** lifecycle: the fee is *declared* when the order is placed, *recorded* against the order, *reported* to you daily, and *collected* periodically with a single [transfer](https://docs.polymarket.us/partners/funding/transfers.md) per participant account. **No money moves for vendor fees at order time.**
 
 ```mermaid theme={null}
 graph LR
@@ -21,7 +21,7 @@ graph LR
 
 ## Declaring the fee
 
-Every order you place through [`CreateVendorOrder`](/partners/orders/create-order) carries a `vendor_fee` — a **fixed USD amount you compute** per your agreement with the participant. Polymarket US validates that it is well-formed, non-negative, and allowed for your firm, then records the mapping *"this firm declared vendor fee \$X for order Y"*.
+Every order you place through [`CreateVendorOrder`](https://docs.polymarket.us/partners/orders/create-order) carries a `vendor_fee` — a **fixed USD amount you compute** per your agreement with the participant. Polymarket US validates that it is well-formed, non-negative, and allowed for your firm, then records the mapping *"this firm declared vendor fee \$X for order Y"*.
 
 > [!NOTE]
 >
@@ -45,7 +45,7 @@ and gate order submission on the *spendable* balance, so a participant can never
 
 ### Accrued fees are credit exposure
 
-Until collected, accrued fees are an unsecured receivable of your funding entity against the participant's account balance. If the participant's cash drops below the accrued amount — trading losses are the obvious path — the eventual `VENDOR_FEES` transfer will be [rejected for insufficient funds](/partners/funding/transfers.md#insufficient-funds). The platform does not underwrite this: **managing the exposure is your and your funding entity's responsibility.** The levers are the gate above (which prevents *spending* the earmarked cash but not *losing* it), collection frequency (daily collection minimizes the window), and your own fee policy for loss scenarios.
+Until collected, accrued fees are an unsecured receivable of your funding entity against the participant's account balance. If the participant's cash drops below the accrued amount — trading losses are the obvious path — the eventual `VENDOR_FEES` transfer will be [rejected for insufficient funds](https://docs.polymarket.us/partners/funding/transfers.md#insufficient-funds). The platform does not underwrite this: **managing the exposure is your and your funding entity's responsibility.** The levers are the gate above (which prevents *spending* the earmarked cash but not *losing* it), collection frequency (daily collection minimizes the window), and your own fee policy for loss scenarios.
 
 ## The Vendor Fees report
 
@@ -78,7 +78,7 @@ Because rows carry your `clord_id`, the order's state, and its trades, your fund
 
 ## Collecting the fees
 
-Collection is a standard [transfer](/partners/funding/transfers.md) with reason `VENDOR_FEES` — participant account → partner funding account:
+Collection is a standard [transfer](https://docs.polymarket.us/partners/funding/transfers.md) with reason `VENDOR_FEES` — participant account → partner funding account:
 
 1. **Ingest the report** (or close your own books — you declared every fee, so your accrual should match).
 2. **Reconcile** report totals against your funding entity's accrual; investigate any mismatch before collecting.
@@ -88,24 +88,24 @@ Rules and mechanics:
 
 * **At most once per day per participant account.** Weekly or monthly collection is fine — pick the cadence that suits your funding entity, but never collect more often than daily.
 * **One transfer per account per period** — never one per order or per fee.
-* **Pace scheduled runs** inside the transfer budget — an EOD collection across your whole participant base should drain through a rate-limited queue, not fire simultaneously. See [rate limits and smoothing](/partners/funding/transfers.md#rate-limits-and-smoothing).
+* **Pace scheduled runs** inside the transfer budget — an EOD collection across your whole participant base should drain through a rate-limited queue, not fire simultaneously. See [rate limits and smoothing](https://docs.polymarket.us/partners/funding/transfers.md#rate-limits-and-smoothing).
 * **Handle rejection**: an insufficient-funds rejection means the participant's free cash no longer covers the accrual — resolve per your participant agreement, then re-collect what is collectable.
 
 ## Related pages
 
-> **[Create Order](/partners/orders/create-order.md)**
+> **[Create Order](https://docs.polymarket.us/partners/orders/create-order.md)**
 >
 > Where the fee is declared.
 
-> **[Transfers](/partners/funding/transfers.md)**
+> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
 >
 > The API that executes collection.
 
-> **[Partner Funding Overview](/partners/funding/overview.md)**
+> **[Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)**
 >
 > The full money-flow model.
 
-> **[Reconciliation](/partners/reconciliation.md)**
+> **[Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)**
 >
 > Keeping your books in sync with the ledger.
 

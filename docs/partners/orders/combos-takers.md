@@ -6,9 +6,9 @@
 
 > Decode, size, reconcile, and settle combo trades as an RFQ requester
 
-This page answers the questions requesters most often ask when they integrate combos. For the maker workflow and quote rules, see the [Combos/RFQ guide](/trader-guide/combos.md). For how payouts work from a user's point of view, see the [Combos FAQs](/faqs/combos-faqs.md).
+This page answers the questions requesters most often ask when they integrate combos. For the maker workflow and quote rules, see the [Combos/RFQ guide](https://docs.polymarket.us/trader-guide/combos.md). For how payouts work from a user's point of view, see the [Combos FAQs](https://docs.polymarket.us/faqs/combos-faqs.md).
 
-Combos and RFQs behave the same through the [Institutional API](/institutional/combos/overview.md) and the [Retail API](/api-reference/combos/overview.md). Validation, sizing, fees, and order handling do not depend on which one you use.
+Combos and RFQs behave the same through the [Institutional API](https://docs.polymarket.us/institutional/combos/overview.md) and the [Retail API](https://docs.polymarket.us/api-reference/combos/overview.md). Validation, sizing, fees, and order handling do not depend on which one you use.
 
 Treat a combo symbol as opaque. Existing combos use `caoc-...` and new combos use `crossd-...`.
 
@@ -29,7 +29,7 @@ cumulative contracts     = cum_qty / fractional_quantity_scale
 commission ($)           = commission_notional_collected / (price_scale × fractional_quantity_scale)
 ```
 
-Do not hard-code combo scales. Combos created at different times carry different price scales, and `GetCombos` does not return a scale. Decode with the values on the order. To look up a combo's price scale before it trades, use [`GET /v1/instruments/{symbol}/settlement`](/institutional/settlement/overview), which returns `priceScale` for any exact symbol, including combos. See [Fees on execution reports](/partners/orders/data-model.md#fees-on-execution-reports) for a worked example.
+Do not hard-code combo scales. Combos created at different times carry different price scales, and `GetCombos` does not return a scale. Decode with the values on the order. To look up a combo's price scale before it trades, use [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which returns `priceScale` for any exact symbol, including combos. See [Fees on execution reports](https://docs.polymarket.us/partners/orders/data-model.md#fees-on-execution-reports) for a worked example.
 
 ## Cash RFQs and Fees
 
@@ -41,7 +41,7 @@ Yes. For a cash RFQ on a combo, each quoted side is sized to the largest contrac
 contracts × cost per contract + combo taker fee ≤ cashOrderQty
 ```
 
-The cost per contract is the price for a requester buy and `1 − price` for a requester sell. The fee is the [combo taker fee](/fees.md#combo-taker-fees) for that quantity, rounded to the cent the same way the exchange charges it. For a sell, the fee curve is evaluated at `1 − price`.
+The cost per contract is the price for a requester buy and `1 − price` for a requester sell. The fee is the [combo taker fee](https://docs.polymarket.us/fees.md#combo-taker-fees) for that quantity, rounded to the cent the same way the exchange charges it. For a sell, the fee curve is evaluated at `1 − price`.
 
 For example, a \$10.00 cash RFQ quoted to buy at `0.1296` sizes to 70.44 contracts:
 
@@ -53,7 +53,7 @@ For example, a \$10.00 cash RFQ quoted to buy at `0.1296` sizes to 70.44 contrac
 
 70.45 contracts would cost more than \$10.00.
 
-Use the `buyQtyDecimal` and `sellQtyDecimal` reported on the quote instead of recomputing them. The fee actually charged is reported per fill in `commission_notional_collected`. [Taker rebates](/fees.md#taker-rebate-tiers-from-october-19) are paid weekly and do not change the fee charged on the fill.
+Use the `buyQtyDecimal` and `sellQtyDecimal` reported on the quote instead of recomputing them. The fee actually charged is reported per fill in `commission_notional_collected`. [Taker rebates](https://docs.polymarket.us/fees.md#taker-rebate-tiers-from-october-19) are paid weekly and do not change the fee charged on the fill.
 
 ## RFQ Orders on Drop Copy
 
@@ -88,12 +88,12 @@ With `restRemainder: true`, any unfilled quantity rests on the book as a good-ti
 
 **How does a combo settle?**
 
-A combo settles on its own symbol, the same way a regular instrument does, and its settlement price is published on that symbol. Read it with [`GET /v1/instruments/{symbol}/settlement`](/institutional/settlement/overview), which also returns the combo's `priceScale`. The legs keep their own settlements. Each leg's value is:
+A combo settles on its own symbol, the same way a regular instrument does, and its settlement price is published on that symbol. Read it with [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which also returns the combo's `priceScale`. The legs keep their own settlements. Each leg's value is:
 
 * its settlement price for a `SIDE_BUY` leg
 * `1 − settlement price` for a `SIDE_SELL` leg
 
-The combo settles at the product of those values. A leg that cannot resolve settles at its last fair market price, and the combo's value is multiplied by that price. See the [Combos FAQs](/faqs/combos-faqs.md#how-does-the-payout-work-out-in-practice) for worked examples.
+The combo settles at the product of those values. A leg that cannot resolve settles at its last fair market price, and the combo's value is multiplied by that price. See the [Combos FAQs](https://docs.polymarket.us/faqs/combos-faqs.md#how-does-the-payout-work-out-in-practice) for worked examples.
 
 **Does a combo settle as soon as one leg loses?**
 
@@ -101,7 +101,7 @@ Yes. Once any leg settles against its side, the combo's value is fixed at \$0, a
 
 **Do combo positions appear in account positions?**
 
-Yes. A combo position is reported under its combo symbol through the [Positions API](/trader-guide/positions-risk.md), like any other instrument.
+Yes. A combo position is reported under its combo symbol through the [Positions API](https://docs.polymarket.us/trader-guide/positions-risk.md), like any other instrument.
 
 ## Leg Combinations
 
@@ -126,7 +126,7 @@ These rejections return `INVALID_ARGUMENT` (HTTP `400`) with a message describin
 | `legs[i] is already covered by legs[j]` | One leg implies another. Remove the redundant leg. |
 | `legs[i] and legs[j] share symbol` | Duplicate symbol. |
 
-Separately, `RESOURCE_EXHAUSTED` with `weekly combo creation limit reached` means your participant has used its [weekly combo creation quota](/institutional/combos/overview.md).
+Separately, `RESOURCE_EXHAUSTED` with `weekly combo creation limit reached` means your participant has used its [weekly combo creation quota](https://docs.polymarket.us/institutional/combos/overview.md).
 
 **Is there a way to validate legs before creating a combo?**
 
@@ -134,19 +134,19 @@ Not currently. Call `CreateCombo` and handle `INVALID_ARGUMENT`. Creating a comb
 
 ## Related Documentation
 
-> **[Combos/RFQ Guide](/trader-guide/combos.md)**
+> **[Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)**
 >
 > Maker workflow, quote rules, and last look
 
-> **[RFQ API](/institutional/rfqs/overview.md)**
+> **[RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)**
 >
 > RFQ and quote REST and unary gRPC contract
 
-> **[Fee Schedule](/fees.md#combo-taker-fees)**
+> **[Fee Schedule](https://docs.polymarket.us/fees.md#combo-taker-fees)**
 >
 > Combo taker fee curve and rounding
 
-> **[Drop Copy](/streaming-endpoints/dropcopy-stream.md)**
+> **[Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
 >
 > Exchange order and fill reconciliation
 

@@ -20,7 +20,7 @@ There are no 5-minute windows, and no Above/Below, Price Range or One-Touch mark
 
 > [!NOTE]
 >
-> Gold and silver Up/Down windows are listed in production from October 22, 2026, as announced in the [changelog](/changelog.md). For the fields that identify each market, see [Metals Schema](/trader-guide/metals-schema.md).
+> Gold and silver Up/Down windows are listed in production from October 22, 2026, as announced in the [changelog](https://docs.polymarket.us/changelog.md). For the fields that identify each market, see [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
 
 ### How are gold and silver contracts settled?
 
@@ -81,7 +81,7 @@ Holiday closures scheduled today. This is the exchange's listing calendar for go
 | November 11, 2027 | Veterans' Day |
 | November 25, 2027 | Thanksgiving |
 
-On an early-close day, 15-minute and 1-hour windows end by the early close, and no daily window is listed for that session. None are scheduled today. Changes to the calendar are announced in the [changelog](/changelog.md).
+On an early-close day, 15-minute and 1-hour windows end by the early close, and no daily window is listed for that session. None are scheduled today. Changes to the calendar are announced in the [changelog](https://docs.polymarket.us/changelog.md).
 
 ### How do I know when the next window opens?
 
@@ -89,7 +89,7 @@ Every window carries the start of the next window of the same length: `metals_ne
 
 ### What happens during scheduled maintenance?
 
-15-minute and 1-hour windows that would overlap a scheduled exchange maintenance are not listed. Daily windows are unaffected and are listed as usual. See [Trading Hours](/learn/trading/access-and-limits/trading-hours.md) for the recurring maintenance window.
+15-minute and 1-hour windows that would overlap a scheduled exchange maintenance are not listed. Daily windows are unaffected and are listed as usual. See [Trading Hours](https://docs.polymarket.us/learn/trading/access-and-limits/trading-hours.md) for the recurring maintenance window.
 
 ## Market Families
 
@@ -107,11 +107,11 @@ Each daily window runs from the 6:15 PM ET evening open to 5:00 PM ET the next d
 
 ### How do I find gold and silver markets on the Retail API?
 
-Filter by category, `GET /v1/markets?categories=finance&closed=false`, then select markets whose `assetPriceTerms.asset.assetClass` is `ASSET_CLASS_COMMODITY`. `closed=false` returns only the window that is trading now in each series. Upcoming windows are listed as closed until they start, so request them without `closed=false`, or by slug. Their events use the series `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-updown-15m`, `silver-updown-1h` and `silver-updown-1d`. Each market carries a typed `assetPriceTerms` object with the window, the price to beat and, once known, the settlement price. See [Asset Price Market Fields](/api-reference/market/overview.md#asset-price-market-fields). Spot price history is available from `GET /v1/asset-prices/history` with `commodity:gold` or `commodity:silver`, the same endpoint as crypto and with no authentication; see [Asset Prices](/api-reference/asset-prices/overview.md).
+Filter by category, `GET /v1/markets?categories=finance&closed=false`, then select markets whose `assetPriceTerms.asset.assetClass` is `ASSET_CLASS_COMMODITY`. `closed=false` returns only the window that is trading now in each series. Upcoming windows are listed as closed until they start, so request them without `closed=false`, or by slug. Their events use the series `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-updown-15m`, `silver-updown-1h` and `silver-updown-1d`. Each market carries a typed `assetPriceTerms` object with the window, the price to beat and, once known, the settlement price. See [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields). Spot price history is available from `GET /v1/asset-prices/history` with `commodity:gold` or `commodity:silver`, the same endpoint as crypto and with no authentication; see [Asset Prices](https://docs.polymarket.us/api-reference/asset-prices/overview.md).
 
 ### How do I find gold and silver instruments on the Institutional API?
 
-Filter reference data by clearing symbol: `POST /v1/refdata/instruments` with `{"clearingSym": "CPAUSP-COMMODITY"}` for gold or `{"clearingSym": "CPAGSP-COMMODITY"}` for silver, or by series such as `{"eventSeries": "gold-updown-15m"}`. Identify the market from `metals_market_type` and the other fields documented in [Metals Schema](/trader-guide/metals-schema.md). Never parse the symbol.
+Filter reference data by clearing symbol: `POST /v1/refdata/instruments` with `{"clearingSym": "CPAUSP-COMMODITY"}` for gold or `{"clearingSym": "CPAGSP-COMMODITY"}` for silver, or by series such as `{"eventSeries": "gold-updown-15m"}`. Identify the market from `metals_market_type` and the other fields documented in [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md). Never parse the symbol.
 
 The reference data list is served from a cache, so a newly stamped `price_to_beat` or `metals_settlement_price` can take up to an hour to appear there. Read fresh prices from the Retail market endpoints, and the final settlement from `GET /v1/instruments/{symbol}/settlement`.
 

@@ -10,7 +10,7 @@
 >
 > **Prefer Streaming for Production Use**
 >
-> This polling API is subject to rate limits. For production applications that need continuous market data, use the [gRPC Market Data Stream](/streaming-endpoints/market-data-stream.md) instead. The streaming API provides real-time updates with lower latency and no rate limit concerns.
+> This polling API is subject to rate limits. For production applications that need continuous market data, use the [gRPC Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) instead. The streaming API provides real-time updates with lower latency and no rate limit concerns.
 
 ## Endpoints
 
@@ -128,9 +128,9 @@ curl -X GET "https://api.preprod.polymarketexchange.com/v1/orderbook/tec-nfl-sbw
 
 | Use Case | Recommended API |
 | - | - |
-| Continuous market data feed | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream.md) |
+| Continuous market data feed | [gRPC Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) |
 | One-time snapshot for display | REST Order Book (this API) |
-| Building a trading UI | [gRPC Market Data Stream](/streaming-endpoints/market-data-stream.md) |
+| Building a trading UI | [gRPC Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) |
 | Quick price check | REST BBO endpoint |
 
 > [!TIP]

@@ -40,7 +40,7 @@ Rules specify **when** the outcome is evaluated.
 
 ## Resolution Sources
 
-Rules list the **official sources** used to confirm the outcome. Some contracts also have backup sources that can be used if a listed source is unavailable (for sports markets, see the [Sports FAQs](/faqs/sports-faqs.md)).
+Rules list the **official sources** used to confirm the outcome. Some contracts also have backup sources that can be used if a listed source is unavailable (for sports markets, see the [Sports FAQs](https://docs.polymarket.us/faqs/sports-faqs.md)).
 
 **Examples**
 

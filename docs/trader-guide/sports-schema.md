@@ -499,7 +499,7 @@ To safely interpret this contract:
 * **Never parse the symbol or slug** to determine market type, period, or handicap. Symbol formats are not part of the public contract.
 * **Map on `market_sport_type` alone.** It is guaranteed on every instrument — full-game, sub-period, and prop alike — and fully identifies the market. `outcome_type` is still present on the instrument, but **do not rely on it for mapping** (it is subject to change); the sole exception is futures, which carry no `market_sport_type` and are identified by `outcome_type = "futures"`.
 * **Treat `outcome_strike` as a string** in client code and convert to your numeric type. The value is unsigned — the spread direction is determined by `long_participant_id`.
-* **Cache and version your enum mappings.** New `market_sport_type` values are announced in the [changelog](/changelog.md) and rolled out in preprod before production. Subscribe to the RSS feed to be notified before new enums appear in production. An instrument can carry a value that is not yet in this inventory: treat an unknown value as a prop, fall back to `outcome_type` for its structure, and watch the changelog for the new value.
+* **Cache and version your enum mappings.** New `market_sport_type` values are announced in the [changelog](https://docs.polymarket.us/changelog.md) and rolled out in preprod before production. Subscribe to the RSS feed to be notified before new enums appear in production. An instrument can carry a value that is not yet in this inventory: treat an unknown value as a prop, fall back to `outcome_type` for its structure, and watch the changelog for the new value.
 * **Subscribe to instrument updates** via the streaming APIs to catch new instruments as they are listed.
 
 

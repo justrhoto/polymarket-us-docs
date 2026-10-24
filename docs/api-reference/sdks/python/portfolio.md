@@ -112,7 +112,7 @@ for act in activities["activities"]:
 
 > [!TIP]
 >
-> For real-time position updates, use the [WebSocket](/api-reference/sdks/python/websocket.md) with `SUBSCRIPTION_TYPE_POSITION` instead of polling.
+> For real-time position updates, use the [WebSocket](https://docs.polymarket.us/api-reference/sdks/python/websocket.md) with `SUBSCRIPTION_TYPE_POSITION` instead of polling.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

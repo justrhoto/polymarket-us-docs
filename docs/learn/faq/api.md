@@ -4,7 +4,7 @@
 
 # Does Polymarket have an API?
 
-Yes. Polymarket US provides a Retail API with documentation for market data, orders, portfolio, and related endpoints, plus Python and TypeScript SDKs. See the [API Reference](/api-reference/introduction.md) on this site to get started.
+Yes. Polymarket US provides a Retail API with documentation for market data, orders, portfolio, and related endpoints, plus Python and TypeScript SDKs. See the [API Reference](https://docs.polymarket.us/api-reference/introduction.md) on this site to get started.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

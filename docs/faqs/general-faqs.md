@@ -45,7 +45,7 @@ On the Institutional REST and gRPC APIs, quantities and prices are transmitted a
 * **Quantities** — divide by `fractionalQtyScale`. For example, with `fractionalQtyScale = 100`, an integer quantity of `100` is `1` whole share, and `1` is `0.01` of a share (1% of a contract).
 * **Prices** — divide by `priceScale`. For example, with `priceScale = 100`, an integer price of `50` is `$0.50`.
 
-Both `fractionalQtyScale` and `priceScale` are returned per instrument in [reference data](/institutional/refdata/overview.md). Always read them from the instrument before submitting or interpreting orders — do not assume a fixed scale across instruments. Note that `int64` fields like `priceScale` and `fractionalQtyScale` are serialized as **strings** in JSON, so parse them as numbers in your client.
+Both `fractionalQtyScale` and `priceScale` are returned per instrument in [reference data](https://docs.polymarket.us/institutional/refdata/overview.md). Always read them from the instrument before submitting or interpreting orders — do not assume a fixed scale across instruments. Note that `int64` fields like `priceScale` and `fractionalQtyScale` are serialized as **strings** in JSON, so parse them as numbers in your client.
 
 > [!NOTE]
 >

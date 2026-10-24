@@ -55,7 +55,7 @@ service MarketDataSubscriptionAPI {
 
 > [!WARNING]
 >
-> **Symbol Limit**: Each gRPC stream is limited to **1000 symbols maximum**. If you need more than 1000 symbols, prefer `symbols=[]` (full universe) or one [bidirectional](#bidirectional-streaming) stream — extra `CreateMarketDataSubscription` streams count against the **20** concurrent-stream budget. Do not burst-open tens of streams. See [Streaming Best Practices](/streaming-endpoints/streaming-best-practices.md).
+> **Symbol Limit**: Each gRPC stream is limited to **1000 symbols maximum**. If you need more than 1000 symbols, prefer `symbols=[]` (full universe) or one [bidirectional](#bidirectional-streaming) stream — extra `CreateMarketDataSubscription` streams count against the **20** concurrent-stream budget. Do not burst-open tens of streams. See [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md).
 
 ### Example Request
 
@@ -743,15 +743,15 @@ func sendKeepalives(stream polymarketv1.MarketDataSubscriptionAPI_BiDirectionalS
 
 ## Next Steps
 
-> **[Order Streaming](/streaming-endpoints/order-stream.md)**
+> **[Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
 >
 > Subscribe to order execution updates
 
-> **[Proto Reference](/streaming-endpoints/proto-reference.md)**
+> **[Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)**
 >
 > Detailed protocol buffer reference
 
-> **[Error Handling](/streaming-endpoints/error-handling.md)**
+> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
 >
 > Handle errors and reconnections
 

@@ -130,7 +130,7 @@ elif response.HasField('update'):
 
 ## Instrument Settlement
 
-Read an instrument's final settlement price, including after termination. Requires the `read:marketdata` scope and the existing [gRPC authentication](/streaming-endpoints/authentication.md).
+Read an instrument's final settlement price, including after termination. Requires the `read:marketdata` scope and the existing [gRPC authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md).
 
 ### SettlementService
 
@@ -168,7 +168,7 @@ The latest record controls the result, so later reads can reflect corrections. A
 
 ### Python Usage
 
-Use the authenticated `channel` and `metadata` from the [gRPC overview](/grpc-api/overview.md#authentication), and set `symbol` to the instrument to read.
+Use the authenticated `channel` and `metadata` from the [gRPC overview](https://docs.polymarket.us/grpc-api/overview.md#authentication), and set `symbol` to the instrument to read.
 
 ```python theme={null}
 from decimal import Decimal
@@ -190,7 +190,7 @@ else:
     print(response.symbol, "no final settlement available")
 ```
 
-REST equivalent: [`GET /v1/instruments/{symbol}/settlement`](/institutional/settlement/overview), using the same token and scope.
+REST equivalent: [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), using the same token and scope.
 
 ***
 
@@ -249,7 +249,7 @@ elif response.HasField('update'):
 
 ## RFQ Events Streaming
 
-The proto bundle includes `RFQAPI.GetRFQTrades` and `StreamRFQEventsResponse.rfq_trade` (field 15). See [RFQ trade history](/institutional/rfqs/overview.md#query-rfq-trades) and the [RFQ event stream](/streaming-endpoints/rfq-events-stream.md#rfqtrade) for usage.
+The proto bundle includes `RFQAPI.GetRFQTrades` and `StreamRFQEventsResponse.rfq_trade` (field 15). See [RFQ trade history](https://docs.polymarket.us/institutional/rfqs/overview.md#query-rfq-trades) and the [RFQ event stream](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md#rfqtrade) for usage.
 
 ### ComboAPI and RFQAPI Services
 
@@ -314,7 +314,7 @@ Each `StreamRFQEventsResponse` has one `event` payload:
 | `quote_executed` | Both exchange orders were accepted for submission. |
 | `rfq_trade` | An anonymous original fill on an RFQ-originated order. |
 
-For request/response field detail and a Python example, see [RFQ Events Streaming](/streaming-endpoints/rfq-events-stream.md).
+For request/response field detail and a Python example, see [RFQ Events Streaming](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md).
 
 ***
 
@@ -346,7 +346,7 @@ service FundingAPI {
 | `entry_types` | `list[LedgerEntryType]` | Optional. Filter by allowlisted entry types. |
 | `resume_time` | `Timestamp` | Optional. Replay entries with `update_time >= resume_time`. Clamped to `2026-05-01T00:00:00Z`. |
 
-For full request/response field detail and a Python example, see [Balance Ledger Streaming](/streaming-endpoints/balance-ledger-stream.md).
+For full request/response field detail and a Python example, see [Balance Ledger Streaming](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md).
 
 ***
 
@@ -441,7 +441,7 @@ For full request/response field detail and a Python example, see [Balance Ledger
 
 ### LedgerEntryType
 
-Used by `CreateBalanceLedgerSubscription` and the [Balance Ledger REST endpoints](/institutional/funding/overview.md). Only the **allowed** values are returned to clients; suppressed values are filtered server-side.
+Used by `CreateBalanceLedgerSubscription` and the [Balance Ledger REST endpoints](https://docs.polymarket.us/institutional/funding/overview.md). Only the **allowed** values are returned to clients; suppressed values are filtered server-side.
 
 #### Allowed
 
@@ -495,15 +495,15 @@ Requesting a suppressed value in `entry_types` returns `Aborted` (HTTP `409`).
 
 ## Next Steps
 
-> **[Market Data Stream](/streaming-endpoints/market-data-stream.md)**
+> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
 >
 > Learn about market data streaming
 
-> **[Order Stream](/streaming-endpoints/order-stream.md)**
+> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
 >
 > Learn about order streaming
 
-> **[Error Handling](/streaming-endpoints/error-handling.md)**
+> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
 >
 > Handle errors and reconnections
 
