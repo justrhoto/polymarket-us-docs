@@ -12,6 +12,16 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 * Add the feed to any RSS reader: `https://docs.polymarket.us/notices-and-filings/rss.xml`
 
+**October 26, 2026**
+
+[Amended Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.10.26\).pdf)
+
+[Amended Deposit and Trading Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20and%20Trading%20Incentive%20Program%20\(2026.10.26\).pdf)
+
+[Amended Refer-A-Friend Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Refer-A-Friend%20Incentive%20Program%20\(2026.10.26\).pdf)
+
+[Amended Sequential Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Sequential%20Incentive%20Program%20\(2026.10.26\).pdf)
+
 **October 23, 2026**
 
 [Amendment to Taker and Maker Rebate Tiers](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amendment%20to%20Taker%20and%20Maker%20Rebate%20Tiers%20\(2026.10.23\).pdf)
