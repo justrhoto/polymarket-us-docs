@@ -109,7 +109,7 @@ The relevant fields:
 
 For standard trades, the dollar amount reconciles with the [fee schedule](https://docs.polymarket.us/fees.md) formula `Fee = Θ × C × p × (1 − p)` — where `C` is **contracts** (not raw `order_qty` units) and `p` is the **decimal** price — rounded to \$0.01.
 
-Combo taker fees instead use `Fee = C × p × [0.0695 × (1 − p) + 0.04 × (1 − p)^4]`, with the same definitions of `C` and `p`. Apply the combo curve to the combo execution as a whole, not separately to its component legs.
+Combo taker fees instead use `Fee = C × p × [0.0695 × (1 − p) + 0.06 × (1 − p)^4]`, with the same definitions of `C` and `p`. Apply the combo curve to the combo execution as a whole, not separately to its component legs.
 
 > [!WARNING]
 >

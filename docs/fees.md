@@ -6,6 +6,12 @@
 
 > Trading fee schedule, rebates, and examples
 
+> [!WARNING]
+>
+> **Upcoming combo fee change.** Effective exchange-wide at 10:00 PM ET, Wednesday, October 28, 2026, the coefficient on the `(1 - p)^4` term of the combo taker fee curve increases from `0.06` to `0.085`: `Fee = C × p × [0.0695 × (1 - p) + 0.085 × (1 - p)^4]`. The `0.0695` term is unchanged.
+>
+> The [combo formula, schedule, and examples](#combo-taker-fees) below reflect the current `0.06` coefficient. This page will be updated when the new curve takes effect.
+
 > [!NOTE]
 >
 > Effective exchange-wide from 1:00 PM ET, Monday, October 19, 2026.
@@ -261,6 +267,10 @@ The same trade as Example 5, in a Table Tennis market. The taker pays the higher
 * **Seller (maker, Tier 4):** 0.0104 × 1,000 × 0.50 × 0.50 = **+\$2.60**
 
 ## Combo Taker Fees
+
+> [!NOTE]
+>
+> From 10:00 PM ET, Wednesday, October 28, 2026, the `(1 - p)^4` coefficient becomes `0.085`. The formula, schedule, and examples in this section use the current `0.06` until then.
 
 The taker side of a combo trade uses a separate fee curve:
 
