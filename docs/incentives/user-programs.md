@@ -71,25 +71,17 @@ A Participant qualifies only for the campaign presented to them.
 
 Active campaigns:
 
-| Campaign | Eligible Participants | Campaign Period | Qualifying Deposit | Incentive Credit |
-| - | - | - | - | - |
-| Campaign A | Last trade before September 7, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$250 | Receive \$250 |
-| Campaign B | Last trade before September 7, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$100 | Receive \$100 |
-| Campaign C | Last trade before September 7, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$25 | Receive \$25 |
-| Campaign D | Last trade before September 7, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$10 | Receive \$10 |
-| Campaign E | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$250 | Receive \$100 |
-| Campaign F | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$100 | Receive \$50 |
-| Campaign G | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$25 | Receive \$15 |
-| Campaign H | Last trade from September 7 through September 30, 2026 and last deposit before October 1, 2026 | October 19 to October 25, 2026 | Deposit at least \$15 | Receive \$10 |
-
-The following campaigns are also live:
-
 | Campaign | Qualifying Deposit | Incentive Credit |
 | - | - | - |
-| Campaign L | Deposit at least \$1,000 | Receive \$250 |
-| Campaign M | Deposit at least \$500 | Receive \$100 |
-| Campaign N | Deposit at least \$100 | Receive \$25 |
-| Campaign O | Deposit at least \$50 | Receive \$10 |
+| Campaign A | Deposit at least \$1,000 | Receive \$250 |
+| Campaign B | Deposit at least \$500 | Receive \$100 |
+| Campaign C | Deposit at least \$100 | Receive \$25 |
+| Campaign D | Deposit at least \$50 | Receive \$10 |
+| Campaign E | Deposit at least \$250 | Receive \$250 |
+| Campaign F | Deposit at least \$100 | Receive \$100 |
+| Campaign G | Deposit at least \$50 | Receive \$50 |
+| Campaign H | Deposit at least \$25 | Receive \$25 |
+| Campaign I | Deposit at least \$10 | Receive \$10 |
 
 Participants are eligible for a campaign based on their prior deposit and trading activity.
 
