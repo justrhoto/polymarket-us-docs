@@ -556,15 +556,15 @@ Snapshot only: False
 
 ## Next Steps
 
-> **[Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)**
+> [card] [Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)
 >
 > Detailed message and field reference
 
-> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
+> [card] [Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
 >
 > Handle errors and reconnections
 
-> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Stream real-time market data
 

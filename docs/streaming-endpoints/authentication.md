@@ -240,19 +240,19 @@ You can rotate your keys without downtime:
 
 ## Next Steps
 
-> **[Authentication Setup](https://docs.polymarket.us/trader-guide/authentication.md)**
+> [card] [Authentication Setup](https://docs.polymarket.us/trader-guide/authentication.md)
 >
 > Complete onboarding guide with key generation
 
-> **[Market Data Streaming](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Streaming](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Learn how to stream market data
 
-> **[Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Subscribe to order updates
 
-> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
+> [card] [Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
 >
 > Handle errors and implement reconnection
 

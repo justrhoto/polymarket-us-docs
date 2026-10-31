@@ -161,15 +161,15 @@ The partner funding APIs are **gRPC-only**. Connection and authentication follow
 
 Every cash event — deposits, withdrawals, vendor fee collections, fills, exchange fees, settlement credits — is visible on the account's cash ledger. Use the standard surfaces to keep your books and your funding entity's records in sync:
 
-> **[Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)**
+> [card] [Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)
 >
 > Real-time balance impact of every cash event, with replay.
 
-> **[Funding Stream](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)**
+> [card] [Funding Stream](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)
 >
 > Funding transaction state changes.
 
-> **[Drop Copy Stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
+> [card] [Drop Copy Stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)
 >
 > Firm-wide execution reports for placed orders.
 
@@ -177,19 +177,19 @@ See [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md) for 
 
 ## Next steps
 
-> **[Deposits & Withdrawals](https://docs.polymarket.us/partners/funding/deposits-withdrawals.md)**
+> [card] [Deposits & Withdrawals](https://docs.polymarket.us/partners/funding/deposits-withdrawals.md)
 >
 > Mirror wallet allocations into on-platform buying power.
 
-> **[Vendor Fees](https://docs.polymarket.us/partners/funding/vendor-fees.md)**
+> [card] [Vendor Fees](https://docs.polymarket.us/partners/funding/vendor-fees.md)
 >
 > Declare fees per order, track accrual, collect daily.
 
-> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
+> [card] [Transfers](https://docs.polymarket.us/partners/funding/transfers.md)
 >
 > The transfer API — reasons, direction locks, rate limits.
 
-> **[Create Order](https://docs.polymarket.us/partners/orders/create-order.md)**
+> [card] [Create Order](https://docs.polymarket.us/partners/orders/create-order.md)
 >
 > Place an order with a declared vendor fee.
 

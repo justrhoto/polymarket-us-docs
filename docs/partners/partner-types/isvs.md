@@ -14,7 +14,7 @@ Independent Software Vendors (ISVs) provide the software experience for retail t
 
 ## Overview
 
-> **[ISV Connectivity Agreement](https://drive.google.com/uc?export=download\&id=1cKsp4HrXEfU6_tduZxojXlbrB008YsB9)**
+> [card] [ISV Connectivity Agreement](https://drive.google.com/uc?export=download\&id=1cKsp4HrXEfU6_tduZxojXlbrB008YsB9)
 >
 > Download the ISV Connectivity Agreement for Polymarket Exchange
 
@@ -32,11 +32,11 @@ Users must review and accept the terms before beginning KYC verification.
 
 ISVs use the same end-to-end workflow as all partners. Rather than repeat it here, follow the [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md) — it covers onboarding, authentication, KYC, funding, trading, and monitoring in order.
 
-> **[Your Role](https://docs.polymarket.us/partners/your-role.md)**
+> [card] [Your Role](https://docs.polymarket.us/partners/your-role.md)
 >
 > What you do, what Polymarket US does, and what you never handle.
 
-> **[Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)**
+> [card] [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)
 >
 > The recommended order to build your integration.
 

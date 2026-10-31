@@ -6,7 +6,7 @@
 
 > Execution tape with time, price, size, and symbol
 
-> **[Download Time & Sales Reports](https://www.polymarketexchange.com/time-and-sales.html)**
+> [card] [Download Time & Sales Reports](https://www.polymarketexchange.com/time-and-sales.html)
 >
 > Access historical Time & Sales Reports on polymarketexchange.com
 

@@ -16,15 +16,15 @@ gRPC streams on Polymarket US are **long-lived connections**. Open the stream, k
 >
 > Do not put a 5–10 second deadline on a streaming RPC. Do not open one Drop Copy stream per order. The request has no order id.
 
-> **One Drop Copy**
+> [card] One Drop Copy
 >
 > Empty `symbols` is the whole firm. One leader-elected consumer per environment.
 
-> **Commit, then resume**
+> [card] Commit, then resume
 >
 > Persist `resume_token` only after every execution in that batch is durable. Dedup on `execution.id`.
 
-> **20 streams total**
+> [card] 20 streams total
 >
 > The 20 concurrent-stream budget is pooled across **all** gRPC subscriptions, not 20 per RPC.
 
@@ -76,13 +76,13 @@ flowchart TD
   G --> H[Persist token after each applied batch]
 ```
 
-> **What goes wrong**
+> [accordion] What goes wrong
 >
 > A behind `resume_token` is normal after a restart. The server replays from that point up to live. Replay can take longer than a few seconds.
 >
 > If the client sets a short RPC deadline, or a 10-second “no message means dead” timer that fires during replay, it cancels the stream. The next connect uses the same behind token. Replay starts over. You never reach live, and the exchange keeps replaying.
 
-> **What to do instead**
+> [accordion] What to do instead
 >
 > 1. Open **one** Drop Copy stream with `symbols=[]`.
 > 2. Do **not** set a per-RPC timeout of a few seconds.
@@ -108,35 +108,35 @@ The stream sends no explicit caught-up message. Use this heuristic:
 
 ## Do / don't
 
-**Drop Copy**
+> [tab] Drop Copy
+>
+> | Do | Don't |
+> | - | - |
+> | One long-lived `CreateDropCopySubscription` per environment | One stream per order, per user, or per pod |
+> | `symbols=[]` for the firm | Fan out a stream per symbol “to go faster” |
+> | Persist `resume_token` **after** durable apply | Persist the token, then crash before apply |
+> | Dedup on `execution.id` | Assume exactly-once delivery |
+> | Reconnect only after the TCP/gRPC stream actually died | Cancel at 5–10s and open again |
+> | Leader-elect if you run many replicas | Every replica opens the same stream |
 
-| Do | Don't |
-| - | - |
-| One long-lived `CreateDropCopySubscription` per environment | One stream per order, per user, or per pod |
-| `symbols=[]` for the firm | Fan out a stream per symbol “to go faster” |
-| Persist `resume_token` **after** durable apply | Persist the token, then crash before apply |
-| Dedup on `execution.id` | Assume exactly-once delivery |
-| Reconnect only after the TCP/gRPC stream actually died | Cancel at 5–10s and open again |
-| Leader-elect if you run many replicas | Every replica opens the same stream |
+> [tab] Market data
+>
+> | Do | Don't |
+> | - | - |
+> | `snapshot_only: false` for a live book | Poll `snapshot_only: true` in a tight loop |
+> | At most **1000** symbols per `CreateMarketDataSubscription` | Send 1000+ and expect a stream (that is `INVALID_ARGUMENT`) |
+> | Empty `symbols` or one bidirectional stream for a large universe | Open tens of MD streams and blow the 20 cap |
+> | Open extra MD streams **one after another** if you must split | Burst-open every stream at once |
+> | [KeepAlive](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) every 30–60 min on **bidirectional** MD | Send keepalive on server-streaming MD (not used there) |
 
-**Market data**
-
-| Do | Don't |
-| - | - |
-| `snapshot_only: false` for a live book | Poll `snapshot_only: true` in a tight loop |
-| At most **1000** symbols per `CreateMarketDataSubscription` | Send 1000+ and expect a stream (that is `INVALID_ARGUMENT`) |
-| Empty `symbols` or one bidirectional stream for a large universe | Open tens of MD streams and blow the 20 cap |
-| Open extra MD streams **one after another** if you must split | Burst-open every stream at once |
-| [KeepAlive](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md) every 30–60 min on **bidirectional** MD | Send keepalive on server-streaming MD (not used there) |
-
-**Orders and ledger**
-
-| Do | Don't |
-| - | - |
-| One `CreateOrderSubscription` with empty `symbols` | Copy the MD 1000-symbol cap onto orders |
-| Reconnect order stream and take the snapshot | Look for an order-stream `resume_token` (there isn't one) |
-| One ledger stream per **account** you must watch live | One ledger stream per customer when you have thousands of accounts |
-| Persist ledger `update_time` as `resume_time` | Re-fetch the full ledger on every process restart |
+> [tab] Orders and ledger
+>
+> | Do | Don't |
+> | - | - |
+> | One `CreateOrderSubscription` with empty `symbols` | Copy the MD 1000-symbol cap onto orders |
+> | Reconnect order stream and take the snapshot | Look for an order-stream `resume_token` (there isn't one) |
+> | One ledger stream per **account** you must watch live | One ledger stream per customer when you have thousands of accounts |
+> | Persist ledger `update_time` as `resume_time` | Re-fetch the full ledger on every process restart |
 
 > [!NOTE]
 >
@@ -227,19 +227,19 @@ If you consume fills on FIX instead of gRPC, that is **one** Drop Copy session, 
 
 ## Related
 
-> **[Drop Copy stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
+> [card] [Drop Copy stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)
 >
 > Executions, trade capture, state change, positions
 
-> **[Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)**
+> [card] [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)
 >
 > Streams first, unary reads as anchors
 
-> **[Market data stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market data stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > 1000-symbol cap, snapshot vs live, keepalive
 
-> **[Rate limits](https://docs.polymarket.us/trader-guide/rate-limits.md)**
+> [card] [Rate limits](https://docs.polymarket.us/trader-guide/rate-limits.md)
 >
 > 20 streams, 100 msg/s ingress, RFQ open rate
 

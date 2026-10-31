@@ -257,19 +257,19 @@ For trade events, open the stream before querying `GetRFQTrades` and merge both 
 
 ## See Also
 
-> **[Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)**
+> [card] [Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)
 >
 > Maker workflow and quote rules
 
-> **[RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)**
+> [card] [RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)
 >
 > RFQ and quote REST and unary gRPC operations
 
-> **[gRPC Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [gRPC Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > Metadata, tokens, and scopes
 
-> **[Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
+> [card] [Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)
 >
 > Exchange order and fill reconciliation
 

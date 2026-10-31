@@ -65,19 +65,19 @@ Your funding entity's wallet ledger and the platform's account ledger should agr
 
 ## Related pages
 
-> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
+> [card] [Transfers](https://docs.polymarket.us/partners/funding/transfers.md)
 >
 > The API — request shape, idempotency, rate limits.
 
-> **[Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)**
+> [card] [Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)
 >
 > The model and the transfer budget.
 
-> **[Vendor Fees](https://docs.polymarket.us/partners/funding/vendor-fees.md)**
+> [card] [Vendor Fees](https://docs.polymarket.us/partners/funding/vendor-fees.md)
 >
 > The fee earmark that withdrawals must respect.
 
-> **[Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)**
+> [card] [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)
 >
 > Ledger projection and authoritative balance reads.
 

@@ -134,19 +134,19 @@ Not currently. Call `CreateCombo` and handle `INVALID_ARGUMENT`. Creating a comb
 
 ## Related Documentation
 
-> **[Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)**
+> [card] [Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)
 >
 > Maker workflow, quote rules, and last look
 
-> **[RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)**
+> [card] [RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)
 >
 > RFQ and quote REST and unary gRPC contract
 
-> **[Fee Schedule](https://docs.polymarket.us/fees.md#combo-taker-fees)**
+> [card] [Fee Schedule](https://docs.polymarket.us/fees.md#combo-taker-fees)
 >
 > Combo taker fee curve and rounding
 
-> **[Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
+> [card] [Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)
 >
 > Exchange order and fill reconciliation
 

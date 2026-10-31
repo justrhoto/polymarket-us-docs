@@ -228,15 +228,15 @@ for response in response_stream:
 
 ## Next Steps
 
-> **[Authentication Guide](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [Authentication Guide](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > Deep dive into authentication and token management
 
-> **[Market Data Streaming](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Streaming](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Learn about all market data streaming features
 
-> **[Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Subscribe to order execution updates
 

@@ -73,15 +73,15 @@ Leg symbols must be open, tradable, supported instruments. Duplicate symbols and
 
 ## See Also
 
-> **[RFQ API](https://docs.polymarket.us/api-reference/rfqs/overview.md)**
+> [card] [RFQ API](https://docs.polymarket.us/api-reference/rfqs/overview.md)
 >
 > Create and manage combo RFQs and quotes
 
-> **[Authentication](https://docs.polymarket.us/api-reference/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/api-reference/authentication.md)
 >
 > Sign Retail API requests
 
-> **[Private WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions)**
+> [card] [Private WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions)
 >
 > Receive RFQ and quote lifecycle events
 

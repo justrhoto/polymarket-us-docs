@@ -59,11 +59,11 @@ This glossary defines the terms used across the Partner Integration docs. For ma
 
 ## Related references
 
-> **[Main Glossary](https://docs.polymarket.us/getting-started/glossary.md)**
+> [card] [Main Glossary](https://docs.polymarket.us/getting-started/glossary.md)
 >
 > Market structure, trading, and execution terms.
 
-> **[Platform Model](https://docs.polymarket.us/partners/platform-model.md)**
+> [card] [Platform Model](https://docs.polymarket.us/partners/platform-model.md)
 >
 > How these entities relate in practice.
 

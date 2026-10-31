@@ -6,7 +6,7 @@
 
 > Earn rewards for placing resting orders close to the best price.
 
-> **[View polymarket.us/rewards](https://polymarket.us/rewards)**
+> [card] [View polymarket.us/rewards](https://polymarket.us/rewards)
 >
 > **The live rewards schedule is published at polymarket.us/rewards.** Search and filter rewards on every market — current reward pools, discount factors, target sizes, max spreads, and eligible markets, always up to date.
 

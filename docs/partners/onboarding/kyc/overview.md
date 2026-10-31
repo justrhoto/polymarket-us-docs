@@ -111,15 +111,15 @@ Before going live, make sure you have:
 
 ## Next steps
 
-> **[Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)**
+> [card] [Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)
 >
 > Capture the `session_token` that keeps your approval rate high.
 
-> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
+> [card] [Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)
 >
 > Submit a participant and handle each of the four outcomes.
 
-> **[Webhooks](https://docs.polymarket.us/partners/onboarding/kyc/webhooks.md)**
+> [card] [Webhooks](https://docs.polymarket.us/partners/onboarding/kyc/webhooks.md)
 >
 > Receive the async decision instead of polling.
 

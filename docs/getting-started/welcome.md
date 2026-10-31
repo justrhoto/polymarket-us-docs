@@ -60,19 +60,19 @@ order = client.orders.create({
 
 Learn the fundamentals, explore our APIs, and start building on the world's largest prediction market.
 
-> **[Quickstart](https://docs.polymarket.us/getting-started/quickstart.md)**
+> [card] [Quickstart](https://docs.polymarket.us/getting-started/quickstart.md)
 >
 > Set up your environment and make your first API call in minutes.
 
-> **[Core Concepts](https://docs.polymarket.us/concepts/events-and-markets.md)**
+> [card] [Core Concepts](https://docs.polymarket.us/concepts/events-and-markets.md)
 >
 > Understand markets, events, and how trading works.
 
-> **[API Reference](https://docs.polymarket.us/api-reference/introduction.md)**
+> [card] [API Reference](https://docs.polymarket.us/api-reference/introduction.md)
 >
 > Explore REST endpoints, WebSocket streams, and authentication.
 
-> **[SDKs](https://docs.polymarket.us/api-reference/sdks/introduction.md)**
+> [card] [SDKs](https://docs.polymarket.us/api-reference/sdks/introduction.md)
 >
 > Official Python and TypeScript libraries for faster development.
 

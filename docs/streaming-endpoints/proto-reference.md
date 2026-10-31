@@ -34,7 +34,7 @@ The Polymarket Exchange API exposes the following gRPC services:
 
 ## Obtaining Proto Files
 
-> **[Download Proto Files](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)**
+> [card] [Download Proto Files](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)
 >
 > Get the complete Protocol Buffer definitions to generate client libraries in any language
 
@@ -495,15 +495,15 @@ Requesting a suppressed value in `entry_types` returns `Aborted` (HTTP `409`).
 
 ## Next Steps
 
-> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Learn about market data streaming
 
-> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Learn about order streaming
 
-> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
+> [card] [Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
 >
 > Handle errors and reconnections
 

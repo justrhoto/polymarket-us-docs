@@ -67,19 +67,19 @@ Subscribe to the [order, position, and balance streams](https://docs.polymarket.
 
 ## Start here
 
-> **[Your Role](https://docs.polymarket.us/partners/your-role.md)**
+> [card] [Your Role](https://docs.polymarket.us/partners/your-role.md)
 >
 > What you do, what we do, and what you never handle.
 
-> **[Platform Model](https://docs.polymarket.us/partners/platform-model.md)**
+> [card] [Platform Model](https://docs.polymarket.us/partners/platform-model.md)
 >
 > DCM + DCO and the entities you act on.
 
-> **[Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)
 >
 > Authenticate as your Firm with Private Key JWT.
 
-> **[Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)**
+> [card] [Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)
 >
 > Place your first order end to end.
 

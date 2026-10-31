@@ -77,11 +77,11 @@ See [Accounts & Identity](https://docs.polymarket.us/trader-guide/accounts-ident
 
 ## Next steps
 
-> **[Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)**
+> [card] [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)
 >
 > The recommended order to build your integration.
 
-> **[Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)
 >
 > Authenticate as your Firm with Private Key JWT.
 

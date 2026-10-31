@@ -14,7 +14,7 @@ This section is for **Introducing Brokers (IBs)** and **Independent Software Ven
 
 ## Entity Clearing Member Agreement
 
-> **[Entity Clearing Member Agreement](https://drive.google.com/uc?export=download\&id=1YDjx79uDApWGQBWtHKagc4H0FCmeTnjR)**
+> [card] [Entity Clearing Member Agreement](https://drive.google.com/uc?export=download\&id=1YDjx79uDApWGQBWtHKagc4H0FCmeTnjR)
 >
 > Download the Entity Clearing Member Agreement for Polymarket Clearing
 
@@ -30,15 +30,15 @@ graph TD
 
 ## Which partner are you?
 
-> **[ISV](https://docs.polymarket.us/partners/partner-types/isvs.md)**
+> [card] [ISV](https://docs.polymarket.us/partners/partner-types/isvs.md)
 >
 > An Independent Software Vendor provides the software experience for retail traders. Not a broker.
 
-> **[IB](https://docs.polymarket.us/partners/partner-types/ibs.md)**
+> [card] [IB](https://docs.polymarket.us/partners/partner-types/ibs.md)
 >
 > An Introducing Broker integrates the same way, plus carries CFTC/NFA regulatory obligations.
 
-> **[FCM](https://docs.polymarket.us/partners/partner-types/fcms.md)**
+> [card] [FCM](https://docs.polymarket.us/partners/partner-types/fcms.md)
 >
 > A Futures Commission Merchant connects and clears differently. See the FCM guide.
 
@@ -61,7 +61,7 @@ graph TD
 
 ## Get started
 
-> **[Start the Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)**
+> [card] [Start the Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)
 >
 > The recommended path from onboarding to live trading.
 

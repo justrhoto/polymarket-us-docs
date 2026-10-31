@@ -14,7 +14,7 @@ Introducing Brokers (IBs) integrate with Polymarket US using the **same workflow
 
 ## Overview
 
-> **[IB Participant Agreement](https://drive.google.com/uc?export=download\&id=18wye7vrDbXUdNpYMRrilXE92-KrUdz0P)**
+> [card] [IB Participant Agreement](https://drive.google.com/uc?export=download\&id=18wye7vrDbXUdNpYMRrilXE92-KrUdz0P)
 >
 > Download the IB Participant Agreement for Polymarket Exchange
 
@@ -24,11 +24,11 @@ Polymarket US partners with licensed Introducing Brokers (IBs) to provide custom
 
 The technical integration is identical to an ISV's — same APIs, same workflow. Follow the standard path:
 
-> **[Your Role](https://docs.polymarket.us/partners/your-role.md)**
+> [card] [Your Role](https://docs.polymarket.us/partners/your-role.md)
 >
 > What you do, what Polymarket US does, and what you never handle.
 
-> **[Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)**
+> [card] [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)
 >
 > The recommended order to build your integration.
 

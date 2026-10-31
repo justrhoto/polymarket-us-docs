@@ -6,7 +6,7 @@
 
 The purpose of this document is to outline the trading functionality available via a FIX trading protocol.
 
-> **[Download FIX Dictionaries](https://drive.google.com/uc?export=download\&id=1zoMi4ucCbj6FoS-x7vE4ysZ-R02b49uB)**
+> [card] [Download FIX Dictionaries](https://drive.google.com/uc?export=download\&id=1zoMi4ucCbj6FoS-x7vE4ysZ-R02b49uB)
 >
 > Download FIX 5.0 SP2 and FIXT 1.1 XML specifications (ZIP)
 

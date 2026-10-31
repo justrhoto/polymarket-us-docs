@@ -6,7 +6,7 @@
 
 FIX connectivity to Polymarket US is provisioned via AWS VPC PrivateLink. After your [onboarding](https://docs.polymarket.us/trader-guide/onboarding.md) is complete, you will receive your connection details in the FIX Connectivity form:
 
-> **[Download FIX Connectivity Form](https://drive.google.com/uc?export=download\&id=1z-DxC8m-wUZKQq8S7tV64Rwi-WTMIps0)**
+> [card] [Download FIX Connectivity Form](https://drive.google.com/uc?export=download\&id=1z-DxC8m-wUZKQq8S7tV64Rwi-WTMIps0)
 >
 > Template form for FIX session configuration and connection details
 

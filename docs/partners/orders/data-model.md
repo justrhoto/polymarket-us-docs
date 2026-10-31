@@ -198,7 +198,7 @@ Do not set `order.user` or `order.session_id`. The service authenticates your fi
 
 ## Next step
 
-> **[CreateVendorOrder](https://docs.polymarket.us/partners/orders/create-order.md)**
+> [card] [CreateVendorOrder](https://docs.polymarket.us/partners/orders/create-order.md)
 >
 > See complete YES, NO, cash-BUY, and cash-SELL order examples.
 

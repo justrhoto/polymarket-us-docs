@@ -300,19 +300,19 @@ Pursuant to Rule 5.3(n)(iv) of its Rulebook, Polymarket US has designated the fo
 
 ## See Also
 
-> **[Combos API](https://docs.polymarket.us/institutional/combos/overview.md)**
+> [card] [Combos API](https://docs.polymarket.us/institutional/combos/overview.md)
 >
 > Create and read combo instruments
 
-> **[Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)**
+> [card] [Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)
 >
 > Maker workflow and quote rules
 
-> **[RFQ Events Stream](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md)**
+> [card] [RFQ Events Stream](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md)
 >
 > Current event payloads and recovery behavior
 
-> **[Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)**
+> [card] [Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)
 >
 > OAuth metadata and required scopes
 

@@ -186,27 +186,27 @@ Unique identifiers for each streaming session, useful for logging and debugging.
 
 ## Next Steps
 
-> **[Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)**
+> [card] [Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)
 >
 > One long-lived stream per feed. Do not reconnect-cancel.
 
-> **[Getting Started](https://docs.polymarket.us/streaming-endpoints/getting-started.md)**
+> [card] [Getting Started](https://docs.polymarket.us/streaming-endpoints/getting-started.md)
 >
 > Set up your first gRPC stream
 
-> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > Learn how to authenticate gRPC connections
 
-> **[Market Data](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Stream real-time market data
 
-> **[Order Updates](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Updates](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Subscribe to order execution updates
 
-> **[RFQ Events](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md)**
+> [card] [RFQ Events](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md)
 >
 > Subscribe to combo RFQ and quote events
 

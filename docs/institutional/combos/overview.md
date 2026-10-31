@@ -96,19 +96,19 @@ An unknown symbol returns an empty `combos` array. This endpoint does not pagina
 
 ## See Also
 
-> **[RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)**
+> [card] [RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)
 >
 > Create and manage combo RFQs and quotes
 
-> **[Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)**
+> [card] [Combos/RFQ Guide](https://docs.polymarket.us/trader-guide/combos.md)
 >
 > Maker workflow and quote rules
 
-> **[Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)**
+> [card] [Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)
 >
 > OAuth metadata and required scopes
 
-> **[Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)**
+> [card] [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)
 >
 > Endpoint-level request limits
 

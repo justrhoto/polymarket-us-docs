@@ -12,19 +12,19 @@ Python and TypeScript SDKs for integrating with the Polymarket US API. Both libr
 >
 > You must download the [Polymarket US iOS app](https://apps.apple.com/us/app/polymarket/id6648798962), create an account, and complete identity verification before you can generate API keys.
 
-> **[Generate API Keys](https://polymarket.us/developer)**
+> [card] [Generate API Keys](https://polymarket.us/developer)
 >
 > Visit the developer portal to generate your API keys. Your private key will be shown only once.
 
 ## Choose Your SDK
 
-> **[Python SDK](https://docs.polymarket.us/api-reference/sdks/python/quickstart.md)**
+> [card] [Python SDK](https://docs.polymarket.us/api-reference/sdks/python/quickstart.md)
 >
 > Sync and async support. Python 3.10+.
 >
 > [GitHub](https://github.com/Polymarket/polymarket-us-python) · [PyPI](https://pypi.org/project/polymarket-us/)
 
-> **[TypeScript SDK](https://docs.polymarket.us/api-reference/sdks/typescript/quickstart.md)**
+> [card] [TypeScript SDK](https://docs.polymarket.us/api-reference/sdks/typescript/quickstart.md)
 >
 > Full TypeScript types. Node.js 18+.
 >

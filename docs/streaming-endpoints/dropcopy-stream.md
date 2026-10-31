@@ -463,23 +463,23 @@ Persist the most recent `resume_token` you have fully applied, not the first tok
 
 ## Next Steps
 
-> **[Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)**
+> [card] [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)
 >
 > One stream per firm. Persist resume\_token after apply.
 
-> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Stream user-level order updates
 
-> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Stream real-time market data
 
-> **[Funding Stream](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)**
+> [card] [Funding Stream](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)
 >
 > Stream funding transaction updates
 
-> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
+> [card] [Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
 >
 > Handle errors and reconnections
 

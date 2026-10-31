@@ -248,27 +248,27 @@ Use the stream for live state. Reserve `GetRFQs` and `GetQuotes` for startup, re
 
 ## Related Documentation
 
-> **[Combos for Takers](https://docs.polymarket.us/partners/orders/combos-takers.md)**
+> [card] [Combos for Takers](https://docs.polymarket.us/partners/orders/combos-takers.md)
 >
 > Requester sizing, Drop Copy reconciliation, settlement, and leg rules
 
-> **[RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)**
+> [card] [RFQ API](https://docs.polymarket.us/institutional/rfqs/overview.md)
 >
 > Complete RFQ and quote REST and unary gRPC contract
 
-> **[Combos API](https://docs.polymarket.us/institutional/combos/overview.md)**
+> [card] [Combos API](https://docs.polymarket.us/institutional/combos/overview.md)
 >
 > Combo instrument REST and unary gRPC contract
 
-> **[RFQ Events Stream](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md)**
+> [card] [RFQ Events Stream](https://docs.polymarket.us/streaming-endpoints/rfq-events-stream.md)
 >
 > Event payloads and Python example
 
-> **[Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
+> [card] [Drop Copy](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)
 >
 > Exchange order and fill reconciliation
 
-> **[Positions and Risk](https://docs.polymarket.us/trader-guide/positions-risk.md)**
+> [card] [Positions and Risk](https://docs.polymarket.us/trader-guide/positions-risk.md)
 >
 > Position and balance monitoring
 

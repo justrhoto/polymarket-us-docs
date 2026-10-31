@@ -245,19 +245,19 @@ if streamer.last_update_time is not None:
 
 ## Next Steps
 
-> **[Balance Ledger REST](https://docs.polymarket.us/institutional/funding/overview.md)**
+> [card] [Balance Ledger REST](https://docs.polymarket.us/institutional/funding/overview.md)
 >
 > Paginated query and CSV download
 
-> **[Position Ledger](https://docs.polymarket.us/institutional/positions/overview.md#position-ledger)**
+> [card] [Position Ledger](https://docs.polymarket.us/institutional/positions/overview.md#position-ledger)
 >
 > Position changes (quantity, cost, realized P\&L)
 
-> **[Funding Transactions](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)**
+> [card] [Funding Transactions](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)
 >
 > Deposit / withdrawal state changes
 
-> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > gRPC authentication setup
 

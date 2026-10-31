@@ -202,19 +202,19 @@ Exceeding these limits returns `ResourceExhausted` (`429 Too Many Requests`).
 
 ## See Also
 
-> **[Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)**
+> [card] [Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)
 >
 > Real-time gRPC subscription for balance ledger entries
 
-> **[Position Ledger](https://docs.polymarket.us/institutional/positions/overview.md#position-ledger)**
+> [card] [Position Ledger](https://docs.polymarket.us/institutional/positions/overview.md#position-ledger)
 >
 > Position changes (quantity, cost, realized P\&L)
 
-> **[Funding Transactions](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)**
+> [card] [Funding Transactions](https://docs.polymarket.us/streaming-endpoints/funding-stream.md)
 >
 > Deposit / withdrawal state changes
 
-> **[Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)**
+> [card] [Authentication](https://docs.polymarket.us/trader-guide/authentication.md#api-scopes)
 >
 > Required scopes and OAuth flow
 

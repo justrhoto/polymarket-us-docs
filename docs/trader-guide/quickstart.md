@@ -381,19 +381,19 @@ if __name__ == "__main__":
 
 ## Next Steps
 
-> **[Authentication Deep Dive](https://docs.polymarket.us/trader-guide/authentication.md)**
+> [card] [Authentication Deep Dive](https://docs.polymarket.us/trader-guide/authentication.md)
 >
 > Token refresh and key rotation
 
-> **[gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)**
+> [card] [gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)
 >
 > Real-time order and market data
 
-> **[REST API Reference](https://docs.polymarket.us/api-reference/introduction.md)**
+> [card] [REST API Reference](https://docs.polymarket.us/api-reference/introduction.md)
 >
 > Complete endpoint documentation
 
-> **[Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)**
+> [card] [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)
 >
 > Usage limits and best practices
 

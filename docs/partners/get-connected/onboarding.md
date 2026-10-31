@@ -12,7 +12,7 @@ Onboarding is how your firm goes from "interested partner" to "able to call the 
 >
 > **Audience: business and technical leads.** Onboarding spans legal agreements and API credential setup, so expect both commercial and developer steps.
 
-> **[Start onboarding](mailto:institutional@polymarket.us)**
+> [card] [Start onboarding](mailto:institutional@polymarket.us)
 >
 > Email **[institutional@polymarket.us](mailto:institutional@polymarket.us)** to kick off the process and get your onboarding folder set up.
 
@@ -39,11 +39,11 @@ graph TD
 
 The agreements depend on your partner type:
 
-> **[ISV agreement](https://docs.polymarket.us/partners/partner-types/isvs.md)**
+> [card] [ISV agreement](https://docs.polymarket.us/partners/partner-types/isvs.md)
 >
 > The ISV Connectivity Agreement and the participant clickthrough agreements you present to your users.
 
-> **[IB agreement](https://docs.polymarket.us/partners/partner-types/ibs.md)**
+> [card] [IB agreement](https://docs.polymarket.us/partners/partner-types/ibs.md)
 >
 > The IB Participant Agreement, plus the CFTC/NFA regulatory requirements specific to Introducing Brokers.
 
@@ -53,7 +53,7 @@ Your Retail Participants must accept the appropriate participant agreement befor
 
 Authentication uses Private Key JWT with RSA keys. Generate a key pair **per environment** and share only the **public** keys with Polymarket US — never your private keys.
 
-> **[Authentication — key generation](https://docs.polymarket.us/partners/get-connected/authentication.md)**
+> [card] [Authentication — key generation](https://docs.polymarket.us/partners/get-connected/authentication.md)
 >
 > Step-by-step key generation and the full authentication flow.
 
@@ -84,11 +84,11 @@ Polymarket US reviews your submission and provisions your access:
 
 ## Next steps
 
-> **[Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/partners/get-connected/authentication.md)
 >
 > Exchange your signed JWT for an access token and call the API.
 
-> **[Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)**
+> [card] [Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)
 >
 > Place your first order end to end.
 

@@ -348,11 +348,11 @@ For production use cases requiring higher limits, send your Polymarket contact y
 
 ## Next Steps
 
-> **[gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)**
+> [card] [gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)
 >
 > Replace polling with real-time streams
 
-> **[Authentication](https://docs.polymarket.us/trader-guide/authentication-troubleshooting.md)**
+> [card] [Authentication](https://docs.polymarket.us/trader-guide/authentication-troubleshooting.md)
 >
 > Set up API authentication
 

@@ -45,11 +45,11 @@ graph LR
 
 The two partner types **integrate identically** — the same APIs and the same workflow. The difference is legal classification, not mechanics.
 
-> **[ISV](https://docs.polymarket.us/partners/partner-types/isvs.md)**
+> [card] [ISV](https://docs.polymarket.us/partners/partner-types/isvs.md)
 >
 > An Independent Software Vendor provides the software experience. ISVs are **not** brokers and carry no broker registration.
 
-> **[IB](https://docs.polymarket.us/partners/partner-types/ibs.md)**
+> [card] [IB](https://docs.polymarket.us/partners/partner-types/ibs.md)
 >
 > An Introducing Broker integrates the same way **plus** carries CFTC registration and NFA membership obligations.
 
@@ -59,11 +59,11 @@ The two partner types **integrate identically** — the same APIs and the same w
 
 ## Next steps
 
-> **[Platform Model](https://docs.polymarket.us/partners/platform-model.md)**
+> [card] [Platform Model](https://docs.polymarket.us/partners/platform-model.md)
 >
 > How the DCM and DCO fit together, and the entities you act on.
 
-> **[Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)**
+> [card] [Integration Journey](https://docs.polymarket.us/partners/integration-journey.md)
 >
 > The end-to-end path from onboarding to live trading.
 

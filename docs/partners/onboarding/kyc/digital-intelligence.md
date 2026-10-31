@@ -93,25 +93,25 @@ SocureSDK.getSessionToken { sessionToken ->
 
 ## Addressing product-team concerns
 
-> **We don't want a third-party script on our site**
+> [accordion] We don't want a third-party script on our site
 >
 > The DI script is hosted by Socure and loaded from `sdk.socure.com`. Load it **only** on your KYC form page(s) — not site-wide. It runs during the KYC flow and collects non-PII signals.
 
-> **We already collect device/IP data — can't we pass it directly?**
+> [accordion] We already collect device/IP data — can't we pass it directly?
 >
 > No. The DI session token is cryptographically tied to Socure's own collection event; it cannot be replicated by forwarding equivalent data through another channel.
 
-> **Will this slow down our form?**
+> [accordion] Will this slow down our form?
 >
 > No. The script loads asynchronously and `getSessionToken()` typically returns in under 100ms. Initialising on page load spreads the work across the participant's time on the page.
 
 ## Next steps
 
-> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
+> [card] [Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)
 >
 > Submit the participant with the `session_token` and handle each outcome.
 
-> **[Overview](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
+> [card] [Overview](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)
 >
 > How the Socure-backed KYC process fits together.
 

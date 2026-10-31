@@ -72,11 +72,11 @@ How updates work:
 
 ## Next steps
 
-> **[Start KYC](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
+> [card] [Start KYC](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)
 >
 > Submit the accepted `agreement.version` on `POST /v1/kyc/start`.
 
-> **[Onboard Participants](https://docs.polymarket.us/partners/onboarding/onboard-participants.md)**
+> [card] [Onboard Participants](https://docs.polymarket.us/partners/onboarding/onboard-participants.md)
 >
 > How acceptance fits into the wider participant onboarding flow.
 

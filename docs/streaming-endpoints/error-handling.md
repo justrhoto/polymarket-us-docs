@@ -79,19 +79,19 @@ except grpc.RpcError as e:
 
 ## Next Steps
 
-> **[Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)**
+> [card] [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md)
 >
 > Long-lived streams, resume tokens, the 20-stream budget
 
-> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > Review authentication best practices
 
-> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Learn about market data streaming
 
-> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Learn about order streaming
 

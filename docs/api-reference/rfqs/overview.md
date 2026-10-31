@@ -101,15 +101,15 @@ RFQ orders enter the instrument's normal order book and may trade with other res
 
 ## See Also
 
-> **[Combos API](https://docs.polymarket.us/api-reference/combos/overview.md)**
+> [card] [Combos API](https://docs.polymarket.us/api-reference/combos/overview.md)
 >
 > Create and read combo instruments
 
-> **[Private WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions)**
+> [card] [Private WebSocket](https://docs.polymarket.us/api-reference/websocket/private.md#rfq-subscriptions)
 >
 > Receive RFQ lifecycle events and anonymous trade prints
 
-> **[Authentication](https://docs.polymarket.us/api-reference/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/api-reference/authentication.md)
 >
 > Sign Retail API requests
 

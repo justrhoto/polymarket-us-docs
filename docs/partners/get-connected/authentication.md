@@ -8,7 +8,7 @@
 
 The Polymarket US API uses **Private Key JWT** authentication with RSA keys — the **same mechanism used across the platform**, including by institutional traders. You sign a JWT with your RSA private key and exchange it for a short-lived access token.
 
-> **[Full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md)**
+> [card] [Full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md)
 >
 > Key generation, JWT claims, code samples (Python, Go, curl), key rotation, troubleshooting, and the complete scope reference live in the **Institutional API → Getting Started** guide. This page covers what's specific to partners and links you there for the implementation details.
 
@@ -90,19 +90,19 @@ Your application is granted **scopes** that control which endpoints you can call
 
 ## Next steps
 
-> **[Full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md)**
+> [card] [Full authentication guide](https://docs.polymarket.us/trader-guide/authentication.md)
 >
 > JWT claims, code samples, key rotation, and troubleshooting.
 
-> **[Partner Onboarding](https://docs.polymarket.us/partners/get-connected/onboarding.md)**
+> [card] [Partner Onboarding](https://docs.polymarket.us/partners/get-connected/onboarding.md)
 >
 > Get your keys registered and receive your Client ID.
 
-> **[Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)**
+> [card] [Quickstart](https://docs.polymarket.us/partners/get-connected/quickstart.md)
 >
 > Authenticate and place your first order end to end.
 
-> **[Troubleshooting](https://docs.polymarket.us/trader-guide/authentication-troubleshooting.md)**
+> [card] [Troubleshooting](https://docs.polymarket.us/trader-guide/authentication-troubleshooting.md)
 >
 > Resolve common authentication errors.
 

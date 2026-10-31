@@ -198,11 +198,11 @@ return false // reject
 
 ## Next steps
 
-> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
+> [card] [Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)
 >
 > The synchronous outcomes that precede these webhooks.
 
-> **[Overview](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
+> [card] [Overview](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)
 >
 > How the KYC process fits together.
 

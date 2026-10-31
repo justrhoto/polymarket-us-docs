@@ -17,7 +17,7 @@ gRPC offers several advantages over REST:
 * **Streaming**: Native support for bidirectional streaming (covered in gRPC Streaming tab)
 * **Code Generation**: Auto-generate client libraries in any language
 
-> **[Download Proto Files](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)**
+> [card] [Download Proto Files](https://drive.google.com/uc?export=download\&id=1oT9gaeBEn0vukHD9GOoj_YvzPnR3otng)
 >
 > Get the complete Protocol Buffer definitions to generate client libraries in any language
 
@@ -279,19 +279,19 @@ Both REST and gRPC access the same underlying services. Choose based on your nee
 
 ## Next Steps
 
-> **[gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)**
+> [card] [gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)
 >
 > Real-time market data and order subscriptions
 
-> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > Access token setup for gRPC
 
-> **[REST API](https://docs.polymarket.us/api-reference)**
+> [card] [REST API](https://docs.polymarket.us/api-reference)
 >
 > Equivalent REST endpoints
 
-> **[Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)**
+> [card] [Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)
 >
 > Proto message definitions
 

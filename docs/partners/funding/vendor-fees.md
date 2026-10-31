@@ -93,19 +93,19 @@ Rules and mechanics:
 
 ## Related pages
 
-> **[Create Order](https://docs.polymarket.us/partners/orders/create-order.md)**
+> [card] [Create Order](https://docs.polymarket.us/partners/orders/create-order.md)
 >
 > Where the fee is declared.
 
-> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
+> [card] [Transfers](https://docs.polymarket.us/partners/funding/transfers.md)
 >
 > The API that executes collection.
 
-> **[Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)**
+> [card] [Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)
 >
 > The full money-flow model.
 
-> **[Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)**
+> [card] [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)
 >
 > Keeping your books in sync with the ledger.
 

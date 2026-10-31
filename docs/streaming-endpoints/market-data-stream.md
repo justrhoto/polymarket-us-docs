@@ -743,15 +743,15 @@ func sendKeepalives(stream polymarketv1.MarketDataSubscriptionAPI_BiDirectionalS
 
 ## Next Steps
 
-> **[Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Streaming](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Subscribe to order execution updates
 
-> **[Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)**
+> [card] [Proto Reference](https://docs.polymarket.us/streaming-endpoints/proto-reference.md)
 >
 > Detailed protocol buffer reference
 
-> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
+> [card] [Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
 >
 > Handle errors and reconnections
 

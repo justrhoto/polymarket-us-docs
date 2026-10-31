@@ -135,19 +135,19 @@ Until then, cover the firm-wide need with the surfaces that are already firm-sco
 
 ## Related pages
 
-> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
+> [card] [Transfers](https://docs.polymarket.us/partners/funding/transfers.md)
 >
 > The cash-movement API these reads gate.
 
-> **[Drop Copy Stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)**
+> [card] [Drop Copy Stream](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md)
 >
 > The firm-scoped execution stream that drives your projection.
 
-> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Real-time order and execution updates for your accounts.
 
-> **[Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)**
+> [card] [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md)
 >
 > Per-endpoint limits for the reads on this page.
 

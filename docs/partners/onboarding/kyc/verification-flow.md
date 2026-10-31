@@ -398,11 +398,11 @@ Use these placeholder agreement values in sandbox (the onboarding team provides 
 
 ## Next steps
 
-> **[Webhooks](https://docs.polymarket.us/partners/onboarding/kyc/webhooks.md)**
+> [card] [Webhooks](https://docs.polymarket.us/partners/onboarding/kyc/webhooks.md)
 >
 > Receive the async approval/rejection notifications.
 
-> **[Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)**
+> [card] [Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)
 >
 > Lower your REVIEW rate with the `session_token`.
 

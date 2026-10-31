@@ -384,27 +384,27 @@ The `polymarket.v1`, `polymarket.us.cashmovement.v1`, and `polymarket.us.orderfu
 
 ## Next steps
 
-> **[Create Order](https://docs.polymarket.us/partners/orders/create-order.md)**
+> [card] [Create Order](https://docs.polymarket.us/partners/orders/create-order.md)
 >
 > Request and response contract, supported examples, and retry behavior.
 
-> **[Order Data Model](https://docs.polymarket.us/partners/orders/data-model.md)**
+> [card] [Order Data Model](https://docs.polymarket.us/partners/orders/data-model.md)
 >
 > Fixed-point values and the fail-closed launch allowlist.
 
-> **[Transfers](https://docs.polymarket.us/partners/funding/transfers.md)**
+> [card] [Transfers](https://docs.polymarket.us/partners/funding/transfers.md)
 >
 > Deposits, withdrawals, vendor fee collection, and paced queues.
 
-> **[Partner Funding](https://docs.polymarket.us/partners/funding/overview.md)**
+> [card] [Partner Funding](https://docs.polymarket.us/partners/funding/overview.md)
 >
 > The full model — parties, money flows, and the transfer budget.
 
-> **[KYC Verification](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
+> [card] [KYC Verification](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)
 >
 > All verification outcomes and webhook handling.
 
-> **[Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)**
+> [card] [Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)
 >
 > Track every deposit, fill, and settlement credit in real time.
 

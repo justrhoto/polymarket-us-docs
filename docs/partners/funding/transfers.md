@@ -243,19 +243,19 @@ An insufficient-funds outcome is not a gRPC error at create time: the workflow r
 
 ## Related pages
 
-> **[Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)**
+> [card] [Partner Funding Overview](https://docs.polymarket.us/partners/funding/overview.md)
 >
 > The model — parties, money flows, and directional guarantees.
 
-> **[Deposits & Withdrawals](https://docs.polymarket.us/partners/funding/deposits-withdrawals.md)**
+> [card] [Deposits & Withdrawals](https://docs.polymarket.us/partners/funding/deposits-withdrawals.md)
 >
 > Mirroring wallet allocations into buying power.
 
-> **[Vendor Fees](https://docs.polymarket.us/partners/funding/vendor-fees.md)**
+> [card] [Vendor Fees](https://docs.polymarket.us/partners/funding/vendor-fees.md)
 >
 > Accrual, the daily report, and collection.
 
-> **[Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)**
+> [card] [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md)
 >
 > Keeping your books in sync with the ledger.
 

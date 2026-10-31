@@ -87,7 +87,7 @@ Use the [Combos API](https://docs.polymarket.us/institutional/combos/overview.md
 
 For partners building retail trading platforms with end-user onboarding, KYC, and payments.
 
-> **[Partner Guide](https://docs.polymarket.us/partners/overview.md)**
+> [card] [Partner Guide](https://docs.polymarket.us/partners/overview.md)
 >
 > Complete guide for partners including Accounts, KYC, and Payments APIs
 
@@ -195,19 +195,19 @@ See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md) for th
 
 ## Next Steps
 
-> **[Quickstart Guide](https://docs.polymarket.us/trader-guide/quickstart.md)**
+> [card] [Quickstart Guide](https://docs.polymarket.us/trader-guide/quickstart.md)
 >
 > Place your first order in 5 minutes
 
-> **[Authentication](https://docs.polymarket.us/trader-guide/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/trader-guide/authentication.md)
 >
 > Set up Private Key JWT authentication
 
-> **[gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)**
+> [card] [gRPC Streaming](https://docs.polymarket.us/streaming-endpoints/grpc-overview.md)
 >
 > Real-time market data and order updates
 
-> **[Environments](https://docs.polymarket.us/trader-guide/environments.md)**
+> [card] [Environments](https://docs.polymarket.us/trader-guide/environments.md)
 >
 > API endpoints for dev, preprod, and prod
 

@@ -6,7 +6,7 @@
 
 > EOD contract summary
 
-> **[Download Daily Market Reports](https://www.polymarketexchange.com/daily-market-report.html)**
+> [card] [Download Daily Market Reports](https://www.polymarketexchange.com/daily-market-report.html)
 >
 > Access historical Daily Market Reports on polymarketexchange.com
 

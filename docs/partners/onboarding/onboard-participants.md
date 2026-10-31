@@ -10,15 +10,15 @@ Onboarding a retail trader onto your platform **is the KYC process**. You collec
 
 This section has three parts that fit together:
 
-> **[KYC Verification](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
+> [card] [KYC Verification](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)
 >
 > **The process.** Collect and submit identity information; Polymarket US verifies and decides.
 
-> **[Participants](https://docs.polymarket.us/partners/onboarding/users.md)**
+> [card] [Participants](https://docs.polymarket.us/partners/onboarding/users.md)
 >
 > **The identity created.** The trading identity you act on behalf of after approval.
 
-> **[Accounts](https://docs.polymarket.us/partners/onboarding/accounts.md)**
+> [card] [Accounts](https://docs.polymarket.us/partners/onboarding/accounts.md)
 >
 > **The account created.** The container for the participant's balances and positions.
 
@@ -61,23 +61,23 @@ sequenceDiagram
 
 ## Where to go next
 
-> **[Start with KYC](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)**
+> [card] [Start with KYC](https://docs.polymarket.us/partners/onboarding/kyc/overview.md)
 >
 > The verification workflow and document verification.
 
-> **[Set up status webhooks](https://docs.polymarket.us/partners/onboarding/kyc/webhooks.md)**
+> [card] [Set up status webhooks](https://docs.polymarket.us/partners/onboarding/kyc/webhooks.md)
 >
 > Receive the async KYC decision instead of polling.
 
-> **[Act on participants](https://docs.polymarket.us/partners/onboarding/users.md)**
+> [card] [Act on participants](https://docs.polymarket.us/partners/onboarding/users.md)
 >
 > Resolve who you can act for and use the `x-participant-id` header.
 
-> **[Funding](https://docs.polymarket.us/partners/funding/overview.md)**
+> [card] [Funding](https://docs.polymarket.us/partners/funding/overview.md)
 >
 > How an approved participant's account is funded *(Beta)*.
 
-> **[End-user legal agreements](https://docs.polymarket.us/partners/onboarding/legal-agreements.md)**
+> [card] [End-user legal agreements](https://docs.polymarket.us/partners/onboarding/legal-agreements.md)
 >
 > The four documents each trader accepts, the exact acceptance language, and agreement versioning.
 

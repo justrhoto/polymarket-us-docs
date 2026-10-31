@@ -280,23 +280,23 @@ if streamer.last_server_time:
 
 ## Next Steps
 
-> **[Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)**
+> [card] [Balance Ledger Stream](https://docs.polymarket.us/streaming-endpoints/balance-ledger-stream.md)
 >
 > Stream every cash balance change (fills, fees, deposits, ...)
 
-> **[Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)**
+> [card] [Order Stream](https://docs.polymarket.us/streaming-endpoints/order-stream.md)
 >
 > Stream real-time order updates
 
-> **[Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)**
+> [card] [Market Data Stream](https://docs.polymarket.us/streaming-endpoints/market-data-stream.md)
 >
 > Stream real-time market data
 
-> **[Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)**
+> [card] [Error Handling](https://docs.polymarket.us/streaming-endpoints/error-handling.md)
 >
 > Handle errors and reconnections
 
-> **[Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)**
+> [card] [Authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md)
 >
 > gRPC authentication setup
 

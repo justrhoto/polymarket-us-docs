@@ -211,11 +211,11 @@ Allow up to 3 OTP attempts before requiring a new code, and rate-limit OTP reque
 
 ## Next steps
 
-> **[Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)**
+> [card] [Verification Flow](https://docs.polymarket.us/partners/onboarding/kyc/verification-flow.md)
 >
 > Submit the (prefilled) data and handle each outcome.
 
-> **[Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)**
+> [card] [Digital Intelligence](https://docs.polymarket.us/partners/onboarding/kyc/digital-intelligence.md)
 >
 > Capture the `session_token` to lower your REVIEW rate.
 

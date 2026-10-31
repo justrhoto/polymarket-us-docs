@@ -19,7 +19,7 @@ Before receiving HTTP status codes, you may encounter connection-level errors:
 * `SocketError: other side closed` - ALB timeout (10 minutes)
 * `14 UNAVAILABLE` (gRPC) - Stream dropped
 
-> **[Connection Issues Guide](https://docs.polymarket.us/trader-guide/connection-issues.md)**
+> [card] [Connection Issues Guide](https://docs.polymarket.us/trader-guide/connection-issues.md)
 >
 > See the full Connection Issues guide for detailed troubleshooting of network errors, ALB timeouts, gRPC streams, keepalive settings, and reconnection strategies
 
