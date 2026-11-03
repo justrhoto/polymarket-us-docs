@@ -4,11 +4,17 @@
 
 # Why can't I withdraw my promotional credit?
 
-Promo credits are **trading credits, not cash**. They cannot be withdrawn, including after they are used in trading or after the related position settles or is liquidated.
+Promotional credits (shown in the app as **Bonus**) are for trading only and can’t be withdrawn. Profits you make with them can be withdrawn. Cash that isn’t tied up in open orders or positions can be withdrawn, subject to the [withdrawal requirements](https://docs.polymarket.us/learn/deposits/withdraw-funds/rules.md). The money you deposit is always yours.
 
-Your existing cash is used before the promo credit. Account balance in excess of the promo credit is regular cash that may be withdrawn, subject to the applicable withdrawal requirements.
+**How your Bonus is used:** Your Cash is used first when you open a trade. If you have Bonus funds, those funds cover the losses your trades face. If you have no Cash on the account, you can use the Bonus to open trades.
 
-For example, if you receive a \$20 promo credit and use it in trading, the \$20 credit itself remains non-withdrawable. If that trading produces \$10 in eligible proceeds after settlement, up to \$10 may become withdrawable, subject to the applicable [withdrawal requirements](https://docs.polymarket.us/learn/deposits/withdraw-funds/rules.md).
+**When a trade using Bonus wins**, the profit goes to your Cash balance. The Bonus you used comes back as Bonus, so you can trade with it again.
+
+**When any of your trades lose:** Losses on any trade are taken from your Bonus first, then from your Cash.
+
+**Example #1:** You use \$20 of your Cash to buy shares at 50¢. If that position loses and you have \$10 in Bonus left on the account, you will get back up to \$10 added to your Cash from the Bonus funds.
+
+**Example #2:** You use a \$20 Bonus to buy shares at 50¢. If they win, the payout is \$40. \$20 profit goes to your Cash and can be withdrawn. \$20 goes back to your Bonus.
 
 To withdraw eligible proceeds, you must:
 
@@ -17,7 +23,7 @@ To withdraw eligible proceeds, you must:
 
 Once the deposit fully clears, typically within **3–4 business days**, eligible funds become available to withdraw to the same linked payment method.
 
-Your deposited cash remains your money and may be withdrawn when it is available to withdraw, subject to normal withdrawal requirements and any funds committed to open orders or positions. For full program terms, see [User Incentive Programs](https://docs.polymarket.us/incentives/user-programs.md).
+Your deposited Cash remains your money and may be withdrawn when it is available to withdraw, subject to normal withdrawal requirements and any funds committed to open orders or positions. For full program terms, see [User Incentive Programs](https://docs.polymarket.us/incentives/user-programs.md).
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
