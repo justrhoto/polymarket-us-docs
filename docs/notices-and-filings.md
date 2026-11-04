@@ -12,6 +12,12 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 * Add the feed to any RSS reader: `https://docs.polymarket.us/notices-and-filings/rss.xml`
 
+**November 3, 2026**
+
+[Amended Market Liquidity Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Market%20Liquidity%20Incentive%20Program%20\(2026.11.03\).pdf)
+
+[Liquidity Provider Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Liquidity%20Provider%20Program%20\(2026.11.03\).pdf)
+
 **October 26, 2026**
 
 [Amended Deposit Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Deposit%20Incentive%20Program%20\(2026.10.26\).pdf)
