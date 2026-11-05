@@ -43,15 +43,15 @@ contracts × cost per contract + combo taker fee ≤ cashOrderQty
 
 The cost per contract is the price for a requester buy and `1 − price` for a requester sell. The fee is the [combo taker fee](https://docs.polymarket.us/fees.md#combo-taker-fees) for that quantity, rounded to the cent the same way the exchange charges it. For a sell, the fee curve is evaluated at `1 − price`.
 
-For example, a \$10.00 cash RFQ quoted to buy at `0.1296` sizes to 70.44 contracts:
+For example, a \$10.00 cash RFQ quoted to buy at `0.1296` sizes to 69.54 contracts:
 
 | | Amount |
 | - | - |
-| 70.44 × \$0.1296 | \$9.13 |
-| Combo taker fee | \$0.87 |
-| **Total** | **\$10.00** |
+| 69.54 × \$0.1296 | \$9.01 |
+| Combo taker fee | \$0.98 |
+| **Total** | **\$9.99** |
 
-70.45 contracts would cost more than \$10.00.
+69.55 contracts would cost more than \$10.00.
 
 Use the `buyQtyDecimal` and `sellQtyDecimal` reported on the quote instead of recomputing them. The fee actually charged is reported per fill in `commission_notional_collected`. [Taker rebates](https://docs.polymarket.us/fees.md#taker-rebate-tiers-from-october-19) are paid weekly and do not change the fee charged on the fill.
 

@@ -75,13 +75,14 @@ Active campaigns:
 | - | - | - |
 | Campaign A | Deposit at least \$1,000 | Receive \$250 |
 | Campaign B | Deposit at least \$500 | Receive \$100 |
-| Campaign C | Deposit at least \$100 | Receive \$25 |
-| Campaign D | Deposit at least \$50 | Receive \$10 |
-| Campaign E | Deposit at least \$250 | Receive \$250 |
-| Campaign F | Deposit at least \$100 | Receive \$100 |
-| Campaign G | Deposit at least \$50 | Receive \$50 |
-| Campaign H | Deposit at least \$25 | Receive \$25 |
-| Campaign I | Deposit at least \$10 | Receive \$10 |
+| Campaign C | Deposit at least \$250 | Receive \$50 |
+| Campaign D | Deposit at least \$100 | Receive \$25 |
+| Campaign E | Deposit at least \$50 | Receive \$10 |
+| Campaign F | Deposit at least \$500 | Receive \$250 |
+| Campaign G | Deposit at least \$250 | Receive \$100 |
+| Campaign H | Deposit at least \$100 | Receive \$50 |
+| Campaign I | Deposit at least \$50 | Receive \$25 |
+| Campaign J | Deposit at least \$25 | Receive \$10 |
 
 Participants are eligible for a campaign based on their prior deposit and trading activity.
 

@@ -29,6 +29,26 @@
 | - | - | - |
 | `POST` | `/v1/trading/orders/cancel` | Cancel a single order |
 | `POST` | `/v1/trading/orders/cancel/list` | Cancel multiple orders (batch) |
+| `POST` | `/v1/trading/orders/cancel/all-open` | Request cancellation of every open order in your firm |
+
+#### Cancel all open orders
+
+`POST /v1/trading/orders/cancel/all-open` requests cancellation of every open order for the authenticated firm, across its accounts and sessions. Send an empty JSON object (`{}`). There are no market, event, account, order-group, or other filters. Use the single-order or batch cancellation endpoints above to cancel selected orders.
+
+```bash theme={null}
+curl -X POST 'https://api.prod.polymarketexchange.com/v1/trading/orders/cancel/all-open' \
+  -H "Authorization: Bearer $ACCESS_TOKEN" \
+  -H 'Content-Type: application/json' \
+  --data '{}'
+```
+
+A successful response is an empty JSON object:
+
+```json theme={null}
+{}
+```
+
+This acknowledges submission of the request. Confirm individual cancellations through [order updates](https://docs.polymarket.us/streaming-endpoints/order-stream.md) or [execution reports](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md).
 
 ### Order Query
 

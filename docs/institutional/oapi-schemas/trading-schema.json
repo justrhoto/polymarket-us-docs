@@ -86,6 +86,38 @@
         ]
       }
     },
+    "/v1/trading/orders/cancel/all-open": {
+      "post": {
+        "summary": "Cancel all open orders",
+        "description": "Requests cancellation of every open order for the authenticated firm, across its accounts and sessions. Send an empty JSON object (`{}`).\nThis endpoint does not accept market, event, account, order-group, or other filters.\nA successful response is an empty JSON object (`{}`) and means the request was submitted. Confirm individual cancellations through order or execution updates.",
+        "operationId": "OrderEntryAPI_CancelAllOpenOrders",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1CancelAllOpenOrdersResponse"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/v1CancelAllOpenOrdersRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+          "Trading"
+        ]
+      }
+    },
     "/v1/trading/orders/cancel/list": {
       "post": {
         "summary": "Cancel order list",
@@ -336,6 +368,16 @@
       }
     },
     "schemas": {
+      "v1CancelAllOpenOrdersRequest": {
+        "type": "object",
+        "description": "Empty request. The authenticated firm determines the scope; no filters are supported.",
+        "example": {}
+      },
+      "v1CancelAllOpenOrdersResponse": {
+        "type": "object",
+        "description": "Empty response acknowledging submission of the cancellation request. Confirm individual cancellations through order or execution updates.",
+        "example": {}
+      },
       "v1CancelOrderListRequest": {
         "type": "object",
         "properties": {

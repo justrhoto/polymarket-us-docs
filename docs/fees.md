@@ -6,15 +6,15 @@
 
 > Trading fee schedule, rebates, and examples
 
-> [!WARNING]
+> [!NOTE]
 >
-> **Upcoming combo fee change.** Effective exchange-wide at 10:00 PM ET, Wednesday, October 28, 2026, the coefficient on the `(1 - p)^4` term of the combo taker fee curve increases from `0.06` to `0.085`: `Fee = C × p × [0.0695 × (1 - p) + 0.085 × (1 - p)^4]`. The `0.0695` term is unchanged.
+> **Upcoming rebate window change.** From **1:00 PM ET on Friday, November 6, 2026**, maker and taker rebate tiers will use a rolling 30-day volume window instead of the prior calendar month. Tiers will be set daily in Eastern Time.
 >
-> The [combo formula, schedule, and examples](#combo-taker-fees) below reflect the current `0.06` coefficient. This page will be updated when the new curve takes effect.
+> The tiers and all complementary programs, including accelerations and overrides, continue as before. See [How tiers are set](#how-tiers-are-set) for the calculation window and an example.
 
 > [!NOTE]
 >
-> Effective exchange-wide from 1:00 PM ET, Monday, October 19, 2026.
+> Effective exchange-wide from 10:00 PM ET, Wednesday, October 28, 2026.
 
 ## Standard Trading Fees
 
@@ -45,9 +45,9 @@ Table Tennis markets use a higher taker fee coefficient (Θ = 0.10). Maker rebat
 
 ### Maker rebate tiers
 
-Your maker tier is set by your maker volume in the prior calendar month.
+Your maker tier is set by your qualifying maker volume. See [How tiers are set](#how-tiers-are-set) for the calculation window before and after November 6.
 
-| Maker tier | Prior calendar-month maker volume | Maker rebate coefficient (Θ) | Share of the standard taker fee |
+| Maker tier | Qualifying maker volume | Maker rebate coefficient (Θ) | Share of the standard taker fee |
 | - | - | - | - |
 | Tier 1 | Below \$10,000,000 | No maker rebate | 0% |
 | Tier 2 | \$10,000,000 - \$49,999,999 | -0.0035 | about 5% |
@@ -56,9 +56,9 @@ Your maker tier is set by your maker volume in the prior calendar month.
 
 ### Taker rebate tiers
 
-Your taker tier is set by your taker volume in the prior calendar month.
+Your taker rebate tier is set by your qualifying taker volume. See [How tiers are set](#how-tiers-are-set) for the calculation window before and after November 6.
 
-| Taker tier | Prior calendar-month taker volume | % Taker fee rebate |
+| Taker tier | Qualifying taker volume | % Taker fee rebate |
 | - | - | - |
 | Tier 1 | Below \$250,000 | No taker rebate |
 | Tier 2 | \$250,000 - \$999,999 | 3% |
@@ -69,10 +69,13 @@ Your taker tier is set by your taker volume in the prior calendar month.
 
 ### How tiers are set
 
-* Tiers reset on the first of each month based on your volume in the prior calendar month.
+* **Until 1:00 PM ET on November 6, 2026:** tiers are set monthly based on your volume in the prior calendar month.
+* **From 1:00 PM ET on November 6, 2026:** tiers use volume over the preceding 30 completed calendar days in Eastern Time (ET), excluding the current day. After the cutover, tiers are set daily at 12:00 AM ET and apply until the next midnight.
 * Maker and taker tiers are numbered and set independently. Your maker tier (Tier 1 to Tier 4) uses maker volume only and your taker tier (Tier 1 to Tier 6) uses taker volume only.
-* **October 2026:** for the rest of October, each tier is set by the higher of your September 2026 volume or 4x your volume from Monday, October 12 through Sunday, October 18, 2026. From November 1, tiers follow the monthly rule above.
+* This change affects only the volume measurement window and daily tier setting. The tier thresholds, maker rebate coefficients and taker rebate percentages stay the same. All complementary programs, including accelerations and overrides, continue as before. Taker rebates continue to be paid weekly.
 * **Accelerated Tier Placement**: A Participant may provide verifiable proof of their trailing-30-day notional trading volume on another prediction market and be assigned to the rebate tier corresponding to that volume.
+
+For example, after the change, qualifying taker volume of \$9.8 million for Monday gives a 5% rebate on Monday's taker fees. Qualifying taker volume of \$10.2 million for Tuesday gives a 10% rebate on Tuesday's taker fees. Each day uses its own tier; rebates are still paid weekly.
 
 ### How volume is measured
 
@@ -92,7 +95,7 @@ Volume (sell) = C × (1 - p)
 * **Taker volume** is your dollar volume on fills where your order removed liquidity from the book.
 * **Maker volume** is your dollar volume on fills where your resting order was executed against.
 * Combo fills count toward both maker and taker volume.
-* Volume is measured over the calendar month in Eastern Time (ET). Voided fills are excluded.
+* Volume is measured in Eastern Time (ET), using the calculation window in [How tiers are set](#how-tiers-are-set). Voided fills are excluded.
 
 > [!NOTE]
 >
@@ -268,14 +271,10 @@ The same trade as Example 5, in a Table Tennis market. The taker pays the higher
 
 ## Combo Taker Fees
 
-> [!NOTE]
->
-> From 10:00 PM ET, Wednesday, October 28, 2026, the `(1 - p)^4` coefficient becomes `0.085`. The formula, schedule, and examples in this section use the current `0.06` until then.
-
 The taker side of a combo trade uses a separate fee curve:
 
 ```
-Fee = C × p × [0.0695 × (1 - p) + 0.06 × (1 - p)^4]
+Fee = C × p × [0.0695 × (1 - p) + 0.085 × (1 - p)^4]
 ```
 
 `C` is the number of contracts and `p` is the combo execution price in decimal dollars. The curve applies to the combo execution as a whole, not separately to its component legs.
@@ -286,89 +285,89 @@ Combo fills carry no maker rebate. A participant's taker rebate percentage is ap
 
 | Price | Trade Value (100-lot) | Combo Taker Pays (100-lot) |
 | - | - | - |
-| \$0.01 | \$1 | \$0.13 |
-| \$0.02 | \$2 | \$0.25 |
-| \$0.03 | \$3 | \$0.36 |
-| \$0.04 | \$4 | \$0.47 |
-| \$0.05 | \$5 | \$0.57 |
-| \$0.06 | \$6 | \$0.67 |
-| \$0.07 | \$7 | \$0.77 |
-| \$0.08 | \$8 | \$0.86 |
-| \$0.09 | \$9 | \$0.94 |
-| \$0.10 | \$10 | \$1.02 |
-| \$0.11 | \$11 | \$1.09 |
-| \$0.12 | \$12 | \$1.17 |
-| \$0.13 | \$13 | \$1.23 |
-| \$0.14 | \$14 | \$1.30 |
-| \$0.15 | \$15 | \$1.36 |
-| \$0.16 | \$16 | \$1.41 |
-| \$0.17 | \$17 | \$1.46 |
-| \$0.18 | \$18 | \$1.51 |
-| \$0.19 | \$19 | \$1.56 |
-| \$0.20 | \$20 | \$1.60 |
-| \$0.21 | \$21 | \$1.64 |
-| \$0.22 | \$22 | \$1.68 |
-| \$0.23 | \$23 | \$1.72 |
-| \$0.24 | \$24 | \$1.75 |
-| \$0.25 | \$25 | \$1.78 |
-| \$0.26 | \$26 | \$1.80 |
-| \$0.27 | \$27 | \$1.83 |
-| \$0.28 | \$28 | \$1.85 |
-| \$0.29 | \$29 | \$1.87 |
-| \$0.30 | \$30 | \$1.89 |
-| \$0.31 | \$31 | \$1.91 |
-| \$0.32 | \$32 | \$1.92 |
-| \$0.33 | \$33 | \$1.94 |
-| \$0.34 | \$34 | \$1.95 |
-| \$0.35 | \$35 | \$1.96 |
-| \$0.36 | \$36 | \$1.96 |
-| \$0.37 | \$37 | \$1.97 |
-| \$0.38 | \$38 | \$1.97 |
-| \$0.39 | \$39 | \$1.98 |
-| \$0.40 | \$40 | \$1.98 |
-| \$0.41 | \$41 | \$1.98 |
-| \$0.42 | \$42 | \$1.98 |
-| \$0.43 | \$43 | \$1.98 |
-| \$0.44 | \$44 | \$1.97 |
-| \$0.45 | \$45 | \$1.97 |
-| \$0.46 | \$46 | \$1.96 |
-| \$0.47 | \$47 | \$1.95 |
-| \$0.48 | \$48 | \$1.95 |
-| \$0.49 | \$49 | \$1.94 |
-| \$0.50 | \$50 | \$1.92 |
-| \$0.51 | \$51 | \$1.91 |
-| \$0.52 | \$52 | \$1.90 |
-| \$0.53 | \$53 | \$1.89 |
-| \$0.54 | \$54 | \$1.87 |
-| \$0.55 | \$55 | \$1.86 |
-| \$0.56 | \$56 | \$1.84 |
-| \$0.57 | \$57 | \$1.82 |
-| \$0.58 | \$58 | \$1.80 |
-| \$0.59 | \$59 | \$1.78 |
-| \$0.60 | \$60 | \$1.76 |
-| \$0.61 | \$61 | \$1.74 |
-| \$0.62 | \$62 | \$1.71 |
-| \$0.63 | \$63 | \$1.69 |
-| \$0.64 | \$64 | \$1.67 |
-| \$0.65 | \$65 | \$1.64 |
-| \$0.66 | \$66 | \$1.61 |
-| \$0.67 | \$67 | \$1.58 |
-| \$0.68 | \$68 | \$1.56 |
-| \$0.69 | \$69 | \$1.52 |
-| \$0.70 | \$70 | \$1.49 |
-| \$0.71 | \$71 | \$1.46 |
-| \$0.72 | \$72 | \$1.43 |
-| \$0.73 | \$73 | \$1.39 |
-| \$0.74 | \$74 | \$1.36 |
-| \$0.75 | \$75 | \$1.32 |
-| \$0.76 | \$76 | \$1.28 |
-| \$0.77 | \$77 | \$1.24 |
-| \$0.78 | \$78 | \$1.20 |
-| \$0.79 | \$79 | \$1.16 |
+| \$0.01 | \$1 | \$0.15 |
+| \$0.02 | \$2 | \$0.29 |
+| \$0.03 | \$3 | \$0.43 |
+| \$0.04 | \$4 | \$0.56 |
+| \$0.05 | \$5 | \$0.68 |
+| \$0.06 | \$6 | \$0.79 |
+| \$0.07 | \$7 | \$0.90 |
+| \$0.08 | \$8 | \$1.00 |
+| \$0.09 | \$9 | \$1.09 |
+| \$0.10 | \$10 | \$1.18 |
+| \$0.11 | \$11 | \$1.27 |
+| \$0.12 | \$12 | \$1.35 |
+| \$0.13 | \$13 | \$1.42 |
+| \$0.14 | \$14 | \$1.49 |
+| \$0.15 | \$15 | \$1.55 |
+| \$0.16 | \$16 | \$1.61 |
+| \$0.17 | \$17 | \$1.67 |
+| \$0.18 | \$18 | \$1.72 |
+| \$0.19 | \$19 | \$1.76 |
+| \$0.20 | \$20 | \$1.81 |
+| \$0.21 | \$21 | \$1.85 |
+| \$0.22 | \$22 | \$1.88 |
+| \$0.23 | \$23 | \$1.92 |
+| \$0.24 | \$24 | \$1.95 |
+| \$0.25 | \$25 | \$1.98 |
+| \$0.26 | \$26 | \$2.00 |
+| \$0.27 | \$27 | \$2.02 |
+| \$0.28 | \$28 | \$2.04 |
+| \$0.29 | \$29 | \$2.06 |
+| \$0.30 | \$30 | \$2.07 |
+| \$0.31 | \$31 | \$2.08 |
+| \$0.32 | \$32 | \$2.09 |
+| \$0.33 | \$33 | \$2.10 |
+| \$0.34 | \$34 | \$2.11 |
+| \$0.35 | \$35 | \$2.11 |
+| \$0.36 | \$36 | \$2.11 |
+| \$0.37 | \$37 | \$2.12 |
+| \$0.38 | \$38 | \$2.11 |
+| \$0.39 | \$39 | \$2.11 |
+| \$0.40 | \$40 | \$2.11 |
+| \$0.41 | \$41 | \$2.10 |
+| \$0.42 | \$42 | \$2.10 |
+| \$0.43 | \$43 | \$2.09 |
+| \$0.44 | \$44 | \$2.08 |
+| \$0.45 | \$45 | \$2.07 |
+| \$0.46 | \$46 | \$2.06 |
+| \$0.47 | \$47 | \$2.05 |
+| \$0.48 | \$48 | \$2.03 |
+| \$0.49 | \$49 | \$2.02 |
+| \$0.50 | \$50 | \$2.00 |
+| \$0.51 | \$51 | \$1.99 |
+| \$0.52 | \$52 | \$1.97 |
+| \$0.53 | \$53 | \$1.95 |
+| \$0.54 | \$54 | \$1.93 |
+| \$0.55 | \$55 | \$1.91 |
+| \$0.56 | \$56 | \$1.89 |
+| \$0.57 | \$57 | \$1.87 |
+| \$0.58 | \$58 | \$1.85 |
+| \$0.59 | \$59 | \$1.82 |
+| \$0.60 | \$60 | \$1.80 |
+| \$0.61 | \$61 | \$1.77 |
+| \$0.62 | \$62 | \$1.75 |
+| \$0.63 | \$63 | \$1.72 |
+| \$0.64 | \$64 | \$1.69 |
+| \$0.65 | \$65 | \$1.66 |
+| \$0.66 | \$66 | \$1.63 |
+| \$0.67 | \$67 | \$1.60 |
+| \$0.68 | \$68 | \$1.57 |
+| \$0.69 | \$69 | \$1.54 |
+| \$0.70 | \$70 | \$1.51 |
+| \$0.71 | \$71 | \$1.47 |
+| \$0.72 | \$72 | \$1.44 |
+| \$0.73 | \$73 | \$1.40 |
+| \$0.74 | \$74 | \$1.37 |
+| \$0.75 | \$75 | \$1.33 |
+| \$0.76 | \$76 | \$1.29 |
+| \$0.77 | \$77 | \$1.25 |
+| \$0.78 | \$78 | \$1.21 |
+| \$0.79 | \$79 | \$1.17 |
 | \$0.80 | \$80 | \$1.12 |
 | \$0.81 | \$81 | \$1.08 |
 | \$0.82 | \$82 | \$1.03 |
-| \$0.83 | \$83 | \$0.98 |
+| \$0.83 | \$83 | \$0.99 |
 | \$0.84 | \$84 | \$0.94 |
 | \$0.85 | \$85 | \$0.89 |
 | \$0.86 | \$86 | \$0.84 |
@@ -392,16 +391,16 @@ Combo fills carry no maker rebate. A participant's taker rebate percentage is ap
 
 For a single fill, the combo fee is calculated from the combo execution price and quantity as a whole.
 
-* **Buyer (taker):** 1,000 × 0.10 × \[0.0695 × 0.90 + 0.06 × 0.90^4] = \$10.1916 → **−\$10.19**
+* **Buyer (taker):** 1,000 × 0.10 × \[0.0695 × 0.90 + 0.085 × 0.90^4] = \$11.83185 → **−\$11.83**
 * **Seller (maker):** **\$0.00** (no maker rebate on combos)
 
 ***
 
 #### Example 2: Buy 1,000 combo contracts at \$0.50 — midpoint combo
 
-At the midpoint, the combo taker fee is \$19.25.
+At the midpoint, the combo taker fee is \$20.03.
 
-* **Buyer (taker):** 1,000 × 0.50 × \[0.0695 × 0.50 + 0.06 × 0.50^4] = \$19.25 → **−\$19.25**
+* **Buyer (taker):** 1,000 × 0.50 × \[0.0695 × 0.50 + 0.085 × 0.50^4] = \$20.03125 → **−\$20.03**
 * **Seller (maker):** **\$0.00** (no maker rebate on combos)
 
 ## FAQ
