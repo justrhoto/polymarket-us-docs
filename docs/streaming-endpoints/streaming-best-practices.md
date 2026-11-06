@@ -57,7 +57,7 @@ Not every stream starts with a snapshot. Do not copy a snapshot client onto Drop
 | Drop Copy / trade capture / position change | **No snapshot.** Live (or replay from token). | Pass the last **committed** `resume_token`. Dedup `execution.id` / trade id. |
 | Order stream | Snapshot of open orders, then updates. No `resume_token`. | Reconnect. Take the new snapshot. |
 | Market data | Snapshot, then updates (`snapshot_only: false`). | Reconnect. Take the new snapshot. |
-| Instrument state change | Current-state snapshot (paged), then live updates. | Reconnect. Take the new snapshot. Do not depend on catching up via an old token. |
+| Instrument state change | **No snapshot.** Live state transitions (or replay from token or time). Get initial state from `ListInstruments`. | Pass the last applied `resume_token`. If it has expired, reload state from `ListInstruments` and reopen without a token. |
 | Balance ledger | Replay from `resume_time`, then live. | Pass the last applied `update_time`. |
 
 Unary reads (`SearchExecutions`, `SearchTrades`, `GetOrderBook`) are **anchors**, not a substitute for the stream. See [Reconciliation](https://docs.polymarket.us/partners/reconciliation.md).

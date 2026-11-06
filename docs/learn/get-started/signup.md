@@ -32,6 +32,26 @@ Once verified, you can **deposit funds** and start trading.
 >
 > Most verifications are completed instantly. If manual review is required, processing can take longer. You'll see the result in the app, and if notifications are on, we'll send you a push notification when you're approved.
 
+## If We Couldn't Verify Your Identity
+
+**Try again with your details exactly as they appear on your government-issued ID.**
+
+You'll need to enter them again. Check that:
+
+* your legal name matches your ID (no nicknames or shortened names)
+* your date of birth and Social Security number are correct
+* your home address is your current residential address
+
+### If We Ask for a Photo of Your ID
+
+* Use a **driver's license, state ID card or passport**. It must be **unexpired**. Military IDs can't be used.
+* Use the **physical ID**: not a photocopy, a screenshot, or a photo of a screen.
+* Place it on a dark, flat surface, in good light with no glare. Keep all four corners in the frame, and don't cover any part of it with your fingers.
+* For the selfie, keep your whole face visible: no hat, sunglasses or mask.
+* Finish the ID check once you start it. If you leave it unfinished, you'll need to start verification again.
+
+**You can try a limited number of times.** If you can't try again, or keep running into problems, [contact support](https://docs.polymarket.us/learn/faq/contact-support.md) through the in-app chat in **Settings** or at [support@polymarket.us](mailto:support@polymarket.us). Never send your Social Security number or a photo of your ID by email.
+
 ## Why KYC Is Required
 
 KYC verification is required to comply with federal identity and anti-money-laundering (AML) rules. These checks confirm user identity and help maintain a secure and compliant trading environment. You must complete KYC before you can deposit funds or trade.

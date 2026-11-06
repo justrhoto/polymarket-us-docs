@@ -42,7 +42,9 @@ Note that the FIX protocol specifies different enumerations for OrdRejReason vs 
 
 > [!NOTE]
 >
-> **`Global Rate Limit Exceeded` is a latency stopgap, not a rate limit.** During periods of increased latency, an order that has been received but not processed within 5 seconds is rejected with the text `Global Rate Limit Exceeded` to protect you from a bad fill at a stale price. This is **not** an actual rate limit — do **not** throttle your traffic in response. It applies to new orders and cancel/replace modifications, but **not** to pure cancels. You can always cancel an order before it has been acknowledged or processed. See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#latency-stopgap-on-orders).
+> **`Order Processing Max Delay Exceeded` (previously `Global Rate Limit Exceeded`) is a latency stopgap, not a rate limit.** During periods of increased latency, an order that has been received but not processed within 5 seconds is rejected to protect you from a bad fill at a stale price. It applies to new orders and cancel/replace modifications, but **not** to pure cancels. You can always cancel an order before it has been acknowledged or processed.
+>
+> The text appears in `Text (58)` on `ExecutionReport (35=8)` or `OrderCancelReject (35=9)`, and in gRPC rejection reports. Reject codes are unchanged. Treat either message as a transient latency reject: you may resubmit the rejected request without throttling in response to this message. If your client matches on text, handle both strings; historical order and execution reports may contain the old text. See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#latency-stopgap-on-orders).
 
 ### Market Data Request Reject (35=Y)
 

@@ -224,7 +224,7 @@ During periods of increased latency, Polymarket US applies a **5-second stopgap*
 
 > [!WARNING]
 >
-> These rejects carry the message **`Global Rate Limit Exceeded`**, but they are **not** an actual rate limit. You do **not** need to throttle your traffic in response to them. Treat them as a transient latency reject, not a signal to back off.
+> These rejects carry the message **`Order Processing Max Delay Exceeded`** (previously **`Global Rate Limit Exceeded`**). Both indicate an exchange processing delay, **not** an actual rate limit. Treat either as a transient latency reject: you may resubmit the rejected request without throttling in response to this message. Reject codes are unchanged. If your client matches on text, handle both strings; historical order and execution reports may contain the old text.
 
 What it applies to:
 

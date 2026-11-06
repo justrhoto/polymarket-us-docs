@@ -301,6 +301,20 @@ Stream market state changes (halts, opens, closes).
 | `resume_token` | `bytes` | Store for reconnection |
 | `instruments` | `list[Instrument]` | Updated instrument states |
 
+### Starting and resuming
+
+The stream sends state transitions only. It does not send a snapshot of current instrument states.
+
+| Request | What the stream delivers |
+| - | - |
+| No `resume_token` and no `resume_time` | Live state transitions, starting when the stream opens. Nothing earlier is replayed. |
+| `resume_token` | Every state transition after that token, then live transitions. |
+| `resume_time` | Every state transition from that time, then live transitions. |
+
+The two resume fields are mutually exclusive. Send one or neither.
+
+On first connect, call `ListInstruments` to load current states, then open the stream with neither resume field. Persist the latest `resume_token` you have applied, including tokens on responses with no instruments, and pass it on reconnect.
+
 ### Instrument States
 
 #### Primary State Flow
@@ -409,7 +423,7 @@ def stream_position_changes(self, symbols: list = None):
 
 Keep **one** long-lived Drop Copy stream per environment. Do not open a stream per order, and do not cancel the RPC after a few seconds — that restarts replay and never catches up. See [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md).
 
-Execution, trade-capture, and position-change streams carry `resume_token` for reconnect:
+Execution, trade-capture, position-change, and instrument-state-change streams carry `resume_token` for reconnect:
 
 ```python theme={null}
 # Store resume_token from each response

@@ -11,6 +11,12 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 5, 2026**
+
+Instrument state change resume semantics
+
+* **Corrected:** the [instrument state change subscription](https://docs.polymarket.us/streaming-endpoints/dropcopy-stream.md#starting-and-resuming) does not send a current-state snapshot. Without a resume field it delivers live state transitions. With `resume_token` or `resume_time` it replays transitions from that position, then continues live. Load initial state from `ListInstruments`, persist the latest `resume_token`, and pass it on reconnect. [Streaming Best Practices](https://docs.polymarket.us/streaming-endpoints/streaming-best-practices.md#snapshot-vs-resume) previously described a snapshot on connect.
+
 **October 22, 2026**
 
 Gold and silver Up/Down markets

@@ -21,7 +21,9 @@ All calls require bearer-token authentication and an acting participant, supplie
 
 Each method has a separate per-firm rate-limit bucket with one second of burst capacity. See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#combos-endpoints).
 
-Separately, combo creation has a participant-wide service quota of 1,000 new instruments per week across all accounts and both Retail and Institutional APIs. The quota resets Monday at 00:00 UTC; returning an existing canonical combo does not consume it.
+Each participant can create 3,000 new combo instruments per week across all accounts and both Retail and Institutional APIs.
+The quota resets Monday at 00:00 UTC (Sunday at 8:00 PM EDT or 7:00 PM EST).
+Returning an existing canonical combo does not consume this quota.
 
 ## Create a Combo
 
