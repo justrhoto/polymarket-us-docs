@@ -8,6 +8,38 @@
 
 > [!NOTE]
 >
+> **Upcoming taker fee tiers — effective at 1:00 PM ET on Friday, November 6, 2026.** Taker fees will use the volume tiers below. The current fee formulas, price tables and examples remain in effect until the taker fee change goes live.
+
+## Upcoming taker fee tiers
+
+Your taker fee tier will be calculated daily using taker volume over the preceding **30 completed Eastern Time (ET) calendar days**, excluding today. Volume is measured as described in [How volume is measured](#how-volume-is-measured).
+
+| Taker fee tier | Trailing 30-day taker volume | Taker coefficient (Θ) |
+| - | - | - |
+| Tier 1 | Below \$10,000 | 0.095 |
+| Tier 2 | \$10,000 to less than \$50,000 | 0.085 |
+| Tier 3 | \$50,000 to less than \$250,000 | 0.075 |
+| Tier 4 | \$250,000 or more | 0.0695 |
+
+At launch, standard taker fees will use `Fee = Θ × C × p × (1 - p)`, where Θ is your taker coefficient, C is the number of contracts and p is the decimal trade price. Table Tennis will use this same tier ladder; its current `0.10` coefficient will no longer apply.
+
+### New-account onboarding window
+
+The window applies to retail and institutional accounts across trading channels whose first fill is on or after launch:
+
+* **Day 1** is the ET calendar day of the account's first filled order, maker or taker. There is no hourly proration.
+* **Days 1–7:** taker fee coefficient `0.0695`, regardless of volume. This boost applies to taker fees only; maker and taker rebate tiers use trailing 30-day volume.
+* **Days 8–30:** taker fee, maker rebate and taker rebate tiers use the higher of first-7-day volume × `30/7` and trailing 30-day volume. Maker volume sets the maker rebate tier; taker volume sets the taker fee and taker rebate tiers.
+* **Day 31 onward:** all three tiers use their respective trailing 30-day volume.
+* Accounts with their first fill in the six days before launch receive the remaining days of their window. During November, existing accounts receive the better of their trailing 30-day tier or the tier based on October volume.
+* Manual overrides take precedence over the boost and acceleration.
+
+The fee coefficient is set when an order is inserted. An order placed during the window keeps that coefficient if it fills later.
+
+***
+
+> [!NOTE]
+>
 > **Upcoming rebate window change.** From **1:00 PM ET on Friday, November 6, 2026**, maker and taker rebate tiers will use a rolling 30-day volume window instead of the prior calendar month. Tiers will be set daily in Eastern Time.
 >
 > The tiers and all complementary programs, including accelerations and overrides, continue as before. See [How tiers are set](#how-tiers-are-set) for the calculation window and an example.
