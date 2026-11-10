@@ -110,7 +110,7 @@ result = client.orders.cancel_all()
 print(f"Canceled: {result['canceledOrderIds']}")
 
 # Or cancel for a specific market
-result = client.orders.cancel_all({"marketSlug": "btc-100k-2025"})
+result = client.orders.cancel_all({"slugs": ["btc-100k-2025"]})
 ```
 
 ***

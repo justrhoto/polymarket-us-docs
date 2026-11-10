@@ -8,6 +8,14 @@
 
 > [!NOTE]
 >
+> **Upcoming combo taker fee change — confirmed for 1:00 PM ET on Wednesday, November 11, 2026.** The fixed coefficient on `(1 - p)^4` will decrease from `0.085` to `0.06`. The coefficient on `(1 - p)` will use your taker fee coefficient Θ:
+>
+> `Fee = C × p × [Θ × (1 - p) + 0.06 × (1 - p)^4]`
+>
+> `C` is the number of contracts and `p` is the decimal combo execution price. The current [combo formula, price table and examples](#combo-taker-fees) remain in effect until the change is activated.
+
+> [!NOTE]
+>
 > **Upcoming taker fee tiers — effective at 1:00 PM ET on Friday, November 6, 2026.** Taker fees will use the volume tiers below. The current fee formulas, price tables and examples remain in effect until the taker fee change goes live.
 
 ## Upcoming taker fee tiers

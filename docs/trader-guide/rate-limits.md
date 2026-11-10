@@ -31,9 +31,9 @@ Each batch order request counts once toward that method's rate limit, regardless
 
 ## FIX Protocol
 
-FIX rate limiting is enforced at the FIX gateway on inbound messages from the client to the exchange.
+FIX limits are configured for each firm's sessions and enforced separately per session on inbound application messages. The exchange can update a session's limit live without disconnecting it.
 
-Order-entry sessions use the firm tier:
+Standard order-entry limits follow the firm's tier:
 
 | Tier | Rate limit |
 | - | - |
@@ -44,7 +44,13 @@ Order-entry sessions use the firm tier:
 
 Tiers are determined by your [contract volume share on Polymarket US](#volume-share-and-tier-requirements).
 
-Market-data and drop-copy sessions are limited to **150 inbound msg/sec**, regardless of the firm's order-entry tier. This limit applies only to messages you send. It does not limit the market data or drop-copy messages the exchange sends you.
+Market-data and drop-copy sessions default to **150 inbound msg/sec per session**, independently of the firm's order-entry tier. Your session's configured limit may differ from these standard rates. These limits apply only to messages you send. They do not limit the market data or drop-copy messages the exchange sends you.
+
+Each session's limit is checked over a **rolling 1-second window**, not a calendar second or a 1-minute average. You can send up to your session's limit within that window. Heartbeats and other FIX admin messages do not count toward the limit.
+
+The window is measured when the gateway processes each message, not by `SendingTime (52)`, so network or session backlogs can bunch messages together; leave headroom below your limit.
+
+Exceeding the limit starts a **3-second lock** under the current production policy. During the lock, further application messages on that session are rejected with [Business Message Reject (35=j)](https://docs.polymarket.us/institutional/fix-api/fix-reject-reasons.md#business-message-reject-35j), with Text (58) containing `Message rate limit throttled for session`, even if your rate has dropped below the limit. Wait at least 3 seconds after the initial rejection before retrying. A live rate change does not clear an active lock.
 
 ## Volume Share and Tier Requirements
 
@@ -174,8 +180,8 @@ RFQ tiers use a separate volume measure and eligibility thresholds from the inst
 | gRPC streaming (ingress) | Per firm (all streams) | 100 msg/sec (1-min avg) |
 | gRPC streaming (egress) | Per firm | Unlimited |
 | RFQ - REST and unary gRPC endpoints | Per firm, per endpoint | 1–2,000 req/sec (see tables above) |
-| FIX order entry | Per session | 35, 150, 300, or 500 msg/sec by tier (see table above) |
-| FIX market data and drop copy | Per session | 150 msg/sec |
+| FIX order entry | Per session | Standard tiers: 35, 150, 300, or 500 msg/sec; configurable (see above) |
+| FIX market data and drop copy | Per session | 150 msg/sec default; configurable |
 
 ## Rate Limit Response
 

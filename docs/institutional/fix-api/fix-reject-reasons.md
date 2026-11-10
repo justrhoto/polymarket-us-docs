@@ -86,7 +86,7 @@ Below is a list of Business Message Reject (35=j) error strings produced by the 
 | Reason | Example Error String (Tag 58) | BusinessRejectReason (Tag 380) |
 | - | - | - |
 | Self-Match Override Prohibited | "Session-level self match prevention ID already provided" | Other (0) |
-| Rate Limits on Session | "Message rate limit throttled for session" | Other (0) |
+| [Rate Limits on Session (rolling 1-second window, 3-second lock)](https://docs.polymarket.us/trader-guide/rate-limits.md#fix-protocol) | "Message rate limit throttled for session" | Other (0) |
 | Unknown Account Type | "Account type unknown" | Other (0) |
 | Unknown Customer Order Capacity | "Customer order capacity unknown" | Other (0) |
 | Unsupported Commission Type | "Unsupported CommType" | Other (0) |

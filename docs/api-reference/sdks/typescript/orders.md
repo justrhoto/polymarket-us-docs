@@ -111,7 +111,7 @@ const result = await client.orders.cancelAll();
 console.log(`Canceled: ${result.canceledOrderIds}`);
 
 // Or cancel for a specific market
-const result = await client.orders.cancelAll({ marketSlug: 'btc-100k-2025' });
+const result = await client.orders.cancelAll({ slugs: ['btc-100k-2025'] });
 ```
 
 ***

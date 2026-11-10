@@ -11,6 +11,18 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 9, 2026**
+
+Upcoming: combo taker fee change
+
+From **1:00 PM ET on Wednesday, November 11, 2026**, the fixed coefficient on `(1 - p)^4` will decrease from `0.085` to `0.06`. The coefficient on `(1 - p)` will use your taker fee coefficient Θ, matching straight markets:
+
+```
+Fee = C × p × [Θ × (1 - p) + 0.06 × (1 - p)^4]
+```
+
+`C` is the number of contracts and `p` is the decimal combo execution price. The current combo formula, price table and examples remain in effect until activation. See [Combo Taker Fees](https://docs.polymarket.us/fees.md#combo-taker-fees).
+
 **November 5, 2026**
 
 Instrument state change resume semantics
