@@ -271,6 +271,7 @@ If an order is rejected, the reason will be one of:
 | `ORD_REJECT_REASON_INCORRECT_ORDER_TYPE` | Invalid order type for market |
 | `ORD_REJECT_REASON_PRICE_OUT_OF_BOUNDS` | Price outside valid range |
 | `ORD_REJECT_REASON_NO_LIQUIDITY` | No liquidity for market order |
+| `ORD_REJECT_REASON_INSUFFICIENT_CREDIT_LIMIT` | Insufficient buying power for the order |
 
 ## Slippage Tolerance
 
@@ -305,6 +306,14 @@ Slippage tolerance defines the maximum price movement you'll accept. For example
 > **Real-Time Order Updates**
 >
 > After submitting orders via REST, use the [WebSocket Private Stream](https://docs.polymarket.us/api-reference/websocket/private.md) to receive real-time updates on order status, fills, and cancellations.
+
+## Idempotency and Ambiguous Retries
+
+Send the `idempotencyKey` header with every `POST /v1/orders` request. The value must be non-empty and no more than 255 bytes. Generate a new value for each new placement intent, and reuse the same value only when retrying that same order request.
+
+After a successful placement, the API retains the response for 24 hours and returns that recorded response when the same authenticated user retries with the same key. A concurrent retry while the original request is still processing can return `ABORTED`; wait briefly and retry with the same key.
+
+If a request has an ambiguous outcome, do not immediately submit the order with a new key. Retry with the same key and reconcile the original attempt through the [Private WebSocket order stream](https://docs.polymarket.us/api-reference/websocket/private.md), `GET /v1/orders/open`, and recent fills before deciding whether to place a new order.
 
 ## Complete Create Order Example
 
@@ -346,7 +355,7 @@ The API enforces a global rate limit of **20 requests per second** per API key a
 2. **Use WebSocket for updates** - Subscribe to order updates instead of polling
 3. **Preview before submit** - Use the preview endpoint for order validation
 4. **Handle rejects** - Implement proper error handling for rejected orders
-5. **Use asynchronous execution for limit orders** - For market-making and resting limit orders, avoid `synchronousExecution: true` as it waits up to 10 seconds for final order state. Instead, submit orders asynchronously (the default) and poll with `GET /v1/order/{orderId}` to check status (\~100ms). Only use `synchronousExecution: true` for immediately-fillable orders where you need to wait for fill confirmation.
+5. **Use asynchronous execution for limit orders** - For market-making and resting limit orders, avoid `synchronousExecution: true` as it can wait up to the server's five-second maximum for final order state. A lower positive `maxBlockTime` shortens that wait; values above five seconds are capped. Instead, submit orders asynchronously (the default) and use the private order stream or `GET /v1/order/{orderId}` to check status. Only use synchronous execution for immediately-fillable orders where you need to wait for fill confirmation.
 6. **Specify manual order indicator** - Required for regulatory compliance
 7. **Respect rate limits** - Implement request throttling to stay within rate limits and avoid 429 errors
 
