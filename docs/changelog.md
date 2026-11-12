@@ -11,6 +11,22 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 11, 2026**
+
+NBA double-double and triple-double
+
+NBA double-double and triple-double player props are listed again, in a new format. This format replaces the one announced on June 1, 2026.
+
+* **Market types:** `basketball_player_double_double` and `basketball_player_triple_double` (unchanged).
+* **One Yes/No market per player per game.** A market is listed only for players with a quoted price, so not every player in a game has one.
+* **Slugs no longer carry a strike suffix:**
+  * Double-double: `astatc-nba-den-mem-2026-11-11-dd-zacede` (previously `...-dd-<player>-gte1`)
+  * Triple-double: `astatc-nba-den-mem-2026-11-11-td-nikjok` (previously `...-td-<player>-gte1`)
+* **`outcome_strike` is the player's code, not a number.** It is the same code as in `long_participant_id` without the league prefix (`zacede` for `nba-zacede`), as for the `football_player_most_*` markets. Map these markets on `market_sport_type` and the player, never on `outcome_strike`.
+* **Retail API:** the market has no `line` (`null`). The title names the player and the milestone ("Zach Edey double-double"), and both the Yes and the No side are tradable.
+* **Institutional API:** `event_attributes` state Yes as `evaluation_type` `>` with `strike_value` `0.5`.
+* **Resolution:** Yes when the player records 10 or more in at least two (double-double) or three (triple-double) of points, rebounds, assists, steals and blocks, overtime included, on the official box score. A player who does not take the court settles at the last fair market price.
+
 **November 9, 2026**
 
 Upcoming: combo taker fee change

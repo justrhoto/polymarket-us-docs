@@ -20,7 +20,7 @@ The following fields appear on every sports instrument. Together they uniquely d
 | `event_subcategory` | `metadata` | Enum | The sport. Values: `BASKETBALL`, `FOOTBALL`, `BASEBALL`, `SOCCER`, etc. |
 | `outcome_type` | `metadata` | Enum | The market structure. Still present on every instrument, but **do not use it for market mapping** — use `market_sport_type` instead. See the enum list below. |
 | `market_sport_type` | `metadata` | Enum | The fully-qualified market type, including sport, participant scope, and game period. **Always populated on every sports instrument**, including full-game spreads, totals, and outright winners. See the enum list below. |
-| `outcome_strike` | `metadata` | String (numeric) | The handicap or threshold for the market. Unsigned magnitude — the side the contract pays out on is encoded by `long_participant_id`. For a Cleveland +3.5 spread, this is `"3.5"`. For an over/under total of 4.5, this is `"4.5"`. Empty/`"0.0"` for moneylines. |
+| `outcome_strike` | `metadata` | String (numeric) | The handicap or threshold for the market. Unsigned magnitude — the side the contract pays out on is encoded by `long_participant_id`. For a Cleveland +3.5 spread, this is `"3.5"`. For an over/under total of 4.5, this is `"4.5"`. Empty/`"0.0"` for moneylines. Not numeric on some yes/no player markets, where it carries the player's code: `basketball_player_double_double`, `basketball_player_triple_double` and the `football_player_most_*` markets. |
 | `long_participant_id` | `metadata` | String | Globally unique ID of the side the contract pays out on (e.g. `mlb-cle`). Only populated on individual game markets (moneylines, spreads, totals, props) — do not rely on it for futures. |
 
 ### `outcome_type` Enum
@@ -87,8 +87,8 @@ The fully-qualified market type, including sport, participant scope, and game pe
 | `basketball_player_steals` | Basketball | Player | Full game | Steals prop |
 | `basketball_player_blocks` | Basketball | Player | Full game | Blocks prop |
 | `basketball_player_points_rebounds_assists` | Basketball | Player | Full game | Points + rebounds + assists prop |
-| `basketball_player_double_double` | Basketball | Player | Full game | Double-double yes/no |
-| `basketball_player_triple_double` | Basketball | Player | Full game | Triple-double yes/no |
+| `basketball_player_double_double` | Basketball | Player | Full game | Double-double yes/no (one market per player; `outcome_strike` carries the player's code) |
+| `basketball_player_triple_double` | Basketball | Player | Full game | Triple-double yes/no (one market per player; `outcome_strike` carries the player's code) |
 | `basketball_team_first_half_winner` | Basketball | Team | First half | Winner (legs: away team, Tie, home team) |
 | `basketball_team_first_half_spread` | Basketball | Team | First half | Spread |
 | `basketball_team_first_half_total` | Basketball | Team | First half | Total |

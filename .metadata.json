@@ -153,7 +153,7 @@
     "docs/api-reference/websocket/markets.md": "e320f5338459a8508ed33c90c035d65eb8c9c22b258e9a96090b9473dbc231a0",
     "docs/api-reference/websocket/overview.md": "347ee218215ddd238d6e89818a23cad81c1c1c236274430ce588c2ea399abdc0",
     "docs/api-reference/websocket/private.md": "4ddf75e58005c6ea1def7319122f75cf411fb55a76ac204d670d4b3ea6ea6f46",
-    "docs/changelog.md": "5376c77a83833d0c2446704a1eb1afb2b1f71ea9f1e02029a7107f9b12fa9f34",
+    "docs/changelog.md": "2ea211a3f31007d2727fe4a1a600d7ecca7ef8abe26668860e05dbbb497713fc",
     "docs/concepts/events-and-markets.md": "8f2d90c8866d60ec0a80b8f45e0c7c40cd70c6eab8632644d355382f58f16a26",
     "docs/concepts/market-data.md": "6a1ea5a7e8da1ba072f2b9856224727b0cc2b713f5bdc1887329eee5150dd7f0",
     "docs/concepts/orders.md": "5b14ddc46f49241d2aee6c5e4fec14f8b7c26ebcf5449970706754c841008bad",
@@ -297,7 +297,7 @@
     "docs/market-structure/collateral-and-margin.md": "a9219a064e721606ecae9414657b314d8a226340541039445e146d956df4a35a",
     "docs/market-structure/directional-collateral-return.md": "899520e8d8ce57ffbc4123f6bb1417390a075c1e9690ad3d01afa7b514e8ece3",
     "docs/market-structure/mutually-exclusive-collateral-return.md": "3b81ae4809cac94bd8ddb5076b6c2d049a25c6e164214c922afe48e1dcc792b7",
-    "docs/notices-and-filings.md": "65d2a4f7bcefca020e024a030dca068ccab78f996c7603e56962507fb1c77571",
+    "docs/notices-and-filings.md": "f5d544d034224ad0b9a8d0efb8d178fd3304df679db0237b906fa9222ac00ccf",
     "docs/partners/funding/deposits-withdrawals.md": "8a7fb6cca638db7f62a29e02ee1ccda4a2d9e505c55da58d950b1be0dda0b70f",
     "docs/partners/funding/overview.md": "2575d31672531c15dc116c79412524420111caa053fde978c16e4d45a0da23c5",
     "docs/partners/funding/transfers.md": "d6262a4bfaa7b0d0e9bd3f8accf9687e69ebc67697d118a8672eaf864f37421d",
@@ -365,7 +365,7 @@
     "docs/trader-guide/quickstart.md": "beb97021e22f915590a0e0139b98f4b7b2527cec56da403319eef99e92237353",
     "docs/trader-guide/rate-limits.md": "af5e831c19e3ec3fde9e43859796516bd7e83789fc6656dc46acbcb6f011389d",
     "docs/trader-guide/reporting.md": "6371bb1a7a2be47cc0bb4e4e0fcbab01fdae74b4bb55de5618500d336af15ba1",
-    "docs/trader-guide/sports-schema.md": "7f1c46c8061c62ed2aeb2c980ac7471eceabf09b71f14d53bd3c141b698e688a",
+    "docs/trader-guide/sports-schema.md": "fec1bbf0acf27f29cbd3ec8ba41bf68a4d4c92f6034e1a571ff374846af219d8",
     "docs/trader-guide/streaming-apis.md": "7bec86615bf23fe9c88dd37d8458b29999e22d618993089df076482784e2b42a"
   }
 }
