@@ -11,6 +11,12 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 12, 2026**
+
+Idempotency header name
+
+* **Corrected:** the header for safe order retries is `Idempotency-Key`. The docs published on November 10 said `idempotencyKey`, which the Retail API ignores, so retries sent with it were not protected against duplicate orders. Switch to `Idempotency-Key`. See [Idempotency and Ambiguous Retries](https://docs.polymarket.us/api-reference/orders/overview.md#idempotency-and-ambiguous-retries).
+
 **November 11, 2026**
 
 NBA double-double and triple-double

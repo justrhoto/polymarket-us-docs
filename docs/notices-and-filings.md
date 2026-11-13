@@ -12,6 +12,10 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 * Add the feed to any RSS reader: `https://docs.polymarket.us/notices-and-filings/rss.xml`
 
+**November 11, 2026**
+
+[Fee Change for Combination Athletic Event Contracts](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Fee%20Change%20for%20Combination%20Athletic%20Event%20Contracts%20\(2026.11.11\).pdf)
+
 **November 10, 2026**
 
 [Weekly Notification of Fee Schedule Change](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Weekly%20Notification%20of%20Fee%20Schedule%20Change%20\(2026.11.10\).pdf)

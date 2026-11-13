@@ -309,7 +309,11 @@ Slippage tolerance defines the maximum price movement you'll accept. For example
 
 ## Idempotency and Ambiguous Retries
 
-Send the `idempotencyKey` header with every `POST /v1/orders` request. The value must be non-empty and no more than 255 bytes. Generate a new value for each new placement intent, and reuse the same value only when retrying that same order request.
+Send the `Idempotency-Key` header with every `POST /v1/orders` request. The value must be non-empty and no more than 255 bytes. Generate a new value for each new placement intent, and reuse the same value only when retrying that same order request.
+
+> [!WARNING]
+>
+> Earlier versions of this page said to send `idempotencyKey`. The Retail API ignores that spelling, so those requests got no retry protection. Use `Idempotency-Key`.
 
 After a successful placement, the API retains the response for 24 hours and returns that recorded response when the same authenticated user retries with the same key. A concurrent retry while the original request is still processing can return `ABORTED`; wait briefly and retry with the same key.
 

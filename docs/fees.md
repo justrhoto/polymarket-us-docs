@@ -8,10 +8,9 @@
 
 > [!NOTE]
 >
-> **Combo fee changes**
+> Effective exchange-wide from 1:00 PM ET, Wednesday, November 11, 2026.
 >
-> * **Combo taker fees: November 11, 2026 at 1:00 PM ET.** From that time, the combo fee uses your [taker fee coefficient Θ](#taker-fee-tiers) and a fixed coefficient of `0.06` on `(1 - p)^4`. See [Taker Fees](#taker-fees).
-> * **Combo maker fees: November 14, 2026 at 12:00 AM ET.** From that time, combo maker fills incur a fee with a coefficient of `0.03`. See [Maker Fees](#maker-fees).
+> **Combo maker fees remain zero until November 14, 2026 at 12:00 AM ET.** See [Combo maker fees](#maker-fees) for the schedule from that time.
 
 ## Taker fee tiers
 
@@ -24,7 +23,7 @@ Your taker fee tier is calculated daily using taker volume over the preceding **
 | Tier 3 | \$50,000 to less than \$250,000 | 0.075 |
 | Tier 4 | \$250,000 or more | 0.0695 |
 
-This tier sets Θ in the [standard taker fee formula](#standard-trading), including Table Tennis. From **1:00 PM ET on November 11, 2026**, it also sets Θ in the [combo taker fee formula](#taker-fees). Combos use a separate fee curve.
+This tier sets Θ in both the [standard taker fee formula](#standard-trading), including Table Tennis, and the [combo taker fee formula](#taker-fees). Combos use a separate fee curve.
 
 ### New-account onboarding window
 
@@ -40,10 +39,6 @@ The window applies to retail and institutional accounts across trading channels 
 The fee coefficient is set when an order is inserted. An order placed during the window keeps that coefficient if it fills later.
 
 ***
-
-> [!NOTE]
->
-> Effective exchange-wide from 10:00 PM ET, Wednesday, October 28, 2026.
 
 ## Standard Trading
 
@@ -317,7 +312,7 @@ For fills before that time, combo maker fills carry no maker fee. Quoters should
 
 ### Taker Fees
 
-From **1:00 PM ET on Wednesday, November 11, 2026**, the combo taker fee is:
+The combo taker fee is:
 
 ```
 Fee = C × p × [Θ × (1 - p) + 0.06 × (1 - p)^4]
@@ -333,11 +328,11 @@ Combo fills carry no maker rebate. A participant's taker rebate percentage is ap
 
 ### Combo Fee Schedule by Price
 
-**Applies to fills from November 14, 2026 at 12:00 AM ET.** Both the maker and taker fee changes are in effect for this schedule. Taker fees use the Tier 4 coefficient Θ = `0.0695`; for other tiers, use your [taker fee coefficient](#taker-fee-tiers) in the formula above.
+Taker amounts apply to fills from **November 11, 2026 at 1:00 PM ET**. **Maker fees are currently zero; the maker column shows the upcoming fees from November 14, 2026 at 12:00 AM ET.** Taker fees use the Tier 4 coefficient Θ = `0.0695`; for other tiers, use your [taker fee coefficient](#taker-fee-tiers) in the formula above.
 
 Each row assumes a single fill of 100 contracts. Fees are rounded to the nearest cent using banker's rounding. Taker amounts are before any taker rebate.
 
-| Price | Trade Value (100-lot) | Taker Pays (Tier 4, 100-lot) | Maker Pays (100-lot) |
+| Price | Trade Value (100-lot) | Taker Pays (Tier 4, 100-lot) | Maker Pays (100-lot, from Nov 14) |
 | - | - | - | - |
 | \$0.01 | \$1 | \$0.13 | \$0.03 |
 | \$0.02 | \$2 | \$0.25 | \$0.06 |
@@ -441,145 +436,17 @@ Each row assumes a single fill of 100 contracts. Fees are rounded to the nearest
 
 ### Combo Fee Examples
 
-**Applies to fills from November 14, 2026 at 12:00 AM ET.** Both examples assume a single fill and a Tier 4 taker coefficient of `0.0695`. Taker amounts are before any taker rebate.
+These examples apply to fills from **November 11, 2026 at 1:00 PM ET** and before **November 14, 2026 at 12:00 AM ET**, while combo maker fees remain zero. Both examples assume a single fill and a Tier 4 taker coefficient of `0.0695`. Taker amounts are before any taker rebate.
 
 #### Example 1: Buy 100 combo contracts at \$0.10
 
 * **Buyer (taker):** 100 × 0.10 × \[0.0695 × 0.90 + 0.06 × 0.90^4] = \$1.01916 → **−\$1.02**
-* **Seller (maker):** 0.03 × 100 × 0.10 × 0.90 = **−\$0.27**
+* **Seller (maker):** **\$0.00**. From November 14, 2026 at 12:00 AM ET: 0.03 × 100 × 0.10 × 0.90 = **−\$0.27**.
 
 #### Example 2: Buy 100 combo contracts at \$0.25
 
 * **Buyer (taker):** 100 × 0.25 × \[0.0695 × 0.75 + 0.06 × 0.75^4] = \$1.777734375 → **−\$1.78**
-* **Seller (maker):** 0.03 × 100 × 0.25 × 0.75 = \$0.5625 → **−\$0.56**
-
-Between **November 11, 2026 at 1:00 PM ET** and **November 14, 2026 at 12:00 AM ET**, the taker amounts above apply, but maker fees are **\$0.00**.
-
-> [accordion] Previous schedule: before November 11, 2026 at 1:00 PM ET
->
-> This formula, table and both examples apply to fills **before November 11, 2026 at 1:00 PM ET**. Maker fees are zero during this period.
->
-> ```
-> Fee = C × p × [0.0695 × (1 - p) + 0.085 × (1 - p)^4]
-> ```
->
-> #### Previous Fee Schedule by Price
->
-> | Price | Trade Value (100-lot) | Combo Taker Pays (100-lot) |
-> | - | - | - |
-> | \$0.01 | \$1 | \$0.15 |
-> | \$0.02 | \$2 | \$0.29 |
-> | \$0.03 | \$3 | \$0.43 |
-> | \$0.04 | \$4 | \$0.56 |
-> | \$0.05 | \$5 | \$0.68 |
-> | \$0.06 | \$6 | \$0.79 |
-> | \$0.07 | \$7 | \$0.90 |
-> | \$0.08 | \$8 | \$1.00 |
-> | \$0.09 | \$9 | \$1.09 |
-> | \$0.10 | \$10 | \$1.18 |
-> | \$0.11 | \$11 | \$1.27 |
-> | \$0.12 | \$12 | \$1.35 |
-> | \$0.13 | \$13 | \$1.42 |
-> | \$0.14 | \$14 | \$1.49 |
-> | \$0.15 | \$15 | \$1.55 |
-> | \$0.16 | \$16 | \$1.61 |
-> | \$0.17 | \$17 | \$1.67 |
-> | \$0.18 | \$18 | \$1.72 |
-> | \$0.19 | \$19 | \$1.76 |
-> | \$0.20 | \$20 | \$1.81 |
-> | \$0.21 | \$21 | \$1.85 |
-> | \$0.22 | \$22 | \$1.88 |
-> | \$0.23 | \$23 | \$1.92 |
-> | \$0.24 | \$24 | \$1.95 |
-> | \$0.25 | \$25 | \$1.98 |
-> | \$0.26 | \$26 | \$2.00 |
-> | \$0.27 | \$27 | \$2.02 |
-> | \$0.28 | \$28 | \$2.04 |
-> | \$0.29 | \$29 | \$2.06 |
-> | \$0.30 | \$30 | \$2.07 |
-> | \$0.31 | \$31 | \$2.08 |
-> | \$0.32 | \$32 | \$2.09 |
-> | \$0.33 | \$33 | \$2.10 |
-> | \$0.34 | \$34 | \$2.11 |
-> | \$0.35 | \$35 | \$2.11 |
-> | \$0.36 | \$36 | \$2.11 |
-> | \$0.37 | \$37 | \$2.12 |
-> | \$0.38 | \$38 | \$2.11 |
-> | \$0.39 | \$39 | \$2.11 |
-> | \$0.40 | \$40 | \$2.11 |
-> | \$0.41 | \$41 | \$2.10 |
-> | \$0.42 | \$42 | \$2.10 |
-> | \$0.43 | \$43 | \$2.09 |
-> | \$0.44 | \$44 | \$2.08 |
-> | \$0.45 | \$45 | \$2.07 |
-> | \$0.46 | \$46 | \$2.06 |
-> | \$0.47 | \$47 | \$2.05 |
-> | \$0.48 | \$48 | \$2.03 |
-> | \$0.49 | \$49 | \$2.02 |
-> | \$0.50 | \$50 | \$2.00 |
-> | \$0.51 | \$51 | \$1.99 |
-> | \$0.52 | \$52 | \$1.97 |
-> | \$0.53 | \$53 | \$1.95 |
-> | \$0.54 | \$54 | \$1.93 |
-> | \$0.55 | \$55 | \$1.91 |
-> | \$0.56 | \$56 | \$1.89 |
-> | \$0.57 | \$57 | \$1.87 |
-> | \$0.58 | \$58 | \$1.85 |
-> | \$0.59 | \$59 | \$1.82 |
-> | \$0.60 | \$60 | \$1.80 |
-> | \$0.61 | \$61 | \$1.77 |
-> | \$0.62 | \$62 | \$1.75 |
-> | \$0.63 | \$63 | \$1.72 |
-> | \$0.64 | \$64 | \$1.69 |
-> | \$0.65 | \$65 | \$1.66 |
-> | \$0.66 | \$66 | \$1.63 |
-> | \$0.67 | \$67 | \$1.60 |
-> | \$0.68 | \$68 | \$1.57 |
-> | \$0.69 | \$69 | \$1.54 |
-> | \$0.70 | \$70 | \$1.51 |
-> | \$0.71 | \$71 | \$1.47 |
-> | \$0.72 | \$72 | \$1.44 |
-> | \$0.73 | \$73 | \$1.40 |
-> | \$0.74 | \$74 | \$1.37 |
-> | \$0.75 | \$75 | \$1.33 |
-> | \$0.76 | \$76 | \$1.29 |
-> | \$0.77 | \$77 | \$1.25 |
-> | \$0.78 | \$78 | \$1.21 |
-> | \$0.79 | \$79 | \$1.17 |
-> | \$0.80 | \$80 | \$1.12 |
-> | \$0.81 | \$81 | \$1.08 |
-> | \$0.82 | \$82 | \$1.03 |
-> | \$0.83 | \$83 | \$0.99 |
-> | \$0.84 | \$84 | \$0.94 |
-> | \$0.85 | \$85 | \$0.89 |
-> | \$0.86 | \$86 | \$0.84 |
-> | \$0.87 | \$87 | \$0.79 |
-> | \$0.88 | \$88 | \$0.74 |
-> | \$0.89 | \$89 | \$0.68 |
-> | \$0.90 | \$90 | \$0.63 |
-> | \$0.91 | \$91 | \$0.57 |
-> | \$0.92 | \$92 | \$0.51 |
-> | \$0.93 | \$93 | \$0.45 |
-> | \$0.94 | \$94 | \$0.39 |
-> | \$0.95 | \$95 | \$0.33 |
-> | \$0.96 | \$96 | \$0.27 |
-> | \$0.97 | \$97 | \$0.20 |
-> | \$0.98 | \$98 | \$0.14 |
-> | \$0.99 | \$99 | \$0.07 |
->
-> #### Previous Examples
->
-> ##### Example 1: Buy 100 combo contracts at \$0.10
->
-> For a single fill, the combo fee is calculated from the combo execution price and quantity as a whole.
->
-> * **Buyer (taker):** 100 × 0.10 × \[0.0695 × 0.90 + 0.085 × 0.90^4] = \$1.183185 → **−\$1.18**
-> * **Seller (maker):** **\$0.00** (no maker fee or rebate on combos during this period)
->
-> ##### Example 2: Buy 100 combo contracts at \$0.25
->
-> * **Buyer (taker):** 100 × 0.25 × \[0.0695 × 0.75 + 0.085 × 0.75^4] = \$1.97548828125 → **−\$1.98**
-> * **Seller (maker):** **\$0.00** (no maker fee or rebate on combos during this period)
+* **Seller (maker):** **\$0.00**. From November 14, 2026 at 12:00 AM ET: 0.03 × 100 × 0.25 × 0.75 = \$0.5625 → **−\$0.56**.
 
 ## FAQ
 
