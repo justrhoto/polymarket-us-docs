@@ -173,6 +173,8 @@ Orders must have `price.value` between 0.01 and 0.99 (the exchange's absolute pr
 
 Always validate price bounds client-side before submission to avoid unnecessary orderIDs for rejected orders.
 
+If `price.value` or `cashOrderQty` is too large to process (for example, a 20-digit number), the order is rejected right away with a `400` error and no orderID.
+
 ### Quantity and Tick Size by Market
 
 Markets can differ in both minimum order quantity and minimum price increment. Read these fields from the market response before submitting or modifying an order:
@@ -182,7 +184,10 @@ Markets can differ in both minimum order quantity and minimum price increment. R
 | `minimumTradeQty` | Smallest valid `quantity`, expressed in contracts. A value of `0.01` means 1% of a contract. |
 | `orderPriceMinTickSize` | Smallest valid `price.value` increment. A value of `0.005` means half-cent ticks. |
 
-The `quantity` field on order requests and order responses is a number and can contain decimals for partial-contract markets. Submit `quantity` and `price.value` already aligned to the market's `minimumTradeQty` and `orderPriceMinTickSize`. Extra precision is not part of the public contract and can be normalized to the market precision; for example, on a market with `minimumTradeQty: 0.01` and `orderPriceMinTickSize: 0.01`, `quantity: 0.015` can be accepted and returned as `0.01`, and `price.value: "0.515"` can be returned as `"0.51"`.
+The `quantity` field on order requests and order responses is a number and can contain decimals for partial-contract markets. Submit `quantity` and `price.value` already aligned to the market's `minimumTradeQty` and `orderPriceMinTickSize`.
+
+* **Quantity:** extra decimals may be cut off. For example, on a market with `minimumTradeQty: 0.01`, a `quantity` of `0.015` is accepted and becomes `0.01`.
+* **Price:** extra decimals are never rounded. A price that doesn't match the market's tick size is rejected.
 
 ## Order Side
 

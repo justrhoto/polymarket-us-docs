@@ -11,6 +11,41 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 13, 2026**
+
+Gas price and Treasury yield markets list with a numeric strike
+
+Going forward, new gas price (`aaagaspc`) and Treasury yield (`twoyc`, `fivyc`, `sevyc`, `tenyc`, `thryc`) instruments list slightly differently on the Institutional API. Instruments already listed keep their current fields until they settle.
+
+**Institutional API:**
+
+| Field | Before | Going forward |
+| - | - | - |
+| `event_attributes.strike_value` | the outcome slug (`gt3pt9000`, `gte4pt65`) | the strike (`3.9000`, `4.65`) |
+| `event_attributes.evaluation_type` | `==` | the ladder's comparison (below) |
+| `event_attributes.strike_unit` | `string` | `USD` (gas), `decimal` (yields, in percent) |
+| `metadata.cftc_binary_option_strike_price_alias` | the strike (`3.9000`) | not set |
+
+| Ladder | Yes when the settlement value is | `evaluation_type` |
+| - | - | - |
+| Gas: latest price and how high | above the strike | `>` |
+| Gas: how low | below the strike | `<` |
+| Yields: close and how high | at or above the strike | `>=` |
+| Yields: how low | at or below the strike | `<=` |
+
+* **Unchanged:** instrument ids (`aaagaspc-njgas-week-2026-11-16-gt3pt9000`, `tenyc-10yr-day-11-13-2026-gte4pt65`), `metadata.outcome_strike` (still the slug), titles and settlement.
+* **What to do:** read the strike from `strike_value` with `evaluation_type`. Do not read it from `cftc_binary_option_strike_price_alias`, and do not parse it from `strike_value` or the slug.
+* **Instruments listed before this change:** while they remain open, an instrument with `evaluation_type` `==` is one of them. Its strike is in its slug: `gt3pt9000` is above 3.9000, and `lte4pt85` is at or below 4.85.
+
+**Retail API:** no change. Markets keep their slugs, titles (`Above $3.9000`, `4.65% or Higher`), `sortOrder` and `line`.
+
+**November 12, 2026**
+
+Price precision and oversized values
+
+* **Corrected:** order prices with extra decimals are rejected, not rounded. Earlier docs said a price like `0.515` could come back as `0.51`. Match `price.value` to the market's `orderPriceMinTickSize`. Extra quantity decimals can still be cut off, as before.
+* **New:** if `price.value` or `cashOrderQty` is too large to process (for example, a 20-digit number), the order is rejected right away with a `400` error and no orderID. See [Price Validation](https://docs.polymarket.us/api-reference/orders/overview.md#price-validation).
+
 **November 12, 2026**
 
 Idempotency header name

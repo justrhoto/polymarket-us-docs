@@ -8,9 +8,7 @@
 
 > [!NOTE]
 >
-> Effective exchange-wide from 1:00 PM ET, Wednesday, November 11, 2026.
->
-> **Combo maker fees remain zero until November 14, 2026 at 12:00 AM ET.** See [Combo maker fees](#maker-fees) for the schedule from that time.
+> Effective exchange-wide from 12:00 AM ET, Saturday, November 14, 2026.
 
 ## Taker fee tiers
 
@@ -297,7 +295,7 @@ A 50/50 market. This is where the fee is highest per contract because p × (1 �
 
 ### Maker Fees
 
-From **12:00 AM ET on Saturday, November 14, 2026**, the combo maker fee is:
+The combo maker fee is:
 
 ```
 Fee = 0.03 × C × p × (1 - p)
@@ -307,8 +305,6 @@ Fee = 0.03 × C × p × (1 - p)
 * `p` is the combo execution price in decimal dollars.
 
 For example, 100 contracts filled at \$0.10 incur a maker fee of `0.03 × 100 × 0.10 × 0.90` = **\$0.27**.
-
-For fills before that time, combo maker fills carry no maker fee. Quoters should account for the fee in their pricing from the effective time.
 
 ### Taker Fees
 
@@ -328,11 +324,11 @@ Combo fills carry no maker rebate. A participant's taker rebate percentage is ap
 
 ### Combo Fee Schedule by Price
 
-Taker amounts apply to fills from **November 11, 2026 at 1:00 PM ET**. **Maker fees are currently zero; the maker column shows the upcoming fees from November 14, 2026 at 12:00 AM ET.** Taker fees use the Tier 4 coefficient Θ = `0.0695`; for other tiers, use your [taker fee coefficient](#taker-fee-tiers) in the formula above.
+Taker fees use the Tier 4 coefficient Θ = `0.0695`; for other tiers, use your [taker fee coefficient](#taker-fee-tiers) in the formula above.
 
 Each row assumes a single fill of 100 contracts. Fees are rounded to the nearest cent using banker's rounding. Taker amounts are before any taker rebate.
 
-| Price | Trade Value (100-lot) | Taker Pays (Tier 4, 100-lot) | Maker Pays (100-lot, from Nov 14) |
+| Price | Trade Value (100-lot) | Taker Pays (Tier 4, 100-lot) | Maker Pays (100-lot) |
 | - | - | - | - |
 | \$0.01 | \$1 | \$0.13 | \$0.03 |
 | \$0.02 | \$2 | \$0.25 | \$0.06 |
@@ -436,17 +432,17 @@ Each row assumes a single fill of 100 contracts. Fees are rounded to the nearest
 
 ### Combo Fee Examples
 
-These examples apply to fills from **November 11, 2026 at 1:00 PM ET** and before **November 14, 2026 at 12:00 AM ET**, while combo maker fees remain zero. Both examples assume a single fill and a Tier 4 taker coefficient of `0.0695`. Taker amounts are before any taker rebate.
+Both examples assume a single fill and a Tier 4 taker coefficient of `0.0695`. Taker amounts are before any taker rebate.
 
 #### Example 1: Buy 100 combo contracts at \$0.10
 
 * **Buyer (taker):** 100 × 0.10 × \[0.0695 × 0.90 + 0.06 × 0.90^4] = \$1.01916 → **−\$1.02**
-* **Seller (maker):** **\$0.00**. From November 14, 2026 at 12:00 AM ET: 0.03 × 100 × 0.10 × 0.90 = **−\$0.27**.
+* **Seller (maker):** 0.03 × 100 × 0.10 × 0.90 = **−\$0.27**
 
 #### Example 2: Buy 100 combo contracts at \$0.25
 
 * **Buyer (taker):** 100 × 0.25 × \[0.0695 × 0.75 + 0.06 × 0.75^4] = \$1.777734375 → **−\$1.78**
-* **Seller (maker):** **\$0.00**. From November 14, 2026 at 12:00 AM ET: 0.03 × 100 × 0.25 × 0.75 = \$0.5625 → **−\$0.56**.
+* **Seller (maker):** 0.03 × 100 × 0.25 × 0.75 = \$0.5625 → **−\$0.56**
 
 ## FAQ
 
