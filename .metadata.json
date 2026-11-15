@@ -297,7 +297,7 @@
     "docs/market-structure/collateral-and-margin.md": "a9219a064e721606ecae9414657b314d8a226340541039445e146d956df4a35a",
     "docs/market-structure/directional-collateral-return.md": "899520e8d8ce57ffbc4123f6bb1417390a075c1e9690ad3d01afa7b514e8ece3",
     "docs/market-structure/mutually-exclusive-collateral-return.md": "3b81ae4809cac94bd8ddb5076b6c2d049a25c6e164214c922afe48e1dcc792b7",
-    "docs/notices-and-filings.md": "5060b8d5df75125cf476ac1378b8bc7aedf04cb6074e0744c3edb1999764f58b",
+    "docs/notices-and-filings.md": "420fbb28f34a3c0b57cb26a227c8a34a45dd7a4aed54b46a14d8e3f386a0c81d",
     "docs/partners/funding/deposits-withdrawals.md": "8a7fb6cca638db7f62a29e02ee1ccda4a2d9e505c55da58d950b1be0dda0b70f",
     "docs/partners/funding/overview.md": "2575d31672531c15dc116c79412524420111caa053fde978c16e4d45a0da23c5",
     "docs/partners/funding/transfers.md": "d6262a4bfaa7b0d0e9bd3f8accf9687e69ebc67697d118a8672eaf864f37421d",
@@ -363,7 +363,7 @@
     "docs/trader-guide/overview.md": "e9640c3c0eb68b61124ac41692a61016d96ad38e9dd4bfdf6c7d55708c49416f",
     "docs/trader-guide/positions-risk.md": "a8679ff0314b9d1f1fe72788da114013ee877d74a0ae65648573e566fb6cea03",
     "docs/trader-guide/quickstart.md": "beb97021e22f915590a0e0139b98f4b7b2527cec56da403319eef99e92237353",
-    "docs/trader-guide/rate-limits.md": "af5e831c19e3ec3fde9e43859796516bd7e83789fc6656dc46acbcb6f011389d",
+    "docs/trader-guide/rate-limits.md": "24e86cab41ec1e77bb916ebef03872bc06cc1ad14454dedcc16676ff6b333aa7",
     "docs/trader-guide/reporting.md": "6371bb1a7a2be47cc0bb4e4e0fcbab01fdae74b4bb55de5618500d336af15ba1",
     "docs/trader-guide/sports-schema.md": "fec1bbf0acf27f29cbd3ec8ba41bf68a4d4c92f6034e1a571ff374846af219d8",
     "docs/trader-guide/streaming-apis.md": "7bec86615bf23fe9c88dd37d8458b29999e22d618993089df076482784e2b42a"

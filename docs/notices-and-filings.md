@@ -12,6 +12,14 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 * Add the feed to any RSS reader: `https://docs.polymarket.us/notices-and-filings/rss.xml`
 
+**November 13, 2026**
+
+[Emergency Rule Notice\_Michigan](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Emergency%20Rule%20Notice_Michigan%20\(2026.11.13\).pdf)
+
+[Update for Michigan users Sports markets closing](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Update%20for%20Michigan%20users%20Sports%20markets%20closing%20\(2026.11.13\).pdf)
+
+[Emergency Rule Notice\_Louisiana](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Emergency%20Rule%20Notice_Louisiana%20\(2026.11.13\).pdf)
+
 **November 11, 2026**
 
 [Fee Change for Combination Athletic Event Contracts](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Fee%20Change%20for%20Combination%20Athletic%20Event%20Contracts%20\(2026.11.11\).pdf)

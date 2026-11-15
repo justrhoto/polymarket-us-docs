@@ -75,28 +75,28 @@ Each tier has its own Earn and Maintain volume share requirement, seen below.
 
 ### Query / Report Endpoints
 
-These read-heavy endpoints have separate per-firm limits. Cache responses where noted.
+Each default per-firm limit is a leaky bucket, where rate is the refill in requests per second and burst is the bucket capacity. That bucket is shared across all of the firm's connections and API keys. Shared endpoint and exchange-wide limits also apply, so requests can be throttled before reaching the per-firm rate or burst capacity.
 
-| Endpoint | Limit | Notes |
+| Endpoint | Default per-firm limit (rate, burst) | Notes |
 | - | - | - |
-| `GetTradeStats` | 60 req/min | Heavy aggregation query |
-| `ListInstruments` | 6 req/min | Static data - cache client-side |
-| `ListSymbols` | 6 req/min | Static data - cache client-side |
-| `GetOrderBook` | 12 req/min | Prefer streaming for real-time data |
-| `GetBBO` | 12 req/min | Prefer streaming for real-time data |
-| `SearchOrders` | 12 req/min | Use filters to narrow results |
-| `SearchExecutions` | 12 req/min | Use filters to narrow results |
-| `SearchTrades` | 12 req/min | Use filters to narrow results |
-| `GetInstrumentSettlement` | 10 req/sec | Final settlement lookup; poll after termination, not continuously |
+| `SearchOrders` | 5 req/s, burst 10 | Use filters to narrow results |
+| `SearchExecutions` | 2 req/s, burst 3 | Use filters to narrow results |
+| `GetTradeStats` | 1 req/s, burst 60 | Heavy aggregation query |
+| `ListInstruments` | 5 req/s, burst 800 | RefDataAPI (`POST /v1/refdata/instruments`). Shared limits can reduce the effective burst; cache client-side |
+| `GetInstrumentSettlement` | 10 req/s, burst 10 | Final settlement lookup; poll after termination, not continuously |
+
+The separate unary gRPC method `MarketDataAPI/ListInstruments` has a default per-firm limit of 10 req/s, burst 10. It has no REST mapping.
+
+`SearchTrades`, `GetTrade`, `ListSymbols`, `GetBBO`, and `GetOrderBook` have shared endpoint limits, and the general per-firm and per-firm-per-endpoint defaults also apply. Cache responses you will reuse, and prefer streaming when you need real-time data.
 
 ### Combos Endpoints
 
 Combos endpoints have these per-firm limits:
 
-| Endpoint | Limit | Notes |
+| Endpoint | Default per-firm limit (rate, burst) | Notes |
 | - | - | - |
-| `GetCombos` | 100 req/sec | Exact combo lookup |
-| `CreateCombo` | 1 req/sec | Create or retrieve a canonical combo |
+| `GetCombos` | 100 req/s, burst 100 | Exact combo lookup |
+| `CreateCombo` | 1 req/s, burst 1 | Create or retrieve a canonical combo |
 
 ### Public (Unauthenticated) Endpoints
 
@@ -173,7 +173,7 @@ RFQ tiers use a separate volume measure and eligibility thresholds from the inst
 | Institutional API - orders (`InsertOrder`, `CancelReplaceOrder`) | Per firm, per method | 30–400 req/sec by tier |
 | Institutional API - cancels (`CancelOrder`) | Per firm, per method | 90–1,200 req/sec by tier |
 | Institutional API - batch order methods | Per firm, per method | 50 req/sec; up to 20 operations per request |
-| REST - query endpoints | Per firm, per endpoint | 0.5–60 req/min (see table above) |
+| REST - query endpoints | Per-firm and shared endpoint limits | See Query / Report Endpoints |
 | REST - combos endpoints | Per firm, per endpoint | 1–100 req/sec (see table above) |
 | REST - public/unauth | Per IP | 20 req/sec |
 | gRPC - `StreamRFQEvents` opens | Per firm | 1 new stream/sec |
@@ -259,7 +259,7 @@ The API is designed as a **streaming-first** system. Instead of repeatedly polli
 
 ### Cache Reference Data
 
-Reference data (instruments, symbols, metadata) changes infrequently - `ListInstruments` and `ListSymbols` are limited to just 6 req/min. Cache responses locally:
+Reference data (instruments, symbols, metadata) changes infrequently. `ListInstruments` per-firm limits are in the Query / Report Endpoints table. `ListSymbols` is subject to shared endpoint limits and the general per-firm defaults. Cache responses locally:
 
 ```python theme={null}
 class InstrumentCache:
