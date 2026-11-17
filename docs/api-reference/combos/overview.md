@@ -23,7 +23,11 @@ https://api.polymarket.us
 
 On the Retail API, Combo and RFQ creation share an additional [edge rate limit](https://docs.polymarket.us/api-reference/rate-limits.md) of 10 requests per 10 seconds, enforced per API key and per IP.
 
-Separately, combo creation has a participant-wide service quota of 1,000 new instruments per week across all accounts and both Retail and Institutional APIs. The quota resets Monday at 00:00 UTC; returning an existing canonical combo does not consume it.
+## Weekly creation limit
+
+Each participant can create 3,000 new combo instruments per week across all accounts and both Retail and Institutional APIs.
+The quota resets Monday at 00:00 UTC (Sunday at 8:00 PM EDT or 7:00 PM EST).
+Returning an existing canonical combo does not consume this quota.
 
 ## Create a Combo
 

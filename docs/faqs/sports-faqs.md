@@ -265,6 +265,12 @@ If a bout is declared a no contest during the fight (e.g. due to an accidental f
 
 All Winner, Spread, and Total markets include overtime unless explicitly stated. Overtime periods continue until a winner is determined; there are no ties. The official final score after all overtime periods governs settlement.
 
+### NBA player prop stat corrections
+
+NBA player prop Contracts settle on the first official game book the NBA releases after the game concludes. Stat corrections the NBA makes after that game book is released do not affect settlement.
+
+This applies to Points, Assists, Rebounds, Points+Rebounds+Assists, Threes, Blocks, Steals, Double-Double, and Triple-Double markets on games played on or after November 16, 2026.
+
 ***
 
 ## Cricket
