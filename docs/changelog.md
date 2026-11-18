@@ -11,6 +11,16 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 17, 2026**
+
+Pending price to beat on gold and silver
+
+* **Gold and silver Up/Down windows now usually show a pending price to beat about 1 to 2 seconds after they open.** It is the Chainlink spot value for exactly the window start, for display only. The confirmed price to beat still arrives about a minute after the open.
+* **Institutional API:** the new `pending_price_to_beat` metadata key has the same decimals as `price_to_beat`. It is stamped at most once per window and stays on the instrument after `price_to_beat` arrives. See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
+* **Retail API:** the new [`assetPriceTerms.pendingPriceToBeat`](https://docs.polymarket.us/api-reference/market/overview#asset-price-market-fields) Amount is `null` until stamped, and returns to `null` once `priceToBeat` is set. It is always `null` on crypto, and on assets where a pending price is not shown.
+* **It can be absent.** If Chainlink has no report for exactly the window start, no pending value is stamped and the window waits for the confirmed price to beat.
+* **It can differ from the confirmed price to beat in rare cases.** Settlement uses only `price_to_beat` (`priceToBeat` on the Retail API). Show `price_to_beat` whenever it is present, else the pending value labelled as pending. See [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md#what-is-the-pending-price-to-beat).
+
 **November 13, 2026**
 
 Gas price and Treasury yield markets list with a numeric strike

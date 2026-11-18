@@ -8,7 +8,7 @@
 
 This page documents the strongly-typed fields on the instrument that identify a gold or silver price market (product codes `cpausp`, "Gold Spot Price Contracts", and `cpagsp`, "Silver Spot Price Contracts"). **Do not parse the instrument symbol or slug** — symbol formats are not part of the public contract and may change. Identify markets using the fields below.
 
-Every gold and silver market settles on Chainlink's spot price data streams for XAU/USD and XAG/USD, not on a spot venue and not on an average. The Retail API exposes the same terms as the typed `assetPriceTerms` object; see [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields). The markets mirror the crypto Up/Down windows described in [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md). The differences are: the price source (Chainlink spot streams, category `FIN` and subcategory `COMMODITY` instead of `CRY`), a single spot value at each boundary instead of a 60-second average, trading opens at the window start instead of about 90 seconds before, `price_to_beat` arrives about a minute after the open instead of a few seconds, a daily `1d` window, trading hours with `metals_next_window_start`, and the `metals_*` field names.
+Every gold and silver market settles on Chainlink's spot price data streams for XAU/USD and XAG/USD, not on a spot venue and not on an average. The Retail API exposes the same terms as the typed `assetPriceTerms` object; see [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields). The markets mirror the crypto Up/Down windows described in [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md). The differences are: the price source (Chainlink spot streams, category `FIN` and subcategory `COMMODITY` instead of `CRY`), a single spot value at each boundary instead of a 60-second average, trading opens at the window start instead of about 90 seconds before, `price_to_beat` arrives about a minute after the open instead of a few seconds, a display-only `pending_price_to_beat` usually arrives 1 to 2 seconds after the open, a daily `1d` window, trading hours with `metals_next_window_start`, and the `metals_*` field names.
 
 > [!NOTE]
 >
@@ -39,7 +39,8 @@ The following fields appear on every gold and silver instrument. Together they i
 | `outcome_strike` | `metadata` | String (numeric) | Always `"0.0"`. |
 | `interval_start` | `metadata` | String (unix seconds) | Start of the window. |
 | `interval_end` | `metadata` | String (unix seconds) | End of the window, i.e. the settlement instant. |
-| `price_to_beat` | `metadata` | String (decimal) | The open value: the spot value at `interval_start`, with 2 decimals for gold and 3 for silver. Absent for about the first minute of the window; see Up/Down in Section 2. |
+| `price_to_beat` | `metadata` | String (decimal) | The open value: the spot value at `interval_start`, with 2 decimals for gold and 3 for silver. Absent for about the first minute of the window; see Up/Down in Section 2. Settlement uses only this value. |
+| `pending_price_to_beat` | `metadata` | String (decimal) | Display only. A pending open value, with the same decimals as `price_to_beat`. Usually stamped 1 to 2 seconds after `interval_start`. Can be absent, and in rare cases differs from `price_to_beat`. Prefer `price_to_beat` whenever it is present. See Up/Down in Section 2. |
 | `metals_settlement_price` | `metadata` | String (decimal) | The close value the window settled on, with the same decimals. Absent until resolution. Read the instrument state for completion, not this field. |
 | `metals_next_window_start` | `metadata` | String (unix seconds) | Start of the next window of the same length that the trading hours allow. Equal to `interval_end` while the market stays open; later than `interval_end` when trading closes after this window. For a daily window it is the start of the next listed daily. Absent when no window fits in the search range. |
 
@@ -91,10 +92,18 @@ All windows share the same contract attributes as crypto Up/Down: tick size `0.0
 | Precision | Gold is rounded to the nearest cent (2 decimals), silver to three decimals, rounding half up. |
 | Settlement | Long side (Yes) pays when the close value is greater than or equal to the open value. A flat window settles Up. Otherwise the short side (No) pays. |
 | Cadence | `15m` windows are listed about 12 hours ahead and `1h` windows about 24 hours ahead. Each daily (`1d`) window is listed about 24 hours before it opens. Windows are listed only during the metals trading hours, Sunday 6:15 PM ET to Friday 5:00 PM ET, with no window from 5:00 PM to 6:15 PM ET and none on holidays; see [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md). 15-minute and 1-hour windows that overlap a scheduled exchange maintenance are not listed. Daily windows are listed as usual. |
-| Lifecycle | Created `PENDING` and held `CLOSED` until the window starts; trading opens at the window start, not before. `price_to_beat` is stamped once Chainlink has published the opening value, usually about a minute after the open. Last trade at the window close. `metals_settlement_price` is stamped at resolution, usually about a minute after the close. A window whose price is missing is held, never settled on a fallback price; see [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md). |
+| Lifecycle | Created `PENDING` and held `CLOSED` until the window starts; trading opens at the window start, not before. `pending_price_to_beat` is usually stamped 1 to 2 seconds after the open, for display only. `price_to_beat` is stamped once Chainlink has published the opening value, usually about a minute after the open. Last trade at the window close. `metals_settlement_price` is stamped at resolution, usually about a minute after the close. A window whose price is missing is held, never settled on a fallback price; see [Gold and Silver FAQs](https://docs.polymarket.us/faqs/metals-faqs.md). |
 | Structure | One instrument per event. `outcome_strike` is `"0.0"`; both `interval_start` and `interval_end` are set. |
 
 The window trades without a `price_to_beat` for about its first minute. This is by design: the open value does not exist until Chainlink publishes it. Re-read the instrument after `interval_start` rather than assuming the value at listing.
+
+To show an open value sooner, the window usually gets a `pending_price_to_beat` 1 to 2 seconds after `interval_start`. It is the spot value in the Chainlink data stream report for exactly `interval_start`, rounded half up to the same decimals as `price_to_beat`. It has no relation to the `PENDING` instrument state. It is for display only:
+
+* **It can be absent.** If Chainlink has no report for exactly `interval_start`, no pending value is stamped and the window waits for `price_to_beat`. It is also absent if `price_to_beat` is stamped first.
+* **It can differ from `price_to_beat` in rare cases.** Settlement uses only `price_to_beat`.
+* **It stays on the instrument after `price_to_beat` arrives.** It is stamped at most once per window and never changed.
+
+Show `price_to_beat` whenever it is present. Otherwise show `pending_price_to_beat`, labelled as pending. Otherwise show no open value.
 
 ***
 
@@ -111,6 +120,7 @@ Use this table to identify a market from instrument metadata. **Match on `metals
 | **Hourly window** | `metals_market_type = "updown"`, `metals_horizon = "1h"` |
 | **Daily window** | `metals_market_type = "updown"`, `metals_horizon = "1d"` |
 | **The open price of a window** | `price_to_beat` (absent until stamped, about a minute after `interval_start`) |
+| **A pending open price, for display only** | `pending_price_to_beat` (usually stamped 1 to 2 seconds after `interval_start`, can be absent; prefer `price_to_beat` when present) |
 | **The value a window settled on** | `metals_settlement_price` (absent until resolution) |
 | **When trading resumes after this window** | `metals_next_window_start` |
 
@@ -198,10 +208,11 @@ To interpret this contract:
 * **Never parse the symbol or slug** to determine the metal, market type or window. Symbol formats are not part of the public contract.
 * **Map on `metals_market_type`.** Treat an unknown value as a newer family: render the terms that are present and watch the [changelog](https://docs.polymarket.us/changelog.md).
 * **Read windows from `interval_start` and `interval_end`**, not from the instrument's expiration date, which is 30 minutes after settlement.
-* **Treat every price as a decimal string** (`price_to_beat`, `metals_settlement_price`) and convert it yourself. Gold carries 2 decimals and silver 3; do not round silver to cents.
+* **Treat every price as a decimal string** (`price_to_beat`, `pending_price_to_beat`, `metals_settlement_price`) and convert it yourself. Gold carries 2 decimals and silver 3; do not round silver to cents.
 * **Expect `price_to_beat` about a minute after a window opens.** Re-read the instrument after `interval_start`.
+* **Use `pending_price_to_beat` for display only.** Show it, labelled as pending, only while `price_to_beat` is absent. Never settle or reconcile a window on it.
 * **Use `metals_next_window_start` for closed periods.** It tells you when the next window opens after the daily break, the weekend or a holiday.
-* **Read fresh prices from the Retail API.** `POST /v1/refdata/instruments` serves a cached copy of each instrument, so `price_to_beat` and `metals_settlement_price` can appear there up to an hour after they are stamped. The Retail market endpoints (`assetPriceTerms.priceToBeat` and `assetPriceTerms.settlementPrice`) update when the value is stamped, and `GET /v1/instruments/{symbol}/settlement` reads the final settlement from the exchange live. See [Settlement API](https://docs.polymarket.us/institutional/settlement/overview.md).
+* **Read fresh prices from the Retail API.** `POST /v1/refdata/instruments` serves a cached copy of each instrument, so `price_to_beat`, `pending_price_to_beat` and `metals_settlement_price` can appear there up to an hour after they are stamped. The Retail market endpoints (`assetPriceTerms.priceToBeat`, `assetPriceTerms.pendingPriceToBeat` and `assetPriceTerms.settlementPrice`) update when the value is stamped, and `GET /v1/instruments/{symbol}/settlement` reads the final settlement from the exchange live. See [Settlement API](https://docs.polymarket.us/institutional/settlement/overview.md).
 * **Follow each market's own rules text** (`instrument_rules`). It names the stream, the two instants and the rounding.
 
 

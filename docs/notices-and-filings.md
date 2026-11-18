@@ -12,6 +12,10 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 * Add the feed to any RSS reader: `https://docs.polymarket.us/notices-and-filings/rss.xml`
 
+**November 16, 2026**
+
+[Fee Schedule Modification](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Fee%20Schedule%20Modification%20\(2026.11.16\).pdf)
+
 **November 13, 2026**
 
 [Emergency Rule Notice\_Michigan](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Emergency%20Rule%20Notice_Michigan%20\(2026.11.13\).pdf)

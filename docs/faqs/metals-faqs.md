@@ -45,7 +45,7 @@ No. Every window settles at its stated end time.
 A window settles only on the value Chainlink publishes for its exact start and end times. It never settles on a neighbouring second, a last known price or any other fallback.
 
 * If the closing value has not been published, the window is held and does not settle.
-* If the opening value has not been published, the window trades without a price to beat until it is. If it arrives in the last 15 seconds of the window or later, the window never shows a price to beat, but it still settles on the published open value.
+* If the opening value has not been published, the window trades without a confirmed price to beat until it is. If it arrives in the last 15 seconds of the window or later, the window never shows a confirmed price to beat, but it still settles on the published open value. A [pending price to beat](#what-is-the-pending-price-to-beat) can show in the meantime. It is for display only, and the window settles on the published open value even if the two differ.
 * If a value is still missing 60 minutes after the window ends, the exchange settles the window manually.
 
 ### Do gold and silver contracts trade around the clock?
@@ -95,9 +95,18 @@ Every window carries the start of the next window of the same length: `metals_ne
 
 ### How do Up/Down markets work?
 
-Each window is its own market. A window opens for trading at its start time, not before. The open value is published as the "price to beat" (`price_to_beat` on the Institutional API, `assetPriceTerms.priceToBeat` on the Retail API) once Chainlink has published it, usually about a minute after the start, so for roughly the first minute a window trades without a price to beat. This is by design. At the end time, the close value is taken the same way. The long side of the contract pays \$1.00 when the close is greater than or equal to the open; otherwise the short side pays.
+Each window is its own market. A window opens for trading at its start time, not before. The open value is published as the "price to beat" (`price_to_beat` on the Institutional API, `assetPriceTerms.priceToBeat` on the Retail API) once Chainlink has published it, usually about a minute after the start, so for roughly the first minute a window trades without a confirmed price to beat. This is by design. A [pending price to beat](#what-is-the-pending-price-to-beat), for display only, usually shows in the meantime. At the end time, the close value is taken the same way. The long side of the contract pays \$1.00 when the close is greater than or equal to the open; otherwise the short side pays.
 
 15-minute windows are listed about 12 hours ahead and 1-hour windows about 24 hours ahead, so at most about 48 fifteen-minute and 24 hourly windows per metal are listed at a time. There are fewer when the listing horizon reaches the daily break, the weekend or a holiday.
+
+### What is the pending price to beat?
+
+It is an early view of the open value, for display only. About 1 to 2 seconds after a window starts, the window usually shows a pending price to beat: the spot value in Chainlink's data stream for the exact start time. Usually about a minute later, the confirmed price to beat arrives and is shown in its place.
+
+* **It can be missing.** If Chainlink has no report for the exact start time, no pending value shows, and the window waits for the confirmed price to beat.
+* **It can differ from the confirmed price to beat in rare cases.** The window always settles on the confirmed price to beat, never on the pending one.
+
+On the Institutional API it is `pending_price_to_beat`; on the Retail API it is `assetPriceTerms.pendingPriceToBeat`. When the confirmed value arrives, the Retail field returns to `null`, but the Institutional key stays on the instrument. Show the confirmed value whenever it is present.
 
 ### How do the daily windows work?
 
@@ -113,7 +122,7 @@ Filter by category, `GET /v1/markets?categories=finance&closed=false`, then sele
 
 Filter reference data by clearing symbol: `POST /v1/refdata/instruments` with `{"clearingSym": "CPAUSP-COMMODITY"}` for gold or `{"clearingSym": "CPAGSP-COMMODITY"}` for silver, or by series such as `{"eventSeries": "gold-updown-15m"}`. Identify the market from `metals_market_type` and the other fields documented in [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md). Never parse the symbol.
 
-The reference data list is served from a cache, so a newly stamped `price_to_beat` or `metals_settlement_price` can take up to an hour to appear there. Read fresh prices from the Retail market endpoints, and the final settlement from `GET /v1/instruments/{symbol}/settlement`.
+The reference data list is served from a cache, so a newly stamped `price_to_beat`, `pending_price_to_beat` or `metals_settlement_price` can take up to an hour to appear there. Read fresh prices from the Retail market endpoints, and the final settlement from `GET /v1/instruments/{symbol}/settlement`.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

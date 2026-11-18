@@ -412,8 +412,23 @@ components:
           allOf:
             - $ref: '#/components/schemas/gateway.types.v1.NullableAmount'
           description: >-
-            Null until stamped a few seconds after windowStart, and on every
-            market that is not UP_DOWN.
+            Null until stamped: a few seconds after windowStart on crypto, about
+            a minute after it on gold and silver. Null on every market that is
+            not UP_DOWN.
+        pendingPriceToBeat:
+          allOf:
+            - $ref: '#/components/schemas/gateway.types.v1.NullableAmount'
+          description: >-
+            Display only. A pending open price on commodity
+            (ASSET_CLASS_COMMODITY) UP_DOWN markets: the Chainlink spot value
+            for exactly windowStart, with the same decimals as priceToBeat. Set
+            only while priceToBeat is null: usually from 1 to 2 seconds after
+            windowStart until priceToBeat is stamped, then null again. Stays
+            null when Chainlink has no report for exactly windowStart, on assets
+            where a pending price is not shown, on every crypto market and on
+            every market that is not UP_DOWN. In rare cases it differs from
+            priceToBeat, and the market settles only on priceToBeat. Show
+            priceToBeat when it is set, else this value labelled as pending.
         strike:
           allOf:
             - $ref: '#/components/schemas/gateway.types.v1.NullableAmount'

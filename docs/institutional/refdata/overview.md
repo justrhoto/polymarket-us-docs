@@ -239,7 +239,7 @@ The series are `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-up
 
 > [!NOTE]
 >
-> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat` and the settlement price fields on crypto and metals Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat`).
+> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat`, `pending_price_to_beat` (gold and silver only) and the settlement price fields on crypto and metals Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat` and `assetPriceTerms.pendingPriceToBeat`).
 
 ### Combining Filters
 
