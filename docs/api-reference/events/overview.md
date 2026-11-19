@@ -71,6 +71,20 @@ Gold and silver price events have the same shape as crypto Up/Down events: one m
 
 See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) for the Institutional fields and the trading hours.
 
+### Oil and Gas Event Fields
+
+WTI and natural gas price events have the same shape as gold and silver events: one market per window, no participants and no game state.
+
+| Field | Description |
+| - | - |
+| `category` | `finance` |
+| `seriesSlug` | Asset, family and cadence: `wti-updown-15m`, `wti-updown-1h`, `wti-updown-1d`, `natgas-updown-15m`, `natgas-updown-1h`, `natgas-updown-1d` |
+| `title` | The asset and cadence, e.g. `WTI Crude Up or Down 15m`, `WTI Crude Up or Down Hourly`, `Natural Gas Up or Down Daily` |
+| `tags` | Taxonomy tags such as `commodities`, `oil-and-gas`, `recurring`, `up-or-down`, the window (`15M`, `1H`, `daily`), the asset (`wti` or `natural-gas`), and `daily-close` on daily windows |
+| `markets[].assetPriceTerms` | Typed terms of the window, with `asset.assetClass` `ASSET_CLASS_COMMODITY`, the window's `priceDecimals` and the futures `contractMonth`; see [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields) |
+
+See [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md) for the Institutional fields and [Oil and Gas FAQs](https://docs.polymarket.us/faqs/oil-gas-faqs.md) for the trading hours.
+
 ### Volume & Liquidity
 
 | Field | Description |

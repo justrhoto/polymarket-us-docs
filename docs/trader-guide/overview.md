@@ -66,7 +66,7 @@ Choose the right protocol for your use case:
 
 ### Schema
 
-Strongly-typed instrument fields for safely identifying sports, crypto, gold and silver price markets without parsing symbols or slugs.
+Strongly-typed instrument fields for safely identifying sports, crypto, metals, oil and gas price markets without parsing symbols or slugs.
 
 > [card] [Sports Schema](https://docs.polymarket.us/trader-guide/sports-schema.md)
 >
@@ -79,6 +79,10 @@ Strongly-typed instrument fields for safely identifying sports, crypto, gold and
 > [card] [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md)
 >
 > Identify gold and silver price markets via instrument metadata
+
+> [card] [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md)
+>
+> Identify WTI and natural gas price markets via instrument metadata
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

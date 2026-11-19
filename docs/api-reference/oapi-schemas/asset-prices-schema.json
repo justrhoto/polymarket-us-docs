@@ -52,7 +52,7 @@
         "parameters": [
           {
             "name": "assets",
-            "description": "Assets in canonical <class>:<symbol> form (gateway.types.v1.AssetId), e.g. crypto:btc, commodity:gold or commodity:silver. Repeat the query parameter to request multiple, e.g. ?assets=crypto:btc&assets=commodity:gold. At most 10; duplicates are deduped server-side.",
+            "description": "Assets in canonical <class>:<symbol> form (gateway.types.v1.AssetId), e.g. crypto:btc, commodity:gold, commodity:silver, commodity:wti or commodity:natgas. Repeat the query parameter to request multiple, e.g. ?assets=crypto:btc&assets=commodity:gold. At most 10; duplicates are deduped server-side.",
             "in": "query",
             "required": false,
             "explode": true,
@@ -163,6 +163,27 @@
           }
         }
       },
+      "gateway.asset_prices.v1.AssetPriceRoll": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Time of the first recorded price of the new contract (unix seconds). Later than the switch if it was not observed live."
+          },
+          "fromContractMonth": {
+            "type": "string",
+            "example": "2026-12",
+            "description": "Contract month before the roll, as YYYY-MM"
+          },
+          "toContractMonth": {
+            "type": "string",
+            "example": "2027-01",
+            "description": "Contract month after the roll, as YYYY-MM"
+          }
+        },
+        "description": "Change of the futures contract behind an asset's price. Prices either side are different contracts, so the step at a roll is not a price move."
+      },
       "gateway.asset_prices.v1.AssetPriceSeries": {
         "type": "object",
         "properties": {
@@ -193,6 +214,13 @@
               "$ref": "#/components/schemas/gateway.asset_prices.v1.AssetPriceCandle"
             },
             "description": "Dense ascending candles, one per bucket in the effective window. Empty when the asset has no data."
+          },
+          "rolls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/gateway.asset_prices.v1.AssetPriceRoll"
+            },
+            "description": "Contract rolls in the effective window, ascending. Empty for spot assets."
           }
         }
       },
@@ -225,10 +253,10 @@
           "symbol": {
             "type": "string",
             "example": "btc",
-            "description": "Lower-case symbol within the class, e.g. btc or gold. Matches [a-z0-9-], at most 64 characters."
+            "description": "Lower-case symbol within the class, e.g. btc, gold or wti. Matches [a-z0-9-], at most 64 characters."
           }
         },
-        "description": "Identifies one priced asset. The canonical string form is class:symbol, e.g. crypto:btc or commodity:gold."
+        "description": "Identifies one priced asset. The canonical string form is class:symbol, e.g. crypto:btc, commodity:gold or commodity:natgas."
       }
     }
   }

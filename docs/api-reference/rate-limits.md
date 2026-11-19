@@ -17,8 +17,8 @@ The Retail API has a general limit of **25 requests/s**, shared across endpoints
 Exceptions:
 
 * `POST /v1/combos` and `POST /v1/rfqs`: **1 request/s**, shared.
-* `POST /v1/rfqs/quotes`: **100 requests/s**.
-* `DELETE /v1/rfqs/{rfqId}/quotes/{quoteId}`: **100 requests/s**.
+* `POST /v1/rfqs/quotes`: **400 requests/s**.
+* `DELETE /v1/rfqs/{rfqId}/quotes/{quoteId}`: **400 requests/s**.
 * `GET /v1/rfqs`: **1 request/s**.
 * `GET /v1/rfqs/quotes`: **1 request/s**.
 * `GET /v1/rfqs/trades`: **1 request/s**.

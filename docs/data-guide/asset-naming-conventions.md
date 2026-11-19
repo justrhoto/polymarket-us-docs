@@ -49,6 +49,11 @@ Events are identified by series, descriptors, and date/time:
 * `gold-updown-15m-2026-10-22-1630z` (one 15-minute window; the time is the window start in UTC)
 * `silver-updown-1d-2026-10-22-2215z` (one daily window, 6:15 PM ET to 5:00 PM ET the next day)
 
+**Oil and gas**:
+
+* `natgas-updown-15m-2026-11-15-2315z` (one 15-minute window; the time is the window start in UTC)
+* `wti-updown-1d-2026-11-15-2315z` (one daily window, 6:15 PM ET to 5:00 PM ET the next day)
+
 **Culture**:
 
 * `oscars-2027-03-28`
@@ -74,8 +79,10 @@ Instruments combine product, event, and outcome:
 * `cpc-btc-range-day-2026-09-21-below-74000` - Price Range: bottom tail, \$73,999.99 or below
 * `cpausp-gold-updown-15m-2026-10-22-1630z` - Gold Up/Down window (no additional outcome)
 * `cpagsp-silver-updown-1h-2026-10-22-1700z` - Silver Up/Down window (no additional outcome)
+* `cpngf-natgas-updown-15m-2026-11-15-2315z` - Natural gas Up/Down window (no additional outcome)
+* `cpwtif-wti-updown-1h-2026-11-16-0000z` - WTI Up/Down window (no additional outcome)
 
-Crypto identifiers are display identity only. Read the market type, window and strike from the `crypto_*` metadata documented in [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md), never from the ID. The same holds for gold and silver: read the `metals_*` metadata documented in [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
+Crypto identifiers are display identity only. Read the market type, window and strike from the `crypto_*` metadata documented in [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md), never from the ID. The same holds for gold and silver: read the `metals_*` metadata documented in [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md). For WTI and natural gas, read the `asset_*` metadata documented in [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md).
 
 ## Participant ID Format
 
@@ -150,7 +157,7 @@ Each level of the hierarchy has specific uniqueness scoping:
 | - | - | - |
 | **Category** | Globally unique | SPR, POL, CRY |
 | **Subcategory** | Unique within Category | SOCCER within SPR, BTC within CRY, COMMODITY within FIN |
-| **Series** | Unique within Subcategory | MLS within SOCCER, btc-updown-15m within BTC, gold-updown-15m within COMMODITY |
+| **Series** | Unique within Subcategory | MLS within SOCCER, btc-updown-15m within BTC, gold-updown-15m and wti-updown-15m within COMMODITY |
 | **Event** | Unique within Series (globally unique with series prefix) | `mls-atl-clt-2026-03-22` |
 | **Product** | Globally unique by Code | ATC, AEC, ASC |
 | **Instrument** | Globally unique | `atc-mls-atl-clt-2026-03-22-draw` |
@@ -245,6 +252,8 @@ All metadata fields available on instruments:
 | `outcome_strike` | Outcome | Yes | String | `"ne"` | Strike value (participant abbreviation for moneyline, numeric for spreads/totals) |
 
 Crypto price instruments carry no participant fields. They add `crypto_market_type`, `crypto_horizon`, `interval_start`, `interval_end`, `price_to_beat`, `crypto_range_lower` / `crypto_range_upper`, `crypto_hit_direction` and `crypto_settlement_price`; see [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md). Gold and silver instruments carry no participant fields and no `crypto_*` fields. They add `metals_market_type`, `metals_horizon`, `metals_asset_slug`, `metals_price_symbol`, `interval_start`, `interval_end`, `price_to_beat`, `pending_price_to_beat`, `metals_settlement_price` and `metals_next_window_start`; see [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md).
+
+WTI and natural gas instruments carry no participant fields and no `crypto_*` or `metals_*` fields. They add the `asset_*` keys: `asset_market_type`, `asset_class`, `asset_slug`, `asset_price_symbol`, `asset_display_name`, `asset_horizon`, `asset_price_decimals`, `interval_start`, `interval_end`, `price_to_beat`, `pending_price_to_beat`, `asset_contract_month`, `asset_settlement_price` and `asset_next_window_start`; see [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md).
 
 ### Attributes vs Metadata vs Event Attributes
 

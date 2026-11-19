@@ -8,68 +8,70 @@
 
 The Polymarket US API enforces rate limits to ensure fair usage and system stability. All limits are **per participant firm** unless stated otherwise.
 
+> [!NOTE]
+>
+> **A new six-tier rate-limit ladder takes effect on December 1, 2026.** Your tier is set by your trailing 30-day [order-book volume share](#how-volume-share-is-measured). Firms whose tier gives them higher limits get them on December 1. Firms that hold FIX today are placed on their share over the 30 days ending **December 15, 2026**; firms below **0.075%** then are placed in Tier 1 and lose FIX access.
+
+## Rate-Limit Tiers
+
+Every firm is placed in one tier, set by your [volume share](#how-volume-share-is-measured). Your tier sets your REST and unary gRPC order-entry limits, your FIX order-entry rate per session, and how many FIX sessions you can hold. RFQ quoting has its own [RFQ tiers](#rfq-rate-limit-tiers).
+
+| Tier | Earn at volume share | Keep at volume share |
+| - | -: | -: |
+| Tier 6 | 1.0% | 0.8% |
+| Tier 5 | 0.5% | 0.4% |
+| Tier 4 | 0.25% | 0.2% |
+| Tier 3 | 0.125% | 0.1% |
+| Tier 2 | 0.075% | 0.06% |
+| Tier 1 | None | None |
+
 ## Institutional Order Entry
 
-REST and unary gRPC order-entry requests use tiered rate limits. Institutional order entry and FIX order-entry sessions use the same firm tier.
+REST and unary gRPC order-entry limits are set by your tier:
 
-Each method has its own per-firm rate-limit bucket. Methods displaying the same limit do not share that allowance.
+| Tier | `InsertOrder` and `CancelReplaceOrder` | `CancelOrder` |
+| - | -: | -: |
+| Tier 6 | 1,000 req/sec | 3,000 req/sec |
+| Tier 5 | 600 req/sec | 1,800 req/sec |
+| Tier 4 | 400 req/sec | 1,200 req/sec |
+| Tier 3 | 200 req/sec | 600 req/sec |
+| Tier 2 | 100 req/sec | 300 req/sec |
+| Tier 1 | 30 req/sec | 90 req/sec |
 
-| Method | Tier 1 | Tier 2 | Tier 3 | Tier 4 | Maximum operations per request |
-| - | -: | -: | -: | -: | -: |
-| `InsertOrder` | 30 req/sec | 100 req/sec | 200 req/sec | 400 req/sec | 1 order |
-| `CancelReplaceOrder` | 30 req/sec | 100 req/sec | 200 req/sec | 400 req/sec | 1 replacement |
-| `CancelOrder` | 90 req/sec | 300 req/sec | 600 req/sec | 1,200 req/sec | 1 cancel |
-| `InsertOrderList` | 50 req/sec | 50 req/sec | 50 req/sec | 50 req/sec | 20 orders |
-| `CancelOrderList` | 50 req/sec | 50 req/sec | 50 req/sec | 50 req/sec | 20 cancels |
-| `CancelReplaceOrderList` | 50 req/sec | 50 req/sec | 50 req/sec | 50 req/sec | 20 replacements |
+Batch order methods are the same in every tier:
 
-REST and unary gRPC tiers are determined by your [contract volume share on Polymarket US](#volume-share-and-tier-requirements). Batch order method limits remain flat across all tiers.
+| Method | Limit | Maximum operations per request |
+| - | -: | -: |
+| `InsertOrderList` | 50 req/sec | 20 orders |
+| `CancelOrderList` | 50 req/sec | 20 cancels |
+| `CancelReplaceOrderList` | 50 req/sec | 20 replacements |
 
-Each bucket's capacity equals the published per-second rate and replenishes continuously at that rate. These limits are not averaged over a 1-minute window.
+Each method has its own per-firm rate-limit bucket. Methods displaying the same limit do not share that allowance. Each bucket's capacity equals the published per-second rate and replenishes continuously at that rate. These limits are not averaged over a 1-minute window.
 
 Each batch order request counts once toward that method's rate limit, regardless of the number of operations in the request.
 
 ## FIX Protocol
 
+| Tier | Order entry, per session | Max order-entry sessions | Max market-data sessions | Max drop-copy sessions |
+| - | -: | -: | -: | -: |
+| Tier 6 | 1,000 msg/sec | 8 | 10 | 5 |
+| Tier 5 | 800 msg/sec | 5 | 8 | 4 |
+| Tier 4 | 600 msg/sec | 3 | 5 | 3 |
+| Tier 3 | 400 msg/sec | 2 | 3 | 2 |
+| Tier 2 | 200 msg/sec | 1 | 1 | 1 |
+| Tier 1 | No FIX | None | None | None |
+
+Market-data and drop-copy sessions are limited to 150 msg/sec per session in every tier.
+
+From Tier 2, you can request FIX sessions up to your tier's maximum using the FIX request form.
+
 FIX limits are configured for each firm's sessions and enforced separately per session on inbound application messages. The exchange can update a session's limit live without disconnecting it.
-
-Standard order-entry limits follow the firm's tier:
-
-| Tier | Rate limit |
-| - | - |
-| Tier 1 | 35 msg/sec per session |
-| Tier 2 | 150 msg/sec per session |
-| Tier 3 | 300 msg/sec per session |
-| Tier 4 | 500 msg/sec per session |
-
-Tiers are determined by your [contract volume share on Polymarket US](#volume-share-and-tier-requirements).
-
-Market-data and drop-copy sessions default to **150 inbound msg/sec per session**, independently of the firm's order-entry tier. Your session's configured limit may differ from these standard rates. These limits apply only to messages you send. They do not limit the market data or drop-copy messages the exchange sends you.
 
 Each session's limit is checked over a **rolling 1-second window**, not a calendar second or a 1-minute average. You can send up to your session's limit within that window. Heartbeats and other FIX admin messages do not count toward the limit.
 
 The window is measured when the gateway processes each message, not by `SendingTime (52)`, so network or session backlogs can bunch messages together; leave headroom below your limit.
 
 Exceeding the limit starts a **3-second lock** under the current production policy. During the lock, further application messages on that session are rejected with [Business Message Reject (35=j)](https://docs.polymarket.us/institutional/fix-api/fix-reject-reasons.md#business-message-reject-35j), with Text (58) containing `Message rate limit throttled for session`, even if your rate has dropped below the limit. Wait at least 3 seconds after the initial rejection before retrying. A live rate change does not clear an active lock.
-
-## Volume Share and Tier Requirements
-
-At the start of each calendar month, Polymarket US calculates your volume share using the full preceding calendar month, from its first day through its last day. Your volume share is the contracts you traded during that month divided by the total contracts traded across the exchange during the same month. Each filled contract counts once, regardless of its execution price or the number of combo legs. For example, volume traded from August 1 through August 31 determines your September tier. Tiers are assessed monthly, not daily.
-
-If your volume share meets the Earn requirement at the monthly assessment, you are automatically eligible for that tier's rate limit for the new month.
-
-You must keep at least the Maintain volume share to stay eligible for your current tier. If your share falls below Maintain at a monthly assessment, you keep your current rate limit for that month. If your share is still below Maintain at the next monthly assessment, you move to a lower eligible tier for that month.
-
-Each tier has its own Earn and Maintain volume share requirement, seen below.
-
-| Tier | Earn | Maintain |
-| - | - | - |
-| Tier 1 | N/A | N/A |
-| Tier 2 | 0.125% | 0.10% |
-| Tier 3 | 0.50% | 0.225% |
-| Tier 4 | 1.50% | 1.20% |
-
-**Accelerated Tier Placement:** A Participant may provide verifiable proof of their trailing-30-day contract trading volume on another prediction market venue and be assigned to the tier corresponding to that volume.
 
 ## REST API
 
@@ -166,12 +168,41 @@ You must keep at least the Maintain volume share to stay eligible for your curre
 
 RFQ tiers use a separate volume measure and eligibility thresholds from the institutional order-entry (REST and unary gRPC) and FIX tiers above.
 
+## How Volume Share Is Measured
+
+Your volume share is the contracts your firm traded over the **trailing 30 days**, as maker and as taker, divided by all contracts traded on the order book across the exchange over the same 30 days, counting both sides of every trade. Each filled contract counts once, regardless of its price.
+
+* **RFQ and combo trades do not count.** They are measured separately for [RFQ tiers](#rfq-volume-share-and-tier-requirements).
+
+## Moving Between Tiers
+
+Tiers are assessed at the end of each calendar month using your trailing 30-day volume share.
+
+* **Moving up:** if your share meets a higher tier's Earn requirement, you move to the highest tier you earn, including more than one tier at once. Higher REST and gRPC limits apply from the assessment. Additional FIX sessions are set up when you request them, up to your new tier's maximum.
+* **Moving down:** if your share is below your current tier's Keep requirement, you move to the highest tier whose Keep requirement you still meet. Polymarket US gives you at least 7 days' notice before your limits or sessions are reduced.
+* **Staying:** between the Keep and Earn requirements, you stay in your current tier.
+
+### Limits Before the New Ladder
+
+> [accordion] Order-entry and FIX limits before the new ladder
+>
+> | Method | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
+> | - | -: | -: | -: | -: |
+> | `InsertOrder` | 30 req/sec | 100 req/sec | 200 req/sec | 400 req/sec |
+> | `CancelReplaceOrder` | 30 req/sec | 100 req/sec | 200 req/sec | 400 req/sec |
+> | `CancelOrder` | 90 req/sec | 300 req/sec | 600 req/sec | 1,200 req/sec |
+> | FIX order entry, per session | 35 msg/sec | 150 msg/sec | 300 msg/sec | 500 msg/sec |
+> | Earn at volume share | None | 0.125% | 0.50% | 1.50% |
+> | Maintain volume share | None | 0.10% | 0.225% | 1.20% |
+>
+> These limits apply until your firm is placed on the new ladder: on December 1 if your tier gives you higher limits, otherwise on December 15.
+
 ## Summary
 
 | Protocol | Scope | Limit |
 | - | - | - |
-| Institutional API - orders (`InsertOrder`, `CancelReplaceOrder`) | Per firm, per method | 30–400 req/sec by tier |
-| Institutional API - cancels (`CancelOrder`) | Per firm, per method | 90–1,200 req/sec by tier |
+| Institutional API - orders (`InsertOrder`, `CancelReplaceOrder`) | Per firm, per method | 30–1,000 req/sec by tier (from December 1, 2026) |
+| Institutional API - cancels (`CancelOrder`) | Per firm, per method | 90–3,000 req/sec by tier (from December 1, 2026) |
 | Institutional API - batch order methods | Per firm, per method | 50 req/sec; up to 20 operations per request |
 | REST - query endpoints | Per-firm and shared endpoint limits | See Query / Report Endpoints |
 | REST - combos endpoints | Per firm, per endpoint | 1–100 req/sec (see table above) |
@@ -180,7 +211,7 @@ RFQ tiers use a separate volume measure and eligibility thresholds from the inst
 | gRPC streaming (ingress) | Per firm (all streams) | 100 msg/sec (1-min avg) |
 | gRPC streaming (egress) | Per firm | Unlimited |
 | RFQ - REST and unary gRPC endpoints | Per firm, per endpoint | 1–2,000 req/sec (see tables above) |
-| FIX order entry | Per session | Standard tiers: 35, 150, 300, or 500 msg/sec; configurable (see above) |
+| FIX order entry | Per session | 200–1,000 msg/sec by tier from December 1, 2026 (Tier 2 and above); configurable (see above) |
 | FIX market data and drop copy | Per session | 150 msg/sec default; configurable |
 
 ## Rate Limit Response
@@ -347,10 +378,6 @@ If you're consistently receiving 429 errors:
 * Cache responses that don't change frequently (reference data, instrument lists)
 * Use streaming endpoints instead of polling
 * Request higher limits for production use (see below)
-
-### Need Higher Limits
-
-For production use cases requiring higher limits, send your Polymarket contact your use case, expected volume, environment (dev, preprod, prod), and the endpoints you need higher limits for.
 
 ## Next Steps
 

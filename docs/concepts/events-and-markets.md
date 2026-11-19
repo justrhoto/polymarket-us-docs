@@ -41,7 +41,7 @@ Series: NFL 2025-26 Season
         └── Market: Total points over 47.5 (total)
 ```
 
-## Crypto, gold and silver price markets
+## Crypto, metals, oil and gas price markets
 
 Crypto price markets follow the same three levels, but the event is a time window or an expiry rather than a game. A series groups one asset, one market family and one cadence (for example `btc-updown-15m`); an Up/Down event holds a single market for one window, while an Above/Below or Price Range event holds one market per strike or bucket, all expiring at the same instant.
 
@@ -59,6 +59,14 @@ Gold and silver price markets use the same shape as crypto Up/Down. A series gro
 Series: gold-updown-15m
   └── Event: gold-updown-15m-2026-10-22-1630z (12:30 PM to 12:45 PM ET)
         └── Market: Gold Up or Down 15m
+```
+
+WTI and natural gas price markets use the same shape as gold and silver. A series groups one asset and one window length (for example `wti-updown-1h`, `natgas-updown-15m`), and each event holds a single market for one window. Windows are listed only during the CME Globex trading hours, Sunday 6:15 PM ET to Friday 5:00 PM ET, with CME's holidays and early closes; see [Oil and Gas FAQs](https://docs.polymarket.us/faqs/oil-gas-faqs.md).
+
+```
+Series: natgas-updown-15m
+  └── Event: natgas-updown-15m-2026-11-15-2315z (6:15 PM to 6:30 PM ET)
+        └── Market: Natural Gas Up or Down 15m
 ```
 
 Each market carries a typed `assetPriceTerms` object with the window, strike or range bounds, the reference price to beat and, once settled, the settlement price. See [Asset Price Market Fields](https://docs.polymarket.us/api-reference/market/overview.md#asset-price-market-fields).

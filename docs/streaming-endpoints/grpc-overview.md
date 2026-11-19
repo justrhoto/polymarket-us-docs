@@ -164,7 +164,7 @@ The limits below apply to streaming connections. Unary gRPC order-entry calls ar
 
 Streaming limits are flat and apply to all participants — they are not tiered. The `StreamRFQEvents` limit is checked only when opening a stream and does not limit server-pushed RFQ or quote events on an established stream, so reconnect with backoff.
 
-See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md) for the full picture, including tiered order entry and the [contract volume share](https://docs.polymarket.us/trader-guide/rate-limits.md#volume-share-and-tier-requirements) that determines your tier.
+See [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md) for the full picture, including tiered order entry and the [contract volume share](https://docs.polymarket.us/trader-guide/rate-limits.md#how-volume-share-is-measured) that determines your tier.
 
 ## Key Concepts
 

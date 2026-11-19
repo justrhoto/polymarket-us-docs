@@ -49,10 +49,11 @@ paths:
         - name: assets
           description: >-
             Assets in canonical <class>:<symbol> form
-            (gateway.types.v1.AssetId), e.g. crypto:btc, commodity:gold or
-            commodity:silver. Repeat the query parameter to request multiple,
-            e.g. ?assets=crypto:btc&assets=commodity:gold. At most 10;
-            duplicates are deduped server-side.
+            (gateway.types.v1.AssetId), e.g. crypto:btc, commodity:gold,
+            commodity:silver, commodity:wti or commodity:natgas. Repeat the
+            query parameter to request multiple, e.g.
+            ?assets=crypto:btc&assets=commodity:gold. At most 10; duplicates are
+            deduped server-side.
           in: query
           required: false
           explode: true
@@ -156,6 +157,13 @@ components:
           description: >-
             Dense ascending candles, one per bucket in the effective window.
             Empty when the asset has no data.
+        rolls:
+          type: array
+          items:
+            $ref: '#/components/schemas/gateway.asset_prices.v1.AssetPriceRoll'
+          description: >-
+            Contract rolls in the effective window, ascending. Empty for spot
+            assets.
     gateway.types.v1.AssetId:
       type: object
       properties:
@@ -165,11 +173,11 @@ components:
           type: string
           example: btc
           description: >-
-            Lower-case symbol within the class, e.g. btc or gold. Matches
+            Lower-case symbol within the class, e.g. btc, gold or wti. Matches
             [a-z0-9-], at most 64 characters.
       description: >-
         Identifies one priced asset. The canonical string form is class:symbol,
-        e.g. crypto:btc or commodity:gold.
+        e.g. crypto:btc, commodity:gold or commodity:natgas.
     gateway.asset_prices.v1.AssetPriceBucket:
       type: string
       enum:
@@ -223,6 +231,26 @@ components:
           description: >-
             Number of index ticks in the bucket. 0 marks a gap-filled bucket
             whose open/high/low equal its close.
+    gateway.asset_prices.v1.AssetPriceRoll:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+          description: >-
+            Time of the first recorded price of the new contract (unix seconds).
+            Later than the switch if it was not observed live.
+        fromContractMonth:
+          type: string
+          example: 2026-12
+          description: Contract month before the roll, as YYYY-MM
+        toContractMonth:
+          type: string
+          example: 2027-01
+          description: Contract month after the roll, as YYYY-MM
+      description: >-
+        Change of the futures contract behind an asset's price. Prices either
+        side are different contracts, so the step at a roll is not a price move.
     gateway.types.v1.AssetClass:
       type: string
       enum:

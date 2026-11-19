@@ -66,7 +66,7 @@ Use the Market Data Subscription API to receive updates:
 ```
 POST /v1/marketdata/subscribe
 {
-  "instruments": ["tec-nfl-sbw-2026-02-08-kc", "aec-nfl-buf-nyj-2025-01-15", "cpc-btc-updown-15m-2026-09-21-0015z", "cpausp-gold-updown-15m-2026-10-22-1630z"],
+  "instruments": ["tec-nfl-sbw-2026-02-08-kc", "aec-nfl-buf-nyj-2025-01-15", "cpc-btc-updown-15m-2026-09-21-0015z", "cpausp-gold-updown-15m-2026-10-22-1630z", "cpngf-natgas-updown-15m-2026-11-15-2315z"],
   "dataType": "orderbook"
 }
 ```

@@ -239,7 +239,26 @@ The series are `gold-updown-15m`, `gold-updown-1h`, `gold-updown-1d`, `silver-up
 
 > [!NOTE]
 >
-> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat`, `pending_price_to_beat` (gold and silver only) and the settlement price fields on crypto and metals Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat` and `assetPriceTerms.pendingPriceToBeat`).
+> `/v1/refdata/instruments` serves a cached copy of each instrument. Metadata that is written after an instrument is listed, such as `price_to_beat`, `pending_price_to_beat` (commodity windows only) and the settlement price fields on crypto and commodity Up/Down windows, can take up to an hour to appear in its response. Read the final settlement from [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), which reads the exchange live, and fresh prices to beat from the Retail market endpoints (`assetPriceTerms.priceToBeat` and `assetPriceTerms.pendingPriceToBeat`).
+
+### Filtering Oil and Gas Instruments
+
+WTI and natural gas price instruments also use category `FIN` and subcategory `COMMODITY`, with one clearing symbol per asset: `CPWTIF-COMMODITY` for WTI and `CPNGF-COMMODITY` for natural gas. Filter by clearing symbol and series to get one asset and one window length, e.g. every 15-minute natural gas window:
+
+```bash theme={null}
+curl -X POST "https://api.preprod.polymarketexchange.com/v1/refdata/instruments" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventCategory": "FIN",
+    "clearingSym": "CPNGF-COMMODITY",
+    "eventSeries": "natgas-updown-15m",
+    "states": ["INSTRUMENT_STATE_OPEN"],
+    "pageSize": 1000
+  }'
+```
+
+The series are `wti-updown-15m`, `wti-updown-1h`, `wti-updown-1d`, `natgas-updown-15m`, `natgas-updown-1h` and `natgas-updown-1d`. Identify each instrument from its `asset_market_type` metadata, and read its decimals from `asset_price_decimals`; see [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md). The cache note above applies to these instruments too: `price_to_beat`, `pending_price_to_beat`, `asset_contract_month` and `asset_settlement_price` can take up to an hour to appear in this response.
 
 ### Combining Filters
 

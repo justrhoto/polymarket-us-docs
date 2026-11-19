@@ -954,7 +954,8 @@ components:
           type: string
           description: >-
             Reference index the market settles on, e.g. BRTI. Empty on commodity
-            (gold and silver) markets, which settle on a Chainlink spot stream.
+            markets (gold, silver, WTI and natural gas), which settle on a
+            Chainlink data stream.
         horizon:
           type: string
           description: Supply-side horizon slug. Display and grouping only.
@@ -979,16 +980,16 @@ components:
             - $ref: '#/components/schemas/gateway.types.v1.NullableAmount'
           description: >-
             Null until stamped: a few seconds after windowStart on crypto, about
-            a minute after it on gold and silver. Null on every market that is
+            a minute after it on commodity markets. Null on every market that is
             not UP_DOWN.
         pendingPriceToBeat:
           allOf:
             - $ref: '#/components/schemas/gateway.types.v1.NullableAmount'
           description: >-
             Display only. A pending open price on commodity
-            (ASSET_CLASS_COMMODITY) UP_DOWN markets: the Chainlink spot value
-            for exactly windowStart, with the same decimals as priceToBeat. Set
-            only while priceToBeat is null: usually from 1 to 2 seconds after
+            (ASSET_CLASS_COMMODITY) UP_DOWN markets: the Chainlink price for
+            exactly windowStart, with the same decimals as priceToBeat. Set only
+            while priceToBeat is null: usually from 1 to 2 seconds after
             windowStart until priceToBeat is stamped, then null again. Stays
             null when Chainlink has no report for exactly windowStart, on assets
             where a pending price is not shown, on every crypto market and on
@@ -1025,30 +1026,42 @@ components:
           type: integer
           format: int32
           description: >-
-            Decimal places every price of the market carries, e.g. 2 for BTC and
-            gold, 3 for silver. Always read this field: it can differ between
-            assets, and between market types of one asset, for example 4 for SOL
-            Up/Down. Show prices at exactly this many places.
+            Decimal places every price of the market carries, e.g. 2 for BTC,
+            gold and WTI, 3 for silver, 4 for natural gas. Always read this
+            field: it can differ between assets, between market types of one
+            asset (for example 4 for SOL Up/Down), and between windows of one
+            asset, because a window keeps the decimals it was listed with. Show
+            prices at exactly this many places.
         assetName:
           type: string
           description: >-
-            Display name of the asset, e.g. Gold. Empty when the asset has none:
-            show the symbol.
+            Display name of the asset, e.g. Gold, WTI or Natural Gas. Empty when
+            the asset has none: show the symbol.
         priceUnit:
           type: string
           description: >-
-            Unit one price is quoted per, e.g. oz for gold and silver. Empty
-            when the asset needs no unit, as crypto.
+            Unit one price is quoted per, e.g. oz for gold and silver, bbl for
+            WTI, MMBtu for natural gas. Empty when the asset needs no unit, as
+            crypto.
         nextWindowStart:
           type: string
           format: date-time
           nullable: true
           description: >-
             Start of the next window of this market's length that the asset's
-            trading hours allow. Equals windowEnd on crypto windows. On gold and
-            silver it is later than windowEnd when trading closes after this
-            window (the daily break, the weekend or a holiday). Null when
-            unknown.
+            trading hours allow. Equals windowEnd on crypto windows. On
+            commodity markets it is later than windowEnd when trading closes
+            after this window (the daily break, the weekend or a holiday). Null
+            when unknown.
+        contractMonth:
+          type: string
+          description: >-
+            Futures contract month the price tracks, as YYYY-MM, such as
+            2026-12. Changes at each monthly roll: prices before and after a
+            roll are different contracts. Empty for spot assets, and on a
+            futures window until priceToBeat is stamped or when the month is
+            unknown. Tell spot from futures by the asset, not by an empty
+            contractMonth.
       description: >-
         Terms of a market settled against an external reference (index) price.
         Fields a market type does not use are null, never zero-filled. Prices
@@ -1452,11 +1465,11 @@ components:
           type: string
           example: btc
           description: >-
-            Lower-case symbol within the class, e.g. btc or gold. Matches
+            Lower-case symbol within the class, e.g. btc, gold or wti. Matches
             [a-z0-9-], at most 64 characters.
       description: >-
         Identifies one priced asset. The canonical string form is class:symbol,
-        e.g. crypto:btc or commodity:gold.
+        e.g. crypto:btc, commodity:gold or commodity:natgas.
     gateway.types.v1.NullableAmount:
       type: object
       properties:

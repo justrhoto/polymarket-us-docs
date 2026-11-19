@@ -32,6 +32,10 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 [Weekly Notification of Fee Schedule Change](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Weekly%20Notification%20of%20Fee%20Schedule%20Change%20\(2026.11.10\).pdf)
 
+**November 6, 2026**
+
+[Taker Fee Tiers](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Taker%20Fee%20Tiers%20\(2026.11.06\).pdf)
+
 **November 3, 2026**
 
 [Amended Market Liquidity Incentive Program](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Amended%20Market%20Liquidity%20Incentive%20Program%20\(2026.11.03\).pdf)

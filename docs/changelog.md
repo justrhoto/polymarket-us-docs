@@ -11,6 +11,15 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 18, 2026**
+
+WTI and natural gas Up/Down markets
+
+* **WTI and natural gas Up/Down markets are listed from today.** Windows of 15 minutes, 1 hour and one day ask whether the price closes the window at or above its open. Windows follow the CME Globex hours: from Sunday 6:15 PM ET to Friday 5:00 PM ET, never from 5:00 PM to 6:15 PM ET, and not on CME's full-close holidays. On CME's early-close days the last windows end by the early close, and no daily window is listed for that session. Daily windows run from 6:15 PM ET to 5:00 PM ET the next day, Sunday to Thursday evenings, except on early-close days.
+* **Institutional API:** the new [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md) page documents the `asset_*` metadata keys, the standard for new Up/Down markets. Products are `cpwtif` (WTI) and `cpngf` (natural gas), with clearing symbols `CPWTIF-COMMODITY` and `CPNGF-COMMODITY`, category `FIN` and subcategory `COMMODITY`. Map on `asset_market_type`. Read the decimals from `asset_price_decimals`, the open value from `price_to_beat`, the futures contract from `asset_contract_month`, the settled value from `asset_settlement_price`, and when trading resumes from `asset_next_window_start`.
+* **Retail API:** markets carry the typed [`assetPriceTerms`](https://docs.polymarket.us/api-reference/market/overview#asset-price-market-fields) object, with `asset.assetClass` `ASSET_CLASS_COMMODITY`, `asset.symbol` `wti` or `natgas`, and an empty `indexSymbol`. `assetPriceTerms` now also documents `contractMonth`. The [Asset Prices API](https://docs.polymarket.us/api-reference/asset-prices/overview.md) serves the futures mid price at `GET /v1/asset-prices/history?assets=commodity:wti` (or `commodity:natgas`), with no authentication, and now documents the contract `rolls` in each series.
+* **Settlement rules** are summarised in the new [Oil and Gas FAQs](https://docs.polymarket.us/faqs/oil-gas-faqs.md), with the trading hours, the holiday calendar and the contract rolls. Each window settles on the mid price that Chainlink's futures stream publishes for the window's start and end: US Oil (`NY-USOIL/USD-Streams-FuturesPrice`) or Natural Gas (`NatGas/USD-Streams-FuturesPrice`). Chainlink calculates it from the bid and ask quotes for the front-month contract. It is not a traded price or an exchange settlement price. Only prices published while the stream marks the market as open count. WTI is rounded half up to the nearest cent (0.005 rounds up to 0.01). Natural gas is rounded half up to four decimal places (0.00005 rounds up to 0.0001) on every window. A flat window settles Up. Chainlink determines which contract month each stream follows and when it moves to the next one, and the published price is used without adjusting for that change.
+
 **November 17, 2026**
 
 Pending price to beat on gold and silver

@@ -110,6 +110,7 @@ Where descriptors vary by event type:
 * **Politics**: `uspres-2028-11-05`
 * **Crypto**: `btc-updown-15m-2026-09-21-0015z` (one 15-minute window), `btc-above-day-2026-09-21` (one daily ladder)
 * **Gold and silver**: `gold-updown-15m-2026-10-22-1630z` (one 15-minute window), `silver-updown-1d-2026-10-22-2215z` (one daily window)
+* **Oil and gas**: `natgas-updown-15m-2026-11-15-2315z` (one 15-minute window), `wti-updown-1d-2026-11-15-2315z` (one daily window)
 * **Culture**: `oscars-2027-03-28`
 
 **Metadata Fields:**
@@ -146,7 +147,7 @@ Where descriptors vary by event type:
 * **POL**: uspres, ushse, usstate, ussen, intlpol, legislate, cabinet, fedagency, uscrt
 * **CRY**: the asset symbol, e.g. BTC
 * **CUL**: movies, music, tv, video, awd, people, entertain
-* **FIN**: indices, forex, treasuries, bankruptcy, corpaction, earnings, ipo, commod, COMMODITY. `COMMODITY` (upper case) is the code gold and silver spot price contracts use; `commod` is the older code for other commodity markets
+* **FIN**: indices, forex, treasuries, bankruptcy, corpaction, earnings, ipo, commod, COMMODITY. `COMMODITY` (upper case) is the code the gold and silver spot price contracts and the WTI and natural gas futures price contracts use; `commod` is the older code for other commodity markets
 * **CLI**: weather, climate, geological, health, space
 * **GEO**: namer, eur, apac, mena, latam, ssa, conflict, unitednat
 * **MAC**: growth, inflation, monetary, employment, fiscal
@@ -161,7 +162,7 @@ Where descriptors vary by event type:
 * **baseball**: mlb
 * **ncaa**: cfb, cbb
 * **BTC**: btc-updown-15m, btc-updown-1h, btc-strike-hourly, btc-strike-daily, btc-strike-weekly, btc-range-hourly, btc-range-daily, btc-range-weekly, btc-hit-monthly (hand-listed Bitcoin markets use `btc`)
-* **COMMODITY**: gold-updown-15m, gold-updown-1h, gold-updown-1d, silver-updown-15m, silver-updown-1h, silver-updown-1d
+* **COMMODITY**: gold-updown-15m, gold-updown-1h, gold-updown-1d, silver-updown-15m, silver-updown-1h, silver-updown-1d, wti-updown-15m, wti-updown-1h, wti-updown-1d, natgas-updown-15m, natgas-updown-1h, natgas-updown-1d
 * **uspres**: usp, prm, pres
 
 ## Product
@@ -194,6 +195,8 @@ Products are templates that define types of tradable outcomes. The same product 
 | Crypto Price | CPC | Single (Binary); Group (Exclusive) for price ranges | `cpc-btc-above-day-2026-09-21-74000` | Reference-index markets: Up/Down, Above/Below, Price Range, One-Touch. See [Crypto Schema](https://docs.polymarket.us/trader-guide/crypto-schema.md) |
 | Gold Spot Price | CPAUSP | Single (Binary) | `cpausp-gold-updown-15m-2026-10-22-1630z` | Gold Up/Down windows on the Chainlink XAU/USD spot stream. Clearing symbol `CPAUSP-COMMODITY`. See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) |
 | Silver Spot Price | CPAGSP | Single (Binary) | `cpagsp-silver-updown-15m-2026-10-22-1630z` | Silver Up/Down windows on the Chainlink XAG/USD spot stream. Clearing symbol `CPAGSP-COMMODITY`. See [Metals Schema](https://docs.polymarket.us/trader-guide/metals-schema.md) |
+| WTI Crude Oil Futures Price | CPWTIF | Single (Binary) | `cpwtif-wti-updown-15m-2026-11-15-2315z` | WTI Up/Down windows on the Chainlink US Oil futures mid price stream. Clearing symbol `CPWTIF-COMMODITY`. See [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md) |
+| Natural Gas Futures Price | CPNGF | Single (Binary) | `cpngf-natgas-updown-15m-2026-11-15-2315z` | Natural gas Up/Down windows on the Chainlink Natural Gas futures mid price stream. Clearing symbol `CPNGF-COMMODITY`. See [Asset Up/Down Schema](https://docs.polymarket.us/trader-guide/asset-updown-schema.md) |
 
 ### Product Reusability
 

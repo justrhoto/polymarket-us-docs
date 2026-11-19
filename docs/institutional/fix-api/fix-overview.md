@@ -14,7 +14,7 @@ The purpose of this document is to outline the trading functionality available v
 
 The exchange rate limits inbound FIX application messages per session. Limits are configured for each firm's sessions and can be updated live without disconnecting.
 
-Standard order-entry limits follow the firm tier on [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#fix-protocol): **35, 150, 300, or 500 messages per second**.
+Standard order-entry limits follow the firm tier on [Rate Limits](https://docs.polymarket.us/trader-guide/rate-limits.md#rate-limit-tiers). From December 1, 2026: **200, 400, 600, 800 or 1,000 messages per second per session** for Tiers 2 to 6, with a maximum number of sessions per tier. Tier 1 firms do not have FIX sessions. Until December 1, the standard limits are 35, 150, 300 or 500 messages per second.
 
 Market-data and drop-copy sessions default to **150 inbound messages per second per session**, independently of the firm's order-entry tier. Your session's configured limit may differ from these standard rates. This limit applies only to messages you send. It does not limit the market data or drop-copy messages the exchange sends you.
 
