@@ -69,20 +69,14 @@ Incentive credits are subject to a maximum of \$1,000 per Participant per campai
 
 A Participant qualifies only for the campaign presented to them.
 
-Active campaigns:
+Active campaigns (Friday, November 20 to Sunday, November 22, 2026):
 
 | Campaign | Qualifying Deposit | Incentive Credit |
 | - | - | - |
-| Campaign A | Deposit at least \$1,000 | Receive \$250 |
-| Campaign B | Deposit at least \$500 | Receive \$100 |
-| Campaign C | Deposit at least \$250 | Receive \$50 |
-| Campaign D | Deposit at least \$100 | Receive \$25 |
-| Campaign E | Deposit at least \$50 | Receive \$10 |
-| Campaign F | Deposit at least \$500 | Receive \$250 |
-| Campaign G | Deposit at least \$250 | Receive \$100 |
-| Campaign H | Deposit at least \$100 | Receive \$50 |
-| Campaign I | Deposit at least \$50 | Receive \$25 |
-| Campaign J | Deposit at least \$25 | Receive \$10 |
+| Campaign A | Deposit at least \$250 | Receive \$50 |
+| Campaign B | Deposit at least \$100 | Receive \$20 |
+| Campaign C | Deposit at least \$50 | Receive \$10 |
+| Campaign D | Deposit at least \$25 | Receive \$5 |
 
 Participants are eligible for a campaign based on their prior deposit and trading activity.
 
