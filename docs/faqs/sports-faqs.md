@@ -68,7 +68,9 @@ Sport-specific overtime mechanics (e.g. NHL regular-season vs playoff overtime, 
 
 ### What if a game is postponed or rescheduled?
 
-If a game is postponed before the start of play and rescheduled before the Contract’s expiration date (typically two weeks from the original event date), the official result of the rescheduled game governs settlement. If the rescheduled game falls outside the expiration date, all Contracts on the original game settle at last fair market prices.
+If a game is postponed before the start of play and rescheduled before the Contract’s expiration date (typically 48 hours from the original event date, or two days on Contracts listed before November 20, 2026, 5:00 PM ET, unless the sport’s section below sets a different window), the official result of the rescheduled game governs settlement. If the rescheduled game falls outside the expiration date, all Contracts on the original game settle at last fair market prices.
+
+Some sports set their own postponement window, described in that sport’s section below: Tennis, Golf, and MMA. Which window applies depends on when the match, tournament, or fight was originally scheduled to start.
 
 Postponed games do not automatically carry over to the rescheduled date.
 
@@ -91,7 +93,7 @@ If a game is canceled and not rescheduled before the Contract’s expiration dat
 It depends on the Contract type and the timing of the withdrawal:
 
 * **Game-level Contracts (Winner, Spread, Total).** Pre-event participant withdrawal: Contract settles at last fair market prices.
-* **Futures and Qualifiers.** The withdrawn participant’s Contract settles at \$0.00. Sport-specific definitions of when a participant has “entered” the event (e.g. tee-off in golf, first serve in tennis, opening bell in UFC) are described in each sport’s section.
+* **Futures and Qualifiers.** The withdrawn participant’s Contract settles at \$0.00. Sport-specific definitions of when a participant has “entered” the event (e.g. tee-off in golf, first serve in tennis, opening bell in MMA) are described in each sport’s section.
 
 If a participant retires, defaults, or is disqualified mid-event and the governing body declares a winner or official result, that result governs settlement.
 
@@ -103,7 +105,7 @@ The participant awarded the forfeit is the winner. For Spread and Total Contract
 
 If the governing body declares the event a no contest, the Contract settles at last fair market prices as of the announcement.
 
-Example: a UFC fight or boxing match ends in a no contest. The Contract settles at LFMP at the time the no contest was announced.
+Example: an MMA fight or boxing match ends in a no contest. The Contract settles at LFMP at the time the no contest was announced.
 
 ### What about replayed or protested games?
 
@@ -144,11 +146,17 @@ All game-level rules in *General Rules* apply to both pregame and in-game tradin
 
 ***
 
-## Tennis (WTA, ATP, & ITF)
+## Tennis (WTA, ATP, ITF, & UTR)
 
 ### When does a match officially begin?
 
-A tennis match officially begins when the first serve is struck. Anything happening before the first serve (cancellation, walkover, withdrawal) is treated as a pre-event scenario and Contracts settle at last fair market prices as of the official announcement. Except in the case of ITF Men's and Women's matches, cancellation, walkover, or withdrawal will resolve at \$0.50 per Contract.
+A tennis match officially begins when the first serve is struck. Anything happening before the first serve (cancellation, walkover, withdrawal) is treated as a pre-event scenario and Contracts settle at last fair market prices as of the official announcement. This applies to all tennis, including ITF and UTR matches, for matches originally scheduled to start on or after November 22, 2026.
+
+On ITF Men’s and Women’s and UTR matches originally scheduled to start before November 22, 2026, a cancellation, walkover, or withdrawal settles at \$0.50 per Contract.
+
+### Postponement
+
+If a match is postponed and not completed within two weeks of its originally scheduled date and time, all Contracts settle at last fair market prices. This applies to all tennis, including ITF and UTR matches, for matches originally scheduled to start on or after November 22, 2026. Matches originally scheduled to start before that date keep the postponement window in their Contract Terms (two days).
 
 ### Mid-match retirement, default, or disqualification
 
@@ -226,9 +234,13 @@ If two or more players are declared co-winners without a playoff, each winner’
 
 If the governing body declares an official winner, that result governs regardless of how many holes or rounds were completed. If the tournament does not reach the minimum threshold required by the governing body to declare an official winner, all Contracts settle at LFMP.
 
+### Postponement
+
+If a tournament is not completed within two weeks of the originally scheduled date of its final round, all Contracts settle at last fair market prices. This applies to tournaments originally scheduled to start on or after November 27, 2026. Tournaments originally scheduled to start before that date keep the postponement window in their Contract Terms (two days).
+
 ***
 
-## UFC
+## MMA
 
 ### Draws and technical draws
 
@@ -245,8 +257,12 @@ If a bout is declared a no contest during the fight (e.g. due to an accidental f
 ### Substitutions and bout changes
 
 * **Fighter substitution.** Orders on the original contest settle at LFMP and a new market is created for the new fight.
-* **Round count change** (3 ↔ 5). All existing Winner Contracts remain active and settle on the official UFC result.
-* **Weight miss or catchweight.** All existing Contracts remain active and settle on the official UFC result.
+* **Round count change** (3 ↔ 5). All existing Winner Contracts remain active and settle on the official result declared by the promotion or sanctioning body.
+* **Weight miss or catchweight.** All existing Contracts remain active and settle on the official result declared by the promotion or sanctioning body.
+
+### Postponement
+
+If a fight is not held within 48 hours of its originally scheduled date and time, all Contracts settle at last fair market prices. This applies to fights originally scheduled to start on or after December 5, 2026. Fights originally scheduled to start before that date keep the postponement window in their Contract Terms (two weeks).
 
 ***
 
