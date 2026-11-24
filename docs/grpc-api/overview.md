@@ -85,6 +85,7 @@ See [Authentication](https://docs.polymarket.us/streaming-endpoints/authenticati
 | Service | Description |
 | - | - |
 | **AccountsAPI** | Get user info, list accounts |
+| **[TierAPI](https://docs.polymarket.us/streaming-endpoints/proto-reference.md#account-tiers)** | Read the maker and taker fee tiers of an account |
 | **HealthAPI** | Health check endpoint |
 
 ### Funding Services
@@ -195,7 +196,7 @@ for response in stub.CreateDropCopySubscription(request, metadata=metadata):
 
 ## Package Structure
 
-Most services are in the `polymarket.v1` package. [SettlementService](https://docs.polymarket.us/streaming-endpoints/proto-reference.md#instrument-settlement) uses `polymarket.us.settlement.v1`.
+Most services are in the `polymarket.v1` package. [SettlementService](https://docs.polymarket.us/streaming-endpoints/proto-reference.md#instrument-settlement) uses `polymarket.us.settlement.v1`, and [TierAPI](https://docs.polymarket.us/streaming-endpoints/proto-reference.md#account-tiers) uses `polymarket.us.tier.v1`.
 
 For example, the order-entry service uses:
 
@@ -239,7 +240,8 @@ python -m grpc_tools.protoc \
   --proto_path=./protos \
   --python_out=./gen \
   --grpc_python_out=./gen \
-  ./protos/polymarket/v1/*.proto
+  ./protos/polymarket/v1/*.proto \
+  ./protos/polymarket/us/tier/v1/*.proto
 ```
 
 ### 4. Make Your First Call

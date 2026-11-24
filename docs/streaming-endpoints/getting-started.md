@@ -48,7 +48,7 @@ unzip polymarket-protos.zip -d protos
 Once you have the proto files, generate Python client code:
 
 ```bash theme={null}
-mkdir -p gen && python -m grpc_tools.protoc --python_out=gen --grpc_python_out=gen --proto_path=protos/api protos/api/polymarket/v1/*.proto protos/api/google/api/*.proto protos/api/protoc-gen-openapiv2/options/*.proto
+mkdir -p gen && python -m grpc_tools.protoc --python_out=gen --grpc_python_out=gen --proto_path=protos/api protos/api/polymarket/v1/*.proto protos/api/polymarket/us/tier/v1/*.proto protos/api/google/api/*.proto protos/api/protoc-gen-openapiv2/options/*.proto
 ```
 
 This generates:

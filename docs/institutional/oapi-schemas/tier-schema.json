@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.3",
+  "x-docs-sync": "GENERATED FILE — rebuilt by scripts/generate-institutional.sh from the upstream protos pinned in scripts/sync/manifest.json; CI (regen-drift) rejects bare hand edits. Quick prose fix: edit this file, then run scripts/sync/capture-overrides.sh and commit it together with the scripts/sync/overrides/ file it writes. Structural changes (fields, types, constraints) belong in scripts/sync/overlays/*.jq or the upstream protos. See README.md, section: Hand edits that survive regeneration.",
+  "info": {
+    "title": "Tier API",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.prod.polymarketexchange.com",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "TierAPI"
+    }
+  ],
+  "paths": {
+    "/v1/tier/account-tiers": {
+      "get": {
+        "summary": "Get account tiers",
+        "operationId": "TierAPI_GetAccountTiers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetAccountTiersResponse"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account",
+            "description": "Fully qualified account name, for example `firms/YOUR_FIRM/accounts/YOUR_ACCOUNT`.",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "firms/YOUR_FIRM/accounts/YOUR_ACCOUNT"
+          }
+        ],
+        "tags": [
+          "Tier"
+        ],
+        "description": "Read the maker fee tier and the taker fee tier of an account. Requires a bearer token with read:accounts scope; no x-participant-id header is needed. Returns 400 when account is missing or is not a valid account name, and 403 when the caller is not permitted to trade the account, also for an account that does not exist."
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "v1GetAccountTiersResponse": {
+        "type": "object",
+        "properties": {
+          "makerTier": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Maker fee tier of the account, from 1 to 9. Tier 1 is the default tier."
+          },
+          "takerTier": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Taker fee tier of the account, from 1 to 9. Tier 1 is the default tier."
+          }
+        }
+      }
+    }
+  }
+}

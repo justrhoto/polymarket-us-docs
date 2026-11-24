@@ -12,6 +12,10 @@ New Exchange and Clearing notices, each tagged and linked to its PDF on polymark
 
 * Add the feed to any RSS reader: `https://docs.polymarket.us/notices-and-filings/rss.xml`
 
+**November 23, 2026**
+
+[Maintenance Window 11\_24\_2026](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Maintenance%20Window%2011_24_2026%20\(2026.11.23\).pdf)
+
 **November 16, 2026**
 
 [Fee Schedule Modification](https://polymarketexchange.com/files/notices/Exchange%20Notice%20-%20Fee%20Schedule%20Modification%20\(2026.11.16\).pdf)

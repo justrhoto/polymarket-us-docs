@@ -6,6 +6,10 @@
 
 > Make your first API request in minutes.
 
+> [!TIP]
+>
+> 🚨 **70% Taker Rebates for API trades are LIVE now through EOY.** [Learn more](https://docs.polymarket.us/fees.md#api-taker-rebate-program).
+
 ## Step 1: Get your API keys
 
 1. **Download the app** - Get the [Polymarket US app](https://apps.apple.com/us/app/polymarket/id6648798962) and create an account.

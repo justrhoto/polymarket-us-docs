@@ -11,6 +11,14 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 19, 2026**
+
+Tier API
+
+* **New [Tier API](https://docs.polymarket.us/institutional/tier/overview.md).** `GET /v1/tier/account-tiers?account=firms/YOUR_FIRM/accounts/YOUR_ACCOUNT` returns `makerTier` and `takerTier` of the account. It requires the `read:accounts` scope. No `x-participant-id` header is required.
+* **gRPC:** the same call is `GetAccountTiers` on `polymarket.us.tier.v1.TierAPI`. See [Account Tiers](https://docs.polymarket.us/streaming-endpoints/proto-reference.md#account-tiers).
+* **Proto bundle:** the download now includes `polymarket/us/tier/v1`.
+
 **November 18, 2026**
 
 WTI and natural gas Up/Down markets

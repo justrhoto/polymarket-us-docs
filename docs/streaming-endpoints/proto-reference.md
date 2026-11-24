@@ -21,6 +21,7 @@ The Polymarket Exchange API exposes the following gRPC services:
 | `polymarket.v1.ReportAPI` | Order search and history |
 | `polymarket.v1.PositionAPI` | Position and balance queries |
 | `polymarket.v1.AccountsAPI` | Account information |
+| `polymarket.us.tier.v1.TierAPI` | [Maker and taker fee tiers of an account](#account-tiers) |
 | `polymarket.v1.RefDataAPI` | Instrument and symbol data |
 | `polymarket.us.settlement.v1.SettlementService` | [Final instrument settlement prices](#instrument-settlement), including terminated instruments |
 | `polymarket.v1.DropCopyAPI` | Execution feed |
@@ -50,7 +51,7 @@ After downloading the proto files, generate Python code:
 
 ```bash theme={null}
 unzip polymarket-protos.zip -d protos
-python -m grpc_tools.protoc --python_out=. --grpc_python_out=. --proto_path=protos/api protos/api/polymarket/v1/*.proto protos/api/polymarket/us/settlement/v1/*.proto protos/api/google/api/*.proto protos/api/protoc-gen-openapiv2/options/*.proto
+python -m grpc_tools.protoc --python_out=. --grpc_python_out=. --proto_path=protos/api protos/api/polymarket/v1/*.proto protos/api/polymarket/us/settlement/v1/*.proto protos/api/polymarket/us/tier/v1/*.proto protos/api/google/api/*.proto protos/api/protoc-gen-openapiv2/options/*.proto
 ```
 
 This generates:
@@ -191,6 +192,59 @@ else:
 ```
 
 REST equivalent: [`GET /v1/instruments/{symbol}/settlement`](https://docs.polymarket.us/institutional/settlement/overview), using the same token and scope.
+
+***
+
+## Account Tiers
+
+Read the maker fee tier and the taker fee tier of an account. Requires the `read:accounts` scope and the existing [gRPC authentication](https://docs.polymarket.us/streaming-endpoints/authentication.md). No `x-participant-id` metadata is required.
+
+### TierAPI
+
+Package: `polymarket.us.tier.v1`.
+
+```protobuf theme={null}
+service TierAPI {
+    rpc GetAccountTiers(GetAccountTiersRequest)
+        returns (GetAccountTiersResponse);
+}
+```
+
+### Request Fields
+
+| Field | Type | Description |
+| - | - | - |
+| `account` | `string` | Required. Fully qualified account name, for example `firms/YOUR_FIRM/accounts/YOUR_ACCOUNT`. |
+
+A missing or malformed account returns `InvalidArgument`. An account that the caller is not permitted to trade returns `PermissionDenied`, also for an account that does not exist.
+
+### Response Fields
+
+| Field | Type | Description |
+| - | - | - |
+| `maker_tier` | `uint32` | Maker fee tier of the account, from 1 to 9. Tier 1 is the default tier. |
+| `taker_tier` | `uint32` | Taker fee tier of the account, from 1 to 9. Tier 1 is the default tier. |
+
+### Python Usage
+
+Use the `channel` and the access `token` from the [gRPC overview](https://docs.polymarket.us/grpc-api/overview.md#authentication), and set `account` to the account to read. Send the token in the `authorization` metadata.
+
+```python theme={null}
+from polymarket.us.tier.v1 import (
+    get_account_tiers_request_pb2,
+    tier_api_pb2_grpc,
+)
+
+metadata = [("authorization", f"Bearer {token}")]
+
+stub = tier_api_pb2_grpc.TierAPIStub(channel)
+request = get_account_tiers_request_pb2.GetAccountTiersRequest(account=account)
+response = stub.GetAccountTiers(request, metadata=metadata)
+
+print(response.maker_tier, response.taker_tier)
+```
+
+REST equivalent: [`GET /v1/tier/account-tiers`](https://docs.polymarket.us/institutional/tier/overview), using the same token and scope.
 
 ***
 
