@@ -1,6 +1,6 @@
 {
   "source": "https://docs.polymarket.us/llms.txt",
-  "pageCount": 368,
+  "pageCount": 370,
   "skipped": [
     "https://docs.polymarket.us/developers-old/open-api/connect-wss.json"
   ],
@@ -11,7 +11,7 @@
     "docs/api-reference/accounts/list-users.md": "2e2434e7bdd07188bc99189831e2ba57d95201a2d02316733a29b37fda8bb129",
     "docs/api-reference/asset-prices/get-a-bucketed-ohlc-price-series-for-one-or-more-assets.md": "118f7996fc01f61d96efac01dbb4074ded7237337e77779aa1cf9973768b8b20",
     "docs/api-reference/asset-prices/overview.md": "ff4391dd87a3f192a2ca506c7a5789b0ce6e19668353b29a0a9f18e9fbe3ec86",
-    "docs/api-reference/authentication.md": "010361851c2641e5b7fc45d70273bf126764ca6c816ea70f5be5787d6204ee72",
+    "docs/api-reference/authentication.md": "1e4076916e7b736184416f1454c91eb300cc5554f19de0b07d1794717c096143",
     "docs/api-reference/combos/create-combo.md": "f1fc3c1ac0faf7abafdf232b1f24669809aed974c29a74bff67e7aa9f7d940df",
     "docs/api-reference/combos/get-combos.md": "4cdbdedf55dbe6307465a7b98d5c5cf035fce17022dcafc372379b8614be1186",
     "docs/api-reference/combos/overview.md": "3883e032280093cfd30a548b415ffc48acb5ebcd57a696bf03d65af7ef68f4ea",
@@ -179,7 +179,7 @@
     "docs/faqs/weather-faqs.md": "451fd304475ee8d4f0180cc90a140dd60bdb450258615e766ba2a01effbfe329",
     "docs/fees.md": "e274f535ce700274b615fb933fd92f78eade70e9c2114190f2527dfe97fa6e72",
     "docs/getting-started/glossary.md": "60c2f4018ec3fa7477912d1463700b0d71b3f6921bafd9063d513c0c68d3f393",
-    "docs/getting-started/quickstart.md": "1d680a989d94c11c213082e1cbebee8afd0ef98857126458cc115e9f7a9428a4",
+    "docs/getting-started/quickstart.md": "85965e33a6d55fc60bd38a4c1fd62641906641aa07b3e9a0d988b0c62db1de80",
     "docs/getting-started/welcome.md": "4a49505c82c84891a6687d939fd02026dd199cb2cfca2c21fad17c98bb47b9c2",
     "docs/getting-started/what-is-polymarket-us.md": "39bc9200d1f21fc47d3375135504e767cdd1802487151917662e5232533d3e7b",
     "docs/grpc-api/overview.md": "90e242edc18ad54927d18902f5bd676942516349c5783b4a3bddeb107aaef298",
@@ -187,6 +187,7 @@
     "docs/incentives/market-maker.md": "e51120dd2c55486a33b16061c584fa1bcf2af0d8714f988018015100092bad40",
     "docs/incentives/overview.md": "621b64fdb8caa5084085c7922f1dd3fdc64012fca8dde4d4ae0742cebcbe78f3",
     "docs/incentives/referral.md": "6fc73f789ee100851021dbb9efc28494466b47551264e790133f47e7d06077c7",
+    "docs/incentives/tradesgiving-daily-trader.md": "f7cb27f799ea92f640c8f8cc0e7f0dc087d08468de3cfac08f310062abff15bb",
     "docs/incentives/user-programs.md": "57915200801cf4ee80de6bfd70e430666a2a1c4d608841976ce809487d5bad1b",
     "docs/incentives/volume.md": "8e2ba57da98c4c2abd5ac3b39b2e0af7bfde0555adcff57fdb1afb4c8062d71c",
     "docs/institutional/accounts/overview.md": "8cc6276dd437e6cbe8f0ad02a6c9a1e83241c2eae11996cac75fcbdbaff75626",
@@ -272,6 +273,7 @@
     "docs/learn/faq/polling.md": "8bcfa0438114bda46e60aba14c40de6f5ef2ca56e45d44495723e8a48f95be7b",
     "docs/learn/faq/prediction-market.md": "21b38e6f3e10780f829cb1d8ef244bed9c7c0c1b829d989051cc5ae3787754d2",
     "docs/learn/faq/social-good.md": "7274e58e54132c002d77c6c0918aea5b183f2e5285fb9d9fe269758e1cf3dba7",
+    "docs/learn/faq/tradesgiving-daily-trader.md": "d2152dfdddaba97ff522064ed520a14df80faac28ce2ca6f74f0e5b46dc3bdb2",
     "docs/learn/faq/whole-contracts.md": "e155ad7114ec6c729081e3aba0c081e91104d7566e61a2fd4a4be78a58ec7881",
     "docs/learn/faq/withdraw-funds.md": "857ac31dde4c6dd93dfb4d241e3fcc128adf3688a618ac0a0010d1a6884e1fe6",
     "docs/learn/faq/withdraw-promo.md": "9dcf8c4ac4754fe71ebe666d7d16f20f69997fabe2f24fd4a594a4b69717a37f",

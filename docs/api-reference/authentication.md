@@ -6,6 +6,15 @@
 
 > How to get API keys and make authenticated requests.
 
+> [!TIP]
+>
+> **Now through EOY, get a 70% taker rebate and our lowest API pricing**
+>
+> Through December 31, 2026, get a 70% rebate back on taker fees and our lowest taker pricing on Polymarket US via API - no minimum volume required. Offer applies to straight trades, with combos coming soon.
+>
+> * **0.0695 taker coefficient.** Fee before rebate = `0.0695 × contracts × price × (1 − price)`
+> * **Maker rebates still apply.** Filled resting orders earn tiered rebates of up to about 15% of the standard fee. We calculate maker rebates using the gross fee before the taker rebate.
+
 Authenticated endpoints - trading, portfolio, and WebSocket - require an API key. Public endpoints like market data and events don't need one.
 
 ## Get your API keys
