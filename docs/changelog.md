@@ -11,6 +11,19 @@
 * Add to any RSS reader using the URL: `https://docs.polymarket.us/changelog/rss.xml`
 * Slack has a built-in reader: use `/feed subscribe https://docs.polymarket.us/changelog/rss.xml`
 
+**November 25, 2026**
+
+Orders v2
+
+* **New endpoints**
+  * `POST /v2/orders`
+  * `POST /v2/order/{orderId}/modify`
+  * `GET /v2/order/{orderId}`
+  * `GET /v2/orders/open`
+* Some fields have **clearer names**, including `time_in_force` and `post_only`, on these endpoints.
+* **Order prices** are denominated in YES for both `BID` and `ASK` on these endpoints.
+* **DAY orders** are deprecated in Orders v2, use GTD instead on these endpoints.
+
 **November 19, 2026**
 
 Tier API

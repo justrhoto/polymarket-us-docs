@@ -10,6 +10,10 @@
 
 The Orders API provides order entry and management capabilities for trading on markets.
 
+> [!NOTE]
+>
+> [YES-book limit orders](#yes-book-limit-orders) use BID/ASK and YES prices through Orders v2.
+
 > [!WARNING]
 >
 > **Authentication Required**
@@ -29,6 +33,7 @@ https://api.polymarket.us
 | Method | Endpoint | Description |
 | - | - | - |
 | `POST` | `/v1/orders` | Create a new order |
+| `POST` | `/v2/orders` | Create a YES-book limit order |
 | `POST` | `/v1/order/preview` | Preview order before submission |
 | `POST` | `/v1/order/close-position` | Close an existing position |
 
@@ -37,13 +42,16 @@ https://api.polymarket.us
 | Method | Endpoint | Description |
 | - | - | - |
 | `GET` | `/v1/orders/open` | Get all open orders |
+| `GET` | `/v2/orders/open` | Get open orders in the YES-book format |
 | `GET` | `/v1/order/{orderId}` | Get a specific order by ID |
+| `GET` | `/v2/order/{orderId}` | Get an order in the YES-book format |
 
 ### Order Management
 
 | Method | Endpoint | Description |
 | - | - | - |
 | `POST` | `/v1/order/{orderId}/modify` | Modify an existing order |
+| `POST` | `/v2/order/{orderId}/modify` | Modify an existing order |
 | `POST` | `/v1/order/{orderId}/cancel` | Cancel a specific order |
 | `POST` | `/v1/orders/open/cancel` | Cancel all open orders |
 
@@ -367,6 +375,113 @@ The API enforces a global rate limit of **20 requests per second** per API key a
 5. **Use asynchronous execution for limit orders** - For market-making and resting limit orders, avoid `synchronousExecution: true` as it can wait up to the server's five-second maximum for final order state. A lower positive `maxBlockTime` shortens that wait; values above five seconds are capped. Instead, submit orders asynchronously (the default) and use the private order stream or `GET /v1/order/{orderId}` to check status. Only use synchronous execution for immediately-fillable orders where you need to wait for fill confirmation.
 6. **Specify manual order indicator** - Required for regulatory compliance
 7. **Respect rate limits** - Implement request throttling to stay within rate limits and avoid 429 errors
+
+## YES-book limit orders
+
+### Price and direction
+
+| Side | Exchange action | Limit |
+| - | - | - |
+| `BID` | Buy YES | Maximum YES price you will pay |
+| `ASK` | Sell YES | Minimum YES price you will receive |
+
+> [!WARNING]
+>
+> ASK and BID orders change your net position. An ASK first reduces any long YES position, then opens a short one. A BID first reduces a short position, then opens a long one.
+
+### Trading NO
+
+Prices are always YES prices, including `price.value`, `avgPx` and `lastPx`.
+
+| NO trade at price `q` | `side` | `price.value` |
+| - | - | - |
+| Buy NO | `ASK` | `1 - q` |
+| Sell NO | `BID` | `1 - q` |
+
+For `q = 0.83`, use `price.value: "0.17"` in both cases.
+
+* **Positions.** A NO holding has a negative `netPositionDecimal` in [positions](https://docs.polymarket.us/api-reference/portfolio/overview.md#position-fields). Buying NO while holding YES sells the YES first.
+* **Fills.** The NO price per share is `1 - lastPx.value`, before fees. A YES fill at `0.1700` corresponds to NO at `0.83`.
+* **Order book.** Resting NO buys appear as YES `offers` at `1 - q`.
+* **Self-match.** Avoid placing a BID at or above your own ASK. Buying YES at `0.60` and NO at `0.40` places opposing orders at the same YES price.
+* **From v1.** `ORDER_INTENT_BUY_SHORT` becomes `ASK` and `ORDER_INTENT_SELL_SHORT` becomes `BID`, keeping the YES `price.value`.
+
+### Create a limit order
+
+Orders are limits sized in shares. The exchange checks your credit and trading eligibility for the full quantity.
+
+Create waits for the exchange within the server's wait limit. If the exchange rejects the order during that wait, the POST returns HTTP 400, including for insufficient funds.
+
+Send `quantity` as a positive decimal string matching the market's share increment. Create and modify submit the validated share quantity exactly.
+
+**Bid at a maximum YES price of 0.17:**
+
+```json theme={null}
+{
+  "marketSlug": "your-market-slug",
+  "side": "BID",
+  "price": { "value": "0.17", "currency": "USD" },
+  "quantity": "10"
+}
+```
+
+Send this body to `POST /v2/orders`. Use API-key authentication and sign the **v2 path**.
+
+**Ask at a minimum YES price of 0.05:**
+
+```json theme={null}
+{
+  "marketSlug": "your-market-slug",
+  "side": "ASK",
+  "price": { "value": "0.05", "currency": "USD" },
+  "quantity": "10",
+  "time_in_force": "TIME_IN_FORCE_GOOD_TILL_CANCEL",
+  "post_only": true
+}
+```
+
+Set `post_only` to require maker-only execution. An order that would take liquidity returns HTTP 400 with `POST_ONLY_WOULD_CROSS` in the `reason` of an `ErrorInfo` entry in `details`. Post-only orders require GTC or GTD.
+
+Prices must be greater than 0 and less than 1, in USD and on the market's tick size. A missing or invalid `side` returns HTTP 400.
+
+Omitting `time_in_force` selects `TIME_IN_FORCE_GOOD_TILL_CANCEL`. For `TIME_IN_FORCE_GOOD_TILL_DATE`, set `expiration_time_ms` to a whole Unix millisecond value, such as `1798761600000` for January 1, 2027 at midnight UTC. You can send a JSON integer or its quoted equivalent. Fractional values return HTTP 400. Other lifetimes reject a supplied expiry.
+
+`TIME_IN_FORCE_FILL_OR_KILL` requires the full quantity to fill immediately. If an order expires without a fill, create returns HTTP 409 with `FOK_NOT_FILLED` in an `ErrorInfo` detail. A zero-fill IOC returns HTTP 200. When FOK is disabled, create and modify return HTTP 400 with the message `FOK orders are disabled`.
+
+#### Placement responses and retries
+
+HTTP 200 means the exchange accepted the order. The request waits up to 5 seconds for the order to fill, expire or be canceled, and `executions` lists the order's events up to then: its acknowledgement, any fills and its final state. An order still resting when the wait ends returns with its events so far. If the order's events could not be read in time, the response has the `id`, an empty `executions` list and `pending: true`. Use `GET /v2/order/{orderId}` or watch the private order stream for the outcome. Stream rejections use `execution.order.state: "ORDER_STATE_REJECTED"`, with the reason in `execution.orderRejectReason` and `execution.text`.
+
+Send an `Idempotency-Key` with each placement. After an `ORDER_OUTCOME_UNKNOWN` error, a timeout or a lost connection, reconcile by order ID before retrying with the same key.
+
+### Modify and reconcile
+
+Modify uses the exchange order's BID or ASK side, including for orders created through v1. Send a new YES price and a new total quantity, including shares already filled.
+
+```json theme={null}
+{
+  "marketSlug": "your-market-slug",
+  "price": { "value": "0.17", "currency": "USD" },
+  "quantity": "12",
+  "time_in_force": "TIME_IN_FORCE_GOOD_TILL_CANCEL"
+}
+```
+
+Send it to `POST /v2/order/{orderId}/modify`. Specify `time_in_force` for every replacement. Set `post_only` to require maker-only execution. For `TIME_IN_FORCE_GOOD_TILL_DATE`, also set `good_till_time_ms` to a whole Unix millisecond value using the same format as `expiration_time_ms`. Reconcile the order to confirm the replacement, including after timeout or unavailable responses.
+
+### Order and execution responses
+
+`GET /v2/order/{orderId}` returns one of your orders. `GET /v2/orders/open` returns your open orders; use `slugs` or `eventIds` to filter them.
+
+Both reads return `side`, YES limit and average prices, decimal strings for total, filled and remaining shares, state, lifetime, timestamps and collected commissions. Orders created through v1 return in the same format. The response field `time_in_force` reports the order lifetime.
+
+Synchronous create responses can include executions, each with an order snapshot. A fill at 0.17 appears as `lastPx.value="0.1700"`.
+
+All v2 order and execution timestamps use whole Unix milliseconds. JSON responses return them as quoted integers, for example `"transact_time_ms": "1798761600123"`. Sub-millisecond precision is dropped. The response omits timestamps that are unavailable.
+
+### Using v2 with v1
+
+Cancel orders through `/v1/order/{orderId}/cancel`, `/v1/orders/open/cancel`, or batched cancellation. Private WebSocket updates use the v1 order shape. The TypeScript and Python SDKs support v1 orders. Idempotency keys are per user and shared across v1 and v2.
 
 
 This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

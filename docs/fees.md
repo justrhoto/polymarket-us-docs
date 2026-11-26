@@ -12,27 +12,33 @@
 >
 > Starting at 12:01 AM ET on Saturday, November 21, 2026, all taker trades placed through the Polymarket US API will be charged a standard taker fee coefficient of **0.0695** and receive a **70% rebate on those fees**. The program will run through December 31, 2026. **Tiered maker rebates will continue to be based on gross fee paid, not as a percentage of the post-rebate fee.**
 >
-> * **70% taker rebate.** 70% of the taker fees you pay on orders for straight trades (combos to follow in \~1 week) placed through the API will be rebated back.
+> * **70% taker rebate.** 70% of the taker fees you pay on orders for straight trades placed through the API will be rebated back. Combo rebates are coming soon.
 > * **Maker rebates still apply.** When your resting order is filled, you continue to earn a tiered rebate up to \~15% of the standard fee on that fill. More on tiered rebates [here](#maker-rebate-tiers).
-> * **API standard 0.0695 taker fee.** API taker trades will be charged a standard fee: `0.0695 × contracts × price × (1 − price)`, no matter your recent volume. Tiered fees and rebates for app traders remain unchanged.
+> * **API standard 0.0695 taker fee.** API taker trades will be charged a standard fee: `0.0695 × contracts × price × (1 − price)`, no matter your recent volume. Taker fee tiers for app and web traders are in the [table below](#taker-fee-tiers).
 > * **Runs through December 31, 2026.** We intend to extend the program based on how it performs.
 
 > [!NOTE]
 >
-> Effective exchange-wide from 12:00 AM ET, Saturday, November 14, 2026.
+> Effective exchange-wide from 09:45 PM ET, Wednesday, November 25, 2026.
 
-## Taker fee tiers
+## Taker fee rates
 
-Your taker fee tier is calculated daily using taker volume over the preceding **30 completed Eastern Time (ET) calendar days**, excluding today. Volume is measured as described in [How volume is measured](#how-volume-is-measured).
+Taker fees differ based on how you trade:
+
+* **App / web traders:** Your taker fee coefficient is tiered based on your trailing 30-day taker volume.
+* **API traders:** A flat taker fee coefficient of 0.0695 applies to all API taker trades, with no minimum volume requirement.
+
+For trading on the app / website, your taker fee tier is calculated daily using your taker volume over the preceding 30 complete calendar days (ET), excluding today. Volume is measured as described in [How volume is measured](#how-volume-is-measured).
+
+This tier sets Θ in both the [standard taker fee formula](#standard-trading) and the [combo taker fee formula](#taker-fees).
 
 | Taker fee tier | Trailing 30-day taker volume | Taker coefficient (Θ) |
 | - | - | - |
-| Tier 1 | Below \$10,000 | 0.095 |
-| Tier 2 | \$10,000 to less than \$50,000 | 0.085 |
-| Tier 3 | \$50,000 to less than \$250,000 | 0.075 |
+| [All API traders](https://docs.polymarket.us/getting-started/quickstart.md) | - | 0.0695 |
+| Tier 1 | Below \$10,000 | 0.11 |
+| Tier 2 | \$10,000 to less than \$50,000 | 0.10 |
+| Tier 3 | \$50,000 to less than \$250,000 | 0.09 |
 | Tier 4 | \$250,000 or more | 0.0695 |
-
-This tier sets Θ in both the [standard taker fee formula](#standard-trading), including Table Tennis, and the [combo taker fee formula](#taker-fees). Combos use a separate fee curve.
 
 ### New-account onboarding window
 
